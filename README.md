@@ -11,7 +11,7 @@ NASA-POWER agroclimatology data in your R session as a tidy data frame.
 
 ### Quick start
 
-_nasapower_ is not avaiable from CRAN, only GitHub. It can easily be installed
+_nasapower_ is not available from CRAN, only GitHub. It can easily be installed
 using the following code:
 
 ```r
