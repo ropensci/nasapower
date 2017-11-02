@@ -16,8 +16,8 @@
 #'   \item{Daily averaged precipitation from January 1997 through February 2013}
 #'   \item{Global coverage on a 1° latitude by 1° longitude grid}
 #' }
-#' @param x Longitude in decimal degrees for cell to download
-#' @param y Latitude in decimal degrees for cell to download
+#' @param lon Longitude in decimal degrees for cell to download
+#' @param lat Latitude in decimal degrees for cell to download
 #' @param vars Weather variables to download, defaults to T2M, T2MN, T2MX and
 #' RH2m. Valid variables are:
 #' \itemize{
@@ -128,7 +128,8 @@ get_nasa <-
     colnames <- unique(colnames[colnames != ""])
 
     # Create a data.frame of the NASA - POWER data and add names
-    NASA <- read.table(textConnection(NASA), skip = grep("-END HEADER-", NASA))
+    NASA <- utils::read.table(textConnection(NASA),
+                              skip = grep("-END HEADER-", NASA))
     names(NASA) <- colnames
 
     # Create a tidy data frame object

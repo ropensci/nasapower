@@ -16,6 +16,8 @@ Imports:
     dplyr,
     lubridate,
     rlang,
+    stringi,
+    utils
 RoxygenNote: 6.0.1
 Encoding: UTF-8
 NeedsCompilation: no

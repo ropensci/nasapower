@@ -8,6 +8,10 @@ get_nasa(lon, lat, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
   stdate = "1983-1-1", endate = Sys.Date())
 }
 \arguments{
+\item{lon}{Longitude in decimal degrees for cell to download}
+
+\item{lat}{Latitude in decimal degrees for cell to download}
+
 \item{vars}{Weather variables to download, defaults to T2M, T2MN, T2MX and
 RH2m. Valid variables are:
 \itemize{
@@ -34,10 +38,6 @@ the Earth (degrees C)}
 earlier data)}
 
 \item{endate}{End date for download, defaults to current date}
-
-\item{x}{Longitude in decimal degrees for cell to download}
-
-\item{y}{Latitude in decimal degrees for cell to download}
 }
 \value{
 A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
