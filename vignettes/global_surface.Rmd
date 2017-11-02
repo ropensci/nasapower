@@ -25,7 +25,7 @@ library(sp)
 Using the `raster` package generate a raster object at 1˚ by 1˚ to represent one
 date of the NASA - POWER data.
 
-```{r}
+```{r, eval=FALSE}
 x <- raster()
 projection(x) <- "+proj=utm +zone=48 +datum=WGS84"
 ```
@@ -33,21 +33,22 @@ projection(x) <- "+proj=utm +zone=48 +datum=WGS84"
 Get the lon/lat values from the `x` _raster_ object to query from the NASA -
 POWER website.
 
-```{r}
+```{r, eval=FALSE}
 xy <- as.data.frame(raster::xyFromCell(x, 1:64800))
 ```
 
 With the lon/lat values to provide to the `get_nasa()` function, we can now set
 up the data download.
 
-```{r}
+```{r, eval=FALSE}
 
 surface <- vector("list", nrow(xy))
 
 for (i in 1:nrow(xy)) {
   nasa_surface <- get_nasa(lon = xy[i, "x"], lat = xy[i, "y"],
                            stdate = "2017-1-1",
-                           endate = "2017-1-2")
+                           endate = "2017-1-1",
+                           vars = "T2M")
   surface[[i]] <- nasa_surface
 }
 surface <- dplyr::bind_rows(surface)
