@@ -79,10 +79,10 @@ get_nasa <-
 
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
-        stop("POWER does not supply precipitation data before 1997-01-01")
+        message("POWER does not supply precipitation data before 1997-01-01")
       }
       if (endate > "2008-03-01") {
-        stop("POWER does not supply precipitation data after 2008-02-28")
+        message("POWER does not supply precipitation data after 2008-02-28")
       }
     }
 
@@ -127,7 +127,8 @@ get_nasa <-
 
     # Create a data.frame of the NASA - POWER data and add names
     NASA <- utils::read.table(textConnection(NASA),
-                              skip = grep("-END HEADER-", NASA))
+                              skip = grep("-END HEADER-", NASA),
+                              na.strings = "-")
     names(NASA) <- colnames
 
     # Create a tidy data frame object
@@ -140,5 +141,6 @@ get_nasa <-
     # rearrange columns
     refcols <- c("YEAR", "MONTH", "DAY", "YYYYMMDD", "LON", "LAT")
     NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
+
     return(NASA)
   }
