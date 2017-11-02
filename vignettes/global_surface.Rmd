@@ -1,0 +1,55 @@
+---
+title: "Using nasapower to Create a Global Surface"
+author: "Adam H. Sparks"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using nasapower to Create a Global Surface}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Creating a complete global surface of NASA - POWER data is easy using
+_nasapower_.
+
+## Required libraries
+
+```{r}
+library(nasapower)
+library(dplyr)
+library(ggplot2)
+library(raster)
+library(sp)
+```
+
+Using the `raster` package generate a raster object at 1˚ by 1˚ to represent one
+date of the NASA - POWER data.
+
+```{r}
+x <- raster()
+projection(x) <- "+proj=utm +zone=48 +datum=WGS84"
+```
+
+Get the lon/lat values from the `x` _raster_ object to query from the NASA -
+POWER website.
+
+```{r}
+xy <- as.data.frame(raster::xyFromCell(x, 1:64800))
+```
+
+With the lon/lat values to provide to the `get_nasa()` function, we can now set
+up the data download.
+
+```{r}
+
+surface <- vector("list", nrow(xy))
+
+for (i in 1:nrow(xy)) {
+  nasa_surface <- get_nasa(lon = xy[i, "x"], lat = xy[i, "y"],
+                           stdate = "2017-1-1",
+                           endate = "2017-1-2")
+  surface[[i]] <- nasa_surface
+}
+surface <- dplyr::bind_rows(surface)
+```
+
