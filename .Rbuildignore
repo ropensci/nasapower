@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^appveyor\.yml$
+^\.travis\.yml$
+^CONDUCT\.md$

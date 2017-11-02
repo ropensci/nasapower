@@ -1,0 +1,24 @@
+Package: nasapower
+Type: Package
+Title: NASA-POWER Agroclimatology Data from R
+Version: 0.0.1.9000
+Authors@R: c(person(given = "Adam H.", family = "Sparks",
+    role = c("aut", "cre"), email = "adamhsparks@gmail.com"),
+    person(given = "Jorrel Khalil S.", family = "Aunario",
+    role = "ctb", email = "jaunario@gmail.com"))
+URL: https://github.com/ropensci/nasapower
+BugReports: https://github.com/ropensci/GRID/nasapower
+Description: Download NASA-POWER agroclimatology data.
+Depends:
+    R (>= 3.2.0)
+License: MIT + file LICENSE
+Imports:
+    dplyr,
+    lubridate,
+    rlang,
+RoxygenNote: 6.0.1
+Encoding: UTF-8
+NeedsCompilation: no
+Repository: CRAN
+LazyData: TRUE
+ByteCompile: TRUE
