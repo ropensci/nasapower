@@ -4,8 +4,6 @@ context("get_nasa")
 test_that("get_nasa returns a valid data frame", {
   expect_is(get_nasa(
     lon = -179.5,
-    lat = 89.5,
-    stdate = "1983-2-1",
-    endate = "1983-2-2"
+    lat = 89.5
   ), "data.frame")
 })
