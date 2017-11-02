@@ -55,7 +55,6 @@
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
 #' @author Adam H. Sparks, adamhsparks@gmail.com
-#' @importFrom rlang .data
 #'
 #'@export
 get_nasa <-
@@ -122,7 +121,8 @@ get_nasa <-
     NASA <- readLines(durl)
 
     # Create a vector from the downloaded data of the column names
-    colnames <- unlist(strsplit(NASA[grep("-END HEADER-", NASA) - 1], split = " "))
+    colnames <-
+      unlist(strsplit(NASA[grep("-END HEADER-", NASA) - 1], split = " "))
 
     # Clean up column names, otherwise there are empty values in the vector
     colnames <- unique(colnames[colnames != ""])
@@ -138,16 +138,9 @@ get_nasa <-
     NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
     NASA["MONTH"] <- lubridate::month(NASA$YYYYMMDD)
     NASA["DAY"] <- lubridate::day(NASA$YYYYMMDD)
-    NASA <- dplyr::select(
-      NASA,
-      .data$YEAR,
-      .data$MONTH,
-      .data$DAY,
-      .data$YYYYMMDD,
-      .data$LON,
-      .data$LAT,
-      dplyr::everything()
-    )
 
+    # rearrange columns
+    refcols <- c("YEAR", "MONTH", "DAY", "YYYYMMDD", "LON", "LAT")
+    NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
     return(NASA)
   }
