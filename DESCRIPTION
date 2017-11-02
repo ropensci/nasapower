@@ -22,3 +22,4 @@ NeedsCompilation: no
 Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
+Suggests: testthat
