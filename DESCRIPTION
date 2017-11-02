@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA-POWER Agroclimatology Data from R
-Version: 0.0.2
+Version: 0.0.3
 Date: 2017-11-02
 Authors@R: c(person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
@@ -25,8 +25,14 @@ NeedsCompilation: no
 Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
-Suggests: testthat,
+Suggests:
+    testthat,
     knitr,
     rmarkdown,
-    covr
+    covr,
+    ggplot2,
+    purrr,
+    raster,
+    sp,
+    viridis
 VignetteBuilder: knitr
