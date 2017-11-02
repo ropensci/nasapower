@@ -3,3 +3,4 @@
 ^appveyor\.yml$
 ^\.travis\.yml$
 ^CONDUCT\.md$
+^codecov\.yml$
