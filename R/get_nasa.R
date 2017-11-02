@@ -77,6 +77,14 @@ get_nasa <-
     stdate <- as.Date(stdate)
     endate <- as.Date(endate)
 
+    if (stdate < "1983-01-01") {
+      stop("NASA-POWER data do not start before 1983-01-01")
+    }
+
+    if (endate < stdate) {
+      stop("Your end date is before your start date.")
+    }
+
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
         message("POWER does not supply precipitation data before 1997-01-01")
