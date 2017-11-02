@@ -118,7 +118,7 @@ get_nasa <-
         "&step=1&de=",
         format(as.Date(endate), "%d"),
         "&ds=",
-        format(as.Date(stdate), "%Y"),
+        format(as.Date(stdate), "%d"),
         "&ys=",
         format(as.Date(stdate), "%Y")
       )
