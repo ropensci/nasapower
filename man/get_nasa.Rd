@@ -62,7 +62,7 @@ meteorological data. The POWER website describes the data as:
 }
 \examples{
 \dontrun{
-get_nasa(lon = -179.5, lat = 89.5)
+nasa <- get_nasa(lon = -179.5, lat = 89.5)
 }
 
 }

@@ -49,7 +49,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_nasa(lon = -179.5, lat = 89.5)
+#' nasa <- get_nasa(lon = -179.5, lat = 89.5)
 #' }
 #'
 #' @references
@@ -74,17 +74,17 @@ get_nasa <-
       lat <- lat[1]
     }
 
+    stdate <- as.Date(stdate)
+    endate <- as.Date(endate)
+
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
-        stop("POWER does not supply precipitation data prior to 1997-01-01")
+        stop("POWER does not supply precipitation data before 1997-01-01")
       }
       if (endate > "2008-03-01") {
         stop("POWER does not supply precipitation data after 2008-02-28")
       }
     }
-
-    stdate <- as.Date(stdate)
-    endate <- as.Date(endate)
 
     # concatenate all the download vars into a single string for use below
     download_vars <- paste0(vars, sep = "&p=", collapse = "")
@@ -100,22 +100,20 @@ get_nasa <-
         "lat=",
         lat,
         "&email=agroclim40larc.nasa.gov&ye=",
-        lubridate::year(endate),
+        format(as.Date(endate), "%Y"),
         "&me=",
-        lubridate::month(endate),
+        format(as.Date(endate), "%m"),
         "&lon=",
         lon,
         "&submit=Submit&ms=",
-        lubridate::month(stdate),
+        format(as.Date(stdate), "%m"),
         "&step=1&de=",
-        lubridate::day(endate),
+        format(as.Date(endate), "%d"),
         "&ds=",
-        lubridate::day(stdate),
+        format(as.Date(stdate), "%Y"),
         "&ys=",
-        lubridate::year(stdate)
+        format(as.Date(stdate), "%Y")
       )
-
-    message("Reading ", appendLF = FALSE)
 
     # Reads lines from the NASA-POWER website
     NASA <- readLines(durl)
@@ -136,8 +134,8 @@ get_nasa <-
     NASA["LON"] <- lon
     NASA["LAT"] <- lat
     NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
-    NASA["MONTH"] <- lubridate::month(NASA$YYYYMMDD)
-    NASA["DAY"] <- lubridate::day(NASA$YYYYMMDD)
+    NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
+    NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
 
     # rearrange columns
     refcols <- c("YEAR", "MONTH", "DAY", "YYYYMMDD", "LON", "LAT")
