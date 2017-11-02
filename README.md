@@ -50,7 +50,8 @@ Valid `vars` include:
 
 ## Meta
 
-### 
+### References
+<https://power.larc.nasa.gov>
 
 <https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf>
 
