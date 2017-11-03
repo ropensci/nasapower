@@ -28,7 +28,7 @@ Creating a complete global surface of NASA - POWER data is easy using
 _nasapower_. However, the process is time-intensive since it requires many
 queries of the server.
 
-## Required libraries
+## Load libraries
 
 ```{r libraries, eval=FALSE}
 library(dplyr)
@@ -37,6 +37,8 @@ library(nasapower)
 library(raster)
 library(viridis)
 ```
+
+## Set up
 
 Using the `raster` package generate a raster object at 1˚ by 1˚ to represent one
 date of the NASA - POWER data.
@@ -62,6 +64,8 @@ xy_list <- split(xy, seq(nrow(xy)))
 xy_list <- lapply(xy_list, function(x) as.numeric(x))
 ```
 
+## Query the server
+
 With the lon/lat values to provide to the `get_nasa()` function, we can now set
 up the data download.
 
@@ -77,7 +81,7 @@ surface <- purrr::map_df(
 
 ```
 
-## Mapping the data
+## Map the data
 
 Using _ggplot2_ it is possible to make simple maps of the data.
 
