@@ -2,12 +2,18 @@
 title: "nasapower"
 author: "Adam H Sparks"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{nasapower}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r setup, include=FALSE}
+library(nasapower)
+```
 
 ## Introduction
 
@@ -24,39 +30,77 @@ using the following code:
 devtools::install_github("adamhsparks/nasapower")
 ```
 
+## Using nasapower()
+
 _nasapower_ only provides one function, `get_nasa()`, which will download
 specified variables for a given 1˚ longitude by 1˚ latitude cell and return a
-tidy data frame of the requested data.
+tidy data frame of the requested data. Weather variables can be specified in the
+`nasapower()` function by using the `vars` argument. 
+
+The `get_nasa()` function accepts four arguments.
 
 ```r
-get_nasa(lon = -179.5, lat = 89.5, vars = c("T2M", "T2MN", "T2MX"))
+get_nasa(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
+  stdate = "1983-1-1", endate = Sys.Date())
 ```
 
-Valid `vars` include:
+- `lonlat` A length-2 numeric vector giving the decimal degree longitude and
+and latitude in that order for cell data to download
 
-* toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
+- `lat` Latitude value to query (single value only)
 
-* swv_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)
+- `vars` Weather variables to query for download. Valid `vars` include:
 
-* lwv_dwn - Average downward longwave radiative flux (MJ/m^2/day)
+    * toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
 
-* T2M - Average air temperature at 2m above the surface of the Earth (degrees C)
+    * swv_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)
 
-* T2MN - Minimum air temperature at 2m above the surface of the Earth (degrees C)
+    * lwv_dwn - Average downward longwave radiative flux (MJ/m^2/day)
 
-* T2MX - Maximum air temperature at 2m above the surface of the Earth (degrees C)
+    * T2M - Average air temperature at 2m above the surface of the Earth (degrees C)
 
-* RH2M - Relative humidity at 2m above the surface of the Earth (%)
+    * T2MN - Minimum air temperature at 2m above the surface of the Earth (degrees C)
 
-* DFP2M - Dew/Frost point temperature at 2m above the surface of the Earth (degrees C)
+    * T2MX - Maximum air temperature at 2m above the surface of the Earth (degrees C)
 
-* RAIN - Average precipitation (mm/day)
+    * RH2M - Relative humidity at 2m above the surface of the Earth (%)
 
-* WS10M - Wind speed at 10m above the surface of the Earth (m/s)
+    * DFP2M - Dew/Frost point temperature at 2m above the surface of the Earth (degrees C)
 
-## Meta
+    * RAIN - Average precipitation (mm/day)
 
-### References
+    * WS10M - Wind speed at 10m above the surface of the Earth (m/s)
+
+- `stdate` Starting date for download, defaults to 01/01/1983 (there is no
+earlier data)
+
+- `endate` End date for download, defaults to current date
+
+### Usage
+
+To start using `get_nasa()` with the default values, all that is necessary is
+to supply the latitude and longitude values. Weather variables will default to 
+T2M, T2MN, T2MX and RH2M (see below for more weather variables and their
+definitions). Start date will default to `1983-1-1` and the end date will
+default to the current (system) date.
+
+```{r basic_example, eval=FALSE}
+get_nasa(lonlat = c(-179.5, -89.5))
+```
+
+### Specifying dates
+
+By default `get_nasa()` will use `1983-01-01` as a start date and the current
+date as the end date. Following is an example of specifying the end date.
+
+Specify only the end date, `1983-01-02`, using the default start date of
+`1983-01-01`.
+
+```{r specify_endate}
+get_nasa(lonlat = c(-179.5, -89.5), endate = "1983-01-02")
+```
+
+## References
 <https://power.larc.nasa.gov>
 
 <https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf>
