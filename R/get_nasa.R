@@ -118,8 +118,12 @@ get_nasa <-
         format(as.Date(stdate), "%Y")
       )
 
+
     # Reads lines from the NASA-POWER website
-    NASA <- readLines(durl)
+    NASA <-
+      unlist(strsplit((
+        httr::content(httr::GET(durl), encoding = "UTF8")
+      ), "\n"))
 
     # Create a vector from the downloaded data of the column names
     colnames <-

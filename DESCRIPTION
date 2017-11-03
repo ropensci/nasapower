@@ -17,6 +17,7 @@ Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
 Imports:
+    httr,
     stringi,
     utils
 RoxygenNote: 6.0.1
