@@ -4,13 +4,12 @@
 \alias{get_nasa}
 \title{Download NASA-POWER Agroclimatology Variables and Return a Tidy Data Frame}
 \usage{
-get_nasa(lon, lat, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
-  stdate = "1983-1-1", endate = Sys.Date())
+get_nasa(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
+  stdate = "1983-1-1", endate = Sys.Date(), tidy = TRUE)
 }
 \arguments{
-\item{lon}{Longitude in decimal degrees for cell to download}
-
-\item{lat}{Latitude in decimal degrees for cell to download}
+\item{lonlat}{A length-2 numeric vector giving the decimal degree longitude
+and latitude in that order for cell data to download}
 
 \item{vars}{Weather variables to download, defaults to T2M, T2MN, T2MX and
 RH2m. Valid variables are:
@@ -38,6 +37,9 @@ the Earth (degrees C)}
 earlier data)}
 
 \item{endate}{End date for download, defaults to current date}
+
+\item{tidy}{Logical. If `TRUE` return a tidy (long format) data frame.
+Defaults to `TRUE`, long format.}
 }
 \value{
 A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
@@ -62,7 +64,7 @@ meteorological data. The POWER website describes the data as:
 }
 \examples{
 \dontrun{
-nasa <- get_nasa(lon = -179.5, lat = 89.5)
+nasa <- get_nasa(lonlat = c(-179.5, -89.5))
 }
 
 }

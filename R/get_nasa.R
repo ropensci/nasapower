@@ -16,8 +16,8 @@
 #'   \item{Daily averaged precipitation from January 1997 through February 2013}
 #'   \item{Global coverage on a 1° latitude by 1° longitude grid}
 #' }
-#' @param lon Longitude in decimal degrees for cell to download
-#' @param lat Latitude in decimal degrees for cell to download
+#' @param lonlat A length-2 numeric vector giving the decimal degree longitude
+#' and latitude in that order for cell data to download
 #' @param vars Weather variables to download, defaults to T2M, T2MN, T2MX and
 #' RH2m. Valid variables are:
 #' \itemize{
@@ -49,7 +49,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' nasa <- get_nasa(lon = -179.5, lat = 89.5)
+#' nasa <- get_nasa(lonlat = c(-179.5, -89.5))
 #' }
 #'
 #' @references
@@ -58,20 +58,15 @@
 #'
 #'@export
 get_nasa <-
-  function(lon,
-           lat,
+  function(lonlat = NULL,
            vars = c("T2M",
                     "T2MN",
                     "T2MX",
                     "RH2M"),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
-    if (length(lon) != 1 | length(lat) != 1) {
-      message("Warning: Either lon or lat has length > 1. Using first\n",
-              "only.\n",
-              appendLF = TRUE)
-      lon <- lon[1]
-      lat <- lat[1]
+    if (is.null(lonlat) | length(lonlat) != 2 | !is.numeric(lonlat)) {
+      stop("lonlat must be provided in a length-2 numeric vector.\n")
     }
 
     stdate <- as.Date(stdate)
@@ -106,13 +101,13 @@ get_nasa <-
         "https://power.larc.nasa.gov/cgi-bin/agro.cgi?&p=",
         download_vars,
         "lat=",
-        lat,
+        lonlat[2],
         "&email=agroclim40larc.nasa.gov&ye=",
         format(as.Date(endate), "%Y"),
         "&me=",
         format(as.Date(endate), "%m"),
         "&lon=",
-        lon,
+        lonlat[1],
         "&submit=Submit&ms=",
         format(as.Date(stdate), "%m"),
         "&step=1&de=",
@@ -134,20 +129,23 @@ get_nasa <-
     colnames <- unique(colnames[colnames != ""])
 
     # Create a data.frame of the NASA - POWER data and add names
-    NASA <- utils::read.table(textConnection(NASA),
-                              skip = grep("-END HEADER-", NASA),
-                              na.strings = "-")
+    NASA <- utils::read.table(
+      textConnection(NASA),
+      skip = grep("-END HEADER-", NASA),
+      na.strings = "-"
+    )
     names(NASA) <- colnames
 
     # Create a tidy data frame object
-    NASA["LON"] <- lon
-    NASA["LAT"] <- lat
+    NASA["LON"] <- lonlat[1]
+    NASA["LAT"] <- lonlat[2]
     NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
     NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
     NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
 
     # rearrange columns
-    refcols <- c("YEAR", "MONTH", "DAY", "YYYYMMDD", "LON", "LAT")
+    refcols <-
+      c("YEAR", "MONTH", "DAY", "YYYYMMDD", "DOY", "LON", "LAT")
     NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
 
     return(NASA)
