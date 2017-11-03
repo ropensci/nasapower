@@ -6,7 +6,9 @@ nasapower: NASA-POWER Agroclimatology Data from R
 Introduction
 ------------
 
-*nasapower* aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.
+*nasapower* aims to make it quick, easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R session as a tidy data frame for agricultural analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1˚ longitude by 1˚ latitude.
+
+Please see <https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov> for the agroclimatology data web interface.
 
 ### Quick start
 
@@ -49,15 +51,24 @@ Valid `vars` include:
 
 -   WS10M - Wind speed at 10m above the surface of the Earth (m/s)
 
+Use of POWER Data
+-----------------
+
+While *nasapower* does not redistribute the data or provide it in anyway, we encourage users to follow the requests of the POWER Project Team.
+
+> When POWER data products are used in a publication, we request the following acknowledgment be included: "These data were obtained from the NASA Langley Research Center POWER Project funded through the NASA Earth Science Directorate Applied Science Program."
+
 Meta
 ----
 
-### References
+-   Please [report any issues or bugs](https://github.com/adamhsparks/nasapower/issues).
+-   License: MIT
+-   Get citation information for `nasapower` in R doing `citation(package = "nasapower")`
+-   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+References
+----------
 
 <https://power.larc.nasa.gov>
 
 <https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf>
-
-### Code of Conduct
-
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
