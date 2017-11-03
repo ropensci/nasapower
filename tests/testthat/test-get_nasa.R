@@ -2,7 +2,7 @@ context("get_nasa")
 # Check that .validate_years handles invalid years -----------------------------
 
 test_that("get_nasa returns a valid data frame", {
-  expect_is(get_nasa(lonlat = c(-179.5, lat = 89.5)), "data.frame")
+  expect_is(get_nasa(lonlat = c(-179.5, 89.5)), "data.frame")
 })
 
 test_that("get_nasa only uses first value of lat/lon", {
