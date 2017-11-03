@@ -82,10 +82,7 @@ get_nasa <-
 
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
-        message("POWER does not supply precipitation data before 1997-01-01")
-      }
-      if (endate > "2008-03-01") {
-        message("POWER does not supply precipitation data after 2008-02-28")
+        message("POWER does not supply precipitation data before 1997-01-01.\n")
       }
     }
 
