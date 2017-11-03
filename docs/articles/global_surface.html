@@ -85,14 +85,18 @@
     
 <div class="contents">
 <p>Creating a complete global surface of NASA - POWER data is easy using <em>nasapower</em>. However, the process is time-intensive since it requires many queries of the server.</p>
-<div id="required-libraries" class="section level2">
+<div id="load-libraries" class="section level2">
 <h2 class="hasAnchor">
-<a href="#required-libraries" class="anchor"></a>Required libraries</h2>
+<a href="#load-libraries" class="anchor"></a>Load libraries</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(nasapower)
 <span class="kw">library</span>(raster)
 <span class="kw">library</span>(viridis)</code></pre></div>
+</div>
+<div id="set-up" class="section level2">
+<h2 class="hasAnchor">
+<a href="#set-up" class="anchor"></a>Set up</h2>
 <p>Using the <code>raster</code> package generate a raster object at 1˚ by 1˚ to represent one date of the NASA - POWER data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>()</code></pre></div>
 <p>Get the lon/lat values from the <code>x</code> <em>raster</em> object to query from the NASA - POWER website.</p>
@@ -103,6 +107,10 @@ xy_list &lt;-<span class="st"> </span><span class="kw">split</span>(xy, <span cl
 
 <span class="co"># Convert the list to numeric vectors for `get_nasa()`</span>
 xy_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(xy_list, <span class="cf">function</span>(x) <span class="kw">as.numeric</span>(x))</code></pre></div>
+</div>
+<div id="query-the-server" class="section level2">
+<h2 class="hasAnchor">
+<a href="#query-the-server" class="anchor"></a>Query the server</h2>
 <p>With the lon/lat values to provide to the <code><a href="../reference/get_nasa.html">get_nasa()</a></code> function, we can now set up the data download.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 surface &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map_df</a></span>(
@@ -113,9 +121,9 @@ surface &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class
   <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"RH2M"</span>)
   )</code></pre></div>
 </div>
-<div id="mapping-the-data" class="section level2">
+<div id="map-the-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#mapping-the-data" class="anchor"></a>Mapping the data</h2>
+<a href="#map-the-data" class="anchor"></a>Map the data</h2>
 <p>Using <em>ggplot2</em> it is possible to make simple maps of the data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot temperature</span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(surface, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> LON, <span class="dt">y =</span> LAT, <span class="dt">fill =</span> T2M)) <span class="op">+</span>
@@ -141,8 +149,10 @@ surface &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#required-libraries">Required libraries</a></li>
-      <li><a href="#mapping-the-data">Mapping the data</a></li>
+<li><a href="#load-libraries">Load libraries</a></li>
+      <li><a href="#set-up">Set up</a></li>
+      <li><a href="#query-the-server">Query the server</a></li>
+      <li><a href="#map-the-data">Map the data</a></li>
       </ul>
 </div>
       </div>
