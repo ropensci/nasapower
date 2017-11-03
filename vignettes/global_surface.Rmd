@@ -8,49 +8,93 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+```{r check_packages, echo=FALSE, messages=FALSE, warning=FALSE}
+required <- c("dplyr", "ggplot2", "raster", "virdis")
+
+if (!all(unlist(lapply(required, function(pkg)
+requireNamespace(pkg, quietly = TRUE)))))
+
+knitr::opts_chunk$set(
+eval = FALSE,
+collapse = TRUE,
+comment = "#>",
+fig.width = 7,
+fig.height = 7,
+fig.align = "center"
+)
+```
 
 Creating a complete global surface of NASA - POWER data is easy using
-_nasapower_.
+_nasapower_. However, the process is time-intensive since it requires many
+queries of the server.
 
 ## Required libraries
 
-```{r}
-library(nasapower)
+```{r libraries, eval=FALSE}
 library(dplyr)
 library(ggplot2)
+library(nasapower)
 library(raster)
-library(sp)
+library(viridis)
 ```
 
 Using the `raster` package generate a raster object at 1˚ by 1˚ to represent one
 date of the NASA - POWER data.
 
-```{r, eval=FALSE}
+```{r raster, eval=FALSE}
 x <- raster()
-projection(x) <- "+proj=utm +zone=48 +datum=WGS84"
 ```
 
 Get the lon/lat values from the `x` _raster_ object to query from the NASA -
 POWER website.
 
-```{r, eval=FALSE}
-xy <- as.data.frame(raster::xyFromCell(x, 1:64800))
+```{r xy_df, eval=FALSE}
+xy <- data.frame(raster::xyFromCell(x, 1:64800))
+```
+
+Create a list of numeric vectors of lon/lat values for `get_nasa()` to use.
+
+```{r numeric_vec, eval=FALSE}
+# Create a list of lonlat objects
+xy_list <- split(xy, seq(nrow(xy)))
+
+# Convert the list to numeric vectors for `get_nasa()`
+xy_list <- lapply(xy_list, function(x) as.numeric(x))
 ```
 
 With the lon/lat values to provide to the `get_nasa()` function, we can now set
 up the data download.
 
-```{r, eval=FALSE}
+```{r fetch_data, eval=FALSE}
 
-surface <- vector("list", nrow(xy))
+surface <- purrr::map_df(
+  .x = xy_list,
+  .f = get_nasa,
+  stdate = "2017-1-1",
+  endate = "2017-1-1",
+  vars = c("T2M", "RH2M")
+  )
 
-for (i in 1:nrow(xy)) {
-  nasa_surface <- get_nasa(lon = xy[i, "x"], lat = xy[i, "y"],
-                           stdate = "2017-1-1",
-                           endate = "2017-1-1",
-                           vars = "T2M")
-  surface[[i]] <- nasa_surface
-}
-surface <- dplyr::bind_rows(surface)
 ```
 
+## Mapping the data
+
+Using _ggplot2_ it is possible to make simple maps of the data.
+
+```{r}
+# Plot temperature
+ggplot(surface, aes(x = LON, y = LAT, fill = T2M)) +
+  geom_tile() +
+  scale_fill_viridis() +
+  theme_bw() +
+  coord_cartesian() +
+  ggtitle("Average Temperature (˚C)")
+
+# Plot RH
+ggplot(surface, aes(x = LON, y = LAT, fill = RH2M)) +
+  geom_tile() +
+  scale_fill_viridis(option = "C") +
+  theme_bw() +
+  coord_cartesian() +
+  ggtitle("Relative Humidity (%)")
+```
