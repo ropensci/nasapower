@@ -5,7 +5,7 @@
 \title{Download NASA-POWER Agroclimatology Variables and Return a Tidy Data Frame}
 \usage{
 get_nasa(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
-  stdate = "1983-1-1", endate = Sys.Date(), tidy = TRUE)
+  stdate = "1983-1-1", endate = Sys.Date())
 }
 \arguments{
 \item{lonlat}{A length-2 numeric vector giving the decimal degree longitude
@@ -37,9 +37,6 @@ the Earth (degrees C)}
 earlier data)}
 
 \item{endate}{End date for download, defaults to current date}
-
-\item{tidy}{Logical. If `TRUE` return a tidy (long format) data frame.
-Defaults to `TRUE`, long format.}
 }
 \value{
 A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
