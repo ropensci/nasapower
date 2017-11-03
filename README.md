@@ -21,7 +21,7 @@ devtools::install_github("adamhsparks/nasapower")
 
 ### Usage
 
-To start using `get_nasa()` with the default values, all that is necessary is to supply the latitude and longitude values. Weather variables will default to T2M, T2MN, T2MX and RH2M (see below for more weather variables and their definitions). Start date will default to `1983-1-1` and the end date will default to the current (system) date.
+To start using `get_nasa()` with the default values, all that is necessary is to supply the latitude and longitude values. Weather variables will default to `T2M`, `T2MN`, `T2MX` and `RH2M` (see below for more weather variables and their definitions). Start date will default to `1983-1-1` and the end date will default to the current (system) date.
 
 ``` r
 get_nasa(lonlat = c(-89.5, -179.5))
