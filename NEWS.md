@@ -4,6 +4,10 @@
 
 * Add static documentation website, <https://adamhsparks.github.io/nasapower/>
 
+* Add startup message
+
+* Better documentation
+
 # nasapower 0.0.2
 
 * Added citation file
