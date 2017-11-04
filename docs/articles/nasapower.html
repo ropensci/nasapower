@@ -163,13 +163,12 @@ Downloading: 770 B</code></pre>
 <a href="#using-get_region" class="anchor"></a>Using get_region()</h2>
 <p>The <code><a href="../reference/get_region.html">get_region()</a></code> function accepts the same arguments as <code><a href="../reference/get_cell.html">get_cell()</a></code>, however, the <code>lonlat</code> value is a length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.</p>
 <p>This function is useful for retreiving whole states, countries or global surfaces. This example illustrates fetching and graphing the average temperature and relative humidity for the Philippines.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(raster)
-<span class="kw">library</span>(sp)
-
-PHL_adm &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/getData">getData</a></span>(<span class="dt">name =</span> <span class="st">"GADM"</span>, <span class="dt">country =</span> <span class="st">"PHL"</span>, <span class="dt">level =</span> <span class="dv">0</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PHL_adm &lt;-<span class="st"> </span>rnaturalearth<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rnaturalearth/topics/ne_countries">ne_countries</a></span>(<span class="dt">scale =</span> <span class="dv">50</span>,
+                                       <span class="dt">country =</span> <span class="st">"Philippines"</span>,
+                                       <span class="dt">returnclass =</span> <span class="st">"sp"</span>)
 
 <span class="co"># get the bounding box from the sp object to instruct the `lonlat` values</span>
-PHL_lonlat &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/bbox">bbox</a></span>(PHL_adm)
+PHL_lonlat &lt;-<span class="st"> </span>sp<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/bbox">bbox</a></span>(PHL_adm)
 
 PHL &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_region.html">get_region</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(PHL_lonlat[<span class="dv">1</span>, <span class="dv">1</span>],
                              PHL_lonlat[<span class="dv">1</span>, <span class="dv">2</span>],

@@ -119,13 +119,12 @@ surfaces. This example illustrates fetching and graphing the average temperature
 and relative humidity for the Philippines.
 
 ```{r get_philippines_example, eval = FALSE}
-library(raster)
-library(sp)
-
-PHL_adm <- getData(name = "GADM", country = "PHL", level = 0)
+PHL_adm <- rnaturalearth::ne_countries(scale = 50,
+                                       country = "Philippines",
+                                       returnclass = "sp")
 
 # get the bounding box from the sp object to instruct the `lonlat` values
-PHL_lonlat <- bbox(PHL_adm)
+PHL_lonlat <- sp::bbox(PHL_adm)
 
 PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
                              PHL_lonlat[1, 2],
