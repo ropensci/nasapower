@@ -6,7 +6,7 @@ nasapower: NASA-POWER Agroclimatology Data from R
 Introduction
 ------------
 
-*nasapower* aims to make it quick, easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R session as a tidy data frame for agricultural analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1˚ longitude by 1˚ latitude.
+*nasapower* aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R session as a tidy data frame for agricultural analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1˚ longitude by 1˚ latitude.
 
 Please see <https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov> for the agroclimatology data web interface.
 

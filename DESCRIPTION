@@ -12,7 +12,10 @@ URL: https://github.com/adamhsparks/nasapower
 BugReports: https://github.com/adamhsparks/nasapower
 Description: Download NASA-POWER agroclimatology data and create a tidy data
     frame for individual cells or a specified region. nasapower is a lightweight
-    interface to the NASA - POWER website for R.
+    interface to the NASA - POWER website for R. POWER (Prediction Of Worldwide
+    Energy Resource) data are freely available for download through a web
+    interface at a resolution of 1 degree longitude by 1 degree latitude funded
+    through the NASA Earth Science Directorate Applied Science Program.
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
