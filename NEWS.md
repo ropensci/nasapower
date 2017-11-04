@@ -1,5 +1,3 @@
-# nasapower 0.1.0.9000
-
 # nasapower 0.1.0
 
 * Add new functionality to download regions in addition to single cells
