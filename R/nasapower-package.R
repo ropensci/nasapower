@@ -6,5 +6,6 @@
 #' @docType package
 #'
 #' @seealso
-#'\link{get_nasa}
+#'\link{get_cell}
+#'\link{get_region}
 NULL

@@ -9,7 +9,8 @@
 Downloads NASA-POWER Agroclimatology Variables and Returns a Tidy Data Frame
 }
 \seealso{
-\link{get_nasa}
+\link{get_cell}
+\link{get_region}
 }
 \author{
 Adam H Sparks
