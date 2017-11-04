@@ -1,6 +1,4 @@
 
-
-
 #' Download NASA-POWER Agroclimatology Variables for a Given Region and Return a Tidy Data Frame
 #'
 #' @description Download NASA-POWER (Prediction of Worldwide Energy Resource)
@@ -45,6 +43,11 @@
 #' @param stdate Starting date for download, defaults to 01/01/1983 (there is no
 #' earlier data)
 #' @param endate End date for download, defaults to current date
+#'
+#' @note
+#' Wikipedia has a list of bounding boxes for most countries that may be
+#' useful.
+#' \url{https://en.wikipedia.org/wiki/User%3aThe_Anome/country_bounding_boxes}
 #'
 #' @return
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
@@ -127,12 +130,11 @@ get_region <-
         lonlat[1]
       )
 
-
     # Read lines from the NASA-POWER website -----------------------------------
     NASA <-
-      unlist(strsplit((
-        httr::content(httr::GET(durl), encoding = "UTF8")
-      ), "\n"))
+      httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
+    NASA <-
+      unlist(strsplit(NASA, "\n"))
 
     end <- "-END HEADER-"
     location <- "Location: Latitude"
@@ -150,7 +152,8 @@ get_region <-
     location_rows <- unlist(regmatches(location_rows,
                                        gregexpr('\\(?[0-9,.]+',
                                                 location_rows)))
-    location_rows <- as.numeric(gsub('\\(', '-', gsub(',', '', location_rows)))
+    location_rows <-
+      as.numeric(gsub('\\(', '-', gsub(',', '', location_rows)))
     location_rows <- as.data.frame(split(location_rows, 1:2))
 
     # Create a data.frame of the NASA - POWER data and add names ---------------
