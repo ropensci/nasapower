@@ -30,7 +30,7 @@ ByteCompile: TRUE
 Suggests:
     covr,
     ggplot2,
-    knitr,
+    knitr
     raster,
     rmarkdown,
     sp,
