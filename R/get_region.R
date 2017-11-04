@@ -128,6 +128,8 @@ get_region <-
     # Read lines from the NASA-POWER website -----------------------------------
     NASA <-
       httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
+    # clear console
+    message("\n")
     NASA <-
       unlist(strsplit(NASA, "\n"))
 
