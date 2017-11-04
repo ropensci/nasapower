@@ -30,12 +30,11 @@ using the following code:
 devtools::install_github("adamhsparks/nasapower")
 ```
 
-## Using nasapower()
+## Using get_cell()
 
-_nasapower_ only provides one function, `get_cell()`, which will download
-specified variables for a given 1˚ longitude by 1˚ latitude cell and return a
-tidy data frame of the requested data. Weather variables can be specified in the
-`nasapower()` function by using the `vars` argument. 
+_nasapower_ only provides functions, `get_cell()`, for a given 1˚ longitude by 1˚ latitude cell and `get_region()`, both of which will which will download
+specified variables and return a tidy data frame of the requested data. Weather
+variables can be specified by using the `vars` argument. 
 
 The `get_cell()` function accepts four arguments.
 
@@ -76,9 +75,9 @@ earlier data)
 
 - `endate` End date for download, defaults to current date
 
-### Using get_cells()
+### Using get_cell()
 
-To start using _nasapower, `get_cells()` offers default values, all that is
+To start using _nasapower_, `get_cell()` offers default values, all that is
 necessary is to supply the latitude and longitude values. Weather variables will
 default to T2M, T2MN, T2MX and RH2M (see below for more weather variables and
 their definitions). Start date will default to `1983-1-1` and the end date will
@@ -137,7 +136,8 @@ PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
 ```
 
 
-Using _ggplot_, plot the downloaded data.
+Using _ggplot_, plot the downloaded data with an outline from Naturalearthdata
+for reference.
 
 ```{r plot_phl, eval=FALSE}
 library(ggplot2)
@@ -165,6 +165,8 @@ ggplot(PHL, aes(x = LON, y = LAT, fill = RH2M)) +
     ggtitle("Average Relative Humidity (%)",
           subtitle = "Data sources\nRelative Humidity: NASA - POWER\nPHL boundary: Naturalearthdata")
 ```
+
+
 ![Philippine Temperature](plot_phl-1.png)
 !["Philippine Relative Humidity"](plot_phl-2.png)
 
