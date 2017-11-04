@@ -44,11 +44,6 @@
 #' earlier data)
 #' @param endate End date for download, defaults to current date
 #'
-#' @note
-#' Wikipedia has a list of bounding boxes for most countries that may be
-#' useful.
-#' \url{https://en.wikipedia.org/wiki/User%3aThe_Anome/country_bounding_boxes}
-#'
 #' @return
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
 #' for the requested region.
@@ -143,7 +138,7 @@ get_region <-
       unlist(strsplit(NASA[grep(end, NASA) - 1][1], split = " "))
 
     # Clean up column names, otherwise there are empty values in the vector
-    colnames <- c("LON", "LAT", unique(colnames[colnames != ""]))
+    colnames <- c("LAT", "LON", unique(colnames[colnames != ""]))
 
     # Get the lon/lat values for each row and create a data frame of them ------
     location_rows <- grep(location, NASA)
