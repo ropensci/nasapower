@@ -96,7 +96,7 @@ library(nasapower)
 get_cell(lonlat = c(-179.5, -89.5))
 ```
 
-More documentation is available in the vignette, <https://adamhsparks.github.io/nasapower/articles/nasapower.html>
+More documentation is available in the vignette, <https://adamhsparks.github.io/nasapower/articles/nasapower.html>.
 
 ## Use of POWER Data
 
