@@ -1,3 +1,7 @@
+# nasapower 0.1.1
+
+- Fix issues in documentation, typos, incorrect links, etc.
+
 # nasapower 0.1.0
 
 * Add new functionality to download regions in addition to single cells
