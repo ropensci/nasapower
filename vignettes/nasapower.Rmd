@@ -32,15 +32,15 @@ devtools::install_github("adamhsparks/nasapower")
 
 ## Using nasapower()
 
-_nasapower_ only provides one function, `get_nasa()`, which will download
+_nasapower_ only provides one function, `get_cell()`, which will download
 specified variables for a given 1˚ longitude by 1˚ latitude cell and return a
 tidy data frame of the requested data. Weather variables can be specified in the
 `nasapower()` function by using the `vars` argument. 
 
-The `get_nasa()` function accepts four arguments.
+The `get_cell()` function accepts four arguments.
 
 ```r
-get_nasa(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
+get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
   stdate = "1983-1-1", endate = Sys.Date())
 ```
 
@@ -76,41 +76,100 @@ earlier data)
 
 - `endate` End date for download, defaults to current date
 
-### Usage
+### Using get_cells()
 
-To start using `get_nasa()` with the default values, all that is necessary is
-to supply the latitude and longitude values. Weather variables will default to 
-T2M, T2MN, T2MX and RH2M (see below for more weather variables and their
-definitions). Start date will default to `1983-1-1` and the end date will
+To start using _nasapower, `get_cells()` offers default values, all that is
+necessary is to supply the latitude and longitude values. Weather variables will
+default to T2M, T2MN, T2MX and RH2M (see below for more weather variables and
+their definitions). Start date will default to `1983-1-1` and the end date will
 default to the current (system) date.
 
 ```{r basic_example, eval=FALSE}
-get_nasa(lonlat = c(-179.5, -89.5))
+get_cell(lonlat = c(-179.5, -89.5))
 ```
 
 ### Specifying dates
 
-By default `get_nasa()` will use `1983-01-01` as a start date and the current
+By default `get_cell()` will use `1983-01-01` as a start date and the current
 date as the end date. Following is an example of specifying the end date.
 
 Specify only the end date, `1983-01-02`, using the default start date of
 `1983-01-01`.
 
 ```{r specify_endate}
-get_nasa(lonlat = c(-179.5, -89.5), endate = "1983-01-02")
+get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02")
 ```
 
 ### Specifying variables
 
-By default `get_nasa()` will fetch `T2M`, `T2MN`, `T2MX`, `RH2M` weather
+By default `get_cell()` will fetch `T2M`, `T2MN`, `T2MX`, `RH2M` weather
 variables. Following is an example of specifying only one variable, `WS10M`,
 for retrieval.
 
 ```{r specify_vars}
-get_nasa(lonlat = c(-179.5, -89.5), endate = "1983-01-02", vars = "WS10M")
+get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02", vars = "WS10M")
 ```
 
+## Using get_region()
+
+The `get_region()` function accepts the same arguments as `get_cell()`, however,
+the `lonlat` value is a length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.
+
+This function is useful for retreiving whole states, countries or global
+surfaces. This example illustrates fetching and graphing the average temperature
+and relative humidity for the Philippines.
+
+```{r get_philippines_example, eval = FALSE}
+PHL_adm <- rnaturalearth::ne_countries(scale = 50,
+                                       country = "Philippines",
+                                       returnclass = "sp")
+
+# get the bounding box from the sp object to instruct the `lonlat` values
+PHL_lonlat <- sp::bbox(PHL_adm)
+
+PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
+                             PHL_lonlat[1, 2],
+                             PHL_lonlat[2, 1],
+                             PHL_lonlat[2, 2]), 
+                  vars = c("T2M", "RH2M"),
+                  stdate = "2017-1-1",
+                  endate = "2017-1-2")
+```
+
+
+Using _ggplot_, plot the downloaded data.
+
+```{r plot_phl, eval=FALSE}
+library(ggplot2)
+library(viridis)
+
+# Plot temperature
+ggplot(PHL) +
+  geom_tile(aes(x = LON, y = LAT, fill = T2M)) +
+  scale_fill_viridis() +
+   geom_polygon(data = PHL_adm, aes(x = long, y = lat, group = group), 
+               fill = NA, color = "white", size = 1) +
+  theme_bw() +
+  coord_map() +
+  ggtitle("Average Temperature (˚C)",
+          subtitle = "Data sources\nTemperature: NASA - POWER\nPHL boundary: Naturalearthdata")
+
+# Plot RH
+ggplot(PHL, aes(x = LON, y = LAT, fill = RH2M)) +
+  geom_tile() +
+  scale_fill_viridis(option = "C") +
+   geom_polygon(data = PHL_adm, aes(x = long, y = lat, group = group), 
+               fill = NA, color = "white", size = 1) +
+  theme_bw() +
+  coord_map() +
+    ggtitle("Average Relative Humidity (%)",
+          subtitle = "Data sources\nRelative Humidity: NASA - POWER\nPHL boundary: Naturalearthdata")
+```
+![Philippine Temperature](plot_phl-1.png)
+!["Philippine Relative Humidity"](plot_phl-2.png)
+
 ## References
+
 <https://power.larc.nasa.gov>
 
 <https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf>
