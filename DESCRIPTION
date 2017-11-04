@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA-POWER Agroclimatology Data from R
-Version: 0.0.3
+Version: 0.1.0
 Date: 2017-11-02
 Authors@R: c(person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
@@ -11,8 +11,9 @@ Authors@R: c(person(given = "Adam H.", family = "Sparks",
 URL: https://github.com/adamhsparks/nasapower
 BugReports: https://github.com/adamhsparks/GRID/nasapower
 Description: Download NASA-POWER agroclimatology data and create a tidy data
-    frame for individual cells. A lightweight interface to the NASA - POWER
-    website to download and create a tidy data frame of agroclimatology data.
+    frame for individual cells or a specified region. A lightweight interface to
+    the NASA - POWER website to download and create a tidy data frame of
+    agroclimatology data.
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
@@ -30,10 +31,9 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
+    rnaturalearth,
     covr,
     ggplot2,
-    purrr,
-    raster,
     sp,
     viridis
 VignetteBuilder: knitr
