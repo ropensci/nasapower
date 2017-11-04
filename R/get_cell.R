@@ -115,12 +115,11 @@ get_cell <-
         format(as.Date(stdate), "%Y")
       )
 
-
-    # Reads lines from the NASA-POWER website
+    # Read lines from the NASA-POWER website
     NASA <-
-      unlist(strsplit((
-        httr::content(httr::GET(durl), encoding = "UTF8")
-      ), "\n"))
+      httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
+    NASA <-
+      unlist(strsplit(NASA, "\n"))
 
     # Create a vector from the downloaded data of the column names
     colnames <-
