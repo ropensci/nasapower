@@ -1,3 +1,9 @@
+# nasapower 0.1.0
+
+* Add new functionality to download regions in addition to single cells
+
+* Add static documentation website, <https://adamhsparks.github.io/nasapower/>
+
 # nasapower 0.0.2
 
 * Added citation file
