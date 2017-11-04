@@ -51,7 +51,7 @@
 #' @examples
 #' \dontrun{
 #' # Get POWER data for Australia for 1/1/2017
-#' nasa <- get_region(lonlat = c(112.467, 168.000, -55.050, -9.133),
+#' nasa <- get_region(lonlat = c(112.91972, 159.256088, -55.11694, -9.221099),
 #'                    stdate = "2017-1-1", endate = "2017-1-1")
 #' }
 #'
