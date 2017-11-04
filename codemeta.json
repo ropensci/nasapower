@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/doi:10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/doi:10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
   "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. A lightweight interface to\n    the NASA - POWER website to download and create a tidy data frame of\n    agroclimatology data.",
@@ -168,7 +171,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower.git/blob/devel/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower.git/blob/devel/README.md",
-  "fileSize": "260.222KB",
+  "fileSize": "260.111KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
