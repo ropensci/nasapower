@@ -28,12 +28,12 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    testthat,
-    knitr,
-    rmarkdown,
-    rnaturalearth,
     covr,
     ggplot2,
+    knitr
+    raster,
+    rmarkdown,
     sp,
+    testthat,
     viridis
 VignetteBuilder: knitr
