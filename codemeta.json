@@ -5,13 +5,13 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
-  "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. A lightweight interface to\n    the NASA - POWER website to download and create a tidy data frame of\n    agroclimatology data.",
+  "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. nasapower is a lightweight\n    interface to the NASA - POWER website for R.",
   "name": "nasapower: NASA-POWER Agroclimatology Data from R",
   "codeRepository": "https://github.com/adamhsparks/nasapower.git",
-  "issueTracker": "https://github.com/adamhsparks/GRID/nasapower",
-  "datePublished": "2017-11-02",
+  "issueTracker": "https://github.com/adamhsparks/nasapower",
+  "datePublished": "2017-11-04",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -171,7 +171,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower.git/blob/devel/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower.git/blob/devel/README.md",
-  "fileSize": "260.111KB",
+  "fileSize": "260.167KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
