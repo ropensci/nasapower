@@ -20,21 +20,11 @@ library(nasapower)
 _nasapower_ aims to make it quick, easy and efficient to automate downloading
 NASA-POWER agroclimatology data in your R session as a tidy data frame.
 
-### Quick start
-
-_nasapower_ is not available from CRAN, only GitHub. It can easily be installed
-using the following code:
-
-```r
-# install.packages("devtools", dep = TRUE)
-devtools::install_github("adamhsparks/nasapower")
-```
-
-## Using get_cell()
-
 _nasapower_ only provides functions, `get_cell()`, for a given 1˚ longitude by 1˚ latitude cell and `get_region()`, both of which will which will download
 specified variables and return a tidy data frame of the requested data. Weather
 variables can be specified by using the `vars` argument. 
+
+## Using get_cell()
 
 The `get_cell()` function accepts four arguments.
 
@@ -75,15 +65,14 @@ earlier data)
 
 - `endate` End date for download, defaults to current date
 
-### Using get_cell()
+### Basic example of using get_cell()
 
-To start using _nasapower_, `get_cell()` offers default values, all that is
-necessary is to supply the latitude and longitude values. Weather variables will
-default to T2M, T2MN, T2MX and RH2M (see below for more weather variables and
-their definitions). Start date will default to `1983-1-1` and the end date will
-default to the current (system) date.
+Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at
+longitude -179.5 and latitude -89.5.
 
 ```{r basic_example, eval=FALSE}
+library(nasapower)
+
 get_cell(lonlat = c(-179.5, -89.5))
 ```
 
@@ -114,7 +103,7 @@ get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02", vars = "WS10M")
 The `get_region()` function accepts the same arguments as `get_cell()`, however,
 the `lonlat` value is a length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.
 
-This function is useful for retreiving whole states, countries or global
+This function is useful for retrieving whole states, countries or global
 surfaces. This example illustrates fetching and graphing the average temperature
 and relative humidity for the Philippines.
 

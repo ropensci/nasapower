@@ -19,37 +19,63 @@ Please see <https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nas
 devtools::install_github("adamhsparks/nasapower")
 ```
 
-*nasapower* only provides one function, `get_nasa()`, which will download specified variables for a given 1˚ longitude by 1˚ latitude cell and return a tidy data frame (long format) of the requested data.
+Introduction
+------------
 
-### Usage
+*nasapower* aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.
 
-To start using `get_nasa()` with the default values, all that is necessary is to supply the latitude and longitude values. Weather variables will default to `T2M`, `T2MN`, `T2MX` and `RH2M` (see below for more weather variables and their definitions). Start date will default to `1983-1-1` and the end date will default to the current (system) date.
+*nasapower* only provides functions, `get_cell()`, for a given 1˚ longitude by 1˚ latitude cell and `get_region()`, both of which will which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the `vars` argument.
+
+Both functions accept four arguments.
 
 ``` r
-get_nasa(lonlat = c(-89.5, -179.5))
+get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
+  stdate = "1983-1-1", endate = Sys.Date())
 ```
 
-Valid `vars` include:
+-   `lonlat` for `get_cell()` A length-2 numeric vector giving the decimal degree longitude and and latitude in that order for cell data to download
 
--   toa\_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
+-   `lonlat` for `get_region()` A length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.
 
--   swv\_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)
+-   `lat` Latitude value to query (single value only)
 
--   lwv\_dwn - Average downward longwave radiative flux (MJ/m^2/day)
+-   `vars` Weather variables to query for download. Valid `vars` include:
 
--   T2M - Average air temperature at 2m above the surface of the Earth (degrees C)
+    -   toa\_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
 
--   T2MN - Minimum air temperature at 2m above the surface of the Earth (degrees C)
+    -   swv\_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)
 
--   T2MX - Maximum air temperature at 2m above the surface of the Earth (degrees C)
+    -   lwv\_dwn - Average downward longwave radiative flux (MJ/m^2/day)
 
--   RH2M - Relative humidity at 2m above the surface of the Earth (%)
+    -   T2M - Average air temperature at 2m above the surface of the Earth (degrees C)
 
--   DFP2M - Dew/Frost point temperature at 2m above the surface of the Earth (degrees C)
+    -   T2MN - Minimum air temperature at 2m above the surface of the Earth (degrees C)
 
--   RAIN - Average precipitation (mm/day)
+    -   T2MX - Maximum air temperature at 2m above the surface of the Earth (degrees C)
 
--   WS10M - Wind speed at 10m above the surface of the Earth (m/s)
+    -   RH2M - Relative humidity at 2m above the surface of the Earth (%)
+
+    -   DFP2M - Dew/Frost point temperature at 2m above the surface of the Earth (degrees C)
+
+    -   RAIN - Average precipitation (mm/day)
+
+    -   WS10M - Wind speed at 10m above the surface of the Earth (m/s)
+
+-   `stdate` Starting date for download, defaults to 01/01/1983 (there is no earlier data)
+
+-   `endate` End date for download, defaults to current date
+
+### Basic example of using get\_cell()
+
+Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.
+
+``` r
+library(nasapower)
+
+get_cell(lonlat = c(-179.5, -89.5))
+```
+
+More documentation is available in the vignette, <https://adamhsparks.github.io/nasapower/articles/nasapower.html>
 
 Use of POWER Data
 -----------------

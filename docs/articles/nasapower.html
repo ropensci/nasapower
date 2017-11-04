@@ -76,18 +76,11 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p><em>nasapower</em> aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.</p>
-<div id="quick-start" class="section level3">
-<h3 class="hasAnchor">
-<a href="#quick-start" class="anchor"></a>Quick start</h3>
-<p><em>nasapower</em> is not available from CRAN, only GitHub. It can easily be installed using the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools", dep = TRUE)</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>)</code></pre></div>
-</div>
+<p><em>nasapower</em> only provides functions, <code><a href="../reference/get_cell.html">get_cell()</a></code>, for a given 1˚ longitude by 1˚ latitude cell and <code><a href="../reference/get_region.html">get_region()</a></code>, both of which will which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>vars</code> argument.</p>
 </div>
 <div id="using-get_cell" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-get_cell" class="anchor"></a>Using get_cell()</h2>
-<p><em>nasapower</em> only provides functions, <code><a href="../reference/get_cell.html">get_cell()</a></code>, for a given 1˚ longitude by 1˚ latitude cell and <code><a href="../reference/get_region.html">get_region()</a></code>, both of which will which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>vars</code> argument.</p>
 <p>The <code><a href="../reference/get_cell.html">get_cell()</a></code> function accepts four arguments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="ot">NULL</span>, <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"T2MN"</span>, <span class="st">"T2MX"</span>, <span class="st">"RH2M"</span>),
   <span class="dt">stdate =</span> <span class="st">"1983-1-1"</span>, <span class="dt">endate =</span> <span class="kw">Sys.Date</span>())</code></pre></div>
@@ -112,11 +105,13 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><p><code>stdate</code> Starting date for download, defaults to 01/01/1983 (there is no earlier data)</p></li>
 <li><p><code>endate</code> End date for download, defaults to current date</p></li>
 </ul>
-<div id="using-get_cell-1" class="section level3">
+<div id="basic-example-of-using-get_cell" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-get_cell-1" class="anchor"></a>Using get_cell()</h3>
-<p>To start using <em>nasapower</em>, <code><a href="../reference/get_cell.html">get_cell()</a></code> offers default values, all that is necessary is to supply the latitude and longitude values. Weather variables will default to T2M, T2MN, T2MX and RH2M (see below for more weather variables and their definitions). Start date will default to <code>1983-1-1</code> and the end date will default to the current (system) date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="op">-</span><span class="fl">89.5</span>))</code></pre></div>
+<a href="#basic-example-of-using-get_cell" class="anchor"></a>Basic example of using get_cell()</h3>
+<p>Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nasapower)
+
+<span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="op">-</span><span class="fl">89.5</span>))</code></pre></div>
 </div>
 <div id="specifying-dates" class="section level3">
 <h3 class="hasAnchor">
@@ -162,7 +157,7 @@ Downloading: 770 B</code></pre>
 <h2 class="hasAnchor">
 <a href="#using-get_region" class="anchor"></a>Using get_region()</h2>
 <p>The <code><a href="../reference/get_region.html">get_region()</a></code> function accepts the same arguments as <code><a href="../reference/get_cell.html">get_cell()</a></code>, however, the <code>lonlat</code> value is a length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.</p>
-<p>This function is useful for retreiving whole states, countries or global surfaces. This example illustrates fetching and graphing the average temperature and relative humidity for the Philippines.</p>
+<p>This function is useful for retrieving whole states, countries or global surfaces. This example illustrates fetching and graphing the average temperature and relative humidity for the Philippines.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">PHL_adm &lt;-<span class="st"> </span>rnaturalearth<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rnaturalearth/topics/ne_countries">ne_countries</a></span>(<span class="dt">scale =</span> <span class="dv">50</span>,
                                        <span class="dt">country =</span> <span class="st">"Philippines"</span>,
                                        <span class="dt">returnclass =</span> <span class="st">"sp"</span>)

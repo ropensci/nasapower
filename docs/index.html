@@ -79,14 +79,22 @@
 <p><em>nasapower</em> is not available from CRAN, only GitHub. It can easily be installed using the following code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools", dep = TRUE)</span>
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>)</code></pre></div>
-<p><em>nasapower</em> only provides one function, <code>get_nasa()</code>, which will download specified variables for a given 1˚ longitude by 1˚ latitude cell and return a tidy data frame (long format) of the requested data.</p>
 </div>
-<div id="usage" class="section level3">
-<h3 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h3>
-<p>To start using <code>get_nasa()</code> with the default values, all that is necessary is to supply the latitude and longitude values. Weather variables will default to <code>T2M</code>, <code>T2MN</code>, <code>T2MX</code> and <code>RH2M</code> (see below for more weather variables and their definitions). Start date will default to <code>1983-1-1</code> and the end date will default to the current (system) date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">get_nasa</span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">89.5</span>, <span class="op">-</span><span class="fl">179.5</span>))</code></pre></div>
-<p>Valid <code>vars</code> include:</p>
+</div>
+<div id="introduction-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction-1" class="anchor"></a>Introduction</h2>
+<p><em>nasapower</em> aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.</p>
+<p><em>nasapower</em> only provides functions, <code><a href="reference/get_cell.html">get_cell()</a></code>, for a given 1˚ longitude by 1˚ latitude cell and <code><a href="reference/get_region.html">get_region()</a></code>, both of which will which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>vars</code> argument.</p>
+<p>Both functions accept four arguments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="ot">NULL</span>, <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"T2MN"</span>, <span class="st">"T2MX"</span>, <span class="st">"RH2M"</span>),
+  <span class="dt">stdate =</span> <span class="st">"1983-1-1"</span>, <span class="dt">endate =</span> <span class="kw">Sys.Date</span>())</code></pre></div>
+<ul>
+<li><p><code>lonlat</code> for <code><a href="reference/get_cell.html">get_cell()</a></code> A length-2 numeric vector giving the decimal degree longitude and and latitude in that order for cell data to download</p></li>
+<li><p><code>lonlat</code> for <code><a href="reference/get_region.html">get_region()</a></code> A length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.</p></li>
+<li><p><code>lat</code> Latitude value to query (single value only)</p></li>
+<li>
+<p><code>vars</code> Weather variables to query for download. Valid <code>vars</code> include:</p>
 <ul>
 <li><p>toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)</p></li>
 <li><p>swv_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)</p></li>
@@ -99,6 +107,18 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><p>RAIN - Average precipitation (mm/day)</p></li>
 <li><p>WS10M - Wind speed at 10m above the surface of the Earth (m/s)</p></li>
 </ul>
+</li>
+<li><p><code>stdate</code> Starting date for download, defaults to 01/01/1983 (there is no earlier data)</p></li>
+<li><p><code>endate</code> End date for download, defaults to current date</p></li>
+</ul>
+<div id="basic-example-of-using-get_cell" class="section level3">
+<h3 class="hasAnchor">
+<a href="#basic-example-of-using-get_cell" class="anchor"></a>Basic example of using get_cell()</h3>
+<p>Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nasapower)
+
+<span class="kw"><a href="reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="op">-</span><span class="fl">89.5</span>))</code></pre></div>
+<p>More documentation is available in the vignette, <a href="https://adamhsparks.github.io/nasapower/articles/nasapower.html" class="uri">https://adamhsparks.github.io/nasapower/articles/nasapower.html</a></p>
 </div>
 </div>
 <div id="use-of-power-data" class="section level2">
