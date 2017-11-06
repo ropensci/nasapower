@@ -84,7 +84,7 @@ date as the end date. Following is an example of specifying the end date.
 Specify only the end date, `1983-01-02`, using the default start date of
 `1983-01-01`.
 
-```{r specify_endate}
+```{r specify_endate, eval=FALSE}
 get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02")
 ```
 
@@ -94,7 +94,7 @@ By default `get_cell()` will fetch `T2M`, `T2MN`, `T2MX`, `RH2M` weather
 variables. Following is an example of specifying only one variable, `WS10M`,
 for retrieval.
 
-```{r specify_vars}
+```{r specify_vars, eval=FALSE}
 get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02", vars = "WS10M")
 ```
 
