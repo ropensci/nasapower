@@ -66,7 +66,7 @@
       <h1>nasapower</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-11-04</h4>
+            <h4 class="date">2017-11-06</h4>
           </div>
 
     
@@ -119,38 +119,12 @@
 <p>By default <code><a href="../reference/get_cell.html">get_cell()</a></code> will use <code>1983-01-01</code> as a start date and the current date as the end date. Following is an example of specifying the end date.</p>
 <p>Specify only the end date, <code>1983-01-02</code>, using the default start date of <code>1983-01-01</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="op">-</span><span class="fl">89.5</span>), <span class="dt">endate =</span> <span class="st">"1983-01-02"</span>)</code></pre></div>
-<pre><code>## 
-Downloading: 970 B     
-Downloading: 970 B     
-Downloading: 970 B     
-Downloading: 970 B     
-Downloading: 970 B     
-Downloading: 970 B     
-Downloading: 970 B     
-Downloading: 970 B</code></pre>
-<pre><code>## </code></pre>
-<pre><code>##   YEAR MONTH DAY   YYYYMMDD DOY    LON   LAT    T2M   T2MN   T2MX  RH2M
-## 1 1983    01  01 1983-01-01   1 -179.5 -89.5 -20.45 -23.71 -18.10 74.22
-## 2 1983    01  02 1983-01-02   2 -179.5 -89.5 -20.54 -22.10 -19.21 72.73</code></pre>
 </div>
 <div id="specifying-variables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#specifying-variables" class="anchor"></a>Specifying variables</h3>
 <p>By default <code><a href="../reference/get_cell.html">get_cell()</a></code> will fetch <code>T2M</code>, <code>T2MN</code>, <code>T2MX</code>, <code>RH2M</code> weather variables. Following is an example of specifying only one variable, <code>WS10M</code>, for retrieval.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="op">-</span><span class="fl">89.5</span>), <span class="dt">endate =</span> <span class="st">"1983-01-02"</span>, <span class="dt">vars =</span> <span class="st">"WS10M"</span>)</code></pre></div>
-<pre><code>## 
-Downloading: 770 B     
-Downloading: 770 B     
-Downloading: 770 B     
-Downloading: 770 B     
-Downloading: 770 B     
-Downloading: 770 B     
-Downloading: 770 B     
-Downloading: 770 B</code></pre>
-<pre><code>## </code></pre>
-<pre><code>##   YEAR MONTH DAY   YYYYMMDD DOY    LON   LAT WS10M
-## 1 1983    01  01 1983-01-01   1 -179.5 -89.5  2.28
-## 2 1983    01  02 1983-01-02   2 -179.5 -89.5  3.04</code></pre>
 </div>
 </div>
 <div id="using-get_region" class="section level2">
