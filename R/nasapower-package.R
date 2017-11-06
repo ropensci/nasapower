@@ -5,6 +5,25 @@
 #' @author Adam H Sparks
 #' @docType package
 #'
+#' @description
+#' \code{nasapower} provides an R interface to download NASA-POWER
+#' agroclimatology data and create a tidy data frame for individual cells or a
+#' specified region.  POWER (Prediction Of Worldwide Energy Resource) data are
+#' freely available for download through a web interface at a resolution of 1
+#' degree longitude by 1 degree latitude funded through the NASA Earth Science
+#' Directorate Applied Science Program.
+#'
+#' @note
+#' While \code{nasapower} does not redistribute the data in anyway, we
+#' encourage users to follow the requests of the POWER Project Team.
+#'
+#' When POWER data products are used in a publication, we request the
+#' following acknowledgment be included:
+#'
+#' "These data were obtained from the NASA Langley Research Center
+#' POWER Project funded through the NASA Earth Science Directorate Applied
+#' Science Program."
+#'
 #' @seealso
 #' \itemize{
 #' \item \link{get_cell} Download NASA-POWER Agroclimatology Variables for a
@@ -12,4 +31,10 @@
 #' \item \link{get_region} Download NASA-POWER Agroclimatology Variables for a
 #' Given Region and Return a Tidy Data Frame
 #' }
+#'
+#' @references
+#' \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
+#'
+#' @author Adam H. Sparks, \email{adamhsparks@gmail.com}
+#'
 NULL
