@@ -29,12 +29,14 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    testthat,
+    APSIM,
+    covr,
+    dplyr,
+    ggplot2,
     knitr,
     rmarkdown,
     rnaturalearth,
-    covr,
-    ggplot2,
     sp,
+    testthat,
     viridis
 VignetteBuilder: knitr
