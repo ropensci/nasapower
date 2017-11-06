@@ -108,7 +108,7 @@ df <- oz %>%
  mutate(ids = paste(LON, LAT, sep = '-'))
 
 df2 <- df %>%
- arrange(ids, LAT)
+ arrange(ids)
 
 
 
