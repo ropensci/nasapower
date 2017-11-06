@@ -175,26 +175,27 @@ get_region <-
     max_index[min_index == max(min_index)] <-
       max(min_index) + max_index[1] - min_index[1]
 
+    indices <- data.frame(min_index, max_index)
 
-    # These are the actual line of data of interest
-    indices <- c(rbind(min_index, max_index))
+    indices <- mapply(`:`, indices$min_index, indices$max_index)
+    indices <- unlist(indices, use.names = FALSE)
 
-    NASA2 <- utils::read.table(textConnection(NASA[indices]),
+    NASA <- utils::read.table(textConnection(NASA[indices]),
                                na.strings = "-")
 
     # Create a tidy data frame object of lon/lat and data
-    NASA2 <- cbind(location_rows, NASA2)
-    names(NASA2) <- colnames
+    NASA <- cbind(location_rows, NASA)
+    names(NASA) <- colnames
 
     # Add additional date fields
-    NASA2["YYYYMMDD"] <- as.Date(NASA2$DOY, origin = stdate - 1)
-    NASA2["MONTH"] <- format(as.Date(NASA2$YYYYMMDD), "%m")
-    NASA2["DAY"] <- format(as.Date(NASA2$YYYYMMDD), "%d")
+    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
+    NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
+    NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
 
     # rearrange columns
     refcols <-
       c("YEAR", "MONTH", "DAY", "YYYYMMDD", "DOY", "LON", "LAT")
-    NASA2 <- NASA2[, c(refcols, setdiff(names(NASA2), refcols))]
+    NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
 
-    return(NASA2)
+    return(NASA)
   }
