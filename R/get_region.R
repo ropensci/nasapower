@@ -1,4 +1,5 @@
 
+
 #' Download NASA-POWER Agroclimatology Variables for a Given Region and Return a Tidy Data Frame
 #'
 #' @description Download NASA-POWER (Prediction of Worldwide Energy Resource)
@@ -134,6 +135,7 @@ get_region <-
       unlist(strsplit(NASA, "\n"))
 
     end <- "-END HEADER-"
+    start <- "-BEGIN HEADER-"
     location <- "Location: Latitude"
 
     colnames <-
@@ -152,30 +154,47 @@ get_region <-
     location_rows <-
       as.numeric(gsub('\\(', '-', gsub(',', '', location_rows)))
     location_rows <- as.data.frame(split(location_rows, 1:2))
+    location_rows <- location_rows[rep(row.names(location_rows),
+                                   as.numeric((endate - stdate) + 1)),
+                               1:2]
+    location_rows <-
+      location_rows[order(row.names(location_rows)), ]
+
+    row.names(location_rows) <- NULL
 
     # Create a data.frame of the NASA - POWER data and add names ---------------
     # Find the immediate prior row to the data, "-END HEADER-"
-    prior_rows <- grep(end, NASA)
+    min_index <- grep(end, NASA) + 1
+
+    max_index <- grep(start, NASA) - 1
+    max_index <- max_index[-1]
+
+    # Add last max_index value since there is no "end" at the end of the string
+    max_index <- c(max_index, max(max_index) + (max_index[2] - min_index[1]))
+
+    max_index[min_index == max(min_index)] <-
+      max(min_index) + max_index[1] - min_index[1]
+
 
     # These are the actual line of data of interest
-    data_rows <- unlist(lapply(prior_rows, as.vector)) + 1
+    indices <- c(rbind(min_index, max_index))
 
-    NASA <- utils::read.table(textConnection(NASA[data_rows]),
-                              na.strings = "-")
+    NASA2 <- utils::read.table(textConnection(NASA[indices]),
+                               na.strings = "-")
 
     # Create a tidy data frame object of lon/lat and data
-    NASA <- cbind(location_rows, NASA)
-    names(NASA) <- colnames
+    NASA2 <- cbind(location_rows, NASA2)
+    names(NASA2) <- colnames
 
     # Add additional date fields
-    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
-    NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
-    NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
+    NASA2["YYYYMMDD"] <- as.Date(NASA2$DOY, origin = stdate - 1)
+    NASA2["MONTH"] <- format(as.Date(NASA2$YYYYMMDD), "%m")
+    NASA2["DAY"] <- format(as.Date(NASA2$YYYYMMDD), "%d")
 
     # rearrange columns
     refcols <-
       c("YEAR", "MONTH", "DAY", "YYYYMMDD", "DOY", "LON", "LAT")
-    NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
+    NASA2 <- NASA2[, c(refcols, setdiff(names(NASA2), refcols))]
 
-    return(NASA)
+    return(NASA2)
   }
