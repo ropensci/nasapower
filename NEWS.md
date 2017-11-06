@@ -1,4 +1,20 @@
 
+# nasapower 0.1.1.9000
+
+## Minor changes
+
+- Enhanced documentation
+
+- Superflous function, .onLoad(), removed from zzz.R
+
+- Tidied up startup message
+
+- Clean up vignette
+
+- Build vignette faster
+
+- Remove DATE from DESCRIPTION
+
 # nasapower 0.1.1
 
 - Fix issues in documentation, typos, incorrect links, etc.
