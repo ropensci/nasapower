@@ -40,8 +40,10 @@ models where data may be missing or as a whole data set where data are not
 readily available, _e.g._ modelling rice disease globally (Savary _et al._
 2012).
 
-In this use case we illustrate how to compare NASA-POWER data with station
-data and format for use in APSIM using the R package, APSIM (Fainges 2017).
+In this use case we illustrate how use NASA-POWER radiation data with existing
+station data and format for use in APSIM using the R package, APSIM
+(Fainges 2017) and how it can be used for a larger modelling exercise like
+the EPIRICE paper (Savary _et al._ 2012)
 
 ## Get NASA-POWER Data
 
@@ -50,15 +52,15 @@ is provided by the package, we can compare it with NASA-POWER data for
 Kingsthorpe, Queensland for 2010.
 
 To do that first we need to use `get_cell()` to fetch the data for 2010 and
-create a data frame of weather data which includes the variables, T2M, T2MN,
-T2MX, RAIN and WSM10M.
+create a data frame of weather data which includes the variables, T2MN,
+T2MX and RAIN to calculate SRAD.
 
 ```{r get_data_show, eval=FALSE}
 kings_nasa <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2MX", "T2MN", "RAIN", "WS10M", "RH2M")
+  vars = c("T2MX", "T2MN", "RAIN")
   )
 ```
 
