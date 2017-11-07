@@ -1,4 +1,5 @@
 
+
 #' Download NASA-POWER Agroclimatology Variables for a Given Region and Return a Tidy Data Frame
 #'
 #' @description Download NASA-POWER (Prediction of Worldwide Energy Resource)
@@ -134,6 +135,7 @@ get_region <-
       unlist(strsplit(NASA, "\n"))
 
     end <- "-END HEADER-"
+    start <- "-BEGIN HEADER-"
     location <- "Location: Latitude"
 
     colnames <-
@@ -152,16 +154,34 @@ get_region <-
     location_rows <-
       as.numeric(gsub('\\(', '-', gsub(',', '', location_rows)))
     location_rows <- as.data.frame(split(location_rows, 1:2))
+    location_rows <- location_rows[rep(row.names(location_rows),
+                                   as.numeric((endate - stdate) + 1)),
+                               1:2]
+    location_rows <-
+      location_rows[order(row.names(location_rows)), ]
+
+    row.names(location_rows) <- NULL
 
     # Create a data.frame of the NASA - POWER data and add names ---------------
     # Find the immediate prior row to the data, "-END HEADER-"
-    prior_rows <- grep(end, NASA)
+    min_index <- grep(end, NASA) + 1
 
-    # These are the actual line of data of interest
-    data_rows <- unlist(lapply(prior_rows, as.vector)) + 1
+    max_index <- grep(start, NASA) - 1
+    max_index <- max_index[-1]
 
-    NASA <- utils::read.table(textConnection(NASA[data_rows]),
-                              na.strings = "-")
+    # Add last max_index value since there is no "end" at the end of the string
+    max_index <- c(max_index, max(max_index) + (max_index[2] - min_index[1]))
+
+    max_index[min_index == max(min_index)] <-
+      max(min_index) + max_index[1] - min_index[1]
+
+    indices <- data.frame(min_index, max_index)
+
+    indices <- mapply(`:`, indices$min_index, indices$max_index)
+    indices <- unlist(indices, use.names = FALSE)
+
+    NASA <- utils::read.table(textConnection(NASA[indices]),
+                               na.strings = "-")
 
     # Create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)

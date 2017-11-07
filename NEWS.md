@@ -1,10 +1,16 @@
-# nasapower 0.1.1.9000
+
+# nasapower 0.1.2
+
+## Bug fixes
+
+- Fixes bug where only first date is reported when using `get_region()` with
+multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 ## Minor changes
 
 - Enhanced documentation
 
-- Superflous function, .onLoad(), removed from zzz.R
+- Superflous function, `.onLoad()`, removed from zzz.R
 
 - Tidied up startup message
 
