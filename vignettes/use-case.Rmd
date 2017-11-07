@@ -3,7 +3,9 @@ title: "Use Case: Using nasapower and the APSIM R Package to Create APSIM .met F
 author: "Adam H. Sparks
 "
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+        toc: true
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
