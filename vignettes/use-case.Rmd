@@ -101,16 +101,51 @@ oz <- get_region(lonlat = c(112.91972, 159.256088, -55.11694, -9.221099),
 
 ```{r create_dfs, eval=FALSE}
 library(dplyr)
-library(purrr)
 
 # mutate: add unique id values (lon-lat value)
 # arrange: sort data frames by that id
 # split: take the data.frame() and split it into a list of data.frames by id
-oz <- oz %>%
-  mutate(id = paste(LON, LAT, sep = '-')) %>% 
-  arrange(id) %>% 
+oz_list <- oz %>%
+  mutate(id = paste(LON, LAT, sep = '-')) %>%
+  arrange(id) %>%
   split(., .$id)
 
-# apply the prepareMet() function to the list of data frames
-met_list <- map(.x = df2, .f = prepareMet, units = units)
+# from the APSIM documentation example
+new_names <-
+  c("Date",
+    "maxt",
+    "mint",
+    "rain",
+    "evaporation",
+    "radn",
+    "vp",
+    "Wind",
+    "RH",
+    "SVP")
+
+units <-
+  c("()",
+    "(oC)",
+    "(oC)",
+    "(mm)",
+    "(mm)",
+    "(MJ/m^2/day)",
+    "()",
+    "()",
+    "()",
+    "()")
+
+# map:: apply the prepareMet() function to the list of data frames
+# write each item for the list to a file on disk for use in APSIM
+met_list <- lapply(oz_list, function(i)
+  prepareMet(oz_list[i],
+           lat = oz_list[[i]][1, "LAT"],
+           lon = oz_list[[i]][1, "LON"],
+           newNames = new_names,
+           units = units))
+
+# write met files to disk
+lapply(1:length(met_list),
+       function(i) writeMetFile(met_list[[i]],
+                                fileName = paste0(names(met_list[i]))))
 ```
