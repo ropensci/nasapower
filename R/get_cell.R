@@ -132,10 +132,12 @@ get_cell <-
 
     # Create a data.frame of the NASA - POWER data and add names
     NASA <- utils::read.table(
-      textConnection(NASA),
+      text = NASA,
       skip = grep("-END HEADER-", NASA),
-      na.strings = "-"
+      na.strings = "-",
+      nrows = length(as.numeric(endate - stdate) + 1)
     )
+
     names(NASA) <- colnames
 
     # Create a tidy data frame object
