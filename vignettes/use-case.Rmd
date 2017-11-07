@@ -39,22 +39,20 @@ To do that first we need to use `get_cell()` to fetch the data for 2010 and
 create a data frame of weather data which includes the variables, T2M, T2MN,
 T2MX, RAIN and WSM10M.
 
-```{r get_data, eval=TRUE}
+```{r get_data, eval=FALSE}
 kings_nasa <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
   vars = c("T2M", "T2MN", "T2MX", "RAIN", "WS10M")
   )
-
-kings_nasa
 ```
 
 Now that we have the data...
 
 ## Create the .met file
 
-```{r create_met, eval=TRUE}
+```{r create_met, eval=FALSE}
 # reorder the data columns from nasapower
 kings_met <- kings_nasa[...]
 
@@ -98,20 +96,20 @@ using _dplyr_.
 
 ```{r get_regions, eval=FALSE}
 oz <- get_region(lonlat = c(112.91972, 159.256088, -55.11694, -9.221099),
-                    stdate = "2017-1-1", endate = "2017-1-2")
+                    stdate = "2017-1-1", endate = "2017-12-31")
 ```
 
 ```{r create_dfs, eval=FALSE}
 library(dplyr)
 library(purrr)
 
-# add unique id values (lon-lat value) and sort by that id
+# mutate: add unique id values (lon-lat value)
+# arrange: sort data frames by that id
+# split: take the data.frame() and split it into a list of data.frames by id
 oz <- oz %>%
-  mutate(ids = paste(LON, LAT, sep = '-')) %>% 
-  arrange(id)
-
-# create list of data frames with unique id values
-oz_list <- split(oz, oz$id)
+  mutate(id = paste(LON, LAT, sep = '-')) %>% 
+  arrange(id) %>% 
+  split(., .$id)
 
 # apply the prepareMet() function to the list of data frames
 met_list <- map(.x = df2, .f = prepareMet, units = units)
