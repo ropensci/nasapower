@@ -10,7 +10,7 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 - Enhanced documentation
 
-- Superflous function, .onLoad(), removed from zzz.R
+- Superflous function, `.onLoad()`, removed from zzz.R
 
 - Tidied up startup message
 
