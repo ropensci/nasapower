@@ -34,6 +34,7 @@ Suggests:
     dplyr,
     ggplot2,
     knitr,
+    purrr,
     rmarkdown,
     rnaturalearth,
     sp,
