@@ -1,5 +1,9 @@
 # nasapower 0.1.2.9000
 
+# Minor changes
+
+- Optimise arguments used in `read.table` to ingest weather data in the
+`get_cell()` and `get_region()` functions more quickly
 
 # nasapower 0.1.2
 
