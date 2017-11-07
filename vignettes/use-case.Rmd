@@ -96,27 +96,23 @@ To use `get_region()` with `APSIM::prepareMet()` we need to make separate `met`
 files for each cell from the resulting data frame object, which is easy to do
 using _dplyr_.
 
-```{r get_regions, eval=TRUE}
+```{r get_regions, eval=FALSE}
 oz <- get_region(lonlat = c(112.91972, 159.256088, -55.11694, -9.221099),
                     stdate = "2017-1-1", endate = "2017-1-2")
 ```
 
-```{r create_dfs, eval=TRUE}
+```{r create_dfs, eval=FALSE}
 library(dplyr)
+library(purrr)
 
-df <- oz %>%
- mutate(ids = paste(LON, LAT, sep = '-'))
+# add unique id values (lon-lat value) and sort by that id
+oz <- oz %>%
+  mutate(ids = paste(LON, LAT, sep = '-')) %>% 
+  arrange(id)
 
-df2 <- df %>%
- arrange(ids)
+# create list of data frames with unique id values
+oz_list <- split(oz, oz$id)
 
-
-
- group_by(reg) %>%
- mutate(n_yrs = length(unique(year))) %>%
- group_by(reg, ids) %>%
- summarize(present_yrs = length(unique(year)),
-         all_yrs     = mean(n_yrs, na.rm = T)) %>%
- filter(present_yrs == all_yrs)
-filter(df, ids %in% df2$ids)
+# apply the prepareMet() function to the list of data frames
+met_list <- map(.x = df2, .f = prepareMet, units = units)
 ```
