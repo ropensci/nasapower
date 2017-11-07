@@ -261,12 +261,12 @@ Production Systems Simulator'". R package version 0.9.2.
 <https://CRAN.R-project.org/package=APSIM>
 
 Serge Savary, Andrew Nelson, Laetitia Willocquet, Ireneo Pangga and Jorrel
-Aunario. :Modeling and mapping potential epidemics of rice diseases globally"
-(2012) Crop Protection, Volume 34, Pages 6-17, ISSN 0261-2194 DOI:
-  10.1016/j.cropro.2011.11.009
-  
+Aunario (2012) "Modeling and mapping potential epidemics of rice diseases
+globally" Crop Protection, Volume 34, Pages 6-17, ISSN 0261-2194 DOI:
+10.1016/j.cropro.2011.11.009
 
-White, Jeffrey W.; Hoogenboom, Gerrit; Stackhouse, Jr., Paul W.; and Hoell,
-James M., "Evaluation of NASA satellite- and assimilation model-derived
-long-term daily temperature data over the continental US" (2008). NASA
-Publications. 26. <http://digitalcommons.unl.edu/nasapub/26>
+Jeffrey W. White, Gerrit Hoogenboom, Paul W. Stackhouse, James M. Hoell (2009)
+Evaluation of NASA satellite- and assimilation model-derived long-term daily
+temperature data over the continental US, In Agricultural and Forest
+Meteorology, Volume 148, Issue 10, 2008, Pages 1574-1584, ISSN 0168-1923, DOI:
+10.1016/j.agrformet.2008.05.017.
