@@ -13,7 +13,8 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.align='center'
 )
 ```
 
@@ -23,10 +24,13 @@ install.packages("APSIM")
 
 Load the packages necessary.
 
-```{r load_libraries}
-library("APSIM")
-library("nasapower")
-library("rnaturalearth")
+```{r load_libraries, message=FALSE}
+library(APSIM)
+library(nasapower)
+library(rnaturalearth)
+library(lubridate)
+library(ggplot2)
+library(dplyr)
 ```
 
 ## Get NASA-POWER data
@@ -39,13 +43,103 @@ To do that first we need to use `get_cell()` to fetch the data for 2010 and
 create a data frame of weather data which includes the variables, T2M, T2MN,
 T2MX, RAIN and WSM10M.
 
-```{r get_data, eval=FALSE}
+```{r get_data_show, eval=FALSE}
 kings_nasa <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2M", "T2MN", "T2MX", "RAIN", "WS10M")
+  vars = c("T2MX", "T2MN", "RAIN", "WS10M", "RH2M")
   )
+```
+
+```{r get_data_execute, eval=TRUE, message=FALSE, include=FALSE}
+# This code chunk actually downloads the data, but it will show
+# download progress, so we don't include it.
+kings_nasa <- get_cell(
+  lonlat = c(151.81, -27.48),
+  stdate = "2010-1-1",
+  endate = "2010-12-31",
+  vars = c("T2MX", "T2MN", "RAIN", "WS10M", "RH2M")
+  )
+```
+
+## Compare the data
+
+To compare the data more easily using graphs we'll join the two data frames
+using _dplyr_. 
+
+First convert the Date column from kingsData to a Date object using _lubridate_.
+
+```{r conv_date, eval=TRUE}
+kingsData$Date <- lubridate::dmy(kingsData$Date)
+```
+
+Next, join the two data frames together to create a data frame called,
+`compare`.
+
+```{r compare, eval=TRUE}
+compare <- left_join(kingsData, kings_nasa, by = c("Date" = "YYYYMMDD"))
+```
+
+### Graphing the data
+
+Graph maximum temperature, comparing `kingsData` to NASA-POWER data and check
+correlation between the values.
+
+### Maximum Temperature
+
+```{r graph_maxt, eval=TRUE}
+ggplot(compare, aes(x = max.temp, y = T2MX)) +
+  geom_point(colour = "red") +
+  theme_minimal()
+
+cor(compare$max.temp, compare$T2MX)
+```
+
+### Miniumum Temperature
+
+Graph minimum temperature, comparing `kingsData` to NASA-POWER data.
+
+```{r graph_mint, eval=TRUE}
+ggplot(compare, aes(x = min.temp, y = T2MX)) +
+  geom_point(colour = "blue") +
+  theme_minimal()
+  
+  cor(compare$min.temp, compare$T2MN)
+```
+
+### Rainfall
+
+```{r graph_rain, eval=TRUE}
+ggplot(compare, aes(x = rain, y = RAIN)) +
+  geom_point(colour = "dark blue") +
+  theme_minimal()
+  
+  cor(compare$rain, compare$RAIN)
+```
+
+### Radiation
+
+```{r graph_rad, eval=FALSE}
+ggplot(compare, aes(x = rad, y = ???)) +
+  geom_point(colour = "orange") +
+  theme_minimal()
+  
+  cor(compare$rad, compare$???)
+```
+
+
+### Relative Humidity
+
+Note that due to the presence of `NA` values in the `RH.at.9am`, the `cor`
+function will not work with default arguments, use `pairwise.complete.obs`.
+
+```{r graph_RH, eval=TRUE}
+ggplot(compare, aes(x = RH.at.9am, y = RH2M)) +
+  geom_point(colour = "dark green") +
+  theme_minimal()
+  
+cor(compare$RH.at.9am, compare$RH2M, use = "pairwise.complete.obs")
 ```
 
 Now that we have the data...
