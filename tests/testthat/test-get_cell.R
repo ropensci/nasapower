@@ -1,13 +1,12 @@
 context("get_cell")
-# Check that .validate_years handles invalid years -----------------------------
 
-test_that("get_cell returns a valid data frame", {
-  expect_is(get_cell(
+test_that("get_cell returns a valid data frame and multiple dates", {
+  x <- get_cell(
     lonlat = c(-179.5, 89.5),
     stdate = "2017-1-1",
-    endate = "2017-1-1"
-  ),
-  "data.frame")
+    endate = "2017-1-2")
+  expect_is(x, "data.frame")
+  expect_equal(sum(!duplicated(x["DOY"])), 2)
 })
 
 test_that("get_cell only uses first value of lat/lon", {

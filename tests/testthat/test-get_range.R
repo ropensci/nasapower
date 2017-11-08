@@ -1,13 +1,13 @@
 context("get_region")
-# Check that .validate_years handles invalid years -----------------------------
 
-test_that("get_region returns a valid data frame", {
-  expect_is(get_region(
+test_that("get_region returns a valid data frame and multiple dates", {
+  x <- get_region(
     lonlat = c(-179.5, -178.5, 89.5, 89.5),
     stdate = "2017-1-1",
-    endate = "2017-1-1"
-  ),
-  "data.frame")
+    endate = "2017-1-2"
+  )
+  expect_is(x, "data.frame")
+  expect_equal(sum(!duplicated(x["DOY"])), 2)
 })
 
 test_that("get_region stops if there are not four values supplied to lonlat", {
@@ -16,7 +16,7 @@ test_that("get_region stops if there are not four values supplied to lonlat", {
                    lonlat = c(-179.5, -178.5, -89.5),
                    stdate = "2017-1-1",
                    endate = "2017-1-1"
-                 ),)
+                 ))
 })
 
 test_that("get_region emits a message when RAIN requested outside provision",
