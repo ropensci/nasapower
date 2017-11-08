@@ -1,5 +1,4 @@
 
-
 #' Download NASA-POWER Agroclimatology Variables for a Given Region and Return a Tidy Data Frame
 #'
 #' @description Download NASA-POWER (Prediction of Worldwide Energy Resource)
@@ -48,6 +47,10 @@
 #' @return
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
 #' for the requested region.
+#'
+#' @note
+#' The order in which the `vars` are listed will be the order of the columns in
+#' the data frame that `get_region()` returns.
 #'
 #' @examples
 #' \dontrun{
