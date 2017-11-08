@@ -48,12 +48,11 @@ the EPIRICE paper (Savary _et al._ 2012)
 ## Get NASA-POWER Data
 
 Using the `APSIM::prepareMet()` example where data for Kingsthorpe, Qld,
-is provided by the package, we can compare it with NASA-POWER data for
+is provided by the package, we can compare it with NASA-POWER radiation for
 Kingsthorpe, Queensland for 2010.
 
-To do that first we need to use `get_cell()` to fetch the data for 2010 and
-create a data frame of weather data which includes the variables, T2MN,
-T2MX and RAIN to calculate SRAD.
+To do that first we need to use `get_cell()` to fetch the data necessary to
+calculate SRAD for 2010.
 
 ```{r get_data_show, eval=FALSE}
 kings_nasa <- get_cell(
@@ -71,8 +70,14 @@ kings_nasa <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2MX", "T2MN", "RAIN", "WS10M", "RH2M")
+  vars = c("T2MX", "T2MN", "RAIN")
   )
+```
+
+## Calculate SRAD
+
+```{r}
+
 ```
 
 ## Compare the data
@@ -138,20 +143,6 @@ ggplot(compare, aes(x = rad, y = ???)) +
   theme_minimal()
   
   cor(compare$rad, compare$???)
-```
-
-
-### Relative Humidity
-
-Note that due to the presence of `NA` values in the `RH.at.9am`, the `cor`
-function will not work with default arguments, use `pairwise.complete.obs`.
-
-```{r graph_RH, eval=TRUE}
-ggplot(compare, aes(x = RH.at.9am, y = RH2M)) +
-  geom_point(colour = "dark green") +
-  theme_minimal()
-  
-cor(compare$RH.at.9am, compare$RH2M, use = "pairwise.complete.obs")
 ```
 
 Now that we have the data...
