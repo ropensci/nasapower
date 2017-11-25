@@ -140,6 +140,7 @@ ggplot(PHL) +
                fill = NA, color = "white", size = 1) +
   theme_bw() +
   coord_map() +
+  facet_grid(. ~ YYYYMMDD) +
   ggtitle("Average Temperature (˚C)",
           subtitle = "Data sources\nTemperature: NASA - POWER\nPHL boundary: Naturalearthdata")
 
@@ -151,6 +152,7 @@ ggplot(PHL, aes(x = LON, y = LAT, fill = RH2M)) +
                fill = NA, color = "white", size = 1) +
   theme_bw() +
   coord_map() +
+  facet_grid(. ~ YYYYMMDD) +
     ggtitle("Average Relative Humidity (%)",
           subtitle = "Data sources\nRelative Humidity: NASA - POWER\nPHL boundary: Naturalearthdata")
 ```
