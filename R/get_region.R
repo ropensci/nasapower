@@ -48,6 +48,10 @@
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
 #' for the requested region.
 #'
+#' @note
+#' The order in which the `vars` are listed will be the order of the columns in
+#' the data frame that `get_region()` returns.
+#'
 #' @examples
 #' \dontrun{
 #' # Get POWER data for Australia for 1/1/2017
@@ -159,8 +163,8 @@ get_region <-
 
     # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                   each = as.numeric((endate - stdate) + 1)),
-                               1:2]
+                                       each = as.numeric((endate - stdate) + 1)),
+                                   1:2]
 
     location_rows <-
       location_rows[order(as.numeric(row.names(location_rows))), ]
@@ -170,7 +174,6 @@ get_region <-
     # Create a data.frame of the NASA - POWER data and add names ---------------
     # Find the immediate prior row to the data, "-END HEADER-"
     min_index <- grep(end, NASA) + 1
-
     max_index <- grep(start, NASA) - 1
     max_index <- max_index[-1]
 
@@ -182,11 +185,14 @@ get_region <-
 
     indices <- data.frame(min_index, max_index)
 
-    indices <- mapply(`:`, indices$min_index, indices$max_index)
+    indices <- data.frame(mapply(`:`, indices$min_index, indices$max_index))
     indices <- unlist(indices, use.names = FALSE)
 
-    NASA <- utils::read.table(textConnection(NASA[indices]),
-                               na.strings = "-")
+    NASA <- utils::read.table(
+      text = NASA[indices],
+      na.strings = "-",
+      nrows = length(indices),
+      stringsAsFactors = FALSE)
 
     # Create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)
