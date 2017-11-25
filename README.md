@@ -1,30 +1,48 @@
 nasapower: NASA-POWER Agroclimatology Data from R
 ================
 
-[![Travis-CI Build Status](https://travis-ci.org/adamhsparks/nasapower.svg?branch=master)](https://travis-ci.org/adamhsparks/nasapower) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/nasapower?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower) [![Coverage Status](https://img.shields.io/codecov/c/github/adamhsparks/nasapower/master.svg)](https://codecov.io/github/adamhsparks/nasapower?branch=master) [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
+[![Travis-CI Build
+Status](https://travis-ci.org/adamhsparks/nasapower.svg?branch=master)](https://travis-ci.org/adamhsparks/nasapower)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/nasapower?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/adamhsparks/nasapower/master.svg)](https://codecov.io/github/adamhsparks/nasapower?branch=master)
+[![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 
-Introduction
-------------
+## Introduction
 
-*nasapower* aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R session as a tidy data frame for agricultural analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1˚ longitude by 1˚ latitude.
+*nasapower* aims to make it quick and easy to automate downloading
+[NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R
+session as a tidy data frame for agricultural analysis and use in
+modelling or other purposes. POWER (Prediction Of Worldwide Energy
+Resource) data are freely available for download through a web interface
+at a resolution of 1˚ longitude by 1˚ latitude.
 
-Please see <https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov> for the agroclimatology data web interface.
+Please see
+<https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov>
+for the agroclimatology data web interface.
 
 ### Quick start
 
-*nasapower* is not available from CRAN, only GitHub. It can easily be installed using the following code:
+*nasapower* is not available from CRAN, only GitHub. It can easily be
+installed using the following code:
 
 ``` r
 # install.packages("devtools", dep = TRUE)
 devtools::install_github("adamhsparks/nasapower")
 ```
 
-Introduction
-------------
+## Introduction
 
-*nasapower* aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.
+*nasapower* aims to make it quick, easy and efficient to automate
+downloading NASA-POWER agroclimatology data in your R session as a tidy
+data frame.
 
-*nasapower* only provides functions, `get_cell()`, for a given 1˚ longitude by 1˚ latitude cell and `get_region()`, both of which will which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the `vars` argument.
+*nasapower* only provides functions, `get_cell()`, for a given 1˚
+longitude by 1˚ latitude cell and `get_region()`, both of which will
+which will download specified variables and return a tidy data frame of
+the requested data. Weather variables can be specified by using the
+`vars` argument.
 
 Both functions accept four arguments.
 
@@ -33,41 +51,53 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
   stdate = "1983-1-1", endate = Sys.Date())
 ```
 
--   `lonlat` for `get_cell()` A length-2 numeric vector giving the decimal degree longitude and and latitude in that order for cell data to download
+  - `lonlat` for `get_cell()` A length-2 numeric vector giving the
+    decimal degree longitude and and latitude in that order for cell
+    data to download
 
--   `lonlat` for `get_region()` A length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.
+  - `lonlat` for `get_region()` A length-4 numeric vector of the minimum
+    longitude, maximum longitude, minimum latitude and maximum latitude.
 
--   `lat` Latitude value to query (single value only)
+  - `lat` Latitude value to query (single value only)
 
--   `vars` Weather variables to query for download. Valid `vars` include:
+  - `vars` Weather variables to query for download. Valid `vars`
+    include:
+    
+      - toa\_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
+    
+      - swv\_dwn - Average insolation incident on a horizontal surface
+        (MJ/m^2/day)
+    
+      - lwv\_dwn - Average downward longwave radiative flux (MJ/m^2/day)
+    
+      - T2M - Average air temperature at 2m above the surface of the
+        Earth (degrees C)
+    
+      - T2MN - Minimum air temperature at 2m above the surface of the
+        Earth (degrees C)
+    
+      - T2MX - Maximum air temperature at 2m above the surface of the
+        Earth (degrees C)
+    
+      - RH2M - Relative humidity at 2m above the surface of the Earth
+        (%)
+    
+      - DFP2M - Dew/Frost point temperature at 2m above the surface of
+        the Earth (degrees C)
+    
+      - RAIN - Average precipitation (mm/day)
+    
+      - WS10M - Wind speed at 10m above the surface of the Earth (m/s)
 
-    -   toa\_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
+  - `stdate` Starting date for download, defaults to 01/01/1983 (there
+    is no earlier data)
 
-    -   swv\_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)
-
-    -   lwv\_dwn - Average downward longwave radiative flux (MJ/m^2/day)
-
-    -   T2M - Average air temperature at 2m above the surface of the Earth (degrees C)
-
-    -   T2MN - Minimum air temperature at 2m above the surface of the Earth (degrees C)
-
-    -   T2MX - Maximum air temperature at 2m above the surface of the Earth (degrees C)
-
-    -   RH2M - Relative humidity at 2m above the surface of the Earth (%)
-
-    -   DFP2M - Dew/Frost point temperature at 2m above the surface of the Earth (degrees C)
-
-    -   RAIN - Average precipitation (mm/day)
-
-    -   WS10M - Wind speed at 10m above the surface of the Earth (m/s)
-
--   `stdate` Starting date for download, defaults to 01/01/1983 (there is no earlier data)
-
--   `endate` End date for download, defaults to current date
+  - `endate` End date for download, defaults to current date
 
 ### Basic example of using get\_cell()
 
-Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.
+Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell
+at longitude -179.5 and latitude -89.5.
 
 ``` r
 library(nasapower)
@@ -75,25 +105,32 @@ library(nasapower)
 get_cell(lonlat = c(-179.5, -89.5))
 ```
 
-More documentation is available in the vignette, <https://adamhsparks.github.io/nasapower/articles/nasapower.html>.
+More documentation is available in the vignette,
+<https://adamhsparks.github.io/nasapower/articles/nasapower.html>.
 
-Use of POWER Data
------------------
+## Use of POWER Data
 
-While *nasapower* does not redistribute the data or provide it in anyway, we encourage users to follow the requests of the POWER Project Team.
+While *nasapower* does not redistribute the data or provide it in
+anyway, we encourage users to follow the requests of the POWER Project
+Team.
 
-> When POWER data products are used in a publication, we request the following acknowledgment be included: "These data were obtained from the NASA Langley Research Center POWER Project funded through the NASA Earth Science Directorate Applied Science Program."
+> When POWER data products are used in a publication, we request the
+> following acknowledgment be included: “These data were obtained from
+> the NASA Langley Research Center POWER Project funded through the NASA
+> Earth Science Directorate Applied Science Program.”
 
-Meta
-----
+## Meta
 
--   Please [report any issues or bugs](https://github.com/adamhsparks/nasapower/issues).
--   License: MIT
--   Get citation information for `nasapower` in R doing `citation(package = "nasapower")`
--   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+  - Please [report any issues or
+    bugs](https://github.com/adamhsparks/nasapower/issues).
+  - License: MIT
+  - Get citation information for `nasapower` in R doing
+    `citation(package = "nasapower")`
+  - Please note that this project is released with a [Contributor Code
+    of Conduct](CONDUCT.md). By participating in this project you agree
+    to abide by its terms.
 
-References
-----------
+## References
 
 <https://power.larc.nasa.gov>
 

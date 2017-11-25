@@ -1,7 +1,6 @@
 ---
 title: "nasapower"
 author: "Adam H Sparks"
-date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -13,6 +12,12 @@ vignette: >
 
 ```{r setup, include=FALSE}
 library(nasapower)
+knitr::opts_chunk$set(eval = FALSE,
+                      collapse = TRUE,
+                      comment = "#>",
+                      fig.width = 7,
+                      fig.height = 7,
+                      fig.align = "center")
 ```
 
 ## Introduction
@@ -107,7 +112,7 @@ This function is useful for retrieving whole states, countries or global
 surfaces. This example illustrates fetching and graphing the average temperature
 and relative humidity for the Philippines.
 
-```{r get_philippines_example, eval = FALSE}
+```{r get_philippines_example}
 PHL_adm <- rnaturalearth::ne_countries(scale = 50,
                                        country = "Philippines",
                                        returnclass = "sp")
@@ -128,7 +133,7 @@ PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
 Using _ggplot_, plot the downloaded data with an outline from Naturalearthdata
 for reference.
 
-```{r plot_phl, eval=FALSE}
+```{r plot_phl}
 library(ggplot2)
 library(viridis)
 
@@ -156,7 +161,6 @@ ggplot(PHL, aes(x = LON, y = LAT, fill = RH2M)) +
     ggtitle("Average Relative Humidity (%)",
           subtitle = "Data sources\nRelative Humidity: NASA - POWER\nPHL boundary: Naturalearthdata")
 ```
-
 
 ![Philippine Temperature](plot_phl-1.png)
 !["Philippine Relative Humidity"](plot_phl-2.png)

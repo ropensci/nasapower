@@ -151,17 +151,23 @@ get_region <-
     location_rows <- grep(location, NASA)
     location_rows <- NASA[location_rows]
 
+    # extract numeric values for locations
     location_rows <- unlist(regmatches(location_rows,
                                        gregexpr('\\(?[0-9,.]+',
                                                 location_rows)))
     location_rows <-
       as.numeric(gsub('\\(', '-', gsub(',', '', location_rows)))
+
+    # convert numeric vector to data.frame object
     location_rows <- as.data.frame(split(location_rows, 1:2))
+
+    # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                   as.numeric((endate - stdate) + 1)),
+                                   each = as.numeric((endate - stdate) + 1)),
                                1:2]
+
     location_rows <-
-      location_rows[order(row.names(location_rows)), ]
+      location_rows[order(as.numeric(row.names(location_rows))), ]
 
     row.names(location_rows) <- NULL
 
