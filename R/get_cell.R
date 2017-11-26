@@ -47,6 +47,10 @@
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
 #' for the requested longitude and latitude values.
 #'
+#' @note
+#' The order in which the `vars` are listed will be the order of the columns in
+#' the data frame that `get_cell()` returns.
+#'
 #' @examples
 #' \dontrun{
 #' nasa <- get_cell(lonlat = c(-179.5, -89.5))
@@ -132,10 +136,13 @@ get_cell <-
 
     # Create a data.frame of the NASA - POWER data and add names
     NASA <- utils::read.table(
-      textConnection(NASA),
+      text = NASA,
       skip = grep("-END HEADER-", NASA),
-      na.strings = "-"
+      na.strings = "-",
+      nrows = as.numeric(endate - stdate) + 1,
+      stringsAsFactors = FALSE
     )
+
     names(NASA) <- colnames
 
     # Create a tidy data frame object
