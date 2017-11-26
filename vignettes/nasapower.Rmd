@@ -33,7 +33,7 @@ variables can be specified by using the `vars` argument.
 
 The `get_cell()` function accepts four arguments.
 
-```r
+```{r example}
 get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
   stdate = "1983-1-1", endate = Sys.Date())
 ```
@@ -75,7 +75,7 @@ earlier data)
 Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at
 longitude -179.5 and latitude -89.5.
 
-```{r basic_example, eval=FALSE}
+```{r basic_example}
 library(nasapower)
 
 get_cell(lonlat = c(-179.5, -89.5))
@@ -89,7 +89,7 @@ date as the end date. Following is an example of specifying the end date.
 Specify only the end date, `1983-01-02`, using the default start date of
 `1983-01-01`.
 
-```{r specify_endate, eval=FALSE}
+```{r specify_endate}
 get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02")
 ```
 
@@ -99,7 +99,7 @@ By default `get_cell()` will fetch `T2M`, `T2MN`, `T2MX`, `RH2M` weather
 variables. Following is an example of specifying only one variable, `WS10M`,
 for retrieval.
 
-```{r specify_vars, eval=FALSE}
+```{r specify_vars}
 get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02", vars = "WS10M")
 ```
 
