@@ -59,6 +59,10 @@ meteorological data. The POWER website describes the data as:
   \item{Global coverage on a 1° latitude by 1° longitude grid}
 }
 }
+\note{
+The order in which the `vars` are listed will be the order of the columns in
+the data frame that `get_cell()` returns.
+}
 \examples{
 \dontrun{
 nasa <- get_cell(lonlat = c(-179.5, -89.5))
