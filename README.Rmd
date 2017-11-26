@@ -33,7 +33,7 @@ using the following code:
 
 ```{r, eval=FALSE}
 # install.packages("devtools", dep = TRUE)
-devtools::install_github("adamhsparks/nasapower", build_vingettes = TRUE)
+devtools::install_github("adamhsparks/nasapower", build_vignettes = TRUE)
 ```
 
 ## Introduction

@@ -29,7 +29,7 @@ installed using the following code:
 
 ``` r
 # install.packages("devtools", dep = TRUE)
-devtools::install_github("adamhsparks/nasapower", build_vingettes = TRUE)
+devtools::install_github("adamhsparks/nasapower", build_vignettes = TRUE)
 ```
 
 ## Introduction
