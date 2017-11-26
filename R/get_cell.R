@@ -48,8 +48,8 @@
 #' for the requested longitude and latitude values.
 #'
 #' @note
-#' The order in which the `vars` are listed will be the order of the columns in
-#' the data frame that `get_cell()` returns.
+#' The order in which the \code{vars} are listed will be the order of the
+#' columns in the data frame that \code{get_cell()} returns.
 #'
 #' @examples
 #' \dontrun{

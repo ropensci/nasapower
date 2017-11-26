@@ -49,8 +49,8 @@
 #' for the requested region.
 #'
 #' @note
-#' The order in which the `vars` are listed will be the order of the columns in
-#' the data frame that `get_region()` returns.
+#' The order in which the \code{vars} are listed will be the order of the
+#' columns in the data frame that \code{get_region()} returns.
 #'
 #' @examples
 #' \dontrun{
