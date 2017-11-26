@@ -105,14 +105,8 @@ get_cell(lonlat = c(-179.5, -89.5))
 
 ## Documentation
 
-More documentation is available in the vignette in your R session.
-
-``` r
-vignette("nasapower")
-```
-
-Or available online.
-
+More documentation is available in the vignette in your R session,
+`vignette("nasapower")` or available online,
 <https://adamhsparks.github.io/nasapower/articles/nasapower.html>.
 
 ## Use of POWER Data
