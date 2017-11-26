@@ -49,8 +49,8 @@
 #' for the requested region.
 #'
 #' @note
-#' The order in which the `vars` are listed will be the order of the columns in
-#' the data frame that `get_region()` returns.
+#' The order in which the \code{vars} are listed will be the order of the
+#' columns in the data frame that \code{get_region()} returns.
 #'
 #' @examples
 #' \dontrun{
@@ -163,8 +163,8 @@ get_region <-
 
     # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                   each = as.numeric((endate - stdate) + 1)),
-                               1:2]
+                                       each = as.numeric((endate - stdate) + 1)),
+                                   1:2]
 
     location_rows <-
       location_rows[order(as.numeric(row.names(location_rows))), ]

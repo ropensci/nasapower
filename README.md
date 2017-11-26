@@ -29,7 +29,7 @@ installed using the following code:
 
 ``` r
 # install.packages("devtools", dep = TRUE)
-devtools::install_github("adamhsparks/nasapower")
+devtools::install_github("adamhsparks/nasapower", build_vingettes = TRUE)
 ```
 
 ## Introduction
@@ -57,8 +57,6 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
 
   - `lonlat` for `get_region()` A length-4 numeric vector of the minimum
     longitude, maximum longitude, minimum latitude and maximum latitude.
-
-  - `lat` Latitude value to query (single value only)
 
   - `vars` Weather variables to query for download. Valid `vars`
     include:
@@ -105,7 +103,16 @@ library(nasapower)
 get_cell(lonlat = c(-179.5, -89.5))
 ```
 
-More documentation is available in the vignette,
+## Documentation
+
+More documentation is available in the vignette in your R session.
+
+``` r
+vignette("nasapower")
+```
+
+Or available online.
+
 <https://adamhsparks.github.io/nasapower/articles/nasapower.html>.
 
 ## Use of POWER Data

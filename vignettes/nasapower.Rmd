@@ -42,8 +42,6 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
 - `lonlat` A length-2 numeric vector giving the decimal degree longitude and
 and latitude in that order for cell data to download
 
-- `lat` Latitude value to query (single value only)
-
 - `vars` Weather variables to query for download. Valid `vars` include:
 
     * toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
