@@ -26,9 +26,9 @@ _nasapower_ aims to make it quick, easy and efficient to automate downloading
 NASA-POWER agroclimatology data in your R session as a tidy data frame.
 
 _nasapower_ only provides functions, `get_cell()`, for a given 1˚ longitude by
-1˚ latitude cell and `get_region()`, both of which will which will download
-specified variables and return a tidy data frame of the requested data. Weather
-variables can be specified by using the `vars` argument. 
+1˚ latitude cell and `get_region()`, both of which will download specified
+variables and return a tidy data frame of the requested data. Weather variables
+can be specified by using the `vars` argument. 
 
 ## Using get_cell()
 
