@@ -1,14 +1,28 @@
+
 # nasapower 0.1.2.9000
 
+### Bug fixes
 
-# nasapower 0.1.2
+- Fix bug where lon/lat values were improperly assigned internally due to row
+names not being ordered correctly in `get_region()`
 
-## Bug fixes
+### Minor improvements
+
+- Optimise arguments used in `read.table` to ingest weather data in the
+`get_cell()` and `get_region()` functions more quickly
+
+- NEWS now formatted more nicely for easier reading
+
+--------------------------------------------------------------------------------
+
+# nasapower 0.1.2 (2017-11-06)
+
+### Bug fixes
 
 - Fixes bug where only first date is reported when using `get_region()` with
 multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
-## Minor changes
+### Minor improvements
 
 - Enhanced documentation
 
@@ -22,11 +36,19 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 - Remove DATE from DESCRIPTION
 
-# nasapower 0.1.1
+--------------------------------------------------------------------------------
+
+# nasapower 0.1.1 (2017-11-04)
+
+### Minor improvements
 
 - Fix issues in documentation, typos, incorrect links, etc.
 
-# nasapower 0.1.0
+--------------------------------------------------------------------------------
+
+# nasapower 0.1.0 (2017-11-04)
+
+### New features
 
 * Add new functionality to download regions in addition to single cells
 
@@ -34,15 +56,22 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 * Add startup message
 
+### Minor improvements
+
 * Better documentation
 
-# nasapower 0.0.2
+--------------------------------------------------------------------------------
+
+# nasapower 0.0.2  (2017-11-02)
+
+### New features
 
 * Added citation file
 
-# nasapower 0.0.1
+--------------------------------------------------------------------------------
+
+# nasapower 0.0.1 (2017-11-02)
 
 * Added a `NEWS.md` file to track changes to the package.
 
 * First release, no changes to report yet
-
