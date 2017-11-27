@@ -1,9 +1,10 @@
-# nasapower 0.1.2.9000
-
-
---------------------------------------------------------------------------------
 
 # nasapower 0.1.2.9000
+
+### Bug fixes
+
+- Fix bug where lon/lat values were improperly assigned internally due to row
+names not being ordered correctly in `get_region()`
 
 ### Minor improvements
 
