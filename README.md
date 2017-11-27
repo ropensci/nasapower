@@ -28,7 +28,11 @@ for the agroclimatology data web interface.
 installed using the following code:
 
 ``` r
-# install.packages("devtools", dep = TRUE)
+if (!require(devtools)) {
+  install.packages("devtools")
+  library(devtools)
+}
+
 devtools::install_github("adamhsparks/nasapower", build_vignettes = TRUE)
 ```
 
