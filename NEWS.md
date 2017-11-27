@@ -6,6 +6,8 @@
 - Fix bug where lon/lat values were improperly assigned internally due to row
 names not being ordered correctly in `get_region()`
 
+- Correct vignette where it had said, "both of which will which will download"
+
 ### Minor improvements
 
 - Optimise arguments used in `read.table` to ingest weather data in the
