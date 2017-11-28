@@ -98,8 +98,8 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
 
 ### Basic example of using get\_cell()
 
-Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell
-at longitude -179.5 and latitude -89.5.
+Fetch all weather variables available for 1983-1-1 to current date for
+the cell at longitude -179.5 and latitude -89.5.
 
 ``` r
 library(nasapower)
