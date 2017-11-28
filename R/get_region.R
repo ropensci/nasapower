@@ -19,8 +19,8 @@
 #' @param lonlat A length-4 numeric vector giving the decimal degree minimum
 #' longitude, maximum longitude, minimum latitude, and maximum latitude in that
 #' order for the region data to download
-#' @param vars Weather variables to download, defaults to T2M, T2MN, T2MX and
-#' RH2m. Valid variables are:
+#' @param vars Weather variables to download, defaults to all available.
+#' Valid variables are:
 #' \itemize{
 #' \item{\strong{toa_dwn} - Average top-of-atmosphere insolation (MJ/m^2/day)}
 #' \item{\strong{swv_dwn} - Average insolation incident on a horizontal surface
@@ -69,7 +69,13 @@ get_region <-
            vars = c("T2M",
                     "T2MN",
                     "T2MX",
-                    "RH2M"),
+                    "RH2M",
+                    "toa_dwn",
+                    "swv_dwn",
+                    "lwv_dwn",
+                    "DFP2M",
+                    "RAIN",
+                    "WS10M"),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
     if (is.null(lonlat) | length(lonlat) != 4 | !is.numeric(lonlat)) {

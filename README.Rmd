@@ -63,7 +63,8 @@ longitude and and latitude in that order for cell data to download
 - `lonlat` for `get_region()` A length-4 numeric vector of the minimum
 longitude, maximum longitude, minimum latitude and maximum latitude.
 
-- `vars` Weather variables to query for download. Valid `vars` include:
+- `vars` Weather variables to query for download, defaults to all available.
+Valid `vars` include:
 
     * toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
 

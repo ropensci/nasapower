@@ -105,8 +105,9 @@ meteorological data. The POWER website describes the data as:</p><ul>
 </ul>
     
 
-    <pre class="usage"><span class='fu'>get_region</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"T2M"</span>, <span class='st'>"T2MN"</span>, <span class='st'>"T2MX"</span>, <span class='st'>"RH2M"</span>),
-  <span class='kw'>stdate</span> <span class='kw'>=</span> <span class='st'>"1983-1-1"</span>, <span class='kw'>endate</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>())</pre>
+    <pre class="usage"><span class='fu'>get_region</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"T2M"</span>, <span class='st'>"T2MN"</span>, <span class='st'>"T2MX"</span>, <span class='st'>"RH2M"</span>, <span class='st'>"toa_dwn"</span>,
+  <span class='st'>"swv_dwn"</span>, <span class='st'>"lwv_dwn"</span>, <span class='st'>"DFP2M"</span>, <span class='st'>"RAIN"</span>, <span class='st'>"WS10M"</span>), <span class='kw'>stdate</span> <span class='kw'>=</span> <span class='st'>"1983-1-1"</span>,
+  <span class='kw'>endate</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>())</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -119,8 +120,8 @@ order for the region data to download</p></td>
     </tr>
     <tr>
       <th>vars</th>
-      <td><p>Weather variables to download, defaults to T2M, T2MN, T2MX and
-RH2m. Valid variables are:</p><ul>
+      <td><p>Weather variables to download, defaults to all available.
+Valid variables are:</p><ul>
 <li><p><strong>toa_dwn</strong> - Average top-of-atmosphere insolation (MJ/m^2/day)</p></li>
 <li><p><strong>swv_dwn</strong> - Average insolation incident on a horizontal surface
 (MJ/m^2/day)</p></li>
