@@ -42,7 +42,8 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
 - `lonlat` A length-2 numeric vector giving the decimal degree longitude and
 and latitude in that order for cell data to download
 
-- `vars` Weather variables to query for download. Valid `vars` include:
+- `vars` Weather variables to query for download, defaults to all available.
+Valid `vars` include:
 
     * toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
 
@@ -71,7 +72,7 @@ earlier data)
 
 ### Basic example of using get_cell()
 
-Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at
+Fetch all variables available for 1983-1-1 to current date for the cell at
 longitude -179.5 and latitude -89.5.
 
 ```{r basic_example}
@@ -94,8 +95,8 @@ get_cell(lonlat = c(-179.5, -89.5), endate = "1983-01-02")
 
 ### Specifying variables
 
-By default `get_cell()` will fetch `T2M`, `T2MN`, `T2MX`, `RH2M` weather
-variables. Following is an example of specifying only one variable, `WS10M`,
+By default `get_cell()` will fetch all weather variables available if none are
+specified. Following is an example of specifying only one variable, `WS10M`,
 for retrieval.
 
 ```{r specify_vars}
@@ -128,7 +129,6 @@ PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
                   stdate = "2017-1-1",
                   endate = "2017-1-2")
 ```
-
 
 Using _ggplot_, plot the downloaded data with an outline from Naturalearthdata
 for reference.
