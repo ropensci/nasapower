@@ -62,8 +62,8 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
   - `lonlat` for `get_region()` A length-4 numeric vector of the minimum
     longitude, maximum longitude, minimum latitude and maximum latitude.
 
-  - `vars` Weather variables to query for download. Valid `vars`
-    include:
+  - `vars` Weather variables to query for download, defaults to all
+    available. Valid `vars` include:
     
       - toa\_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
     

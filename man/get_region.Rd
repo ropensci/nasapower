@@ -4,16 +4,17 @@
 \alias{get_region}
 \title{Download NASA-POWER Agroclimatology Variables for a Given Region and Return a Tidy Data Frame}
 \usage{
-get_region(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
-  stdate = "1983-1-1", endate = Sys.Date())
+get_region(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M", "toa_dwn",
+  "swv_dwn", "lwv_dwn", "DFP2M", "RAIN", "WS10M"), stdate = "1983-1-1",
+  endate = Sys.Date())
 }
 \arguments{
 \item{lonlat}{A length-4 numeric vector giving the decimal degree minimum
 longitude, maximum longitude, minimum latitude, and maximum latitude in that
 order for the region data to download}
 
-\item{vars}{Weather variables to download, defaults to T2M, T2MN, T2MX and
-RH2m. Valid variables are:
+\item{vars}{Weather variables to download, defaults to all available.
+Valid variables are:
 \itemize{
 \item{\strong{toa_dwn} - Average top-of-atmosphere insolation (MJ/m^2/day)}
 \item{\strong{swv_dwn} - Average insolation incident on a horizontal surface
