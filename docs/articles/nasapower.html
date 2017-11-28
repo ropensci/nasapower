@@ -87,7 +87,7 @@
 <ul>
 <li><p><code>lonlat</code> A length-2 numeric vector giving the decimal degree longitude and and latitude in that order for cell data to download</p></li>
 <li>
-<p><code>vars</code> Weather variables to query for download. Valid <code>vars</code> include:</p>
+<p><code>vars</code> Weather variables to query for download, defaults to all available. Valid <code>vars</code> include:</p>
 <ul>
 <li><p>toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)</p></li>
 <li><p>swv_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)</p></li>
@@ -107,7 +107,7 @@
 <div id="basic-example-of-using-get_cell" class="section level3">
 <h3 class="hasAnchor">
 <a href="#basic-example-of-using-get_cell" class="anchor"></a>Basic example of using get_cell()</h3>
-<p>Fetch T2M, T2MN, T2MX and RH2M for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.</p>
+<p>Fetch all variables available for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.</p>
 <pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">
 <span class="kw">library</span>(nasapower)</div>
 <div class="sourceLine" id="cb2-2" data-line-number="2"></div>
@@ -125,7 +125,7 @@
 <div id="specifying-variables" class="section level3">
 <h3 class="hasAnchor">
 <a href="#specifying-variables" class="anchor"></a>Specifying variables</h3>
-<p>By default <code><a href="../reference/get_cell.html">get_cell()</a></code> will fetch <code>T2M</code>, <code>T2MN</code>, <code>T2MX</code>, <code>RH2M</code> weather variables. Following is an example of specifying only one variable, <code>WS10M</code>, for retrieval.</p>
+<p>By default <code><a href="../reference/get_cell.html">get_cell()</a></code> will fetch all weather variables available if none are specified. Following is an example of specifying only one variable, <code>WS10M</code>, for retrieval.</p>
 <pre class="sourceCode r" id="cb4"><code class="sourceCode r"><div class="sourceLine" id="cb4-1" data-line-number="1">
 <span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>), <span class="dt">endate =</span> <span class="st">"1983-01-02"</span>, <span class="dt">vars =</span> <span class="st">"WS10M"</span>)</div></code></pre>
 </div>
