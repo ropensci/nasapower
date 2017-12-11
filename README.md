@@ -11,7 +11,8 @@ Status](https://img.shields.io/codecov/c/github/adamhsparks/nasapower/master.svg
 
 ## Introduction
 
-*nasapower* aims to make it quick and easy to automate downloading
+<img align="right" src="man/figures/nasapower-hex.png"> *nasapower* aims
+to make it quick and easy to automate downloading
 [NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R
 session as a tidy data frame for agricultural analysis and use in
 modelling or other purposes. POWER (Prediction Of Worldwide Energy
