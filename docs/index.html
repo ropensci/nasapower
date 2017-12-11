@@ -83,19 +83,18 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>nasapower</em> aims to make it quick and easy to automate downloading <a href="https://power.larc.nasa.gov">NASA-POWER</a> agroclimatology data in your R session as a tidy data frame for agricultural analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1˚ longitude by 1˚ latitude.</p>
+<p><img align="right" src="reference/figures/nasapower-hex.png"><em>nasapower</em> aims to make it quick and easy to automate downloading <a href="https://power.larc.nasa.gov">NASA-POWER</a> agroclimatology data in your R session as a tidy data frame for agricultural analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1˚ longitude by 1˚ latitude.</p>
 <p>Please see <a href="https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov" class="uri">https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov</a> for the agroclimatology data web interface.</p>
 <div id="quick-start" class="section level3">
 <h3 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h3>
 <p><em>nasapower</em> is not available from CRAN, only GitHub. It can easily be installed using the following code:</p>
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1">
-<span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(devtools)) {</div>
-<div class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</div>
-<div class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">library</span>(devtools)</div>
-<div class="sourceLine" id="cb1-4" data-line-number="4">}</div>
-<div class="sourceLine" id="cb1-5" data-line-number="5"></div>
-<div class="sourceLine" id="cb1-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(devtools)) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre>
 </div>
 </div>
 <div id="introduction-1" class="section level2">
@@ -104,9 +103,8 @@
 <p><em>nasapower</em> aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.</p>
 <p><em>nasapower</em> only provides functions, <code><a href="reference/get_cell.html">get_cell()</a></code>, for a given 1˚ longitude by 1˚ latitude cell and <code><a href="reference/get_region.html">get_region()</a></code>, both of which will which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>vars</code> argument.</p>
 <p>Both functions accept four arguments.</p>
-<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">
-<span class="kw"><a href="reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="ot">NULL</span>, <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"T2MN"</span>, <span class="st">"T2MX"</span>, <span class="st">"RH2M"</span>),</div>
-<div class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">stdate =</span> <span class="st">"1983-1-1"</span>, <span class="dt">endate =</span> <span class="kw">Sys.Date</span>())</div></code></pre>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="ot">NULL</span>, <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"T2MN"</span>, <span class="st">"T2MX"</span>, <span class="st">"RH2M"</span>),</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="dt">stdate =</span> <span class="st">"1983-1-1"</span>, <span class="dt">endate =</span> <span class="kw">Sys.Date</span>())</a></code></pre>
 <ul>
 <li><p><code>lonlat</code> for <code><a href="reference/get_cell.html">get_cell()</a></code> A length-2 numeric vector giving the decimal degree longitude and and latitude in that order for cell data to download</p></li>
 <li><p><code>lonlat</code> for <code><a href="reference/get_region.html">get_region()</a></code> A length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.</p></li>
@@ -132,11 +130,9 @@
 <h3 class="hasAnchor">
 <a href="#basic-example-of-using-get_cell" class="anchor"></a>Basic example of using get_cell()</h3>
 <p>Fetch all weather variables available for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.</p>
-<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">
-<span class="kw">library</span>(nasapower)</div>
-<div class="sourceLine" id="cb3-2" data-line-number="2"></div>
-<div class="sourceLine" id="cb3-3" data-line-number="3">
-<span class="kw"><a href="reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>))</div></code></pre>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>))</a></code></pre>
 </div>
 </div>
 <div id="documentation" class="section level2">

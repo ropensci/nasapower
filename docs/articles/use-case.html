@@ -78,27 +78,20 @@
       <h1>Use Case: Using nasapower and the APSIM R Package to Create APSIM .met Files</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-            <h4 class="date">2017-11-28</h4>
+            <h4 class="date">2017-12-12</h4>
           </div>
 
     
     
 <div class="contents">
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1">
-<span class="kw">install.packages</span>(<span class="st">"APSIM"</span>)</div></code></pre>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"APSIM"</span>)</a></code></pre>
 <p>Load the packages necessary.</p>
-<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1">
-<span class="kw">library</span>(APSIM)</div>
-<div class="sourceLine" id="cb2-2" data-line-number="2">
-<span class="kw">library</span>(nasapower)</div>
-<div class="sourceLine" id="cb2-3" data-line-number="3">
-<span class="kw">library</span>(rnaturalearth)</div>
-<div class="sourceLine" id="cb2-4" data-line-number="4">
-<span class="kw">library</span>(lubridate)</div>
-<div class="sourceLine" id="cb2-5" data-line-number="5">
-<span class="kw">library</span>(ggplot2)</div>
-<div class="sourceLine" id="cb2-6" data-line-number="6">
-<span class="kw">library</span>(dplyr)</div></code></pre>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(APSIM)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(nasapower)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw">library</span>(rnaturalearth)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw">library</span>(lubridate)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a></code></pre>
 <p>NASA - POWER data are often used with APSIM (White <em>et al.</em> 2012) or other models where data may be missing or as a whole data set where data are not readily available, <em>e.g.</em> modelling rice disease globally (Savary <em>et al.</em> 2012).</p>
 <p>In this use case we illustrate how use NASA-POWER radiation data with existing station data and format for use in APSIM using the R package, APSIM (Fainges 2017) and how it can be used for a larger modelling exercise like the EPIRICE paper (Savary <em>et al.</em> 2012)</p>
 <div id="get-nasa-power-data" class="section level2">
@@ -106,12 +99,12 @@
 <a href="#get-nasa-power-data" class="anchor"></a>Get NASA-POWER Data</h2>
 <p>Using the <code><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">APSIM::prepareMet()</a></code> example where data for Kingsthorpe, Qld, is provided by the package, we can compare it with NASA-POWER radiation for Kingsthorpe, Queensland for 2010.</p>
 <p>To do that first we need to use <code><a href="../reference/get_cell.html">get_cell()</a></code> to fetch the data necessary to calculate SRAD for 2010.</p>
-<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><div class="sourceLine" id="cb3-1" data-line-number="1">kings_nasa &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(</div>
-<div class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</div>
-<div class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">stdate =</span> <span class="st">"2010-1-1"</span>,</div>
-<div class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">endate =</span> <span class="st">"2010-12-31"</span>,</div>
-<div class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2MX"</span>, <span class="st">"T2MN"</span>, <span class="st">"RAIN"</span>)</div>
-<div class="sourceLine" id="cb3-6" data-line-number="6">  )</div></code></pre>
+<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">kings_nasa &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">  <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">stdate =</span> <span class="st">"2010-1-1"</span>,</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">endate =</span> <span class="st">"2010-12-31"</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2MX"</span>, <span class="st">"T2MN"</span>, <span class="st">"RAIN"</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  )</a></code></pre>
 </div>
 <div id="calculate-srad" class="section level2">
 <h2 class="hasAnchor">
@@ -122,9 +115,9 @@
 <a href="#compare-the-data" class="anchor"></a>Compare the data</h2>
 <p>To compare the data more easily using graphs we’ll join the two data frames using <em>dplyr</em>.</p>
 <p>First convert the Date column from kingsData to a Date object using <em>lubridate</em>.</p>
-<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><div class="sourceLine" id="cb4-1" data-line-number="1">kingsData<span class="op">$</span>Date &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lubridate/topics/ymd">dmy</a></span>(kingsData<span class="op">$</span>Date)</div></code></pre>
+<pre class="sourceCode r" id="cb4"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">kingsData<span class="op">$</span>Date &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/lubridate/topics/ymd">dmy</a></span>(kingsData<span class="op">$</span>Date)</a></code></pre>
 <p>Next, join the two data frames together to create a data frame called, <code>compare</code>.</p>
-<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><div class="sourceLine" id="cb5-1" data-line-number="1">compare &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(kingsData, kings_nasa, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"Date"</span> =<span class="st"> "YYYYMMDD"</span>))</div></code></pre>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">compare &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(kingsData, kings_nasa, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"Date"</span> =<span class="st"> "YYYYMMDD"</span>))</a></code></pre>
 <div id="graphing-the-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#graphing-the-data" class="anchor"></a>Graphing the data</h3>
@@ -133,173 +126,139 @@
 <div id="maximum-temperature" class="section level3">
 <h3 class="hasAnchor">
 <a href="#maximum-temperature" class="anchor"></a>Maximum Temperature</h3>
-<pre class="sourceCode r" id="cb6"><code class="sourceCode r"><div class="sourceLine" id="cb6-1" data-line-number="1">
-<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> max.temp, <span class="dt">y =</span> T2MX)) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb6-2" data-line-number="2">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"red"</span>) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb6-3" data-line-number="3">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</div></code></pre>
+<pre class="sourceCode r" id="cb6"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> max.temp, <span class="dt">y =</span> T2MX)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"red"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</a></code></pre>
 <p><img src="use-case_files/figure-html/graph_maxt-1.png" width="672" style="display: block; margin: auto;"></p>
-<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><div class="sourceLine" id="cb7-1" data-line-number="1"></div>
-<div class="sourceLine" id="cb7-2" data-line-number="2">
-<span class="kw">cor</span>(compare<span class="op">$</span>max.temp, compare<span class="op">$</span>T2MX)</div>
-<div class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; [1] 0.9056173</span></div></code></pre>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">cor</span>(compare<span class="op">$</span>max.temp, compare<span class="op">$</span>T2MX)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; [1] 0.9056173</span></a></code></pre>
 </div>
 <div id="miniumum-temperature" class="section level3">
 <h3 class="hasAnchor">
 <a href="#miniumum-temperature" class="anchor"></a>Miniumum Temperature</h3>
 <p>Graph minimum temperature, comparing <code>kingsData</code> to NASA-POWER data.</p>
-<pre class="sourceCode r" id="cb8"><code class="sourceCode r"><div class="sourceLine" id="cb8-1" data-line-number="1">
-<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> min.temp, <span class="dt">y =</span> T2MX)) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb8-2" data-line-number="2">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"blue"</span>) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb8-3" data-line-number="3">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</div></code></pre>
+<pre class="sourceCode r" id="cb8"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> min.temp, <span class="dt">y =</span> T2MX)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"blue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</a></code></pre>
 <p><img src="use-case_files/figure-html/graph_mint-1.png" width="672" style="display: block; margin: auto;"></p>
-<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><div class="sourceLine" id="cb9-1" data-line-number="1">  </div>
-<div class="sourceLine" id="cb9-2" data-line-number="2">  <span class="kw">cor</span>(compare<span class="op">$</span>min.temp, compare<span class="op">$</span>T2MN)</div>
-<div class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] 0.9424266</span></div></code></pre>
+<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">  </a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">  <span class="kw">cor</span>(compare<span class="op">$</span>min.temp, compare<span class="op">$</span>T2MN)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] 0.9424266</span></a></code></pre>
 </div>
 <div id="rainfall" class="section level3">
 <h3 class="hasAnchor">
 <a href="#rainfall" class="anchor"></a>Rainfall</h3>
-<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><div class="sourceLine" id="cb10-1" data-line-number="1">
-<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> rain, <span class="dt">y =</span> RAIN)) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb10-2" data-line-number="2">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"dark blue"</span>) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb10-3" data-line-number="3">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</div></code></pre>
+<pre class="sourceCode r" id="cb10"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> rain, <span class="dt">y =</span> RAIN)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"dark blue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</a></code></pre>
 <p><img src="use-case_files/figure-html/graph_rain-1.png" width="672" style="display: block; margin: auto;"></p>
-<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><div class="sourceLine" id="cb11-1" data-line-number="1">  </div>
-<div class="sourceLine" id="cb11-2" data-line-number="2">  <span class="kw">cor</span>(compare<span class="op">$</span>rain, compare<span class="op">$</span>RAIN)</div>
-<div class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; [1] 0.4162169</span></div></code></pre>
+<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">  </a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="kw">cor</span>(compare<span class="op">$</span>rain, compare<span class="op">$</span>RAIN)</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; [1] 0.4162169</span></a></code></pre>
 </div>
 <div id="radiation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#radiation" class="anchor"></a>Radiation</h3>
-<pre class="sourceCode r" id="cb12"><code class="sourceCode r"><div class="sourceLine" id="cb12-1" data-line-number="1">
-<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> rad, <span class="dt">y =</span> ???)) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb12-2" data-line-number="2">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"orange"</span>) <span class="op">+</span>
-</div>
-<div class="sourceLine" id="cb12-3" data-line-number="3">
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</div>
-<div class="sourceLine" id="cb12-4" data-line-number="4">  </div>
-<div class="sourceLine" id="cb12-5" data-line-number="5">  <span class="kw">cor</span>(compare<span class="op">$</span>rad, compare<span class="op">$</span>???)</div></code></pre>
+<pre class="sourceCode r" id="cb12"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(compare, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> rad, <span class="dt">y =</span> ???)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"orange"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="kw">cor</span>(compare<span class="op">$</span>rad, compare<span class="op">$</span>???)</a></code></pre>
 <p>Now that we have the data…</p>
 </div>
 </div>
 <div id="create-the--met-file" class="section level2">
 <h2 class="hasAnchor">
 <a href="#create-the--met-file" class="anchor"></a>Create the .met file</h2>
-<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><div class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># reorder the data columns from nasapower</span></div>
-<div class="sourceLine" id="cb13-2" data-line-number="2">kings_met &lt;-<span class="st"> </span>kings_nasa[...]</div>
-<div class="sourceLine" id="cb13-3" data-line-number="3"></div>
-<div class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># from the APSIM documentation example</span></div>
-<div class="sourceLine" id="cb13-5" data-line-number="5">new_names &lt;-</div>
-<div class="sourceLine" id="cb13-6" data-line-number="6">
-<span class="st">  </span><span class="kw">c</span>(<span class="st">"Date"</span>,</div>
-<div class="sourceLine" id="cb13-7" data-line-number="7">    <span class="st">"maxt"</span>,</div>
-<div class="sourceLine" id="cb13-8" data-line-number="8">    <span class="st">"mint"</span>,</div>
-<div class="sourceLine" id="cb13-9" data-line-number="9">    <span class="st">"rain"</span>,</div>
-<div class="sourceLine" id="cb13-10" data-line-number="10">    <span class="st">"evaporation"</span>,</div>
-<div class="sourceLine" id="cb13-11" data-line-number="11">    <span class="st">"radn"</span>,</div>
-<div class="sourceLine" id="cb13-12" data-line-number="12">    <span class="st">"vp"</span>,</div>
-<div class="sourceLine" id="cb13-13" data-line-number="13">    <span class="st">"Wind"</span>,</div>
-<div class="sourceLine" id="cb13-14" data-line-number="14">    <span class="st">"RH"</span>,</div>
-<div class="sourceLine" id="cb13-15" data-line-number="15">    <span class="st">"SVP"</span>)</div>
-<div class="sourceLine" id="cb13-16" data-line-number="16"></div>
-<div class="sourceLine" id="cb13-17" data-line-number="17">units &lt;-</div>
-<div class="sourceLine" id="cb13-18" data-line-number="18">
-<span class="st">  </span><span class="kw">c</span>(<span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb13-19" data-line-number="19">    <span class="st">"(oC)"</span>,</div>
-<div class="sourceLine" id="cb13-20" data-line-number="20">    <span class="st">"(oC)"</span>,</div>
-<div class="sourceLine" id="cb13-21" data-line-number="21">    <span class="st">"(mm)"</span>,</div>
-<div class="sourceLine" id="cb13-22" data-line-number="22">    <span class="st">"(mm)"</span>,</div>
-<div class="sourceLine" id="cb13-23" data-line-number="23">    <span class="st">"(MJ/m^2/day)"</span>,</div>
-<div class="sourceLine" id="cb13-24" data-line-number="24">    <span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb13-25" data-line-number="25">    <span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb13-26" data-line-number="26">    <span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb13-27" data-line-number="27">    <span class="st">"()"</span>)</div>
-<div class="sourceLine" id="cb13-28" data-line-number="28"></div>
-<div class="sourceLine" id="cb13-29" data-line-number="29">
-<span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">prepareMet</a></span>(kings_met,</div>
-<div class="sourceLine" id="cb13-30" data-line-number="30">           <span class="dt">lat =</span> kings_nasa[<span class="dv">1</span>, <span class="st">"LAT"</span>],</div>
-<div class="sourceLine" id="cb13-31" data-line-number="31">           <span class="dt">lon =</span> kings_nasa[<span class="dv">1</span>, <span class="st">"LON"</span>],</div>
-<div class="sourceLine" id="cb13-32" data-line-number="32">           <span class="dt">newNames =</span> new_names,</div>
-<div class="sourceLine" id="cb13-33" data-line-number="33">           <span class="dt">units =</span> units)</div></code></pre>
+<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># reorder the data columns from nasapower</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">kings_met &lt;-<span class="st"> </span>kings_nasa[...]</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co"># from the APSIM documentation example</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">new_names &lt;-</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="st">  </span><span class="kw">c</span>(<span class="st">"Date"</span>,</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">    <span class="st">"maxt"</span>,</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">    <span class="st">"mint"</span>,</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">    <span class="st">"rain"</span>,</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">    <span class="st">"evaporation"</span>,</a>
+<a class="sourceLine" id="cb13-11" data-line-number="11">    <span class="st">"radn"</span>,</a>
+<a class="sourceLine" id="cb13-12" data-line-number="12">    <span class="st">"vp"</span>,</a>
+<a class="sourceLine" id="cb13-13" data-line-number="13">    <span class="st">"Wind"</span>,</a>
+<a class="sourceLine" id="cb13-14" data-line-number="14">    <span class="st">"RH"</span>,</a>
+<a class="sourceLine" id="cb13-15" data-line-number="15">    <span class="st">"SVP"</span>)</a>
+<a class="sourceLine" id="cb13-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb13-17" data-line-number="17">units &lt;-</a>
+<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="st">  </span><span class="kw">c</span>(<span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb13-19" data-line-number="19">    <span class="st">"(oC)"</span>,</a>
+<a class="sourceLine" id="cb13-20" data-line-number="20">    <span class="st">"(oC)"</span>,</a>
+<a class="sourceLine" id="cb13-21" data-line-number="21">    <span class="st">"(mm)"</span>,</a>
+<a class="sourceLine" id="cb13-22" data-line-number="22">    <span class="st">"(mm)"</span>,</a>
+<a class="sourceLine" id="cb13-23" data-line-number="23">    <span class="st">"(MJ/m^2/day)"</span>,</a>
+<a class="sourceLine" id="cb13-24" data-line-number="24">    <span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb13-25" data-line-number="25">    <span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb13-26" data-line-number="26">    <span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb13-27" data-line-number="27">    <span class="st">"()"</span>)</a>
+<a class="sourceLine" id="cb13-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb13-29" data-line-number="29"><span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">prepareMet</a></span>(kings_met,</a>
+<a class="sourceLine" id="cb13-30" data-line-number="30">           <span class="dt">lat =</span> kings_nasa[<span class="dv">1</span>, <span class="st">"LAT"</span>],</a>
+<a class="sourceLine" id="cb13-31" data-line-number="31">           <span class="dt">lon =</span> kings_nasa[<span class="dv">1</span>, <span class="st">"LON"</span>],</a>
+<a class="sourceLine" id="cb13-32" data-line-number="32">           <span class="dt">newNames =</span> new_names,</a>
+<a class="sourceLine" id="cb13-33" data-line-number="33">           <span class="dt">units =</span> units)</a></code></pre>
 </div>
 <div id="using-get_region-with-apsim" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-get_region-with-apsim" class="anchor"></a>Using get_region() with APSIM</h2>
 <p>To use <code><a href="../reference/get_region.html">get_region()</a></code> with <code><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">APSIM::prepareMet()</a></code> we need to make separate <code>met</code> files for each cell from the resulting data frame object, which is easy to do using <em>dplyr</em>.</p>
-<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><div class="sourceLine" id="cb14-1" data-line-number="1">oz &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_region.html">get_region</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">112.91972</span>, <span class="fl">159.256088</span>, <span class="fl">-55.11694</span>, <span class="fl">-9.221099</span>),</div>
-<div class="sourceLine" id="cb14-2" data-line-number="2">                    <span class="dt">stdate =</span> <span class="st">"2017-1-1"</span>, <span class="dt">endate =</span> <span class="st">"2017-12-31"</span>)</div></code></pre>
-<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><div class="sourceLine" id="cb15-1" data-line-number="1">
-<span class="kw">library</span>(dplyr)</div>
-<div class="sourceLine" id="cb15-2" data-line-number="2"></div>
-<div class="sourceLine" id="cb15-3" data-line-number="3"><span class="co"># mutate: add unique id values (lon-lat value)</span></div>
-<div class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># arrange: sort data frames by that id</span></div>
-<div class="sourceLine" id="cb15-5" data-line-number="5"><span class="co"># split: take the data.frame() and split it into a list of data.frames by id</span></div>
-<div class="sourceLine" id="cb15-6" data-line-number="6">oz_list &lt;-<span class="st"> </span>oz <span class="op">%&gt;%</span>
-</div>
-<div class="sourceLine" id="cb15-7" data-line-number="7">
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">paste</span>(LON, LAT, <span class="dt">sep =</span> <span class="st">'-'</span>)) <span class="op">%&gt;%</span>
-</div>
-<div class="sourceLine" id="cb15-8" data-line-number="8">
-<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(id) <span class="op">%&gt;%</span>
-</div>
-<div class="sourceLine" id="cb15-9" data-line-number="9">
-<span class="st">  </span><span class="kw">split</span>(., .<span class="op">$</span>id)</div>
-<div class="sourceLine" id="cb15-10" data-line-number="10"></div>
-<div class="sourceLine" id="cb15-11" data-line-number="11"><span class="co"># from the APSIM documentation example</span></div>
-<div class="sourceLine" id="cb15-12" data-line-number="12">new_names &lt;-</div>
-<div class="sourceLine" id="cb15-13" data-line-number="13">
-<span class="st">  </span><span class="kw">c</span>(<span class="st">"Date"</span>,</div>
-<div class="sourceLine" id="cb15-14" data-line-number="14">    <span class="st">"maxt"</span>,</div>
-<div class="sourceLine" id="cb15-15" data-line-number="15">    <span class="st">"mint"</span>,</div>
-<div class="sourceLine" id="cb15-16" data-line-number="16">    <span class="st">"rain"</span>,</div>
-<div class="sourceLine" id="cb15-17" data-line-number="17">    <span class="st">"evaporation"</span>,</div>
-<div class="sourceLine" id="cb15-18" data-line-number="18">    <span class="st">"radn"</span>,</div>
-<div class="sourceLine" id="cb15-19" data-line-number="19">    <span class="st">"vp"</span>,</div>
-<div class="sourceLine" id="cb15-20" data-line-number="20">    <span class="st">"Wind"</span>,</div>
-<div class="sourceLine" id="cb15-21" data-line-number="21">    <span class="st">"RH"</span>,</div>
-<div class="sourceLine" id="cb15-22" data-line-number="22">    <span class="st">"SVP"</span>)</div>
-<div class="sourceLine" id="cb15-23" data-line-number="23"></div>
-<div class="sourceLine" id="cb15-24" data-line-number="24">units &lt;-</div>
-<div class="sourceLine" id="cb15-25" data-line-number="25">
-<span class="st">  </span><span class="kw">c</span>(<span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb15-26" data-line-number="26">    <span class="st">"(oC)"</span>,</div>
-<div class="sourceLine" id="cb15-27" data-line-number="27">    <span class="st">"(oC)"</span>,</div>
-<div class="sourceLine" id="cb15-28" data-line-number="28">    <span class="st">"(mm)"</span>,</div>
-<div class="sourceLine" id="cb15-29" data-line-number="29">    <span class="st">"(mm)"</span>,</div>
-<div class="sourceLine" id="cb15-30" data-line-number="30">    <span class="st">"(MJ/m^2/day)"</span>,</div>
-<div class="sourceLine" id="cb15-31" data-line-number="31">    <span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb15-32" data-line-number="32">    <span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb15-33" data-line-number="33">    <span class="st">"()"</span>,</div>
-<div class="sourceLine" id="cb15-34" data-line-number="34">    <span class="st">"()"</span>)</div>
-<div class="sourceLine" id="cb15-35" data-line-number="35"></div>
-<div class="sourceLine" id="cb15-36" data-line-number="36"><span class="co"># map:: apply the prepareMet() function to the list of data frames</span></div>
-<div class="sourceLine" id="cb15-37" data-line-number="37"><span class="co"># write each item for the list to a file on disk for use in APSIM</span></div>
-<div class="sourceLine" id="cb15-38" data-line-number="38">met_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(oz_list, <span class="cf">function</span>(i)</div>
-<div class="sourceLine" id="cb15-39" data-line-number="39">  <span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">prepareMet</a></span>(oz_list[i],</div>
-<div class="sourceLine" id="cb15-40" data-line-number="40">           <span class="dt">lat =</span> oz_list[[i]][<span class="dv">1</span>, <span class="st">"LAT"</span>],</div>
-<div class="sourceLine" id="cb15-41" data-line-number="41">           <span class="dt">lon =</span> oz_list[[i]][<span class="dv">1</span>, <span class="st">"LON"</span>],</div>
-<div class="sourceLine" id="cb15-42" data-line-number="42">           <span class="dt">newNames =</span> new_names,</div>
-<div class="sourceLine" id="cb15-43" data-line-number="43">           <span class="dt">units =</span> units))</div>
-<div class="sourceLine" id="cb15-44" data-line-number="44"></div>
-<div class="sourceLine" id="cb15-45" data-line-number="45"><span class="co"># write met files to disk</span></div>
-<div class="sourceLine" id="cb15-46" data-line-number="46">
-<span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(met_list),</div>
-<div class="sourceLine" id="cb15-47" data-line-number="47">       <span class="cf">function</span>(i) <span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/writeMetFile">writeMetFile</a></span>(met_list[[i]],</div>
-<div class="sourceLine" id="cb15-48" data-line-number="48">                                <span class="dt">fileName =</span> <span class="kw">paste0</span>(<span class="kw">names</span>(met_list[i]))))</div></code></pre>
+<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">oz &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_region.html">get_region</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">112.91972</span>, <span class="fl">159.256088</span>, <span class="fl">-55.11694</span>, <span class="fl">-9.221099</span>),</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">                    <span class="dt">stdate =</span> <span class="st">"2017-1-1"</span>, <span class="dt">endate =</span> <span class="st">"2017-12-31"</span>)</a></code></pre>
+<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co"># mutate: add unique id values (lon-lat value)</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># arrange: sort data frames by that id</span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="co"># split: take the data.frame() and split it into a list of data.frames by id</span></a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">oz_list &lt;-<span class="st"> </span>oz <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">id =</span> <span class="kw">paste</span>(LON, LAT, <span class="dt">sep =</span> <span class="st">'-'</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9"><span class="st">  </span><span class="kw">split</span>(., .<span class="op">$</span>id)</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb15-11" data-line-number="11"><span class="co"># from the APSIM documentation example</span></a>
+<a class="sourceLine" id="cb15-12" data-line-number="12">new_names &lt;-</a>
+<a class="sourceLine" id="cb15-13" data-line-number="13"><span class="st">  </span><span class="kw">c</span>(<span class="st">"Date"</span>,</a>
+<a class="sourceLine" id="cb15-14" data-line-number="14">    <span class="st">"maxt"</span>,</a>
+<a class="sourceLine" id="cb15-15" data-line-number="15">    <span class="st">"mint"</span>,</a>
+<a class="sourceLine" id="cb15-16" data-line-number="16">    <span class="st">"rain"</span>,</a>
+<a class="sourceLine" id="cb15-17" data-line-number="17">    <span class="st">"evaporation"</span>,</a>
+<a class="sourceLine" id="cb15-18" data-line-number="18">    <span class="st">"radn"</span>,</a>
+<a class="sourceLine" id="cb15-19" data-line-number="19">    <span class="st">"vp"</span>,</a>
+<a class="sourceLine" id="cb15-20" data-line-number="20">    <span class="st">"Wind"</span>,</a>
+<a class="sourceLine" id="cb15-21" data-line-number="21">    <span class="st">"RH"</span>,</a>
+<a class="sourceLine" id="cb15-22" data-line-number="22">    <span class="st">"SVP"</span>)</a>
+<a class="sourceLine" id="cb15-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb15-24" data-line-number="24">units &lt;-</a>
+<a class="sourceLine" id="cb15-25" data-line-number="25"><span class="st">  </span><span class="kw">c</span>(<span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb15-26" data-line-number="26">    <span class="st">"(oC)"</span>,</a>
+<a class="sourceLine" id="cb15-27" data-line-number="27">    <span class="st">"(oC)"</span>,</a>
+<a class="sourceLine" id="cb15-28" data-line-number="28">    <span class="st">"(mm)"</span>,</a>
+<a class="sourceLine" id="cb15-29" data-line-number="29">    <span class="st">"(mm)"</span>,</a>
+<a class="sourceLine" id="cb15-30" data-line-number="30">    <span class="st">"(MJ/m^2/day)"</span>,</a>
+<a class="sourceLine" id="cb15-31" data-line-number="31">    <span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb15-32" data-line-number="32">    <span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb15-33" data-line-number="33">    <span class="st">"()"</span>,</a>
+<a class="sourceLine" id="cb15-34" data-line-number="34">    <span class="st">"()"</span>)</a>
+<a class="sourceLine" id="cb15-35" data-line-number="35"></a>
+<a class="sourceLine" id="cb15-36" data-line-number="36"><span class="co"># map:: apply the prepareMet() function to the list of data frames</span></a>
+<a class="sourceLine" id="cb15-37" data-line-number="37"><span class="co"># write each item for the list to a file on disk for use in APSIM</span></a>
+<a class="sourceLine" id="cb15-38" data-line-number="38">met_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(oz_list, <span class="cf">function</span>(i)</a>
+<a class="sourceLine" id="cb15-39" data-line-number="39">  <span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">prepareMet</a></span>(oz_list[i],</a>
+<a class="sourceLine" id="cb15-40" data-line-number="40">           <span class="dt">lat =</span> oz_list[[i]][<span class="dv">1</span>, <span class="st">"LAT"</span>],</a>
+<a class="sourceLine" id="cb15-41" data-line-number="41">           <span class="dt">lon =</span> oz_list[[i]][<span class="dv">1</span>, <span class="st">"LON"</span>],</a>
+<a class="sourceLine" id="cb15-42" data-line-number="42">           <span class="dt">newNames =</span> new_names,</a>
+<a class="sourceLine" id="cb15-43" data-line-number="43">           <span class="dt">units =</span> units))</a>
+<a class="sourceLine" id="cb15-44" data-line-number="44"></a>
+<a class="sourceLine" id="cb15-45" data-line-number="45"><span class="co"># write met files to disk</span></a>
+<a class="sourceLine" id="cb15-46" data-line-number="46"><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(met_list),</a>
+<a class="sourceLine" id="cb15-47" data-line-number="47">       <span class="cf">function</span>(i) <span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/writeMetFile">writeMetFile</a></span>(met_list[[i]],</a>
+<a class="sourceLine" id="cb15-48" data-line-number="48">                                <span class="dt">fileName =</span> <span class="kw">paste0</span>(<span class="kw">names</span>(met_list[i]))))</a></code></pre>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
