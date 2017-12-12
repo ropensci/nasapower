@@ -93,7 +93,7 @@
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="layer1"
-     inkscape:cx="184.29841"
+     inkscape:cx="183.29841"
      inkscape:cy="202.55008"
      inkscape:window-width="1440"
      inkscape:pageopacity="0.0"
@@ -169,9 +169,9 @@
          id="text4366"
          y="174.54648"
          x="-1802.9253"
-         style="font-style:normal;font-weight:normal;font-size:33.75496674px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#481800;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-weight:normal;font-size:33.75496674px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#4d4d4d;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
          xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.75496674px;font-family:'Fira Code';-inkscape-font-specification:'Fira Code'"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.75496674px;font-family:'Fira Code';-inkscape-font-specification:'Fira Code';fill:#4d4d4d;fill-opacity:1;"
            y="174.54648"
            x="-1802.9253"
            id="tspan4368"
@@ -253,7 +253,7 @@
         <dc:publisher>
           <cc:Agent
              rdf:about="http://openclipart.org/">
-            <dc:title></dc:title>
+            <dc:title />
           </cc:Agent>
         </dc:publisher>
         <dc:title>nasapower</dc:title>
