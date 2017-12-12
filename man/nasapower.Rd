@@ -4,7 +4,7 @@
 \name{nasapower}
 \alias{nasapower}
 \alias{nasapower-package}
-\title{Downloads NASA-POWER Agroclimatology Variables and Returns a Tidy Data Frame}
+\title{NASA-POWER Agroclimatology Data from R}
 \description{
 \code{nasapower} provides an R interface to download NASA-POWER
 agroclimatology data and create a tidy data frame for individual cells or a
@@ -17,12 +17,14 @@ Directorate Applied Science Program.
 While \code{nasapower} does not redistribute the data in anyway, we
 encourage users to follow the requests of the POWER Project Team.
 
+\preformatted{
 When POWER data products are used in a publication, we request the
 following acknowledgment be included:
 
 "These data were obtained from the NASA Langley Research Center
 POWER Project funded through the NASA Earth Science Directorate Applied
 Science Program."
+}
 }
 \references{
 \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
