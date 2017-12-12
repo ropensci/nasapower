@@ -30,6 +30,9 @@ notifications:
     on_success: change
     on_failure: change
 
+r_packages:
+  - devtools
+
 r_github_packages:
       - jimhester/covr
 
