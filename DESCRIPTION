@@ -8,7 +8,7 @@ Authors@R: c(person(given = "Adam H.", family = "Sparks",
     person(given = "Jorrel Khalil S.", family = "Aunario",
     role = "ctb", email = "jaunario@gmail.com"))
 URL: https://github.com/adamhsparks/nasapower
-BugReports: https://github.com/adamhsparks/nasapower
+BugReports: https://github.com/adamhsparks/nasapower/issues
 Description: Download NASA-POWER agroclimatology data and create a tidy data
     frame for individual cells or a specified region. nasapower is a lightweight
     interface to the NASA - POWER website for R. POWER (Prediction Of Worldwide
