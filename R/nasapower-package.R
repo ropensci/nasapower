@@ -14,10 +14,10 @@
 #' Directorate Applied Science Program.
 #'
 #' @note
-#' While \code{nasapower} does not redistribute the data in anyway, we
+#' While \code{nasapower} does not redistribute the data in any way, we
 #' encourage users to follow the requests of the POWER Project Team.
 #'
-#' \preformatted{
+#'\preformatted{
 #' When POWER data products are used in a publication, we request the
 #' following acknowledgment be included:
 #'

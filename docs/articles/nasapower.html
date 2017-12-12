@@ -185,6 +185,31 @@
 <a class="sourceLine" id="cb6-26" data-line-number="26">          <span class="dt">subtitle =</span> <span class="st">"Data sources</span><span class="ch">\n</span><span class="st">Relative Humidity: NASA - POWER</span><span class="ch">\n</span><span class="st">PHL boundary: Naturalearthdata"</span>)</a></code></pre>
 <p><img src="plot_phl-1.png" alt="Philippine Temperature"><img src="plot_phl-2.png" alt="“Philippine Relative Humidity”"></p>
 </div>
+<div id="creating-spatial-objects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#creating-spatial-objects" class="anchor"></a>Creating Spatial Objects</h2>
+<p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from either <code><a href="../reference/get_cell.html">get_cell()</a></code> or <code><a href="../reference/get_region.html">get_region()</a></code> to a spatial object in R.</p>
+<div id="converting-to-a-raster-object" class="section level3">
+<h3 class="hasAnchor">
+<a href="#converting-to-a-raster-object" class="anchor"></a>Converting to a <em>raster</em> Object</h3>
+<p>Using the <code>PHL</code> object from the previous example, convert the data frame to a raster brick. The LON and LAT values are in columns 6 and 7 with the weather vars in any following columns.</p>
+<p>The first step is to <code>split()</code> the data frame into a list of data frames by day.</p>
+<p>Then convert the <code>list()</code> into a <code>list()</code> of <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick()</a></code> objects.</p>
+<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">PHL &lt;-<span class="st"> </span><span class="kw">split</span>(PHL, PHL<span class="op">$</span>YYYYMMDD)</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">PHL &lt;-</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">  </span><span class="kw">lapply</span>(PHL, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MONTH"</span>, <span class="st">"DAY"</span>, <span class="st">"YYYYMMDD"</span>, <span class="st">"DOY"</span>))])</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">PHL &lt;-<span class="st"> </span><span class="kw">lapply</span>(PHL, rasterFromXYZ,</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a></code></pre>
+</div>
+</div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
@@ -202,6 +227,7 @@
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-get_cell">Using get_cell()</a></li>
       <li><a href="#using-get_region">Using get_region()</a></li>
+      <li><a href="#creating-spatial-objects">Creating Spatial Objects</a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>
