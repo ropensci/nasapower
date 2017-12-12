@@ -93,7 +93,7 @@
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="layer1"
-     inkscape:cx="184.29841"
+     inkscape:cx="10.29841"
      inkscape:cy="202.55008"
      inkscape:window-width="1440"
      inkscape:pageopacity="0.0"
@@ -253,7 +253,7 @@
         <dc:publisher>
           <cc:Agent
              rdf:about="http://openclipart.org/">
-            <dc:title></dc:title>
+            <dc:title />
           </cc:Agent>
         </dc:publisher>
         <dc:title>nasapower</dc:title>
@@ -278,7 +278,7 @@
         </dc:rights>
         <dc:contributor>
           <cc:Agent>
-            <dc:title>Josh &quot;Cheeseness&quot; Bush, anonymous, v</dc:title>
+            <dc:title>Josh &quot;Cheeseness&quot; Bush, anonymous, bnielsen, Nikita Prokopov</dc:title>
           </cc:Agent>
         </dc:contributor>
       </cc:Work>
