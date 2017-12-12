@@ -1,6 +1,6 @@
 
 .onAttach <- function(libname, pkgname) {
-  msg <- paste0("While nasapower does not redistribute the data in anyway,\n",
+  msg <- paste0("While nasapower does not redistribute the data in any way,\n",
                 "we encourage users to follow the requests of the POWER\n",
                 "Project Team:\n",
                 "\n",

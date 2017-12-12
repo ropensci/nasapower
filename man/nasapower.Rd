@@ -14,7 +14,7 @@ degree longitude by 1 degree latitude funded through the NASA Earth Science
 Directorate Applied Science Program.
 }
 \note{
-While \code{nasapower} does not redistribute the data in anyway, we
+While \code{nasapower} does not redistribute the data in any way, we
 encourage users to follow the requests of the POWER Project Team.
 
 \preformatted{
