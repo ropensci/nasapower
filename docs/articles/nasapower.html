@@ -129,22 +129,25 @@
 <h2 class="hasAnchor">
 <a href="#using-get_region" class="anchor"></a>Using get_region()</h2>
 <p>The <code><a href="../reference/get_region.html">get_region()</a></code> function accepts the same arguments as <code><a href="../reference/get_cell.html">get_cell()</a></code>, however, the <code>lonlat</code> value is a length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.</p>
-<p>This function is useful for retrieving whole states, countries or global surfaces. This example illustrates fetching and graphing the average temperature and relative humidity for the Philippines.</p>
-<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">PHL_adm &lt;-<span class="st"> </span>rnaturalearth<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rnaturalearth/topics/ne_countries">ne_countries</a></span>(<span class="dt">scale =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">                                       <span class="dt">country =</span> <span class="st">"Philippines"</span>,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">                                       <span class="dt">returnclass =</span> <span class="st">"sp"</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># get the bounding box from the sp object to instruct the `lonlat` values</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">PHL_lonlat &lt;-<span class="st"> </span>sp<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/bbox">bbox</a></span>(PHL_adm)</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">PHL &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_region.html">get_region</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(PHL_lonlat[<span class="dv">1</span>, <span class="dv">1</span>],</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">                             PHL_lonlat[<span class="dv">1</span>, <span class="dv">2</span>],</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">                             PHL_lonlat[<span class="dv">2</span>, <span class="dv">1</span>],</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">                             PHL_lonlat[<span class="dv">2</span>, <span class="dv">2</span>]), </a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">                  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"RH2M"</span>),</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">                  <span class="dt">stdate =</span> <span class="st">"2017-1-1"</span>,</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">                  <span class="dt">endate =</span> <span class="st">"2017-1-2"</span>)</a></code></pre>
-<p>Using <em>ggplot</em>, plot the downloaded data with an outline from Naturalearthdata for reference.</p>
+<p>This function is useful for retrieving whole states, countries or global surfaces. Retrieving a whole global surface for a single day and all available variables can take roughly two hours depending on the Internet connection speed. The resulting data frame for 365 days is roughly 2 GB depending on the completeness of the data set available for the requested year.</p>
+<p>The following example illustrates fetching and graphing the average temperature and relative humidity for the Philippines for the first two days of 2017.</p>
+<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># get a sp data frame for the Philippines from naturalearthdata</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">PHL_adm &lt;-<span class="st"> </span>rnaturalearth<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rnaturalearth/topics/ne_countries">ne_countries</a></span>(<span class="dt">scale =</span> <span class="dv">50</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                                       <span class="dt">country =</span> <span class="st">"Philippines"</span>,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">                                       <span class="dt">returnclass =</span> <span class="st">"sp"</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># get the bounding box from the sp object to instruct the `lonlat` values</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">PHL_lonlat &lt;-<span class="st"> </span>sp<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/bbox">bbox</a></span>(PHL_adm)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">PHL &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_region.html">get_region</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(PHL_lonlat[<span class="dv">1</span>, <span class="dv">1</span>],</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">                             PHL_lonlat[<span class="dv">1</span>, <span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">                             PHL_lonlat[<span class="dv">2</span>, <span class="dv">1</span>],</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">                             PHL_lonlat[<span class="dv">2</span>, <span class="dv">2</span>]), </a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">                  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"RH2M"</span>),</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">                  <span class="dt">stdate =</span> <span class="st">"2017-1-1"</span>,</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16">                  <span class="dt">endate =</span> <span class="st">"2017-1-2"</span>)</a></code></pre>
+<p>Using <em>ggplot</em>, plot the downloaded data with an outline from <em>Naturalearthdata</em> for reference.</p>
 <pre class="sourceCode r" id="cb6"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(viridis)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"></a>
@@ -176,13 +179,13 @@
 <div id="creating-spatial-objects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-spatial-objects" class="anchor"></a>Creating Spatial Objects</h2>
-<p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from either <code><a href="../reference/get_cell.html">get_cell()</a></code> or <code><a href="../reference/get_region.html">get_region()</a></code> to a spatial object in R.</p>
+<p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from either <code><a href="../reference/get_cell.html">get_cell()</a></code> or <code><a href="../reference/get_region.html">get_region()</a></code> to a spatial object in R using <code><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">raster::rasterFromXYZ()</a></code>.</p>
 <div id="converting-to-a-raster-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#converting-to-a-raster-object" class="anchor"></a>Converting to a <em>raster</em> Object</h3>
 <p>Using the <code>PHL</code> object from the previous example, convert the data frame to a raster brick. The LON and LAT values are in columns 6 and 7 with the weather vars in any following columns.</p>
-<p>The first step is to <code>split()</code> the data frame into a list of data frames by day.</p>
-<p>Then convert the <code>list()</code> into a <code>list()</code> of <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick()</a></code> objects.</p>
+<p>The first step is to <code><a href="http://www.rdocumentation.org/packages/base/topics/split">base::split()</a></code> the data frame into a list of data frames by day.</p>
+<p>Then convert the <code><a href="http://www.rdocumentation.org/packages/base/topics/list">base::list()</a></code> into a <code>list</code> of <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick()</a></code> objects.</p>
 <pre class="sourceCode r" id="cb7"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>

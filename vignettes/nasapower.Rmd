@@ -110,10 +110,17 @@ the `lonlat` value is a length-4 numeric vector of the minimum longitude,
 maximum longitude, minimum latitude and maximum latitude.
 
 This function is useful for retrieving whole states, countries or global
-surfaces. This example illustrates fetching and graphing the average temperature
-and relative humidity for the Philippines.
+surfaces. Retrieving a whole global surface for a single day and all available
+variables can take roughly two hours depending on the Internet connection speed.
+The resulting data frame for 365 days is roughly 2 GB depending on the
+completeness of the data set available for the requested year.
+
+The following example illustrates fetching and graphing the average temperature
+and relative humidity for the Philippines for the first two days of 2017.
 
 ```{r get_philippines_example}
+
+# get a sp data frame for the Philippines from naturalearthdata
 PHL_adm <- rnaturalearth::ne_countries(scale = 50,
                                        country = "Philippines",
                                        returnclass = "sp")
@@ -130,7 +137,7 @@ PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
                   endate = "2017-1-2")
 ```
 
-Using _ggplot_, plot the downloaded data with an outline from Naturalearthdata
+Using _ggplot_, plot the downloaded data with an outline from _Naturalearthdata_
 for reference.
 
 ```{r plot_phl}
@@ -169,7 +176,7 @@ ggplot(PHL, aes(x = LON, y = LAT, fill = RH2M)) +
 
 If you require spatial objects to work with, it is rather simple to convert
 the resulting tidy data frame from either `get_cell()` or `get_region()` to a
-spatial object in R.
+spatial object in R using `raster::rasterFromXYZ()`.
 
 ### Converting to a _raster_ Object
 
@@ -177,9 +184,9 @@ Using the `PHL` object from the previous example, convert the data frame to a
 raster brick. The LON and LAT values are in columns 6 and 7 with the weather
 vars in any following columns.
 
-The first step is to `split()` the data frame into a list of data frames by day.
+The first step is to `base::split()` the data frame into a list of data frames by day.
 
-Then convert the `list()` into a `list()` of `raster::brick()` objects.
+Then convert the `base::list()` into a `list` of `raster::brick()` objects.
 
 ```{r raster_example}
 library(raster)
