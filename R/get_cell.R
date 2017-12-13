@@ -105,13 +105,11 @@ get_cell <-
 
     durl <-
       paste0(
-        "https://",
-        url,
-        "&p=",
+        "https://power.larc.nasa.gov/cgi-bin/agro.cgi?&p=",
         download_vars,
         "lat=",
         lonlat[2],
-        "&ye=",
+        "&email=agroclim40larc.nasa.gov&ye=",
         format(as.Date(endate), "%Y"),
         "&me=",
         format(as.Date(endate), "%m"),
