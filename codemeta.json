@@ -194,7 +194,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "755.287KB",
+  "fileSize": "755.265KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
