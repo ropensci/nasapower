@@ -35,6 +35,7 @@ Suggests:
     rnaturalearth,
     covr,
     ggplot2,
+    raster,
     sp,
     viridis
 VignetteBuilder: knitr
