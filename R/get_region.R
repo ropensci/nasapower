@@ -66,25 +66,18 @@
 #'@export
 get_region <-
   function(lonlat = NULL,
-           vars = c(
-             "T2M",
-             "T2MN",
-             "T2MX",
-             "RH2M",
-             "toa_dwn",
-             "swv_dwn",
-             "lwv_dwn",
-             "DFP2M",
-             "RAIN",
-             "WS10M"
-           ),
+           vars = c("T2M",
+                    "T2MN",
+                    "T2MX",
+                    "RH2M",
+                    "toa_dwn",
+                    "swv_dwn",
+                    "lwv_dwn",
+                    "DFP2M",
+                    "RAIN",
+                    "WS10M"),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
-
-    url <-
-      "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
-    .check_response(url)
-
     if (is.null(lonlat) | length(lonlat) != 4 | !is.numeric(lonlat)) {
       stop("lonlat must be provided in a length-4 numeric vector.\n")
     }
@@ -178,11 +171,13 @@ get_region <-
 
     # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                       each = as.numeric((endate - stdate) + 1)),
+                                       each = as.numeric(
+                                         (endate - stdate) + 1)
+                                       ),
                                    1:2]
 
     location_rows <-
-      location_rows[order(as.numeric(row.names(location_rows))),]
+      location_rows[order(as.numeric(row.names(location_rows))), ]
 
     row.names(location_rows) <- NULL
 
@@ -193,24 +188,21 @@ get_region <-
     max_index <- max_index[-1]
 
     # Add last max_index value since there is no "end" at the end of the string
-    max_index <-
-      c(max_index, max(max_index) + (max_index[2] - min_index[1]))
+    max_index <- c(max_index, max(max_index) + (max_index[2] - min_index[1]))
 
     max_index[min_index == max(min_index)] <-
       max(min_index) + max_index[1] - min_index[1]
 
     indices <- data.frame(min_index, max_index)
 
-    indices <-
-      data.frame(mapply(`:`, indices$min_index, indices$max_index))
+    indices <- data.frame(mapply(`:`, indices$min_index, indices$max_index))
     indices <- unlist(indices, use.names = FALSE)
 
     NASA <- utils::read.table(
       text = NASA[indices],
       na.strings = "-",
       nrows = length(indices),
-      stringsAsFactors = FALSE
-    )
+      stringsAsFactors = FALSE)
 
     # Create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)
