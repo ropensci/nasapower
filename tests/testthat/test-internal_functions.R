@@ -1,5 +1,5 @@
 context(".check_response")
-# Check that .check_response handles invalid years -----------------------------
+# Check that .check_response handles web-site responses properly  --------------
 
 test_that(".check_response stops if server not responding", {
   url <- "http://badurl.gov.au"
