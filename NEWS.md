@@ -27,6 +27,9 @@ _raster_
 
 - `get_region()` and `get_cell()` now default to download all weather vars
 
+- Add a check to see if POWER website is responding before making request for
+data. If not, stop and return error message to user.
+
 --------------------------------------------------------------------------------
 
 # nasapower 0.1.2 (2017-11-06)
