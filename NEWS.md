@@ -8,12 +8,20 @@ names not being ordered correctly in `get_region()`
 
 - Correct vignette where it had said, "both of which will which will download"
 
+- Fix bug reports link in DESCRIPTION file
+
 ### Minor improvements
 
 - Optimise arguments used in `read.table` to ingest weather data in the
 `get_cell()` and `get_region()` functions more quickly
 
 - NEWS now formatted more nicely for easier reading
+
+- Add statement about possible performance and memory usage when using
+`get_region()` in the vignette
+
+- Add an example of converting the data frame to a spatial object using
+_raster_
 
 --------------------------------------------------------------------------------
 
