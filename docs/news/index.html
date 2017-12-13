@@ -103,6 +103,66 @@
     </div>
 
     <div class="contents">
+    <section id="nasapower-0.1.2.9000" class="level1"><h1>nasapower 0.1.2.9000</h1>
+<section id="bug-fixes" class="level3"><h3>Bug fixes</h3>
+<ul>
+<li><p>Fix bug where lon/lat values were improperly assigned internally due to row names not being ordered correctly in <code><a href="../reference/get_region.html">get_region()</a></code></p></li>
+<li><p>Correct vignette where it had said, “both of which will which will download”</p></li>
+<li><p>Fix bug reports link in DESCRIPTION file</p></li>
+</ul></section><section id="minor-improvements" class="level3"><h3>Minor improvements</h3>
+<ul>
+<li><p>Optimise arguments used in <code>read.table</code> to ingest weather data in the <code><a href="../reference/get_cell.html">get_cell()</a></code> and <code><a href="../reference/get_region.html">get_region()</a></code> functions more quickly</p></li>
+<li><p>NEWS now formatted more nicely for easier reading</p></li>
+<li><p>Add statement about possible performance and memory usage when using <code><a href="../reference/get_region.html">get_region()</a></code> in the vignette</p></li>
+<li><p>Add an example of converting the data frame to a spatial object using <em>raster</em></p></li>
+</ul></section><section id="minor-changes" class="level2"><h2>Minor changes</h2>
+<ul>
+<li>
+<code><a href="../reference/get_region.html">get_region()</a></code> and <code><a href="../reference/get_cell.html">get_cell()</a></code> now default to download all weather vars</li>
+</ul>
+<hr></section></section>
+    <section id="nasapower-0.1.2-2017-11-06" class="level1"><h1>nasapower 0.1.2 (2017-11-06)</h1>
+<section id="bug-fixes-1" class="level3"><h3>Bug fixes</h3>
+<ul>
+<li>Fixes bug where only first date is reported when using <code><a href="../reference/get_region.html">get_region()</a></code> with multiple dates. https://github.com/adamhsparks/nasapower/issues/1</li>
+</ul></section><section id="minor-improvements-1" class="level3"><h3>Minor improvements</h3>
+<ul>
+<li><p>Enhanced documentation</p></li>
+<li><p>Superflous function, <code>.onLoad()</code>, removed from zzz.R</p></li>
+<li><p>Tidied up startup message</p></li>
+<li><p>Clean up vignette</p></li>
+<li><p>Build vignette faster</p></li>
+<li><p>Remove DATE from DESCRIPTION</p></li>
+</ul>
+<hr></section></section>
+    <section id="nasapower-0.1.1-2017-11-04" class="level1"><h1>nasapower 0.1.1 (2017-11-04)</h1>
+<section id="minor-improvements-2" class="level3"><h3>Minor improvements</h3>
+<ul>
+<li>Fix issues in documentation, typos, incorrect links, etc.</li>
+</ul>
+<hr></section></section>
+    <section id="nasapower-0.1.0-2017-11-04" class="level1"><h1>nasapower 0.1.0 (2017-11-04)</h1>
+<section id="new-features" class="level3"><h3>New features</h3>
+<ul>
+<li><p>Add new functionality to download regions in addition to single cells</p></li>
+<li><p>Add static documentation website, <a href="https://adamhsparks.github.io/nasapower/" class="uri">https://adamhsparks.github.io/nasapower/</a></p></li>
+<li><p>Add startup message</p></li>
+</ul></section><section id="minor-improvements-3" class="level3"><h3>Minor improvements</h3>
+<ul>
+<li>Better documentation</li>
+</ul>
+<hr></section></section>
+    <section id="nasapower-0.0.2-2017-11-02" class="level1"><h1>nasapower 0.0.2 (2017-11-02)</h1>
+<section id="new-features-1" class="level3"><h3>New features</h3>
+<ul>
+<li>Added citation file</li>
+</ul>
+<hr></section></section>
+    <section id="nasapower-0.0.1-2017-11-02" class="level1"><h1>nasapower 0.0.1 (2017-11-02)</h1>
+<ul>
+<li><p>Added a <code>NEWS.md</code> file to track changes to the package.</p></li>
+<li><p>First release, no changes to report yet</p></li>
+</ul></section>
     </div>
   </div>
 
@@ -110,6 +170,12 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#nasapower-0.1.2.9000">0.1.2.9000</a></li>
+        <li><a href="#nasapower-0.1.2-2017-11-06">0.1.2</a></li>
+        <li><a href="#nasapower-0.1.1-2017-11-04">0.1.1</a></li>
+        <li><a href="#nasapower-0.1.0-2017-11-04">0.1.0</a></li>
+        <li><a href="#nasapower-0.0.2-2017-11-02">0.0.2</a></li>
+        <li><a href="#nasapower-0.0.1-2017-11-02">0.0.1</a></li>
       </ul>
     </div>
   </div>
