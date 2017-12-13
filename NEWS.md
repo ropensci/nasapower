@@ -23,6 +23,9 @@ names not being ordered correctly in `get_region()`
 - Add an example of converting the data frame to a spatial object using
 _raster_
 
+## Minor changes
+
+- `get_region()` and `get_cell()` now default to download all weather vars
 --------------------------------------------------------------------------------
 
 # nasapower 0.1.2 (2017-11-06)
