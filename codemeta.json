@@ -157,6 +157,17 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "pingr",
+      "name": "pingr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "stringi",
       "name": "stringi",
       "provider": {
@@ -183,7 +194,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "753.583KB",
+  "fileSize": "755.287KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
