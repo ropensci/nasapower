@@ -26,6 +26,7 @@ _raster_
 ## Minor changes
 
 - `get_region()` and `get_cell()` now default to download all weather vars
+
 --------------------------------------------------------------------------------
 
 # nasapower 0.1.2 (2017-11-06)

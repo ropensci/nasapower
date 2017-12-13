@@ -8,16 +8,16 @@
   "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. nasapower is a lightweight\n    interface to the NASA - POWER website for R. POWER (Prediction Of Worldwide\n    Energy Resource) data are freely available for download through a web\n    interface at a resolution of 1 degree longitude by 1 degree latitude funded\n    through the NASA Earth Science Directorate Applied Science Program.",
   "name": "nasapower: NASA-POWER Agroclimatology Data from R",
   "codeRepository": "https://github.com/adamhsparks/nasapower.git",
-  "issueTracker": "https://github.com/adamhsparks/nasapower",
+  "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.2",
+  "version": "0.1.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.2",
+    "version": "3.4.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
   "author": [
     {
       "@type": "Person",
@@ -111,6 +111,17 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "raster",
+      "name": "raster",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "sp",
       "name": "sp",
       "provider": {
@@ -170,7 +181,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower.git/blob/devel/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower.git/blob/devel/README.md",
-  "fileSize": "260.723KB",
+  "fileSize": "754.888KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -187,5 +198,7 @@
       "@id": "https://doi.org/10.5281/zenodo.1040728",
       "sameAs": "https://doi.org/10.5281/zenodo.1040728"
     }
-  ]
+  ],
+  "applicationCategory": "Tools",
+  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access"]
 }
