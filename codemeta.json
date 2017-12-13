@@ -1,5 +1,8 @@
 {
-  "@context": ["http://purl.org/codemeta/2.0", "http://schema.org"],
+  "@context": [
+    "http://purl.org/codemeta/2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
   "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. nasapower is a lightweight\n    interface to the NASA - POWER website for R. POWER (Prediction Of Worldwide\n    Energy Resource) data are freely available for download through a web\n    interface at a resolution of 1 degree longitude by 1 degree latitude funded\n    through the NASA Earth Science Directorate Applied Science Program.",
@@ -180,7 +183,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/devel/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/devel/README.md",
-  "fileSize": "753.579KB",
+  "fileSize": "753.583KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
