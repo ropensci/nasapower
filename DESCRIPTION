@@ -20,7 +20,6 @@ Depends:
 License: MIT + file LICENSE
 Imports:
     httr,
-    pingr,
     stringi,
     utils
 RoxygenNote: 6.0.1
