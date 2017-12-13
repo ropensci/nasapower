@@ -137,8 +137,8 @@ PHL <- get_region(lonlat = c(PHL_lonlat[1, 1],
                   endate = "2017-1-2")
 ```
 
-Using _ggplot_, plot the downloaded data with an outline from _Naturalearthdata_
-for reference.
+Using _ggplot2_, plot the downloaded data with an outline from
+_Naturalearthdata_ for reference.
 
 ```{r plot_phl}
 library(ggplot2)
