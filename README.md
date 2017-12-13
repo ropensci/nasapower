@@ -141,7 +141,7 @@ Team.
 
   - The U.S. Earth System Research Laboratory, Physical Science Division
     of the National Atmospheric & Oceanic Administration (NOAA)
-    maintains a list of Gridded Climate Data sets that provide different
+    maintains a list of gridded climate data sets that provide different
     data and different resolutions
     <https://www.esrl.noaa.gov/psd/data/gridded/>
 
