@@ -75,6 +75,11 @@ get_cell <-
                     "WS10M"),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
+
+    url <-
+      "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
+    .check_response(url)
+
     if (is.null(lonlat) | length(lonlat) != 2 | !is.numeric(lonlat)) {
       stop("lonlat must be provided in a length-2 numeric vector.\n")
     }
