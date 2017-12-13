@@ -181,8 +181,8 @@
   "applicationCategory": "Tools",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access"],
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
-  "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/devel/NEWS.md",
-  "readme": "https://github.com/adamhsparks/nasapower/blob/devel/README.md",
+  "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
+  "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
   "fileSize": "753.583KB",
   "citation": [
     {
