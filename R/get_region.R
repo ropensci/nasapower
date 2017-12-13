@@ -117,7 +117,9 @@ get_region <-
 
     durl <-
       paste0(
-        "https://power.larc.nasa.gov/cgi-bin/agro.cgi?&ms=",
+        "https://",
+        url,
+        "&ms=",
         format(as.Date(stdate), "%m"),
         "&area=area&",
         "latmin=",
@@ -138,7 +140,7 @@ get_region <-
         format(as.Date(endate), "%m"),
         "&de=",
         format(as.Date(endate), "%d"),
-        "&email=agroclim40larc.nasa.gov&submit=Submit&lonmin=",
+        "&submit=Submit&lonmin=",
         lonlat[1]
       )
 
