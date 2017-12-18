@@ -3,7 +3,7 @@
 #'
 #' @description Download NASA-POWER (Prediction of Worldwide Energy Resource)
 #' agroclimatology data for a region given the four corners of the region of
-#' interest for a range of years.
+#' interest for a range of days to years.
 #'
 #' The agroclimatology data are satellite and modelled derived solar and
 #' meteorological data. The POWER website describes the data as:

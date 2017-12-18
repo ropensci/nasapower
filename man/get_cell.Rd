@@ -46,7 +46,7 @@ for the requested longitude and latitude values.
 \description{
 Download NASA-POWER (Prediction of Worldwide Energy Resource)
 agroclimatology data for a given 1 degree x 1 degree cell for a range of
-years.
+days to years.
 
 The agroclimatology data are satellite and modelled derived solar and
 meteorological data. The POWER website describes the data as:
