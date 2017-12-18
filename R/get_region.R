@@ -81,7 +81,7 @@ get_region <-
            stdate = "1983-1-1",
            endate = Sys.Date()) {
 
-    lonlat <- .check_lonlat_region(lonlat)
+    .check_lonlat_region(lonlat)
 
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
