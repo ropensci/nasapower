@@ -47,19 +47,18 @@ the EPIRICE paper (Savary _et al._ 2012)
 
 ## Get NASA-POWER Data
 
-Using the `APSIM::prepareMet()` example where data for Kingsthorpe, Qld,
-is provided by the package, we can compare it with NASA-POWER radiation for
-Kingsthorpe, Queensland for 2010.
-
-To do that first we need to use `get_cell()` to fetch the data necessary to
-calculate SRAD for 2010.
+Using the `APSIM::prepareMet()` example, where data for Kingsthorpe, Qld,
+is provided by the package, we can create an equivalent data set from the 
+NASA-POWER data compare it with the supplied data for Kingsthorpe, Queensland
+for 2010. As a proxy for potential incoming radiation, SRAD, we'll use
+`toa_dwn`, top-of-atmosphere insolation, from NASA - POWER.
 
 ```{r get_data_show, eval=FALSE}
 kings_nasa <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2MX", "T2MN", "RAIN")
+  vars = c("T2MX", "T2MN", "RAIN", "toa_dwn")
   )
 ```
 
@@ -70,13 +69,13 @@ kings_nasa <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2MX", "T2MN", "RAIN")
+  vars = c("T2MX", "T2MN", "RAIN", "toa_dwn")
   )
 ```
 
-## Calculate SRAD
+## Calculate incoming solar radiation from toa_dwn
 
-```{r}
+```{r incoming_rad, , eval=TRUE, message=FALSE, include=TRUE}
 
 ```
 
@@ -137,17 +136,18 @@ ggplot(compare, aes(x = rain, y = RAIN)) +
 
 ### Radiation
 
-```{r graph_rad, eval=FALSE}
-ggplot(compare, aes(x = rad, y = ???)) +
+```{r graph_rad, eval=TRUE}
+ggplot(compare, aes(x = rad, y = toa_dwn)) +
   geom_point(colour = "orange") +
   theme_minimal()
   
-  cor(compare$rad, compare$???)
+  cor(compare$rad, compare$toa_dwn)
 ```
 
-Now that we have the data...
-
 ## Create the .met file
+
+Now that we have the data from NASA-POWER, it's possible to create a .met file
+for use in APSIM using the _APSIM_ package.
 
 ```{r create_met, eval=FALSE}
 # reorder the data columns from nasapower
