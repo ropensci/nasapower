@@ -10,6 +10,9 @@ names not being ordered correctly in `get_region()`
 
 - Fix bug reports link in DESCRIPTION file
 
+- Correct documentation for `get_region()`, which incorrectly stated that it
+downloaded data for a 1 x 1 degree cell.
+
 ### Minor improvements
 
 - Optimise arguments used in `read.table` to ingest weather data in the
