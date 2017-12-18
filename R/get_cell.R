@@ -76,13 +76,11 @@ get_cell <-
            stdate = "1983-1-1",
            endate = Sys.Date()) {
 
+    lonlat <- .check_lonlat_cell(lonlat)
+
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
     .check_response(url)
-
-    if (is.null(lonlat) | length(lonlat) != 2 | !is.numeric(lonlat)) {
-      stop("lonlat must be provided in a length-2 numeric vector.\n")
-    }
 
     stdate <- as.Date(stdate)
     endate <- as.Date(endate)
@@ -135,6 +133,13 @@ get_cell <-
     # Read lines from the NASA-POWER website
     NASA <-
       httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
+
+    # Check contents to be sure that it is data and not an error message
+
+    if (grepl("No location", NASA)) {
+      stop("You have provided invalid ")
+    }
+
     # clear console
     message("\n")
     NASA <-
