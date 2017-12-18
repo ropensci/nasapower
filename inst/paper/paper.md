@@ -25,14 +25,17 @@ affiliations:
 
 # Introduction
 
-NASA’s project, Prediction of Worldwide Energy Resources (NASA-POWER;
-<https://power.larc.nasa.gov>) provides freely available data with satellite and
-model-derived meteorological data on a one degree latitude by one degree
-longitude grid with daily global coverage from 1983 until near present for all
-parameters except precipitation, which is provided for January 1997 to near
-present with a several month delay. Public access is provided through a web-
-based, point-and-click interface
-<https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov>. 
+
+
+NASA’s project, POWER (Prediction Of Worldwide Energy Resource) data are
+freely available for download via a
+[web interface](https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov)
+at a resolution of 1 degree longitude by 1 degree latitude grid. Funded through
+the NASA Earth Science Directorate Applied Science Program, the data provide
+daily global coverage from 1983 until near present for all parameters except
+precipitation, which is provided for January 1997 to near present with a several
+month delay.
+
 Solar radiation and meteorological parameters provided by POWER include: i.)
 top-of-atmosphere insolation, ii.) insolation on horizontal surface, iii)
 downward longwave radiative flux, iv.) average air temperature at two meters,
