@@ -25,24 +25,20 @@ affiliations:
 
 # Introduction
 
-
-
-NASA’s project, POWER (Prediction Of Worldwide Energy Resource) data are
+NASA’s POWER (Prediction Of Worldwide Energy Resource) data are
 freely available for download via a
 [web interface](https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov)
 at a resolution of 1 degree longitude by 1 degree latitude grid. Funded through
 the NASA Earth Science Directorate Applied Science Program, the data provide
 daily global coverage from 1983 until near present for all parameters except
 precipitation, which is provided for January 1997 to near present with a several
-month delay.
-
-Solar radiation and meteorological parameters provided by POWER include: i.)
-top-of-atmosphere insolation, ii.) insolation on horizontal surface, iii)
-downward longwave radiative flux, iv.) average air temperature at two meters,
-v.) minimum air temperature at two meters, vi.) maximum air temperature at two
-meters, vii.) relative humidity at two meters, viii.) dew point at two meters, 
-ix.) precipitation (Jan 1997 to near present with several month delay) and x.)
-wind speed at ten meters. The data are widely used in agricultural modelling
+month delay. Parameters available for download include: i.) top-of-atmosphere
+insolation, ii.) insolation on horizontal surface, iii) downward longwave
+radiative flux, iv.) average air temperature at two meters, v.) minimum air
+temperature at two meters, vi.) maximum air temperature at two meters, vii.)
+relative humidity at two meters, viii.) dew point at two meters, ix.)
+precipitation (Jan 1997 to near present with several month delay) and x.) wind
+speed at ten meters. The data are widely used in agricultural modelling
 [@bai2010evaluation; @vanwart2013; @vanwart2015] for estimating yields and other
 crop simulation exercises [@ojeda2017].
 
@@ -73,10 +69,11 @@ January 1 2017.
 ```
 
 Both functions will return the requested data in a tidy data frame
-[@wickham2014] to help users focus on using the data rather than importing
-and tidying. Extended documentation is provided with examples of visualising the
-data using _ggplot2_ [@wickham2009] and converting it to spatial objects using
-_raster_ [@hijmans2017].
+[@wickham2014] with missing values as `NA` rather than "-" that POWER uses to
+help users focus on using the data rather than importing and tidying. Extended
+documentation is provided with examples of visualising the data using _ggplot2_
+[@wickham2009] and converting it to spatial objects using _raster_
+[@hijmans2017].
 
 While _nasapower_ does not redistribute any of the NASA-POWER data, we encourage
 users of the data to please refer to the acknowledgement guidelines available
