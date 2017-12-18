@@ -78,6 +78,7 @@ get_cell <-
 
     .check_lonlat_cell(lonlat)
 
+    # check if website is responding
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
     .check_response(url)
@@ -104,8 +105,9 @@ get_cell <-
 
     # remove the last "p" from the string
     download_vars <-
-      substr(download_vars, 1, nchar(download_vars) - 2)
+      substr(download_vars, 1, nchar(download_vars) - 3)
 
+    # creates download URL for website
     durl <-
       paste0(
         "https://",
@@ -135,8 +137,8 @@ get_cell <-
     NASA <-
       httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
 
-    # clear console
     message("\n")
+
     NASA <-
       unlist(strsplit(NASA, "\n"))
 

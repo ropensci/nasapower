@@ -83,6 +83,7 @@ get_region <-
 
     .check_lonlat_region(lonlat)
 
+    # check if website is responding
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
     .check_response(url)
@@ -107,12 +108,11 @@ get_region <-
     # concatenate all the download vars into a single string for use below
     download_vars <- paste0(vars, sep = "&p=", collapse = "")
 
-    # remove the last "p" from the string
+    # remove the last "&p" from the string
     download_vars <-
-      substr(download_vars, 1, nchar(download_vars) - 1)
+      substr(download_vars, 1, nchar(download_vars) - 3)
 
     # creates download URL for website
-
     durl <-
       paste0(
         "https://",
@@ -146,8 +146,9 @@ get_region <-
     # Read lines from the NASA-POWER website -----------------------------------
     NASA <-
       httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
-    # clear console
+
     message("\n")
+
     NASA <-
       unlist(strsplit(NASA, "\n"))
 
