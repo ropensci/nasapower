@@ -1,4 +1,3 @@
-
 ---
 title: 'nasapower: NASA-POWER Agroclimatology Data from R'
 authors:
