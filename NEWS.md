@@ -6,12 +6,15 @@
 - Fix bug where lon/lat values were improperly assigned internally due to row
 names not being ordered correctly in `get_region()`
 
-- Correct vignette where it had said, "both of which will which will download"
-
 - Fix bug reports link in DESCRIPTION file
 
+- Correct vignette where it had said, "both of which will which will download
+
 - Correct documentation for `get_region()`, which incorrectly stated that it
-downloaded data for a 1 x 1 degree cell.
+downloaded data for a 1 x 1 degree cell
+
+- Specify in documentation that a range of days to years can be specified for
+download
 
 ### Minor improvements
 
