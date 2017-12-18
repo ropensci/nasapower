@@ -110,24 +110,25 @@ get_cell <-
       paste0(
         "https://",
         url,
-        "&p=",
-        download_vars,
-        "lon=",
+        "&lon=",
         lonlat[1],
         "&lat=",
         lonlat[2],
+        "&p=",
+        download_vars,
+        "&ys=",
+        format(as.Date(stdate), "%Y"),
+        "&ms=",
+        format(as.Date(stdate), "%m"),
+        "&ds=",
+        format(as.Date(stdate), "%d"),
         "&ye=",
         format(as.Date(endate), "%Y"),
         "&me=",
         format(as.Date(endate), "%m"),
-        "&submit=Submit&ms=",
-        format(as.Date(stdate), "%m"),
-        "&step=1&de=",
+        "&de=",
         format(as.Date(endate), "%d"),
-        "&ds=",
-        format(as.Date(stdate), "%d"),
-        "&ys=",
-        format(as.Date(stdate), "%Y")
+        "&step=1&submit=Submit"
       )
 
     # Read lines from the NASA-POWER website
