@@ -19,11 +19,11 @@
   }
   if (lonlat[1] < -180 || lonlat[1] > 180) {
     stop("\nPlease check your longitude, `", paste0(lonlat[1]),
-          "`, to be sure it is valid\n")
+          "`, to be sure it is valid.\n")
   }
   if (lonlat[2] < -90 || lonlat[2] > 90) {
     stop("\nPlease check your latitude, `", paste0(lonlat[2]),
-        "`, value to be sure it is valid\n")
+        "`, value to be sure it is valid.\n")
   }
 }
 
@@ -34,16 +34,16 @@
   }
   if (lonlat[1:2] < -180 || lonlat[1:2] > 180) {
     stop("\nPlease check your longitude, `", paste0(lonlat[1:2]),
-         "`, to be sure it is valid\n")
+         "`, to be sure it is valid.\n")
   }
   if (lonlat[3:4] < -90 || lonlat[3:4] > 90) {
     stop("\nPlease check your latitude, `", paste0(lonlat[3:4]),
-         "`, value to be sure it is valid\n")
+         "`, value to be sure it is valid.\n")
   }
   if (lonlat[1] > lonlat[2]) {
-    stop("The first lon value must be the minimum value requested")
+    stop("The first lon value must be the minimum value requested.")
   }
   if (lonlat[3] > lonlat[4]) {
-    stop("The first lat value must be the minimum value requested")
+    stop("The first lat value must be the minimum value requested.")
   }
 }
