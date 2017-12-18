@@ -13,9 +13,6 @@ names not being ordered correctly in `get_region()`
 - Correct documentation for `get_region()`, which incorrectly stated that it
 downloaded data for a 1 x 1 degree cell
 
-- Specify in documentation that a range of days to years can be specified for
-download
-
 ### Minor improvements
 
 - Optimise arguments used in `read.table` to ingest weather data in the
@@ -28,6 +25,9 @@ download
 
 - Add an example of converting the data frame to a spatial object using
 _raster_
+
+- Specify in documentation that a range of days to years can be specified for
+download
 
 ## Minor changes
 
