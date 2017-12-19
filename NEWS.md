@@ -15,7 +15,7 @@ downloaded data for a 1 x 1 degree cell
 
 ### Minor improvements
 
-- Optimise arguments used in `base::read.table()` to ingest weather data in the
+- Optimise arguments used in `utils::read.table()` to ingest weather data in the
 `get_cell()` and `get_region()` functions more quickly
 
 - NEWS now formatted more nicely for easier reading
