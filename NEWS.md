@@ -15,7 +15,7 @@ downloaded data for a 1 x 1 degree cell
 
 ### Minor improvements
 
-- Optimise arguments used in `read.table` to ingest weather data in the
+- Optimise arguments used in `read.table()` to ingest weather data in the
 `get_cell()` and `get_region()` functions more quickly
 
 - NEWS now formatted more nicely for easier reading
@@ -37,7 +37,7 @@ download
 data. If not, stop and return error message to user.
 
 - Add new use case vignette for APSIM modelling work,
-https://adamhsparks.github.io/nasapower/articles/use-case.html
+<https://adamhsparks.github.io/nasapower/articles/use-case.html>
 
 --------------------------------------------------------------------------------
 
