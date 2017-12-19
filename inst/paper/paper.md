@@ -38,8 +38,9 @@ temperature at two meters, vi.) maximum air temperature at two meters, vii.)
 relative humidity at two meters, viii.) dew point at two meters, ix.)
 precipitation (Jan 1997 to near present with several month delay) and x.) wind
 speed at ten meters. The data are widely used in agricultural modelling
-[@bai2010evaluation; @vanwart2013; @vanwart2015] for estimating yields and other
-crop simulation exercises [@ojeda2017].
+[@bai2010evaluation; @vanwart2013; @vanwart2015] for estimating yields, other
+crop simulation exercises [@ojeda2017] and plant disease modelling
+[@savary2012].
 
 # Using _nasapower_
 
