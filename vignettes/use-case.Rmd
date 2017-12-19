@@ -100,8 +100,8 @@ ggplot(compare, aes(x = kingsData.rad, y = swv_dwn.swv_dwn)) +
   cor(compare$kingsData.rad, compare$swv_dwn.swv_dwn)
 ```
 
-The graph's 1:1 line shows a pretty good relationship between the two sets of
-data as does the correlation.
+The graph's 1:1 line shows a strong relationship between the two sets of
+data as does the correlation, 0.90.
 
 # Create a .met File
 
