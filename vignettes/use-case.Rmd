@@ -29,10 +29,7 @@ Load the packages necessary.
 ```{r load_libraries, message=FALSE}
 library(APSIM)
 library(nasapower)
-library(rnaturalearth)
-library(lubridate)
 library(ggplot2)
-library(dplyr)
 ```
 
 NASA - POWER data are often used with APSIM (White _et al._ 2012) or other
@@ -41,117 +38,85 @@ readily available, _e.g._ modelling rice disease globally (Savary _et al._
 2012).
 
 In this use case we illustrate how use NASA-POWER radiation data with existing
-station data and format for use in APSIM using the R package, APSIM
-(Fainges 2017) and how it can be used for a larger modelling exercise like
-the EPIRICE paper (Savary _et al._ 2012)
+station data that lacks radiation and format for use in APSIM by creating a
+.met file using the R package, _APSIM_ (Fainges 2017).
 
-## Get NASA-POWER Data
+## Download NASA-POWER Solar Radiation Data
 
 Using the `APSIM::prepareMet()` example, where data for Kingsthorpe, Qld,
 is provided by the package, we can create an equivalent data set from the 
 NASA-POWER data compare it with the supplied data for Kingsthorpe, Queensland
-for 2010. As a proxy for potential incoming radiation, SRAD, we'll use
-`toa_dwn`, top-of-atmosphere insolation, from NASA - POWER.
+location 151.81 degrees longitude and -27.48 degrees latitude, for 2010. As a
+proxy for potential incoming radiation, `SRAD`, we'll use `swv_dwn`,
+top-of-atmosphere insolation, from NASA - POWER.
 
 ```{r get_data_show, eval=FALSE}
-kings_nasa <- get_cell(
+swv_dwn <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2MX", "T2MN", "RAIN", "toa_dwn")
+  vars = "swv_dwn"
   )
 ```
 
 ```{r get_data_execute, eval=TRUE, message=FALSE, include=FALSE}
 # This code chunk actually downloads the data, but it will show
 # download progress, so we don't include it.
-kings_nasa <- get_cell(
+swv_dwn <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
   endate = "2010-12-31",
-  vars = c("T2MX", "T2MN", "RAIN", "toa_dwn")
+  vars = "swv_dwn"
   )
 ```
 
-## Calculate incoming solar radiation from toa_dwn
 
-```{r incoming_rad, , eval=TRUE, message=FALSE, include=TRUE}
+## Compare the Data
 
-```
-
-## Compare the data
-
-To compare the data more easily using graphs we'll join the two data frames
-using _dplyr_. 
-
-First convert the Date column from kingsData to a Date object using _lubridate_.
-
-```{r conv_date, eval=TRUE}
-kingsData$Date <- lubridate::dmy(kingsData$Date)
-```
-
-Next, join the two data frames together to create a data frame called,
-`compare`.
+To compare the data more easily using a graph and correlation measures, join the
+two data frames to create a data frame called, `compare`.
 
 ```{r compare, eval=TRUE}
-compare <- left_join(kingsData, kings_nasa, by = c("Date" = "YYYYMMDD"))
+compare <- data.frame(kingsData$rad, swv_dwn$swv_dwn)
 ```
 
-### Graphing the data
+### Graph the Data
 
-Graph maximum temperature, comparing `kingsData` to NASA-POWER data and check
-correlation between the values.
-
-### Maximum Temperature
-
-```{r graph_maxt, eval=TRUE}
-ggplot(compare, aes(x = max.temp, y = T2MX)) +
-  geom_point(colour = "red") +
-  theme_minimal()
-
-cor(compare$max.temp, compare$T2MX)
-```
-
-### Miniumum Temperature
-
-Graph minimum temperature, comparing `kingsData` to NASA-POWER data.
-
-```{r graph_mint, eval=TRUE}
-ggplot(compare, aes(x = min.temp, y = T2MX)) +
-  geom_point(colour = "blue") +
-  theme_minimal()
-  
-  cor(compare$min.temp, compare$T2MN)
-```
-
-### Rainfall
-
-```{r graph_rain, eval=TRUE}
-ggplot(compare, aes(x = rain, y = RAIN)) +
-  geom_point(colour = "dark blue") +
-  theme_minimal()
-  
-  cor(compare$rain, compare$RAIN)
-```
-
-### Radiation
+Graph radiation values from the weather station at Kingsthorpe in
+`APSIM::kingsData` along against the POWER data to illustrate why POWER data are
+often used as a substitute for on-the-ground measurements.
 
 ```{r graph_rad, eval=TRUE}
-ggplot(compare, aes(x = rad, y = toa_dwn)) +
+ggplot(compare, aes(x = kingsData.rad, y = swv_dwn.swv_dwn)) +
   geom_point(colour = "orange") +
+  geom_abline(colour = "black", slope = 1) +
   theme_minimal()
   
-  cor(compare$rad, compare$toa_dwn)
+  cor(compare$kingsData.rad, compare$swv_dwn.swv_dwn)
 ```
 
-## Create the .met file
+The graph's 1:1 line shows a pretty good relationship between the two sets of
+data as does the correlation.
+
+## Create a .met File
 
 Now that we have the data from NASA-POWER, it's possible to create a .met file
-for use in APSIM using the _APSIM_ package.
+for use in APSIM using the _APSIM_ package if the data are missing the solar
+radiation. A duplicate data set of the `kingsData` from _APSIM_ has been
+created, which has `rad` missing, `kings_nasa`. Using that data set, merge
+with the `swv_dwn` from the POWER data and create an APSIM .met file.
 
-```{r create_met, eval=FALSE}
-# reorder the data columns from nasapower
-kings_met <- kings_nasa[...]
+```{r remove_rad, eval=TRUE, include=FALSE}
+kings_nasa <- kingsData[, -6]
+```
+
+```{r create_met, eval=TRUE}
+
+# join the kings_data with swv_dwn from POWER
+kings_met <- data.frame(kings_nasa, swv_dwn$swv_dwn)
+
+# rearrange the columns to match expected order for .met file
+kings_met <- kings_met[c(1:5, 10, 6:9)]
 
 # from the APSIM documentation example
 new_names <-
@@ -177,74 +142,27 @@ units <-
     "()",
     "()",
     "()")
+```
 
-prepareMet(kings_met,
-           lat = kings_nasa[1, "LAT"],
-           lon = kings_nasa[1, "LON"],
+Using the `kings_met` data frame created previously, along with the `new_names`
+and `units` data frames, use `APSIM::prepareMet()` to create a .met file.
+
+```{r prepare_met, eval=TRUE}
+nasa_met <- prepareMet(kings_met,
+           lat = -27.48,
+           lon = 151.81,
            newNames = new_names,
            units = units)
+
+str(nasa_met)
 ```
 
-## Using get_region() with APSIM
+You now have a complete .met file for use in APSIM that supplies solar radiation
+from the NASA-POWER data. It can be saved to local disk if desired using
+`APSIM::writeMetFile()` from _APSIM_.
 
-To use `get_region()` with `APSIM::prepareMet()` we need to make separate `met`
-files for each cell from the resulting data frame object, which is easy to do
-using _dplyr_.
-
-```{r get_regions, eval=FALSE}
-oz <- get_region(lonlat = c(112.91972, 159.256088, -55.11694, -9.221099),
-                    stdate = "2017-1-1", endate = "2017-12-31")
-```
-
-```{r create_dfs, eval=FALSE}
-library(dplyr)
-
-# mutate: add unique id values (lon-lat value)
-# arrange: sort data frames by that id
-# split: take the data.frame() and split it into a list of data.frames by id
-oz_list <- oz %>%
-  mutate(id = paste(LON, LAT, sep = '-')) %>%
-  arrange(id) %>%
-  split(., .$id)
-
-# from the APSIM documentation example
-new_names <-
-  c("Date",
-    "maxt",
-    "mint",
-    "rain",
-    "evaporation",
-    "radn",
-    "vp",
-    "Wind",
-    "RH",
-    "SVP")
-
-units <-
-  c("()",
-    "(oC)",
-    "(oC)",
-    "(mm)",
-    "(mm)",
-    "(MJ/m^2/day)",
-    "()",
-    "()",
-    "()",
-    "()")
-
-# map:: apply the prepareMet() function to the list of data frames
-# write each item for the list to a file on disk for use in APSIM
-met_list <- lapply(oz_list, function(i)
-  prepareMet(oz_list[i],
-           lat = oz_list[[i]][1, "LAT"],
-           lon = oz_list[[i]][1, "LON"],
-           newNames = new_names,
-           units = units))
-
-# write met files to disk
-lapply(1:length(met_list),
-       function(i) writeMetFile(met_list[[i]],
-                                fileName = paste0(names(met_list[i]))))
+```{r write_met, eval=FALSE}
+writeMetFile("NASA_rad.met", nasa_met)
 ```
 
 ## References
