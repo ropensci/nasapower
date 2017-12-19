@@ -29,12 +29,12 @@ at a grid resolution of 1 degree longitude by 1 degree latitude. Funded through
 the NASA Earth Science Directorate Applied Science Program, the data provide
 daily global coverage from 1983 until near present for all parameters except
 precipitation, which is provided for January 1997 to near present with a several
-month delay. Parameters available for download include: i.) top-of-atmosphere
-insolation, ii.) insolation on horizontal surface, iii) downward longwave
-radiative flux, iv.) average air temperature at two meters, v.) minimum air
-temperature at two meters, vi.) maximum air temperature at two meters, vii.)
-relative humidity at two meters, viii.) dew point at two meters, ix.)
-precipitation (Jan 1997 to near present with several month delay) and x.) wind
+month delay. Parameters available for download include: i) top-of-atmosphere
+insolation, ii) insolation on horizontal surface, iii) downward longwave
+radiative flux, iv) average air temperature at two meters, v) minimum air
+temperature at two meters, vi) maximum air temperature at two meters, vii)
+relative humidity at two meters, viii) dew point at two meters, ix)
+precipitation (Jan 1997 to near present with several month delay) and x) wind
 speed at ten meters. The data are widely used in agricultural modelling
 [@bai2010evaluation; @vanwart2013; @vanwart2015] for estimating yields, other
 crop simulation exercises [@ojeda2017] and plant disease modelling
