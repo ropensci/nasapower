@@ -4,9 +4,6 @@ authors:
   - affiliation: 1
     name: Adam H Sparks
     orcid: 0000-0002-0061-8359
-output:
-  html_document:
-    keep_md: yes
 bibliography: paper.bib
 tags:
 - NASA
@@ -20,6 +17,7 @@ tags:
 affiliations:
   index: 1
   name: University of Southern Queensland, Centre for Crop Health, Toowoomba Queensland 4350, Australia
+date: 2017-12-19
 ---
 
 # Introduction
