@@ -15,7 +15,7 @@ downloaded data for a 1 x 1 degree cell
 
 ### Minor improvements
 
-- Optimise arguments used in `read.table()` to ingest weather data in the
+- Optimise arguments used in `base::read.table()` to ingest weather data in the
 `get_cell()` and `get_region()` functions more quickly
 
 - NEWS now formatted more nicely for easier reading
@@ -24,7 +24,7 @@ downloaded data for a 1 x 1 degree cell
 `get_region()` in the vignette
 
 - Add an example of converting the data frame to a spatial object using
-_raster_
+_raster_ to create a `raster::brick()`
 
 - Specify in documentation that a range of days to years can be specified for
 download
