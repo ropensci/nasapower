@@ -117,6 +117,9 @@ kings_nasa <- kingsData[, -6]
 
 ```{r create_met, eval=TRUE}
 
+# inspect the kings_nasa data
+str(kings_nasa)
+
 # join the kings_data with swv_dwn from POWER
 kings_met <- data.frame(kings_nasa, swv_dwn$swv_dwn)
 
