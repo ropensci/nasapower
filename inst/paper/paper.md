@@ -73,7 +73,8 @@ Both functions will return the requested data in a tidy data frame
 help users focus on using the data rather than importing and tidying. Extended
 documentation is provided with examples of visualising the data using _ggplot2_
 [@wickham2009] and converting it to spatial objects using _raster_
-[@hijmans2017].
+[@hijmans2017] and for obtaining solar radiation values for use in APSIM
+[@keating2003] and creating a .met file for APSIM modelling purposes.
 
 While _nasapower_ does not redistribute any of the NASA-POWER data, we encourage
 users of the data to please refer to the acknowledgement guidelines available

@@ -38,8 +38,9 @@ readily available, _e.g._ modelling rice disease globally (Savary _et al._
 2012).
 
 In this use case we illustrate how use NASA-POWER radiation data with existing
-station data that lacks radiation and format for use in APSIM by creating a
-.met file using the R package, _APSIM_ (Fainges 2017).
+station data that lacks radiation and format for use in the APSIM model (Keating
+et al. 2003) by creating a .met file using the R package, _APSIM_
+(Fainges 2017).
 
 ## Download NASA-POWER Solar Radiation Data
 
@@ -170,6 +171,11 @@ writeMetFile("NASA_rad.met", nasa_met)
 Justin Fainges (2017) "APSIM: General Utility Functions for the 'Agricultural
 Production Systems Simulator'". R package version 0.9.2.
 <https://CRAN.R-project.org/package=APSIM>
+
+Keating, Brian A., Peter S. Carberry, Graeme L. Hammer, Mervyn E. Probert,
+Michael J. Robertson, D. Holzworth, Neil I. Huth et al. "An overview of APSIM,
+a model designed for farming systems simulation." European journal of agronomy
+18, no. 3 (2003): 267-288.
 
 Serge Savary, Andrew Nelson, Laetitia Willocquet, Ireneo Pangga and Jorrel
 Aunario (2012) "Modeling and mapping potential epidemics of rice diseases
