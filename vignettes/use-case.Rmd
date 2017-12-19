@@ -20,6 +20,20 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Introduction
+
+NASA - POWER data are often used with APSIM (White _et al._ 2012) or other
+models where data may be missing or as a whole data set where data are not
+readily available, _e.g._ modelling rice disease globally (Savary _et al._
+2012).
+
+In this use case we illustrate how use NASA-POWER radiation data with existing
+station data that lacks radiation and format for use in the APSIM model (Keating
+et al. 2003) by creating a .met file using the R package, _APSIM_
+(Fainges 2017).
+
+# Install and Load Packages
+
 ```{r install_apsim, eval=FALSE}
 install.packages("APSIM")
 ```
@@ -32,17 +46,7 @@ library(nasapower)
 library(ggplot2)
 ```
 
-NASA - POWER data are often used with APSIM (White _et al._ 2012) or other
-models where data may be missing or as a whole data set where data are not
-readily available, _e.g._ modelling rice disease globally (Savary _et al._
-2012).
-
-In this use case we illustrate how use NASA-POWER radiation data with existing
-station data that lacks radiation and format for use in the APSIM model (Keating
-et al. 2003) by creating a .met file using the R package, _APSIM_
-(Fainges 2017).
-
-## Download NASA-POWER Solar Radiation Data
+# Download NASA-POWER Solar Radiation Data
 
 Using the `APSIM::prepareMet()` example, where data for Kingsthorpe, Qld,
 is provided by the package, we can create an equivalent data set from the 
@@ -72,7 +76,7 @@ swv_dwn <- get_cell(
 ```
 
 
-## Compare the Data
+# Compare the Data
 
 To compare the data more easily using a graph and correlation measures, join the
 two data frames to create a data frame called, `compare`.
@@ -81,7 +85,7 @@ two data frames to create a data frame called, `compare`.
 compare <- data.frame(kingsData$rad, swv_dwn$swv_dwn)
 ```
 
-### Graph the Data
+## Graph the Data
 
 Graph radiation values from the weather station at Kingsthorpe in
 `APSIM::kingsData` along against the POWER data to illustrate why POWER data are
@@ -99,7 +103,7 @@ ggplot(compare, aes(x = kingsData.rad, y = swv_dwn.swv_dwn)) +
 The graph's 1:1 line shows a pretty good relationship between the two sets of
 data as does the correlation.
 
-## Create a .met File
+# Create a .met File
 
 Now that we have the data from NASA-POWER, it's possible to create a .met file
 for use in APSIM using the _APSIM_ package if the data are missing the solar
@@ -166,7 +170,7 @@ from the NASA-POWER data. It can be saved to local disk if desired using
 writeMetFile("NASA_rad.met", nasa_met)
 ```
 
-## References
+# References
 
 Justin Fainges (2017) "APSIM: General Utility Functions for the 'Agricultural
 Production Systems Simulator'". R package version 0.9.2.
