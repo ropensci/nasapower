@@ -36,6 +36,9 @@ download
 - Add a check to see if POWER website is responding before making request for
 data. If not, stop and return error message to user.
 
+- Add new use case vignette for APSIM modelling work,
+https://adamhsparks.github.io/nasapower/articles/use-case.html
+
 --------------------------------------------------------------------------------
 
 # nasapower 0.1.2 (2017-11-06)
