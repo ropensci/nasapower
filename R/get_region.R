@@ -18,7 +18,7 @@
 #' }
 #' @param lonlat A length-4 numeric vector giving the decimal degree minimum
 #' longitude, maximum longitude, minimum latitude, and maximum latitude in that
-#' order for the region data to download
+#' order for the region data to download.
 #' @param vars Weather variables to download, defaults to all available.
 #' Valid variables are:
 #' \itemize{
@@ -39,10 +39,13 @@
 #' the Earth (degrees C)}
 #' \item{\strong{RAIN} - Average precipitation (mm/day)}
 #' \item{\strong{WS10M} - Wind speed at 10m above the surface of the Earth
-#' (m/s)} }
+#' (m/s)}}
 #' @param stdate Starting date for download, defaults to 01/01/1983 (there is no
-#' earlier data)
-#' @param endate End date for download, defaults to current date
+#' earlier data).
+#' @param endate End date for download, defaults to current date. Note that data
+#' is often available only with a lag of days to a month or more. The last
+#' available data will be silently returned with \code{NA} for any values not
+#' yet reported.
 #'
 #' @return
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
@@ -80,7 +83,6 @@ get_region <-
            ),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
-
     .check_lonlat_region(lonlat)
 
     .check_vars(vars)
@@ -174,9 +176,7 @@ get_region <-
 
     # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                       each = as.numeric(
-                                         (endate - stdate) + 1)
-                                       ),
+                                       each = as.numeric((endate - stdate) + 1)),
                                    1:2]
 
     location_rows <-
@@ -209,6 +209,15 @@ get_region <-
       nrows = length(indices),
       stringsAsFactors = FALSE
     )
+
+    # check if data is empty
+    if (all(is.na(NASA[, -c(1:2)]))) {
+      stop(
+        "\nNo data are available as requested. If you are requesting very\n",
+        "recent data, please be aware that there is a lag in availability\n",
+        "(within two months of current time).\n"
+      )
+    }
 
     # Create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)

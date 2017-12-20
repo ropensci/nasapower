@@ -128,7 +128,7 @@ meteorological data. The POWER website describes the data as:</p><ul>
       <th>lonlat</th>
       <td><p>A length-4 numeric vector giving the decimal degree minimum
 longitude, maximum longitude, minimum latitude, and maximum latitude in that
-order for the region data to download</p></td>
+order for the region data to download.</p></td>
     </tr>
     <tr>
       <th>vars</th>
@@ -157,11 +157,14 @@ the Earth (degrees C)</p></li>
     <tr>
       <th>stdate</th>
       <td><p>Starting date for download, defaults to 01/01/1983 (there is no
-earlier data)</p></td>
+earlier data).</p></td>
     </tr>
     <tr>
       <th>endate</th>
-      <td><p>End date for download, defaults to current date</p></td>
+      <td><p>End date for download, defaults to current date. Note that data
+is often available only with a lag of days to a month or more. The last
+available data will be silently returned with <code>NA</code> for any values not
+yet reported.</p></td>
     </tr>
     </table>
     

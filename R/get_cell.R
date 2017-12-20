@@ -17,7 +17,7 @@
 #'   \item{Global coverage on a 1° latitude by 1° longitude grid}
 #' }
 #' @param lonlat A length-2 numeric vector giving the decimal degree longitude
-#' and latitude in that order for cell data to download
+#' and latitude in that order for cell data to download.
 #' @param vars Weather variables to download, defaults to all available.
 #' Valid variables are:
 #' \itemize{
@@ -40,8 +40,11 @@
 #' \item{\strong{WS10M} - Wind speed at 10m above the surface of the Earth
 #' (m/s)} }
 #' @param stdate Starting date for download, defaults to 01/01/1983 (there is no
-#' earlier data)
-#' @param endate End date for download, defaults to current date
+#' earlier data).
+#' @param endate End date for download, defaults to current date. Note that data
+#' is often available only with a lag of days to a month or more. The last
+#' available data will be silently returned with \code{NA} for any values not
+#' yet reported.
 #'
 #' @return
 #' A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
@@ -63,19 +66,20 @@
 #'@export
 get_cell <-
   function(lonlat = NULL,
-           vars = c("T2M",
-                    "T2MN",
-                    "T2MX",
-                    "RH2M",
-                    "toa_dwn",
-                    "swv_dwn",
-                    "lwv_dwn",
-                    "DFP2M",
-                    "RAIN",
-                    "WS10M"),
+           vars = c(
+             "T2M",
+             "T2MN",
+             "T2MX",
+             "RH2M",
+             "toa_dwn",
+             "swv_dwn",
+             "lwv_dwn",
+             "DFP2M",
+             "RAIN",
+             "WS10M"
+           ),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
-
     .check_lonlat_cell(lonlat)
 
     .check_vars(vars)
@@ -154,11 +158,22 @@ get_cell <-
       stringsAsFactors = FALSE
     )
 
+    # check if data is empty
+    if (all(is.na(NASA[, -c(1:2)]))) {
+      stop(
+        "\nNo data are available as requested. If you are requesting very\n",
+        "recent data, please be aware that there is a lag in availability\n",
+        "(within two months of current time).\n"
+      )
+    }
+
     names(NASA) <- colnames
 
     # Create a tidy data frame object
     NASA["LON"] <- lonlat[1]
     NASA["LAT"] <- lonlat[2]
+
+    # Add additional date fields
     NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
     NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
     NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")

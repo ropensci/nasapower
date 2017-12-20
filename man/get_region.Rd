@@ -11,7 +11,7 @@ get_region(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M", "toa_dwn",
 \arguments{
 \item{lonlat}{A length-4 numeric vector giving the decimal degree minimum
 longitude, maximum longitude, minimum latitude, and maximum latitude in that
-order for the region data to download}
+order for the region data to download.}
 
 \item{vars}{Weather variables to download, defaults to all available.
 Valid variables are:
@@ -33,12 +33,15 @@ Earth (degrees C)}
 the Earth (degrees C)}
 \item{\strong{RAIN} - Average precipitation (mm/day)}
 \item{\strong{WS10M} - Wind speed at 10m above the surface of the Earth
-(m/s)} }}
+(m/s)}}}
 
 \item{stdate}{Starting date for download, defaults to 01/01/1983 (there is no
-earlier data)}
+earlier data).}
 
-\item{endate}{End date for download, defaults to current date}
+\item{endate}{End date for download, defaults to current date. Note that data
+is often available only with a lag of days to a month or more. The last
+available data will be silently returned with \code{NA} for any values not
+yet reported.}
 }
 \value{
 A tidy \code{\link[base]{data.frame}} object of the requested variable(s)
