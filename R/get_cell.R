@@ -78,6 +78,8 @@ get_cell <-
 
     .check_lonlat_cell(lonlat)
 
+    .check_vars(vars)
+
     # check if website is responding
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
@@ -133,14 +135,8 @@ get_cell <-
         "&step=1&submit=Submit"
       )
 
-    # Read lines from the NASA-POWER website
-    NASA <-
-      httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
-
-    message("\n")
-
-    NASA <-
-      unlist(strsplit(NASA, "\n"))
+    # see internal-functions for this function
+    NASA <- .get_NASA(durl)
 
     # Create a vector from the downloaded data of the column names
     colnames <-

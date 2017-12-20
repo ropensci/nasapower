@@ -83,6 +83,8 @@ get_region <-
 
     .check_lonlat_region(lonlat)
 
+    .check_vars(vars)
+
     # check if website is responding
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
@@ -144,13 +146,7 @@ get_region <-
       )
 
     # Read lines from the NASA-POWER website -----------------------------------
-    NASA <-
-      httr::content(httr::GET(durl, httr::progress()), encoding = "UTF8")
-
-    message("\n")
-
-    NASA <-
-      unlist(strsplit(NASA, "\n"))
+    NASA <- .get_NASA(durl)
 
     end <- "-END HEADER-"
     start <- "-BEGIN HEADER-"

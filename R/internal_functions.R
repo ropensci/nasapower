@@ -78,3 +78,17 @@
     stop("You have entered an invalid value for `vars`.")
   }
 }
+
+.get_NASA <- function(durl) {
+  # read lines from the NASA-POWER website
+  NASA <- httr::GET(durl, httr::progress())
+  httr::stop_for_status(NASA)
+  NASA <- httr::content(NASA, encoding = "UTF8")
+
+  # clear console
+  message("\n")
+
+  NASA <- unlist(strsplit(NASA, "\n"))
+
+  return(NASA)
+}
