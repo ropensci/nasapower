@@ -84,21 +84,15 @@ get_cell <-
 
     .check_vars(vars)
 
+    dates <- .check_dates(stdate, endate)
+    stdate <- dates[1]
+    endate <- dates[2]
+
     # check if website is responding
     url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
     .check_response(url)
 
-    stdate <- as.Date(stdate)
-    endate <- as.Date(endate)
-
-    if (stdate < "1983-01-01") {
-      stop("NASA-POWER data do not start before 1983-01-01")
-    }
-
-    if (endate < stdate) {
-      stop("Your end date is before your start date.")
-    }
 
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
