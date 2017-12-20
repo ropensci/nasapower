@@ -28,18 +28,3 @@ test_that("get_region emits a message when RAIN requested outside provision",
               endate = "1987-1-1"
             ))
           })
-
-test_that("stdate can't be before 1983", {
-  expect_error(get_region(
-    lonlat = c(-179.5, -178.5, 89.5, 89.5),
-    stdate = "1982-12-31"
-  ))
-})
-
-test_that("stdate comes before endate", {
-  expect_error(get_region(
-    lonlat = c(-179.5, -178.5, 89.5, 89.5),
-    stdate = "1984-01-31",
-    endate = "1983-12-31"
-  ))
-})

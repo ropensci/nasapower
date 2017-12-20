@@ -80,7 +80,6 @@ test_that(".check_dates reverses dates that are entered backwards", {
   expect_equal(as.Date(udates[[2]]), as.Date("2001-05-01"))
 })
 
-
 test_that(".check_dates stops if an invalid entry is made", {
   stdate <- "asdfasdf"
   endate <- "1985-01-01"
