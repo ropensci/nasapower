@@ -1,8 +1,6 @@
 ---
 title: "Use Case: Using nasapower and the APSIM R Package to Create APSIM .met Files"
-author: "Adam H. Sparks
-"
-date: "`r Sys.Date()`"
+author: "Adam H. Sparks"
 output:
   rmarkdown::html_vignette:
         toc: true
