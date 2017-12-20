@@ -92,7 +92,7 @@ get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
     
       - WS10M - Wind speed at 10m above the surface of the Earth (m/s)
 
-  - `stdate` Starting date for download, defaults to 01/01/1983 (there
+  - `stdate` Starting date for download, defaults to 1983-01-01 (there
     is no earlier data)
 
   - `endate` End date for download, defaults to current date
