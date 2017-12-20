@@ -176,8 +176,8 @@ get_region <-
 
     # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                       each = as.numeric((endate - stdate) + 1)),
-                                   1:2]
+                                       each = as.numeric((endate - stdate) + 1)
+                                       ), 1:2]
 
     location_rows <-
       location_rows[order(as.numeric(row.names(location_rows))),]

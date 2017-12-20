@@ -57,15 +57,15 @@ test_that(".check_lonlat_region properly reports errors", {
 context(".create_nasa_df")
 test_that(".create_nasa_df alerts user that no data are available", {
   load(system.file("extdata", "NASA_no_data.rda", package = "nasapower"))
-  stdate = as.Date("2017-12-19")
-  endate = as.Date("2017-12-21")
+  stdate <- as.Date("2017-12-19")
+  endate <- as.Date("2017-12-21")
   expect_error(.create_nasa_df(NASA, stdate, endate))
 })
 
 test_that(".create_nasa_df creates a data frame of data", {
   load(system.file("extdata", "NASA_with_data.rda", package = "nasapower"))
-  stdate = as.Date("2017-11-1")
-  endate = as.Date("2017-11-3")
+  stdate <- as.Date("2017-11-1")
+  endate <- as.Date("2017-11-3")
   test <- .create_nasa_df(NASA, stdate, endate)
   expect_is(test, "data.frame")
 })
