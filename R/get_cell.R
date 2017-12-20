@@ -149,23 +149,7 @@ get_cell <-
     # Clean up column names, otherwise there are empty values in the vector
     colnames <- unique(colnames[colnames != ""])
 
-    # Create a data.frame of the NASA - POWER data and add names
-    NASA <- utils::read.table(
-      text = NASA,
-      skip = grep("-END HEADER-", NASA),
-      na.strings = "-",
-      nrows = as.numeric(endate - stdate) + 1,
-      stringsAsFactors = FALSE
-    )
-
-    # check if data is empty
-    if (all(is.na(NASA[, -c(1:2)]))) {
-      stop(
-        "\nNo data are available as requested. If you are requesting very\n",
-        "recent data, please be aware that there is a lag in availability\n",
-        "(within two months of current time).\n"
-      )
-    }
+    NASA <- .create_nasa_df(NASA, stdate, endate)
 
     names(NASA) <- colnames
 

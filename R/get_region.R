@@ -203,21 +203,7 @@ get_region <-
       data.frame(mapply(`:`, indices$min_index, indices$max_index))
     indices <- unlist(indices, use.names = FALSE)
 
-    NASA <- utils::read.table(
-      text = NASA[indices],
-      na.strings = "-",
-      nrows = length(indices),
-      stringsAsFactors = FALSE
-    )
-
-    # check if data is empty
-    if (all(is.na(NASA[, -c(1:2)]))) {
-      stop(
-        "\nNo data are available as requested. If you are requesting very\n",
-        "recent data, please be aware that there is a lag in availability\n",
-        "(within two months of current time).\n"
-      )
-    }
+    NASA <- .create_nasa_df(NASA, stdate, endate)
 
     # Create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)

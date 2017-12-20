@@ -1,6 +1,7 @@
 
 
-# check if POWER website is responding
+
+# check if POWER website is responding -----------------------------------------
 #' @noRd
 .check_response <- function(url) {
   tryCatch(
@@ -14,7 +15,7 @@
   )
 }
 
-# validate cell lon lat values
+# validate cell lon lat user provided values -----------------------------------
 .check_lonlat_cell <- function(lonlat) {
   if (is.null(lonlat) | length(lonlat) != 2 | !is.numeric(lonlat)) {
     stop("\nlonlat must be provided in a length-2 numeric vector.\n")
@@ -33,7 +34,7 @@
   }
 }
 
-# validate region lon lat values
+# validate region lon lat user provided values ---------------------------------
 .check_lonlat_region <- function(lonlat) {
   if (is.null(lonlat) | length(lonlat) != 4 | !is.numeric(lonlat)) {
     stop("\nlonlat must be provided in a length-2 numeric vector.\n")
@@ -58,6 +59,7 @@
   }
 }
 
+# validate user entered variables, fail internally if not valid ----------------
 .check_vars <- function(vars) {
   if (all(
     vars %in% c(
@@ -79,6 +81,30 @@
   }
 }
 
+# create a data.frame of the NASA - POWER data and add names -------------------
+.create_nasa_df <- function(NASA, stdate, endate) {
+  out <- utils::read.table(
+    text = NASA,
+    skip = grep("-END HEADER-", NASA),
+    na.strings = "-",
+    nrows = as.numeric(endate - stdate) + 1,
+    stringsAsFactors = FALSE
+  )
+
+  # check if data is empty, stop if no data is available
+  if (all(is.na(out[, -c(1:2)]))) {
+    stop(
+      "\nNo data are available as requested. If you are requesting very\n",
+      "recent data, please be aware that there is a lag in availability\n",
+      "(within two months of current time).\n"
+    )
+  } else {
+    return(out)
+  }
+}
+
+
+# execute downloading and parsing data -----------------------------------------
 .get_NASA <- function(durl) {
   # read lines from the NASA-POWER website
   NASA <- httr::GET(durl, httr::progress())
