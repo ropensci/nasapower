@@ -1,12 +1,14 @@
 
+
 # check if POWER website is responding
 #' @noRd
 .check_response <- function(url) {
   tryCatch(
-    httr::http_status(httr::GET(url)), error = function(c) {
-      c$message <- paste0(
-        "\nThe POWER website does not appear to be responding.\n",
-        "Please try again later.\n")
+    httr::http_status(httr::GET(url)),
+    error = function(c) {
+      c$message <-
+        paste0("\nThe POWER website does not appear to be responding.\n",
+               "Please try again later.\n")
       stop(c)
     }
   )
@@ -18,12 +20,16 @@
     stop("\nlonlat must be provided in a length-2 numeric vector.\n")
   }
   if (lonlat[1] < -180 || lonlat[1] > 180) {
-    stop("\nPlease check your longitude, `", paste0(lonlat[1]),
-          "`, to be sure it is valid.\n")
+    stop("\nPlease check your longitude, `",
+         paste0(lonlat[1]),
+         "`, to be sure it is valid.\n")
   }
   if (lonlat[2] < -90 || lonlat[2] > 90) {
-    stop("\nPlease check your latitude, `", paste0(lonlat[2]),
-        "`, value to be sure it is valid.\n")
+    stop(
+      "\nPlease check your latitude, `",
+      paste0(lonlat[2]),
+      "`, value to be sure it is valid.\n"
+    )
   }
 }
 
@@ -33,17 +39,42 @@
     stop("\nlonlat must be provided in a length-2 numeric vector.\n")
   }
   if (lonlat[1:2] < -180 || lonlat[1:2] > 180) {
-    stop("\nPlease check your longitude, `", paste0(lonlat[1:2]),
+    stop("\nPlease check your longitude, `",
+         paste0(lonlat[1:2]),
          "`, to be sure it is valid.\n")
   }
   if (lonlat[3:4] < -90 || lonlat[3:4] > 90) {
-    stop("\nPlease check your latitude, `", paste0(lonlat[3:4]),
-         "`, value to be sure it is valid.\n")
+    stop(
+      "\nPlease check your latitude, `",
+      paste0(lonlat[3:4]),
+      "`, value to be sure it is valid.\n"
+    )
   }
   if (lonlat[1] > lonlat[2]) {
     stop("The first lon value must be the minimum value requested.")
   }
   if (lonlat[3] > lonlat[4]) {
     stop("The first lat value must be the minimum value requested.")
+  }
+}
+
+.check_vars <- function(vars) {
+  if (all(
+    vars %in% c(
+      "T2M",
+      "T2MN",
+      "T2MX",
+      "RH2M",
+      "toa_dwn",
+      "swv_dwn",
+      "lwv_dwn",
+      "DFP2M",
+      "RAIN",
+      "WS10M"
+    )
+  )) {
+    vars <- vars
+  } else {
+    stop("You have entered an invalid value for `vars`.")
   }
 }
