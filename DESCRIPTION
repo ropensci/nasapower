@@ -19,6 +19,7 @@ Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
 Imports:
+    lubridate,
     httr,
     stringi,
     utils
@@ -34,7 +35,6 @@ Suggests:
     dplyr,
     ggplot2,
     knitr,
-    lubridate,
     raster,
     rmarkdown,
     rnaturalearth,

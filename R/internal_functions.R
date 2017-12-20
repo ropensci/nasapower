@@ -3,18 +3,54 @@
 # check user entered dates -----------------------------------------------------
 #' @noRd
 .check_dates <- function(stdate, endate) {
+  # put dates in list to use lapply
+  dates <- list(stdate, endate)
 
-  stdate <- as.Date(stdate)
-  endate <- as.Date(endate)
+  # check dates as entered by user
+  date_format <- function(x) {
+    tryCatch(
+      # try to parse the date format using lubridate
+      x <- lubridate::parse_date_time(x,
+                                      c("Ymd",
+                                        "dmY",
+                                        "mdY",
+                                        "BdY",
+                                        "Bdy",
+                                        "bdY",
+                                        "bdy")),
+      warning = function(c) {
+        stop(x, " is not a valid entry for date. Please check.")
+      }
+    )
+    return(x)
+  }
 
-  if (stdate < "1983-01-01") {
+  # apply function to reformat/check dates
+  dates <- lapply(X = dates, FUN = date_format)
+
+  # if the stdate is > endate, flip order
+  if (dates[[2]] < dates[[1]]) {
+    dates <-  c(dates[[-1]], dates[[1]])
+    message(
+      "Your start and end dates appear to have been reversed.\n",
+      "They now are in this order ",
+      print(dates[[1]]),
+      " to ",
+      print(dates[[2]]),
+      ".\n"
+    )
+  }
+
+  # check date to be sure it's not before POWER data start
+  if (dates[[1]] < "1983-01-01") {
     stop("NASA-POWER data do not start before 1983-01-01")
   }
 
-  if (endate < stdate) {
-    stop("Your end date is before your start date.")
+  # check end date to be sure it's not _after_
+  if (dates[[2]] > Sys.Date()) {
+    stop("The data cannot possibly extend beyond today, can they?")
   }
-  return(list(stdate, endate))
+  return(dates)
 }
 
 # validate cell lon lat user provided values -----------------------------------

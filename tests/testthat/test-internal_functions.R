@@ -71,6 +71,40 @@ test_that(".create_nasa_df creates a data frame of data", {
 })
 
 # check that user entered vars are properly validated --------------------------
+context(".check_dates")
+test_that(".check_dates reverses dates that are entered backwards", {
+  stdate <- "2001-05-01"
+  endate <- "1985-01-01"
+  expect_message(udates <- .check_dates(stdate, endate))
+  expect_equal(as.Date(udates[[1]]), as.Date("1985-01-01"))
+  expect_equal(as.Date(udates[[2]]), as.Date("2001-05-01"))
+})
+
+
+test_that(".check_dates stops if an invalid entry is made", {
+  stdate <- "asdfasdf"
+  endate <- "1985-01-01"
+  expect_error(.check_dates(stdate, endate))
+})
+
+test_that(".check_dates stops if dates are beyond current date", {
+  stdate <- Sys.Date()
+  endate <- Sys.Date() + 7
+  expect_error(.check_dates(stdate, endate))
+})
+
+test_that(".check_dates stops if dates are beyond current date", {
+  stdate <- "1982-12-31"
+  endate <- Sys.Date()
+  expect_error(.check_dates(stdate, endate))
+})
+
+test_that(".check_dates returns properly formatted dates", {
+  stdate <- "01-01-1983"
+  endate <- "01-01-1985"
+  expect_error(.check_dates(stdate, endate), NA)
+})
+
 test_that(".check_vars stops if an invalid entry is made", {
   vars <- c("asdfasdf", "RH2M")
   expect_error(.check_vars(vars))

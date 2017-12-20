@@ -83,13 +83,14 @@ get_region <-
            ),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
+
+    #check user inputs, see internal_functions.R for these
     .check_lonlat_region(lonlat)
-
     .check_vars(vars)
-
     dates <- .check_dates(stdate, endate)
-    stdate <- dates[1]
-    endate <- dates[2]
+
+    stdate <- as.Date(dates[[1]])
+    endate <- as.Date(dates[[2]])
 
     # check if website is responding
     url <-
