@@ -39,8 +39,8 @@
 #' \item{\strong{RAIN} - Average precipitation (mm/day)}
 #' \item{\strong{WS10M} - Wind speed at 10m above the surface of the Earth
 #' (m/s)} }
-#' @param stdate Starting date for download, defaults to 1983-01-01 (there is no
-#' earlier data).
+#' @param stdate Starting date for download, defaults to 1983-01-01 (there are
+#' no earlier data).
 #' @param endate End date for download, defaults to current date. Note that data
 #' is often available only with a lag of days to a month or more. The last
 #' available data will be silently returned with \code{NA} for any values not

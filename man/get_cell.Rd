@@ -34,8 +34,8 @@ the Earth (degrees C)}
 \item{\strong{WS10M} - Wind speed at 10m above the surface of the Earth
 (m/s)} }}
 
-\item{stdate}{Starting date for download, defaults to 1983-01-01 (there is no
-earlier data).}
+\item{stdate}{Starting date for download, defaults to 1983-01-01 (there are
+no earlier data).}
 
 \item{endate}{End date for download, defaults to current date. Note that data
 is often available only with a lag of days to a month or more. The last
