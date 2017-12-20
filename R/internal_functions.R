@@ -30,7 +30,6 @@
 
   # if the stdate is > endate, flip order
   if (dates[[2]] < dates[[1]]) {
-    dates <-  c(dates[[-1]], dates[[1]])
     message(
       "Your start and end dates appear to have been reversed.\n",
       "They now are in this order ",
@@ -39,6 +38,7 @@
       print(dates[[2]]),
       ".\n"
     )
+    dates <-  as.list(c(dates[2], dates[1]))
   }
 
   # check date to be sure it's not before POWER data start
