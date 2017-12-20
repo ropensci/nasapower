@@ -1,5 +1,5 @@
 context(".check_response")
-# Check that .check_response handles web-site responses properly  --------------
+# check that .check_response handles web-site responses properly  --------------
 
 test_that(".check_response stops if server not responding", {
   url <- "http://badurl.gov.au"
@@ -11,7 +11,7 @@ test_that(".check_response proceeds if server is responding", {
   expect_warning(.check_response(url), regexp = NA)
 })
 
-# Check that .check_lonlat* handles incorrect values properly  -----------------
+# check that .check_lonlat* handles incorrect values properly  -----------------
 context(".check_lonlat_cell")
 test_that(".check_lonlat_cell properly reports errors", {
   # out-of-scope latitude
@@ -53,7 +53,7 @@ test_that(".check_lonlat_region properly reports errors", {
   expect_error(.check_lonlat_region(lonlat))
 })
 
-# Check that .create_nasa_df handles data/no data properly ---------------------
+# check that .create_nasa_df handles data/no data properly ---------------------
 context(".create_nasa_df")
 test_that(".create_nasa_df alerts user that no data are available", {
   load(system.file("extdata", "NASA_no_data.rda", package = "nasapower"))
@@ -70,3 +70,28 @@ test_that(".create_nasa_df creates a data frame of data", {
   expect_is(test, "data.frame")
 })
 
+# check that user entered vars are properly validated --------------------------
+test_that(".check_vars stops if an invalid entry is made", {
+  expect_error(.check_vars(vars = "asdfasdf"))
+})
+
+test_that(".check_vars passes if a valid entry is made", {
+  # single entry
+  vars <- "RH2M"
+  expect_error(.check_vars(vars), NA)
+
+  # full string
+  vars <-  c(
+    "T2M",
+    "T2MN",
+    "T2MX",
+    "RH2M",
+    "toa_dwn",
+    "swv_dwn",
+    "lwv_dwn",
+    "DFP2M",
+    "RAIN",
+    "WS10M"
+  )
+  expect_error(.check_vars(vars), NA)
+})
