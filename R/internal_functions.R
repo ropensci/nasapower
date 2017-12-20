@@ -1,17 +1,20 @@
 `%notin%` <- Negate("%in%")
 
-# check if POWER website is responding -----------------------------------------
+# check user entered dates -----------------------------------------------------
 #' @noRd
-.check_response <- function(url) {
-  tryCatch(
-    httr::http_status(httr::GET(url)),
-    error = function(c) {
-      c$message <-
-        paste0("\nThe POWER website does not appear to be responding.\n",
-               "Please try again later.\n")
-      stop(c)
-    }
-  )
+.check_dates <- function(stdate, endate) {
+
+  stdate <- as.Date(stdate)
+  endate <- as.Date(endate)
+
+  if (stdate < "1983-01-01") {
+    stop("NASA-POWER data do not start before 1983-01-01")
+  }
+
+  if (endate < stdate) {
+    stop("Your end date is before your start date.")
+  }
+  return(list(stdate, endate))
 }
 
 # validate cell lon lat user provided values -----------------------------------
@@ -91,6 +94,20 @@
   )) {
     stop("You have entered an invalid value for `vars`.")
   }
+}
+
+# check if POWER website is responding -----------------------------------------
+#' @noRd
+.check_response <- function(url) {
+  tryCatch(
+    httr::http_status(httr::GET(url)),
+    error = function(c) {
+      c$message <-
+        paste0("\nThe POWER website does not appear to be responding.\n",
+               "Please try again later.\n")
+      stop(c)
+    }
+  )
 }
 
 # create a data.frame of the NASA - POWER data and add names -------------------
