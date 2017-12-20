@@ -73,7 +73,8 @@ test_that(".create_nasa_df creates a data frame of data", {
 # check that user entered vars are properly validated --------------------------
 test_that(".check_vars stops if an invalid entry is made", {
   vars <- "asdfasdf"
-  expect_error(.check_vars(vars))
+  expect_error(.check_vars(vars),
+               "You have entered an invalid value for `vars`.")
 })
 
 test_that(".check_vars passes if a valid entry is made", {

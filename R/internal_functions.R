@@ -1,6 +1,4 @@
 
-
-
 # check if POWER website is responding -----------------------------------------
 #' @noRd
 .check_response <- function(url) {
