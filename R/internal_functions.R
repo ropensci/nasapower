@@ -1,3 +1,4 @@
+`%notin%` <- Negate("%in%")
 
 # check if POWER website is responding -----------------------------------------
 #' @noRd
@@ -74,7 +75,20 @@
     )
   )) {
     vars <- vars
-  } else {
+  } else if (any(
+    vars %notin% c(
+      "T2M",
+      "T2MN",
+      "T2MX",
+      "RH2M",
+      "toa_dwn",
+      "swv_dwn",
+      "lwv_dwn",
+      "DFP2M",
+      "RAIN",
+      "WS10M"
+    )
+  )) {
     stop("You have entered an invalid value for `vars`.")
   }
 }
