@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
-  "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. nasapower is a lightweight\n    interface to the NASA - POWER website for R. POWER (Prediction Of Worldwide\n    Energy Resource) data are freely available for download through a web\n    interface at a resolution of 1 degree longitude by 1 degree latitude funded\n    through the NASA Earth Science Directorate Applied Science Program.",
+  "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a specified region. nasapower is a lightweight\n    interface to the NASA - POWER website for R. POWER (Prediction Of Worldwide\n    Energy Resource) data are freely available for download through a web\n    interface at a resolution of 1 arc degree longitude by 1 arc degree latitude\n    funded through the NASA Earth Science Directorate Applied Science Program.",
   "name": "nasapower: NASA-POWER Agroclimatology Data from R",
   "codeRepository": "https://github.com/adamhsparks/nasapower",
   "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
@@ -25,14 +25,6 @@
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
-    }
-  ],
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Jorrel Khalil S.",
-      "familyName": "Aunario",
-      "email": "jaunario@gmail.com"
     }
   ],
   "maintainer": {
@@ -91,17 +83,6 @@
       "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "lubridate",
-      "name": "lubridate",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -179,6 +160,17 @@
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "lubridate",
+      "name": "lubridate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "httr",
       "name": "httr",
       "provider": {
@@ -214,7 +206,7 @@
   "contIntegration": "https://travis-ci.org/adamhsparks/nasapower",
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "762.597KB",
+  "fileSize": "764.792KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
