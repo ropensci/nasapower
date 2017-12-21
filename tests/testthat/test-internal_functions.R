@@ -54,20 +54,15 @@ test_that(".check_lonlat_region properly reports errors", {
 })
 
 # check that .create_nasa_df handles data/no data properly ---------------------
-context(".create_nasa_df")
-test_that(".create_nasa_df alerts user that no data are available", {
+context(".check_nasa_df")
+test_that(".check_nasa_df alerts user that no data are available", {
   load(system.file("extdata", "NASA_no_data.rda", package = "nasapower"))
-  stdate <- as.Date("2017-12-19")
-  endate <- as.Date("2017-12-21")
-  expect_error(.create_nasa_df(NASA, stdate, endate))
+  expect_error(.check_nasa_df(NASA))
 })
 
-test_that(".create_nasa_df creates a data frame of data", {
+test_that(".check_nasa_df creates a data frame of data", {
   load(system.file("extdata", "NASA_with_data.rda", package = "nasapower"))
-  stdate <- as.Date("2017-11-1")
-  endate <- as.Date("2017-11-3")
-  test <- .create_nasa_df(NASA, stdate, endate)
-  expect_is(test, "data.frame")
+  expect_error(.check_nasa_df(NASA), NA)
 })
 
 # check that user entered vars are properly validated --------------------------
