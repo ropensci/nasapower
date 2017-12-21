@@ -165,7 +165,7 @@ get_region <-
     max_index <- grep(start, NASA) - 1
     max_index <- max_index[-1]
 
-    # Add last max_index value since there is no "end" at the end of the string
+    # add last max_index value since there is no "end" at the end of the string
     max_index <-
       c(max_index, max(max_index) + (max_index[2] - min_index[1]))
 
@@ -187,11 +187,11 @@ get_region <-
     # check df, if all NA, stop, if has data, return df
     .check_nasa_df(NASA)
 
-    # Create a tidy data frame object of lon/lat and data
+    # create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)
     names(NASA) <- colnames
 
-    # Add additional date fields
+    # add additional date fields
     NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = dates[[1]] - 1)
     NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
     NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
