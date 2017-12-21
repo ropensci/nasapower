@@ -89,13 +89,10 @@ get_region <-
     .check_vars(vars)
     dates <- .check_dates(stdate, endate)
 
-    stdate <- as.Date(dates[[1]])
-    endate <- as.Date(dates[[2]])
-
     # check if website is responding
-    url <-
+    power_url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
-    .check_response(url)
+    .check_response(power_url)
 
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
@@ -103,46 +100,29 @@ get_region <-
       }
     }
 
+    # create the query list ----------------------------------------------------
+
     # concatenate all the download vars into a single string for use below
-    download_vars <- paste0(vars, sep = "&p=", collapse = "")
+    download_vars <- paste0("&p=", vars, collapse = "")
 
-    # remove the last "&p" from the string
-    download_vars <-
-      substr(download_vars, 1, nchar(download_vars) - 3)
+    # assemble the query list, previous step is necessary because httr::query
+    # seems to remove duplicated list item names, all vars = "p" so...
+    power_query <- list(area = "area",
+                        lonmin = lonlat[1],
+                        lonmax = lonlat[2],
+                        latmin = lonlat[3],
+                        latmax = lonlat[4],
+                        ys = format(as.Date(dates[[1]]), "%Y"),
+                        ms = format(as.Date(dates[[1]]), "%m"),
+                        ds = format(as.Date(dates[[1]]), "%d"),
+                        ye = format(as.Date(dates[[2]]), "%Y"),
+                        me = format(as.Date(dates[[2]]), "%m"),
+                        de = format(as.Date(dates[[2]]), "%d"),
+                        submit = "Submit")
 
-    # creates download URL for website
-    durl <-
-      paste0(
-        "https://",
-        url,
-        "&area=area",
-        "&lonmin=",
-        lonlat[1],
-        "&lonmax=",
-        lonlat[2],
-        "&latmin=",
-        lonlat[3],
-        "&latmax=",
-        lonlat[4],
-        "&p=",
-        download_vars,
-        "&ys=",
-        format(as.Date(stdate), "%Y"),
-        "&ms=",
-        format(as.Date(stdate), "%m"),
-        "&ds=",
-        format(as.Date(stdate), "%d"),
-        "&ye=",
-        format(as.Date(endate), "%Y"),
-        "&me=",
-        format(as.Date(endate), "%m"),
-        "&de=",
-        format(as.Date(endate), "%d"),
-        "&submit=Submit"
-      )
-
-    # Read lines from the NASA-POWER website -----------------------------------
-    NASA <- .get_NASA(durl)
+    # submit query -------------------------------------------------------------
+    # see internal-functions for this function
+    NASA <- .get_NASA(power_url, download_vars, power_query)
 
     end <- "-END HEADER-"
     start <- "-BEGIN HEADER-"
@@ -170,7 +150,8 @@ get_region <-
 
     # add duplicate rows for n dates
     location_rows <- location_rows[rep(row.names(location_rows),
-                                       each = as.numeric((endate - stdate) + 1)
+                                       each = as.numeric(
+                                         (dates[[2]] - dates[[1]]) + 1)
                                        ), 1:2]
 
     location_rows <-
@@ -197,14 +178,21 @@ get_region <-
       data.frame(mapply(`:`, indices$min_index, indices$max_index))
     indices <- unlist(indices, use.names = FALSE)
 
-    NASA <- .create_nasa_df(NASA, stdate, endate)
+    NASA <- utils::read.table(
+            text = NASA[indices],
+            na.strings = "-",
+            nrows = length(indices),
+            stringsAsFactors = FALSE)
+
+    # check df, if all NA, stop, if has data, return df
+    .check_nasa_df(NASA)
 
     # Create a tidy data frame object of lon/lat and data
     NASA <- cbind(location_rows, NASA)
     names(NASA) <- colnames
 
     # Add additional date fields
-    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
+    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = dates[[1]] - 1)
     NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
     NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
 

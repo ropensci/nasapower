@@ -80,20 +80,15 @@ get_cell <-
            ),
            stdate = "1983-1-1",
            endate = Sys.Date()) {
-
     #check user inputs, see internal_functions.R for these
     .check_lonlat_cell(lonlat)
     .check_vars(vars)
     dates <- .check_dates(stdate, endate)
 
-    stdate <- as.Date(dates[[1]])
-    endate <- as.Date(dates[[2]])
-
     # check if website is responding
-    url <-
+    power_url <-
       "power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov"
-    .check_response(url)
-
+    .check_response(power_url)
 
     if (isTRUE(any(stringi::stri_detect_fixed(vars, "RAIN")))) {
       if (stdate < "1997-01-01") {
@@ -101,59 +96,56 @@ get_cell <-
       }
     }
 
+    # create the query list ----------------------------------------------------
+
     # concatenate all the download vars into a single string for use below
-    download_vars <- paste0(vars, sep = "&p=", collapse = "")
+    download_vars <- paste0("&p=", vars, collapse = "")
 
-    # remove the last "p" from the string
-    download_vars <-
-      substr(download_vars, 1, nchar(download_vars) - 3)
+    # assemble the query list, previous step is necessary because httr::query
+    # seems to remove duplicated list item names, all vars = "p" so...
+    power_query <- list(
+      lon = lonlat[1],
+      lat = lonlat[2],
+      ys = format(as.Date(dates[[1]]), "%Y"),
+      ms = format(as.Date(dates[[1]]), "%m"),
+      ds = format(as.Date(dates[[1]]), "%d"),
+      ye = format(as.Date(dates[[2]]), "%Y"),
+      me = format(as.Date(dates[[2]]), "%m"),
+      de = format(as.Date(dates[[2]]), "%d"),
+      submit = "Submit"
+    )
 
-    # creates download URL for website
-    durl <-
-      paste0(
-        "https://",
-        url,
-        "&lon=",
-        lonlat[1],
-        "&lat=",
-        lonlat[2],
-        "&p=",
-        download_vars,
-        "&ys=",
-        format(as.Date(stdate), "%Y"),
-        "&ms=",
-        format(as.Date(stdate), "%m"),
-        "&ds=",
-        format(as.Date(stdate), "%d"),
-        "&ye=",
-        format(as.Date(endate), "%Y"),
-        "&me=",
-        format(as.Date(endate), "%m"),
-        "&de=",
-        format(as.Date(endate), "%d"),
-        "&step=1&submit=Submit"
-      )
-
+    # submit query -------------------------------------------------------------
     # see internal-functions for this function
-    NASA <- .get_NASA(durl)
+    NASA <- .get_NASA(power_url, download_vars, power_query)
 
-    # Create a vector from the downloaded data of the column names
+    # create data frame of downloaded data -------------------------------------
+    # colnames first
     colnames <-
       unlist(strsplit(NASA[grep("-END HEADER-", NASA) - 1], split = " "))
 
-    # Clean up column names, otherwise there are empty values in the vector
+    # clean up column names, otherwise there are empty values in the vector
     colnames <- unique(colnames[colnames != ""])
 
-    NASA <- .create_nasa_df(NASA, stdate, endate)
+    NASA <- utils::read.table(
+      text = NASA,
+      skip = grep("-END HEADER-", NASA),
+      na.strings = "-",
+      nrows = as.numeric(dates[[2]] - dates[[1]]) + 1,
+      stringsAsFactors = FALSE
+    )
+
+    # check df, if all NA, stop, if has data, return df
+    .check_nasa_df(NASA)
 
     names(NASA) <- colnames
 
-    # Create a tidy data frame object
+    # create a tidy data frame object
     NASA["LON"] <- lonlat[1]
     NASA["LAT"] <- lonlat[2]
 
-    # Add additional date fields
-    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = stdate - 1)
+    # add additional date fields
+    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = dates[[1]] - 1)
     NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
     NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
 

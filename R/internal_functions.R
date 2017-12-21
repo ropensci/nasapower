@@ -11,18 +11,20 @@
     tryCatch(
       # try to parse the date format using lubridate
       x <- lubridate::parse_date_time(x,
-                                      c("Ymd",
+                                      c(
+                                        "Ymd",
                                         "dmY",
                                         "mdY",
                                         "BdY",
                                         "Bdy",
                                         "bdY",
-                                        "bdy")),
+                                        "bdy"
+                                      )),
       warning = function(c) {
         stop(x, " is not a valid entry for date. Please check.")
       }
     )
-    return(x)
+    return(as.Date(x))
   }
 
   # apply function to reformat/check dates
@@ -147,32 +149,26 @@
 }
 
 # create a data.frame of the NASA - POWER data and add names -------------------
-.create_nasa_df <- function(NASA, stdate, endate) {
-  out <- utils::read.table(
-    text = NASA,
-    skip = grep("-END HEADER-", NASA),
-    na.strings = "-",
-    nrows = as.numeric(endate - stdate) + 1,
-    stringsAsFactors = FALSE
-  )
-
+.check_nasa_df <- function(NASA) {
   # check if data is empty, stop if no data is available
-  if (all(is.na(out[, -c(1:2)]))) {
+  if (all(is.na(NASA[, -c(1:2)]))) {
     stop(
       "\nNo data are available as requested. If you are requesting very\n",
       "recent data, please be aware that there is a lag in availability\n",
       "(within two months of current time).\n"
     )
-  } else {
-    return(out)
   }
 }
 
 
 # execute downloading and parsing data -----------------------------------------
-.get_NASA <- function(durl) {
+.get_NASA <- function(power_url, download_vars, power_query) {
   # read lines from the NASA-POWER website
-  NASA <- httr::GET(durl, httr::progress())
+  NASA <- httr::GET(paste0("https://",
+                           power_url,
+                           download_vars),
+                    query = power_query,
+                    httr::progress())
   httr::stop_for_status(NASA)
   NASA <- httr::content(NASA, encoding = "UTF8")
 
