@@ -2,11 +2,9 @@ Package: nasapower
 Type: Package
 Title: NASA-POWER Agroclimatology Data from R
 Version: 0.1.2.9000
-Authors@R: c(person(given = "Adam H.", family = "Sparks",
+Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
-    comment = c(ORCID = "0000-0002-0061-8359")),
-    person(given = "Jorrel Khalil S.", family = "Aunario",
-    role = "ctb", email = "jaunario@gmail.com"))
+    comment = c(ORCID = "0000-0002-0061-8359"))
 URL: https://github.com/adamhsparks/nasapower
 BugReports: https://github.com/adamhsparks/nasapower/issues
 Description: Download NASA-POWER agroclimatology data and create a tidy data
