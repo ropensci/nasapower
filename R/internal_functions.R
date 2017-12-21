@@ -1,4 +1,3 @@
-`%notin%` <- Negate("%in%")
 
 # check user entered dates -----------------------------------------------------
 #' @noRd
@@ -116,20 +115,7 @@
     )
   )) {
     vars <- vars
-  } else if (any(
-    vars %notin% c(
-      "T2M",
-      "T2MN",
-      "T2MX",
-      "RH2M",
-      "toa_dwn",
-      "swv_dwn",
-      "lwv_dwn",
-      "DFP2M",
-      "RAIN",
-      "WS10M"
-    )
-  )) {
+  } else {
     stop("You have entered an invalid value for `vars`.")
   }
 }
