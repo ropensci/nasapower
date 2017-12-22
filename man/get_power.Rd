@@ -70,7 +70,7 @@ To get a region, supply a length-4 numeric vector as \code{xmin, xmax, ymin,
 ymax} in that order for a given region, \emph{e.g.}, a bounding box for
 the southwestern corner of Australia:
 \code{lonlat = c(112.5, 122.5, -55.5, -45.5)}. \emph{Max bounding box is 10 x
-10 degrees of 1/2 x 1/2 degree data}, \emph{e.g.}, 100 Points Max Total.
+10 degrees of 1/2 x 1/2 degree data}, \emph{i.e.}, 100 Points Max Total.
 
 To download a complete surface for the entire globe, set
 \code{lonlat = "Global"}.
