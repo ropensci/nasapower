@@ -101,13 +101,15 @@ test_that(".check_dates returns properly formatted dates", {
 
 test_that(".check_vars stops if an invalid entry is made", {
   vars <- c("asdfasdf", "RH2M")
-  expect_error(.check_vars(vars))
+  type <- "singlePoint"
+  expect_error(.check_vars(vars, type))
 })
 
 test_that(".check_vars passes if a valid entry is made", {
   # single entry
   vars <- "RH2M"
-  expect_error(.check_vars(vars), NA)
+  type <- "singlePoint"
+  expect_error(.check_vars(vars, type), NA)
 
   # full string
   vars <-  c(
@@ -122,5 +124,22 @@ test_that(".check_vars passes if a valid entry is made", {
     "RAIN",
     "WS10M"
   )
-  expect_error(.check_vars(vars), NA)
+  expect_error(.check_vars(vars, type), NA)
+})
+
+test_that(".check_vars stops if more than three are requested for global", {
+  vars <-  c(
+    "T2M",
+    "T2MN",
+    "T2MX",
+    "RH2M",
+    "toa_dwn",
+    "swv_dwn",
+    "lwv_dwn",
+    "DFP2M",
+    "RAIN",
+    "WS10M"
+  )
+  type <- global
+  expect_error(.check_vars(vars, type))
 })

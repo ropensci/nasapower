@@ -1,4 +1,5 @@
 
+
 # check user entered dates -----------------------------------------------------
 #' @noRd
 .check_dates <- function(stdate, endate) {
@@ -99,7 +100,7 @@
 }
 
 # validate user entered variables, fail internally if not valid ----------------
-.check_vars <- function(vars) {
+.check_vars <- function(vars, type) {
   if (all(
     vars %in% c(
       "T2M",
@@ -117,6 +118,11 @@
     vars <- vars
   } else {
     stop("You have entered an invalid value for `vars`.")
+  }
+
+  # check global vars
+  if (vars > 3 && type == "global") {
+    stop("A max of three vars is allowed for a global query.")
   }
 }
 
