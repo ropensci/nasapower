@@ -1,10 +1,9 @@
 
-
 # check user entered dates -----------------------------------------------------
 #' @noRd
-.check_dates <- function(stdate, endate) {
+.check_dates <- function(dates) {
   # put dates in list to use lapply
-  dates <- list(stdate, endate)
+  dates <- as.list(dates)
 
   # check dates as entered by user
   date_format <- function(x) {
