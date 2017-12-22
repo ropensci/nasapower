@@ -1,5 +1,11 @@
 # nasapower 1.0.0.9000
 
+### Deprecated functions
+
+- `get_cell` and `get_region` are deprecated in favour of `get_power`. The new
+POWER interface allows for the specification of `SinglePoint` (cell), `Regional`
+(region) or `Global`. These are now arguments passed along to `get_power` for
+the `type` parameter.
 
 # nasapower 0.1.3
 
