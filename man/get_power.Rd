@@ -2,10 +2,10 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get NASA-POWER Variables and Return a Tidy Data Frame}
+\title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
 get_power(name = "AG", lonlat = "Global", vars = NULL,
-  date = c("1983-01-01", Sys.Date()), time_step = "DAILY")
+  dates = c("1983-01-01", as.character(Sys.Date())), time_step = "DAILY")
 }
 \arguments{
 \item{name}{Data set name, currently supported are \code{'AG'}, \code{'SB'}
@@ -14,23 +14,17 @@ and \code{'SSE'}. Defaults to \code{'AG'}.  See Details.}
 \item{vars}{Solar or meteorological variables to download. See Details for
 \code{vars}}
 
-\item{time_step}{Temporal averages, currently supported are \code{'DAILY'},
-\code{'INTERANNUAL'} and \code{'CLIMATOLOGY'}. See Details.}
-
-\item{latlon}{Geographic coordinates for a cell or region as x, y coordinates
-or \code{"Global"}.  Defaults to \code{"Global"}. \item{To get a specific
-cell, 0.5 x 0.5 degrees, a length-2 numeric vector giving the decimal degree
-longitude and latitude in that order for data to download, \emph{e.g.},
-\code{lonlat = c(-179.5, -89.5)}.} \item{For a region, a length-4 numeric
-vector as \code{xmin, xmax, ymin, ymax} in that order for a given region,
-\emph{e.g.}, a bounding box for Australia: \code{lonlat = c(112.91972,
-159.256088, -55.11694, -9.221099)}.} \item{For global dataset, \code{lonlat
-= "Global"}.}}
-
 \item{dates}{A length-2 character vector of start and end dates in that order,
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  If \code{date}
 is unspecified,  defaults to a start date of "1983-01-01" (the earliest
 available data) and an end date of current date.}
+
+\item{time_step}{Temporal averages, currently supported are \code{'DAILY'},
+\code{'INTERANNUAL'} and \code{'CLIMATOLOGY'}.  Defaults to \code{'DAILY'}.
+See Details.}
+
+\item{latlon}{Geographic coordinates for a cell or region as x, y coordinates
+or \code{"Global"}.  Defaults to \code{"Global"}.}
 }
 \value{
 A tidy \code{\link[base]{data.frame}} object of the requested
@@ -40,33 +34,46 @@ A tidy \code{\link[base]{data.frame}} object of the requested
 Download NASA-POWER (Prediction of Worldwide Energy Resource)
  data for a given time span.
 }
-\details{
-Argument details for \code{name}: \describe{
- \item{\code{AG}}{Provides access to the Agroclimatology Archive, which
- contains industry-friendly parameters formatted for input to crop models.}
- \item{\code{SB}}{Provides access to the Sustainable Buildings Archive, which
- contains industry-friendly parameters for the buildings community to include
- parameters in multi-year monthly averages.} \item{\code{SSE}}{Provides
- access to the Renewable Energy Archive, which contains parameters
- specifically tailored to assist in the design of solar and wind powered
- renewable energy systems.} }
-
- Argument details for \code{time_step}: \describe{ \item{DAILY}{Daily average
- by year.} \item{INTERANNUAL}{Monthly and annual average by year.}
- \item{CLIMATOLOGY}{Long term monthly averages.} }
-}
 \note{
 The order in which the \code{vars} are listed will be the order of the
  columns in the data frame that \code{get_power()} returns.
 }
-\section{Details for \code{vars}}{
+\section{Argument details for \code{name}}{
 
+\describe{
+ \item{\code{AG}}{Provides access to the Agroclimatology Archive, which
+ contains industry-friendly parameters formatted for input to crop models.}
+ \item{\code{SB}}{Provides access to the Sustainable Buildings Archive, which
+ contains industry-friendly parameters for the buildings community to include
+ parameters in multi-year monthly averages.}
+ \item{\code{SSE}}{Provides access to the Renewable Energy Archive, which
+ contains parameters specifically tailored to assist in the design of solar
+ and wind powered renewable energy systems.}
+ }
+}
 
- \code{vars} can be indvidually specified or a pre-defined list can be used.
- See http://www.someurlhere.com for a list of valid variables.
+\section{Argument details for \code{time_step}}{
 
- If \code{latlon = "Global"} \strong{a maximum of three (3) variables} is
- allowed per request.
+\describe{
+ \item{DAILY}{Daily average by year.}
+ \item{INTERANNUAL}{Monthly and annual average by year.}
+ \item{CLIMATOLOGY}{Long term monthly averages.} }
+}
+
+\section{Argument details for \code{latlon}}{
+
+To get a specific cell, 1/2 x 1/2 degree, supply a length-2 numeric vector
+giving the decimal degree longitude and latitude in that order for data to
+download, \emph{e.g.}, \code{lonlat = c(-179.5, -89.5)}.
+
+To get a region, supply a length-4 numeric vector as \code{xmin, xmax, ymin,
+ymax} in that order for a given region, \emph{e.g.}, a bounding box for
+the southwestern corner of Australia:
+\code{lonlat = c(112.5, 122.5, -55.5, -45.5)}. \emph{Max bounding box is 10 x
+10 degrees of 1/2 x 1/2 degree data}, \emph{e.g.}, 100 Points Max Total.
+
+To download a complete surface for the entire globe, set
+\code{lonlat = "Global"}.
 }
 
 \examples{
