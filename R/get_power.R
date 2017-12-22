@@ -74,7 +74,7 @@ get_power <-
            time_step = "DAILY") {
     #check user inputs, see internal_functions.R for these
 
-    .check_lonlat_cell(lonlat)
+    identifier <- .check_lonlat_cell(lonlat)
     .check_vars(vars, name)
     dates <- .check_dates(dates)
 
@@ -97,12 +97,14 @@ get_power <-
     # assemble the query list, previous step is necessary because httr::query
     # seems to remove duplicated list item names, all vars = "p" so...
     power_query <- list(
-      lon = lonlat[1],
-      lat = lonlat[2],
+
+      identifier = identifier,
       parameters = paste0(vars, collapse = ","),
-      identifier = type,
       startDate = dates[[1]],
       endDate = dates[[2]],
+      lon = lonlat[1],
+      lat = lonlat[2],
+      request = "execute"
     )
 
     # submit query -------------------------------------------------------------
