@@ -1,5 +1,16 @@
 # nasapower 1.0.0.9000
 
+## Major changes
+
+- Provide access to all three communities, not just AG
+
+- Uses new NASA-POWER API to download new 1/2 x 1/2 degree data
+
+- Replace _httr_ package with _crul_
+
+- Add `parameters` data frame, which lists available parameters with metadata
+about them
+
 ### Deprecated functions
 
 - `get_cell` and `get_region` are deprecated in favour of `get_power`. The new

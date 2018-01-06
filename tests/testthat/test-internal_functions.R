@@ -1,118 +1,49 @@
-context(".check_response")
-# check that .check_response handles web-site responses properly  --------------
 
-test_that(".check_response stops if server not responding", {
-  url <- "http://badurl.gov.au"
-  expect_error(.check_response(url))
-})
+# test that `check_lonlat` handles incorrect values properly  -----------------
+context("check_lonlat")
+test_that("check_lonlat_cell properly reports errors", {
+  # set up pars argument for testing
+  pars <- "T2M"
 
-test_that(".check_response proceeds if server is responding", {
-  url <- "https://www.google.com/"
-  expect_warning(.check_response(url), regexp = NA)
-})
-
-# check that .check_lonlat* handles incorrect values properly  -----------------
-context(".check_lonlat_cell")
-test_that(".check_lonlat_cell properly reports errors", {
-  # out-of-scope latitude
+  # out-of-scope latitude for singlePoint
   lonlat <- c(-27.5, 151.5)
-  expect_error(.check_lonlat_cell(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
-  # out-of-scope longitude
+  # out-of-scope longitude for singlePoint
   lonlat <- c(181, 0)
-  expect_error(.check_lonlat_cell(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
-  # non-numeric values
+  # non-numeric values for singlePoint
   lonlat <- c(181, "x")
-  expect_error(.check_lonlat_cell(lonlat))
-})
+  expect_error(check_lonlat(lonlat, pars))
 
-context(".check_lonlat_region")
-test_that(".check_lonlat_region properly reports errors", {
-  # out-of-scope latitude
+  # out-of-scope latitude for regional
   lonlat <- c(-181, 181, -90, 90)
-  expect_error(.check_lonlat_region(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
-  # out-of-scope longitude
+  # out-of-scope longitude for regional
   lonlat <- c(-180, 180, -91, 91)
-  expect_error(.check_lonlat_region(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
-  # incorrect orders
+  # incorrect orders for regional
   lonlat <- c(-180, 180, -91, 91)
-  expect_error(.check_lonlat_region(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
-  # non-numeric values
+  # non-numeric values for regional
   lonlat <- c(112.91972, 159.256088, -55.11694, "x")
-  expect_error(.check_lonlat_region(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
-  # incorrect order of values requested
+  # incorrect order of values requested for regional
   lonlat <- c(180, -180, -90, 90)
-  expect_error(.check_lonlat_region(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 
   lonlat <- c(-180, 180, 90, -90)
-  expect_error(.check_lonlat_region(lonlat))
+  expect_error(check_lonlat(lonlat, pars))
 })
 
-# check that .create_nasa_df handles data/no data properly ---------------------
-context(".check_nasa_df")
-test_that(".check_nasa_df alerts user that no data are available", {
-  load(system.file("extdata", "NASA_no_data.rda", package = "nasapower"))
-  expect_error(.check_nasa_df(NASA))
-})
-
-test_that(".check_nasa_df creates a data frame of data", {
-  load(system.file("extdata", "NASA_with_data.rda", package = "nasapower"))
-  expect_error(.check_nasa_df(NASA), NA)
-})
-
-# check that user entered vars are properly validated --------------------------
-context(".check_dates")
-test_that(".check_dates reverses dates that are entered backwards", {
-  stdate <- "2001-05-01"
-  endate <- "1985-01-01"
-  expect_message(udates <- .check_dates(stdate, endate))
-  expect_equal(as.Date(udates[[1]]), as.Date("1985-01-01"))
-  expect_equal(as.Date(udates[[2]]), as.Date("2001-05-01"))
-})
-
-test_that(".check_dates stops if an invalid entry is made", {
-  stdate <- "asdfasdf"
-  endate <- "1985-01-01"
-  expect_error(.check_dates(stdate, endate))
-})
-
-test_that(".check_dates stops if dates are beyond current date", {
-  stdate <- Sys.Date()
-  endate <- Sys.Date() + 7
-  expect_error(.check_dates(stdate, endate))
-})
-
-test_that(".check_dates stops if dates are beyond current date", {
-  stdate <- "1982-12-31"
-  endate <- Sys.Date()
-  expect_error(.check_dates(stdate, endate))
-})
-
-test_that(".check_dates returns properly formatted dates", {
-  stdate <- "01-01-1983"
-  endate <- "01-01-1985"
-  expect_error(.check_dates(stdate, endate), NA)
-})
-
-test_that(".check_vars stops if an invalid entry is made", {
-  vars <- c("asdfasdf", "RH2M")
-  type <- "singlePoint"
-  expect_error(.check_vars(vars, type))
-})
-
-test_that(".check_vars passes if a valid entry is made", {
-  # single entry
-  vars <- "RH2M"
-  type <- "singlePoint"
-  expect_error(.check_vars(vars, type), NA)
-
-  # full string
-  vars <-  c(
+test_that("check_lonlat stops if more than three are requested for global", {
+lonlat <- NULL
+pars <-  c(
     "T2M",
     "T2MN",
     "T2MX",
@@ -124,22 +55,5 @@ test_that(".check_vars passes if a valid entry is made", {
     "RAIN",
     "WS10M"
   )
-  expect_error(.check_vars(vars, type), NA)
-})
-
-test_that(".check_vars stops if more than three are requested for global", {
-  vars <-  c(
-    "T2M",
-    "T2MN",
-    "T2MX",
-    "RH2M",
-    "toa_dwn",
-    "swv_dwn",
-    "lwv_dwn",
-    "DFP2M",
-    "RAIN",
-    "WS10M"
-  )
-  type <- global
-  expect_error(.check_vars(vars, type))
+  expect_error(check_lonlat(lonlat, pars))
 })

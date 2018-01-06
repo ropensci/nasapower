@@ -19,8 +19,8 @@ These functions are now deprecated in \pkg{nasapower}.
 \section{Details}{
 
 \tabular{rl}{
-  \code{get_cell} \tab now superceded by \code{get_power}\cr
-  \code{get_region} \tab now superceded by \code{get_power}\cr
+\code{get_cell} \tab now superceded by \code{get_power}\cr
+\code{get_region} \tab now superceded by \code{get_power}\cr
 }
 }
 
