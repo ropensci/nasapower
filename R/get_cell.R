@@ -145,7 +145,7 @@ get_cell <-
     NASA["LAT"] <- lonlat[2]
 
     # add additional date fields
-    NASA["YYYYMMDD"] <- as.Date(NASA$DOY, origin = dates[[1]] - 1)
+    NASA["YYYYMMDD"] <- seq(from = dates[[1]], to = dates[[2]], by = 1)
     NASA["MONTH"] <- format(as.Date(NASA$YYYYMMDD), "%m")
     NASA["DAY"] <- format(as.Date(NASA$YYYYMMDD), "%d")
 
