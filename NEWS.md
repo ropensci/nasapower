@@ -1,4 +1,12 @@
 
+# nasapower 0.1.4
+
+### Bug Fixes
+
+- Fixes bug related to date columns where `MONTH`, `DAY` and `YYYY-MM-DD` were
+incorrectly reported in final data frame. This did not affect the weather data,
+`YEAR` or `DOY` columns.
+
 # nasapower 0.1.3
 
 ### Bug fixes
