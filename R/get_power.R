@@ -15,7 +15,7 @@
 #'  values or visit the [POWER website](https://power.larc.nasa.gov/new/) for
 #'  the Parameter Dictionary.
 #'@param dates A character vector of start and end dates in that order, *e.g.*,
-#'  `dates = c("1983-01-01", "2017-12-31")`.  See argument details for more.
+#'  `dates <- c("1983-01-01", "2017-12-31")`.  See argument details for more.
 #'@param temporal_average Temporal average for data being queried, currently
 #'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 #'  more.
@@ -85,11 +85,11 @@ get_power <- function(community = NULL,
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
-  NASA <- get_power(community,
-                    lonlat_identifier,
-                    pars,
-                    dates,
-                    temporal_average)
+  NASA <- power_query(community,
+                      lonlat_identifier,
+                      pars,
+                      dates,
+                      temporal_average)
 
 
   return(NASA)
