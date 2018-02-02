@@ -64,6 +64,8 @@ check_dates <- function(dates) {
   }
 
   names(dates) <- c("startDate", "endDate")
+  dates <- lapply(dates, as.character)
+  dates <- gsub("-","" , dates,ignore.case = TRUE)
   return(dates)
 }
 
@@ -219,8 +221,8 @@ power_query <- function(community,
       request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = pars,
-      startDate = dates$startDate,
-      endDate = dates$endDate,
+      startDate = dates[[1]],
+      endDate = dates[[2]],
       userCommunity = community,
       tempAverage = temporal_average,
       outputList = "CSV",
@@ -235,8 +237,8 @@ power_query <- function(community,
       request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = pars,
-      startDate = dates$startDate,
-      endDate = dates$endDate,
+      startDate = dates[[1]],
+      startDate = dates[[2]],
       userCommunity = community,
       tempAverage = temporal_average,
       bbox = lonlat_identifier$bbox,
@@ -250,8 +252,8 @@ power_query <- function(community,
       request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = pars,
-      startDate = dates$startDate,
-      endDate = dates$endDate,
+      startDate = dates[[1]],
+      startDate = dates[[2]],
       userCommunity = community,
       tempAverage = temporal_average,
       outputList = "CSV",
@@ -260,7 +262,7 @@ power_query <- function(community,
   }
 
   res <- client$get(query = query_list)
-  res <- readr::read_table(res)
+  res <- readr::read_table(res$content)
   return(res)
 }
 
