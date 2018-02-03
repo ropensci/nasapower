@@ -21,6 +21,7 @@ Imports:
     crul,
     httr,
     lubridate,
+    jsonlite,
     readr,
     stringi,
     utils
