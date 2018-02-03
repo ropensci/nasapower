@@ -262,7 +262,12 @@ power_query <- function(community,
   }
 
   res <- client$get(query = query_list)
-  res <- readr::read_table(res$content)
+
+  # parse to an R list
+  txt <- jsonlite::fromJSON(res$parse("UTF-8"))
+
+  # read resulting CSV file
+  res <- readr::read_csv(txt$outputs$csv, na = c("-", -99))
   return(res)
 }
 
