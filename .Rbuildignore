@@ -7,3 +7,4 @@
 ^README\.Rmd$
 ^docs$
 ^codemeta\.json$
+^cran-comments\.md$
