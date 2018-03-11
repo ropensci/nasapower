@@ -1,0 +1,9 @@
+pandoc: 2.1.2
+pkgdown: 0.1.0.9000
+pkgdown_sha: 17f683717d0a1547f13a08a259b34c58927452d6
+articles:
+  nasapower: nasapower.html
+  plot_phl-1.png: plot_phl-1.png
+  plot_phl-2.png: plot_phl-2.png
+  use-case: use-case.html
+
