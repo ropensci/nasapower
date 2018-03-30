@@ -51,26 +51,28 @@ Using the `APSIM::prepareMet()` example, where data for Kingsthorpe, Qld,
 is provided by the package, we can create an equivalent data set from the 
 NASA-POWER data compare it with the supplied data for Kingsthorpe, Queensland
 location 151.81 degrees longitude and -27.48 degrees latitude, for 2010. As a
-proxy for potential incoming radiation, `SRAD`, we'll use `swv_dwn`,
+proxy for potential incoming radiation, `SRAD`, we'll use `ALLSKY_TOA_SW_DWN`,
 top-of-atmosphere insolation, from NASA - POWER.
 
 ```{r get_data_show, eval=FALSE}
-swv_dwn <- get_cell(
+sw_dwn <- get_power(
   lonlat = c(151.81, -27.48),
-  stdate = "2010-1-1",
-  endate = "2010-12-31",
-  vars = "swv_dwn"
+  dates = c("2010-01-01", "2010-12-31"),
+  pars = c("ALLSKY_TOA_SW_DWN"),
+  community = "AG",
+  temporal_average = "DAILY"
   )
 ```
 
-```{r get_data_execute, eval=FALSE, message=FALSE, include=FALSE}
+```{r get_data_execute, eval=TRUE, message=FALSE, include=FALSE}
 # This code chunk actually downloads the data, but it will show
 # download progress, so we don't include it.
-swv_dwn <- get_cell(
+sw_dwn <- get_power(
   lonlat = c(151.81, -27.48),
-  stdate = "2010-1-1",
-  endate = "2010-12-31",
-  vars = "swv_dwn"
+  dates = c("2010-01-01", "2010-12-31"),
+  pars = "ALLSKY_TOA_SW_DWN",
+  community = "AG",
+  temporal_average = "DAILY"
   )
 ```
 
