@@ -267,12 +267,30 @@ power_query <- function(community,
   res <- client$get(query = query_list)
 
   # parse to an R list
-  txt <- jsonlite::fromJSON(res$parse("UTF-8"))
+  tryCatch({
+    txt <-
+      jsonlite::fromJSON(res$parse("UTF-8"))
+  },
+  error = function(e) {
+    e$message <-
+      paste("\nSomething went wrong with the query. Please try again.\n")
+    # Otherwise refers to open.connection
+    e$call <- NULL
+    stop(e)
+  })
 
   # read resulting CSV file
-  res <- readr::read_csv(txt$outputs$csv, na = c("-", -99),
-                         col_types = readr::cols())
-  return(res)
+  tryCatch({
+    res <- readr::read_csv(txt$outputs$csv, na = c("-", -99),
+                           col_types = readr::cols())
+  },
+  error = function(e) {
+    e$message <-
+      paste("\nA CSV file was not created, this is a server error.\n")
+    # Otherwise refers to open.connection
+    e$call <- NULL
+    stop(e)
+  })
 }
 
 #' @noRd
