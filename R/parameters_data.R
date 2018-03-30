@@ -7,7 +7,7 @@
 #'
 #' @format A data frame
 #' \describe{
-#'   \item{Value}{Parameter value used in \code{vars} argument of
+#'   \item{Value}{Parameter value used in \code{pars} argument of
 #'    \code{\link{get_power}} function}
 #'   \item{Name}{Full name for the parameter}
 #'   \item{SSE.Units.}{Surface meteorology and Solar Energy, parameter units*}
