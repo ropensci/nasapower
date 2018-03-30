@@ -219,7 +219,7 @@ power_query <- function(community,
   status$raise_for_status()
 
   # build query list for single point
-  if (lonlat_identifier$identifier == "SinglePoint") {
+  if (lonlat$identifier == "SinglePoint") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -235,7 +235,7 @@ power_query <- function(community,
     )
   }
 
-  if (lonlat_identifier$identifier == "Regional") {
+  if (lonlat$identifier == "Regional") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -250,7 +250,7 @@ power_query <- function(community,
     )
   }
 
-  if (lonlat_identifier$identifier == "Global") {
+  if (lonlat$identifier == "Global") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
