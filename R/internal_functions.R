@@ -270,7 +270,8 @@ power_query <- function(community,
   txt <- jsonlite::fromJSON(res$parse("UTF-8"))
 
   # read resulting CSV file
-  res <- readr::read_csv(txt$outputs$csv, na = c("-", -99))
+  res <- readr::read_csv(txt$outputs$csv, na = c("-", -99),
+                         col_types = readr::cols())
   return(res)
 }
 
