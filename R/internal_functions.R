@@ -219,7 +219,7 @@ power_query <- function(community,
   status$raise_for_status()
 
   # build query list for single point
-  if (lonlat$identifier == "SinglePoint") {
+  if (lonlat_identifier$identifier == "SinglePoint") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -235,13 +235,13 @@ power_query <- function(community,
     )
   }
 
-  if (lonlat$identifier == "Regional") {
+  if (lonlat_identifier$identifier == "Regional") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars),
       startDate = dates[[1]],
-      startDate = dates[[2]],
+      endDate = dates[[2]],
       userCommunity = community,
       tempAverage = temporal_average,
       bbox = lonlat_identifier$bbox,
@@ -250,13 +250,13 @@ power_query <- function(community,
     )
   }
 
-  if (lonlat$identifier == "Global") {
+  if (lonlat_identifier$identifier == "Global") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars),
       startDate = dates[[1]],
-      startDate = dates[[2]],
+      endDate = dates[[2]],
       userCommunity = community,
       tempAverage = temporal_average,
       outputList = "CSV",
