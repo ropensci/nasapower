@@ -67,6 +67,18 @@
 #'
 #'@references
 #'\url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
+#'
+#'@examples
+#'# Fetch temperature and relative humidity for January 1 1985
+#'
+#'\dontrun{
+#'power <- get_power(community = "AG",
+#'                   lonlat = c(-179.5, -89.5),
+#'                   pars = c("RH2M", "T2M"),
+#'                   dates = "1985-01-01",
+#'                   temporal_average = "daily")
+#'}
+#'
 #'@author Adam H. Sparks, adamhsparks@gmail.com
 #'
 get_power <- function(community = NULL,
