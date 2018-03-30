@@ -1,4 +1,7 @@
-`%notin%` <- Negate("%in%")
+`%notin%` <- function(x, table) {
+  # Same as !(x %in% table)
+  match(x, table, nomatch = 0L) == 0L
+}
 
 #' @noRd
 check_dates <- function(dates) {
@@ -92,10 +95,10 @@ check_pars <-
            "You have not provided a `pars` value.")
     }
     pars <- toupper(pars)
-    if (all(pars %notin% parameters[[1]])) {
+    if (any(pars %notin% parameters[[1]])) {
       stop(call. = FALSE,
            "You have entered an invalid value for `pars`.")
-    }
+    } else
     pars <- paste0(pars, collapse = ",")
     return(pars)
   }
