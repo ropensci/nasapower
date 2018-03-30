@@ -38,7 +38,7 @@ install.packages("APSIM")
 
 Load the packages necessary.
 
-```{r load_libraries, message=FALSE}
+```{r load-libraries, message=FALSE}
 library(APSIM)
 library(nasapower)
 library(ggplot2)
@@ -53,7 +53,7 @@ location 151.81 degrees longitude and -27.48 degrees latitude, for 2010. As a
 proxy for potential incoming radiation, `SRAD`, we'll use `swv_dwn`,
 top-of-atmosphere insolation, from NASA - POWER.
 
-```{r get_data_show, eval=FALSE}
+```{r get-data-show, eval=FALSE}
 swv_dwn <- get_cell(
   lonlat = c(151.81, -27.48),
   stdate = "2010-1-1",
@@ -62,7 +62,7 @@ swv_dwn <- get_cell(
   )
 ```
 
-```{r get_data_execute, eval=TRUE, message=FALSE, include=FALSE}
+```{r get-data-execute, eval=TRUE, message=FALSE, include=FALSE}
 # This code chunk actually downloads the data, but it will show
 # download progress, so we don't include it.
 swv_dwn <- get_cell(
@@ -89,7 +89,7 @@ Graph radiation values from the weather station at Kingsthorpe in
 `APSIM::kingsData` along against the POWER data to illustrate why POWER data are
 often used as a substitute for on-the-ground measurements.
 
-```{r graph_rad, eval=TRUE}
+```{r graph-rad, eval=TRUE}
 ggplot(compare, aes(x = kingsData.rad, y = swv_dwn.swv_dwn)) +
   geom_point(colour = "orange") +
   geom_abline(colour = "black", slope = 1) +
@@ -109,11 +109,11 @@ radiation. A duplicate data set of the `kingsData` from _APSIM_ has been
 created, which has `rad` missing, `kings_nasa`. Using that data set, merge
 with the `swv_dwn` from the POWER data and create an APSIM .met file.
 
-```{r remove_rad, eval=TRUE, include=FALSE}
+```{r remove-rad, eval=TRUE, include=FALSE}
 kings_nasa <- kingsData[, -6]
 ```
 
-```{r create_met, eval=TRUE}
+```{r create-met, eval=TRUE}
 
 # inspect the kings_nasa data
 str(kings_nasa)
@@ -153,7 +153,7 @@ units <-
 Using the `kings_met` data frame created previously, along with the `new_names`
 and `units` data frames, use `APSIM::prepareMet()` to create a .met file.
 
-```{r prepare_met, eval=TRUE}
+```{r prepare-met, eval=TRUE}
 nasa_met <- prepareMet(kings_met,
            lat = -27.48,
            lon = 151.81,
@@ -167,7 +167,7 @@ You now have a complete .met file for use in APSIM that supplies solar radiation
 from the NASA-POWER data. It can be saved to local disk if desired using
 `APSIM::writeMetFile()` from _APSIM_.
 
-```{r write_met, eval=FALSE}
+```{r write-met, eval=FALSE}
 writeMetFile("NASA_rad.met", nasa_met)
 ```
 

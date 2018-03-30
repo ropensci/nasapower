@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -27,8 +27,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">nasapower</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">nasapower</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -38,7 +42,7 @@
   </a>
 </li>
 <li>
-  <a href="../articles/nasapower.html">Get Started</a>
+  <a href="../articles/nasapower.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -56,7 +60,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -76,16 +80,18 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Use Case: Using nasapower and the APSIM R Package to Create APSIM .met Files</h1>
                         <h4 class="author">Adam H. Sparks</h4>
             
-          </div>
+      
+      <small>Source: <a href="https://github.com/adamhsparks/nasapower/blob/master/vignettes/use-case.Rmd"><code>vignettes/use-case.Rmd</code></a></small>
+
+    </div>
 
     
     
-<div class="contents">
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
@@ -125,7 +131,7 @@
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">colour =</span> <span class="st">"orange"</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_abline</a></span>(<span class="dt">colour =</span> <span class="st">"black"</span>, <span class="dt">slope =</span> <span class="dv">1</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_minimal</a></span>()</a></code></pre></div>
-<p><img src="use-case_files/figure-html/graph_rad-1.png" width="672" style="display: block; margin: auto;"></p>
+<p><img src="use-case_files/figure-html/graph-rad-1.png" width="700" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">  </a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">  <span class="kw">cor</span>(compare<span class="op">$</span>kingsData.rad, compare<span class="op">$</span>swv_dwn.swv_dwn)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; [1] 0.9033131</span></a></code></pre></div>
@@ -222,7 +228,6 @@
 <p>Serge Savary, Andrew Nelson, Laetitia Willocquet, Ireneo Pangga and Jorrel Aunario (2012) “Modeling and Mapping potential epidemics of rice diseases globally” Crop Protection, Volume 34, Pages 6-17, ISSN 0261-2194 DOI: 10.1016/j.cropro.2011.11.009</p>
 <p>Jeffrey W. White, Gerrit Hoogenboom, Paul W. Stackhouse, James M. Hoell (2009) “Evaluation of NASA satellite- and assimilation model-derived long-term daily temperature data over the continental US” Agricultural and Forest Meteorology, Volume 148, Issue 10, 2008, Pages 1574-1584, ISSN 0168-1923, DOI: 10.1016/j.agrformet.2008.05.017.</p>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -257,6 +262,8 @@
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

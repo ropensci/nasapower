@@ -24,7 +24,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -33,8 +33,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">nasapower</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">nasapower</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -44,7 +48,7 @@
   </a>
 </li>
 <li>
-  <a href="articles/nasapower.html">Get Started</a>
+  <a href="articles/nasapower.html">Get started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
@@ -62,7 +66,7 @@
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -82,12 +86,11 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     
 
     
     
-<div class="contents">
 
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
@@ -164,7 +167,7 @@
 <li><p>Please <a href="https://github.com/adamhsparks/nasapower/issues">report any issues or bugs</a>.</p></li>
 <li><p>License: MIT</p></li>
 <li><p>Get citation information for <code>nasapower</code> in R by typing <code>citation(package = "nasapower")</code></p></li>
-<li><p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p></li>
+<li><p>Please note that this project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p></li>
 <li><p>The U.S. Earth System Research Laboratory, Physical Science Division of the National Atmospheric &amp; Oceanic Administration (NOAA) maintains a list of gridded climate data sets that provide different data and different resolutions <a href="https://www.esrl.noaa.gov/psd/data/gridded/" class="uri">https://www.esrl.noaa.gov/psd/data/gridded/</a></p></li>
 </ul>
 </div>
@@ -174,29 +177,41 @@
 <p><a href="https://power.larc.nasa.gov" class="uri">https://power.larc.nasa.gov</a></p>
 <p><a href="https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf" class="uri">https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf</a></p>
 </div>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>Links</h2>
+    <div class="links">
+<h2>Links</h2>
 <ul class="list-unstyled">
 <li>Browse source code at <br><a href="https://github.com/adamhsparks/nasapower">https://​github.com/​adamhsparks/​nasapower</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/adamhsparks/nasapower/issues">https://​github.com/​adamhsparks/​nasapower/​issues</a>
 </li>
 </ul>
+</div>
+<div class="license">
 <h2>License</h2>
-<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
+<ul class="list-unstyled">
+<li>
+<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
+</ul>
+</div>
+<div class="citation">
 <h2>Citation</h2>
 <ul class="list-unstyled">
 <li><a href="authors.html">Citing nasapower</a></li>
 </ul>
+</div>
+<div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Adam H. Sparks <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0061-8359" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid"></a> </li>
+<li>Adam H. Sparks <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0061-8359" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" height="16"></a> </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
+</div>
+
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/adamhsparks/nasapower"><img src="https://travis-ci.org/adamhsparks/nasapower.svg?branch=master" alt="Travis-CI Build Status"></a></li>
@@ -204,6 +219,7 @@
 <li><a href="https://codecov.io/github/adamhsparks/nasapower?branch=master"><img src="https://img.shields.io/codecov/c/github/adamhsparks/nasapower/master.svg" alt="Coverage Status"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/109224461"><img src="https://zenodo.org/badge/109224461.svg" alt="DOI"></a></li>
 </ul>
+</div>
 </div>
 
 </div>
@@ -219,6 +235,8 @@
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>
