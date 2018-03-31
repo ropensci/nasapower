@@ -91,13 +91,23 @@ check_community <-
 #' @noRd
 check_pars <-
   function(pars, temporal_average) {
+    if (is.null(temporal_average)) {
+      stop(call. = FALSE,
+           "You have not provided a `temporal_average` value.")
+    }
+
     if (is.null(pars)) {
       stop(call. = FALSE,
            "You have not provided a `pars` value.")
     }
-    pars <- toupper(pars)
-    temporal_average <- tools::toTitleCase(temporal_average)
 
+    temporal_average <- tools::toTitleCase(temporal_average)
+    if (temporal_average %notin% c("Daily", "Interannual", "Climatology")) {
+      stop(call. = FALSE,
+           "You have entered an invalid value for `temporal_average`.")
+    }
+
+    pars <- toupper(pars)
     # check pars to make sure that they are valid
     if (any(pars %notin% parameters[[1]])) {
       stop(call. = FALSE,
@@ -121,21 +131,6 @@ check_pars <-
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
     return(pars)
-  }
-
-#' @noRd
-check_tempavg <-
-  function(temporal_average) {
-    if (is.null(temporal_average)) {
-      stop(call. = FALSE,
-           "You have not provided a `temporal_average` value.")
-    }
-    temporal_average <- toupper(temporal_average)
-    if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
-      stop(call. = FALSE,
-           "You have entered an invalid value for `temporal_average`.")
-    }
-    return(temporal_average)
   }
 
 #' @noRd

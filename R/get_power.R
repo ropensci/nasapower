@@ -93,7 +93,6 @@ get_power <- function(community = NULL,
   lonlat_identifier <- check_lonlat(lonlat, pars)
   pars <- check_pars(pars)
   community <- check_community(community)
-  temporal_average <- check_tempavg(temporal_average)
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
