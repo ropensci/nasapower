@@ -155,41 +155,47 @@ check_lonlat <-
       lat <- lonlat[2]
 
     } else if (length(lonlat) == 4 && is.numeric(lonlat)) {
-      if (lonlat[1:2] < -180 || lonlat[1:2] > 180) {
+      if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
+        stop("Please provide a correct bounding box values.\n",
+             "The bounding box can only accept a max of 10 x 10 region of\n",
+             "0.5 degree values (e.g., 100 points total).\n")
+      }
+
+      if (lonlat[c(2, 4)] < -180 || lonlat[c(2, 4)] > 180) {
         stop(call. = FALSE,
           "Please check your longitude, `",
-          paste0(lonlat[1:2]),
+          paste0(lonlat[c(2, 4)]),
           "`, to be sure it is valid.\n"
         )
       }
-      if (lonlat[3:4] < -90 || lonlat[3:4] > 90) {
+      if (lonlat[c(1, 3)] < -90 || lonlat[c(2, 4)] > 90) {
         stop(call. = FALSE,
           "Please check your latitude, `",
-          paste0(lonlat[3:4]),
+          paste0(lonlat[c(1, 3)]),
           "`, value to be sure it is valid.\n"
         )
       }
-      if (lonlat[1] > lonlat[2]) {
+      if (lonlat[2] > lonlat[4]) {
         stop(call. = FALSE,
              "The first `lon`` value must be the minimum value.")
       }
-      if (lonlat[3] > lonlat[4]) {
+      if (lonlat[1] > lonlat[3]) {
         stop(call. = FALSE,
              "The first `lat`` value must be the minimum value.")
       }
       message(
-        "Fetching regional data for lon ",
-        lonlat[1],
+        "Fetching regional data for the area within ",
+        lonlat[[1]],
         ", ",
-        lonlat[2],
-        ", lat ",
-        lonlat[3],
+        lonlat[[2]],
         ", ",
-        lonlat[4],
-        "./n",
+        lonlat[[3]],
+        ", ",
+        lonlat[[4]],
+        ".\n"
       )
       identifier <- "Regional"
-      bbox <- lonlat
+      bbox <-  paste0(lonlat, collapse = ",")
     } else {
       stop(call. = FALSE,
            "You have entered an invalid request for `lonlat`.")
@@ -245,7 +251,7 @@ power_query <- function(community,
       endDate = dates[[2]],
       userCommunity = community,
       tempAverage = temporal_average,
-      bbox = lonlat_identifier$bbox,
+      bbox = I(lonlat_identifier$bbox),
       outputList = "CSV",
       user = "anonymous"
     )
