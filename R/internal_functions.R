@@ -109,7 +109,9 @@ check_pars <-
 
     if (any(is.na(parameters[rows, cols]))) {
       stop(call. = FALSE,
-           "You have entered an invalid `temporal_average` for the parameters."
+           "You have entered an invalid value for `temporal_average` for the\n",
+           "supplied `pars`. One or more `pars` are not, available for\n",
+           paste0(temporal_average), ", please check."
       )
     }
 
