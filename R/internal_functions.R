@@ -185,7 +185,8 @@ check_lonlat <-
         ", lat ",
         lonlat[3],
         ", ",
-        lonlat[4]
+        lonlat[4],
+        "./n",
       )
       identifier <- "Regional"
       bbox <- lonlat
