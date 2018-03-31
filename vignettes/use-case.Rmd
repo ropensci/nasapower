@@ -39,7 +39,7 @@ install.packages("APSIM")
 
 Load the packages necessary.
 
-```{r load_libraries, message=FALSE}
+```{r load_libraries, message=FALSE, eval=TRUE}
 library(APSIM)
 library(nasapower)
 library(ggplot2)
@@ -54,7 +54,7 @@ location 151.81 degrees longitude and -27.48 degrees latitude, for 2010. As a
 proxy for potential incoming radiation, `SRAD`, we'll use `ALLSKY_TOA_SW_DWN`,
 top-of-atmosphere insolation, from NASA - POWER.
 
-```{r get_data_show, eval=FALSE}
+```{r get_data_show, eval=TRUE}
 sw_dwn <- get_power(
   lonlat = c(151.81, -27.48),
   dates = c("2010-01-01", "2010-12-31"),
@@ -64,26 +64,13 @@ sw_dwn <- get_power(
   )
 ```
 
-```{r get_data_execute, eval=TRUE, message=FALSE, include=FALSE}
-# This code chunk actually downloads the data, but it will show
-# download progress, so we don't include it.
-sw_dwn <- get_power(
-  lonlat = c(151.81, -27.48),
-  dates = c("2010-01-01", "2010-12-31"),
-  pars = "ALLSKY_TOA_SW_DWN",
-  community = "AG",
-  temporal_average = "DAILY"
-  )
-```
-
-
 # Compare the Data
 
 To compare the data more easily using a graph and correlation measures, join the
 two data frames to create a data frame called, `compare`.
 
-```{r compare, eval=FALSE}
-compare <- data.frame(kingsData$rad, swv_dwn$swv_dwn)
+```{r compare, eval=TRUE}
+compare <- data.frame(kingsData$rad, sw_dwn$ALLSKY_TOA_SW_DWN)
 ```
 
 ## Graph the Data
@@ -92,13 +79,13 @@ Graph radiation values from the weather station at Kingsthorpe in
 `APSIM::kingsData` along against the POWER data to illustrate why POWER data are
 often used as a substitute for on-the-ground measurements.
 
-```{r graph_rad, eval=FALSE}
-ggplot(compare, aes(x = kingsData.rad, y = swv_dwn.swv_dwn)) +
+```{r graph_rad, eval=TRUE}
+ggplot(compare, aes(x = kingsData.rad, y = sw_dwn.ALLSKY_TOA_SW_DWN)) +
   geom_point(colour = "orange") +
   geom_abline(colour = "black", slope = 1) +
   theme_minimal()
   
-  cor(compare$kingsData.rad, compare$swv_dwn.swv_dwn)
+cor(compare$kingsData.rad, compare$sw_dwn.ALLSKY_TOA_SW_DWN)
 ```
 
 The graph shows a strong relationship between the two sets of data as does the
