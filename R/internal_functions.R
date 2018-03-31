@@ -99,7 +99,7 @@ check_pars <-
       stop(call. = FALSE,
            "You have entered an invalid value for `pars`.")
     } else
-    pars <- paste0(pars, collapse = ",")
+      pars <- paste0(pars, collapse = ",")
     return(pars)
   }
 
@@ -135,44 +135,45 @@ check_lonlat <-
     if (length(lonlat) == 2 && is.numeric(lonlat)) {
       if (lonlat[1] < -180 || lonlat[1] > 180) {
         stop(call. = FALSE,
-          "Please check your longitude, `",
-          paste0(lonlat[1]),
-          "`, to be sure it is valid.\n"
+             "Please check your longitude, `",
+             paste0(lonlat[1]),
+             "`, to be sure it is valid.\n"
         )
       }
       if (lonlat[2] < -90 || lonlat[2] > 90) {
         stop(call. = FALSE,
-          "Please check your latitude, `",
-          paste0(lonlat[2]),
-          "`, value to be sure it is valid.\n"
+             "Please check your latitude, `",
+             paste0(lonlat[2]),
+             "`, value to be sure it is valid.\n"
         )
       }
       message(
-          "Fetching single point data for lon ", lonlat[1], ", lat ", lonlat[2]
-            )
+        "Fetching single point data for lon ", lonlat[1], ", lat ", lonlat[2]
+      )
       identifier <- "SinglePoint"
       lon <- lonlat[1]
       lat <- lonlat[2]
 
     } else if (length(lonlat) == 4 && is.numeric(lonlat)) {
       if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
-        stop("Please provide a correct bounding box values.\n",
-             "The bounding box can only accept a max of 10 x 10 region of\n",
-             "0.5 degree values (e.g., 100 points total).\n")
+        stop(call. = FALSE,
+             "Please provide correct bounding box values. The bounding box\n",
+             "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
+             "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n")
       }
 
       if (lonlat[c(2, 4)] < -180 || lonlat[c(2, 4)] > 180) {
         stop(call. = FALSE,
-          "Please check your longitude, `",
-          paste0(lonlat[c(2, 4)]),
-          "`, to be sure it is valid.\n"
+             "Please check your longitude, `",
+             paste0(lonlat[c(2, 4)]),
+             "`, to be sure it is valid.\n"
         )
       }
       if (lonlat[c(1, 3)] < -90 || lonlat[c(2, 4)] > 90) {
         stop(call. = FALSE,
-          "Please check your latitude, `",
-          paste0(lonlat[c(1, 3)]),
-          "`, value to be sure it is valid.\n"
+             "Please check your latitude, `",
+             paste0(lonlat[c(1, 3)]),
+             "`, value to be sure it is valid.\n"
         )
       }
       if (lonlat[2] > lonlat[4]) {
