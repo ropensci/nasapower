@@ -89,17 +89,31 @@ check_community <-
 
 #' @noRd
 check_pars <-
-  function(pars) {
+  function(pars, temporal_average) {
     if (is.null(pars)) {
       stop(call. = FALSE,
            "You have not provided a `pars` value.")
     }
     pars <- toupper(pars)
+    temporal_average <- tools::toTitleCase(temporal_average)
+
+    # check pars to make sure that they are valid
     if (any(pars %notin% parameters[[1]])) {
       stop(call. = FALSE,
            "You have entered an invalid value for `pars`.")
-    } else
-      pars <- paste0(pars, collapse = ",")
+    }
+
+    # check to make sure temporal_average is appropriate for given pars
+    rows <- which(parameters$Value %in% pars)
+    cols <- grep(temporal_average, colnames(parameters))
+
+    if (any(is.na(parameters[rows, cols]))) {
+      stop(call. = FALSE,
+           "You have entered an invalid `temporal_average` for the parameters."
+      )
+    }
+
+    pars <- paste0(pars, collapse = ",")
     return(pars)
   }
 
