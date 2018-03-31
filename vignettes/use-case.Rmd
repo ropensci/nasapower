@@ -38,7 +38,7 @@ install.packages("APSIM")
 
 Load the packages necessary.
 
-```{r load-libraries, message=FALSE}
+```{r load-libraries, message=FALSE, eval=TRUE}
 library(APSIM)
 library(nasapower)
 library(ggplot2)
@@ -95,7 +95,7 @@ ggplot(compare, aes(x = kingsData.rad, y = swv_dwn.swv_dwn)) +
   geom_abline(colour = "black", slope = 1) +
   theme_minimal()
   
-  cor(compare$kingsData.rad, compare$swv_dwn.swv_dwn)
+cor(compare$kingsData.rad, compare$swv_dwn.swv_dwn)
 ```
 
 The graph shows a strong relationship between the two sets of data as does the
