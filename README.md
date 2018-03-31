@@ -43,70 +43,52 @@ devtools::install_github("adamhsparks/nasapower", build_vignettes = TRUE)
 downloading NASA-POWER agroclimatology data in your R session as a tidy
 data frame.
 
-*nasapower* only provides functions, `get_cell()`, for a given 1˚
-longitude by 1˚ latitude cell and `get_region()`, both of which will
-which will download specified variables and return a tidy data frame of
-the requested data. Weather variables can be specified by using the
-`vars` argument.
+*nasapower* only provides one function, `get_power()`, which will
+download specified variables and return a tidy data frame of the
+requested data. Weather variables can be specified by using the `pars`
+argument.
 
-Both functions accept four arguments.
+## Using get\_power()
 
-``` r
-get_cell(lonlat = NULL, vars = c("T2M", "T2MN", "T2MX", "RH2M"),
-  stdate = "1983-1-1", endate = Sys.Date())
-```
-
-  - `lonlat` for `get_cell()` A length-2 numeric vector giving the
-    decimal degree longitude and and latitude in that order for cell
-    data to download
-
-  - `lonlat` for `get_region()` A length-4 numeric vector of the minimum
-    longitude, maximum longitude, minimum latitude and maximum latitude.
-
-  - `vars` Weather variables to query for download, defaults to all
-    available. Valid `vars` include:
-    
-      - toa\_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)
-    
-      - swv\_dwn - Average insolation incident on a horizontal surface
-        (MJ/m^2/day)
-    
-      - lwv\_dwn - Average downward longwave radiative flux (MJ/m^2/day)
-    
-      - T2M - Average air temperature at 2m above the surface of the
-        Earth (degrees C)
-    
-      - T2MN - Minimum air temperature at 2m above the surface of the
-        Earth (degrees C)
-    
-      - T2MX - Maximum air temperature at 2m above the surface of the
-        Earth (degrees C)
-    
-      - RH2M - Relative humidity at 2m above the surface of the Earth
-        (%)
-    
-      - DFP2M - Dew/Frost point temperature at 2m above the surface of
-        the Earth (degrees C)
-    
-      - RAIN - Average precipitation (mm/day)
-    
-      - WS10M - Wind speed at 10m above the surface of the Earth (m/s)
-
-  - `stdate` Starting date for download, defaults to 1983-01-01 (there
-    are no earlier data)
-
-  - `endate` End date for download, defaults to current date
-
-### Basic example of using get\_cell()
-
-Fetch all weather variables available for 1983-1-1 to current date for
-the cell at longitude -179.5 and latitude -89.5.
+The `get_power()` function requires five arguments as seen in this
+example, which will fetch relative humidity (RH2M) and temperature (T2M)
+for the year 1985 on a daily time-step.
 
 ``` r
-library(nasapower)
-
-get_cell(lonlat = c(-179.5, -89.5))
+power <- get_power(community = "AG",
+                   lonlat = c(-179.5, -89.5),
+                   pars = c("RH2M", "T2M"),
+                   dates = c("1985-01-01", "1985-12-31"),
+                   temporal_average = "daily")
 ```
+
+The arguments are:
+
+  - `community`, a text string with valid values of: “AG”
+    (Agroclimatology), “SSE” (Surface meteorology and Solar Energy) or
+    “SB” (Sustainable Buildings). The selected user community will
+    affect the units of the parameter and the temporal display of time
+    series data (*e.g.* Agroclimatology will use MJ/m<sup>2</sup>/day
+    for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as
+    units).
+
+  - `lonlat`, a length-2 numeric vector giving the decimal degree
+    longitude and and latitude coordinates in that order for cell data
+    to download or a length-4 numeric vector giving the decimal degree
+    longitude and and latitude coordinates forming a bounding box as
+    ymin, xmin, ymax, xmax in that order.
+
+  - `pars`, a character vector of weather variables to query for
+    download. For a complete listing of valid `pars`, please see column
+    1 of the package included data, `parameters`, e.g., using RStudio,
+    `View(parameters)`.
+
+  - `dates`, a vector of start and end dates for which to query the
+    NASA-POWER API
+
+  - `temporal_average`, a character vector of the desired temporal
+    average(s). Valid values are “DAILY”, “INTERANNUAL” and
+    “CLIMATOLOGY”.
 
 ## Documentation
 
