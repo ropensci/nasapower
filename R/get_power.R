@@ -8,12 +8,13 @@
 #'@param community Dataset name, currently supported are AG, SB and SSE. See
 #'  argument details for more.
 #'@param lonlat A numeric vector of geographic coordinates for a cell or region
-#'  entered as x, y coordinates in that order, *e.g.*, `lonlat = c(36, 45)`.
-#'  Leave unspecified for global coverage.  See argument details for more.
+#'  entered as x, y coordinates.  Leave unspecified for global coverage.  See
+#'  argument details for more.
 #'@param pars A character vector of solar or meteorological variables to
-#'  download.  See the `value` field of [`parameters`] for a full list of valid
+#'  download.  See the `Value` field of [`parameters`] for a full list of valid
 #'  values or visit the [POWER website](https://power.larc.nasa.gov/new/) for
-#'  the Parameter Dictionary.
+#'  the Parameter Dictionary.  If downloading global coverage a maximum of 3
+#'  `pars` can be specified at one time.
 #'@param dates A character vector of start and end dates in that order, *e.g.*,
 #'  `dates = c("1983-01-01", "2017-12-31")`.  See argument details for more.
 #'@param temporal_average Temporal average for data being queried, currently

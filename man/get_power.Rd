@@ -12,13 +12,14 @@ get_power(community = NULL, lonlat = NULL, pars = NULL, dates = NULL,
 argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates in that order, \emph{e.g.}, \code{lonlat = c(36, 45)}.
-Leave unspecified for global coverage.  See argument details for more.}
+entered as x, y coordinates.  Leave unspecified for global coverage.  See
+argument details for more.}
 
 \item{pars}{A character vector of solar or meteorological variables to
-download.  See the \code{value} field of \code{\link{parameters}} for a full list of valid
+download.  See the \code{Value} field of \code{\link{parameters}} for a full list of valid
 values or visit the \href{https://power.larc.nasa.gov/new/}{POWER website} for
-the Parameter Dictionary.}
+the Parameter Dictionary.  If downloading global coverage a maximum of 3
+\code{pars} can be specified at one time.}
 
 \item{dates}{A character vector of start and end dates in that order, \emph{e.g.},
 \code{dates = c("1983-01-01", "2017-12-31")}.  See argument details for more.}
