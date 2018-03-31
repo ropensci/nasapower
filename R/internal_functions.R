@@ -1,3 +1,4 @@
+
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -5,7 +6,6 @@
 
 #' @noRd
 check_dates <- function(dates) {
-
   # if dates are NULL, set to defaults
   if (is.null(dates)) {
     dates <- c("1983-01-01", as.character(Sys.Date()))
@@ -38,7 +38,8 @@ check_dates <- function(dates) {
                                       )),
       warning = function(c) {
         stop(call. = FALSE,
-             x, " is not a valid entry for date. Enter as YYYY-MM-DD.")
+             x,
+             " is not a valid entry for date. Enter as YYYY-MM-DD.")
       }
     )
     return(as.Date(x))
@@ -68,7 +69,7 @@ check_dates <- function(dates) {
 
   names(dates) <- c("startDate", "endDate")
   dates <- lapply(dates, as.character)
-  dates <- gsub("-","" , dates,ignore.case = TRUE)
+  dates <- gsub("-", "" , dates, ignore.case = TRUE)
   return(dates)
 }
 
@@ -108,13 +109,16 @@ check_pars <-
     cols <- grep(temporal_average, colnames(parameters))
 
     if (any(is.na(parameters[rows, cols]))) {
-      stop(call. = FALSE,
-           "You have entered an invalid value for `temporal_average` for the\n",
-           "supplied `pars`. One or more `pars` are not, available for\n",
-           paste0(temporal_average), ", please check."
+      stop(
+        call. = FALSE,
+        "You have entered an invalid value for `temporal_average` for the\n",
+        "supplied `pars`. One or more `pars` are not, available for\n",
+        paste0(temporal_average),
+        ", please check."
       )
     }
 
+    # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
     return(pars)
   }
@@ -150,46 +154,52 @@ check_lonlat <-
 
     if (length(lonlat) == 2 && is.numeric(lonlat)) {
       if (lonlat[1] < -180 || lonlat[1] > 180) {
-        stop(call. = FALSE,
-             "Please check your longitude, `",
-             paste0(lonlat[1]),
-             "`, to be sure it is valid.\n"
+        stop(
+          call. = FALSE,
+          "Please check your longitude, `",
+          paste0(lonlat[1]),
+          "`, to be sure it is valid.\n"
         )
       }
       if (lonlat[2] < -90 || lonlat[2] > 90) {
-        stop(call. = FALSE,
-             "Please check your latitude, `",
-             paste0(lonlat[2]),
-             "`, value to be sure it is valid.\n"
+        stop(
+          call. = FALSE,
+          "Please check your latitude, `",
+          paste0(lonlat[2]),
+          "`, value to be sure it is valid.\n"
         )
       }
       message(
         "Fetching single point data for lon ", lonlat[1], ", lat ", lonlat[2]
-      )
+        )
       identifier <- "SinglePoint"
       lon <- lonlat[1]
       lat <- lonlat[2]
 
     } else if (length(lonlat) == 4 && is.numeric(lonlat)) {
       if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
-        stop(call. = FALSE,
-             "Please provide correct bounding box values. The bounding box\n",
-             "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
-             "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n")
+        stop(
+          call. = FALSE,
+          "Please provide correct bounding box values. The bounding box\n",
+          "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
+          "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n"
+        )
       }
 
       if (lonlat[c(2, 4)] < -180 || lonlat[c(2, 4)] > 180) {
-        stop(call. = FALSE,
-             "Please check your longitude, `",
-             paste0(lonlat[c(2, 4)]),
-             "`, to be sure it is valid.\n"
+        stop(
+          call. = FALSE,
+          "Please check your longitude, `",
+          paste0(lonlat[c(2, 4)]),
+          "`, to be sure it is valid.\n"
         )
       }
       if (lonlat[c(1, 3)] < -90 || lonlat[c(2, 4)] > 90) {
-        stop(call. = FALSE,
-             "Please check your latitude, `",
-             paste0(lonlat[c(1, 3)]),
-             "`, value to be sure it is valid.\n"
+        stop(
+          call. = FALSE,
+          "Please check your latitude, `",
+          paste0(lonlat[c(1, 3)]),
+          "`, value to be sure it is valid.\n"
         )
       }
       if (lonlat[2] > lonlat[4]) {
@@ -304,7 +314,8 @@ power_query <- function(community,
   tryCatch({
     txt <-
       jsonlite::fromJSON(res$parse("UTF-8"))
-    res <- readr::read_csv(txt$outputs$csv, na = c("-", -99),
+    res <- readr::read_csv(txt$outputs$csv,
+                           na = c("-", -99),
                            col_types = readr::cols())
   },
   error = function(e) {
