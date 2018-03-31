@@ -264,12 +264,9 @@ power_query <- function(community,
     )
   }
 
-  res <- client$get(query = query_list)
-
   # parse to an R list
   tryCatch({
-    txt <-
-      jsonlite::fromJSON(res$parse("UTF-8"))
+    res <- client$get(query = query_list)
   },
   error = function(e) {
     e$message <-
@@ -281,6 +278,8 @@ power_query <- function(community,
 
   # read resulting CSV file
   tryCatch({
+    txt <-
+      jsonlite::fromJSON(res$parse("UTF-8"))
     res <- readr::read_csv(txt$outputs$csv, na = c("-", -99),
                            col_types = readr::cols())
   },
