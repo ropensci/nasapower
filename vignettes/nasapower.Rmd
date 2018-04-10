@@ -51,7 +51,7 @@ radiation units, while SSE and SB use kW/m^2^/day as units).
 and latitude coordinates in that order for cell data to download or a length-4
 numeric vector giving the decimal degree longitude and and latitude coordinates
 forming a bounding box as ymin, xmin, ymax, xmax in that order. When specifying
-a region, the maximum amount of cells that can be downloaded are 100, i.e. a 10
+a region, the maximum amount of cells that can be downloaded are 100, i.e., a 10
 x 10 0.5˚ bounding box or 5 x 5 1˚ bounding box. Leave blank for global
 coverage.
 
@@ -62,7 +62,7 @@ the Parameter Dictionary. If downloading global coverage a maximum of 3 `pars`
 can be specified at one time.
 
 - `dates`, a vector of start and end dates for which to query the NASA-POWER
-API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
+API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`. 
 
 - `temporal_average`, a character vector of the desired temporal average(s).
 Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
