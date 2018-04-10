@@ -101,8 +101,8 @@ check_pars <-
            "You have not provided a `pars` value.")
     }
 
-    temporal_average <- tools::toTitleCase(temporal_average)
-    if (temporal_average %notin% c("Daily", "Interannual", "Climatology")) {
+    temporal_average <- toupper(temporal_average)
+    if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
       stop(call. = FALSE,
            "You have entered an invalid value for `temporal_average`.")
     }

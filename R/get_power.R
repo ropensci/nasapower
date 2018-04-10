@@ -91,7 +91,7 @@ get_power <- function(community = NULL,
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   dates <- check_dates(dates)
-  pars <- check_pars(pars)
+  pars <- check_pars(pars, temporal_average)
   lonlat_identifier <- check_lonlat(lonlat, pars)
   community <- check_community(community)
 
