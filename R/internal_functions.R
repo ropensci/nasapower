@@ -100,8 +100,10 @@ check_pars <-
            "You have not provided a `pars` value.")
     }
 
-    temporal_average <- toupper(temporal_average)
-    if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
+    temporal_average <- lettercase::str_ucfirst(
+      lettercase::str_lowercase(temporal_average)
+    )
+    if (temporal_average %notin% c("Daily", "Interannual", "Climatology")) {
       stop(call. = FALSE,
            "You have entered an invalid value for `temporal_average`.")
     }
@@ -114,16 +116,16 @@ check_pars <-
     }
 
     # check to make sure temporal_average is appropriate for given pars
-    rows <- which(parameters$Value %in% pars)
-    cols <- grep(temporal_average, colnames(parameters))
+    rows <- which(parameters$Value %in% pars) # nocov
+    cols <- grep(temporal_average, colnames(parameters)) # nocov
 
     if (any(is.na(parameters[rows, cols]))) {
       stop(
         call. = FALSE,
         "You have entered an invalid value for `temporal_average` for the\n",
         "supplied `pars`. One or more `pars` are not, available for\n",
-        paste0(temporal_average),
-        ", please check."
+        "`", temporal_average,
+        "`, please check."
       )
     }
 
