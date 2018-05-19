@@ -28,3 +28,11 @@ expect_error(check_pars(pars = "ALLSKY_SFC_SW_DWN_03_GMT",
              regexp = "*You have entered an invalid value for `temporal_average` for the\n*")
 })
 
+test_that("pars are returned as a comma separated string with no spaces", {
+  pars <- check_pars(pars = c("ALLSKY_SFC_SW_DWN_03_GMT",
+                              "ALLSKY_SFC_LW_DWN"),
+                     temporal_average = "Climatology")
+  expect_equal(nchar(pars), 42)
+  expect_length(pars, 1)
+})
+
