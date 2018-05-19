@@ -84,7 +84,7 @@ check_community <-
       stop(call. = FALSE,
            "You have provided an invalid `community` value.")
     }
-    return(community)
+    return(community) # nocov
   }
 
 #' @noRd
