@@ -13,15 +13,42 @@
 #' @rdname nasapower-deprecated
 #' @name nasapower-deprecated
 #' @export
-get_cell <- function() {
-  .Deprecated("get_power", package = "nasapower")
+get_cell <- function(lonlat = NULL,
+                     vars = c(
+                       "T2M",
+                       "T2MN",
+                       "T2MX",
+                       "RH2M",
+                       "toa_dwn",
+                       "swv_dwn",
+                       "lwv_dwn",
+                       "DFP2M",
+                       "RAIN",
+                       "WS10M"
+                     ),
+                     stdate = "1983-1-1",
+                     endate = Sys.Date()) {
+  .Deprecated(new = "get_power", package = "nasapower")
 }
 
 #' @rdname nasapower-deprecated
 #' @name nasapower-deprecated
 #' @export
-get_region <- function() {
-  .Deprecated("get_power", package = "nasapower")
+get_region <- function(lonlat = NULL,
+                       vars = c(
+                         "T2M",
+                         "T2MN",
+                         "T2MX",
+                         "RH2M",
+                         "toa_dwn",
+                         "swv_dwn",
+                         "lwv_dwn",
+                         "DFP2M",
+                         "RAIN",
+                         "WS10M"
+                       ),
+                       stdate = "1983-1-1",
+                       endate = Sys.Date()) {
+  .Deprecated(new = "get_power", package = "nasapower")
 }
-
 NULL
