@@ -20,6 +20,7 @@ License: MIT + file LICENSE
 Imports:
     crul,
     httr,
+    lettercase,
     lubridate,
     jsonlite,
     readr,
