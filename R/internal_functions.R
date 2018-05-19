@@ -67,7 +67,6 @@ check_dates <- function(dates) {
          "The data cannot possibly extend beyond this moment.")
   }
 
-  names(dates) <- c("startDate", "endDate")
   dates <- lapply(dates, as.character)
   dates <- gsub("-", "" , dates, ignore.case = TRUE)
   return(dates)
