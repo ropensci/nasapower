@@ -8,8 +8,7 @@
 #'@param community Dataset name, currently supported are AG, SB and SSE. See
 #'  argument details for more.
 #'@param lonlat A numeric vector of geographic coordinates for a cell or region
-#'  entered as x, y coordinates.  Leave unspecified for global coverage.  See
-#'  argument details for more.
+#'  entered as x, y coordinates.  See argument details for more.
 #'@param pars A character vector of solar or meteorological variables to
 #'  download.  See the `Value` field of [`parameters`] for a full list of valid
 #'  values or visit the [POWER website](https://power.larc.nasa.gov/new/) for
@@ -42,15 +41,13 @@
 #'@section Argument details for `lonlat`: \describe{ \item{For a single
 #'  point}{To get a specific cell, 1/2 x 1/2 degree, supply a length-2 numeric
 #'  vector giving the decimal degree longitude and latitude in that order for
-#'  data to download, *e.g.*, `lonlat = c(-179.5, -89.5)`.}
+#'  data to download, *e.g.*, `lonlat = c(-179.5, -89.5)`.}}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
 #'  vector as `lonlat = c(ymin, xmin, ymax, xmax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
 #'  `lonlat = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
-#'
-#'  \item{For global coverage}{Not used.} }
 #'
 #'@section Argument details for `dates`: If `dates` is unspecified, defaults to
 #'  a start date of 1983-01-01 (the earliest available data) and an end date of
