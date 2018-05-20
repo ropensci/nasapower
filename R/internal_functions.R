@@ -169,7 +169,7 @@ check_lonlat <-
       lat <- lonlat[2]
 
     } else if (length(lonlat) == 4 && is.numeric(lonlat)) {
-      if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
+      if ((lonlat[[2]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[3]]) * 4 > 100) {
         stop(
           call. = FALSE,
           "\nPlease provide correct bounding box values. The bounding box\n",
@@ -178,7 +178,7 @@ check_lonlat <-
         )
       }
 
-      if (lonlat[c(2, 4)] < -180 || lonlat[c(2, 4)] > 180) {
+      if (lonlat[c(1, 2)] < -180 || lonlat[c(1, 2)] > 180) {
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
@@ -186,7 +186,7 @@ check_lonlat <-
           "`, values to be sure they is valid.\n"
         )
       }
-      if (lonlat[c(1, 3)] < -90 || lonlat[c(2, 4)] > 90) {
+      if (lonlat[c(3, 4)] < -90 || lonlat[c(3, 4)] > 90) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
@@ -194,24 +194,24 @@ check_lonlat <-
           "`, values to be sure they are valid.\n"
         )
       }
-      if (lonlat[2] > lonlat[4]) {
+      if (lonlat[1] > lonlat[2]) {
         stop(call. = FALSE,
              "\nThe first `lon` value must be the minimum value.\n")
       }
-      if (lonlat[1] > lonlat[3]) {
+      if (lonlat[3] > lonlat[4]) {
         stop(call. = FALSE,
              "\nThe first `lat` value must be the minimum value.\n")
       }
       message(
         "\nFetching regional data for the area within ",
         lonlat[[1]],
-        ", ",
+        "lon, ",
         lonlat[[2]],
-        ", ",
+        "lon, ",
         lonlat[[3]],
-        ", ",
+        "lat, ",
         lonlat[[4]],
-        ".\n"
+        "lat.\n"
       )
       identifier <- "Regional"
       bbox <-  paste0(lonlat, collapse = ",")
