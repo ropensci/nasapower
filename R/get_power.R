@@ -27,7 +27,8 @@
 #'  must be supplied. This  will affect the units of the parameter and the
 #'  temporal display of time series data.
 #'
-#'  \describe{ \item{AG}{Provides access to the Agroclimatology Archive, which
+#'  \describe{
+#'  \item{AG}{Provides access to the Agroclimatology Archive, which
 #'  contains industry-friendly parameters formatted for input to crop models.}
 #'
 #'  \item{SB}{Provides access to the Sustainable Buildings Archive, which
@@ -36,18 +37,21 @@
 #'
 #'  \item{SSE}{Provides access to the Renewable Energy Archive, which contains
 #'  parameters specifically tailored to assist in the design of solar and wind
-#'  powered renewable energy systems.} }
+#'  powered renewable energy systems.}
+#'  }
 #'
-#'@section Argument details for `lonlat`: \describe{ \item{For a single
-#'  point}{To get a specific cell, 1/2 x 1/2 degree, supply a length-2 numeric
-#'  vector giving the decimal degree longitude and latitude in that order for
-#'  data to download, *e.g.*, `lonlat = c(-179.5, -89.5)`.}}
+#'@section Argument details for `lonlat`:
+#' \describe{
+#'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
+#'  length-2 numeric vector giving the decimal degree longitude and latitude in
+#'  that order for data to download, *e.g.*, `lonlat = c(-179.5, -89.5)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
 #'  vector as `lonlat = c(xmin, xmax, ymin, ymax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
 #'  `lonlat = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
+#'  }
 #'
 #'@section Argument details for `dates`: If `dates` is unspecified, defaults to
 #'  a start date of 1983-01-01 (the earliest available data) and an end date of
@@ -84,7 +88,6 @@ get_power <- function(community = NULL,
                       pars = NULL,
                       dates = NULL,
                       temporal_average = NULL) {
-
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   dates <- check_dates(dates)
