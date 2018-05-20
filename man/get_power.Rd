@@ -59,7 +59,7 @@ vector giving the decimal degree longitude and latitude in that order for
 data to download, \emph{e.g.}, \code{lonlat = c(-179.5, -89.5)}.}}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
-vector as \code{lonlat = c(ymin, xmin, ymax, xmax)} in that order for a given
+vector as \code{lonlat = c(xmin, xmax, ymin, ymax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 \code{lonlat = c(112.5, 122.5, -55.5, -45.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}

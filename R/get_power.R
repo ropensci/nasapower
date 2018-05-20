@@ -44,7 +44,7 @@
 #'  data to download, *e.g.*, `lonlat = c(-179.5, -89.5)`.}}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
-#'  vector as `lonlat = c(ymin, xmin, ymax, xmax)` in that order for a given
+#'  vector as `lonlat = c(xmin, xmax, ymin, ymax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
 #'  `lonlat = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
