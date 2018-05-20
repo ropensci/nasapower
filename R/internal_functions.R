@@ -245,7 +245,7 @@ power_query <- function(community,
     "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
 
   client <- crul::HttpClient$new(url = power_url)
-  ua <- user_agent("http://github.com/adamhsparks/nasapower") # nocov end
+  user_agent <- "http://github.com/adamhsparks/nasapower" # nocov end
 
   # check status
   status <- client$get()
@@ -264,7 +264,7 @@ power_query <- function(community,
       outputList = "CSV",
       lon = lonlat_identifier$lon,
       lat = lonlat_identifier$lat,
-      user = ua
+      user = user_agent
     )
   }
 
