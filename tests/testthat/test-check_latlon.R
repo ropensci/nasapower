@@ -57,3 +57,9 @@ test_that("check_lonlat stops if more than three are requested for global", {
   )
   expect_error(check_lonlat(lonlat, pars))
 })
+
+test_that("check_lonlat stops if no `lonlat` is supplied", {
+  expect_error(check_lonlat(lonlat  = NULL, pars),
+               regexp = "*You must provide a `lonlat` (maximum 100 points total or 10x10 cells)*")
+})
+
