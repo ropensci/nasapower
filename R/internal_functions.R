@@ -178,19 +178,25 @@ check_lonlat <-
         )
       }
 
-      if (lonlat[c(1, 2)] < -180 || lonlat[c(1, 2)] > 180) {
+      if (any(lonlat[1] < -180 ||
+              lonlat[2] < -180 ||
+              lonlat[1] > 180 ||
+              lonlat[2] > 180)) {
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
-          lonlat[2], "`, `", lonlat[4],
-          "`, values to be sure they is valid.\n"
+          lonlat[1], "`, `", lonlat[2],
+          "`, values to be sure they are valid.\n"
         )
       }
-      if (lonlat[c(3, 4)] < -90 || lonlat[c(3, 4)] > 90) {
+      if (any(lonlat[3] < -90 ||
+              lonlat[4] < -90 ||
+              lonlat[3] > 90 ||
+              lonlat[4] > 90)) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
-          lonlat[1], "`, `", lonlat[3],
+          lonlat[3], "`, `", lonlat[4],
           "`, values to be sure they are valid.\n"
         )
       }
@@ -205,13 +211,13 @@ check_lonlat <-
       message(
         "\nFetching regional data for the area within ",
         lonlat[[1]],
-        "lon, ",
+        " & ",
         lonlat[[2]],
-        "lon, ",
+        " lon, ",
         lonlat[[3]],
-        "lat, ",
+        " & ",
         lonlat[[4]],
-        "lat.\n"
+        " lat.\n"
       )
       identifier <- "Regional"
       bbox <-  paste0(lonlat, collapse = ",")
@@ -235,10 +241,11 @@ power_query <- function(community,
                         pars,
                         dates,
                         temporal_average) {
-  power_url <-
+  power_url <- # nocov start
     "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
 
   client <- crul::HttpClient$new(url = power_url)
+  ua <- user_agent("http://github.com/adamhsparks/nasapower") # nocov end
 
   # check status
   status <- client$get()
@@ -257,7 +264,7 @@ power_query <- function(community,
       outputList = "CSV",
       lon = lonlat_identifier$lon,
       lat = lonlat_identifier$lat,
-      user = "anonymous"
+      user = ua
     )
   }
 
