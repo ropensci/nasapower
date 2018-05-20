@@ -72,11 +72,26 @@ test_that("check_lonlat handles single point properly", {
 })
 
 test_that("check_lonlat handles bboxes that are too large", {
-  expect_error(check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5), pars),
+  expect_error(check_lonlat(lonlat = c(-179.5, 179.5, -89.5, 89.5), pars),
                  regexp = "Please provide correct bounding box values*")
 })
 
-test_that("check_lonlat checks validity of the latitude values", {
-  expect_error(check_lonlat(lonlat = c(-179.5, 179.5, -89.5, 89.5), pars),
-               regexp = "Please check your latitude*")
+test_that("check_lonlat checks order of the latitude values", {
+  expect_error(check_lonlat(lonlat = c(-179.5, 179.5, 89.5, -89.5), pars),
+               regexp = "\nThe first `lat` value must be the minimum value.\n")
+})
+
+test_that("check_lonlat checks order of the lat values", {
+  expect_error(check_lonlat(lonlat = c(179.5, -179.5, -89.5, 89.5), pars),
+               regexp = "\nThe first `lon` value must be the minimum value.\n")
+})
+
+test_that("check_lonlat checks validity of the lat values", {
+  expect_error(check_lonlat(lonlat = c(179.5, 91), pars),
+               regexp = "Please check your latitude, `91`, value to be sure it is valid.\n")
+})
+
+test_that("check_lonlat checks validity of the lat values", {
+  expect_error(check_lonlat(lonlat = c(182, 90), pars),
+               regexp = "Please check your longitude, `182`, to be sure it is valid.\n")
 })
