@@ -235,7 +235,7 @@ power_query <- function(community,
                         dates,
                         temporal_average) {
   power_url <-
-    "asdc-arcgis.larc.nasa.gov/cgi-bin/power/v1beta/DataAccess.py?"
+    "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
 
   client <- crul::HttpClient$new(url = power_url)
 
