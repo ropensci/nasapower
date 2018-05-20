@@ -86,12 +86,42 @@ test_that("check_lonlat checks order of the lat values", {
                regexp = "\nThe first `lon` value must be the minimum value.\n")
 })
 
-test_that("check_lonlat checks validity of the lat values", {
+test_that("check_lonlat checks validity of single lat values", {
   expect_error(check_lonlat(lonlat = c(179.5, 91), pars),
                regexp = "Please check your latitude, `91`, value to be sure it is valid.\n")
 })
 
-test_that("check_lonlat checks validity of the lat values", {
+test_that("check_lonlat checks validity of single lon values", {
   expect_error(check_lonlat(lonlat = c(182, 90), pars),
                regexp = "Please check your longitude, `182`, to be sure it is valid.\n")
 })
+
+# bbox checks ------------------------------------------------------------------
+
+test_that("check_lonlat checks validity of bbox latmin values", {
+  expect_error(check_lonlat(lonlat = c(-179.5, -179.5, 91, 90), pars),
+               regexp = "\nPlease check your latitude, `91`, `90`, values to be sure they are valid.\n")
+})
+
+test_that("check_lonlat checks validity of bbox latmax values", {
+  expect_error(check_lonlat(lonlat = c(-179.5, -179.5, 90, 93), pars),
+               regexp = "\nPlease check your latitude, `90`, `93`, values to be sure they are valid.\n")
+})
+
+test_that("check_lonlat checks validity of bbox lonmin values", {
+  expect_error(check_lonlat(lonlat = c(-181.5, -179.5, 89.5, 89.5), pars),
+               regexp = "\nPlease check your longitude, `-181.5`, `-179.5`, values to be sure they are valid.\n")
+})
+
+test_that("check_lonlat checks validity of bbox lonmax values", {
+  expect_error(check_lonlat(lonlat = c(-179.5, 181, 89.5, 89.5), pars),
+               regexp = "\nPlease check your longitude, `-179.5`, `181`, values to be sure they are valid.\n")
+})
+
+test_that("check_lonlat returns message with proper identifier when valid coordinates are given", {
+          expect_message(test <- check_lonlat(lonlat = c(-179.5, -179.5, 88.5, 89.5), pars),
+                                 regexp = "Fetching regional data for the area within -179.5 & -179.5 lon, 88.5 & 89.5 lat.")
+
+          expect_equal(test$bbox, c("-179.5,-179.5,88.5,89.5"))
+          expect_equal(test$identifier, "Regional")
+          })
