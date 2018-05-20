@@ -139,13 +139,8 @@ check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
     if (is.null(lonlat)) {
-      if (length(pars) > 3) {
-        stop(call. = FALSE,
-             "Only a maximum of 3 pars are accepted for global data requests.")
-      } else {
-        message("lonlat was not set, fetching global data.")
-        identifier <- "Global"
-      }
+     stop(call. = FALSE,
+          "\nYou must provide `lonlat` values (maximum 100 points total or 10x10 cells).\n")
     }
 
     if (length(lonlat) == 2 && is.numeric(lonlat)) {
