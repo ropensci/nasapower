@@ -140,7 +140,7 @@ check_lonlat <-
     bbox <- NULL
     if (is.null(lonlat)) {
      stop(call. = FALSE,
-          "\nYou must provide `lonlat` values (maximum 100 points total or 10x10 cells).\n")
+          "\nYou must provide a `lonlat` (maximum 100 points total or 10x10 cells).\n")
     }
 
     if (length(lonlat) == 2 && is.numeric(lonlat)) {
