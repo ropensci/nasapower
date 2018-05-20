@@ -75,3 +75,8 @@ test_that("check_lonlat handles bboxes that are too large", {
   expect_error(check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5), pars),
                  regexp = "Please provide correct bounding box values*")
 })
+
+test_that("check_lonlat checks validity of the latitude values", {
+  expect_error(check_lonlat(lonlat = c(-179.5, 179.5, -89.5, 89.5), pars),
+               regexp = "Please check your latitude*")
+})
