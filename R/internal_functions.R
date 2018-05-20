@@ -161,7 +161,8 @@ check_lonlat <-
         )
       }
       message(
-        "Fetching single point data for lon ", lonlat[1], ", lat ", lonlat[2]
+        "\nFetching single point data for lon ", lonlat[1], ", lat ", lonlat[2],
+        "\n"
         )
       identifier <- "SinglePoint"
       lon <- lonlat[1]
