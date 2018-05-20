@@ -59,7 +59,19 @@ test_that("check_lonlat stops if more than three are requested for global", {
 })
 
 test_that("check_lonlat stops if no `lonlat` is supplied", {
-  expect_error(check_lonlat(lonlat  = NULL, pars),
+  expect_error(check_lonlat(lonlat = NULL, pars),
                regexp = "*You must provide a `lonlat` (maximum 100 points total or 10x10 cells)*")
 })
 
+test_that("check_lonlat handles single point properly", {
+  expect_message(test <- check_lonlat(lonlat = c(-179.5, -89.5), pars),
+                 regexp = "Fetching single point data for lon*")
+  expect_equal(test$lon, -179.5)
+  expect_equal(test$lat, -89.5)
+  expect_equal(test$identifier, "SinglePoint")
+})
+
+test_that("check_lonlat handles bboxes that are too large", {
+  expect_error(check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5), pars),
+                 regexp = "Please provide correct bounding box values*")
+})
