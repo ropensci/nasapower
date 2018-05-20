@@ -122,7 +122,7 @@ check_pars <-
     if (any(is.na(parameters[rows, cols]))) {
       stop(
         call. = FALSE,
-        "You have entered an invalid value for `temporal_average` for the\n",
+        "\nYou have entered an invalid value for `temporal_average` for the\n",
         "supplied `pars`. One or more `pars` are not, available for\n",
         "`", temporal_average,
         "`, please check."
@@ -147,7 +147,7 @@ check_lonlat <-
       if (lonlat[1] < -180 || lonlat[1] > 180) {
         stop(
           call. = FALSE,
-          "Please check your longitude, `",
+          "\nPlease check your longitude, `",
           paste0(lonlat[1]),
           "`, to be sure it is valid.\n"
         )
@@ -155,7 +155,7 @@ check_lonlat <-
       if (lonlat[2] < -90 || lonlat[2] > 90) {
         stop(
           call. = FALSE,
-          "Please check your latitude, `",
+          "\nPlease check your latitude, `",
           paste0(lonlat[2]),
           "`, value to be sure it is valid.\n"
         )
