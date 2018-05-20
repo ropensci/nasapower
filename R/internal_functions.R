@@ -243,13 +243,12 @@ power_query <- function(community,
                         temporal_average) {
   power_url <- # nocov start
     "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
-
   client <- crul::HttpClient$new(url = power_url)
-  user_agent <- "http://github.com/adamhsparks/nasapower" # nocov end
+  user_agent <- "http://github.com/adamhsparks/nasapower"
 
   # check status
   status <- client$get()
-  status$raise_for_status()
+  status$raise_for_status() # nocov end
 
   # build query list for single point
   if (lonlat_identifier$identifier == "SinglePoint") {
