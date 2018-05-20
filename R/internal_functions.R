@@ -279,7 +279,7 @@ power_query <- function(community,
       tempAverage = temporal_average,
       bbox = I(lonlat_identifier$bbox),
       outputList = "CSV",
-      user = "anonymous"
+      user = user_agent
     )
   }
 
@@ -293,7 +293,7 @@ power_query <- function(community,
       userCommunity = community,
       tempAverage = temporal_average,
       outputList = "CSV",
-      user = "anonymous"
+      user = user_agent
     )
   }
 
