@@ -191,7 +191,7 @@ check_lonlat <-
           call. = FALSE,
           "\nPlease check your latitude, `",
           lonlat[1], "`, `", lonlat[3],
-          "`, values to be sure they is valid.\n"
+          "`, values to be sure they are valid.\n"
         )
       }
       if (lonlat[2] > lonlat[4]) {
