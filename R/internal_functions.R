@@ -100,10 +100,8 @@ check_pars <-
            "You have not provided a `pars` value.")
     }
 
-    temporal_average <- lettercase::str_ucfirst(
-      lettercase::str_lowercase(temporal_average)
-    )
-    if (temporal_average %notin% c("Daily", "Interannual", "Climatology")) {
+    temporal_average <- toupper(temporal_average)
+    if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
       stop(call. = FALSE,
            "You have entered an invalid value for `temporal_average`.")
     }
@@ -244,7 +242,7 @@ power_query <- function(community,
   power_url <- # nocov start
     "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
-  user_agent <- "http://github.com/adamhsparks/nasapower"
+  user_agent <- "anonymous"
 
   # check status
   status <- client$get()
@@ -255,7 +253,7 @@ power_query <- function(community,
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
-      parameters = I(pars),
+      parameters = pars,
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
