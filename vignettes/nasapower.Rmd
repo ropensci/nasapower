@@ -67,72 +67,14 @@ API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
 - `temporal_average`, a character vector of the desired temporal average(s).
 Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
 
-
-```{r get_philippines_example}
-
-# get a sp data frame for the Philippines from naturalearthdata
-PHL_adm <- rnaturalearth::ne_countries(scale = 50,
-                                       country = "Philippines",
-                                       returnclass = "sp")
-
-# get the bounding box from the sp object to instruct the `lonlat` values
-PHL_lonlat <- sp::bbox(PHL_adm)
-
-PHL <- get_power(lonlat = c(PHL_lonlat[2, 1],
-                            PHL_lonlat[1, 1],
-                            PHL_lonlat[2, 2],
-                            PHL_lonlat[1, 2]), 
-                 pars = c("T2M", "RH2M"),
-                 dates = c("2017-1-1", "2017-1-2"),
-                 community = "AG",
-                 temporal_average = "DAILY"
-                 )
-```
-
-Using _ggplot2_, plot the downloaded data with an outline from
-_Naturalearthdata_ for reference.
-
-```{r plot_phl}
-library(ggplot2)
-library(viridis)
-
-# Plot temperature
-ggplot(PHL) +
-  geom_tile(aes(x = LON, y = LAT, fill = T2M)) +
-  scale_fill_viridis() +
-   geom_polygon(data = PHL_adm, aes(x = long, y = lat, group = group), 
-               fill = NA, color = "white", size = 1) +
-  theme_bw() +
-  coord_map() +
-  facet_grid(. ~ YYYYMMDD) +
-  ggtitle("Average Temperature (˚C)",
-          subtitle = "Data sources\nTemperature: NASA - POWER\nPHL boundary: Naturalearthdata")
-
-# Plot RH
-ggplot(PHL, aes(x = LON, y = LAT, fill = RH2M)) +
-  geom_tile() +
-  scale_fill_viridis(option = "C") +
-   geom_polygon(data = PHL_adm, aes(x = long, y = lat, group = group), 
-               fill = NA, color = "white", size = 1) +
-  theme_bw() +
-  coord_map() +
-  facet_grid(. ~ YYYYMMDD) +
-    ggtitle("Average Relative Humidity (%)",
-          subtitle = "Data sources\nRelative Humidity: NASA - POWER\nPHL boundary: Naturalearthdata")
-```
-
-![Philippine Temperature](plot_phl-1.png)
-!["Philippine Relative Humidity"](plot_phl-2.png)
-
 ## Creating Spatial Objects
 
 If you require spatial objects to work with, it is rather simple to convert
-the resulting tidy data frame from either `get_cell()` or `get_region()` to a
-spatial object in R using `raster::rasterFromXYZ()`.
+the resulting tidy data frame from `get_power()` to a spatial object in R using `raster::rasterFromXYZ()`.
 
 ### Converting to a _raster_ Object
 
-Using the `PHL` object from the previous example, convert the data frame to a
+Using the `example` object from the previous example, convert the data frame to a
 raster brick. The LON and LAT values are in columns 6 and 7 with the weather
 vars in any following columns.
 

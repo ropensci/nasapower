@@ -88,9 +88,6 @@ ggplot(compare, aes(x = kingsData.rad, y = sw_dwn.ALLSKY_TOA_SW_DWN)) +
 cor(compare$kingsData.rad, compare$sw_dwn.ALLSKY_TOA_SW_DWN)
 ```
 
-The graph shows a strong relationship between the two sets of data as does the
-correlation value, 0.90.
-
 # Create a .met File
 
 Now that we have the data from NASA-POWER, it's possible to create a .met file
