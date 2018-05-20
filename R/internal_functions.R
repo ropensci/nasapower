@@ -172,7 +172,7 @@ check_lonlat <-
       if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
         stop(
           call. = FALSE,
-          "Please provide correct bounding box values. The bounding box\n",
+          "\nPlease provide correct bounding box values. The bounding box\n",
           "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
           "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n"
         )
@@ -181,29 +181,29 @@ check_lonlat <-
       if (lonlat[c(2, 4)] < -180 || lonlat[c(2, 4)] > 180) {
         stop(
           call. = FALSE,
-          "Please check your longitude, `",
-          paste0(lonlat[c(2, 4)]),
-          "`, to be sure it is valid.\n"
+          "\nPlease check your longitude, `",
+          lonlat[2], "`, `", lonlat[4],
+          "`, values to be sure they is valid.\n"
         )
       }
       if (lonlat[c(1, 3)] < -90 || lonlat[c(2, 4)] > 90) {
         stop(
           call. = FALSE,
-          "Please check your latitude, `",
-          paste0(lonlat[c(1, 3)]),
-          "`, value to be sure it is valid.\n"
+          "\nPlease check your latitude, `",
+          lonlat[1], "`, `", lonlat[3],
+          "`, values to be sure they is valid.\n"
         )
       }
       if (lonlat[2] > lonlat[4]) {
         stop(call. = FALSE,
-             "The first `lon`` value must be the minimum value.")
+             "\nThe first `lon` value must be the minimum value.\n")
       }
       if (lonlat[1] > lonlat[3]) {
         stop(call. = FALSE,
-             "The first `lat`` value must be the minimum value.")
+             "\nThe first `lat` value must be the minimum value.\n")
       }
       message(
-        "Fetching regional data for the area within ",
+        "\nFetching regional data for the area within ",
         lonlat[[1]],
         ", ",
         lonlat[[2]],
@@ -217,7 +217,7 @@ check_lonlat <-
       bbox <-  paste0(lonlat, collapse = ",")
     } else {
       stop(call. = FALSE,
-           "You have entered an invalid request for `lonlat`.")
+           "\nYou have entered an invalid request for `lonlat`.\n")
     }
     if (!is.null(bbox)) {
       lonlat_identfier <- list(bbox, identifier)
