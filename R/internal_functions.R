@@ -115,7 +115,7 @@ check_pars <-
 
     # check to make sure temporal_average is appropriate for given pars
     rows <- which(parameters$Value %in% pars) # nocov
-    cols <- grep(temporal_average, colnames(parameters)) # nocov
+    cols <- grep(temporal_average, toupper(colnames(parameters))) # nocov
 
     if (any(is.na(parameters[rows, cols]))) {
       stop(
