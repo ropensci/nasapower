@@ -84,7 +84,7 @@ check_community <-
       stop(call. = FALSE,
            "You have provided an invalid `community` value.")
     }
-    return(community) # nocov
+    return(community)
   }
 
 #' @noRd
@@ -114,8 +114,8 @@ check_pars <-
     }
 
     # check to make sure temporal_average is appropriate for given pars
-    rows <- which(parameters$Value %in% pars) # nocov
-    cols <- grep(temporal_average, toupper(colnames(parameters))) # nocov
+    rows <- which(parameters$Value %in% pars)
+    cols <- grep(temporal_average, toupper(colnames(parameters)))
 
     if (any(is.na(parameters[rows, cols]))) {
       stop(
