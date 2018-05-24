@@ -1,6 +1,6 @@
 
 # test deprecated functions return a warning -----------------------------------
-context("nasapower-deprecated")
+context("Test that deprecated fucntions emit warning")
 test_that("deprecated functions return warning message", {
   expect_warning(get_cell(),
                  regexp = "'get_cell' is deprecated.*")

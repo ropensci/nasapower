@@ -1,6 +1,6 @@
 
 # Date handling and checking ---------------------------------------------------
-
+context("Check dates function handles dates correctly")
 test_that("NULL `dates`` are properly handled", {
   dates <- NULL
   dates <- check_dates(dates)

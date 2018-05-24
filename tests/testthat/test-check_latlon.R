@@ -1,6 +1,6 @@
 
 # lonlat checks ----------------------------------------------------------------
-context("check_lonlat")
+context("Test that check_latlon function handles lat lon strings correctly")
 test_that("check_lonlat_cell properly reports errors", {
   # set up pars argument for testing
   pars <- "T2M"

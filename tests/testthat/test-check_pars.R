@@ -1,6 +1,6 @@
 
 # parameter checks -------------------------------------------------------------
-context("check_pars")
+context("Test that check_pars function handles pars strings correctly")
 test_that("check_pars stops if no `par` provided", {
   expect_error(check_pars(pars = NULL, temporal_average = "DAILY"),
                regexp = "*You have not provided a `pars` value.*")
