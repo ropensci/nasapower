@@ -102,7 +102,4 @@ get_power <- function(community = NULL,
                       pars,
                       dates,
                       temporal_average)
-
-
-  return(NASA)
 }
