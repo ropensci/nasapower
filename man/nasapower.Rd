@@ -6,16 +6,16 @@
 \alias{nasapower-package}
 \title{NASA-POWER Agroclimatology Data from R}
 \description{
-Download NASA-POWER agroclimatology data and create a tidy data frame for
-individual cells or a user specified region. nasapower provides an R
+Download NASA-POWER climatology data and create a tidy data frame for a
+single point, a region or global coverage. \pkg{nasapower} provides an R
 interface to the NASA - POWER API.  POWER (Prediction Of Worldwide Energy
-Resource) data are freely available for download with a resolution of 1 arc
-degree longitude by 1 arc degree latitude and are funded through the NASA
+Resource) data are freely available for download with a resolution of 1/2 arc
+degree longitude by 1/2 arc degree latitude and are funded through the NASA
 Earth Science Directorate Applied Science Program. For more on the data
-themselves, please see <https://power.larc.nasa.gov/>.
+themselves, please see \url{https://power.larc.nasa.gov/}.
 }
 \note{
-While \code{nasapower} does not redistribute the data in any way, we
+While \pkg{nasapower} does not redistribute the data in any way, we
 encourage users to follow the requests of the POWER Project Team.
 
 \preformatted{

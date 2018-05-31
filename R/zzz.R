@@ -11,3 +11,6 @@
                 "Directorate Applied Science Program.'\n")
   packageStartupMessage(msg)
 }
+
+# load parameters data frame in session
+data("parameters", envir = environment())

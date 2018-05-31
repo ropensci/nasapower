@@ -1,8 +1,8 @@
 Package: nasapower
 Type: Package
 Title: NASA-POWER Agroclimatology Data from R
-Version: 0.1.4
-Authors@R: c(person(given = "Adam H.", family = "Sparks",
+Version: 1.0.0.9000
+Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359")),
     person(given = "Aji", family = "Sukarta", role = "ctb",
@@ -13,19 +13,25 @@ BugReports: https://github.com/adamhsparks/nasapower/issues
 Description: Download NASA-POWER agroclimatology data and create a tidy data
     frame for individual cells or a user specified region. nasapower provides an
     R interface to the NASA - POWER API.  POWER (Prediction Of Worldwide Energy
-    Resource) data are freely available for download with a resolution of 1 arc
-    degree longitude by 1 arc degree latitude and are funded through the NASA
+    Resource) data are freely available for download with a resolution of 1/2 by
+    1/2 arc degree longitude and latitude and are funded through the NASA
     Earth Science Directorate Applied Science Program. For more on the data
     themselves, please see <https://power.larc.nasa.gov/>.
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
 Imports:
-    lubridate,
+    crul,
     httr,
+    lettercase,
+    lubridate,
+    jsonlite,
+    readr,
     stringi,
+    tools,
     utils
 RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 NeedsCompilation: no
 Repository: CRAN
