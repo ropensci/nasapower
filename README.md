@@ -120,7 +120,7 @@ Team.
   - License: MIT
 
   - Get citation information for `nasapower` in R by typing
-    `citation(package = "nasapower")`
+    `citation(package = "nasapower")`.
 
   - Please note that this project is released with a [Contributor Code
     of Conduct](CONDUCT.md). By participating in this project you agree
@@ -130,7 +130,7 @@ Team.
     of the National Atmospheric & Oceanic Administration (NOAA)
     maintains a list of gridded climate data sets that provide different
     data and different resolutions
-    <https://www.esrl.noaa.gov/psd/data/gridded/>
+    <https://www.esrl.noaa.gov/psd/data/gridded/>.
 
 ## References
 
