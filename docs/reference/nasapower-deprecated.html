@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>License • nasapower</title>
+<title>Deprecated function(s) in the nasapower package — nasapower-deprecated • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -22,12 +22,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
-  
-  
-<meta property="og:title" content="License" />
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
+
+
+
+<meta property="og:title" content="Deprecated function(s) in the nasapower package — nasapower-deprecated" />
+
+<meta property="og:description" content="These functions are now deprecated in nasapower." />
+<meta name="twitter:card" content="summary" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -40,7 +46,7 @@
   </head>
 
   <body>
-    <div class="container template-title-body">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -50,21 +56,25 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">nasapower</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">nasapower</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0.9000</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="articles/nasapower.html">Get Started</a>
+  <a href="../articles/nasapower.html">Get started</a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -74,12 +84,12 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/use-case.html">Use Case: Using nasapower and the APSIM R Package to Create APSIM .met Files</a>
+      <a href="../articles/use-case.html">Use Case: Using nasapower and the APSIM R Package to Create APSIM .met Files</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -91,6 +101,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -98,20 +109,43 @@
       
       </header>
 
-      <div class="row">
-  <div class="contents col-md-12">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>License</h1>
+    <h1>Deprecated function(s) in the nasapower package</h1>
+    <small class="dont-index">Source: <a href='https://github.com/adamhsparks/nasapower/blob/master/R/deprecated_functions.R'><code>R/deprecated_functions.R</code></a></small>
+    <div class="hidden name"><code>nasapower-deprecated.Rd</code></div>
     </div>
 
-<pre>YEAR: 2017
-COPYRIGHT HOLDER: Adam H Sparks
-</pre>
+    <div class="ref-description">
+    
+    <p>These functions are now deprecated in <span class="pkg">nasapower</span>.</p>
+    
+    </div>
+
+    <pre class="usage"><span class='fu'>get_cell</span>()
+
+<span class='fu'>get_region</span>()</pre>
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    
+    <table class='table'>
+<tr><td><code>get_cell</code></td><td>now superceded by <code>get_power</code></td></tr>
+<tr><td><code>get_region</code></td><td>now superceded by <code>get_power</code></td></tr>
+</table>
+    
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#details">Details</a></li>
+          </ul>
 
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">
@@ -124,6 +158,8 @@ COPYRIGHT HOLDER: Adam H Sparks
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

@@ -25,15 +25,18 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="NASA-POWER Agroclimatology Data from R — nasapower" />
 
-<meta property="og:description" content="Download NASA-POWER agroclimatology data and create a tidy data frame for
-individual cells or a user specified region. nasapower provides an R
+<meta property="og:description" content="Download NASA-POWER climatology data and create a tidy data frame for a
+single point, a region or global coverage. nasapower provides an R
 interface to the NASA - POWER API.  POWER (Prediction Of Worldwide Energy
-Resource) data are freely available for download with a resolution of 1 arc
-degree longitude by 1 arc degree latitude and are funded through the NASA
+Resource) data are freely available for download with a resolution of 1/2 arc
+degree longitude by 1/2 arc degree latitude and are funded through the NASA
 Earth Science Directorate Applied Science Program. For more on the data
-themselves, please see &lt;https://power.larc.nasa.gov/&gt;." />
+themselves, please see https://power.larc.nasa.gov/." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -44,8 +47,6 @@ themselves, please see &lt;https://power.larc.nasa.gov/&gt;." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-
 
 
   </head>
@@ -63,7 +64,7 @@ themselves, please see &lt;https://power.larc.nasa.gov/&gt;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0.9000</span>
       </span>
     </div>
 
@@ -118,23 +119,26 @@ themselves, please see &lt;https://power.larc.nasa.gov/&gt;." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>NASA-POWER Agroclimatology Data from R</h1>
-    <small>Source: <a href='https://github.com/adamhsparks/nasapower/blob/master/R/nasapower-package.R'><code>R/nasapower-package.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/adamhsparks/nasapower/blob/master/R/nasapower-package.R'><code>R/nasapower-package.R</code></a></small>
+    <div class="hidden name"><code>nasapower.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>Download NASA-POWER agroclimatology data and create a tidy data frame for
-individual cells or a user specified region. nasapower provides an R
+    <p>Download NASA-POWER climatology data and create a tidy data frame for a
+single point, a region or global coverage. <span class="pkg">nasapower</span> provides an R
 interface to the NASA - POWER API.  POWER (Prediction Of Worldwide Energy
-Resource) data are freely available for download with a resolution of 1 arc
-degree longitude by 1 arc degree latitude and are funded through the NASA
+Resource) data are freely available for download with a resolution of 1/2 arc
+degree longitude by 1/2 arc degree latitude and are funded through the NASA
 Earth Science Directorate Applied Science Program. For more on the data
-themselves, please see &lt;https://power.larc.nasa.gov/&gt;.</p>
+themselves, please see <a href='https://power.larc.nasa.gov/'>https://power.larc.nasa.gov/</a>.</p>
     
+    </div>
 
         
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>While <code>nasapower</code> does not redistribute the data in any way, we
+    <p>While <span class="pkg">nasapower</span> does not redistribute the data in any way, we
 encourage users to follow the requests of the POWER Project Team.</p>
 <pre>
 When POWER data products are used in a publication, we request the
@@ -151,9 +155,9 @@ Science Program."
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><ul>
-<li><p><a href='get_cell.html'>get_cell</a> Download NASA-POWER Agroclimatology Variables for a
+<li><p><a href='nasapower-deprecated.html'>get_cell</a> Download NASA-POWER Agroclimatology Variables for a
 Given Cell and Return a Tidy Data Frame</p></li>
-<li><p><a href='get_region.html'>get_region</a> Download NASA-POWER Agroclimatology Variables for a
+<li><p><a href='nasapower-deprecated.html'>get_region</a> Download NASA-POWER Agroclimatology Variables for a
 Given Region and Return a Tidy Data Frame</p></li>
 </ul></div>
     

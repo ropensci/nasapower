@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0.9000</span>
       </span>
     </div>
 
@@ -86,7 +86,8 @@
                         <h4 class="author">Adam H Sparks</h4>
             
       
-      <small>Source: <a href="https://github.com/adamhsparks/nasapower/blob/master/vignettes/nasapower.Rmd"><code>vignettes/nasapower.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/adamhsparks/nasapower/blob/master/vignettes/nasapower.Rmd"><code>vignettes/nasapower.Rmd</code></a></small>
+      <div class="hidden name"><code>nasapower.Rmd</code></div>
 
     </div>
 
@@ -96,130 +97,48 @@
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
 <p><em>nasapower</em> aims to make it quick, easy and efficient to automate downloading NASA-POWER agroclimatology data in your R session as a tidy data frame.</p>
-<p><em>nasapower</em> only provides functions, <code><a href="../reference/get_cell.html">get_cell()</a></code>, for a given 1˚ longitude by 1˚ latitude cell and <code><a href="../reference/get_region.html">get_region()</a></code>, both of which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>vars</code> argument.</p>
+<p><em>nasapower</em> only provides one function, <code><a href="../reference/get_power.html">get_power()</a></code>, which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>pars</code> argument.</p>
 </div>
-<div id="using-get_cell" class="section level2">
+<div id="using-get_power" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-get_cell" class="anchor"></a>Using get_cell()</h2>
-<p>The <code><a href="../reference/get_cell.html">get_cell()</a></code> function accepts four arguments.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="ot">NULL</span>, <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"T2MN"</span>, <span class="st">"T2MX"</span>, <span class="st">"RH2M"</span>),</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">stdate =</span> <span class="st">"1983-1-1"</span>, <span class="dt">endate =</span> <span class="kw">Sys.Date</span>())</a></code></pre></div>
+<a href="#using-get_power" class="anchor"></a>Using get_power()</h2>
+<p>The <code><a href="../reference/get_power.html">get_power()</a></code> function requires five arguments as seen in this example.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">                   <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>),</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">                   <span class="dt">temporal_average =</span> <span class="st">"daily"</span>)</a></code></pre></div>
 <ul>
-<li><p><code>lonlat</code> A length-2 numeric vector giving the decimal degree longitude and and latitude in that order for cell data to download</p></li>
-<li>
-<p><code>vars</code> Weather variables to query for download, defaults to all available. Valid <code>vars</code> include:</p>
-<ul>
-<li><p>toa_dwn - Average top-of-atmosphere insolation (MJ/m^2/day)</p></li>
-<li><p>swv_dwn - Average insolation incident on a horizontal surface (MJ/m^2/day)</p></li>
-<li><p>lwv_dwn - Average downward longwave radiative flux (MJ/m^2/day)</p></li>
-<li><p>T2M - Average air temperature at 2m above the surface of the Earth (degrees C)</p></li>
-<li><p>T2MN - Minimum air temperature at 2m above the surface of the Earth (degrees C)</p></li>
-<li><p>T2MX - Maximum air temperature at 2m above the surface of the Earth (degrees C)</p></li>
-<li><p>RH2M - Relative humidity at 2m above the surface of the Earth (%)</p></li>
-<li><p>DFP2M - Dew/Frost point temperature at 2m above the surface of the Earth (degrees C)</p></li>
-<li><p>RAIN - Average precipitation (mm/day)</p></li>
-<li><p>WS10M - Wind speed at 10m above the surface of the Earth (m/s)</p></li>
+<li><p><code>community</code>, a text string with valid values of: “AG” (Agroclimatology), “SSE” (Surface meteorology and Solar Energy) or “SB” (Sustainable Buildings). The selected user community will affect the units of the parameter and the temporal display of time series data (<em>e.g.</em> Agroclimatology will use MJ/m<sup>2</sup>/day for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as units).</p></li>
+<li><p><code>lonlat</code>, a length-2 numeric vector giving the decimal degree longitude and and latitude coordinates in that order for cell data to download or a length-4 numeric vector giving the decimal degree longitude and and latitude coordinates forming a bounding box as ymin, xmin, ymax, xmax in that order. When specifying a region, the maximum amount of cells that can be downloaded are 100, i.e., a 10 x 10 0.5˚ bounding box or 5 x 5 1˚ bounding box. Leave blank for global coverage.</p></li>
+<li><p><code>pars</code>, A character vector of solar or meteorological variables to download. See the <code>Value</code> field of <a href="../help/parameters"><code>parameters</code></a> for a full list of valid values or visit the <a href="https://power.larc.nasa.gov/new/">POWER website</a> for the Parameter Dictionary. If downloading global coverage a maximum of 3 <code>pars</code> can be specified at one time.</p></li>
+<li><p><code>dates</code>, a vector of start and end dates for which to query the NASA-POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</p></li>
+<li><p><code>temporal_average</code>, a character vector of the desired temporal average(s). Valid values are “DAILY”, “INTERANNUAL” and “CLIMATOLOGY”.</p></li>
 </ul>
-</li>
-<li><p><code>stdate</code> Starting date for download, defaults to 1983-01-01 (there are no earlier data)</p></li>
-<li><p><code>endate</code> End date for download, defaults to current date</p></li>
-</ul>
-<div id="basic-example-of-using-get_cell" class="section level3">
-<h3 class="hasAnchor">
-<a href="#basic-example-of-using-get_cell" class="anchor"></a>Basic example of using get_cell()</h3>
-<p>Fetch all variables available for 1983-1-1 to current date for the cell at longitude -179.5 and latitude -89.5.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>))</a></code></pre></div>
-</div>
-<div id="specifying-dates" class="section level3">
-<h3 class="hasAnchor">
-<a href="#specifying-dates" class="anchor"></a>Specifying dates</h3>
-<p>By default <code><a href="../reference/get_cell.html">get_cell()</a></code> will use <code>1983-01-01</code> as a start date and the current date as the end date. Following is an example of specifying the end date.</p>
-<p>Specify only the end date, <code>1983-01-02</code>, using the default start date of <code>1983-01-01</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>), <span class="dt">endate =</span> <span class="st">"1983-01-02"</span>)</a></code></pre></div>
-</div>
-<div id="specifying-variables" class="section level3">
-<h3 class="hasAnchor">
-<a href="#specifying-variables" class="anchor"></a>Specifying variables</h3>
-<p>By default <code><a href="../reference/get_cell.html">get_cell()</a></code> will fetch all weather variables available if none are specified. Following is an example of specifying only one variable, <code>WS10M</code>, for retrieval.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/get_cell.html">get_cell</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">179.5</span>, <span class="fl">-89.5</span>), <span class="dt">endate =</span> <span class="st">"1983-01-02"</span>, <span class="dt">vars =</span> <span class="st">"WS10M"</span>)</a></code></pre></div>
-</div>
-</div>
-<div id="using-get_region" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_region" class="anchor"></a>Using get_region()</h2>
-<p>The <code><a href="../reference/get_region.html">get_region()</a></code> function accepts the same arguments as <code><a href="../reference/get_cell.html">get_cell()</a></code>, however, the <code>lonlat</code> value is a length-4 numeric vector of the minimum longitude, maximum longitude, minimum latitude and maximum latitude.</p>
-<p>This function is useful for retrieving whole states, countries or global surfaces. Retrieving a whole global surface for a single day and all available variables can take roughly two hours depending on the Internet connection speed. The resulting data frame for 365 days is roughly 2 GB depending on the completeness of the data set available for the requested year.</p>
-<p>The following example illustrates fetching and graphing the average temperature and relative humidity for the Philippines for the first two days of 2017.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># get a sp data frame for the Philippines from naturalearthdata</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">PHL_adm &lt;-<span class="st"> </span>rnaturalearth<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rnaturalearth/topics/ne_countries">ne_countries</a></span>(<span class="dt">scale =</span> <span class="dv">50</span>,</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">                                       <span class="dt">country =</span> <span class="st">"Philippines"</span>,</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">                                       <span class="dt">returnclass =</span> <span class="st">"sp"</span>)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># get the bounding box from the sp object to instruct the `lonlat` values</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">PHL_lonlat &lt;-<span class="st"> </span>sp<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/bbox">bbox</a></span>(PHL_adm)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">PHL &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_region.html">get_region</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(PHL_lonlat[<span class="dv">1</span>, <span class="dv">1</span>],</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">                             PHL_lonlat[<span class="dv">1</span>, <span class="dv">2</span>],</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">                             PHL_lonlat[<span class="dv">2</span>, <span class="dv">1</span>],</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">                             PHL_lonlat[<span class="dv">2</span>, <span class="dv">2</span>]), </a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">                  <span class="dt">vars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"RH2M"</span>),</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">                  <span class="dt">stdate =</span> <span class="st">"2017-1-1"</span>,</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16">                  <span class="dt">endate =</span> <span class="st">"2017-1-2"</span>)</a></code></pre></div>
-<p>Using <em>ggplot2</em>, plot the downloaded data with an outline from <em>Naturalearthdata</em> for reference.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(viridis)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co"># Plot temperature</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(PHL) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_tile</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> LON, <span class="dt">y =</span> LAT, <span class="dt">fill =</span> T2M)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">   </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> PHL_adm, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">               <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_grid">facet_grid</a></span>(. <span class="op">~</span><span class="st"> </span>YYYYMMDD) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Average Temperature (˚C)"</span>,</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">          <span class="dt">subtitle =</span> <span class="st">"Data sources</span><span class="ch">\n</span><span class="st">Temperature: NASA - POWER</span><span class="ch">\n</span><span class="st">PHL boundary: Naturalearthdata"</span>)</a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co"># Plot RH</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(PHL, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> LON, <span class="dt">y =</span> LAT, <span class="dt">fill =</span> RH2M)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_tile">geom_tile</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/viridis/topics/scale_viridis">scale_fill_viridis</a></span>(<span class="dt">option =</span> <span class="st">"C"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="st">   </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> PHL_adm, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">               <span class="dt">fill =</span> <span class="ot">NA</span>, <span class="dt">color =</span> <span class="st">"white"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/facet_grid">facet_grid</a></span>(. <span class="op">~</span><span class="st"> </span>YYYYMMDD) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"Average Relative Humidity (%)"</span>,</a>
-<a class="sourceLine" id="cb6-26" data-line-number="26">          <span class="dt">subtitle =</span> <span class="st">"Data sources</span><span class="ch">\n</span><span class="st">Relative Humidity: NASA - POWER</span><span class="ch">\n</span><span class="st">PHL boundary: Naturalearthdata"</span>)</a></code></pre></div>
-<p><img src="plot_phl-1.png" alt="Philippine Temperature"><img src="plot_phl-2.png" alt="“Philippine Relative Humidity”"></p>
 </div>
 <div id="creating-spatial-objects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#creating-spatial-objects" class="anchor"></a>Creating Spatial Objects</h2>
-<p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from either <code><a href="../reference/get_cell.html">get_cell()</a></code> or <code><a href="../reference/get_region.html">get_region()</a></code> to a spatial object in R using <code><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">raster::rasterFromXYZ()</a></code>.</p>
+<p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from <code><a href="../reference/get_power.html">get_power()</a></code> to a spatial object in R using <code><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">raster::rasterFromXYZ()</a></code>.</p>
 <div id="converting-to-a-raster-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#converting-to-a-raster-object" class="anchor"></a>Converting to a <em>raster</em> Object</h3>
-<p>Using the <code>PHL</code> object from the previous example, convert the data frame to a raster brick. The LON and LAT values are in columns 6 and 7 with the weather vars in any following columns.</p>
+<p>Using the <code>example</code> object from the previous example, convert the data frame to a raster brick. The LON and LAT values are in columns 6 and 7 with the weather vars in any following columns.</p>
 <p>The first step is to <code><a href="http://www.rdocumentation.org/packages/base/topics/split">base::split()</a></code> the data frame into a list of data frames by day.</p>
 <p>Then convert the <code><a href="http://www.rdocumentation.org/packages/base/topics/list">base::list()</a></code> into a <code>list</code> of <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick()</a></code> objects.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">PHL &lt;-<span class="st"> </span><span class="kw">split</span>(PHL, PHL<span class="op">$</span>YYYYMMDD)</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7">PHL &lt;-</a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="st">  </span><span class="kw">lapply</span>(PHL, <span class="cf">function</span>(x)</a>
-<a class="sourceLine" id="cb7-9" data-line-number="9">  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MONTH"</span>, <span class="st">"DAY"</span>, <span class="st">"YYYYMMDD"</span>, <span class="st">"DOY"</span>))])</a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12">PHL &lt;-<span class="st"> </span><span class="kw">lapply</span>(PHL, rasterFromXYZ,</a>
-<a class="sourceLine" id="cb7-13" data-line-number="13">              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">PHL &lt;-<span class="st"> </span><span class="kw">split</span>(PHL, PHL<span class="op">$</span>YYYYMMDD)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">PHL &lt;-</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="st">  </span><span class="kw">lapply</span>(PHL, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MONTH"</span>, <span class="st">"DAY"</span>, <span class="st">"YYYYMMDD"</span>, <span class="st">"DOY"</span>))])</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">PHL &lt;-<span class="st"> </span><span class="kw">lapply</span>(PHL, rasterFromXYZ,</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2">
@@ -236,8 +155,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#using-get_cell">Using get_cell()</a></li>
-      <li><a href="#using-get_region">Using get_region()</a></li>
+      <li><a href="#using-get_power">Using get_power()</a></li>
       <li><a href="#creating-spatial-objects">Creating Spatial Objects</a></li>
       <li><a href="#references">References</a></li>
       </ul>
