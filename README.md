@@ -8,6 +8,9 @@ Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/nasapower
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/adamhsparks/nasapower/master.svg)](https://codecov.io/github/adamhsparks/nasapower?branch=master)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
+[![Project Status: WIP – Initial development is in progress, but there
+has not yet been a stable, usable release suitable for the
+public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 
 ## Introduction
 
@@ -19,11 +22,13 @@ modelling or other purposes. POWER (Prediction Of Worldwide Energy
 Resource) data are freely available for download through a web interface
 at a resolution of 0.5˚ longitude by 0.5˚ latitude.
 
-Please see
-<https://power.larc.nasa.gov/cgi-bin/agro.cgi?email=agroclim@larc.nasa.gov>
-for the agroclimatology data web interface.
+Please see <https://power.larc.nasa.gov/> for more on the data and other
+ways to access it.
 
 ### Quick start
+
+With the changes to the NASA/POWER data and API, this package is a
+work-in-progress under active development, install at your own risk.
 
 *nasapower* is not available from CRAN, only GitHub. It can easily be
 installed using the following code:
