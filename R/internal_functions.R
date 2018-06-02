@@ -141,41 +141,40 @@ check_pars <-
   }
 
 #' @noRd
-check_lonlat <-
-  function(lonlat, pars) {
+check_latlon <-
+  function(latlon, pars) {
     bbox <- NULL
-    if (is.null(lonlat)) {
+    if (is.null(latlon)) {
       stop(call. = FALSE,
-           "\nYou must provide a `lonlat` (maximum 100 points total or 10x10 cells).\n")
+           "\nYou must provide a `latlon` (maximum 100 points total or 10x10 cells).\n")
     }
-
-    if (length(lonlat) == 2 && is.numeric(lonlat)) {
-      if (lonlat[1] < -180 || lonlat[1] > 180) {
-        stop(
-          call. = FALSE,
-          "\nPlease check your longitude, `",
-          paste0(lonlat[1]),
-          "`, to be sure it is valid.\n"
-        )
-      }
-      if (lonlat[2] < -90 || lonlat[2] > 90) {
+    if (length(latlon) == 2 && is.numeric(latlon)) {
+      if (latlon[1] < -90 || latlon[1] > 90) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
-          paste0(lonlat[2]),
+          paste0(latlon[1]),
+          "`, to be sure it is valid.\n"
+        )
+      }
+      if (latlon[2] < -180 || latlon[2] > 180) {
+        stop(
+          call. = FALSE,
+          "\nPlease check your longitude, `",
+          paste0(latlon[2]),
           "`, value to be sure it is valid.\n"
         )
       }
       message(
-        "\nFetching single point data for lon ", lonlat[1], ", lat ", lonlat[2],
+        "\nFetching single point data for lat ", latlon[1], ", lon ", latlon[2],
         "\n"
       )
       identifier <- "SinglePoint"
-      lon <- lonlat[1]
-      lat <- lonlat[2]
+      lat <- latlon[1]
+      lon <- latlon[2]
 
-    } else if (length(lonlat) == 4 && is.numeric(lonlat)) {
-      if ((lonlat[[2]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[3]]) * 4 > 100) {
+    } else if (length(latlon) == 4 && is.numeric(latlon)) {
+      if ((latlon[[3]] - latlon[[1]]) * (latlon[[4]] - latlon[[2]]) * 4 > 100) {
         stop(
           call. = FALSE,
           "\nPlease provide correct bounding box values. The bounding box\n",
@@ -184,66 +183,68 @@ check_lonlat <-
         )
       }
 
-      if (any(lonlat[1] < -180 ||
-              lonlat[2] < -180 ||
-              lonlat[1] > 180 ||
-              lonlat[2] > 180)) {
-        stop(
-          call. = FALSE,
-          "\nPlease check your longitude, `",
-          lonlat[1], "`, `", lonlat[2],
-          "`, values to be sure they are valid.\n"
-        )
-      }
-      if (any(lonlat[3] < -90 ||
-              lonlat[4] < -90 ||
-              lonlat[3] > 90 ||
-              lonlat[4] > 90)) {
+      if (any(latlon[1] < -90 ||
+              latlon[3] < -90 ||
+              latlon[1] > 90 ||
+              latlon[3] > 90)) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
-          lonlat[3], "`, `", lonlat[4],
+          latlon[1], "`, `", latlon[3],
           "`, values to be sure they are valid.\n"
         )
       }
-      if (lonlat[1] > lonlat[2]) {
-        stop(call. = FALSE,
-             "\nThe first `lon` value must be the minimum value.\n")
+      if (any(latlon[2] < -180 ||
+              latlon[4] < -180 ||
+              latlon[2] > 180 ||
+              latlon[4] > 180)) {
+        stop(
+          call. = FALSE,
+          "\nPlease check your longitude, `",
+          latlon[2], "`, `", latlon[4],
+          "`, values to be sure they are valid.\n"
+        )
       }
-      if (lonlat[3] > lonlat[4]) {
+      if (latlon[1] > latlon[3]) {
         stop(call. = FALSE,
              "\nThe first `lat` value must be the minimum value.\n")
       }
+      if (latlon[2] > latlon[4]) {
+        stop(call. = FALSE,
+             "\nThe first `lon` value must be the minimum value.\n")
+      }
       message(
         "\nFetching regional data for the area within ",
-        lonlat[[1]],
-        " & ",
-        lonlat[[2]],
+        latlon[[1]],
+        " lat & ",
+        latlon[[2]],
         " lon, ",
-        lonlat[[3]],
-        " & ",
-        lonlat[[4]],
-        " lat.\n"
+        latlon[[3]],
+        " lat & ",
+        latlon[[4]],
+        " lon.\n"
       )
       identifier <- "Regional"
-      bbox <-  paste0(lonlat, collapse = ",")
+      bbox <-  paste0(latlon, collapse = ",")
+    } else if (latlon == "Global") {
+      identifier <- "Global"
     } else {
       stop(call. = FALSE,
-           "\nYou have entered an invalid request for `lonlat`.\n")
+           "\nYou have entered an invalid request for `latlon`.\n")
     }
     if (!is.null(bbox)) {
-      lonlat_identfier <- list(bbox, identifier)
-      names(lonlat_identfier) <- c("bbox", "identifier")
+      latlon_identfier <- list(bbox, identifier)
+      names(latlon_identfier) <- c("bbox", "identifier")
     } else {
-      lonlat_identfier <- list(lon, lat, identifier)
-      names(lonlat_identfier) <- c("lon", "lat", "identifier")
+      latlon_identfier <- list(lat, lon, identifier)
+      names(latlon_identfier) <- c("lat", "lon", "identifier")
     }
-    return(lonlat_identfier)
+    return(latlon_identfier)
   }
 
 #' @noRd
 power_query <- function(community,
-                        lonlat_identifier,
+                        latlon_identifier,
                         pars,
                         dates) {
   power_url <- # nocov start
@@ -256,41 +257,41 @@ power_query <- function(community,
   status$raise_for_status() # nocov end
 
   # build query list for single point
-  if (lonlat_identifier$identifier == "SinglePoint") {
+  if (latlon_identifier$identifier == "SinglePoint") {
     query_list <- list(
       request = "execute",
-      identifier = lonlat_identifier$identifier,
+      identifier = latlon_identifier$identifier,
       parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
       tempAverage = pars$temporal_average,
       outputList = "CSV",
-      lon = lonlat_identifier$lon,
-      lat = lonlat_identifier$lat,
+      lon = latlon_identifier$lon,
+      lat = latlon_identifier$lat,
       user = user_agent
     )
   }
 
-  if (lonlat_identifier$identifier == "Regional") {
+  if (latlon_identifier$identifier == "Regional") {
     query_list <- list(
       request = "execute",
-      identifier = lonlat_identifier$identifier,
+      identifier = latlon_identifier$identifier,
       parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
       tempAverage = pars$temporal_average,
-      bbox = I(lonlat_identifier$bbox),
+      bbox = I(latlon_identifier$bbox),
       outputList = "CSV",
       user = user_agent
     )
   }
 
-  if (lonlat_identifier$identifier == "Global") {
+  if (latlon_identifier$identifier == "Global") {
     query_list <- list(
       request = "execute",
-      identifier = lonlat_identifier$identifier,
+      identifier = latlon_identifier$identifier,
       parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
@@ -328,17 +329,4 @@ power_query <- function(community,
     e$call <- NULL
     stop(e)
   })
-}
-
-#' @noRd
-check_nasa_df <- function(NASA) {
-  # check if data is empty, stop if no data is available
-  if (all(is.na(NASA[, -c(1:2)]))) {
-    stop(
-      call. = FALSE,
-      "\nNo data are available as requested. If you are requesting\n",
-      "very recent data, please be aware that there is a lag in\n",
-      "availability (within two months of current time).\n"
-    )
-  }
 }
