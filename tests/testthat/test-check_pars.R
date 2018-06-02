@@ -18,21 +18,25 @@ test_that("check_pars stops if `temporal_average` not valid", {
 })
 
 test_that("check_pars stops if `pars` not valid", {
-    expect_error(check_pars(pars = "asdflkuewr", temporal_average = "DAILY"),
-               regexp = "*You have entered an invalid value for `pars`.*")
+  expect_error(check_pars(pars = "asdflkuewr", temporal_average = "DAILY"),
+               regexp = "\nASDFLKUEWR is/are not valid in 'pars'.\n")
 })
 
 test_that("check_pars stops if `pars` not valid", {
-expect_error(check_pars(pars = "ALLSKY_SFC_SW_DWN_03_GMT",
-                        temporal_average = "Interannual"),
-             regexp = "*You have entered an invalid value for `temporal_average` for the\n*")
+  expect_error(check_pars(pars = "ALLSKY_SFC_SW_DWN_03_GMT",
+                          temporal_average = "Interannual"),
+               regexp = "*You have entered an invalid value for `temporal_average` for the\n*")
 })
 
 test_that("pars are returned as a comma separated string with no spaces", {
   pars <- check_pars(pars = c("ALLSKY_SFC_SW_DWN_03_GMT",
                               "ALLSKY_SFC_LW_DWN"),
                      temporal_average = "Climatology")
-  expect_equal(nchar(pars), 42)
-  expect_length(pars, 1)
+  expect_named(pars, c("pars", "temporal_average"))
+  expect_equal(nchar(pars$pars), 42)
+  expect_equal(pars$pars, c("ALLSKY_SFC_SW_DWN_03_GMT",
+                            "ALLSKY_SFC_LW_DWN"))
+  expect_equal(pars$temporal_average, "CLIMATOLOGY")
+  expect_length(pars, 2)
 })
 
