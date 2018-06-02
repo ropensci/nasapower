@@ -7,8 +7,9 @@
 #'@export
 #'@param community Dataset name, currently supported are AG, SB and SSE. See
 #'  argument details for more.
-#'@param lonlat A numeric vector of geographic coordinates for a cell or region
-#'  entered as x, y coordinates.  See argument details for more.
+#'@param latlon A numeric vector of geographic coordinates for a cell or region
+#'  entered as x, y coordinates or `Global` for global area.  See argument
+#'  details for more.
 #'@param pars A character vector of solar or meteorological variables to
 #'  download.  See the `Value` field of [`parameters`] for a full list of valid
 #'  values or visit the [POWER website](https://power.larc.nasa.gov/new/) for
@@ -40,18 +41,23 @@
 #'  powered renewable energy systems.}
 #'  }
 #'
-#'@section Argument details for `lonlat`:
+#'@section Argument details for `latlon`:
 #' \describe{
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 #'  length-2 numeric vector giving the decimal degree longitude and latitude in
-#'  that order for data to download, *e.g.*, `lonlat = c(-179.5, -89.5)`.}
+#'  that order for data to download, *e.g.*, `latlon = c(-179.5, -89.5)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
-#'  vector as `lonlat = c(xmin, xmax, ymin, ymax)` in that order for a given
+#'  vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+#'  e.g., `latlon = c(xmin, ymin, xmax, ymax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
-#'  `lonlat = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
+#'  `latlon = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
 #'  }
+#'
+#'  \item{For global coverage}{To get global coverage for long term
+#'  monthly averages for the entire globe use `Global` in place of
+#'  `latlon` values.}
 #'
 #'@section Argument details for `dates`: If `dates` is unspecified, defaults to
 #'  a start date of 1983-01-01 (the earliest available data) and an end date of
@@ -75,7 +81,7 @@
 #'
 #'\dontrun{
 #'power <- get_power(community = "AG",
-#'                   lonlat = c(-179.5, -89.5),
+#'                   latlon = c(-179.5, -89.5),
 #'                   pars = c("RH2M", "T2M"),
 #'                   dates = "1985-01-01",
 #'                   temporal_average = "daily")
@@ -84,7 +90,7 @@
 #'@author Adam H. Sparks, adamhsparks@gmail.com
 #'
 get_power <- function(community = NULL,
-                      lonlat = NULL,
+                      latlon = NULL,
                       pars = NULL,
                       dates = NULL,
                       temporal_average = NULL) {
@@ -92,13 +98,13 @@ get_power <- function(community = NULL,
   # see internal_functions.R for these functions
   dates <- check_dates(dates)
   pars <- check_pars(pars, temporal_average)
-  lonlat_identifier <- check_lonlat(lonlat, pars)
+  latlon_identifier <- check_latlon(latlon, pars)
   community <- check_community(community)
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
   NASA <- power_query(community,
-                      lonlat_identifier,
+                      latlon_identifier,
                       pars,
                       dates)
 }
