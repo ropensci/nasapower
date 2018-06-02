@@ -100,6 +100,5 @@ get_power <- function(community = NULL,
   NASA <- power_query(community,
                       lonlat_identifier,
                       pars,
-                      dates,
-                      temporal_average)
+                      dates)
 }

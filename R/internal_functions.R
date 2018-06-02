@@ -90,6 +90,8 @@ check_community <-
 #' @noRd
 check_pars <-
   function(pars, temporal_average) {
+    temporal_average <- toupper(temporal_average)
+
     if (is.null(temporal_average)) {
       stop(call. = FALSE,
            "You have not provided a `temporal_average` value.")
@@ -100,7 +102,6 @@ check_pars <-
            "You have not provided a `pars` value.")
     }
 
-    temporal_average <- toupper(temporal_average)
     if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
       stop(call. = FALSE,
            "You have entered an invalid value for `temporal_average`.")
@@ -131,6 +132,8 @@ check_pars <-
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
+    pars <- list(pars, temporal_average)
+    names(pars) <- c("pars", "temporal_average")
     return(pars)
   }
 
@@ -139,8 +142,8 @@ check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
     if (is.null(lonlat)) {
-     stop(call. = FALSE,
-          "\nYou must provide a `lonlat` (maximum 100 points total or 10x10 cells).\n")
+      stop(call. = FALSE,
+           "\nYou must provide a `lonlat` (maximum 100 points total or 10x10 cells).\n")
     }
 
     if (length(lonlat) == 2 && is.numeric(lonlat)) {
@@ -163,7 +166,7 @@ check_lonlat <-
       message(
         "\nFetching single point data for lon ", lonlat[1], ", lat ", lonlat[2],
         "\n"
-        )
+      )
       identifier <- "SinglePoint"
       lon <- lonlat[1]
       lat <- lonlat[2]
@@ -239,8 +242,7 @@ check_lonlat <-
 power_query <- function(community,
                         lonlat_identifier,
                         pars,
-                        dates,
-                        temporal_average) {
+                        dates) {
   power_url <- # nocov start
     "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
@@ -255,11 +257,11 @@ power_query <- function(community,
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
-      parameters = pars,
+      parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
-      tempAverage = temporal_average,
+      tempAverage = pars$temporal_average,
       outputList = "CSV",
       lon = lonlat_identifier$lon,
       lat = lonlat_identifier$lat,
@@ -271,11 +273,11 @@ power_query <- function(community,
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
-      parameters = I(pars),
+      parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
-      tempAverage = temporal_average,
+      tempAverage = pars$temporal_average,
       bbox = I(lonlat_identifier$bbox),
       outputList = "CSV",
       user = user_agent
@@ -286,11 +288,11 @@ power_query <- function(community,
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
-      parameters = I(pars),
+      parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
-      tempAverage = temporal_average,
+      tempAverage = pars$temporal_average,
       outputList = "CSV",
       user = user_agent
     )
