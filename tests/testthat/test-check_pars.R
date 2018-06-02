@@ -34,8 +34,7 @@ test_that("pars are returned as a comma separated string with no spaces", {
                      temporal_average = "Climatology")
   expect_named(pars, c("pars", "temporal_average"))
   expect_equal(nchar(pars$pars), 42)
-  expect_equal(pars$pars, c("ALLSKY_SFC_SW_DWN_03_GMT",
-                            "ALLSKY_SFC_LW_DWN"))
+  expect_equal(pars$pars, "ALLSKY_SFC_SW_DWN_03_GMT,ALLSKY_SFC_LW_DWN")
   expect_equal(pars$temporal_average, "CLIMATOLOGY")
   expect_length(pars, 2)
 })
