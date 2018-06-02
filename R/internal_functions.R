@@ -90,7 +90,10 @@ check_community <-
 #' @noRd
 check_pars <-
   function(pars, temporal_average) {
-    temporal_average <- toupper(temporal_average)
+
+    if (!is.null(temporal_average)) {
+      temporal_average <- toupper(temporal_average)
+    }
 
     if (is.null(temporal_average)) {
       stop(call. = FALSE,
