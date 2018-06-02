@@ -110,7 +110,9 @@ check_pars <-
     # check pars to make sure that they are valid
     if (any(pars %notin% parameters[[1]])) {
       stop(call. = FALSE,
-           "You have entered an invalid value for `pars`.")
+           paste0("\n", pars[which(pars %notin% parameters[[1]])],
+                  " is/are not valid in 'pars'.\n")
+      )
     }
 
     # check to make sure temporal_average is appropriate for given pars
