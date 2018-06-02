@@ -1,0 +1,43 @@
+http_interactions:
+- request:
+    method: get
+    uri: power.larc.nasa.gov/cgi-bin/v1/DataAccess.py
+    body:
+      encoding: ''
+      string: ''
+    headers:
+      User-Agent: libcurl/7.54.0 r-curl/3.2 crul/0.5.2
+      Accept-Encoding: gzip, deflate
+      Accept: application/json, text/xml, application/xml, */*
+  response:
+    status:
+      status_code: '200'
+      message: OK
+      explanation: Request fulfilled, document follows
+    headers:
+      status: HTTP/1.1 200 OK
+      date: Sat, 02 Jun 2018 12:57:56 GMT
+      server: Apache/2.4.6 (Red Hat Enterprise Linux) OpenSSL/1.0.2k-fips
+      x-frame-options: SAMEORIGIN
+      strict-transport-security: max-age=31536000
+      access-control-allow-origin: '*'
+      access-control-expose-headers: Access-Control-Allow-Origin
+      access-control-allow-headers: Origin, X-Requested-With, Content-Type, Accept
+      content-type: application/json
+      transfer-encoding: chunked
+    body:
+      encoding: UTF-8
+      string: |
+        {
+         "messages": [
+          {
+           "Alert": {
+            "Description": {
+             "Issue": "Input request type is not allowed. Please reference our API Documentation at https://power.larc.nasa.gov for more information."
+            }
+           }
+          }
+         ]
+        }
+  recorded_at: 2018-06-02 12:56:20 GMT
+  recorded_with: vcr/0.1.0, webmockr/0.2.6, crul/0.5.2
