@@ -90,7 +90,6 @@ check_community <-
 #' @noRd
 check_pars <-
   function(pars, temporal_average) {
-
     if (!is.null(temporal_average)) {
       temporal_average <- toupper(temporal_average)
     }
@@ -115,8 +114,7 @@ check_pars <-
     if (any(pars %notin% parameters[[1]])) {
       stop(call. = FALSE,
            paste0("\n", pars[which(pars %notin% parameters[[1]])],
-                  " is/are not valid in 'pars'.\n")
-      )
+                  " is/are not valid in 'pars'.\n"))
     }
 
     # check to make sure temporal_average is appropriate for given pars
@@ -128,7 +126,8 @@ check_pars <-
         call. = FALSE,
         "\nYou have entered an invalid value for `temporal_average` for the\n",
         "supplied `pars`. One or more `pars` are not, available for\n",
-        "`", temporal_average,
+        "`",
+        temporal_average,
         "`, please check."
       )
     }
@@ -139,6 +138,29 @@ check_pars <-
     names(pars) <- c("pars", "temporal_average")
     return(pars)
   }
+
+#' @noRd
+check_for_global <- function(latlon, temporal_average) {
+  if (is.character(latlon)) {
+    latlon <- paste0(toupper(substr(latlon, 1, 1)),
+                     tolower(substr(latlon, 2, nchar(latlon))))
+    if (latlon != "Global") {
+      stop("You have entered an invalid value for `latlon`.")
+    }
+    if (latlon == "Global" & temporal_average != "Climatology") {
+      message(
+        "\nGlobal data are only available for Climatology.\n",
+        "\nSetting `temporal_average` to `Climatology`.\n"
+      )
+      temporal_average <- "Climatology"
+    }
+    latlon_tempavg <- list(latlon, temporal_average)
+    names(latlon_tempavg <- c("latlon", "temporal_average"))
+  } else
+    latlon_tempavg <- list(latlon, temporal_average)
+  names(latlon_tempavg <- c("latlon", "temporal_average"))
+  return(latlon_tempavg)
+}
 
 #' @noRd
 check_latlon <-
@@ -165,10 +187,11 @@ check_latlon <-
           "`, value to be sure it is valid.\n"
         )
       }
-      message(
-        "\nFetching single point data for lat ", latlon[1], ", lon ", latlon[2],
-        "\n"
-      )
+      message("\nFetching single point data for lat ",
+              latlon[1],
+              ", lon ",
+              latlon[2],
+              "\n")
       identifier <- "SinglePoint"
       lat <- latlon[1]
       lon <- latlon[2]
@@ -190,7 +213,9 @@ check_latlon <-
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
-          latlon[1], "`, `", latlon[3],
+          latlon[1],
+          "`, `",
+          latlon[3],
           "`, values to be sure they are valid.\n"
         )
       }
@@ -201,7 +226,9 @@ check_latlon <-
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
-          latlon[2], "`, `", latlon[4],
+          latlon[2],
+          "`, `",
+          latlon[4],
           "`, values to be sure they are valid.\n"
         )
       }
