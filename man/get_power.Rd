@@ -68,11 +68,12 @@ e.g., \code{latlon = c(xmin, ymin, xmax, ymax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 \code{latlon = c(112.5, 122.5, -55.5, -45.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
-}
 
 \item{For global coverage}{To get global coverage for long term
 monthly averages for the entire globe use \code{Global} in place of
-\code{latlon} values.}
+\code{latlon} values. \code{temporal_average} will automatically be set to
+\code{climatology} if this option is set.}
+}
 }
 
 \section{Argument details for \code{dates}}{

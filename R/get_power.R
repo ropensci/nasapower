@@ -53,11 +53,12 @@
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
 #'  `latlon = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
-#'  }
 #'
 #'  \item{For global coverage}{To get global coverage for long term
 #'  monthly averages for the entire globe use `Global` in place of
-#'  `latlon` values.}
+#'  `latlon` values. `temporal_average` will automatically be set to
+#'  `climatology` if this option is set.}
+#' }
 #'
 #'@section Argument details for `dates`: If `dates` is unspecified, defaults to
 #'  a start date of 1983-01-01 (the earliest available data) and an end date of
@@ -97,6 +98,7 @@ get_power <- function(community = NULL,
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   dates <- check_dates(dates)
+  temporal_average <- check_temporal(latlon, temporal_average)
   pars <- check_pars(pars, temporal_average)
   latlon_identifier <- check_latlon(latlon, pars)
   community <- check_community(community)
@@ -107,4 +109,5 @@ get_power <- function(community = NULL,
                       latlon_identifier,
                       pars,
                       dates)
+  return(NASA)
 }
