@@ -49,9 +49,9 @@
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
 #'  vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-#'  e.g., `latlon = c(xmin, ymin, xmax, ymax)` in that order for a given
+#'  e.g., `latlon = c(ymin, xmin, ymax, xmax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
-#'  `latlon = c(112.5, 122.5, -55.5, -45.5)`. *Max bounding box is 10 x 10
+#'  `latlon = c(-55.5,, 112.5, -44.5, 122.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
 #'
 #'  \item{For global coverage}{To get global coverage for long term
