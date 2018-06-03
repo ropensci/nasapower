@@ -56,7 +56,7 @@ top-of-atmosphere insolation, from NASA - POWER.
 
 ```{r get_data_show, eval=TRUE}
 sw_dwn <- get_power(
-  latlon = c(151.81, -27.48),
+  latlon = c(-27.48, 151.81),
   dates = c("2010-01-01", "2010-12-31"),
   pars = "ALLSKY_TOA_SW_DWN",
   community = "AG",
