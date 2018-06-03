@@ -62,7 +62,7 @@ which will fetch relative humidity (RH2M) and temperature (T2M) for the year
 
 ```{r example, eval=FALSE}
 power <- get_power(community = "AG",
-                   lonlat = c(-89.5, -179.5),
+                   latlon = c(-89.5, -179.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-12-31"),
                    temporal_average = "daily")
@@ -76,7 +76,7 @@ selected user community will affect the units of the parameter and the temporal
 display of time series data (_e.g._ Agroclimatology will use MJ/m^2^/day for
 radiation units, while SSE and SB use kW/m^2^/day as units).
 
-- `lonlat`, a length-2 numeric vector giving the decimal degree longitude and
+- `latlon`, a length-2 numeric vector giving the decimal degree longitude and
 and latitude coordinates in that order for cell data to download or a length-4
 numeric vector giving the decimal degree longitude and and latitude coordinates
 forming a bounding box as ymin, xmin, ymax, xmax in that order.
