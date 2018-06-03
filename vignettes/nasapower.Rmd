@@ -35,7 +35,7 @@ The `get_power()` function requires five arguments as seen in this example.
 
 ```{r example, eval=FALSE}
 power <- get_power(community = "AG",
-                   latlon = c(-179.5, -89.5),
+                   latlon = c(-89.5, 179.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-12-31"),
                    temporal_average = "daily")
