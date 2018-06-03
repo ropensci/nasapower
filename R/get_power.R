@@ -98,9 +98,11 @@ get_power <- function(community = NULL,
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   dates <- check_dates(dates)
-  temporal_average <- check_for_global(latlon, temporal_average)
-  pars <- check_pars(pars, latlon_tempavg$temporal_average)
-  latlon_identifier <- check_latlon(latlon_tempavg$latlon, pars)
+  latlon_tempavg <- check_for_global(latlon, temporal_average)
+  pars <- check_pars(pars,
+                     temporal_average = latlon_tempavg$temporal_average)
+  latlon_identifier <- check_latlon(latlon = latlon_tempavg$latlon,
+                                    pars = pars)
   community <- check_community(community)
 
   # submit query ---------------------------------------------------------------
