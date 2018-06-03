@@ -66,7 +66,7 @@ that order for data to download, \emph{e.g.}, \code{latlon = c(-179.5, -89.5)}.}
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
 e.g., \code{latlon = c(ymin, xmin, ymax, xmax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
-\code{latlon = c(-55.5,, 112.5, -44.5, 122.5)}. \emph{Max bounding box is 10 x 10
+\code{latlon = c(-55.5,, 112.5, -50.5, 115.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
 
 \item{For global coverage}{To get global coverage for long term
