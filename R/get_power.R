@@ -16,7 +16,8 @@
 #'  the Parameter Dictionary.  If downloading global coverage a maximum of 3
 #'  `pars` can be specified at one time.
 #'@param dates A character vector of start and end dates in that order, *e.g.*,
-#'  `dates = c("1983-01-01", "2017-12-31")`.  See argument details for more.
+#'  `dates = c("1983-01-01", "2017-12-31")`.  Not required for global
+#'  coverage.  See argument details for more.
 #'@param temporal_average Temporal average for data being queried, currently
 #'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 #'  more.
@@ -98,11 +99,11 @@ get_power <- function(community = NULL,
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   dates <- check_dates(dates)
-  latlon_tempavg <- check_for_global(latlon, temporal_average)
   pars <- check_pars(pars,
-                     temporal_average = latlon_tempavg$temporal_average)
-  latlon_identifier <- check_latlon(latlon = latlon_tempavg$latlon,
-                                    pars = pars)
+                     temporal_average,
+                     latlon)
+  latlon_identifier <- check_latlon(latlon,
+                                    pars)
   community <- check_community(community)
 
   # submit query ---------------------------------------------------------------
