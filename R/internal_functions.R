@@ -155,10 +155,10 @@ check_for_global <- function(latlon, temporal_average) {
       temporal_average <- "Climatology"
     }
     latlon_tempavg <- list(latlon, temporal_average)
-    names(latlon_tempavg <- c("latlon", "temporal_average"))
-  } else
+  } else {
     latlon_tempavg <- list(latlon, temporal_average)
-  names(latlon_tempavg <- c("latlon", "temporal_average"))
+  }
+  names(latlon_tempavg) <- c("latlon", "temporal_average")
   return(latlon_tempavg)
 }
 
