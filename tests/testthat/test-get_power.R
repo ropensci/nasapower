@@ -33,7 +33,7 @@ test_that("get_power returns AG data for a region", {
   vcr::use_cassette("Regional_AG", {
     query <- get_power(
       community = "AG",
-      latlon = "Global",
+      latlon = c(-55.5, 112.5, -50.5, 115.5),
       pars =  "T2M",
       dates = c("1983-01-01"),
       temporal_average = "Daily"
@@ -61,10 +61,6 @@ test_that("get_power returns AG data for a region", {
     expect_equal(query$YEAR[1], 1983)
     expect_equal(query$DOY[1], "001")
     expect_equal(query$T2M[1], 3.28)
-    expect_equal(query$T2M_MIN[1], 2.95)
-    expect_equal(query$T2M_MAX[1], 3.54)
-    expect_equal(query$RH2M[1], 95.39)
-    expect_equal(query$WS10M[1], 7.59)
     rm(query)
   })
 })
