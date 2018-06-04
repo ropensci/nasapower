@@ -5,70 +5,89 @@
 }
 
 #' @noRd
-check_dates <- function(dates) {
-  # if dates are NULL, set to defaults
-  if (is.null(dates)) {
-    dates <- c("1983-01-01", as.character(Sys.Date()))
+# start/end dates not required for global.
+check_global <- function(latlon) {
+  if (is.character(latlon)) {
+    latlon <- paste0(toupper(substr(latlon, 1, 1)),
+                     tolower(substr(latlon, 2, nchar(latlon))))
+    if (latlon != "Global") {
+      stop("\nYou have entered an invalid value for `latlon`.\n")
+    }
   }
-  if (length(dates) == 1) {
-    dates <- c(dates, dates)
+  return(latlon)
+}
+
+#' @noRd
+check_dates <- function(dates, latlon) {
+  if (is.numeric(latlon)) {
+    # if dates are NULL, set to defaults
+    if (is.null(dates)) {
+      dates <- c("1983-01-01", as.character(Sys.Date()))
+    }
+    if (length(dates) == 1) {
+      dates <- c(dates, dates)
+    }
+
+    if (length(dates) > 2) {
+      stop(call. = FALSE,
+           "\nYou have supplied more than two dates for a start and end date.\n")
+    }
+
+    # put dates in list to use lapply
+    dates <- as.list(dates)
+
+    # check dates as entered by user
+    date_format <- function(x) {
+      tryCatch(
+        # try to parse the date format using lubridate
+        x <- lubridate::parse_date_time(x,
+                                        c(
+                                          "Ymd",
+                                          "dmY",
+                                          "mdY",
+                                          "BdY",
+                                          "Bdy",
+                                          "bdY",
+                                          "bdy"
+                                        )),
+        warning = function(c) {
+          stop(call. = FALSE,
+               "\n", x,
+               " is not a valid entry for date. Enter as YYYY-MM-DD.\n")
+        }
+      )
+      return(as.Date(x))
+    }
+
+    # apply function to reformat/check dates
+    dates = lapply(X = dates, FUN = date_format)
+
+    # if the stdate is > endate, flip order
+    if (dates[[2]] < dates[[1]]) {
+      message("\nYour start and end dates were reversed.\n",
+              "They have been reordered.\n")
+      dates <- as.list(c(dates[2], dates[1]))
+    }
+
+    # check date to be sure it's not before POWER data start
+    if (dates[[1]] < "1983-01-01") {
+      stop(call. = FALSE,
+           "\nNASA-POWER data do not start before 1983-01-01.\n")
+    }
+
+    # check end date to be sure it's not _after_
+    if (dates[[2]] > Sys.Date()) {
+      stop(call. = FALSE,
+           "\nThe data cannot possibly extend beyond this moment.\n")
+    }
+
+    dates <- lapply(dates, as.character)
+    dates <- gsub("-", "" , dates, ignore.case = TRUE)
+  } else if (is.character(latlon) & !is.null(dates)) {
+    message("\nDates are not used with CLIMATOLOGY. Setting to NULL.\n")
+    dates <- NULL
   }
 
-  if (length(dates) > 2) {
-    stop(call. = FALSE,
-         "You have supplied more than two dates for a start and end date.")
-  }
-
-  # put dates in list to use lapply
-  dates <- as.list(dates)
-
-  # check dates as entered by user
-  date_format <- function(x) {
-    tryCatch(
-      # try to parse the date format using lubridate
-      x <- lubridate::parse_date_time(x,
-                                      c(
-                                        "Ymd",
-                                        "dmY",
-                                        "mdY",
-                                        "BdY",
-                                        "Bdy",
-                                        "bdY",
-                                        "bdy"
-                                      )),
-      warning = function(c) {
-        stop(call. = FALSE,
-             x,
-             " is not a valid entry for date. Enter as YYYY-MM-DD.")
-      }
-    )
-    return(as.Date(x))
-  }
-
-  # apply function to reformat/check dates
-  dates = lapply(X = dates, FUN = date_format)
-
-  # if the stdate is > endate, flip order
-  if (dates[[2]] < dates[[1]]) {
-    message("Your start and end dates were reversed.\n",
-            "They have been reordered.\n")
-    dates <- as.list(c(dates[2], dates[1]))
-  }
-
-  # check date to be sure it's not before POWER data start
-  if (dates[[1]] < "1983-01-01") {
-    stop(call. = FALSE,
-         "NASA-POWER data do not start before 1983-01-01")
-  }
-
-  # check end date to be sure it's not _after_
-  if (dates[[2]] > Sys.Date()) {
-    stop(call. = FALSE,
-         "The data cannot possibly extend beyond this moment.")
-  }
-
-  dates <- lapply(dates, as.character)
-  dates <- gsub("-", "" , dates, ignore.case = TRUE)
   return(dates)
 }
 
@@ -77,36 +96,47 @@ check_community <-
   function(community) {
     if (is.null(community)) {
       stop(call. = FALSE,
-           "You have not provided a `community` value.")
+           "\nYou have not provided a `community` value.\n")
     }
     community <- toupper(community)
     if (community %notin% c("AG", "SB", "SSE")) {
       stop(call. = FALSE,
-           "You have provided an invalid `community` value.")
+           "\nYou have provided an invalid `community` value.\n")
     }
     return(community)
   }
 
 #' @noRd
 check_pars <-
-  function(pars, temporal_average) {
+  function(pars, temporal_average, latlon) {
     if (!is.null(temporal_average)) {
       temporal_average <- toupper(temporal_average)
+    }
+    if (!is.numeric(latlon) & !is.null(temporal_average)) {
+      if (temporal_average != "CLIMATOLOGY") {
+        message(
+          "\nGlobal data are only available for Climatology.\n",
+          "\nSetting `temporal_average` to `CLIMATOLOGY`.\n"
+        )
+      }
+    }
+    if (latlon == "Global") {
+      temporal_average <- "CLIMATOLOGY"
     }
 
     if (is.null(temporal_average)) {
       stop(call. = FALSE,
-           "You have not provided a `temporal_average` value.")
+           "\nYou have not provided a `temporal_average` value.\n")
     }
 
     if (is.null(pars)) {
       stop(call. = FALSE,
-           "You have not provided a `pars` value.")
+           "\nYou have not provided a `pars` value.\n")
     }
 
     if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
       stop(call. = FALSE,
-           "You have entered an invalid value for `temporal_average`.")
+           "\nYou have entered an invalid value for `temporal_average`.\n")
     }
 
     pars <- toupper(pars)
@@ -128,7 +158,7 @@ check_pars <-
         "supplied `pars`. One or more `pars` are not, available for\n",
         "`",
         temporal_average,
-        "`, please check."
+        "`, please check.\n"
       )
     }
 
@@ -140,35 +170,12 @@ check_pars <-
   }
 
 #' @noRd
-check_for_global <- function(latlon, temporal_average) {
-  if (is.character(latlon)) {
-    latlon <- paste0(toupper(substr(latlon, 1, 1)),
-                     tolower(substr(latlon, 2, nchar(latlon))))
-    if (latlon != "Global") {
-      stop("You have entered an invalid value for `latlon`.")
-    }
-    if (latlon == "Global" & temporal_average != "Climatology") {
-      message(
-        "\nGlobal data are only available for Climatology.\n",
-        "\nSetting `temporal_average` to `Climatology`.\n"
-      )
-      temporal_average <- "Climatology"
-    }
-    latlon_tempavg <- list(latlon, temporal_average)
-  } else {
-    latlon_tempavg <- list(latlon, temporal_average)
-  }
-  names(latlon_tempavg) <- c("latlon", "temporal_average")
-  return(latlon_tempavg)
-}
-
-#' @noRd
 check_latlon <-
   function(latlon, pars) {
     bbox <- NULL
     if (is.null(latlon)) {
       stop(call. = FALSE,
-           "\nYou must provide a `latlon` (maximum 100 points total or 10x10 cells).\n")
+           "\nYou must provide a `latlon` (max 100 points or 10x10 cells).\n")
     }
     if (length(latlon) == 2 && is.numeric(latlon)) {
       if (latlon[1] < -90 || latlon[1] > 90) {
@@ -260,13 +267,16 @@ check_latlon <-
            "\nYou have entered an invalid request for `latlon`.\n")
     }
     if (!is.null(bbox)) {
-      latlon_identfier <- list(bbox, identifier)
-      names(latlon_identfier) <- c("bbox", "identifier")
-    } else {
-      latlon_identfier <- list(lat, lon, identifier)
-      names(latlon_identfier) <- c("lat", "lon", "identifier")
+      latlon_identifier <- list(bbox, identifier)
+      names(latlon_identifier) <- c("bbox", "identifier")
+    } else if (identifier == "Global") {
+      latlon_identifier <- list("Global")
+      names(latlon_identifier) <- "identifier"
+    }  else {
+      latlon_identifier <- list(lat, lon, identifier)
+      names(latlon_identifier) <- c("lat", "lon", "identifier")
     }
-    return(latlon_identfier)
+    return(latlon_identifier)
   }
 
 #' @noRd
@@ -320,8 +330,6 @@ power_query <- function(community,
       request = "execute",
       identifier = latlon_identifier$identifier,
       parameters = I(pars$pars),
-      startDate = dates[[1]],
-      endDate = dates[[2]],
       userCommunity = community,
       tempAverage = pars$temporal_average,
       outputList = "CSV",
