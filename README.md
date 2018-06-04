@@ -61,7 +61,7 @@ for the year 1985 on a daily time-step.
 
 ``` r
 power <- get_power(community = "AG",
-                   lonlat = c(-179.5, -89.5),
+                   latlon = c(-89.5, -179.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-12-31"),
                    temporal_average = "daily")
@@ -77,8 +77,8 @@ The arguments are:
     for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as
     units).
 
-  - `lonlat`, a length-2 numeric vector giving the decimal degree
-    longitude and and latitude coordinates in that order for cell data
+  - `latlon`, a length-2 numeric vector giving the decimal degree
+    latitude and and longitude coordinates in that order for cell data
     to download or a length-4 numeric vector giving the decimal degree
     longitude and and latitude coordinates forming a bounding box as
     ymin, xmin, ymax, xmax in that order.

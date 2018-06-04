@@ -47,6 +47,7 @@ Suggests:
     rnaturalearth,
     sp,
     testthat,
+    vcr,
     viridis
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools

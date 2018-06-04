@@ -4,15 +4,16 @@
 \alias{get_power}
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
-get_power(community = NULL, lonlat = NULL, pars = NULL, dates = NULL,
+get_power(community = NULL, latlon = NULL, pars = NULL, dates = NULL,
   temporal_average = NULL)
 }
 \arguments{
 \item{community}{Dataset name, currently supported are AG, SB and SSE. See
 argument details for more.}
 
-\item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates.  See argument details for more.}
+\item{latlon}{A numeric vector of geographic coordinates for a cell or region
+entered as x, y coordinates or \code{Global} for global area.  See argument
+details for more.}
 
 \item{pars}{A character vector of solar or meteorological variables to
 download.  See the \code{Value} field of \code{\link{parameters}} for a full list of valid
@@ -21,7 +22,8 @@ the Parameter Dictionary.  If downloading global coverage a maximum of 3
 \code{pars} can be specified at one time.}
 
 \item{dates}{A character vector of start and end dates in that order, \emph{e.g.},
-\code{dates = c("1983-01-01", "2017-12-31")}.  See argument details for more.}
+\code{dates = c("1983-01-01", "2017-12-31")}.  Not required for global
+coverage.  See argument details for more.}
 
 \item{temporal_average}{Temporal average for data being queried, currently
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
@@ -54,18 +56,24 @@ powered renewable energy systems.}
 }
 }
 
-\section{Argument details for \code{lonlat}}{
+\section{Argument details for \code{latlon}}{
 
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download, \emph{e.g.}, \code{lonlat = c(-179.5, -89.5)}.}
+that order for data to download, \emph{e.g.}, \code{latlon = c(-179.5, -89.5)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
-vector as \code{lonlat = c(xmin, xmax, ymin, ymax)} in that order for a given
+vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+e.g., \code{latlon = c(ymin, xmin, ymax, xmax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
-\code{lonlat = c(112.5, 122.5, -55.5, -45.5)}. \emph{Max bounding box is 10 x 10
+\code{latlon = c(-55.5,, 112.5, -50.5, 115.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
+
+\item{For global coverage}{To get global coverage for long term
+monthly averages for the entire globe use \code{Global} in place of
+\code{latlon} values. \code{temporal_average} will automatically be set to
+\code{climatology} if this option is set.}
 }
 }
 
@@ -92,7 +100,7 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
 \dontrun{
 power <- get_power(community = "AG",
-                  lonlat = c(-179.5, -89.5),
+                  latlon = c(-179.5, -89.5),
                   pars = c("RH2M", "T2M"),
                   dates = "1985-01-01",
                   temporal_average = "daily")
