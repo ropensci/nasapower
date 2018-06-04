@@ -8,7 +8,10 @@
                 "request the following acknowledgment be included:\n",
                 "These data were obtained from the NASA Langley Research\n",
                 "Center POWER Project funded through the NASA Earth Science\n",
-                "Directorate Applied Science Program.'\n")
+                "Directorate Applied Science Program.'\n",
+                "\n",
+                "Please see `citation('nasapower')` for a proper citation of\n",
+                "this package.\n")
   packageStartupMessage(msg)
 }
 
