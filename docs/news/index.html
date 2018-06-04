@@ -21,14 +21,17 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
 
 <meta property="og:title" content="Changelog" />
+
 
 
 <!-- mathjax -->
@@ -153,19 +156,19 @@
 <h3 class="hasAnchor">
 <a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h3>
 <ul>
-<li><p>Fix bug where lon/lat values were improperly assigned internally due to row names not being ordered correctly in <code><a href="../reference/nasapower-deprecated.html">get_region()</a></code></p></li>
+<li><p>Fix bug where lon/lat values were improperly assigned internally due to row names not being ordered correctly in <code>get_region()</code></p></li>
 <li><p>Fix bug reports link in DESCRIPTION file</p></li>
 <li><p>Correct vignette where it had said, "both of which will which will download</p></li>
-<li><p>Correct documentation for <code><a href="../reference/nasapower-deprecated.html">get_region()</a></code>, which incorrectly stated that it downloaded data for a 1 x 1 degree cell</p></li>
+<li><p>Correct documentation for <code>get_region()</code>, which incorrectly stated that it downloaded data for a 1 x 1 degree cell</p></li>
 </ul>
 </div>
 <div id="minor-improvements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#minor-improvements" class="anchor"></a>Minor improvements</h3>
 <ul>
-<li><p>Optimise arguments used in <code><a href="http://www.rdocumentation.org/packages/utils/topics/read.table">utils::read.table()</a></code> to ingest weather data in the <code><a href="../reference/nasapower-deprecated.html">get_cell()</a></code> and <code><a href="../reference/nasapower-deprecated.html">get_region()</a></code> functions more quickly</p></li>
+<li><p>Optimise arguments used in <code><a href="http://www.rdocumentation.org/packages/utils/topics/read.table">utils::read.table()</a></code> to ingest weather data in the <code>get_cell()</code> and <code>get_region()</code> functions more quickly</p></li>
 <li><p>NEWS now formatted more nicely for easier reading</p></li>
-<li><p>Add statement about possible performance and memory usage when using <code><a href="../reference/nasapower-deprecated.html">get_region()</a></code> in the vignette</p></li>
+<li><p>Add statement about possible performance and memory usage when using <code>get_region()</code> in the vignette</p></li>
 <li><p>Add an example of converting the data frame to a spatial object using <em>raster</em> to create a <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick()</a></code></p></li>
 <li><p>Specify in documentation that a range of days to years can be specified for download</p></li>
 </ul>
@@ -174,7 +177,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li><p><code><a href="../reference/nasapower-deprecated.html">get_region()</a></code> and <code><a href="../reference/nasapower-deprecated.html">get_cell()</a></code> now default to download all weather vars</p></li>
+<li><p><code>get_region()</code> and <code>get_cell()</code> now default to download all weather vars</p></li>
 <li><p>Add a check to see if POWER website is responding before making request for data. If not, stop and return error message to user.</p></li>
 <li><p>Add new use case vignette for APSIM modelling work, <a href="https://adamhsparks.github.io/nasapower/articles/use-case.html" class="uri">https://adamhsparks.github.io/nasapower/articles/use-case.html</a></p></li>
 </ul>
@@ -188,7 +191,7 @@
 <h3 class="hasAnchor">
 <a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h3>
 <ul>
-<li>Fixes bug where only first date is reported when using <code><a href="../reference/nasapower-deprecated.html">get_region()</a></code> with multiple dates. <a href="https://github.com/adamhsparks/nasapower/issues/1" class="uri">https://github.com/adamhsparks/nasapower/issues/1</a>
+<li>Fixes bug where only first date is reported when using <code>get_region()</code> with multiple dates. <a href="https://github.com/adamhsparks/nasapower/issues/1" class="uri">https://github.com/adamhsparks/nasapower/issues/1</a>
 </li>
 </ul>
 </div>

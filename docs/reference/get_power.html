@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -33,6 +35,7 @@
 <meta property="og:description" content="Get NASA-POWER data and return a tidy data frame. All options
 offered by the official NASA-POWER API are supported." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -125,7 +128,7 @@ offered by the official NASA-POWER API are supported.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -137,9 +140,10 @@ offered by the official NASA-POWER API are supported.</p>
 argument details for more.</p></td>
     </tr>
     <tr>
-      <th>lonlat</th>
+      <th>latlon</th>
       <td><p>A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates.  See argument details for more.</p></td>
+entered as x, y coordinates or <code>Global</code> for global area.  See argument
+details for more.</p></td>
     </tr>
     <tr>
       <th>pars</th>
@@ -152,7 +156,8 @@ the Parameter Dictionary.  If downloading global coverage a maximum of 3
     <tr>
       <th>dates</th>
       <td><p>A character vector of start and end dates in that order, <em>e.g.</em>,
-<code>dates = c("1983-01-01", "2017-12-31")</code>.  See argument details for more.</p></td>
+<code>dates = c("1983-01-01", "2017-12-31")</code>.  Not required for global
+coverage.  See argument details for more.</p></td>
     </tr>
     <tr>
       <th>temporal_average</th>
@@ -183,18 +188,23 @@ parameters specifically tailored to assist in the design of solar and wind
 powered renewable energy systems.</p></dd>
 </dl>
     
-    <h2 class="hasAnchor" id="argument-details-for-lonlat"><a class="anchor" href="#argument-details-for-lonlat"></a>Argument details for <code>lonlat</code></h2>
+    <h2 class="hasAnchor" id="argument-details-for-latlon"><a class="anchor" href="#argument-details-for-latlon"></a>Argument details for <code>latlon</code></h2>
 
     
     <dl class='dl-horizontal'>
 <dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download, <em>e.g.</em>, <code>lonlat = c(-179.5, -89.5)</code>.</p></dd>
+that order for data to download, <em>e.g.</em>, <code>latlon = c(-179.5, -89.5)</code>.</p></dd>
     <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
-vector as <code>lonlat = c(xmin, xmax, ymin, ymax)</code> in that order for a given
+vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+e.g., <code>latlon = c(ymin, xmin, ymax, xmax)</code> in that order for a given
 region, <em>e.g.</em>, a bounding box for the southwestern corner of Australia:
-<code>lonlat = c(112.5, 122.5, -55.5, -45.5)</code>. <em>Max bounding box is 10 x 10
+<code>latlon = c(-55.5,, 112.5, -50.5, 115.5)</code>. <em>Max bounding box is 10 x 10
 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></dd>
+    <dt>For global coverage</dt><dd><p>To get global coverage for long term
+monthly averages for the entire globe use <code>Global</code> in place of
+<code>latlon</code> values. <code>temporal_average</code> will automatically be set to
+<code>climatology</code> if this option is set.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <code>dates</code></h2>
@@ -225,7 +235,7 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
 </div><span class='co'># NOT RUN {</span>
 <span class='no'>power</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
-                  <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
+                  <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
                   <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>),
                   <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
                   <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"daily"</span>)
@@ -241,7 +251,7 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
       <li><a href="#argument-details-for-community">Argument details for <code>community</code></a></li>
 
-      <li><a href="#argument-details-for-lonlat">Argument details for <code>lonlat</code></a></li>
+      <li><a href="#argument-details-for-latlon">Argument details for <code>latlon</code></a></li>
 
       <li><a href="#argument-details-for-dates">Argument details for <code>dates</code></a></li>
 
