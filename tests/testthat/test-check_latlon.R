@@ -1,7 +1,7 @@
 
 # latlon checks ----------------------------------------------------------------
 context("Test that check_latlon function handles lat lon strings correctly")
-test_that("check_latlon_cell properly reports errors", {
+test_that("check_latlon properly reports errors", {
   # set up pars argument for testing
   pars <- "T2M"
 
