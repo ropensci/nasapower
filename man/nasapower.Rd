@@ -32,10 +32,7 @@ Science Program."
 }
 \seealso{
 \itemize{
-\item \link{get_cell} Download NASA-POWER Agroclimatology Variables for a
-Given Cell and Return a Tidy Data Frame
-\item \link{get_region} Download NASA-POWER Agroclimatology Variables for a
-Given Region and Return a Tidy Data Frame
+\item \link{get_power} Download NASA-POWER Data and Return a Tidy Data Frame
 }
 }
 \author{
