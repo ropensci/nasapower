@@ -51,14 +51,14 @@ Using the `APSIM::prepareMet()` example, where data for Kingsthorpe, Qld,
 is provided by the package, we can create an equivalent data set from the
 NASA-POWER data compare it with the supplied data for Kingsthorpe, Queensland
 location 151.81 degrees longitude and -27.48 degrees latitude, for 2010. As a
-proxy for potential incoming radiation, `SRAD`, we'll use `ALLSKY_TOA_SW_DWN`,
-top-of-atmosphere insolation, from NASA - POWER.
+proxy for potential incoming radiation, `SRAD`, we'll use `ALLSKY_SFC_SW_DWN`,
+insolation incident on a horizontal surface, from NASA - POWER.
 
 ```{r get_data_show, eval=TRUE}
 sw_dwn <- get_power(
   latlon = c(-27.48, 151.81),
   dates = c("2010-01-01", "2010-12-31"),
-  pars = "ALLSKY_TOA_SW_DWN",
+  pars = "ALLSKY_SFC_SW_DWN",
   community = "AG",
   temporal_average = "DAILY"
   )
@@ -70,7 +70,7 @@ To compare the data more easily using a graph and correlation measures, join the
 two data frames to create a data frame called, `compare`.
 
 ```{r compare, eval=TRUE}
-compare <- data.frame(kingsData$rad, sw_dwn$ALLSKY_TOA_SW_DWN)
+compare <- data.frame(kingsData$rad, sw_dwn$ALLSKY_SFC_SW_DWN)
 ```
 
 ## Graph the Data
@@ -80,12 +80,12 @@ Graph radiation values from the weather station at Kingsthorpe in
 often used as a substitute for on-the-ground measurements.
 
 ```{r graph_rad, eval=TRUE}
-ggplot(compare, aes(x = kingsData.rad, y = sw_dwn.ALLSKY_TOA_SW_DWN)) +
+ggplot(compare, aes(x = kingsData.rad, y = sw_dwn.ALLSKY_SFC_SW_DWN)) +
   geom_point(colour = "orange") +
   geom_abline(colour = "black", slope = 1) +
   theme_minimal()
 
-cor(compare$kingsData.rad, compare$sw_dwn.ALLSKY_TOA_SW_DWN)
+cor(compare$kingsData.rad, compare$sw_dwn.ALLSKY_SFC_SW_DWN)
 ```
 
 # Create a .met File
@@ -96,17 +96,17 @@ radiation. A duplicate data set of the `kingsData` from _APSIM_ has been
 created, which has `rad` missing, `kings_nasa`. Using that data set, merge
 with the `swv_dwn` from the POWER data and create an APSIM .met file.
 
-```{r remove_rad, eval=FALSE, include=FALSE}
+```{r remove_rad, eval=TRUE, include=TRUE}
 kings_nasa <- kingsData[, -6]
 ```
 
-```{r create_met, eval=FALSE}
+```{r create_met, eval=TRUE}
 
 # inspect the kings_nasa data
 str(kings_nasa)
 
 # join the kings_data with swv_dwn from POWER
-kings_met <- data.frame(kings_nasa, swv_dwn$swv_dwn)
+kings_met <- data.frame(kings_nasa, sw_dwn$ALLSKY_SFC_SW_DWN)
 
 # rearrange the columns to match expected order for .met file
 kings_met <- kings_met[c(1:5, 10, 6:9)]
@@ -140,7 +140,7 @@ units <-
 Using the `kings_met` data frame created previously, along with the `new_names`
 and `units` data frames, use `APSIM::prepareMet()` to create a .met file.
 
-```{r prepare_met, eval=FALSE}
+```{r prepare_met, eval=TRUE}
 nasa_met <- prepareMet(kings_met,
            lat = -27.48,
            lon = 151.81,

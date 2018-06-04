@@ -120,7 +120,7 @@ check_pars <-
         )
       }
     }
-    if (latlon == "Global") {
+    if (is.character(latlon)) {
       temporal_average <- "CLIMATOLOGY"
     }
 
