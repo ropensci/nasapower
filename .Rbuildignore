@@ -8,3 +8,4 @@
 ^docs$
 ^codemeta\.json$
 ^cran-comments\.md$
+^data-raw$

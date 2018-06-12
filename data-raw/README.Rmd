@@ -1,7 +1,6 @@
 ---
-title: "Harvest NASA - POWER Parameters"
+title: "Untitled"
 output: github_document
-author: "Adam H Sparks"
 ---
 
 ```{r setup, include=FALSE}
