@@ -25,7 +25,7 @@ test_that("`dates` >2 cause an error", {
   latlon <- c(-89.5, -179.5)
   expect_error(check_dates(dates, latlon),
                regexp =
-                 "You have supplied more than two dates for a start and end date.")
+                 "*\nYou have entered an invalid value for `temporal_average`*")
 })
 
 test_that("`dates` entered in incorrect formats are corrected", {
