@@ -1,4 +1,5 @@
 
+
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -52,7 +53,8 @@ check_dates <- function(dates, latlon) {
                                         )),
         warning = function(c) {
           stop(call. = FALSE,
-               "\n", x,
+               "\n",
+               x,
                " is not a valid entry for date. Enter as YYYY-MM-DD.\n")
         }
       )

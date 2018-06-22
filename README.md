@@ -14,8 +14,8 @@ public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus
 
 ## Introduction
 
-<img align="right" src="man/figures/nasapower-hex.png"> *nasapower* aims
-to make it quick and easy to automate downloading
+<img align="right" src="man/figures/logo.png"> *nasapower* aims to make
+it quick and easy to automate downloading
 [NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R
 session as a tidy data frame for agricultural analysis and use in
 modelling or other purposes. POWER (Prediction Of Worldwide Energy
@@ -28,7 +28,7 @@ API.
 
 ### Quick start
 
-With the changes to the NASA/POWER data and API, this package is a
+With the changes to the NASA-POWER data and API, this package is a
 work-in-progress under active development, install at your own risk.
 
 *nasapower* is not available from CRAN, only GitHub. It can easily be
