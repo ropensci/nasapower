@@ -35,7 +35,5 @@ Science Program."
 }
 }
 \author{
-Adam H Sparks
-
 Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

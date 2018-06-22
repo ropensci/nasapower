@@ -2,7 +2,7 @@
 #' @title NASA-POWER Agroclimatology Data from R
 #'
 #' @name nasapower
-#' @author Adam H Sparks
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @docType package
 #'
 #' @description
@@ -33,6 +33,4 @@
 #'
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
-#'
-#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 NULL
