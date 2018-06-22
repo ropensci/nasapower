@@ -1,7 +1,7 @@
 #' NASA - POWER Parameters Available for Download
 #'
-#' An \pkg{R} list object of metadata for NASA/POWER parameters available for
-#' querying from the POWER database.
+#' An \pkg{R} list object of metadata for NASA-POWER parameters available for
+#' querying from the NASA-POWER database.
 #'
 #' @format A list with 141 objects
 #'

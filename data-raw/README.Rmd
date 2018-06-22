@@ -1,5 +1,5 @@
 ---
-title: "Fetch NASA/POWER Parameters"
+title: "Fetch NASA-POWER Parameters"
 author: "Adam H Sparks"
 date: "`r format(Sys.Date())`"
 output: github_document

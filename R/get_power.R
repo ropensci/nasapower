@@ -15,8 +15,8 @@
 #'  values or visit the [POWER website](https://power.larc.nasa.gov/new/) for
 #'  the Parameter Dictionary.  If downloading global coverage a maximum of 3
 #'  `pars` can be specified at one time.
-#' @param dates A character vector of start and end dates in that order, *e.g.*,
-#'  `dates = c("1983-01-01", "2017-12-31")`.  Not required for global
+#' @param dates A character vector of start and end dates in that order,\cr
+#'  *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not required for global
 #'  coverage.  See argument details for more.
 #' @param temporal_average Temporal average for data being queried, currently
 #'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
@@ -46,7 +46,8 @@
 #' \describe{
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 #'  length-2 numeric vector giving the decimal degree longitude and latitude in
-#'  that order for data to download, *e.g.*, `latlon = c(-179.5, -89.5)`.}
+#'  that order for data to download,\cr
+#'  *e.g.*, `latlon = c(-179.5, -89.5)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
 #'  vector as lower left (lat, lon) and upper right (lat, lon) coordinates,

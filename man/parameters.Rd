@@ -12,8 +12,8 @@
 parameters
 }
 \description{
-An \pkg{R} list object of metadata for NASA/POWER parameters available for
-querying from the POWER database.
+An \pkg{R} list object of metadata for NASA-POWER parameters available for
+querying from the NASA-POWER database.
 }
 \references{
 \url{https://power.larc.nasa.gov/docs/v1/}
