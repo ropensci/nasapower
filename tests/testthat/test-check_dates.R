@@ -25,7 +25,7 @@ test_that("`dates` >2 cause an error", {
   latlon <- c(-89.5, -179.5)
   expect_error(check_dates(dates, latlon),
                regexp =
-                 "*\nYou have entered an invalid value for `temporal_average`*")
+                 "\nYou have supplied more than two dates for start and end*")
 })
 
 test_that("`dates` entered in incorrect formats are corrected", {
@@ -80,6 +80,6 @@ test_that("A `global` `latlon` returns `NULL` dates", {
   latlon <- "Global"
   dates <- c("1983-01-01", "1983-02-02")
   expect_message(dates <- check_dates(dates, latlon),
-                 regexp = "\nDates are not used with CLIMATOLOGY. Setting to NULL.\n")
+                 regexp = "*are not used with CLIMATOLOGY. Setting to NULL.\n")
   expect_true(is.null(dates))
 })
