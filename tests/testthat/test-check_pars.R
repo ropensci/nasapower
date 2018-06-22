@@ -30,7 +30,7 @@ test_that("check_pars stops if `temporal_average` not valid", {
       temporal_average = "ad09jlave",
       latlon = c(-89.5, -179.5)
     ),
-    regexp = "\nYou have supplied more than two dates for start and end dates.\n")
+    regexp = "\nYou have supplied more than two dates for start and end*")
 })
 
 test_that("check_pars stops if `pars` not valid", {
@@ -50,7 +50,7 @@ test_that("check_pars stops if `pars` not valid", {
       temporal_average = "Interannual",
       latlon = c(-89.5, -179.5)
     ),
-    regexp = "*You have entered an invalid value for `temporal_average` for the\n*"
+    regexp = "*You have entered an invalid value for `temporal_average` for*"
   )
 })
 
@@ -68,7 +68,8 @@ test_that("pars are returned as a comma separated string with no spaces", {
   expect_length(pars, 2)
 })
 
-test_that("`temporal_average`` is set to `CLIMATOLOGY` when global data queried", {
+test_that("`temporal_average`` is set to `CLIMATOLOGY` when global data
+          queried", {
   pars <- c("ALLSKY_SFC_SW_DWN_03_GMT",
             "ALLSKY_SFC_LW_DWN")
   temporal_average <- "Daily"

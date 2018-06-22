@@ -60,7 +60,7 @@ test_that("check_latlon stops if more than three are requested for global", {
 
 test_that("check_latlon stops if no `latlon` is supplied", {
   expect_error(check_latlon(latlon = NULL, pars),
-               regexp = "*You must provide a `latlon` (maximum 100 points total or 10x10 cells)*")
+               regexp = "*You must provide a `latlon` (maximum 100 points*)")
 })
 
 test_that("check_latlon handles single point properly", {
@@ -72,7 +72,7 @@ test_that("check_latlon handles single point properly", {
 
 test_that("check_latlon checks validity of single lat values", {
   expect_error(check_latlon(latlon = c(91, 179.5), pars),
-               regexp = "Please check your latitude, `91`, to be sure it is valid.\n")
+               regexp = "Please check your latitude, `91`, to be sure it is*\n")
 })
 
 test_that("check_latlon checks validity of single lon values", {
@@ -99,27 +99,32 @@ test_that("check_latlon checks order of the longitude values", {
 
 test_that("check_latlon checks validity of bbox latmin values", {
   expect_error(check_latlon(latlon = c(91, -179.5, 90, -179.5), pars),
-               regexp = "\nPlease check your latitude, `91`, `90`, values to be sure they are valid.\n")
+               regexp = "\nPlease check your latitude, `91`, `90`, values*")
 })
 
 test_that("check_latlon checks validity of bbox latmax values", {
   expect_error(check_latlon(latlon = c( 90, -179.5,  93, -179.5), pars),
-               regexp = "\nPlease check your latitude, `90`, `93`, values to be sure they are valid.\n")
+               regexp = "\nPlease check your latitude, `90`, `93`, values to*")
 })
 
 test_that("check_latlon checks validity of bbox lonmin values", {
   expect_error(check_latlon(latlon = c(89.5, -181.5, 89.5, -179.5), pars),
-               regexp = "\nPlease check your longitude, `-181.5`, `-179.5`, values to be sure they are valid.\n")
+               regexp = "\nPlease check your longitude, `-181.5`, `-179.5`*")
 })
 
 test_that("check_latlon checks validity of bbox lonmax values", {
   expect_error(check_latlon(latlon = c(89.5, -179.5, 89.5, 181), pars),
-               regexp = "\nPlease check your longitude, `-179.5`, `181`, values to be sure they are valid.\n")
+               regexp = "\nPlease check your longitude, `-179.5`, `181`,*")
 })
 
-test_that("check_latlon returns message with proper identifier when valid coordinates are given", {
-          expect_message(test <- check_latlon(latlon = c( 88.5, -179.5, 89.5, -179.5), pars),
-                                 regexp = "Fetching regional data for the area within 88.5 lat & -179.5 lon*")
+test_that("check_latlon returns message with proper identifier when valid
+          coordinates are given", {
+          expect_message(test <- check_latlon(latlon = c( 88.5,
+                                                          -179.5,
+                                                          89.5,
+                                                          -179.5),
+                                              pars),
+                                 regexp = "Fetching regional data for the*")
 
           expect_equal(test$bbox, "88.5,-179.5,89.5,-179.5")
           expect_equal(test$identifier, "Regional")
