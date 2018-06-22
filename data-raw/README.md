@@ -16,7 +16,7 @@ file.
 Using `jsonlite` read the JSON file into R creating a list.
 
 ``` r
-params <-
+parameters <-
   jsonlite::fromJSON(
     "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json"
   )
@@ -29,7 +29,7 @@ Using `devtools` to save the list as an R data object for use in the
     package.
 
 ``` r
-devtools::use_data(params, overwrite = TRUE)
+devtools::use_data(parameters, overwrite = TRUE)
 ```
 
 ## Session Info
