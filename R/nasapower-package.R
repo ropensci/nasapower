@@ -12,12 +12,11 @@
 #' Resource) data are freely available for download with a resolution of 1/2 arc
 #' degree longitude by 1/2 arc degree latitude and are funded through the NASA
 #' Earth Science Directorate Applied Science Program. For more on the data
-#' themselves, please see <https://power.larc.nasa.gov/>.
+#' themselves, please see \url{https://power.larc.nasa.gov/}.
 #'
 #' @note
 #' While \pkg{nasapower} does not redistribute the data in any way, we
 #' encourage users to follow the requests of the POWER Project Team.
-#'
 #'\preformatted{
 #' When POWER data products are used in a publication, we request the
 #' following acknowledgment be included:
@@ -35,6 +34,5 @@
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
 #'
-#' @author Adam H. Sparks, \email{adamhsparks@gmail.com}
-#'
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 NULL
