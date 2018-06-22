@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
   "description": "Download NASA-POWER agroclimatology data and create a tidy data\n    frame for individual cells or a user specified region. nasapower provides an\n    R interface to the NASA - POWER API.  POWER (Prediction Of Worldwide Energy\n    Resource) data are freely available for download with a resolution of 1/2 by\n    1/2 arc degree longitude and latitude and are funded through the NASA\n    Earth Science Directorate Applied Science Program. For more on the data\n    themselves, please see <https://power.larc.nasa.gov/>.",
@@ -200,18 +203,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "httr",
-      "name": "httr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=httr"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
       "provider": {
@@ -251,8 +242,12 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "76.273KB",
-  "contIntegration": ["https://travis-ci.org/adamhsparks/nasapower", "https://ci.appveyor.com/project/adamhsparks/nasapower", "https://codecov.io/github/adamhsparks/nasapower?branch=master"],
+  "fileSize": "76.279KB",
+  "contIntegration": [
+    "https://travis-ci.org/adamhsparks/nasapower",
+    "https://ci.appveyor.com/project/adamhsparks/nasapower",
+    "https://codecov.io/github/adamhsparks/nasapower?branch=master"
+  ],
   "developmentStatus": "http://www.repostatus.org/#wip",
   "citation": [
     {
