@@ -1,5 +1,7 @@
 ---
-title: "Untitled"
+title: "Fetch NASA/POWER Parameters"
+author: "Adam H Sparks"
+date: "`r format(Sys.Date())`"
 output: github_document
 ---
 
@@ -7,24 +9,35 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## GitHub Documents
+# Create parameters list for internal checks
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+These data are used for internal checks to be sure that data requested from the
+POWER dataset are valid. The POWER list of parameters that can be queried is
+available as a JSON file. Thanks to [raymondben](https://github.com/raymondben)
+for pointing me to this file.
 
-## Including Code
+## Fetch list from JSON file
 
-You can include R code in the document as follows:
+Using `jsonlite` read the JSON file into R creating a list.
 
-```{r cars}
-summary(cars)
+```{r fetch_JSON}
+params <-
+  jsonlite::fromJSON(
+    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json"
+  )
 ```
 
-## Including Plots
+## Save list for use in `nasapower` package
 
-You can also embed plots, for example:
+Using `devtools` to save the list as an R data object for use in the
+`nasapower` package.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r save_list, message=FALSE}
+devtools::use_data(params, overwrite = TRUE)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Session Info
+
+```{r session_info}
+sessioninfo::session_info()
+```
