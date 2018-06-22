@@ -1,5 +1,5 @@
 
-.onAttach <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) { # nocov start
   msg <- paste0("While nasapower does not redistribute the data in any way,\n",
                 "we encourage users to follow the requests of the POWER\n",
                 "Project Team:\n",
@@ -16,4 +16,4 @@
 }
 
 # load parameters data frame in session
-data("parameters", envir = environment())
+data("parameters", envir = environment()) # nocov end

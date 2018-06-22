@@ -341,14 +341,14 @@ power_query <- function(community,
   # parse to an R list
   tryCatch({
     res <- client$get(query = query_list)
-  },
+  }, # nocov start
   error = function(e) {
     e$message <-
       paste("\nSomething went wrong with the query. Please try again.\n")
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
-  })
+  }) # nocov end
 
   # read resulting CSV file
   tryCatch({
@@ -357,12 +357,12 @@ power_query <- function(community,
     res <- readr::read_csv(txt$outputs$csv,
                            na = c("-", -99),
                            col_types = readr::cols())
-  },
+  }, # nocov start
   error = function(e) {
     e$message <-
       paste("\nA CSV file was not created, this is a server error.\n")
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
-  })
+  }) # nocov end
 }
