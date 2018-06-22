@@ -62,7 +62,7 @@ check_dates <- function(dates, latlon) {
     }
 
     # apply function to reformat/check dates
-    dates = lapply(X = dates, FUN = date_format)
+    dates <- lapply(X = dates, FUN = date_format)
 
     # if the stdate is > endate, flip order
     if (dates[[2]] < dates[[1]]) {
