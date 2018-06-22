@@ -19,7 +19,6 @@ Depends:
 License: MIT + file LICENSE
 Imports:
     crul,
-    httr,
     lubridate,
     jsonlite,
     readr
