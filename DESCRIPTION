@@ -22,10 +22,7 @@ Imports:
     httr,
     lubridate,
     jsonlite,
-    readr,
-    stringi,
-    tools,
-    utils
+    readr
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

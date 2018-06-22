@@ -141,25 +141,24 @@ check_pars <-
 
     pars <- toupper(pars)
     # check pars to make sure that they are valid
-    if (any(pars %notin% parameters[[1]])) {
+    if (any(pars %notin% names(parameters))) {
       stop(call. = FALSE,
-           paste0("\n", pars[which(pars %notin% parameters[[1]])],
+           paste0("\n", pars[which(pars %notin% names(parameters))],
                   " is/are not valid in 'pars'.\n"))
     }
 
     # check to make sure temporal_average is appropriate for given pars
-    rows <- which(parameters$Value %in% pars)
-    cols <- grep(temporal_average, toupper(colnames(parameters)))
-
-    if (any(is.na(parameters[rows, cols]))) {
-      stop(
-        call. = FALSE,
-        "\nYou have entered an invalid value for `temporal_average` for the\n",
-        "supplied `pars`. One or more `pars` are not, available for\n",
-        "`",
-        temporal_average,
-        "`, please check.\n"
-      )
+    for (i in pars) {
+      if (temporal_average %notin% parameters[[i]]$include) {
+        stop(
+          call. = FALSE,
+          "\nYou have entered an invalid value for `temporal_average` for the\n",
+          "supplied `pars`. One or more `pars` are not, available for\n",
+          "`",
+          temporal_average,
+          "`, please check.\n"
+        )
+      }
     }
 
     # all good? great. now we format it for the API

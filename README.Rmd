@@ -31,7 +31,7 @@ and other forms of data available, e.g. an ESRI REST API.
 
 ### Quick start
 
-With the changes to the NASA/POWER data and API, this package is a
+With the changes to the NASA-POWER data and API, this package is a
 work-in-progress under active development, install at your own risk.
 
 _nasapower_ is not available from CRAN, only GitHub. It can easily be installed

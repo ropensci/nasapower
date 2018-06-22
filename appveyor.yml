@@ -10,6 +10,9 @@ init:
 install:
   ps: Bootstrap
 
+environment:
+  NOT_CRAN: true
+
 cache:
   - C:\RLibrary
 

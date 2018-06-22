@@ -21,8 +21,8 @@ values or visit the \href{https://power.larc.nasa.gov/new/}{POWER website} for
 the Parameter Dictionary.  If downloading global coverage a maximum of 3
 \code{pars} can be specified at one time.}
 
-\item{dates}{A character vector of start and end dates in that order, \emph{e.g.},
-\code{dates = c("1983-01-01", "2017-12-31")}.  Not required for global
+\item{dates}{A character vector of start and end dates in that order,\cr
+\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  Not required for global
 coverage.  See argument details for more.}
 
 \item{temporal_average}{Temporal average for data being queried, currently
@@ -61,7 +61,8 @@ powered renewable energy systems.}
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download, \emph{e.g.}, \code{latlon = c(-179.5, -89.5)}.}
+that order for data to download,\cr
+\emph{e.g.}, \code{latlon = c(-179.5, -89.5)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
@@ -100,10 +101,10 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
 \dontrun{
 power <- get_power(community = "AG",
-                  latlon = c(-179.5, -89.5),
-                  pars = c("RH2M", "T2M"),
-                  dates = "1985-01-01",
-                  temporal_average = "daily")
+                   latlon = c(-179.5, -89.5),
+                   pars = c("RH2M", "T2M"),
+                   dates = "1985-01-01",
+                   temporal_average = "daily")
 }
 
 }
@@ -111,5 +112,5 @@ power <- get_power(community = "AG",
 \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
 }
 \author{
-Adam H. Sparks, adamhsparks@gmail.com
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

@@ -4,32 +4,21 @@
 \name{parameters}
 \alias{parameters}
 \title{NASA - POWER Parameters Available for Download}
-\format{A data frame
-\describe{
-\item{Value}{Parameter value used in \code{pars} argument of
-\code{\link{get_power}} function}
-\item{Name}{Full name for the parameter}
-\item{SSE.Units.}{Surface meteorology and Solar Energy, parameter units*}
-\item{SB.Units.}{Sustainable Buildings parameter units*}
-\item{AG.Units.}{Agroclimatology parameter units*}
-\item{Daily}{"✓" - Available in daily temporal averages, else \code{NA}}
-\item{Interannual}{"✓" - Available in interannual temporal averages, else
-\code{NA}}
-\item{Climatology}{"✓" - Available in climatology interannual temporal
-averages, else \code{NA}}
-}}
+\format{A list with 141 objects}
 \source{
-\url{https://power.larc.nasa.gov/docs/v1/}
+\url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json}
 }
 \usage{
 parameters
 }
 \description{
-A table of POWER parameters available for download, their units, and
-availability within \code{Daily}, \code{Interannual} or \code{Climatology} temporal
-averages.
+An \pkg{R} list object of metadata for NASA-POWER parameters available for
+querying from the NASA-POWER database.
 }
-\note{
-*Units based on user community value selected.
+\references{
+\url{https://power.larc.nasa.gov/docs/v1/}
+}
+\author{
+Adam H Sparks \email{adamhsparks@gmail.com}
 }
 \keyword{datasets}

@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="NASA - POWER Parameters Available for Download — parameters" />
 
-<meta property="og:description" content="A table of POWER parameters available for download, their units, and
-availability within Daily, Interannual or Climatology temporal
-averages." />
+<meta property="og:description" content="An R list object of metadata for NASA-POWER parameters available for
+querying from the NASA-POWER database." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,9 +123,8 @@ averages." />
 
     <div class="ref-description">
     
-    <p>A table of POWER parameters available for download, their units, and
-availability within <code>Daily</code>, <code>Interannual</code> or <code>Climatology</code> temporal
-averages.</p>
+    <p>An <span class="pkg">R</span> list object of metadata for NASA-POWER parameters available for
+querying from the NASA-POWER database.</p>
     
     </div>
 
@@ -134,27 +132,15 @@ averages.</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame</p><dl class='dl-horizontal'>
-<dt>Value</dt><dd><p>Parameter value used in <code>pars</code> argument of
-<code><a href='get_power.html'>get_power</a></code> function</p></dd>
-<dt>Name</dt><dd><p>Full name for the parameter</p></dd>
-<dt>SSE.Units.</dt><dd><p>Surface meteorology and Solar Energy, parameter units*</p></dd>
-<dt>SB.Units.</dt><dd><p>Sustainable Buildings parameter units*</p></dd>
-<dt>AG.Units.</dt><dd><p>Agroclimatology parameter units*</p></dd>
-<dt>Daily</dt><dd><p>"✓" - Available in daily temporal averages, else <code>NA</code></p></dd>
-<dt>Interannual</dt><dd><p>"✓" - Available in interannual temporal averages, else
-<code>NA</code></p></dd>
-<dt>Climatology</dt><dd><p>"✓" - Available in climatology interannual temporal
-averages, else <code>NA</code></p></dd>
-</dl>
+    <p>A list with 141 objects</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://power.larc.nasa.gov/docs/v1/'>https://power.larc.nasa.gov/docs/v1/</a></p>
+    <p><a href='https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json'>https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json</a></p>
     
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>*Units based on user community value selected.</p>
+    <p><a href='https://power.larc.nasa.gov/docs/v1/'>https://power.larc.nasa.gov/docs/v1/</a></p>
     
 
   </div>
@@ -166,8 +152,12 @@ averages, else <code>NA</code></p></dd>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#note">Note</a></li>
+      <li><a href="#references">References</a></li>
           </ul>
+
+    <h2>Author</h2>
+    
+Adam H Sparks <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </div>
 </div>

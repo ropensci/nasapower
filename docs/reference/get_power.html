@@ -155,8 +155,8 @@ the Parameter Dictionary.  If downloading global coverage a maximum of 3
     </tr>
     <tr>
       <th>dates</th>
-      <td><p>A character vector of start and end dates in that order, <em>e.g.</em>,
-<code>dates = c("1983-01-01", "2017-12-31")</code>.  Not required for global
+      <td><p>A character vector of start and end dates in that order,<br />
+<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  Not required for global
 coverage.  See argument details for more.</p></td>
     </tr>
     <tr>
@@ -194,7 +194,8 @@ powered renewable energy systems.</p></dd>
     <dl class='dl-horizontal'>
 <dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download, <em>e.g.</em>, <code>latlon = c(-179.5, -89.5)</code>.</p></dd>
+that order for data to download,<br />
+<em>e.g.</em>, <code>latlon = c(-179.5, -89.5)</code>.</p></dd>
     <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
 e.g., <code>latlon = c(ymin, xmin, ymax, xmax)</code> in that order for a given
@@ -235,10 +236,10 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
 </div><span class='co'># NOT RUN {</span>
 <span class='no'>power</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
-                  <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
-                  <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>),
-                  <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
-                  <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"daily"</span>)
+                   <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
+                   <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>),
+                   <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
+                   <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"daily"</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -264,7 +265,7 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
     <h2>Author</h2>
     
-Adam H. Sparks, adamhsparks@gmail.com
+Adam H. Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </div>
 </div>
