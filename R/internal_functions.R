@@ -31,7 +31,7 @@ check_dates <- function(dates, latlon) {
 
     if (length(dates) > 2) {
       stop(call. = FALSE,
-           "\nYou have supplied more than two dates for a start and end date.\n")
+           "\nYou have supplied more than two dates for start and end dates.\n")
     }
 
     # put dates in list to use lapply
@@ -154,8 +154,8 @@ check_pars <-
       if (temporal_average %notin% parameters[[i]]$include) {
         stop(
           call. = FALSE,
-          "\nYou have entered an invalid value for `temporal_average` for the\n",
-          "supplied `pars`. One or more `pars` are not, available for\n",
+          "\nYou have entered an invalid value for `temporal_average` for\n",
+          "the supplied `pars`. One or more `pars` are not, available for\n",
           "`",
           temporal_average,
           "`, please check.\n"

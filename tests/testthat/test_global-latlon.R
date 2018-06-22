@@ -1,6 +1,7 @@
 
 # latlon checks ----------------------------------------------------------------
-context("Test that when `latlon` is set to `Global`, dates and temporal avg are handled correctly")
+context("Test that when `latlon` is set to `Global`, dates and temporal avg are
+        handled correctly")
 test_that("check_global stops if value is not valid char string", {
   # set up latlon argument for testing
   latlon <- "T2M"
