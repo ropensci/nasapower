@@ -18,6 +18,8 @@ POWER interface allows for the specification of `SinglePoint` (cell), `Regional`
 (region) or `Global`. These are now arguments passed along to `get_power` for
 the `type` parameter.
 
+--------------------------------------------------------------------------------
+
 # nasapower 0.1.4
 
 ### Bug Fixes
@@ -25,6 +27,8 @@ the `type` parameter.
 - Fixes bug related to date columns where `MONTH`, `DAY` and `YYYY-MM-DD` were
 incorrectly reported in final data frame. This did not affect the weather data,
 `YEAR` or `DOY` columns.
+
+--------------------------------------------------------------------------------
 
 # nasapower 0.1.3
 
@@ -68,7 +72,7 @@ data. If not, stop and return error message to user.
 
 --------------------------------------------------------------------------------
 
-# nasapower 0.1.2 (2017-11-06)
+# nasapower 0.1.2
 
 ### Bug fixes
 
@@ -91,7 +95,7 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 --------------------------------------------------------------------------------
 
-# nasapower 0.1.1 (2017-11-04)
+# nasapower 0.1.1
 
 ### Minor improvements
 
@@ -99,7 +103,7 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 --------------------------------------------------------------------------------
 
-# nasapower 0.1.0 (2017-11-04)
+# nasapower 0.1.0
 
 ### New features
 
@@ -115,7 +119,7 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 --------------------------------------------------------------------------------
 
-# nasapower 0.0.2  (2017-11-02)
+# nasapower 0.0.2
 
 ### New features
 
@@ -123,7 +127,7 @@ multiple dates. https://github.com/adamhsparks/nasapower/issues/1
 
 --------------------------------------------------------------------------------
 
-# nasapower 0.0.1 (2017-11-02)
+# nasapower 0.0.1
 
 * Added a `NEWS.md` file to track changes to the package.
 
