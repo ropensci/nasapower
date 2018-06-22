@@ -30,7 +30,7 @@ test_that("check_pars stops if `temporal_average` not valid", {
       temporal_average = "ad09jlave",
       latlon = c(-89.5, -179.5)
     ),
-    regexp = "*You have entered an invalid value for `temporal_average`.*")
+    regexp = "\nYou have supplied more than two dates for start and end dates.\n")
 })
 
 test_that("check_pars stops if `pars` not valid", {
