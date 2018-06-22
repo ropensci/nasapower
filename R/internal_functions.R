@@ -351,7 +351,7 @@ power_query <- function(community,
   # read resulting CSV file
   tryCatch({
     txt <-
-      stjsonlite::fromJSON(res$parse("UTF-8"))
+      jsonlite::fromJSON(res$parse("UTF-8"))
     res <- readr::read_csv(txt$outputs$csv,
                            na = c("-", -99),
                            col_types = readr::cols())
