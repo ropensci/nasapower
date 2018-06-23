@@ -6,13 +6,14 @@
 #' @docType package
 #'
 #' @description
-#' Download NASA-POWER climatology data and create a tidy data frame for a
-#' single point, a region or global coverage. \pkg{nasapower} provides an R
-#' interface to the NASA - POWER API.  POWER (Prediction Of Worldwide Energy
-#' Resource) data are freely available for download with a resolution of 1/2 arc
-#' degree longitude by 1/2 arc degree latitude and are funded through the NASA
-#' Earth Science Directorate Applied Science Program. For more on the data
-#' themselves, please see \url{https://power.larc.nasa.gov/}.
+#' Download NASA-POWER meteorology and climatology data for 140 parameters and
+#' create a tidy data frame for a single point, a region or global coverage.
+#' \pkg{nasapower} provides an R interface to the NASA - POWER API.  POWER
+#' (Prediction Of Worldwide Energy Resource) data are freely available for
+#' download with a resolution of 1/2 arc degree longitude by 1/2 arc degree
+#' latitude and are funded through the NASA Earth Science Directorate Applied
+#' Science Program. For more on the data themselves, please see
+#' \url{https://power.larc.nasa.gov/}.
 #'
 #' @note
 #' While \pkg{nasapower} does not redistribute the data in any way, we
@@ -28,7 +29,9 @@
 #'
 #' @seealso
 #' \itemize{
-#' \item \link{get_power} Download NASA-POWER Data and Return a Tidy Data Frame
+#' \item \code{\link{get_power}} Download NASA-POWER Data and Return a Tidy Data
+#'  Frame
+#' \item \code{citation(nasapower)} For proper citation of \pkg{nasaspower}
 #' }
 #'
 #' @references
