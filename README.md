@@ -20,7 +20,7 @@ it quick and easy to automate downloading
 session as a tidy data frame for agricultural analysis and use in
 modelling or other purposes. POWER (Prediction Of Worldwide Energy
 Resource) data are freely available for download through a web interface
-at a resolution of 0.5˚ longitude by 0.5˚ latitude.
+at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude.
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
 ways to access it and other forms of data available, e.g. an ESRI REST
