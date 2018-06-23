@@ -60,7 +60,7 @@ test_that("check_latlon stops if more than three are requested for global", {
 
 test_that("check_latlon stops if no `latlon` is supplied", {
   expect_error(check_latlon(latlon = NULL, pars),
-               regexp = "*You must provide a `latlon` (maximum 100 points*)")
+               regexp = "\nYou must provide a `latlon` *")
 })
 
 test_that("check_latlon handles single point properly", {
