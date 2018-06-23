@@ -72,7 +72,7 @@ test_that("check_latlon handles single point properly", {
 
 test_that("check_latlon checks validity of single lat values", {
   expect_error(check_latlon(latlon = c(91, 179.5), pars),
-               regexp = "Please check your latitude, `91`, to be sure it is*\n")
+               regexp = "*Please check your latitude, `91`, to be sure it is*")
 })
 
 test_that("check_latlon checks validity of single lon values", {
