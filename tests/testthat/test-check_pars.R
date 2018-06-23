@@ -1,5 +1,4 @@
 
-
 # parameter checks -------------------------------------------------------------
 context("Test that check_pars function handles pars strings correctly")
 test_that("check_pars stops if no `par` provided", {

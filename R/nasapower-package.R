@@ -6,7 +6,7 @@
 #' @docType package
 #'
 #' @description
-#' Download NASA-POWER meteorology and climatology data for 140 parameters and
+#' Download NASA-POWER meteorology and climatology data for 141 parameters and
 #' create a tidy data frame for a single point, a region or global coverage.
 #' \pkg{nasapower} provides an R interface to the NASA - POWER API.  POWER
 #' (Prediction Of Worldwide Energy Resource) data are freely available for

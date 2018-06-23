@@ -8,16 +8,16 @@ get_power(community = NULL, latlon = NULL, pars = NULL, dates = NULL,
   temporal_average = NULL)
 }
 \arguments{
-\item{community}{Dataset name, currently supported are AG, SB and SSE. See
-argument details for more.}
+\item{community}{Community name AG, SB and SSE. See argument details for
+more.}
 
 \item{latlon}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y coordinates or \code{Global} for global area.  See argument
 details for more.}
 
-\item{pars}{A character vector of solar or meteorological variables to
-download.  See the \code{Value} field of \code{\link{parameters}} for a full list of valid
-values or visit the \href{https://power.larc.nasa.gov/new/}{POWER website} for
+\item{pars}{A character vector of solar, meteorological or climatology
+parameters to download.  See \code{names(parameters)} for a full list of
+valid values or visit the \href{https://power.larc.nasa.gov/}{POWER website} for
 the Parameter Dictionary.  If downloading global coverage a maximum of 3
 \code{pars} can be specified at one time.}
 

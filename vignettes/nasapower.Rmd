@@ -52,8 +52,8 @@ and longitude coordinates in that order for cell data to download or a length-4
 numeric vector giving the decimal degree longitude and and latitude coordinates
 forming a bounding box as ymin, xmin, ymax, xmax in that order. When specifying
 a region, the maximum amount of cells that can be downloaded are 100, i.e., a 10
-x 10 0.5˚ bounding box or 5 x 5 1˚ bounding box. Leave blank for global
-coverage.
+x 10 one-half arc degree bounding box or 5 x 5 one arc degree bounding box.
+Leave blank for global coverage.
 
 - `pars`, A character vector of solar or meteorological variables to download.
 See the `Value` field of [`parameters`](../help/parameters) for a full list of

@@ -8,7 +8,7 @@ Authors@R: person(given = "Adam H.", family = "Sparks",
 URL: https://github.com/adamhsparks/nasapower
 BugReports: https://github.com/adamhsparks/nasapower/issues
 Description: Download NASA-POWER meteorology and agroclimatology data and create
-    a tidy data frame for individual cells or a user specified region for 140
+    a tidy data frame for individual cells or a user specified region for 141
     parameters.  nasapower provides an R interface to the NASA - POWER API.
     POWER (Prediction Of Worldwide Energy Resource) data are freely available
     for download with a resolution of 1/2 by 1/2 arc degree longitude and

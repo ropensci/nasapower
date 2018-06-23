@@ -5,14 +5,14 @@
 #' offered by the official NASA-POWER API are supported.
 #'
 #' @export
-#' @param community Dataset name, currently supported are AG, SB and SSE. See
-#'  argument details for more.
+#' @param community Community name AG, SB and SSE. See argument details for
+#'  more.
 #' @param latlon A numeric vector of geographic coordinates for a cell or region
 #'  entered as x, y coordinates or `Global` for global area.  See argument
 #'  details for more.
-#' @param pars A character vector of solar or meteorological variables to
-#'  download.  See the `Value` field of [`parameters`] for a full list of valid
-#'  values or visit the [POWER website](https://power.larc.nasa.gov/new/) for
+#' @param pars A character vector of solar, meteorological or climatology
+#'  parameters to download.  See \code{names(parameters)} for a full list of
+#'  valid values or visit the [POWER website](https://power.larc.nasa.gov/) for
 #'  the Parameter Dictionary.  If downloading global coverage a maximum of 3
 #'  `pars` can be specified at one time.
 #' @param dates A character vector of start and end dates in that order,\cr
@@ -23,7 +23,7 @@
 #'  more.
 #'
 #' @details Further details for each of the arguments are provided in their
-#'respective sections following below.
+#' respective sections following below.
 #'
 #' @section Argument details for `community`: There are three valid values, one
 #'  must be supplied. This  will affect the units of the parameter and the
