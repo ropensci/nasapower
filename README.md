@@ -84,10 +84,10 @@ The arguments are:
     longitude and and latitude coordinates forming a bounding box as
     ymin, xmin, ymax, xmax in that order.
 
-  - `pars`, a character vector of weather variables to query for
-    download. For a complete listing of valid `pars`, please see column
-    1 of the package included data, `parameters`, e.g., using RStudio,
-    `View(parameters)`.
+  - `pars`, A character vector of solar, meteorological or climatology
+    parameters to download. For a complete listing of valid `pars`,
+    please visit the NASA-POWER website for the dictionary of
+    parameters, <https://power.larc.nasa.gov/#resources>.
 
   - `dates`, a vector of start and end dates for which to query the
     NASA-POWER API
