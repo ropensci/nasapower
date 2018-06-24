@@ -26,10 +26,10 @@ Replace UTF-8 characters in the dataset since R doesn’t like this in
 packages.
 
 ``` r
-parameters$ALLSKY_SFC_LW_DWN$climatology_definition <-
+parameters$SG_DEC_AVG$climatology_definition <-
   gsub("°",
        " degrees",
-       parameters$SG_HR_SET_ANG$climatology_definition)
+       parameters$SG_DEC_AVG$climatology_definition)
 
 parameters$SG_HR_SET_ANG$climatology_definition <-
   gsub("°",
