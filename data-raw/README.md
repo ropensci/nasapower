@@ -1,7 +1,7 @@
-Fetch NASA/POWER Parameters
+Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2018-06-22
+2018-06-24
 
 # Create parameters list for internal checks
 
@@ -20,6 +20,27 @@ parameters <-
   jsonlite::fromJSON(
     "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json"
   )
+```
+
+Replace UTF-8 characters in the dataset since R doesn’t like this in
+packages.
+
+``` r
+parameters$ALLSKY_SFC_LW_DWN$climatology_definition <-
+  gsub("°",
+       " degrees",
+       parameters$SG_HR_SET_ANG$climatology_definition)
+
+parameters$SG_HR_SET_ANG$climatology_definition <-
+  gsub("°",
+       " degrees",
+       parameters$SG_HR_SET_ANG$climatology_definition)
+
+
+parameters$SG_NOON$climatology_definition <-
+  gsub("°",
+       " degrees",
+       parameters$SG_NOON$climatology_definition)
 ```
 
 ## Save list for use in `nasapower` package
@@ -41,13 +62,13 @@ sessioninfo::session_info()
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.5.0 (2018-04-23)
-    ##  os       macOS Sierra 10.12.6        
-    ##  system   x86_64, darwin16.7.0        
+    ##  os       macOS High Sierra 10.13.5   
+    ##  system   x86_64, darwin17.6.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-06-22                  
+    ##  date     2018-06-24                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
@@ -66,7 +87,7 @@ sessioninfo::session_info()
     ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.0)
     ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.0)
     ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.0)
-    ##  stringi       1.2.3   2018-06-12 cran (@1.2.3) 
+    ##  stringi       1.2.3   2018-06-12 CRAN (R 3.5.0)
     ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.0)
     ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.0)
     ##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.0)

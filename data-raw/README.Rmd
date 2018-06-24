@@ -27,6 +27,26 @@ parameters <-
   )
 ```
 
+Replace UTF-8 characters in the dataset since R doesn't like this in packages.
+
+```{r, replace_utf}
+parameters$ALLSKY_SFC_LW_DWN$climatology_definition <-
+  gsub("°",
+       " degrees",
+       parameters$SG_HR_SET_ANG$climatology_definition)
+
+parameters$SG_HR_SET_ANG$climatology_definition <-
+  gsub("°",
+       " degrees",
+       parameters$SG_HR_SET_ANG$climatology_definition)
+
+
+parameters$SG_NOON$climatology_definition <-
+  gsub("°",
+       " degrees",
+       parameters$SG_NOON$climatology_definition)
+```
+
 ## Save list for use in `nasapower` package
 
 Using `devtools` to save the list as an R data object for use in the
