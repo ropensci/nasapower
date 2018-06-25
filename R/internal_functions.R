@@ -359,7 +359,10 @@ power_query <- function(community,
   }, # nocov start
   error = function(e) {
     e$message <-
-      paste("\nA CSV file was not created, this is a server error.\n")
+      paste("\nA CSV file was not created, this is a server error.",
+            "The server may not be responding.",
+            "Please check https://power.larc.nasa.gov/ for notifications if",
+            "you repeatedly get this error.", sep = "\n")
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
