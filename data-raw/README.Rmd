@@ -40,7 +40,6 @@ parameters$SG_HR_SET_ANG$climatology_definition <-
        " degrees",
        parameters$SG_HR_SET_ANG$climatology_definition)
 
-
 parameters$SG_NOON$climatology_definition <-
   gsub("°",
        " degrees",
