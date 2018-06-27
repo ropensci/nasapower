@@ -1,6 +1,7 @@
 
 
 
+
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -376,20 +377,25 @@ power_query <- function(community,
 
 #' @noRd
 format_dates <- function(NASA) {
+  # convert DOY to integer
+  NASA$DOY <- as.integer(NASA$DOY)
+
+  # Calculate the full date from YEAR and DOY
   NASA <- tibble::add_column(NASA,
-                             YYYYMMDD = as.Date(as.numeric(power$DOY) - 1,
+                             YYYYMMDD = as.Date(NASA$DOY - 1,
                                                 origin = as.Date(paste(
-                                                  power$YEAR, "-01-01", sep = ""
+                                                  NASA$YEAR, "-01-01", sep = ""
                                                 ))),
                              .after = "DOY")
 
+  # Extract month as integer
   NASA <- tibble::add_column(NASA,
                              MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
                              .after = "YEAR")
 
+  # Extract day as integer
   NASA <- tibble::add_column(NASA,
                              DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
                              .after = "MM")
 
-  NASA$DOY <- as.integer(NASA$DOY)
 }
