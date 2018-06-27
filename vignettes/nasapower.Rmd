@@ -93,17 +93,25 @@ power <- get_power(community = "AG",
                    latlon = c(-55.5, 112.5, -50.5, 115.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-01-02"),
-                   temporal_average = "climatology")
+                   temporal_average = "daily")
 
-# create dataframes for the individual parameters and drop the parameter field.
-RH2M <- rasterFromXYZ(subset(power, PARAMETER == "RH2M")[, -c(3:8)])
 
-T2M <- rasterFromXYZ(subset(power, PARAMETER == "T2M")[, -c(3:8)])
+# Use split to create a list of data frames split by YYYYMMDD
+power <- split(power, power$YYYYMMDD)
+
+# Remove date information from data frame, list names will carry YYYYMMDD
+power <-
+  lapply(power, function(x)
+  x[(!names(x) %in% c("YEAR", "MM", "DD", "DOY", "YYYYMMDD"))])
+
+# Create a list of raster bricks from each YYYYMMDD data frame
+raster_list <- lapply(power, rasterFromXYZ,
+              crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
 ```
 
 ### Converting Global Climatology to a _raster_ Object
 
-Converting global climatology to a `raster` `brick` is as simple as querying
+Converting global climatology to a `raster::brick` is as simple as querying
 and then converting the resulting `tibble` to a raster object.
 
 ```{r global_climatology, eval=FALSE}
