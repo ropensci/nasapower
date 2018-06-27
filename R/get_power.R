@@ -115,5 +115,8 @@ get_power <- function(community = NULL,
                       latlon_identifier,
                       pars,
                       dates)
+
+  NASA <- format_dates(NASA)
+
   return(NASA)
 }

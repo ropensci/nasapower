@@ -1,4 +1,6 @@
 
+
+
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -359,12 +361,35 @@ power_query <- function(community,
   }, # nocov start
   error = function(e) {
     e$message <-
-      paste("\nA CSV file was not created, this is a server error.",
-            "The server may not be responding.",
-            "Please check <https://power.larc.nasa.gov/> for notifications if",
-            "you repeatedly get this error.", sep = "\n")
+      paste(
+        "\nA CSV file was not created, this is a server error.",
+        "The server may not be responding.",
+        "Please check <https://power.larc.nasa.gov/> for notifications if",
+        "you repeatedly get this error.",
+        sep = "\n"
+      )
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
   }) # nocov end
+}
+
+#' @noRd
+format_dates <- function(NASA) {
+  NASA <- tibble::add_column(NASA,
+                             YYYYMMDD = as.Date(as.numeric(power$DOY) - 1,
+                                                origin = as.Date(paste(
+                                                  power$YEAR, "-01-01", sep = ""
+                                                ))),
+                             .after = "DOY")
+
+  NASA <- tibble::add_column(NASA,
+                             MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
+                             .after = "YEAR")
+
+  NASA <- tibble::add_column(NASA,
+                             DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
+                             .after = "MM")
+
+  NASA$DOY <- as.integer(NASA$DOY)
 }
