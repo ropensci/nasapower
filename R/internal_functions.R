@@ -24,7 +24,7 @@ check_dates <- function(dates, latlon, temporal_average) {
 
   if (!is.null(dates) & temporal_average == "CLIMATOLOGY") {
     stop(call. = FALSE,
-         "\nDates are not used when querying climatology data.\n",
+         "\nDates are not used when querying climatology data. ",
          "Do you wish to query daily or interannual data instead?\n")
   }
 
@@ -74,7 +74,7 @@ check_dates <- function(dates, latlon, temporal_average) {
 
     # if the stdate is > endate, flip order
     if (dates[[2]] < dates[[1]]) {
-      message("\nYour start and end dates were reversed.\n",
+      message("\nYour start and end dates were reversed. ",
               "They have been reordered.\n")
       dates <- as.list(c(dates[2], dates[1]))
     }
@@ -95,10 +95,17 @@ check_dates <- function(dates, latlon, temporal_average) {
     dates <- gsub("-", "" , dates, ignore.case = TRUE)
   }
 
-  if (temporal_average == "INTERANNUAL" && any(nchar(dates) > 4)) {
-    dates <- substr(dates, 1, 4)
-    message("\nOnly years are used with INTERANNUAL temporal average.\n",
-            "The dates have been set to", dates)
+  if (temporal_average == "INTERANNUAL" &&
+      length(unique(substr(dates, 1, 4))) < 2) {
+    stop(call. = FALSE,
+         "For `temporal_average == INTERANNUAL`, at least two (2) years ",
+         "are required to be given.\n")
+  }
+
+  if (temporal_average == "INTERANNUAL" & any(nchar(dates) > 4)) {
+    dates <- unique(substr(dates, 1, 4))
+    message("\nOnly years are used with INTERANNUAL temporal average. ",
+            "The dates have been set to ", dates[1], " ", dates[2], ".\n")
   }
   return(dates)
 }
@@ -164,11 +171,9 @@ check_pars <-
       if (temporal_average %notin% parameters[[i]]$include) {
         stop(
           call. = FALSE,
-          "\nYou have entered an invalid value for `temporal_average` for\n",
-          "the supplied `pars`. One or more `pars` are not, available for\n",
-          "`",
-          temporal_average,
-          "`, please check.\n"
+          "\nYou have entered an invalid value for `temporal_average` for ",
+          "the supplied `pars`. One or more `pars` are not, available for ",
+          "`", temporal_average, "`, please check.\n"
         )
       }
     }
