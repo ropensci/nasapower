@@ -20,6 +20,14 @@ check_global <- function(latlon) {
   return(latlon)
 }
 
+check_temporal_avg <- function(temporal_average, dates) {
+  if (!is.null(dates) && temporal_average == "climatology") {
+    stop(call. = FALSE,
+         "\nDates are not used when querying climatology data.\n,",
+         "\nDo you wish to query daily or interannual data?")
+  }
+}
+
 #' @noRd
 check_dates <- function(dates, latlon) {
   if (is.numeric(latlon)) {
