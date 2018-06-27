@@ -1,7 +1,4 @@
 
-
-
-
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -20,16 +17,17 @@ check_global <- function(latlon) {
   return(latlon)
 }
 
-check_temporal_avg <- function(temporal_average, dates) {
+#' @noRd
+check_dates <- function(dates, latlon, temporal_average) {
+
+  temporal_average <- toupper(temporal_average)
+
   if (!is.null(dates) && temporal_average == "climatology") {
     stop(call. = FALSE,
          "\nDates are not used when querying climatology data.\n,",
-         "\nDo you wish to query daily or interannual data?")
+         "\nDo you wish to query daily or interannual data instead?")
   }
-}
 
-#' @noRd
-check_dates <- function(dates, latlon) {
   if (is.numeric(latlon)) {
     # if dates are NULL, set to defaults
     if (is.null(dates)) {
@@ -95,11 +93,13 @@ check_dates <- function(dates, latlon) {
 
     dates <- lapply(dates, as.character)
     dates <- gsub("-", "" , dates, ignore.case = TRUE)
-  } else if (is.character(latlon) & !is.null(dates)) {
-    message("\nDates are not used with CLIMATOLOGY. Setting to NULL.\n")
-    dates <- NULL
   }
 
+  if (temporal_average == "INTERANNUAL" && any(nchar(dates) > 4)) {
+    dates <- substr(dates, 1, 4)
+    message("\nOnly years are used with INTERANNUAL temporal average.\n",
+            "The dates have been set to", dates)
+  }
   return(dates)
 }
 

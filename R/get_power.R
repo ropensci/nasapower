@@ -101,7 +101,9 @@ get_power <- function(community = NULL,
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   latlon <- check_global(latlon)
-  dates <- check_dates(dates, latlon)
+  dates <- check_dates(dates,
+                       latlon,
+                       temporal_average)
   pars <- check_pars(pars,
                      temporal_average,
                      latlon)
