@@ -115,10 +115,13 @@ get_power <- function(community = NULL,
                       latlon_identifier,
                       pars,
                       dates)
-
+  # add date fields ------------------------------------------------------------
+  # if the temporal average is anything but climatology, add date fields
   temporal_average <- toupper(temporal_average)
   if (temporal_average != "CLIMATOLOGY") {
     NASA <- format_dates(NASA)
   }
+
+  # finish ---------------------------------------------------------------------
   return(NASA)
 }
