@@ -109,6 +109,14 @@ raster_list <- lapply(power, rasterFromXYZ,
               crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
 ```
 
+Plot the first item in the list.
+
+```{r plot_fig1}
+plot(raster_list[[1]])
+```
+
+![Plot of RH2M and T2M for Jan 1](../man/figures/nasapower_Figure1.png)
+
 ### Converting Global Climatology to a _raster_ Object
 
 Converting global climatology to a `raster::brick` is as simple as querying
@@ -122,11 +130,19 @@ power <- get_power(
   temporal_average = "climatology"
 )
 
-# create dataframes for the individual parameters and drop the parameter field.
+# create RasterBricks for the individual parameters and drop the parameter field
 RH2M <- rasterFromXYZ(subset(power, PARAMETER == "RH2M")[, -3])
 
 T2M <- rasterFromXYZ(subset(power, PARAMETER == "T2M")[, -3])
 ```
+
+Plot the annual RH2M from the `RasterBrick` object.
+
+```{r plot_RH2M_ANN}
+plot(RH2M$ANN)
+```
+
+![Plot of ANN (annual mean) RH2M](../man/figures/nasapower_Figure2.png)
 
 ## References
 

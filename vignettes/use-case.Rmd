@@ -39,7 +39,7 @@ install.packages("APSIM")
 
 Load the packages necessary.
 
-```{r load_libraries, message=FALSE, eval=TRUE}
+```{r load_libraries, eval=FALSE}
 library(APSIM)
 library(nasapower)
 library(ggplot2)
@@ -54,7 +54,7 @@ location 151.81 degrees longitude and -27.48 degrees latitude, for 2010. As a
 proxy for potential incoming radiation, `SRAD`, we'll use `ALLSKY_SFC_SW_DWN`,
 insolation incident on a horizontal surface, from NASA - POWER.
 
-```{r get_data_show, eval=TRUE}
+```{r get_data_show, eval=FALSE}
 sw_dwn <- get_power(
   latlon = c(-27.48, 151.81),
   dates = c("2010-01-01", "2010-12-31"),
@@ -64,12 +64,16 @@ sw_dwn <- get_power(
   )
 ```
 
+```
+Fetching single point data for lat -27.48, lon 151.81
+```
+
 # Compare the Data
 
 To compare the data more easily using a graph and correlation measures, join the
 two data frames to create a data frame called, `compare`.
 
-```{r compare, eval=TRUE}
+```{r compare, eval=FALSE}
 compare <- data.frame(kingsData$rad, sw_dwn$ALLSKY_SFC_SW_DWN)
 ```
 
@@ -79,13 +83,23 @@ Graph radiation values from the weather station at Kingsthorpe in
 `APSIM::kingsData` along against the POWER data to illustrate why POWER data are
 often used as a substitute for on-the-ground measurements.
 
-```{r graph_rad, eval=TRUE}
+```{r graph_rad, eval=FALSE}
 ggplot(compare, aes(x = kingsData.rad, y = sw_dwn.ALLSKY_SFC_SW_DWN)) +
-  geom_point(colour = "orange") +
+  geom_point(colour = "#3b6baf") +
   geom_abline(colour = "black", slope = 1) +
   theme_minimal()
+```
 
+![Comparison of NASA-POWER data with kingsData from APSIM](../man/figures/use-case_Figure1.png)
+
+Check the correlation.
+
+```{r cor_test, eval=FALSE}
 cor(compare$kingsData.rad, compare$sw_dwn.ALLSKY_SFC_SW_DWN)
+```
+
+```
+[1] 0.9033127
 ```
 
 # Create a .met File
@@ -96,15 +110,30 @@ radiation. A duplicate data set of the `kingsData` from _APSIM_ has been
 created, which has `rad` missing, `kings_nasa`. Using that data set, merge
 with the `swv_dwn` from the POWER data and create an APSIM .met file.
 
-```{r remove_rad, eval=TRUE, include=TRUE}
+```{r remove_rad, eval=FALSE}
 kings_nasa <- kingsData[, -6]
 ```
 
-```{r create_met, eval=TRUE}
+```{r create_met, eval=FALSE}
 
 # inspect the kings_nasa data
 str(kings_nasa)
+```
 
+```
+'data.frame':	365 obs. of  9 variables:
+ $ Date       : chr  "1/01/2010" "2/01/2010" "3/01/2010" "4/01/2010" ...
+ $ max.temp   : num  28.5 31.2 33.6 27.1 27.8 ...
+ $ min.temp   : num  19.5 20.5 22.3 21.2 18.4 ...
+ $ rain       : num  0.2 0.6 0 3.4 0 0 0 7.4 0.2 0 ...
+ $ evaporation: num  2.6 4.4 5.8 4.6 3.6 ...
+ $ vp         : num  18.1 22.1 24.3 21.5 19.2 ...
+ $ Windrun.km : int  NA NA NA NA NA NA NA NA 357 248 ...
+ $ RH.at.9am  : num  NA NA NA NA NA ...
+ $ SVP.at.9am : num  NA NA NA NA NA ...
+```
+
+```{r join_data, eval=FALSE}
 # join the kings_data with swv_dwn from POWER
 kings_met <- data.frame(kings_nasa, sw_dwn$ALLSKY_SFC_SW_DWN)
 
@@ -140,14 +169,47 @@ units <-
 Using the `kings_met` data frame created previously, along with the `new_names`
 and `units` data frames, use `APSIM::prepareMet()` to create a .met file.
 
-```{r prepare_met, eval=TRUE}
+```{r prepare_met, eval=FALSE}
 nasa_met <- prepareMet(kings_met,
            lat = -27.48,
            lon = 151.81,
            newNames = new_names,
            units = units)
+```
 
+```
+[1] "Required column name check:"
+[1] "maxt" "mint" "radn" "rain" "year" "day" 
+[1] TRUE TRUE TRUE TRUE TRUE TRUE
+```
+
+Inspect the new object.
+
+```{r str_nasa_met, eval=FALSE}
 str(nasa_met)
+```
+
+```
+Formal class 'metFile' [package "APSIM"] with 7 slots
+  ..@ const: chr(0) 
+  ..@ lat  : num -27.5
+  ..@ lon  : num 152
+  ..@ tav  : num 14.3
+  ..@ amp  : num 18.4
+  ..@ units: chr [1:12] "()" "(oC)" "(oC)" "(mm)" ...
+  ..@ data :'data.frame':	365 obs. of  12 variables:
+  .. ..$ date       : chr [1:365] "1/1/2010" "2/1/2010" "3/1/2010" "4/1/2010" ...
+  .. ..$ maxt       : num [1:365] 28.5 31.2 33.6 27.1 27.8 ...
+  .. ..$ mint       : num [1:365] 19.5 20.5 22.3 21.2 18.4 ...
+  .. ..$ rain       : num [1:365] 0.2 0.6 0 3.4 0 0 0 7.4 0.2 0 ...
+  .. ..$ evaporation: num [1:365] 2.6 4.4 5.8 4.6 3.6 ...
+  .. ..$ radn       : num [1:365] 13 17.8 21.8 16.9 17.8 ...
+  .. ..$ vp         : num [1:365] 18.1 22.1 24.3 21.5 19.2 ...
+  .. ..$ Wind       : int [1:365] NA NA NA NA NA NA NA NA 357 248 ...
+  .. ..$ RH         : num [1:365] NA NA NA NA NA ...
+  .. ..$ SVP        : num [1:365] NA NA NA NA NA ...
+  .. ..$ year       : num [1:365] 2010 2010 2010 2010 2010 2010 2010 2010 2010 2010 ...
+  .. ..$ day        : num [1:365] 1 2 3 4 5 6 7 8 9 10 ...
 ```
 
 You now have a complete .met file for use in APSIM that supplies solar radiation

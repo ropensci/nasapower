@@ -1,4 +1,4 @@
-#
+
 # test queries -----------------------------------------------------------------
 context("Test that get_power queries the server and returns the proper
         requested data")
