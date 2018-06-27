@@ -88,7 +88,7 @@ test_that("get_power returns global AG data for climatology", {
     expect_equal(power_query$LON[259200], 179.75)
     expect_equal(power_query$LON[1], -179.75)
     expect_named(
-      query,
+      power_query,
       c(
         "LAT",
         "LON",
