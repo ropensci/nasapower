@@ -23,19 +23,20 @@ date: 2017-12-21
 # Summary and Statement of Need
 
 _nasapower_ [@sparks2017] is an R [@R-base] package providing functionality to
-automate and make NASA-POWER agroclimatology [@stackhouse2017] data retrieval
-faster and easier than using the web interface and also reproducible. Two
-functions are provided, one to query for and return single cell values, the
-other to query and return all cell values in a given region. Both functions
-return the requested data in a tidy data frame [@wickham2014] to allow users to
-focus on using the data rather than importing and tidying. Integrating this data
-retrieval and formatting in R will streamline processes with models such as
-APSIM [@keating2003] and EPIRICE [@savary2012] that can be linked to or are
-implemented in R. Extended documentation is provided with examples of visualising
-the data using _ggplot2_ [@wickham2009], converting it to spatial objects using
-_raster_ [@hijmans2017] and for obtaining solar radiation values and generating
-a .met file using the _APSIM_ R package [@fainges2017] to use in the APSIM
-model.
+interface with the NASA-POWER API [@stackhouse2017] for reproducible data
+retrieval using R. A single function, `get_power` is provided. The function
+provides complete access to all functionality that the POWER API provides, which
+incluces three user communities, AG (agroclimatoloy), SSE (Surface meteorology
+and Solar Energy) and SB (Sustainable Buildings); three temporal averages, Daily
+Interannual and Climatology; three geographic options, single point, regional
+and global for the appropriate 141 parameters offered. Data are returned in a
+in a tidy data frame [@wickham2014]. Integrating this data retrieval and
+formatting in R will streamline processes with models such as APSIM
+[@keating2003] and EPIRICE [@savary2012] that can be linked to or are
+implemented in R. Extended documentation is provided with examples of
+converting it to spatial objects using _raster_ [@hijmans2017] and for obtaining solar radiation values
+and generating a .met file using the _APSIM_ R package [@fainges2017] to use in
+the APSIM model.
 
 # About POWER Data
 
