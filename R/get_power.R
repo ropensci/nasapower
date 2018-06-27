@@ -116,7 +116,9 @@ get_power <- function(community = NULL,
                       pars,
                       dates)
 
-  NASA <- format_dates(NASA)
-
+  temporal_average <- toupper(temporal_average)
+  if (temporal_average != "CLIMATOLOGY") {
+    NASA <- format_dates(NASA)
+  }
   return(NASA)
 }
