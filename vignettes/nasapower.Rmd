@@ -47,14 +47,23 @@ selected user community will affect the units of the parameter and the temporal
 display of time series data (_e.g._ Agroclimatology will use MJ/m^2^/day for
 radiation units, while SSE and SB use kW/m^2^/day as units).
 
-- `latlon`, a length-2 numeric vector giving the decimal degree latitude and
-and longitude coordinates in that order for cell data to download or a length-4
-numeric vector giving the decimal degree longitude and and latitude coordinates
-forming a bounding box as ymin, xmin, ymax, xmax in that order. When specifying
-a region, the maximum amount of cells that can be downloaded are 100, i.e., a 10
-x 10 one-half arc degree bounding box or 5 x 5 one arc degree bounding box.
-Leave blank for global coverage.
-
+- `latlon`
+  - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+    length-2 numeric vector giving the decimal degree longitude and latitude in
+    that order for data to download,  *e.g.*, `latlon = c(-179.5, -89.5)`.  
+  
+  - *For regional coverage* To get a region, supply a length-4 numeric
+    vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+    *e.g.*, `latlon = c(ymin, xmin, ymax, xmax)` in that order for a given
+    region, *e.g.*, a bounding box for the southwestern corner of Australia:
+    `latlon = c(-55.5, 112.5, -50.5, 115.5)`. *Max bounding box is 10 x 10
+    degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
+  
+  - *For global coverage* To get global coverage for long term monthly
+    averages for the entire globe use `Global` in place of `latlon` values.
+    `temporal_average` will automatically be set to `climatology` if this option
+    is set.
+    
 - `pars`, A character vector of solar, meteorological or climatology parameters
 to download. For a complete listing of valid `pars`, please visit the NASA-POWER
 website for the dictionary of parameters,
@@ -71,30 +80,44 @@ Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
 If you require spatial objects to work with, it is rather simple to convert
 the resulting tidy data frame from `get_power()` to a spatial object in R using `raster::rasterFromXYZ()`.
 
-### Converting to a _raster_ Object
+### Converting Regional Data to a _raster_ Object
 
-Using the `example` object from the previous example, convert the data frame to a
-raster brick. The LON and LAT values are in columns 6 and 7 with the weather
-vars in any following columns.
+Using `lapply` and `split` it is easy to create stacks of raster objects from
+a regional query.
 
-The first step is to `base::split()` the data frame into a list of data frames by day.
-
-Then convert the `base::list()` into a `list` of `raster::brick()` objects.
-
-```{r raster_example}
+```{r raster_example, eval=FALSE}
+library(nasapower)
 library(raster)
 
-# Use split to create a list of data frames split by YYYYMMDD
-PHL <- split(PHL, PHL$YYYYMMDD)
+power <- get_power(community = "AG",
+                   latlon = c(-55.5, 112.5, -50.5, 115.5),
+                   pars = c("RH2M", "T2M"),
+                   dates = c("1985-01-01", "1985-01-02"),
+                   temporal_average = "climatology")
 
-# Remove date information from data frame, list names will carry YYYYMMDD
-PHL <-
-  lapply(PHL, function(x)
-  x[(!names(x) %in% c("YEAR", "MONTH", "DAY", "YYYYMMDD", "DOY"))])
+# create dataframes for the individual parameters and drop the parameter field.
+RH2M <- rasterFromXYZ(subset(power, PARAMETER == "RH2M")[, -c(3:8)])
 
-# Create a list of raster bricks from each YYYYMMDD data frame
-PHL <- lapply(PHL, rasterFromXYZ,
-              crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
+T2M <- rasterFromXYZ(subset(power, PARAMETER == "T2M")[, -c(3:8)])
+```
+
+### Converting Global Climatology to a _raster_ Object
+
+Converting global climatology to a `raster` `brick` is as simple as querying
+and then converting the resulting `tibble` to a raster object.
+
+```{r global_climatology, eval=FALSE}
+power <- get_power(
+  community = "AG",
+  latlon = "global",
+  pars = c("RH2M", "T2M"),
+  temporal_average = "climatology"
+)
+
+# create dataframes for the individual parameters and drop the parameter field.
+RH2M <- rasterFromXYZ(subset(power, PARAMETER == "RH2M")[, -3])
+
+T2M <- rasterFromXYZ(subset(power, PARAMETER == "T2M")[, -3])
 ```
 
 ## References
