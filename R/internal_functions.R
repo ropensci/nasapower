@@ -355,7 +355,7 @@ power_query <- function(community,
 
   # parse to an R list
   tryCatch({
-    res <- client$get(query = query_list)
+    response <- client$get(query = query_list)
   }, # nocov start
   error = function(e) {
     e$message <-
@@ -368,8 +368,8 @@ power_query <- function(community,
   # read resulting CSV file
   tryCatch({
     txt <-
-      jsonlite::fromJSON(res$parse("UTF-8"))
-    res <- readr::read_csv(txt$outputs$csv,
+      jsonlite::fromJSON(response$parse("UTF-8"))
+    response <- readr::read_csv(txt$outputs$csv,
                            na = c("-", -99),
                            col_types = readr::cols())
   }, # nocov start
