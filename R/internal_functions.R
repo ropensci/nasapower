@@ -22,10 +22,10 @@ check_dates <- function(dates, latlon, temporal_average) {
 
   temporal_average <- toupper(temporal_average)
 
-  if (!is.null(dates) && temporal_average == "climatology") {
+  if (!is.null(dates) & temporal_average == "CLIMATOLOGY") {
     stop(call. = FALSE,
-         "\nDates are not used when querying climatology data.\n,",
-         "\nDo you wish to query daily or interannual data instead?")
+         "\nDates are not used when querying climatology data.\n",
+         "Do you wish to query daily or interannual data instead?\n")
   }
 
   if (is.numeric(latlon)) {
