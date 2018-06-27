@@ -101,3 +101,21 @@ test_that("If temporal_average == CLIMATOLOGY, no dates can be specified", {
   expect_error(check_dates(dates, latlon, temporal_average),
                regexp = "*Dates are not used when querying climatology data.*")
 })
+
+test_that("If temporal_average == INTERANNUAL and dates are specified, that
+          a message is emitted about years only", {
+  temporal_average <- "INTERANNUAL"
+  dates <- c("1983-01-01", "1984-01-01")
+  latlon <- c(-89.5, -179.5)
+  expect_message(check_dates(dates, latlon, temporal_average),
+               regexp = "*Only years are used with INTERANNUAL temporal.*")
+})
+
+test_that("If temporal_average == INTERANNUAL and dates are specified, that
+          a message is emitted about years only", {
+            temporal_average <- "INTERANNUAL"
+            dates <- c("1983-01-01", "1983-02-02")
+            latlon <- c(-89.5, -179.5)
+            expect_error(check_dates(dates, latlon, temporal_average),
+                         regexp = "*For `temporal_average == INTERANNUAL`,*")
+          })
