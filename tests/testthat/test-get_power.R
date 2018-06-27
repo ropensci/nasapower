@@ -42,9 +42,9 @@ test_that("get_power returns daily regional AG data", {
       temporal_average = "Daily"
     )
 
-    expect_equal(nrow(query), 77)
+    expect_equal(nrow(power_query), 77)
     expect_equal(
-      unique(query$LAT),
+      unique(power_query$LAT),
       c(
         -55.25,
         -54.75,
@@ -59,7 +59,7 @@ test_that("get_power returns daily regional AG data", {
         -50.25
       )
     )
-    expect_equal(unique(query$LON),
+    expect_equal(unique(power_query$LON),
                  c(112.75, 113.25, 113.75, 114.25, 114.75, 115.25, 115.75))
     expect_equal(power_query$YEAR[1], 1983)
     expect_equal(power_query$MM[1], 1)
@@ -68,7 +68,7 @@ test_that("get_power returns daily regional AG data", {
     expect_equal(power_query$YYYYMMDD[1], as.Date("1983-01-01"))
     expect_equal(power_query$DOY[1], 1)
     expect_equal(power_query$T2M[1], 3.28)
-    rm(query)
+    rm(power_query)
   })
 })
 
@@ -81,7 +81,7 @@ test_that("get_power returns global AG data for climatology", {
       temporal_average = "Climatology"
     )
 
-    expect_equal(nrow(query), 259200)
+    expect_equal(nrow(power_query), 259200)
     expect_equal(power_query$PARAMETER[1], "T2M")
     expect_equal(power_query$LAT[259200], 89.75)
     expect_equal(power_query$LAT[1], -89.75)
@@ -108,6 +108,6 @@ test_that("get_power returns global AG data for climatology", {
         "ANN"
       )
     )
-    rm(query)
+    rm(power_query)
   })
 })
