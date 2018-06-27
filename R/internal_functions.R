@@ -410,5 +410,4 @@ format_dates <- function(NASA) {
   NASA <- tibble::add_column(NASA,
                              DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
                              .after = "MM")
-
 }

@@ -124,6 +124,9 @@ get_power <- function(community = NULL,
     NASA <- format_dates(NASA)
   }
 
+  # Put lon before lat (x, y format)
+  NASA <- NASA[, c(2, 1, 3:ncol(NASA))]
+
   # finish ---------------------------------------------------------------------
   return(NASA)
 }
