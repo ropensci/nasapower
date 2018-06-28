@@ -31,8 +31,9 @@ supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 more.}
 }
 \description{
-Get NASA-POWER data and return a tidy data frame. All options
-offered by the official NASA-POWER API are supported.
+Get NASA-POWER global meteorology and surface solar energy
+climatology data and return a tidy data frame. All options offered by the
+official NASA-POWER API are supported.
 }
 \details{
 Further details for each of the arguments are provided in their
