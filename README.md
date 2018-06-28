@@ -23,7 +23,7 @@ available for download through a web interface at a resolution of 0.5
 arc degree longitude by 0.5 arc degree latitude.
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
-ways to access it and other forms of data available, e.g. an ESRI REST
+ways to access it and other forms of data available, *e.g.* an ESRI REST
 API.
 
 ### Quick start
