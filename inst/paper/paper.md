@@ -33,12 +33,12 @@ Inter-annual and Climatology; three geographic options, single point, regional
 and global for the appropriate 141 parameters offered. Data are returned in a
 tidy data frame [@wickham2014] as a _tibble_ [@muller2018]. Integrating this
 data retrieval and formatting in R will streamline processes with models such as
-APSIM [@keating2003], DSSAT [@jones1998decision; @jones2003dssat] and EPIRICE
-[@savary2012] that can be linked to or are implemented fully in R. Extended
-documentation is provided with examples of converting it to spatial objects
-using _raster_ [@hijmans2017] and for obtaining solar radiation values and
-generating a .met file using the _APSIM_ R package [@fainges2017] to use in the
-APSIM model.
+APSIM [@keating2003overview], DSSAT [@jones1998decision; @jones2003dssat] and
+EPIRICE [@savary2012] that can be linked to or are implemented fully in R.
+Extended documentation is provided with examples of converting it to spatial
+objects using _raster_ [@hijmans2017] and for obtaining solar radiation values
+and generating a .met file using the _APSIM_ R package [@fainges2017] to use in
+the APSIM model.
 
 # About POWER Data
 
