@@ -1,4 +1,4 @@
-nasapower: NASA-POWER Agroclimatology Data from R
+nasapower: NASA-POWER Data from R
 ================
 
 [![Travis-CI Build
@@ -16,11 +16,11 @@ public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus
 
 <img align="right" src="man/figures/logo.png"> *nasapower* aims to make
 it quick and easy to automate downloading
-[NASA-POWER](https://power.larc.nasa.gov) agroclimatology data in your R
-session as a tidy data frame for agricultural analysis and use in
-modelling or other purposes. POWER (Prediction Of Worldwide Energy
-Resource) data are freely available for download through a web interface
-at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude.
+[NASA-POWER](https://power.larc.nasa.gov) data in your R session as a
+tidy data frame for analysis and use in modelling or other purposes.
+POWER (Prediction Of Worldwide Energy Resource) data are freely
+available for download through a web interface at a resolution of 0.5
+arc degree longitude by 0.5 arc degree latitude.
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
 ways to access it and other forms of data available, e.g. an ESRI REST
@@ -46,8 +46,7 @@ devtools::install_github("adamhsparks/nasapower", build_vignettes = TRUE)
 ## Introduction
 
 *nasapower* aims to make it quick, easy and efficient to automate
-downloading NASA-POWER agroclimatology data in your R session as a tidy
-data frame.
+downloading NASA-POWER data in your R session as a tidy data frame.
 
 *nasapower* only provides one function, `get_power()`, which will
 download specified variables and return a tidy data frame of the
