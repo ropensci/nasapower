@@ -1,8 +1,9 @@
 
 #' @title Get NASA-POWER Data and Return a Tidy Data Frame
 #'
-#' @description Get NASA-POWER data and return a tidy data frame. All options
-#' offered by the official NASA-POWER API are supported.
+#' @description Get NASA-POWER global meteorology and surface solar energy
+#' climatology data and return a tidy data frame. All options offered by the
+#' official NASA-POWER API are supported.
 #'
 #' @export
 #' @param community Community name AG, SB and SSE. See argument details for
