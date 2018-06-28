@@ -78,7 +78,7 @@
 #'  1984 - Dec. 2013).} }
 #'
 #' @references
-#' \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
+#' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 #'
 #' @examples
 #' # Fetch temperature and relative humidity for January 1 1985

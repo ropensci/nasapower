@@ -1,5 +1,5 @@
 
-#' @title NASA-POWER Agroclimatology Data from R
+#' @title NASA-POWER Data from R
 #'
 #' @name nasapower
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
@@ -10,7 +10,7 @@
 #' create a tidy data frame for a single point, a region or global coverage.
 #' \pkg{nasapower} provides an R interface to the NASA - POWER API.  POWER
 #' (Prediction Of Worldwide Energy Resource) data are freely available for
-#' download with a resolution of 1/2 arc degree longitude by 1/2 arc degree
+#' download with a resolution of 0.5 arc degree longitude by 0.5 arc degree
 #' latitude and are funded through the NASA Earth Science Directorate Applied
 #' Science Program. For more on the data themselves, please see
 #' \url{https://power.larc.nasa.gov/}.
@@ -35,5 +35,5 @@
 #' }
 #'
 #' @references
-#' \url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
+#' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 NULL

@@ -110,7 +110,7 @@ power <- get_power(community = "AG",
 
 }
 \references{
-\url{https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf}
+\url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}

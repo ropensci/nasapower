@@ -1,6 +1,6 @@
 Package: nasapower
 Type: Package
-Title: NASA-POWER Agroclimatology Data from R
+Title: NASA-POWER Data from R
 Version: 1.0.0.9000
 Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
