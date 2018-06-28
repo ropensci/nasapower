@@ -77,8 +77,6 @@ two data frames to create a data frame called, `compare`.
 compare <- data.frame(kingsData$rad, sw_dwn$ALLSKY_SFC_SW_DWN)
 ```
 
-## Graph the Data
-
 Graph radiation values from the weather station at Kingsthorpe in
 `APSIM::kingsData` along against the POWER data to illustrate why POWER data are
 often used as a substitute for on-the-ground measurements.
