@@ -136,4 +136,4 @@ Team.
 
 <https://power.larc.nasa.gov>
 
-<https://power.larc.nasa.gov/documents/Agroclimatology_Methodology.pdf>
+<https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf>
