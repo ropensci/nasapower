@@ -90,8 +90,8 @@ test_that("get_power returns global AG data for climatology", {
     expect_named(
       power_query,
       c(
-        "LAT",
         "LON",
+        "LAT",
         "PARAMETER",
         "JAN",
         "FEB",
