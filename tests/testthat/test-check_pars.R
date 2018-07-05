@@ -78,17 +78,18 @@ test_that("`temporal_average`` is set to `CLIMATOLOGY` when global data
             expect_equal(pars$temporal_average, "CLIMATOLOGY")
           })
 
-test_that("Only 3 pars are allowed when temporal_average == CLIMATOLOGY", {
-  pars <- c("ALLSKY_SFC_SW_DWN_03_GMT",
-            "ALLSKY_SFC_LW_DWN",
-            "ALLSKY_SFC_SW_DWN_06_GMT",
-            "RH2M")
-  temporal_average <- "CLIMATOLOGY"
-  latlon <- "Global"
-  expect_message(pars <-
-                   check_pars(pars, temporal_average, latlon),
-                 regexp = "\nYou can only specify three (3)*")
-})
+test_that("Only 3 pars are allowed when temporal_average == CLIMATOLOGY",
+          {
+            pars <- c("ALLSKY_SFC_SW_DWN_03_GMT",
+                      "ALLSKY_SFC_LW_DWN",
+                      "ALLSKY_SFC_SW_DWN_06_GMT",
+                      "RH2M")
+            temporal_average <- "CLIMATOLOGY"
+            latlon <- "Global"
+            expect_message(pars <-
+                             check_pars(pars, temporal_average, latlon),
+                           regexp = "*You can only specify three (3)*")
+          })
 
 # test_that("Only 20 pars are allowed when temporal_average != CLIMATOLOGY", {
 #   pars <- c("ALLSKY_SFC_LW_DWN",
@@ -126,6 +127,6 @@ test_that("Only unique pars are queried", {
  temporal_average <- "CLIMATOLOGY"
  latlon <- "Global"
  pars <- check_pars(pars, temporal_average, latlon)
- expect_equal(pars[1], "RH2M")
- expect_equal(length(pars[1]), 1)
+ expect_equal(pars[[1]], "RH2M")
+ expect_equal(length(pars[[1]]), 1)
 })
