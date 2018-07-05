@@ -178,6 +178,25 @@ check_pars <-
       }
     }
 
+    # make sure that there are no duplicates in the query
+    pars <- unique(pars)
+
+    # check pars to make sure < allowed
+    if (length(pars) > 3 && temporal_average == "CLIMATOLOGY") {
+      stop(
+        call. = FALSE,
+        "\nYou can only specify three (3) parameters for download when ",
+        "querying CLIMATOLOGY.\n"
+      )
+    }
+
+    if (length(pars) > 20 & temporal_average != "CLIMATOLOGY") {
+      stop(
+        call. = FALSE,
+        "\nYou can only specify 20 parameters for download at a time.\n"
+      )
+    }
+
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
     pars <- list(pars, temporal_average)
