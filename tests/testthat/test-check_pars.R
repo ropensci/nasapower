@@ -86,9 +86,9 @@ test_that("Only 3 pars are allowed when temporal_average == CLIMATOLOGY",
                       "RH2M")
             temporal_average <- "CLIMATOLOGY"
             latlon <- "Global"
-            expect_message(pars <-
-                             check_pars(pars, temporal_average, latlon),
-                           regexp = "*You can only specify three (3)*")
+            expect_error(pars <-
+                           check_pars(pars, temporal_average, latlon),
+                         regexp = "\nYou can only specify three*")
           })
 
 # test_that("Only 20 pars are allowed when temporal_average != CLIMATOLOGY", {
