@@ -16,8 +16,8 @@ test_that("get_power returns daily point AG data", {
       temporal_average = "Daily"
     )
 
-    expect_equal(power_query$LAT, -89.5)
-    expect_equal(power_query$LON, -179.5)
+    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
     expect_equal(power_query$YEAR, 1983)
     expect_equal(power_query$MM, 1)
     expect_equal(power_query$DD, 1)
