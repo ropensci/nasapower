@@ -91,35 +91,37 @@ test_that("Only 3 pars are allowed when temporal_average == CLIMATOLOGY",
                          regexp = "\nYou can only specify three*")
           })
 
-# test_that("Only 20 pars are allowed when temporal_average != CLIMATOLOGY", {
-#   pars <- c("ALLSKY_SFC_LW_DWN",
-#             "CLD_AMT_12_GMT",
-#             "ALLSKY_SFC_SW_DWN_00_GMT",
-#             "ALLSKY_SFC_SW_DWN_03_GMT",
-#             "ALLSKY_SFC_SW_DWN_06_GMT",
-#             "ALLSKY_SFC_SW_DWN_09_GMT",
-#             "ALLSKY_SFC_SW_DWN_12_GMT",
-#             "ALLSKY_SFC_SW_DWN_15_GMT",
-#             "ALLSKY_SFC_SW_DWN_18_GMT",
-#             "ALLSKY_SFC_SW_DWN_21_GMT",
-#             "ALLSKY_SFC_SW_DWN_MAX_DIFF",
-#             "ALLSKY_SFC_SW_DWN_MIN_DIFF",
-#             "ALLSKY_TOA_SW_DWN",
-#             "CDD0",
-#             "CDD10",
-#             "CDD18_3",
-#             "CLD_AMT",
-#             "CLD_AMT_00_GMT",
-#             "CLD_AMT_03_GMT",
-#             "CLD_AMT_06_GMT",
-#             "CLD_AMT_09_GMT"
-#             )
-#   temporal_average <- "INTERANNUAL"
-#   latlon = c(-89.5, -179.5)
-#   expect_message(pars <- check_pars(pars, temporal_average, latlon),
-#                  regexp = "\nYou can only specify three (3) parameters for*")
-# })
-#
+test_that("Only 20 pars are allowed when temporal_average != CLIMATOLOGY", {
+  pars <- c("ALLSKY_SFC_LW_DWN",
+            "ALLSKY_TOA_SW_DWN",
+            "CDD0",
+            "CDD10",
+            "CDD18_3",
+            "CLRSKY_SFC_SW_DWN",
+            "FROST_DAYS",
+            "HDD0",
+            "HDD10",
+            "HDD18_3",
+            "KT",
+            "KT_CLEAR",
+            "PRECTOT",
+            "PS",
+            "QV2M",
+            "RH2M",
+            "T10M",
+            "T10M_MAX",
+            "T10M_MIN",
+            "T10M_RANGE",
+            "T2M_RANGE",
+            "T2M_MIN",
+            "T2M_MAX"
+            )
+  temporal_average <- "DAILY"
+  latlon = c(-89.5, -179.5)
+  expect_error(pars <- check_pars(pars, temporal_average, latlon),
+                 regexp = "\nYou can only specify 20 parameters for download*")
+})
+
 test_that("Only unique pars are queried", {
  pars <- c("RH2M",
            "RH2M",
