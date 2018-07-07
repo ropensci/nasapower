@@ -62,19 +62,22 @@ radiation units, while SSE and SB use kW/m^2^/day as units).
   
   - *For global coverage* To get global coverage for long term monthly
     averages for the entire globe use `Global` in place of `latlon` values.
-    `temporal_average` will automatically be set to `climatology` if this option
+    `temporal_average` will automatically be set to `CLIMATOLOGY` if this option
     is set.
     
-- `pars`, A character vector of solar, meteorological or climatology parameters
-to download. For a complete listing of valid `pars`, please visit the NASA-POWER
-website for the dictionary of parameters,
-<https://power.larc.nasa.gov/#resources>.
+- `pars`, A character vector of solar, meteorological or climatology
+  parameters to download.  See `names(parameters)` for a full list of
+  valid values and definitions.  Visit the 
+  [POWER website](https://power.larc.nasa.gov/#resources) for the Parameter
+  Dictionary.  If downloading CLIMATOLOGY a maximum of 3 `pars` can be
+  specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
+  be specified at one time.
 
 - `dates`, a vector of start and end dates for which to query the NASA-POWER
-API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`. 
+  API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`. 
 
 - `temporal_average`, a character vector of the desired temporal average(s).
-Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
+  Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
 
 ## Creating Spatial Objects
 

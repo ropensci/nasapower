@@ -17,10 +17,11 @@ details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{names(parameters)} for a full list of
-valid values and definitions visit the
+valid values and definitions.  Visit the
 \href{https://power.larc.nasa.gov/#resources}{POWER website} for the Parameter
-Dictionary.  If downloading global coverage a maximum of 3 \code{pars} can be
-specified at one time.}
+Dictionary.  If downloading CLIMATOLOGY a maximum of 3 \code{pars} can be
+specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
+be specified at one time.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  Not required for global
