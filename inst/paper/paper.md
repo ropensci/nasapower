@@ -26,28 +26,33 @@ affiliations:
 
 # Summary and Statement of Need
 
-_nasapower_ is an R [@R-base] package providing functionality to interface with
-the NASA-POWER API [@stackhouseJr2018] for reproducible data retrieval using R.
+_nasapower_ is an R [@RCT2018] package providing functionality to interface with
+the NASA-POWER API [@StackhouseJr2018] for reproducible data retrieval using R.
 A single function, `get_power`, is provided. The function provides complete
 access to all functionality that the POWER API provides, which includes three
 user communities, AG (agroclimatoloy), SSE (Surface meteorology and Solar
 Energy) and SB (Sustainable Buildings); three temporal averages, Daily,
 Inter-annual and Climatology; three geographic options, single point, regional
-and global for the appropriate 141 parameters offered. Data are returned in a
-tidy data frame [@wickham2014] as a _tibble_ [@muller2018]. Extended
-documentation is provided with examples of converting it to spatial objects
-using _raster_ [@hijmans2017] and for obtaining solar radiation values and
-generating a .met file using the _APSIM_ R package [@fainges2017] to use in the
-APSIM model.
+and global for the appropriate 141 parameters offered. _nasapower_ uses
+_lubridate_ [@Grolemund2011] internally to format and parse dates which are
+passed along to the the query constructed using _crul_ [@Chamberlain2018] to
+interface with the POWER API. The query returns a json response, which is
+parsed by _jsonlite_ [@Ooms2014] to obtain the url of the .csv file that has
+been requested. The .csv file is read directly into R using _readr_
+[@Wickham2017]. Data are returned in a tidy data frame [@Wickham2014] as a
+_tibble_ [@Mueller2018]. Extended documentation is provided with examples of
+converting it to spatial objects using _raster_ [@Hijmans2017] and for
+obtaining solar radiation values and generating a .met file using the _APSIM_
+R package [@Fainges2017] to use in the APSIM model.
 
 Integrating this data retrieval and formatting in R will streamline processes
-with models such as APSIM [@keating2003overview], DSSAT
-[@jones1998decision; @jones2003dssat] and EPIRICE [@savary2012] that can be
-linked to or are implemented fully in R.
+with models such as APSIM [@Keating2003], DSSAT
+[@Jones1998; @Jones2003] and EPIRICE [@Savary2012] that can be
+linked to or are implemented fully in the R programming language.
 
 # About POWER Data
 
-NASA’s POWER (Prediction Of Worldwide Energy Resource) data [@stackhouseJr2018]
+NASA’s POWER (Prediction Of Worldwide Energy Resource) data [@StackhouseJr2018]
 are freely available for download via a
 [web interface](https://power.larc.nasa.gov/data-access-viewer/) at a
 grid resolution of one-half arc degree longitude by one-half arc degree
@@ -55,9 +60,9 @@ latitude. Funded through the NASA Earth Science Directorate Applied Science
 Program, the data provide daily global coverage from 1983 until near present for
 all parameters except precipitation, which is provided for January 1997 to near
 present with a several month delay. The data are widely used in agricultural
-modelling for modelling crop yields [@bai2010evaluation; @vanwart2013;
-@vanwart2015], other crop simulation exercises [@ojeda2017], plant disease
-modelling [@savary2012].
+modelling for modelling crop yields [@Bai2010; @vanWart2013;
+@vanWart2015], other crop simulation exercises [@Ojeda2017], plant disease
+modelling [@Savary2012].
 
 While _nasapower_ does not redistribute any of the NASA-POWER data, users are
 encouraged to please refer to the acknowledgement guidelines available at, <https://power.larc.nasa.gov/common/php/POWER_Acknowledgments.php> and
