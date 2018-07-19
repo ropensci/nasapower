@@ -84,16 +84,16 @@
      id="base"
      bordercolor="#666666"
      inkscape:pageshadow="2"
-     inkscape:window-y="1"
+     inkscape:window-y="0"
      pagecolor="#ffffff"
-     inkscape:window-height="1005"
+     inkscape:window-height="1006"
      inkscape:window-maximized="1"
      inkscape:zoom="1"
      inkscape:window-x="0"
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="layer1"
-     inkscape:cx="-49.524426"
+     inkscape:cx="-229.52443"
      inkscape:cy="145.79759"
      inkscape:window-width="1680"
      inkscape:pageopacity="0.0"
@@ -125,7 +125,10 @@
        style="fill:#004878;fill-opacity:1" />
     <g
        id="g3388"
-       transform="matrix(0.62714284,0,0,0.62846771,-639.00717,29.254079)">
+       transform="matrix(0.62714284,0,0,0.62846771,-639.00717,29.254079)"
+       inkscape:export-filename="/Users/adamsparks/Development/nasapower/man/figures/logo.png"
+       inkscape:export-xdpi="75.220001"
+       inkscape:export-ydpi="75.220001">
       <title
          id="title3407">nasapower</title>
       <g
