@@ -123,16 +123,33 @@
 <li><p><code>temporal_average</code>, a character vector of the desired temporal average(s). Valid values are “DAILY”, “INTERANNUAL” and “CLIMATOLOGY”.</p></li>
 </ul>
 </div>
-<div id="creating--metfile-objects-for-use-with-apsim" class="section level2">
+<div id="using-create_met" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating--metfile-objects-for-use-with-apsim" class="anchor"></a>Creating .metFile Objects for Use with APSIM</h2>
-<p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an APSIM weather.met object suitable for use in APSIM for crop modelling, saving it to disk using the <em>APSIM</em> package.</p>
+<a href="#using-create_met" class="anchor"></a>Using create_met()</h2>
+<p>The <code><a href="../reference/create_met.html">create_met()</a></code> function wraps <code><a href="../reference/get_power.html">get_power()</a></code> and <code><a href="http://www.rdocumentation.org/packages/APSIM/topics/prepareMet">prepareMet()</a></code> from the <em>APSIM</em> package to simplify retrieving POWER data for use in the APSIM modelling framework.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">Kingsthorpe &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">27.48</span>, <span class="fl">151.81</span>),</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2">                          <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>))</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Save resulting object to disk</span></a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">library</span>(APSIM)</a>
 <a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/writeMetFile">writeMetFile</a></span>(<span class="st">"Kingsthorpe.met"</span>, Kingsthorpe)</a></code></pre></div>
+<p>Only two arguments are passed to this function, <code>latlon</code> and <code>dates</code>.</p>
+<ul>
+<li>
+<code>latlon</code>
+<ul>
+<li><p><em>For a single point</em> To get a specific cell, 1/2 x 1/2 degree, supply a length-2 numeric vector giving the decimal degree longitude and latitude in that order for data to download, <em>e.g.</em>, <code>latlon = c(-179.5, -89.5)</code>.</p></li>
+<li>
+<p><em>For regional coverage</em> To get a region, supply a length-4 numeric vector as lower left (lat, lon) and upper right (lat, lon) coordinates, <em>e.g.</em>, <code>latlon = c(ymin, xmin, ymax, xmax)</code> in that order for a given region, <em>e.g.</em>, a bounding box for the south-western corner of Australia: <code>latlon = c(-55.5, 112.5, -50.5, 115.5)</code>. <em>Max bounding box is 10 x 10 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p>
+<ul>
+<li>
+<code>dates</code>, a vector of start and end dates for which to query the NASA-POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an APSIM weather.met object suitable for use in APSIM for crop modelling, saving it to disk using the <em>APSIM</em> package.</p>
 </div>
 <div id="creating-spatial-objects-from-get_power" class="section level2">
 <h2 class="hasAnchor">
@@ -207,7 +224,7 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-get_power">Using get_power()</a></li>
-      <li><a href="#creating--metfile-objects-for-use-with-apsim">Creating .metFile Objects for Use with APSIM</a></li>
+      <li><a href="#using-create_met">Using create_met()</a></li>
       <li><a href="#creating-spatial-objects-from-get_power">Creating Spatial Objects from <code>get_power</code></a></li>
       <li><a href="#references">References</a></li>
       </ul>
