@@ -18,6 +18,7 @@ Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
 Imports:
+    APSIM,
     crul,
     lubridate,
     jsonlite,
@@ -31,7 +32,6 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    APSIM,
     covr,
     dplyr,
     ggplot2,
