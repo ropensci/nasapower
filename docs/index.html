@@ -25,7 +25,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -87,53 +87,25 @@
 
       
       </header><div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     
 
-    
-    
-
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><img align="right" src="reference/figures/logo.png"><em>nasapower</em> aims to make it quick and easy to automate downloading <a href="https://power.larc.nasa.gov">NASA-POWER</a> global meteorology and surface solar energy climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude.</p>
+<div id="nasapower-nasa-power-data-from-r" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#nasapower-nasa-power-data-from-r" class="anchor"></a><em>nasapower</em>: NASA-POWER Data from R <img align="right" src="reference/figures/logo.png">
+</h1></div>
+<p><em>nasapower</em> aims to make it quick and easy to automate downloading <a href="https://power.larc.nasa.gov">NASA-POWER</a> global meteorology and surface solar energy climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude. Other functionality is provided to quickly and easily generate weather.met files from the POWER data for use in the Agricultural Production Systems sIMulator (APSIM).</p>
 <p>Please see <a href="https://power.larc.nasa.gov/" class="uri">https://power.larc.nasa.gov/</a> for more on the data and other ways to access it and other forms of data available, <em>e.g.</em> an ESRI REST API.</p>
 <div id="quick-start" class="section level3">
 <h3 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h3>
-<p>With the changes to the NASA-POWER data and API, this package is a work-in-progress under active development, install at your own risk.</p>
-<p><em>nasapower</em> is not available from CRAN, only GitHub. It can easily be installed using the following code:</p>
+<p><em>nasapower</em> is not yet available from CRAN, only GitHub. It can easily be installed using the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(devtools)) {</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">library</span>(devtools)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">}</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-</div>
-</div>
-<div id="introduction-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction-1" class="anchor"></a>Introduction</h2>
-<p><em>nasapower</em> aims to make it quick, easy and efficient to automate downloading NASA-POWER data in your R session as a tidy data frame.</p>
-<p><em>nasapower</em> only provides one function, <code><a href="reference/get_power.html">get_power()</a></code>, which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>pars</code> argument.</p>
-</div>
-<div id="using-get_power" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_power" class="anchor"></a>Using get_power()</h2>
-<p>The <code><a href="reference/get_power.html">get_power()</a></code> function requires five arguments as seen in this example, which will fetch relative humidity (RH2M) and temperature (T2M) for the year 1985 on a daily time-step.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">                   <span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">89.5</span>, <span class="fl">-179.5</span>),</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">                   <span class="dt">temporal_average =</span> <span class="st">"daily"</span>)</a></code></pre></div>
-<p>The arguments are:</p>
-<ul>
-<li><p><code>community</code>, a text string with valid values of: “AG” (Agroclimatology), “SSE” (Surface meteorology and Solar Energy) or “SB” (Sustainable Buildings). The selected user community will affect the units of the parameter and the temporal display of time series data (<em>e.g.</em> Agroclimatology will use MJ/m<sup>2</sup>/day for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as units).</p></li>
-<li><p><code>latlon</code>, a length-2 numeric vector giving the decimal degree latitude and and longitude coordinates in that order for cell data to download or a length-4 numeric vector giving the decimal degree longitude and and latitude coordinates forming a bounding box as ymin, xmin, ymax, xmax in that order.</p></li>
-<li><p><code>pars</code>, A character vector of solar, meteorological or climatology parameters to download. For a complete listing of valid <code>pars</code>, please visit the NASA-POWER website for the dictionary of parameters, <a href="https://power.larc.nasa.gov/#resources" class="uri">https://power.larc.nasa.gov/#resources</a>.</p></li>
-<li><p><code>dates</code>, a vector of start and end dates for which to query the NASA-POWER API</p></li>
-<li><p><code>temporal_average</code>, a character vector of the desired temporal average(s). Valid values are “DAILY”, “INTERANNUAL” and “CLIMATOLOGY”.</p></li>
-</ul>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -165,9 +137,11 @@
 <p><a href="https://power.larc.nasa.gov" class="uri">https://power.larc.nasa.gov</a></p>
 <p><a href="https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf" class="uri">https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf</a></p>
 </div>
+</div>
+
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -198,7 +172,7 @@
 </ul>
 </div>
 
-      <div class="dev-status">
+  <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/adamhsparks/nasapower"><img src="https://travis-ci.org/adamhsparks/nasapower.svg?branch=master" alt="Travis-CI Build Status"></a></li>
@@ -209,7 +183,6 @@
 </ul>
 </div>
 </div>
-
 </div>
 
 
