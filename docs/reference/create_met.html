@@ -150,7 +150,13 @@ more.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Further details for each of the arguments are provided in their
+    <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
+and <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> that simplifies the querying of the
+POWER API and returns a .met object.</p>
+<p>The weather values from POWER for temperature are 2 metre max and min
+temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,
+PRECTOT from the POWER AG community on a daily time-step.</p>
+<p>Further details for each of the arguments are provided in their
 respective sections following below.</p>
     
     <h2 class="hasAnchor" id="argument-details-for-latlon"><a class="anchor" href="#argument-details-for-latlon"></a>Argument details for <code>latlon</code></h2>
@@ -160,7 +166,7 @@ respective sections following below.</p>
 <dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
 that order for data to download,<br />
-<em>e.g.</em>, <code>latlon = c(-179.5, -89.5)</code>.</p></dd>
+<em>e.g.</em>, <code>latlon = c(-27.48, 151.81)</code>.</p></dd>
     <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
 <em>e.g.</em>, <code>latlon = c(ymin, xmin, ymax, xmax)</code> in that order for a given
@@ -177,17 +183,13 @@ current date according to the system.</p>
 <p>If one date only is provided, it will be treated as both the start date and
 the end date and only a single day's values will be returned.</p>
     
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p><a href='https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf'>https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf</a></p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># Create a .met object for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
 
 </div><span class='co'># NOT RUN {</span>
 <span class='no'>Kingsthorpe</span> <span class='kw'>&lt;-</span> <span class='fu'>create_met</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>27.48</span>, <span class='fl'>151.81</span>),
-                          <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-06-30"</span>)
+                          <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>)
 )
 <span class='co'># }</span><div class='input'>
 </div></pre>
@@ -202,8 +204,6 @@ the end date and only a single day's values will be returned.</p>
       <li><a href="#argument-details-for-latlon">Argument details for <code>latlon</code></a></li>
 
       <li><a href="#argument-details-for-dates">Argument details for <code>dates</code></a></li>
-
-      <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
