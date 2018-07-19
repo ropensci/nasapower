@@ -19,6 +19,14 @@ Get NASA-POWER values for a single point or region and create
 an APSIM weather.met object suitable for use in APSIM for crop modelling.
 }
 \details{
+This function is essentially a wrapper for \code{\link{get_power}}
+and \code{\link[APSIM]{prepareMet}} that simplifies the querying of the
+POWER API and returns a .met object.
+
+The weather values from POWER for temperature are 2 metre max and min
+temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,
+PRECTOT from the POWER AG community on a daily time-step.
+
 Further details for each of the arguments are provided in their
 respective sections following below.
 }
@@ -28,7 +36,7 @@ respective sections following below.
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
 that order for data to download,\cr
-\emph{e.g.}, \code{latlon = c(-179.5, -89.5)}.}
+\emph{e.g.}, \code{latlon = c(-27.48, 151.81)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
@@ -53,13 +61,10 @@ the end date and only a single day's values will be returned.
 
 \dontrun{
 Kingsthorpe <- create_met(latlon = c(-27.48, 151.81),
-                          dates = c("1985-01-01", "1985-06-30")
+                          dates = c("1985-01-01", "1985-12-31")
 )
 }
 
-}
-\references{
-\url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}
