@@ -28,22 +28,26 @@ affiliations:
 
 _nasapower_ is an R [@RCT2018] package providing functionality to interface with
 the NASA-POWER API [@StackhouseJr2018] for reproducible data retrieval using R.
-A single function, `get_power`, is provided. The function provides complete
-access to all functionality that the POWER API provides, which includes three
-user communities, AG (agroclimatoloy), SSE (Surface meteorology and Solar
-Energy) and SB (Sustainable Buildings); three temporal averages, Daily,
-Inter-annual and Climatology; three geographic options, single point, regional
-and global for the appropriate 141 parameters offered. _nasapower_ uses
-_lubridate_ [@Grolemund2011] internally to format and parse dates which are
-passed along to the the query constructed using _crul_ [@Chamberlain2018] to
-interface with the POWER API. The query returns a json response, which is
-parsed by _jsonlite_ [@Ooms2014] to obtain the url of the .csv file that has
-been requested. The .csv file is read directly into R using _readr_
-[@Wickham2017]. Data are returned in a tidy data frame [@Wickham2014] as a
-_tibble_ [@Mueller2018]. Extended documentation is provided with examples of
-converting it to spatial objects using _raster_ [@Hijmans2017] and for
-obtaining solar radiation values and generating a .met file using the _APSIM_
-R package [@Fainges2017] to use in the APSIM model.
+Two functions, `get_power` and `create_met` are provided. The `get_power`
+function provides complete access to all functionality that the POWER API
+provides, which includes three user communities, AG (agroclimatoloy), SSE
+(Surface meteorology and Solar Energy) and SB (Sustainable Buildings); three
+temporal averages, Daily, Inter-annual and Climatology; three geographic
+options, single point, regional and global for the appropriate 141 parameters
+offered. _nasapower_ uses _lubridate_ [@Grolemund2011] internally to format and
+parse dates which are passed along to the the query constructed using _crul_
+[@Chamberlain2018] to interface with the POWER API. The query returns a json
+response, which is parsed by _jsonlite_ [@Ooms2014] to obtain the url of the
+.csv file that has been requested. The .csv file is read directly into R using
+_readr_ [@Wickham2017]. Data are returned in a tidy data frame [@Wickham2014] as
+a _tibble_ [@Mueller2018]. The `create_met` function is essentially a wrapper
+for the `get_power` function coupled with the `prepareMet` function from _APSIM_
+[@Fainges2017] to simplify the process of querying the data and creating .met
+files for use in Agricultural Production Systems sIMulator (APSIM) modelling
+work. Extended documentation is provided with examples of converting it to
+spatial objects using _raster_ [@Hijmans2017] and a special use-case for
+obtaining solar radiation values and generating a .met file using the _APSIM_ to
+use in the APSIM modelling framework.
 
 Integrating this data retrieval and formatting in R will streamline processes
 with models such as APSIM [@Keating2003], DSSAT
