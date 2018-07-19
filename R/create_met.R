@@ -1,8 +1,9 @@
 
-#' @title Create an APSIM weather.met File from NASA - POWER Data
+#' @title Create an APSIM metFile File from NASA - POWER Data
 #'
 #' @description Get NASA-POWER values for a single point or region and create
-#' an APSIM weather.met object suitable for use in APSIM for crop modelling.
+#' an APSIM \code{\link[APSIM]{metFile}} object suitable for use in APSIM for
+#' crop modelling.
 #'
 #' @export
 #' @param latlon A numeric vector of geographic coordinates for a cell or region

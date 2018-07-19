@@ -97,8 +97,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>nasapower</em> aims to make it quick, easy and efficient to automate downloading NASA-POWER global meteorology and surface solar energy climatology data data in your R session as a tidy data frame.</p>
-<p><em>nasapower</em> only provides one function, <code><a href="../reference/get_power.html">get_power()</a></code>, which will download specified variables and return a tidy data frame of the requested data. Weather variables can be specified by using the <code>pars</code> argument.</p>
+<p><em>nasapower</em> aims to make it quick and easy to automate downloading <a href="https://power.larc.nasa.gov">NASA-POWER</a> global meteorology and surface solar energy climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude. Other functionality is provided to quickly and easily generate weather.met files from the POWER data for use in the Agricultural Production Systems sIMulator (APSIM).</p>
 </div>
 <div id="using-get_power" class="section level2">
 <h2 class="hasAnchor">
@@ -124,37 +123,49 @@
 <li><p><code>temporal_average</code>, a character vector of the desired temporal average(s). Valid values are “DAILY”, “INTERANNUAL” and “CLIMATOLOGY”.</p></li>
 </ul>
 </div>
-<div id="creating-spatial-objects" class="section level2">
+<div id="creating--metfile-objects-for-use-with-apsim" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creating-spatial-objects" class="anchor"></a>Creating Spatial Objects</h2>
+<a href="#creating--metfile-objects-for-use-with-apsim" class="anchor"></a>Creating .metFile Objects for Use with APSIM</h2>
+<p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an APSIM weather.met object suitable for use in APSIM for crop modelling, saving it to disk using the <em>APSIM</em> package.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">Kingsthorpe &lt;-<span class="st"> </span><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">27.48</span>, <span class="fl">151.81</span>),</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                          <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>))</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Save resulting object to disk</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">library</span>(APSIM)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/APSIM/topics/writeMetFile">writeMetFile</a></span>(<span class="st">"Kingsthorpe.met"</span>, Kingsthorpe)</a></code></pre></div>
+</div>
+<div id="creating-spatial-objects-from-get_power" class="section level2">
+<h2 class="hasAnchor">
+<a href="#creating-spatial-objects-from-get_power" class="anchor"></a>Creating Spatial Objects from <code>get_power</code>
+</h2>
 <p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from <code><a href="../reference/get_power.html">get_power()</a></code> to a spatial object in R using <code><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">raster::rasterFromXYZ()</a></code>.</p>
 <div id="converting-regional-data-to-a-raster-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#converting-regional-data-to-a-raster-object" class="anchor"></a>Converting Regional Data to a <em>raster</em> Object</h3>
 <p>Using <code>lapply</code> and <code>split</code> it is easy to create stacks of raster objects from a regional query.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">                   <span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">55.5</span>, <span class="fl">112.5</span>, <span class="fl">-50.5</span>, <span class="fl">115.5</span>),</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span>),</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">                   <span class="dt">temporal_average =</span> <span class="st">"daily"</span>)</a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12">power &lt;-<span class="st"> </span><span class="kw">split</span>(power, power<span class="op">$</span>YYYYMMDD)</a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15">power &lt;-</a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="st">  </span><span class="kw">lapply</span>(power, <span class="cf">function</span>(x)</a>
-<a class="sourceLine" id="cb2-17" data-line-number="17">  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span>))])</a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20">raster_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(power, rasterFromXYZ,</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21">              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                   <span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">55.5</span>, <span class="fl">112.5</span>, <span class="fl">-50.5</span>, <span class="fl">115.5</span>),</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span>),</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">                   <span class="dt">temporal_average =</span> <span class="st">"daily"</span>)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">power &lt;-<span class="st"> </span><span class="kw">split</span>(power, power<span class="op">$</span>YYYYMMDD)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">power &lt;-</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">  </span><span class="kw">lapply</span>(power, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span>))])</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">raster_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(power, rasterFromXYZ,</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a></code></pre></div>
 <p>Plot the first item in the list.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(raster_list[[<span class="dv">1</span>]])</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(raster_list[[<span class="dv">1</span>]])</a></code></pre></div>
 <div class="figure">
 <img src="../man/figures/nasapower_Figure1.png" alt="Plot of RH2M and T2M for Jan 1"><p class="caption">Plot of RH2M and T2M for Jan 1</p>
 </div>
@@ -163,19 +174,19 @@
 <h3 class="hasAnchor">
 <a href="#converting-global-climatology-to-a-raster-object" class="anchor"></a>Converting Global Climatology to a <em>raster</em> Object</h3>
 <p>Converting global climatology to a <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick</a></code> is as simple as querying and then converting the resulting <code>tibble</code> to a raster object.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">latlon =</span> <span class="st">"global"</span>,</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">temporal_average =</span> <span class="st">"climatology"</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">RH2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="dv">-3</span>])</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">T2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[, <span class="dv">-3</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">  <span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">  <span class="dt">latlon =</span> <span class="st">"global"</span>,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="dt">temporal_average =</span> <span class="st">"climatology"</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">RH2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="dv">-3</span>])</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">T2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[, <span class="dv">-3</span>])</a></code></pre></div>
 <p>Plot the annual RH2M from the <code>RasterBrick</code> object.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(RH2M<span class="op">$</span>ANN)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(RH2M<span class="op">$</span>ANN)</a></code></pre></div>
 <div class="figure">
 <img src="../man/figures/nasapower_Figure2.png" alt="Plot of ANN (annual mean) RH2M"><p class="caption">Plot of ANN (annual mean) RH2M</p>
 </div>
@@ -196,7 +207,8 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-get_power">Using get_power()</a></li>
-      <li><a href="#creating-spatial-objects">Creating Spatial Objects</a></li>
+      <li><a href="#creating--metfile-objects-for-use-with-apsim">Creating .metFile Objects for Use with APSIM</a></li>
+      <li><a href="#creating-spatial-objects-from-get_power">Creating Spatial Objects from <code>get_power</code></a></li>
       <li><a href="#references">References</a></li>
       </ul>
 </div>

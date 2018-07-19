@@ -22,13 +22,14 @@ knitr::opts_chunk$set(eval = FALSE,
 
 ## Introduction
 
-_nasapower_ aims to make it quick, easy and efficient to automate downloading
-NASA-POWER global meteorology and surface solar energy climatology data data in
-your R session as a tidy data frame.
-
-_nasapower_ only provides one function, `get_power()`, which will download
-specified variables and return a tidy data frame of the requested data. Weather
-variables can be specified by using the `pars` argument. 
+_nasapower_ aims to make it quick and easy to automate downloading
+[NASA-POWER](https://power.larc.nasa.gov) global meteorology and surface solar
+energy climatology data  data in your R session as a tidy data frame for
+analysis and use in modelling or other purposes. POWER (Prediction Of Worldwide
+Energy Resource) data are freely available for download through a web interface
+at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude. Other
+functionality is provided to quickly and easily generate weather.met files from
+the POWER data for use in the Agricultural Production Systems sIMulator (APSIM).
 
 ## Using get_power()
 
@@ -79,7 +80,22 @@ radiation units, while SSE and SB use kW/m^2^/day as units).
 - `temporal_average`, a character vector of the desired temporal average(s).
   Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
 
-## Creating Spatial Objects
+## Creating .metFile Objects for Use with APSIM
+
+Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
+create an APSIM weather.met object suitable for use in APSIM for crop modelling,
+saving it to disk using the _APSIM_ package.
+
+```{r create_met, eval=FALSE}
+Kingsthorpe <- create_met(latlon = c(-27.48, 151.81),
+                          dates = c("1985-01-01", "1985-12-31"))
+
+# Save resulting object to disk
+library(APSIM)
+writeMetFile("Kingsthorpe.met", Kingsthorpe)
+```
+
+## Creating Spatial Objects from `get_power`
 
 If you require spatial objects to work with, it is rather simple to convert
 the resulting tidy data frame from `get_power()` to a spatial object in R using `raster::rasterFromXYZ()`.

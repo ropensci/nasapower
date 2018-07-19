@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an APSIM weather.met File from NASA - POWER Data}
+\title{Create an APSIM metFile File from NASA - POWER Data}
 \usage{
 create_met(latlon = NULL, dates = NULL)
 }
@@ -16,7 +16,8 @@ more.}
 }
 \description{
 Get NASA-POWER values for a single point or region and create
-an APSIM weather.met object suitable for use in APSIM for crop modelling.
+an APSIM \code{\link[APSIM]{metFile}} object suitable for use in APSIM for
+crop modelling.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
