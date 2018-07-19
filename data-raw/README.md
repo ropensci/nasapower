@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2018-07-05
+2018-07-19
 
 # Create parameters list for internal checks
 
@@ -61,13 +61,13 @@ sessioninfo::session_info()
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.5.1 (2018-07-02)
-    ##  os       macOS High Sierra 10.13.5   
+    ##  os       macOS High Sierra 10.13.6   
     ##  system   x86_64, darwin17.6.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-07-05                  
+    ##  date     2018-07-19                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
@@ -76,7 +76,7 @@ sessioninfo::session_info()
     ##  curl          3.2     2018-03-28 CRAN (R 3.5.1)
     ##  devtools      1.13.6  2018-06-27 CRAN (R 3.5.1)
     ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.1)
-    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.1)
+    ##  evaluate      0.11    2018-07-17 cran (@0.11)  
     ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)
     ##  jsonlite      1.5     2017-06-01 CRAN (R 3.5.1)
     ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)
