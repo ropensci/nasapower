@@ -57,8 +57,8 @@
 #'
 create_met <- function(latlon = NULL,
                        dates = NULL) {
-  latlon <- toupper(latlon)
-  if (latlon == "GLOBAL") {
+
+  if (!is.numeric(latlon) && toupper(latlon) == "GLOBAL") {
     stop(
       call. = FALSE,
       "The `latlon`` must be numeric values. Global coverage is not",
