@@ -390,7 +390,7 @@ power_query <- function(community,
       jsonlite::fromJSON(response$parse("UTF-8"))
     response <- readr::read_csv(txt$outputs$csv,
                            col_types = readr::cols(),
-                           na = c("-99", "-"))
+                           na = "-99")
   }, # nocov start
   error = function(e) {
     e$message <-
