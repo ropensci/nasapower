@@ -126,6 +126,6 @@ test_that("check_lonlat returns message with proper identifier when valid
                                                 pars),
                            regexp = "Fetching regional data for the*")
 
-          expect_equal(test$bbox, "-179.5,88.5,-179.5,89.5")
+          expect_equal(test$bbox, "88.5,-179.5,89.5,-179.5")
           expect_equal(test$identifier, "Regional")
           })

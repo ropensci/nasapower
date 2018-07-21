@@ -294,7 +294,11 @@ check_lonlat <-
         " lat\n"
       )
       identifier <- "Regional"
-      bbox <-  paste0(lonlat, collapse = ",")
+      bbox <-  paste(lonlat[2],
+                     lonlat[1],
+                     lonlat[4],
+                     lonlat[3],
+                     sep = ",")
     } else if (lonlat == "Global") {
       identifier <- "Global"
     } else {
@@ -389,8 +393,8 @@ power_query <- function(community,
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
     response <- readr::read_csv(txt$outputs$csv,
-                           col_types = readr::cols(),
-                           na = "-99")
+                                col_types = readr::cols(),
+                                na = "-99")
   }, # nocov start
   error = function(e) {
     e$message <-
