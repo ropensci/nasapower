@@ -8,7 +8,7 @@
 #' @export
 #' @param community Community name AG, SB and SSE. See argument details for
 #'  more.
-#' @param latlon A numeric vector of geographic coordinates for a cell or region
+#' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'  entered as x, y coordinates or `Global` for global area.  See argument
 #'  details for more.
 #' @param pars A character vector of solar, meteorological or climatology
@@ -45,23 +45,23 @@
 #'  powered renewable energy systems.}
 #'  }
 #'
-#' @section Argument details for `latlon`:
+#' @section Argument details for `lonlat`:
 #' \describe{
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 #'  length-2 numeric vector giving the decimal degree longitude and latitude in
 #'  that order for data to download,\cr
-#'  *e.g.*, `latlon = c(-179.5, -89.5)`.}
+#'  *e.g.*, `lonlat = c(-89.5, -179.5)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
 #'  vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-#'  *e.g.*, `latlon = c(ymin, xmin, ymax, xmax)` in that order for a given
+#'  *e.g.*, `lonlat = c(ymin, xmin, ymax, xmax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
-#'  `latlon = c(-55.5, 112.5, -50.5, 115.5)`. *Max bounding box is 10 x 10
+#'  `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
 #'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
 #'
 #'  \item{For global coverage}{To get global coverage for long term
 #'  monthly averages for the entire globe use `Global` in place of
-#'  `latlon` values. `temporal_average` will automatically be set to
+#'  `lonlat` values. `temporal_average` will automatically be set to
 #'  `climatology` if this option is set.}
 #' }
 #'
@@ -87,7 +87,7 @@
 #'
 #' \dontrun{
 #' power <- get_power(community = "AG",
-#'                    latlon = c(-179.5, -89.5),
+#'                    lonlat = c(-179.5, -89.5),
 #'                    pars = c("RH2M", "T2M"),
 #'                    dates = "1985-01-01",
 #'                    temporal_average = "daily")
@@ -96,27 +96,27 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
 get_power <- function(community = NULL,
-                      latlon = NULL,
+                      lonlat = NULL,
                       pars = NULL,
                       dates = NULL,
                       temporal_average = NULL) {
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
-  latlon <- check_global(latlon)
+  lonlat <- check_global(lonlat)
   dates <- check_dates(dates,
-                       latlon,
+                       lonlat,
                        temporal_average)
   pars <- check_pars(pars,
                      temporal_average,
-                     latlon)
-  latlon_identifier <- check_latlon(latlon,
+                     lonlat)
+  lonlat_identifier <- check_lonlat(lonlat,
                                     pars)
   community <- check_community(community)
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
   NASA <- power_query(community,
-                      latlon_identifier,
+                      lonlat_identifier,
                       pars,
                       dates)
   # add date fields ------------------------------------------------------------

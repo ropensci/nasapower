@@ -37,7 +37,7 @@ The `get_power()` function requires five arguments as seen in this example.
 
 ```{r example, eval=FALSE}
 power <- get_power(community = "AG",
-                   latlon = c(-89.5, 179.5),
+                   lonlat = c(179.5, -89.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-12-31"),
                    temporal_average = "daily")
@@ -49,20 +49,20 @@ selected user community will affect the units of the parameter and the temporal
 display of time series data (_e.g._ Agroclimatology will use MJ/m^2^/day for
 radiation units, while SSE and SB use kW/m^2^/day as units).
 
-- `latlon`
+- `lonlat`
   - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
     length-2 numeric vector giving the decimal degree longitude and latitude in
-    that order for data to download,  *e.g.*, `latlon = c(-179.5, -89.5)`.  
+    that order for data to download,  *e.g.*, `lonlat = c(-89.5, -179.5)`.  
   
   - *For regional coverage* To get a region, supply a length-4 numeric
     vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-    *e.g.*, `latlon = c(ymin, xmin, ymax, xmax)` in that order for a given
+    *e.g.*, `lonlat = c(ymin, xmin, ymax, xmax)` in that order for a given
     region, *e.g.*, a bounding box for the south-western corner of Australia:
-    `latlon = c(-55.5, 112.5, -50.5, 115.5)`. *Max bounding box is 10 x 10
+    `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
     degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
   
   - *For global coverage* To get global coverage for long term monthly
-    averages for the entire globe use `Global` in place of `latlon` values.
+    averages for the entire globe use `Global` in place of `lonlat` values.
     `temporal_average` will automatically be set to `CLIMATOLOGY` if this option
     is set.
     
@@ -87,7 +87,7 @@ _APSIM_ package to simplify retrieving POWER data for use in the APSIM
 modelling framework.
 
 ```{r create_met, eval=FALSE}
-Kingsthorpe <- create_met(latlon = c(-27.48, 151.81),
+Kingsthorpe <- create_met(lonlat = c(151.81, -27.48),
                           dates = c("1985-01-01", "1985-12-31"))
 
 # Save resulting object to disk
@@ -95,18 +95,18 @@ library(APSIM)
 writeMetFile("Kingsthorpe.met", Kingsthorpe)
 ```
 
-Only two arguments are passed to this function, `latlon` and `dates`.
+Only two arguments are passed to this function, `lonlat` and `dates`.
 
-- `latlon`
+- `lonlat`
   - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
     length-2 numeric vector giving the decimal degree longitude and latitude in
-    that order for data to download,  *e.g.*, `latlon = c(-179.5, -89.5)`.  
+    that order for data to download,  *e.g.*, `lonlat = c(-179.5, -89.5)`.  
   
   - *For regional coverage* To get a region, supply a length-4 numeric
     vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-    *e.g.*, `latlon = c(ymin, xmin, ymax, xmax)` in that order for a given
+    *e.g.*, `lonlat = c(ymin, xmin, ymax, xmax)` in that order for a given
     region, *e.g.*, a bounding box for the south-western corner of Australia:
-    `latlon = c(-55.5, 112.5, -50.5, 115.5)`. *Max bounding box is 10 x 10
+    `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
     degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
     
     - `dates`, a vector of start and end dates for which to query the NASA-POWER
@@ -131,7 +131,7 @@ library(nasapower)
 library(raster)
 
 power <- get_power(community = "AG",
-                   latlon = c(-55.5, 112.5, -50.5, 115.5),
+                   lonlat = c(112.5, -55.5 , 115.5, -50.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-01-02"),
                    temporal_average = "daily")
@@ -166,7 +166,7 @@ and then converting the resulting `tibble` to a raster object.
 ```{r global_climatology, eval=FALSE}
 power <- get_power(
   community = "AG",
-  latlon = "global",
+  lonlat = "global",
   pars = c("RH2M", "T2M"),
   temporal_average = "climatology"
 )

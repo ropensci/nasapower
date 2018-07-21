@@ -4,14 +4,14 @@
 \alias{get_power}
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
-get_power(community = NULL, latlon = NULL, pars = NULL, dates = NULL,
+get_power(community = NULL, lonlat = NULL, pars = NULL, dates = NULL,
   temporal_average = NULL)
 }
 \arguments{
 \item{community}{Community name AG, SB and SSE. See argument details for
 more.}
 
-\item{latlon}{A numeric vector of geographic coordinates for a cell or region
+\item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y coordinates or \code{Global} for global area.  See argument
 details for more.}
 
@@ -59,24 +59,24 @@ powered renewable energy systems.}
 }
 }
 
-\section{Argument details for \code{latlon}}{
+\section{Argument details for \code{lonlat}}{
 
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
 that order for data to download,\cr
-\emph{e.g.}, \code{latlon = c(-179.5, -89.5)}.}
+\emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-\emph{e.g.}, \code{latlon = c(ymin, xmin, ymax, xmax)} in that order for a given
+\emph{e.g.}, \code{lonlat = c(ymin, xmin, ymax, xmax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
-\code{latlon = c(-55.5, 112.5, -50.5, 115.5)}. \emph{Max bounding box is 10 x 10
+\code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
 
 \item{For global coverage}{To get global coverage for long term
 monthly averages for the entire globe use \code{Global} in place of
-\code{latlon} values. \code{temporal_average} will automatically be set to
+\code{lonlat} values. \code{temporal_average} will automatically be set to
 \code{climatology} if this option is set.}
 }
 }
@@ -104,7 +104,7 @@ for a given month, averaged for that month over the 30-year period (Jan.
 
 \dontrun{
 power <- get_power(community = "AG",
-                   latlon = c(-179.5, -89.5),
+                   lonlat = c(-179.5, -89.5),
                    pars = c("RH2M", "T2M"),
                    dates = "1985-01-01",
                    temporal_average = "daily")

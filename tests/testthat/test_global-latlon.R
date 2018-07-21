@@ -1,21 +1,21 @@
 
-# latlon checks ----------------------------------------------------------------
-context("Test that when `latlon` is set to `Global`, dates and temporal avg are
+# lonlat checks ----------------------------------------------------------------
+context("Test that when `lonlat` is set to `Global`, dates and temporal avg are
         handled correctly")
 test_that("check_global stops if value is not valid char string", {
-  # set up latlon argument for testing
-  latlon <- "T2M"
-  expect_error(check_global(latlon),
-               regexp = "\nYou have entered an invalid value for `latlon`.\n")
+  # set up lonlat argument for testing
+  lonlat <- "T2M"
+  expect_error(check_global(lonlat),
+               regexp = "\nYou have entered an invalid value for `lonlat`.\n")
   })
 
 test_that("check_global returns properly formatted `global` object", {
-  latlon <- "global"
-  expect_equal(check_global(latlon), "Global")
+  lonlat <- "global"
+  expect_equal(check_global(lonlat), "Global")
 
-  latlon <- "globaL"
-  expect_equal(check_global(latlon), "Global")
+  lonlat <- "globaL"
+  expect_equal(check_global(lonlat), "Global")
 
-  latlon <- "Global"
-  expect_equal(check_global(latlon), "Global")
+  lonlat <- "Global"
+  expect_equal(check_global(lonlat), "Global")
 })

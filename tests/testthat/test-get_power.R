@@ -6,7 +6,7 @@ test_that("get_power returns daily point AG data", {
   vcr::use_cassette("SinglePoint_AG", {
     power_query <- get_power(
       community = "AG",
-      latlon = c(-89.5, -179.5),
+      lonlat = c(-179.5, -89.5),
       pars =  c("T2M",
                 "T2M_MIN",
                 "T2M_MAX",
@@ -36,7 +36,7 @@ test_that("get_power returns daily regional AG data", {
   vcr::use_cassette("Regional_AG", {
     power_query <- get_power(
       community = "AG",
-      latlon = c(-55.5, 112.5, -50.5, 115.5),
+      lonlat = c(112.5, -55.5, 115.5, -50.5),
       pars =  "T2M",
       dates = c("1983-01-01"),
       temporal_average = "Daily"
@@ -76,7 +76,7 @@ test_that("get_power returns global AG data for climatology", {
   vcr::use_cassette("Global_AG", {
     power_query <- get_power(
       community = "AG",
-      latlon = "Global",
+      lonlat = "Global",
       pars =  "T2M",
       temporal_average = "Climatology"
     )

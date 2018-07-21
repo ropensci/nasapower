@@ -5,16 +5,16 @@ test_that("create_met stops if user specifies global coverage", {
   vcr::use_cassette("create_met_global_stop", {
     expect_error(
       power_query <- create_met(
-        latlon = "global",
+        lonlat = "global",
         dates = c("1983-01-01")
-      ), regexp = "*The `latlon`` must be numeric values.*"
+      ), regexp = "*The `lonlat` must be numeric values.*"
     )
   })
 })
 
 test_that("create_met creates an S4 object for APSIM use", {
   vcr::use_cassette("create_met", {
-    power_query <- create_met(latlon = c(-27.48, 151.81),
+    power_query <- create_met(lonlat = c(151.81, -27.48),
                               dates = c("1985-01-01", "1985-12-31"))
 
     power_query_slots <- c("const",
@@ -45,7 +45,7 @@ test_that("get_power returns global AG data for climatology", {
   vcr::use_cassette("Global_AG", {
     power_query <- get_power(
       community = "AG",
-      latlon = "Global",
+      lonlat = "Global",
       pars =  "T2M",
       temporal_average = "Climatology"
     )

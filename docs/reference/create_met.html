@@ -132,13 +132,13 @@ crop modelling.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>create_met</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>create_met</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>latlon</th>
+      <th>lonlat</th>
       <td><p>A numeric vector of geographic coordinates for a cell or region
 entered as x, y coordinates.  See argument details for more.</p></td>
     </tr>
@@ -161,19 +161,19 @@ PRECTOT from the POWER AG community on a daily time-step.</p>
 <p>Further details for each of the arguments are provided in their
 respective sections following below.</p>
     
-    <h2 class="hasAnchor" id="argument-details-for-latlon"><a class="anchor" href="#argument-details-for-latlon"></a>Argument details for <code>latlon</code></h2>
+    <h2 class="hasAnchor" id="argument-details-for-lonlat"><a class="anchor" href="#argument-details-for-lonlat"></a>Argument details for <code>lonlat</code></h2>
 
     
     <dl class='dl-horizontal'>
 <dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
 that order for data to download,<br />
-<em>e.g.</em>, <code>latlon = c(-27.48, 151.81)</code>.</p></dd>
+<em>e.g.</em>, <code>lonlat = c(151.81, -27.48)</code>.</p></dd>
     <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-<em>e.g.</em>, <code>latlon = c(ymin, xmin, ymax, xmax)</code> in that order for a given
+<em>e.g.</em>, <code>lonlat = c(ymin, xmin, ymax, xmax)</code> in that order for a given
 region, <em>e.g.</em>, a bounding box for the southwestern corner of Australia:
-<code>latlon = c(-55.5, 112.5, -50.5, 115.5)</code>. <em>Max bounding box is 10 x 10
+<code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10
 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></dd>
 </dl>
     
@@ -190,7 +190,7 @@ the end date and only a single day's values will be returned.</p>
     <pre class="examples"><div class='input'># Create a .met object for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
 
 </div><span class='co'># NOT RUN {</span>
-<span class='no'>Kingsthorpe</span> <span class='kw'>&lt;-</span> <span class='fu'>create_met</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>27.48</span>, <span class='fl'>151.81</span>),
+<span class='no'>Kingsthorpe</span> <span class='kw'>&lt;-</span> <span class='fu'>create_met</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
                           <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>)
 )
 <span class='co'># }</span><div class='input'>
@@ -203,7 +203,7 @@ the end date and only a single day's values will be returned.</p>
       
       <li><a href="#details">Details</a></li>
 
-      <li><a href="#argument-details-for-latlon">Argument details for <code>latlon</code></a></li>
+      <li><a href="#argument-details-for-lonlat">Argument details for <code>lonlat</code></a></li>
 
       <li><a href="#argument-details-for-dates">Argument details for <code>dates</code></a></li>
       

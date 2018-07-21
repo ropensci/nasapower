@@ -4,10 +4,10 @@
 \alias{create_met}
 \title{Create an APSIM metFile File from NASA - POWER Data}
 \usage{
-create_met(latlon = NULL, dates = NULL)
+create_met(lonlat = NULL, dates = NULL)
 }
 \arguments{
-\item{latlon}{A numeric vector of geographic coordinates for a cell or region
+\item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y coordinates.  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
@@ -31,19 +31,19 @@ PRECTOT from the POWER AG community on a daily time-step.
 Further details for each of the arguments are provided in their
 respective sections following below.
 }
-\section{Argument details for \code{latlon}}{
+\section{Argument details for \code{lonlat}}{
 
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 length-2 numeric vector giving the decimal degree longitude and latitude in
 that order for data to download,\cr
-\emph{e.g.}, \code{latlon = c(-27.48, 151.81)}.}
+\emph{e.g.}, \code{lonlat = c(151.81, -27.48)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-\emph{e.g.}, \code{latlon = c(ymin, xmin, ymax, xmax)} in that order for a given
+\emph{e.g.}, \code{lonlat = c(ymin, xmin, ymax, xmax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
-\code{latlon = c(-55.5, 112.5, -50.5, 115.5)}. \emph{Max bounding box is 10 x 10
+\code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
 }
 }
@@ -61,7 +61,7 @@ the end date and only a single day's values will be returned.
 # Create a .met object for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
 
 \dontrun{
-Kingsthorpe <- create_met(latlon = c(-27.48, 151.81),
+Kingsthorpe <- create_met(lonlat = c(151.81, -27.48),
                           dates = c("1985-01-01", "1985-12-31")
 )
 }
