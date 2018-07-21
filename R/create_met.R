@@ -14,7 +14,7 @@
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
 #' and \code{\link[APSIM]{prepareMet}} that simplifies the querying of the
-#' POWER API and returns a .met object.
+#' POWER API and returns an \code{\link[APSIM]{metFile}} class object.
 #'
 #' The weather values from POWER for temperature are 2 metre max and min
 #' temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,
