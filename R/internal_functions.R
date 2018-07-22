@@ -229,9 +229,9 @@ check_lonlat <-
           "`, value to be sure it is valid.\n"
         )
       }
-      message("\nFetching single point data for lat ",
+      message("\nFetching single point data for lon ",
               lonlat[1],
-              ", lon ",
+              ", lat ",
               lonlat[2],
               "\n")
       identifier <- "SinglePoint"
@@ -267,7 +267,7 @@ check_lonlat <-
               lonlat[4] > 90)) {
         stop(
           call. = FALSE,
-          "\nPlease check your longitude, `",
+          "\nPlease check your latitude, `",
           lonlat[1],
           "`, `",
           lonlat[3],
