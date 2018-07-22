@@ -216,7 +216,7 @@ check_lonlat <-
       if (lonlat[1] < -180 || lonlat[1] > 180) {
         stop(
           call. = FALSE,
-          "\nPlease check your latitude, `",
+          "\nPlease check your longitude, `",
           paste0(lonlat[1]),
           "`, to be sure it is valid.\n"
         )
@@ -224,7 +224,7 @@ check_lonlat <-
       if (lonlat[2] < -90 || lonlat[2] > 90) {
         stop(
           call. = FALSE,
-          "\nPlease check your longitude, `",
+          "\nPlease check your latitude, `",
           paste0(lonlat[2]),
           "`, value to be sure it is valid.\n"
         )
@@ -268,9 +268,9 @@ check_lonlat <-
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
-          lonlat[1],
+          lonlat[2],
           "`, `",
-          lonlat[3],
+          lonlat[4],
           "`, values to be sure they are valid.\n"
         )
       }

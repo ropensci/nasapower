@@ -72,12 +72,12 @@ test_that("check_lonlat handles single point properly", {
 
 test_that("check_lonlat checks validity of single lon values", {
   expect_error(check_lonlat(lonlat = c(179.5, 91), pars),
-               regexp = "\nPlease check your longitude, `91`,*")
+               regexp = "\nPlease check your latitude, `91`,*")
 })
 
 test_that("check_lonlat checks validity of single lat values", {
   expect_error(check_lonlat(lonlat = c(182, 90), pars),
-               regexp = "Please check your latitude, `182`,*")
+               regexp = "Please check your longitude, `182`,*")
 })
 
 # bbox checks ------------------------------------------------------------------
@@ -104,7 +104,7 @@ test_that("check_lonlat checks validity of bbox latmin values", {
 
 test_that("check_lonlat checks validity of bbox latmax values", {
   expect_error(check_lonlat(lonlat = c(-179.5, 90, -179.5, 93), pars),
-               regexp = "\nPlease check your longitude, `-179.5`, `-179.5`,*")
+               regexp = "\nPlease check your latitude, `90`, `93`,*")
 })
 
 test_that("check_lonlat checks validity of bbox lonmin values", {
