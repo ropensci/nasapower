@@ -6,5 +6,4 @@ bibentry(bibtype = "Manual",
          author = c(person("Adam", "Sparks")),
          year = year,
          note = note,
-         DOI = "10.5281/zenodo.1040728",
          url = "https://github.com/adamhsparks/nasapower")
