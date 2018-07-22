@@ -99,7 +99,7 @@ test_that("check_lonlat checks order of the longitude values", {
 
 test_that("check_lonlat checks validity of bbox latmin values", {
   expect_error(check_lonlat(lonlat = c(-179.5, 91, -179.5, 90), pars),
-               regexp = "\nPlease check your longitude, `-179.5`, `-179.5`,*")
+               regexp = "\nPlease check your latitude, `91, `90`,*")
 })
 
 test_that("check_lonlat checks validity of bbox latmax values", {
