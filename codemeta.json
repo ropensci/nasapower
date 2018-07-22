@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/adamhsparks/nasapower",
   "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0.9001",
+  "version": "1.0.0.9002",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -218,7 +218,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "206.599KB",
+  "fileSize": "206.593KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
@@ -236,10 +236,7 @@
         }
       ],
       "name": "{nasapower}: NASA-POWER Agroclimatology Data from R",
-      "identifier": "10.5281/zenodo.1040728",
-      "url": "https://github.com/adamhsparks/nasapower",
-      "@id": "https://doi.org/10.5281/zenodo.1040728",
-      "sameAs": "https://doi.org/10.5281/zenodo.1040728"
+      "url": "https://github.com/adamhsparks/nasapower"
     }
   ]
 }
