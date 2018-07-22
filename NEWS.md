@@ -11,6 +11,8 @@
 - Add `parameters` data frame, which lists available parameters with metadata
 about them
 
+- Add function `create_met()` to create APSIM met objects from POWER data
+
 ### Deprecated functions
 
 - `get_cell` and `get_region` are deprecated in favour of `get_power`. The new
