@@ -14,9 +14,10 @@ energy climatology data  data in your R session as a tidy data frame `tibble`
 object for analysis and use in modelling or other purposes. POWER (Prediction Of
 Worldwide Energy Resource) data are freely available for download through a web
 interface at a resolution of 0.5 arc degree longitude by 0.5 arc degree
-latitude. Further functionality is provided to quickly and easily generate a
-`metFile` object from POWER data for use in the [Agricultural Production Systems
-sIMulator (APSIM)](http://www.apsim.info/).
+latitude. Further functionality is provided to quickly and easily generate an
+[APSIM](https://github.com/fainges/R-APSIM) package `metFile` object from POWER
+data for use in the
+[Agricultural Production Systems sIMulator (APSIM)](http://www.apsim.info/).
 
 Please see
 <https://power.larc.nasa.gov/> for more on the data and other ways to access it
