@@ -40,7 +40,7 @@ power <- get_power(community = "AG",
                    lonlat = c(179.5, -89.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-12-31"),
-                   temporal_average = "daily")
+                   temporal_average = "DAILY")
 ```
 
 - `community`, a text string with valid values of: "AG" (Agroclimatology), "SSE"
@@ -134,7 +134,7 @@ power <- get_power(community = "AG",
                    lonlat = c(112.5, -55.5 , 115.5, -50.5),
                    pars = c("RH2M", "T2M"),
                    dates = c("1985-01-01", "1985-01-02"),
-                   temporal_average = "daily")
+                   temporal_average = "DAILY")
 
 
 # Use split to create a list of data frames split by YYYYMMDD
@@ -168,7 +168,7 @@ power <- get_power(
   community = "AG",
   lonlat = "global",
   pars = c("RH2M", "T2M"),
-  temporal_average = "climatology"
+  temporal_average = "CLIMATOLOGY"
 )
 
 # create RasterBricks for the individual parameters and drop the parameter field
