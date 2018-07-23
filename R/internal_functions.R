@@ -398,8 +398,8 @@ power_query <- function(community,
   }, # nocov start
   error = function(e) {
     # check if POWER is returning an error message
-    if ("messages" %in% names(txt)) {
-      e$message <- paste0(txt$messages$Alert$Description)
+    if (exists("txt") && "Alert" %in% names(txt)) {
+        e$message <- paste0(txt$messages$Alert$Description)
     } else {
       # if not, return our own error message
       e$message <- paste(
