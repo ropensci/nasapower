@@ -5,6 +5,11 @@
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 
+# WARNING!!!
+
+Currently this package will not retrieve POWER data due to unexpected changes in the POWER API. This is being corrected as soon as possible and additional information will be accessible to users about the data once this has been completed.
+
+Thanks for your interest in _nasapower_
 
 # _nasapower_: NASA-POWER Data from R <img align="right" src="man/figures/logo.png">
 
