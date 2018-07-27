@@ -107,7 +107,7 @@ power <- get_power(community = "AG",
                    lonlat = c(-179.5, -89.5),
                    pars = c("RH2M", "T2M"),
                    dates = "1985-01-01",
-                   temporal_average = "daily")
+                   temporal_average = "DAILY")
 }
 
 }
