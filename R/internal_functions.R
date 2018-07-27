@@ -197,10 +197,13 @@ check_pars <-
       )
     }
 
+    # calculate how many lines to skip in the header to read the CSV from server
+    skip_lines <- length(pars) + 8
+
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
-    pars <- list(pars, temporal_average)
-    names(pars) <- c("pars", "temporal_average")
+    pars <- list(pars, temporal_average, skip_lines)
+    names(pars) <- c("pars", "temporal_average", "skip_lines")
     return(pars)
   }
 
@@ -394,7 +397,8 @@ power_query <- function(community,
       jsonlite::fromJSON(response$parse("UTF-8"))
     response <- readr::read_csv(txt$outputs$csv,
                                 col_types = readr::cols(),
-                                na = "-99")
+                                na = "-99",
+                                skip = pars$skip_lines)
   }, # nocov start
   error = function(e) {
     # check if POWER is returning an error message
