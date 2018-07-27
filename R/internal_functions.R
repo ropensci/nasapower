@@ -198,7 +198,7 @@ check_pars <-
     }
 
     # calculate how many lines to skip in the header to read the CSV from server
-    skip_lines <- length(pars) + 8
+    skip_lines <- length(pars) + 9
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
