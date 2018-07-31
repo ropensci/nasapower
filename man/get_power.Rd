@@ -4,8 +4,8 @@
 \alias{get_power}
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
-get_power(community = NULL, lonlat = NULL, pars = NULL, dates = NULL,
-  temporal_average = NULL)
+get_power(community = NULL, lonlat = NULL, pars = NULL,
+  dates = NULL, temporal_average = NULL)
 }
 \arguments{
 \item{community}{Community name AG, SB and SSE. See argument details for

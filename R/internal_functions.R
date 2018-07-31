@@ -197,10 +197,13 @@ check_pars <-
       )
     }
 
+    # calculate how many lines to skip in the header to read the CSV from server
+    skip_lines <- length(pars) + 9
+
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
-    pars <- list(pars, temporal_average)
-    names(pars) <- c("pars", "temporal_average")
+    pars <- list(pars, temporal_average, skip_lines)
+    names(pars) <- c("pars", "temporal_average", "skip_lines")
     return(pars)
   }
 
@@ -324,7 +327,7 @@ power_query <- function(community,
                         pars,
                         dates) {
   power_url <- # nocov start
-    "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
+    "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
   user_agent <- "anonymous"
 
@@ -394,7 +397,8 @@ power_query <- function(community,
       jsonlite::fromJSON(response$parse("UTF-8"))
     response <- readr::read_csv(txt$outputs$csv,
                                 col_types = readr::cols(),
-                                na = "-99")
+                                na = "-99",
+                                skip = pars$skip_lines)
   }, # nocov start
   # sometimes the server responds but doesn't provide a CSV file
   warning = function(w) {
