@@ -56,11 +56,11 @@ test_that("pars are returned as a comma separated string with no spaces", {
     temporal_average = "Climatology",
     lonlat = c(-179.5, -89.5)
   )
-  expect_named(pars, c("pars", "temporal_average"))
+  expect_named(pars, c("pars", "temporal_average", "skip_lines"))
   expect_equal(nchar(pars$pars), 42)
   expect_equal(pars$pars, "ALLSKY_SFC_SW_DWN_03_GMT,ALLSKY_SFC_LW_DWN")
   expect_equal(pars$temporal_average, "CLIMATOLOGY")
-  expect_length(pars, 2)
+  expect_length(pars, 3)
 })
 
 test_that("`temporal_average`` is set to `CLIMATOLOGY` when global data
