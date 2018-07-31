@@ -327,7 +327,7 @@ power_query <- function(community,
                         pars,
                         dates) {
   power_url <- # nocov start
-    "power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
+    "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
   user_agent <- "anonymous"
 
