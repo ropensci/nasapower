@@ -198,7 +198,11 @@ check_pars <-
     }
 
     # calculate how many lines to skip in the header to read the CSV from server
-    skip_lines <- length(pars) + 9
+    if (temporal_average == "CLIMATOLOGY") {
+      skip_lines <- length(pars) + 7
+    } else {
+      skip_lines <- length(pars) + 9
+    }
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
@@ -395,6 +399,7 @@ power_query <- function(community,
   tryCatch({
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
+
     response <- readr::read_csv(txt$outputs$csv,
                                 col_types = readr::cols(),
                                 na = "-99",
