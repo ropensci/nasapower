@@ -329,7 +329,8 @@ check_lonlat <-
 power_query <- function(community,
                         lonlat_identifier,
                         pars,
-                        dates) {
+                        dates,
+                        meta) {
   power_url <- # nocov start
     "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
@@ -400,10 +401,36 @@ power_query <- function(community,
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
 
-    response <- readr::read_csv(txt$outputs$csv,
-                                col_types = readr::cols(),
-                                na = "-99",
-                                skip = pars$skip_lines)
+    power_data <- file.path(tempdir(), "power_data.csv")
+
+    response <- utils::download.file(txt$output$csv,
+                              destfile = power_data,
+                              mode = "wb",
+                              quiet = TRUE)
+
+    if (isTRUE(meta)) {
+      meta <- readLines(power_data,
+                        pars$skip_lines)
+      meta <- gsub(pattern = "-99",
+                   replacement = "NA",
+                   x = meta)
+
+      NASA <- readr::read_csv(txt$outputs$csv,
+                              col_types = readr::cols(),
+                              na = "-99",
+                              skip = pars$skip_lines)
+
+      NASA <- list(meta, NASA)
+      names(NASA) <- c("POWER_meta", "POWER_data")
+      return(NASA)
+    }
+
+    NASA <- readr::read_csv(txt$outputs$csv,
+                            col_types = readr::cols(),
+                            na = "-99",
+                            skip = pars$skip_lines)
+    return(NASA)
+
   }, # nocov start
   # sometimes the server responds but doesn't provide a CSV file
   warning = function(w) {
