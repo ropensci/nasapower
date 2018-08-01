@@ -5,11 +5,11 @@
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
 get_power(community = NULL, lonlat = NULL, pars = NULL,
-  dates = NULL, temporal_average = NULL)
+  dates = NULL, temporal_average = NULL, meta = FALSE)
 }
 \arguments{
-\item{community}{Community name AG, SB and SSE. See argument details for
-more.}
+\item{community}{A character vector providing community name: "AG", "SB" or
+"SSE". See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y coordinates or \code{Global} for global area.  See argument
@@ -30,6 +30,14 @@ coverage.  See argument details for more.}
 \item{temporal_average}{Temporal average for data being queried, currently
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 more.}
+
+\item{meta}{A logical value indicating whether or not to include metadata
+with the data. If set to \code{TRUE} this causes the function to return a list
+with two objects. The first object, \code{POWER_meta} is a list of values of
+metadata for the data including data sources, dates queried, latitude,
+longitude, elevation, value for missing data and parameters queried.
+values. The second object, \code{POWER_data} is a \code{tibble} containing the POWER
+data. This is set to \code{FALSE} by default, only the POWER data are returned.}
 }
 \description{
 Get NASA-POWER global meteorology and surface solar energy

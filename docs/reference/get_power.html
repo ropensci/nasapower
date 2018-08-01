@@ -65,7 +65,7 @@ official NASA-POWER API are supported." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0.9002</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0.9003</span>
       </span>
     </div>
 
@@ -133,15 +133,15 @@ official NASA-POWER API are supported.</p>
     </div>
 
     <pre class="usage"><span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>community</th>
-      <td><p>Community name AG, SB and SSE. See argument details for
-more.</p></td>
+      <td><p>A character vector providing community name: "AG", "SB" or
+"SSE". See argument details for more.</p></td>
     </tr>
     <tr>
       <th>lonlat</th>
@@ -170,6 +170,16 @@ coverage.  See argument details for more.</p></td>
       <td><p>Temporal average for data being queried, currently
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 more.</p></td>
+    </tr>
+    <tr>
+      <th>meta</th>
+      <td><p>A logical value indicating whether or not to include metadata
+with the data. If set to <code>TRUE</code> this causes the function to return a list
+with two objects. The first object, <code>POWER_meta</code> is a list of values of
+metadata for the data including data sources, dates queried, latitude,
+longitude, elevation, value for missing data and parameters queried.
+values. The second object, <code>POWER_data</code> is a <code>tibble</code> containing the POWER
+data. This is set to <code>FALSE</code> by default, only the POWER data are returned.</p></td>
     </tr>
     </table>
     

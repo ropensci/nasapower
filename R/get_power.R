@@ -6,8 +6,8 @@
 #' official NASA-POWER API are supported.
 #'
 #' @export
-#' @param community Community name AG, SB and SSE. See argument details for
-#'  more.
+#' @param community A character vector providing community name: "AG", "SB" or
+#' "SSE". See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'  entered as x, y coordinates or `Global` for global area.  See argument
 #'  details for more.
@@ -24,6 +24,13 @@
 #' @param temporal_average Temporal average for data being queried, currently
 #'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 #'  more.
+#' @param meta A logical value indicating whether or not to include metadata
+#'  with the data. If set to `TRUE` this causes the function to return a list
+#'  with two objects. The first object, `POWER_meta` is a list of values of
+#'  metadata for the data including data sources, dates queried, latitude,
+#'  longitude, elevation, value for missing data and parameters queried.
+#'  values. The second object, `POWER_data` is a `tibble` containing the POWER
+#'  data. This is set to `FALSE` by default, only the POWER data are returned.
 #'
 #' @details Further details for each of the arguments are provided in their
 #' respective sections following below.
@@ -99,7 +106,8 @@ get_power <- function(community = NULL,
                       lonlat = NULL,
                       pars = NULL,
                       dates = NULL,
-                      temporal_average = NULL) {
+                      temporal_average = NULL,
+                      meta = FALSE) {
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
   lonlat <- check_global(lonlat)
@@ -118,16 +126,26 @@ get_power <- function(community = NULL,
   NASA <- power_query(community,
                       lonlat_identifier,
                       pars,
-                      dates)
+                      dates,
+                      meta)
   # add date fields ------------------------------------------------------------
   # if the temporal average is anything but climatology, add date fields
   temporal_average <- toupper(temporal_average)
   if (temporal_average != "CLIMATOLOGY") {
-    NASA <- format_dates(NASA)
+
+    if (isTRUE(meta)) {
+      NASA$POWER_data <- format_dates(NASA$POWER_data)
+    } else {
+      NASA <- format_dates(NASA)
+    }
   }
 
   # Put lon before lat (x, y format)
-  NASA <- NASA[, c(2, 1, 3:ncol(NASA))]
+  if (isTRUE(meta)) {
+    NASA$POWER_data <- NASA$POWER_data[, c(2, 1, 3:ncol(NASA$POWER_data))]
+  } else {
+    NASA <- NASA[, c(2, 1, 3:ncol(NASA))]
+  }
 
   # finish ---------------------------------------------------------------------
   return(NASA)

@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA-POWER Data from R
-Version: 1.0.0.9002
+Version: 1.0.0.9003
 Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359"))
@@ -11,7 +11,7 @@ Description: Download NASA-POWER global meteorology and surface solar energy
     climatology data and create a tidy data frame for 141 parameters.  nasapower
     provides an interface to the NASA - POWER API.  POWER (Prediction Of
     Worldwide Energy Resource) data are freely available for download with a
-     resolution of 0.5 by 0.5 arc degree longitude and latitude and are funded
+    resolution of 0.5 by 0.5 arc degree longitude and latitude and are funded
     through the NASA Earth Science Directorate Applied Science Program. For more
     on the data themselves, please see <https://power.larc.nasa.gov/>.
 Depends:
@@ -23,7 +23,8 @@ Imports:
     lubridate,
     jsonlite,
     readr,
-    tibble
+    tibble,
+    utils
 RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
