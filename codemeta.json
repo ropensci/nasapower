@@ -5,12 +5,12 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
-  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data and create a tidy data frame for 141 parameters.  nasapower\n    provides an interface to the NASA - POWER API.  POWER (Prediction Of\n    Worldwide Energy Resource) data are freely available for download with a\n     resolution of 0.5 by 0.5 arc degree longitude and latitude and are funded\n    through the NASA Earth Science Directorate Applied Science Program. For more\n    on the data themselves, please see <https://power.larc.nasa.gov/>.",
+  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data and create a tidy data frame for 141 parameters.  nasapower\n    provides an interface to the NASA - POWER API.  POWER (Prediction Of\n    Worldwide Energy Resource) data are freely available for download with a\n    resolution of 0.5 by 0.5 arc degree longitude and latitude and are funded\n    through the NASA Earth Science Directorate Applied Science Program. For more\n    on the data themselves, please see <https://power.larc.nasa.gov/>.",
   "name": "nasapower: NASA-POWER Data from R",
   "codeRepository": "https://github.com/adamhsparks/nasapower",
   "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0.9002",
+  "version": "1.0.0.9003",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -212,13 +212,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     }
   ],
   "applicationCategory": "Tools",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "206.593KB",
+  "fileSize": "208.044KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
