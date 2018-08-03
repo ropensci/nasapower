@@ -163,6 +163,46 @@ Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling,
 saving it to disk using the _APSIM_ package.
 
+## Using `create_icasa`
+
+The `create_icasa()` simplifies a `get_power()` query to create an ICASA file
+for use in DSSAT modelling.
+
+```{r create_met, eval=FALSE}
+Kingsthorpe <- create_icasa(lonlat = c(151.81, -27.48),
+                            dates = c("1985-01-01", "1985-12-31"),
+                            dsn = "~/Documents",
+                            file_out = "ICASA.txt")
+```
+
+Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
+`file_out`.
+
+- `lonlat`
+  - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+    length-2 numeric vector giving the decimal degree longitude and latitude in
+    that order for data to download,  *e.g.*, `lonlat = c(-179.5, -89.5)`.
+  
+  - *For regional coverage* To get a region, supply a length-4 numeric
+    vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+    *e.g.*, `lonlat = c(ymin, xmin, ymax, xmax)` in that order for a given
+    region, *e.g.*, a bounding box for the south-western corner of Australia:
+    `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
+    degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.
+    
+    - `dates`, a vector of start and end dates for which to query the NASA-POWER
+    API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
+  
+    - `dsn`, a file path to the directory for writing the resulting file,
+    _.e.g._, "~/Documents".
+    
+    - `file_out`, the file name for the resulting text file written to disk in
+    the location specified in the `dsn` parameter.
+
+Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
+create an APSIM weather.met object suitable for use in APSIM for crop modelling,
+saving it to disk using the _APSIM_ package.
+
 ## Creating Spatial Objects from `get_power`
 
 If you require spatial objects to work with, it is rather simple to convert
