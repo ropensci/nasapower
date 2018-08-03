@@ -330,7 +330,8 @@ power_query <- function(community,
                         lonlat_identifier,
                         pars,
                         dates,
-                        meta) {
+                        meta,
+                        outputList) {
   power_url <- # nocov start
     "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
@@ -350,7 +351,7 @@ power_query <- function(community,
       endDate = dates[[2]],
       userCommunity = community,
       tempAverage = pars$temporal_average,
-      outputList = "CSV",
+      outputList = outputList,
       lon = lonlat_identifier$lon,
       lat = lonlat_identifier$lat,
       user = user_agent
@@ -367,7 +368,7 @@ power_query <- function(community,
       userCommunity = community,
       tempAverage = pars$temporal_average,
       bbox = I(lonlat_identifier$bbox),
-      outputList = "CSV",
+      outputList = outputList,
       user = user_agent
     )
   }
@@ -400,35 +401,42 @@ power_query <- function(community,
   tryCatch({
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
+    power_data <- file.path(tempdir(), "power_data_file")
 
-    power_data <- file.path(tempdir(), "power_data.csv")
+    if (outputList == "CSV") {
+      utils::download.file(txt$output$csv,
+                           destfile = power_data,
+                           mode = "wb",
+                           quiet = TRUE)
+      if (isTRUE(meta)) {
+        meta <- readLines(power_data,
+                          pars$skip_lines)
+        meta <- gsub(pattern = "-99",
+                     replacement = "NA",
+                     x = meta)
 
-    response <- utils::download.file(txt$output$csv,
-                              destfile = power_data,
-                              mode = "wb",
-                              quiet = TRUE)
+        NASA <- readr::read_csv(power_data,
+                                col_types = readr::cols(),
+                                na = "-99",
+                                skip = pars$skip_lines)
 
-    if (isTRUE(meta)) {
-      meta <- readLines(power_data,
-                        pars$skip_lines)
-      meta <- gsub(pattern = "-99",
-                   replacement = "NA",
-                   x = meta)
+        NASA <- list(meta, NASA)
+        names(NASA) <- c("POWER_meta", "POWER_data")
+        return(NASA)
+      }
 
-      NASA <- readr::read_csv(txt$outputs$csv,
+      NASA <- readr::read_csv(power_data,
                               col_types = readr::cols(),
                               na = "-99",
                               skip = pars$skip_lines)
+    } else {
+      utils::download.file(txt$output$icasa,
+                           destfile = power_data,
+                           mode = "wb",
+                           quiet = TRUE)
 
-      NASA <- list(meta, NASA)
-      names(NASA) <- c("POWER_meta", "POWER_data")
-      return(NASA)
+      NASA <- readLines(power_data)
     }
-
-    NASA <- readr::read_csv(txt$outputs$csv,
-                            col_types = readr::cols(),
-                            na = "-99",
-                            skip = pars$skip_lines)
     return(NASA)
 
   }, # nocov start
@@ -457,9 +465,6 @@ power_query <- function(community,
         sep = "\n"
       )
     }
-    # Otherwise refers to open.connection
-    e$call <- NULL
-    stop(e)
   }) # nocov end
 }
 
