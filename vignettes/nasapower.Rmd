@@ -168,11 +168,11 @@ saving it to disk using the _APSIM_ package.
 The `create_icasa()` simplifies a `get_power()` query to create an ICASA file
 for use in DSSAT modelling.
 
-```{r create_met, eval=FALSE}
-Kingsthorpe <- create_icasa(lonlat = c(151.81, -27.48),
-                            dates = c("1985-01-01", "1985-12-31"),
-                            dsn = "~/Documents",
-                            file_out = "ICASA.txt")
+```{r create_icasa, eval=FALSE}
+create_icasa(lonlat = c(151.81, -27.48),
+             dates = c("1985-01-01", "1985-12-31"),
+             dsn = "~/Documents",
+             file_out = "ICASA.txt")
 ```
 
 Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and

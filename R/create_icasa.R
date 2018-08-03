@@ -2,8 +2,7 @@
 #' @title Create a DSSAT ICASA File from NASA - POWER Data
 #'
 #' @description Get NASA-POWER values for a single point or region and create
-#' an DSSAT \code{\link[DSSAT]{metFile}} object suitable for use in DSSAT for
-#' crop modelling.
+#' an ICASA format text file suitable for use in DSSAT for crop modelling.
 #'
 #' @export
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
@@ -46,7 +45,7 @@
 #'
 #' @examples
 #' # Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-#' save it in "Documents".
+#' # save it in "Documents".
 #'
 #' \dontrun{
 #' create_icasa(lonlat = c(151.81, -27.48),
