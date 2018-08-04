@@ -8,12 +8,13 @@ Authors@R: person(given = "Adam H.", family = "Sparks",
 URL: https://github.com/adamhsparks/nasapower
 BugReports: https://github.com/adamhsparks/nasapower/issues
 Description: Download NASA-POWER global meteorology and surface solar energy
-    climatology data and create a tidy data frame for 141 parameters.  nasapower
-    provides an interface to the NASA - POWER API.  POWER (Prediction Of
-    Worldwide Energy Resource) data are freely available for download with a
-    resolution of 0.5 by 0.5 arc degree longitude and latitude and are funded
-    through the NASA Earth Science Directorate Applied Science Program. For more
-    on the data themselves, please see <https://power.larc.nasa.gov/>.
+    climatology data.  nasapower provides an interface to the NASA - POWER API.
+    POWER (Prediction Of Worldwide Energy Resource) data are freely available
+    for download with a resolution of 0.5 by 0.5 arc degree longitude and
+    latitude and are funded through the NASA Earth Science Directorate Applied
+    Science Program. For more on the data themselves, please see
+    <https://power.larc.nasa.gov/>.
+>>>>>>> devel
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
