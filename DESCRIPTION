@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA-POWER Data from R
-Version: 1.0.0.9003
+Version: 1.0.0.9004
 Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359"))
