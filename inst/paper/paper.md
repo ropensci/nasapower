@@ -40,14 +40,17 @@ parse dates which are passed along to the the query constructed using _crul_
 response, which is parsed by _jsonlite_ [@Ooms2014] to obtain the url of the
 .csv file that has been requested. The .csv file is read directly into R using
 _readr_ [@Wickham2017]. Data are returned in a tidy data frame [@Wickham2014] as
-a _tibble_ [@Mueller2018]. The `create_met` function is essentially a wrapper
-for the `get_power` function coupled with the `prepareMet` function from _APSIM_
-[@Fainges2017] to simplify the process of querying the data and creating .met
-files for use in Agricultural Production Systems sIMulator (APSIM) modelling
-work. Extended documentation is provided with examples of converting it to
-spatial objects using _raster_ [@Hijmans2017] and a special use-case for
-obtaining solar radiation values and generating a .met file using the _APSIM_ to
-use in the APSIM modelling framework.
+a _tibble_ [@Mueller2018]. Two other functions provide functionality to generate
+weather input files for agricultural modelling. The `create_met` function is
+essentially a wrapper for the `get_power` function coupled with the `prepareMet`
+function from _APSIM_ [@Fainges2017] to simplify the process of querying the
+data and creating .met files for use in Agricultural Production Systems
+sIMulator (APSIM) modelling work. While the `create_icasa` function generates
+and locally saves a text file in ICASA format for use in the DSSAT model
+[@Jones2003; @Hoogenboom2017]. Extended documentation is provided with examples
+of converting it to spatial objects using _raster_ [@Hijmans2017] and a special
+use-case for obtaining solar radiation values and generating a .met file using
+the _APSIM_ to use in the APSIM modelling framework.
 
 Integrating this data retrieval and formatting in R will streamline processes
 with models such as APSIM [@Keating2003], DSSAT
