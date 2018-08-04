@@ -127,7 +127,8 @@ get_power <- function(community = NULL,
                       lonlat_identifier,
                       pars,
                       dates,
-                      meta)
+                      meta,
+                      outputList = "CSV")
   # add date fields ------------------------------------------------------------
   # if the temporal average is anything but climatology, add date fields
   temporal_average <- toupper(temporal_average)
