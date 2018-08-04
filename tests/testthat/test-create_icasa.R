@@ -13,3 +13,27 @@ test_that("create_icasa stops if user specifies global coverage", {
     )
   })
 })
+
+test_that("create_icasa stops if user fails to specify dsn", {
+  vcr::use_cassette("create_icasa_global_stop", {
+    expect_error(
+      create_icasa(
+        lonlat = "global",
+        dates = c("1983-01-01"),
+        dsn = tmpdir()
+      ), regexp = "*You must specify a file path and name where to save.*"
+    )
+  })
+})
+
+test_that("create_icasa stops if user fails to specify file name", {
+  vcr::use_cassette("create_icasa_global_stop", {
+    expect_error(
+      create_icasa(
+        lonlat = "global",
+        dates = c("1983-01-01"),
+        file_out = "icasa.txt",
+      ), regexp = "*You must specify a file path and name where to save.*"
+    )
+  })
+})
