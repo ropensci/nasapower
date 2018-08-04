@@ -73,7 +73,7 @@ create_icasa <- function(lonlat = NULL,
   if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
     stop(
       call. = FALSE,
-      "The `lonlat` must be numeric values. Global coverage is not",
+      "The `lonlat` must be numeric values. Global coverage is not ",
       "available for `create_icasa()`"
     )
   }
