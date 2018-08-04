@@ -14,7 +14,6 @@ Description: Download NASA-POWER global meteorology and surface solar energy
     latitude and are funded through the NASA Earth Science Directorate Applied
     Science Program. For more on the data themselves, please see
     <https://power.larc.nasa.gov/>.
->>>>>>> devel
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
