@@ -18,7 +18,7 @@ latitude. Further functionality is provided to quickly and easily generate an
 data for use in the
 [Agricultural Production Systems sIMulator (APSIM)](http://www.apsim.info/) and
 ICASA format text files for use in
-[DSSAT (Decision Support System for Agrotechnology Transfer )](https://dssat.net/).
+[DSSAT (Decision Support System for Agrotechnology Transfer)](https://dssat.net/).
 
 Please see
 <https://power.larc.nasa.gov/> for more on the data and other ways to access it
