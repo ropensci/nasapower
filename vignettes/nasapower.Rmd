@@ -190,14 +190,14 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
     `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
     degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.
     
-  - `dates`, a vector of start and end dates for which to query the NASA-POWER
-    API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
+- `dates`, a vector of start and end dates for which to query the NASA-POWER
+  API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
   
-  - `dsn`, a file path to the directory for writing the resulting file,
-    _.e.g._, "~/Documents".
+- `dsn`, a file path to the directory for writing the resulting file,
+  _.e.g._, "~/Documents".
     
-  - `file_out`, the file name for the resulting text file written to disk in
-    the location specified in the `dsn` parameter.
+- `file_out`, the file name for the resulting text file written to disk in
+  the location specified in the `dsn` parameter.
 
 Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling,
