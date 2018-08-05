@@ -303,14 +303,10 @@
 <code>lonlat</code>
 <ul>
 <li><p><em>For a single point</em> To get a specific cell, 1/2 x 1/2 degree, supply a length-2 numeric vector giving the decimal degree longitude and latitude in that order for data to download, <em>e.g.</em>, <code>lonlat = c(-179.5, -89.5)</code>.</p></li>
-<li>
-<p><em>For regional coverage</em> To get a region, supply a length-4 numeric vector as lower left (lat, lon) and upper right (lat, lon) coordinates, <em>e.g.</em>, <code>lonlat = c(ymin, xmin, ymax, xmax)</code> in that order for a given region, <em>e.g.</em>, a bounding box for the south-western corner of Australia: <code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p>
-<ul>
+<li><p><em>For regional coverage</em> To get a region, supply a length-4 numeric vector as lower left (lat, lon) and upper right (lat, lon) coordinates, <em>e.g.</em>, <code>lonlat = c(ymin, xmin, ymax, xmax)</code> in that order for a given region, <em>e.g.</em>, a bounding box for the south-western corner of Australia: <code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></li>
 <li><p><code>dates</code>, a vector of start and end dates for which to query the NASA-POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</p></li>
 <li><p><code>dsn</code>, a file path to the directory for writing the resulting file, <em>.e.g.</em>, “~/Documents”.</p></li>
 <li><p><code>file_out</code>, the file name for the resulting text file written to disk in the location specified in the <code>dsn</code> parameter.</p></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
