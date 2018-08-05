@@ -200,8 +200,8 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
   the location specified in the `dsn` parameter.
 
 Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
-create an APSIM weather.met object suitable for use in APSIM for crop modelling,
-saving it to disk using the _APSIM_ package.
+create an APSIM weather.met object suitable for use in DSSAT for crop modelling
+and save it to disk for further use.
 
 ## Creating Spatial Objects from `get_power`
 
