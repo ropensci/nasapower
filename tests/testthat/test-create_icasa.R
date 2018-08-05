@@ -40,15 +40,17 @@ test_that("create_icasa stops if user fails to specify file name", {
 
 test_that("create_icasa creates a txt file with proper values", {
   vcr::use_cassette("create_icasa", {
-      create_icasa(
-        lonlat = c(151.81, -27.48),
-        dates = c("1983-01-01"),
-        file_out = "icasa.txt",
-        dsn = tempdir()
-      )
+    create_icasa(
+      lonlat = c(151.81, -27.48),
+      dates = c("1983-01-01"),
+      file_out = "icasa.txt",
+      dsn = tempdir()
+    )
     icasa <- readLines(file.path(tempdir(), "icasa.txt"))
-  expect_true(any(grepl("icasa.txt", list.files(tempdir()))))
-  expect_equal(length("icasa"), 15)
-    })
+    expect_true(any(grepl("icasa.txt", list.files(tempdir()))))
+    expect_equal(length(icasa), 16)
+    expect_equal(nchar(icasa)[[1]], 47)
+    expect_equal(nchar(icasa)[[16]], 73)
+  })
 
 })
