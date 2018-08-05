@@ -20,7 +20,7 @@ test_that("create_icasa stops if user fails to specify dsn", {
       create_icasa(
         lonlat = c(151.81, -27.48),
         dates = c("1983-01-01"),
-        dsn = tmpdir()
+        dsn = tempdir()
       ), regexp = "*You must specify a file path and name where to save.*"
     )
   })

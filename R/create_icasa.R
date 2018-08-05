@@ -62,10 +62,6 @@ create_icasa <- function(lonlat = NULL,
                          dsn = NULL,
                          file_out = NULL) {
 
-  if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
-    file_out <- paste0(file_out, ".txt")
-  }
-
   temporal_average <- "DAILY"
   pars <- c("T2M") # this is a dummy variable to check lonlat values,
                    # POWER will automatically select the proper pars for query
@@ -78,11 +74,15 @@ create_icasa <- function(lonlat = NULL,
     )
   }
 
-  if (is.null(file_out) && is.null(dsn)) {
+  if (is.null(file_out) | is.null(dsn)) {
     stop(
       call. = FALSE,
       "You must specify a file path and name where to save the ICASA file."
     )
+  }
+
+  if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
+    file_out <- paste0(file_out, ".txt")
   }
 
   # user input checks and formatting -------------------------------------------
