@@ -8,8 +8,7 @@
 
 - Replace _httr_ package with _crul_
 
-- Add `parameters` data frame, which lists available parameters with metadata
-about them
+- Add function `get_power()` to get weather data and optionally metadata as well
 
 - Add function `create_met()` to create APSIM met objects from POWER data
 
