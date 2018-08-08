@@ -42,7 +42,7 @@ that order for data to download,\cr
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
 vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
-\emph{e.g.}, \code{lonlat = c(ymin, xmin, ymax, xmax)} in that order for a given
+\emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. \emph{Max bounding box is 10 x 10
 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
