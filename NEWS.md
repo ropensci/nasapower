@@ -13,6 +13,9 @@ about them
 
 - Add function `create_met()` to create APSIM met objects from POWER data
 
+- Add function `create_icasa()` to create a text file of weather data for use in
+DSSAT crop modelling
+
 ### Deprecated functions
 
 - `get_cell` and `get_region` are deprecated in favour of `get_power`. The new
