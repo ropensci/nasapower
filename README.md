@@ -30,12 +30,13 @@ _nasapower_ is not yet available from CRAN, only GitHub. It can easily be
 installed using the following code:
 
 ```r
-if (!require(devtools)) {
-  install.packages("devtools")
-  library(devtools)
+if (!require(remotes)) {
+  install.packages("remotes")
+  library(remotes)
 }
 
-devtools::install_github("adamhsparks/nasapower", build_vignettes = TRUE)
+devtools::install_github("adamhsparks/nasapower",
+                          build_vignettes = TRUE)
 ```
 
 ## Documentation
