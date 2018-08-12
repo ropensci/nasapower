@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
-  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data and create a tidy data frame for 141 parameters.  nasapower\n    provides an interface to the NASA - POWER API.  POWER (Prediction Of\n    Worldwide Energy Resource) data are freely available for download with a\n    resolution of 0.5 by 0.5 arc degree longitude and latitude and are funded\n    through the NASA Earth Science Directorate Applied Science Program. For more\n    on the data themselves, please see <https://power.larc.nasa.gov/>.",
+  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data.  nasapower provides an interface to the NASA - POWER API.\n    POWER (Prediction Of Worldwide Energy Resource) data are freely available\n    for download with a resolution of 0.5 by 0.5 arc degree longitude and\n    latitude and are funded through the NASA Earth Science Directorate Applied\n    Science Program. For more on the data themselves, please see\n    <https://power.larc.nasa.gov/>.",
   "name": "nasapower: NASA-POWER Data from R",
   "codeRepository": "https://github.com/adamhsparks/nasapower",
   "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
@@ -223,7 +223,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "209.512KB",
+  "fileSize": "209.897KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
@@ -240,7 +240,7 @@
           "familyName": "Sparks"
         }
       ],
-      "name": "{nasapower}: NASA-POWER Agroclimatology Data from R",
+      "name": "{nasapower}: NASA-POWER Data from R",
       "url": "https://github.com/adamhsparks/nasapower"
     }
   ]
