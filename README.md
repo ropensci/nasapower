@@ -35,8 +35,7 @@ if (!require(remotes)) {
   library(remotes)
 }
 
-devtools::install_github("adamhsparks/nasapower",
-                          build_vignettes = TRUE)
+install_github("adamhsparks/nasapower", build_vignettes = TRUE)
 ```
 
 ## Documentation
