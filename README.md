@@ -60,7 +60,7 @@ Applied Science Program."
 
 * License: MIT
 
-* Get citation information for `nasapower` in R by typing
+* Get citation information for _nasapower_ in R by typing
 `citation(package = "nasapower")`.
 
 * Please note that the _nasapower_ project is released with a
