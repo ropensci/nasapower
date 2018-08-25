@@ -63,9 +63,9 @@ Applied Science Program."
 * Get citation information for `nasapower` in R by typing
 `citation(package = "nasapower")`.
 
-* Please note that this project is released with a
+* Please note that the _nasapower_ project is released with a
 [Contributor Code of Conduct](CONDUCT.md).
-By participating in this project you agree to abide by its terms.
+By participating in the _nasapower_ project you agree to abide by its terms.
 
 * The U.S. Earth System Research Laboratory, Physical Science Division of the
 National Atmospheric & Oceanic Administration (NOAA) maintains a list of
