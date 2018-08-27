@@ -132,8 +132,8 @@ official NASA-POWER API are supported.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>pars</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -226,11 +226,9 @@ monthly averages for the entire globe use <code>Global</code> in place of
     
     <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <code>dates</code></h2>
 
-    <p>If <code>dates</code> is unspecified, defaults to
-a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system.</p>
-<p>If one date only is provided, it will be treated as both the start date and
-the end date and only a single day's values will be returned.</p>
+    <p>If one date only is provided, it will
+be treated as both the start date and the end date and only a single day's
+values will be returned.</p>
     
     <h2 class="hasAnchor" id="argument-details-for-temporal-average"><a class="anchor" href="#argument-details-for-temporal-average"></a>Argument details for <code>temporal_average</code></h2>
 
