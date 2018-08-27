@@ -72,12 +72,9 @@
 #'  `climatology` if this option is set.}
 #' }
 #'
-#' @section Argument details for `dates`: If `dates` is unspecified, defaults to
-#'  a start date of 1983-01-01 (the earliest available data) and an end date of
-#'  current date according to the system.
-#'
-#'  If one date only is provided, it will be treated as both the start date and
-#'  the end date and only a single day's values will be returned.
+#' @section Argument details for `dates`: If one date only is provided, it will
+#'  be treated as both the start date and the end date and only a single day's
+#'  values will be returned.
 #'
 #' @section Argument details for `temporal_average`: There are three valid
 #'  values, one must be supplied. \describe{ \item{DAILY}{The daily average of
@@ -102,11 +99,11 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-get_power <- function(community = NULL,
-                      lonlat = NULL,
-                      pars = NULL,
-                      dates = NULL,
-                      temporal_average = NULL,
+get_power <- function(community = "",
+                      lonlat = "",
+                      pars = "",
+                      dates = "",
+                      temporal_average = "",
                       meta = FALSE) {
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions

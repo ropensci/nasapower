@@ -4,8 +4,8 @@
 \alias{get_power}
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
-get_power(community = NULL, lonlat = NULL, pars = NULL,
-  dates = NULL, temporal_average = NULL, meta = FALSE)
+get_power(community = "", lonlat = "", pars = "", dates = "",
+  temporal_average = "", meta = FALSE)
 }
 \arguments{
 \item{community}{A character vector providing community name: "AG", "SB" or
@@ -90,12 +90,9 @@ monthly averages for the entire globe use \code{Global} in place of
 }
 
 \section{Argument details for \code{dates}}{
- If \code{dates} is unspecified, defaults to
-a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system.
-
-If one date only is provided, it will be treated as both the start date and
-the end date and only a single day's values will be returned.
+ If one date only is provided, it will
+be treated as both the start date and the end date and only a single day's
+values will be returned.
 }
 
 \section{Argument details for \code{temporal_average}}{

@@ -3,7 +3,7 @@
 context("Test that check_pars function handles pars strings correctly")
 test_that("check_pars stops if no `par` provided", {
   expect_error(check_pars(
-    pars = NULL,
+    pars = "",
     temporal_average = "DAILY",
     lonlat = c(-179.5, -89.5)
   ),
@@ -13,7 +13,7 @@ test_that("check_pars stops if no `par` provided", {
 test_that("check_pars stops if no `temporal_average` provided", {
   expect_error(check_pars(
     pars = "AG",
-    temporal_average = NULL,
+    temporal_average = "",
     lonlat = c(-179.5, -89.5)
   ),
   regexp = "*You have not provided a `temporal_average` value.*")

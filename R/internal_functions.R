@@ -7,6 +7,10 @@
 #' @noRd
 # start/end dates not required for global.
 check_global <- function(lonlat) {
+  if (lonlat == "") {
+    stop("\nYou have not provided a location or 'Global' for data download.\n",
+         call. = FALSE)
+  }
   if (is.character(lonlat)) {
     lonlat <- paste0(toupper(substr(lonlat, 1, 1)),
                      tolower(substr(lonlat, 2, nchar(lonlat))))
@@ -22,17 +26,21 @@ check_dates <- function(dates, lonlat, temporal_average) {
 
   temporal_average <- toupper(temporal_average)
 
-  if (!is.null(dates) & temporal_average == "CLIMATOLOGY") {
+  if (dates != "" & temporal_average == "CLIMATOLOGY") {
     stop(call. = FALSE,
          "\nDates are not used when querying climatology data. ",
          "Do you wish to query daily or interannual data instead?\n")
   }
 
+  ta <- toupper(temporal_average)
+  if (dates == "" && temporal_average != "CLIMATOLOGY") {
+    stop(call. = FALSE,
+         "\nYou have not entered dates for the query.\n")
+  }
+  rm(ta)
+
   if (is.numeric(lonlat)) {
-    # if dates are NULL, set to defaults
-    if (is.null(dates)) {
-      dates <- c("1983-01-01", as.character(Sys.Date()))
-    }
+
     if (length(dates) == 1) {
       dates <- c(dates, dates)
     }
@@ -98,7 +106,7 @@ check_dates <- function(dates, lonlat, temporal_average) {
   if (temporal_average == "INTERANNUAL" &&
       length(unique(substr(dates, 1, 4))) < 2) {
     stop(call. = FALSE,
-         "For `temporal_average == INTERANNUAL`, at least two (2) years ",
+         "\nFor `temporal_average == INTERANNUAL`, at least two (2) years ",
          "are required to be given.\n")
   }
 
@@ -113,7 +121,7 @@ check_dates <- function(dates, lonlat, temporal_average) {
 #' @noRd
 check_community <-
   function(community) {
-    if (is.null(community)) {
+    if (community == "") {
       stop(call. = FALSE,
            "\nYou have not provided a `community` value.\n")
     }
@@ -128,10 +136,10 @@ check_community <-
 #' @noRd
 check_pars <-
   function(pars, temporal_average, lonlat) {
-    if (!is.null(temporal_average)) {
+    if (temporal_average != "") {
       temporal_average <- toupper(temporal_average)
     }
-    if (!is.numeric(lonlat) & !is.null(temporal_average)) {
+    if (!is.numeric(lonlat) & temporal_average != "") {
       if (temporal_average != "CLIMATOLOGY") {
         message(
           "\nGlobal data are only available for Climatology.\n",
@@ -143,12 +151,12 @@ check_pars <-
       temporal_average <- "CLIMATOLOGY"
     }
 
-    if (is.null(temporal_average)) {
+    if (temporal_average == "") {
       stop(call. = FALSE,
            "\nYou have not provided a `temporal_average` value.\n")
     }
 
-    if (is.null(pars)) {
+    if (pars == "") {
       stop(call. = FALSE,
            "\nYou have not provided a `pars` value.\n")
     }
@@ -215,10 +223,6 @@ check_pars <-
 check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
-    if (is.null(lonlat)) {
-      stop(call. = FALSE,
-           "\nYou must provide a `lonlat` (max 100 points or 10x10 cells).\n")
-    }
     if (length(lonlat) == 2 && is.numeric(lonlat)) {
       if (lonlat[1] < -180 || lonlat[1] > 180) {
         stop(
@@ -307,6 +311,10 @@ check_lonlat <-
                      lonlat[3],
                      sep = ",")
     } else if (lonlat == "Global") {
+      if (length(pars) > 3) {
+        stop(call. = FALSE,
+             "\nOnly three parameters are allowed per global query.\n")
+      }
       identifier <- "Global"
     } else {
       stop(call. = FALSE,

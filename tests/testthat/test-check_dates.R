@@ -1,17 +1,11 @@
 
-
-
 # Date handling and checking ---------------------------------------------------
 context("Check dates function handles dates correctly")
-test_that("NULL `dates`` are properly handled", {
+test_that("Empty `dates` are properly handled", {
   temporal_average <- "DAILY"
-  dates <- NULL
+  dates <- ""
   lonlat <- c(-179.5, -89.5)
-  dates <- check_dates(dates, lonlat, temporal_average)
-  today <- as.character(Sys.Date())
-  today <- gsub("-", "" , today, ignore.case = TRUE)
-  expect_equal(dates[1], "19830101")
-  expect_equal(dates[2], today)
+  expect_error(check_dates(dates, lonlat, temporal_average))
 })
 
 test_that("`dates` with one value set one day query", {

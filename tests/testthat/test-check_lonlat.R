@@ -42,7 +42,7 @@ test_that("check_lonlat properly reports errors", {
 })
 
 test_that("check_lonlat stops if more than three are requested for global", {
-  lonlat <- NULL
+  lonlat <- "Global"
   pars <-  c(
     "T2M",
     "T2MN",
@@ -56,11 +56,6 @@ test_that("check_lonlat stops if more than three are requested for global", {
     "WS10M"
   )
   expect_error(check_lonlat(lonlat, pars))
-})
-
-test_that("check_lonlat stops if no `lonlat` is supplied", {
-  expect_error(check_lonlat(lonlat = NULL, pars),
-               regexp = "\nYou must provide a `lonlat` *")
 })
 
 test_that("check_lonlat handles single point properly", {
