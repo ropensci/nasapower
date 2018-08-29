@@ -4,8 +4,8 @@
 \alias{get_power}
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
-get_power(community = "", lonlat = "", pars = "", dates = "",
-  temporal_average = "", meta = FALSE)
+get_power(community, lonlat, pars, dates = NULL,
+  temporal_average = NULL, meta = FALSE)
 }
 \arguments{
 \item{community}{A character vector providing community name: "AG", "SB" or

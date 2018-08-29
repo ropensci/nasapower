@@ -99,14 +99,25 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-get_power <- function(community = "",
-                      lonlat = "",
-                      pars = "",
-                      dates = "",
-                      temporal_average = "",
+get_power <- function(community,
+                      lonlat,
+                      pars,
+                      dates = NULL,
+                      temporal_average = NULL,
                       meta = FALSE) {
-  # user input checks and formatting -------------------------------------------
+
+  if (is.character(lonlat)) {
+    lonlat <- toupper(lonlat)
+  }
+  pars <- toupper(pars)
+  if (!is.null(temporal_average)) {
+    temporal_average <- toupper(temporal_average)
+  }
+  community <- toupper(community)
+
+    # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
+
   lonlat <- check_global(lonlat)
   dates <- check_dates(dates,
                        lonlat,

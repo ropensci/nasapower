@@ -10,12 +10,6 @@ test_that("check_global stops if value is not valid char string", {
   })
 
 test_that("check_global returns properly formatted `global` object", {
-  lonlat <- "global"
-  expect_equal(check_global(lonlat), "Global")
-
-  lonlat <- "globaL"
-  expect_equal(check_global(lonlat), "Global")
-
-  lonlat <- "Global"
-  expect_equal(check_global(lonlat), "Global")
+  lonlat <- "GLOBAL"
+  expect_equal(check_global(lonlat), "GLOBAL")
 })
