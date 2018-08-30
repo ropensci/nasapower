@@ -172,7 +172,7 @@ check_pars <-
     pars <- unique(pars)
 
     # check pars to make sure < allowed
-    if (length(pars) > 3 && temporal_average == "CLIMATOLOGY") {
+    if (length(pars) > 3 & temporal_average == "CLIMATOLOGY") {
       stop(
         call. = FALSE,
         "\nYou can only specify three (3) parameters for download when ",
