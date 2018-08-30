@@ -120,16 +120,16 @@ check_community <-
 check_pars <-
   function(pars, temporal_average, lonlat) {
 
-    if (!is.numeric(lonlat) & !is.null(temporal_average)) {
-      if (temporal_average != "CLIMATOLOGY") {
+    if (!is.numeric(lonlat) &
+        !is.null(temporal_average) &
+        temporal_average != "CLIMATOLOGY") {
         message(
           "\nGlobal data are only available for Climatology.\n",
           "\nSetting `temporal_average` to `CLIMATOLOGY`.\n"
         )
-      }
     }
 
-    if (is.character(lonlat) & lonlat == "GLOBAL") {
+    if (is.character(lonlat)) {
       temporal_average <- "CLIMATOLOGY"
     }
 
