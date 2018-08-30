@@ -429,7 +429,7 @@ power_query <- function(community,
   },
   error = function(e) {
     # check if POWER is returning an error message
-    if ("messages" %in% names(txt)) {
+    if (exists("txt") & "messages" %in% names(txt)) {
       e$message <- paste0(txt$messages$Alert$Description)
     } else {
       # if not, return our own error message
