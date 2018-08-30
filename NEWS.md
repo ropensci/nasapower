@@ -1,12 +1,10 @@
-# nasapower 1.0.0.9003
+# nasapower 1.0.0.9004
 
 ## Major changes
 
-- Provide access to all three communities, not just AG
+- Provide access to all three communities, AG, SSE and and SB, not just AG
 
 - Uses new NASA-POWER API to download new 1/2 x 1/2 degree data
-
-- Replace _httr_ package with _crul_
 
 - Add function `get_power()` to get weather data and optionally metadata as well
 
@@ -15,12 +13,13 @@
 - Add function `create_icasa()` to create a text file of weather data for use in
 DSSAT crop modelling
 
+- Internally, replace _httr_ package with _crul_
+
 ### Deprecated functions
 
-- `get_cell` and `get_region` are deprecated in favour of `get_power`. The new
-POWER interface allows for the specification of `SinglePoint` (cell), `Regional`
-(region) or `Global`. These are now arguments passed along to `get_power` for
-the `type` parameter.
+- The `get_cell` and `get_region` functions are deprecated in favour of
+`get_power()`. The new POWER interface allows for the specification of single
+points or regional areas or `Global` through the `latlon` parameter.
 
 --------------------------------------------------------------------------------
 
