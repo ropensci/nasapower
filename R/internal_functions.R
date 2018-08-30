@@ -129,7 +129,7 @@ check_pars <-
       }
     }
 
-    if (is.character(lonlat) & lonlat == "GLOBAL") {
+    if (is.character(lonlat) && lonlat == "GLOBAL") {
       temporal_average <- "CLIMATOLOGY"
     }
 
