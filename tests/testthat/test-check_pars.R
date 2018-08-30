@@ -158,3 +158,11 @@ test_that("Only unique pars are queried", {
   expect_equal(pars[[1]], "RH2M")
   expect_equal(length(pars[[1]]), 1)
 })
+
+test_that(
+  "If an invalid temporal average is given for a par, an error occurs", {
+    pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
+    temporal_average <- "DAILY"
+    lonlat <- c(-179.5, -89.5)
+    expect_error(check_pars(pars, temporal_average, lonlat))
+  })

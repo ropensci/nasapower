@@ -118,6 +118,7 @@ get_power <- function(community,
     # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
 
+  check_community(community, pars)
   lonlat <- check_global(lonlat)
   dates <- check_dates(dates,
                        lonlat,
@@ -127,7 +128,6 @@ get_power <- function(community,
                      lonlat)
   lonlat_identifier <- check_lonlat(lonlat,
                                     pars)
-  community <- check_community(community)
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
