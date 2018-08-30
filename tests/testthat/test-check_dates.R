@@ -3,6 +3,7 @@
 context("Check dates function handles dates correctly")
 test_that("Missing `dates` are properly handled", {
   temporal_average <- "DAILY"
+  dates <- NULL
   lonlat <- c(-179.5, -89.5)
   expect_error(check_dates(dates, lonlat, temporal_average))
 })
