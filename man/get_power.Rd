@@ -76,7 +76,7 @@ that order for data to download,\cr
 \emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
-vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
 \emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a given
 region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. \emph{Max bounding box is 10 x 10

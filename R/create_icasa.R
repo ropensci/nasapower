@@ -29,7 +29,7 @@
 #'  *e.g.*, `lonlat = c(151.81, -27.48)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-4 numeric
-#'  vector as lower left (lat, lon) and upper right (lat, lon) coordinates,
+#'  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
 #'  *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
 #'  `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
