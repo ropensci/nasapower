@@ -163,6 +163,6 @@ test_that(
   "If an invalid temporal average is given for a par, an error occurs", {
     pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
     temporal_average <- "DAILY"
-    lonlat <- "GLOBAL"
+    lonlat <- c(-179.5, -89.5)
     expect_error(check_pars(pars, temporal_average, lonlat))
   })
