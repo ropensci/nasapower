@@ -417,30 +417,15 @@ power_query <- function(community,
 
   }, # nocov start
   # sometimes the server responds but doesn't provide a CSV file
-  warning = function(w) {
-    w$message <- paste(
+  error = function(e) {
+    e$message <- paste(
       "\nA CSV file was not created, this is a server error.",
       "The server may not be responding or is currently responding improperly.",
       "Please check <https://power.larc.nasa.gov/> for notifications if",
       "you repeatedly get this error.",
       sep = "\n"
     )
-    stop(w)
-  },
-  error = function(e) {
-    # check if POWER is returning an error message
-    if (exists("txt") & "messages" %in% names(txt)) {
-      e$message <- paste0(txt$messages$Alert$Description)
-    } else {
-      # if not, return our own error message
-      e$message <- paste(
-        "\nA CSV file was not created, this is a server error.",
-        "The server may not be responding.",
-        "Please check <https://power.larc.nasa.gov/> for notifications if",
-        "you repeatedly get this error.",
-        sep = "\n"
-      )
-    }
+    stop(e)
   }) # nocov end
 }
 
