@@ -108,12 +108,23 @@ check_dates <- function(dates, lonlat, temporal_average) {
 
 #' @noRd
 check_community <-
-  function(community) {
+  function(community, pars) {
     if (community %notin% c("AG", "SB", "SSE")) {
       stop(call. = FALSE,
            "\nYou have provided an invalid `community` value.\n")
     }
-    return(community)
+
+    # check to make sure community is appropriate for given pars
+    for (i in pars) {
+      if (community %notin% parameters[[i]]$community) {
+        stop(
+          call. = FALSE,
+          "\nYou have entered an invalid value for `community` for ",
+          "the supplied `pars`. One or more `pars` are not, available for ",
+          "`", community, "`, please check.\n"
+        )
+      }
+    }
   }
 
 #' @noRd
@@ -415,7 +426,7 @@ power_query <- function(community,
     }
     return(NASA)
 
-  }, # nocov start
+  },
   # sometimes the server responds but doesn't provide a CSV file
   error = function(e) {
     e$message <- paste(
@@ -426,7 +437,7 @@ power_query <- function(community,
       sep = "\n"
     )
     stop(e)
-  }) # nocov end
+  })
 }
 
 #' @noRd
