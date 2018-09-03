@@ -2,7 +2,8 @@
 #' @title Create a DSSAT ICASA File from NASA - POWER Data
 #'
 #' @description Get NASA-POWER values for a single point or region and create
-#' an ICASA format text file suitable for use in DSSAT for crop modelling.
+#' an ICASA format text file suitable for use in DSSAT for crop modelling saving
+#' it to local disk.
 #'
 #' @export
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
@@ -57,8 +58,8 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-create_icasa <- function(lonlat = NULL,
-                         dates = NULL,
+create_icasa <- function(lonlat,
+                         dates,
                          dsn = NULL,
                          file_out = NULL) {
 
@@ -75,10 +76,13 @@ create_icasa <- function(lonlat = NULL,
   }
 
   if (is.null(file_out) | is.null(dsn)) {
-    stop(
+    message(
       call. = FALSE,
-      "You must specify a file path and name where to save the ICASA file."
+      "You you have not specifed a name or disk location defaulting to",
+      path.expand("~"), "/ICASA.txt."
     )
+    file_out <- "ICASA.txt"
+    dsn <- path.expand("~")
   }
 
   if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
