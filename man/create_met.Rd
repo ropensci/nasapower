@@ -4,7 +4,7 @@
 \alias{create_met}
 \title{Create an APSIM metFile File from NASA - POWER Data}
 \usage{
-create_met(lonlat = NULL, dates = NULL)
+create_met(lonlat, dates, dsn = NULL, file_out = NULL)
 }
 \arguments{
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -16,8 +16,8 @@ more.}
 }
 \description{
 Get NASA-POWER values for a single point or region and create
-an APSIM \code{\link[APSIM]{metFile}} object suitable for use in APSIM for
-crop modelling.
+an APSIM \code{\link[APSIM]{metFile}} file suitable for use in APSIM for
+crop modelling saving it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
@@ -58,11 +58,11 @@ the end date and only a single day's values will be returned.
 }
 
 \examples{
-# Create a .met object for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
+# Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
 
 \dontrun{
-Kingsthorpe <- create_met(lonlat = c(151.81, -27.48),
-                          dates = c("1985-01-01", "1985-12-31")
+create_met(lonlat = c(151.81, -27.48),
+           dates = c("1985-01-01", "1985-12-31")
 )
 }
 

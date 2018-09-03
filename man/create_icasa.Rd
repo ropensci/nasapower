@@ -4,8 +4,7 @@
 \alias{create_icasa}
 \title{Create a DSSAT ICASA File from NASA - POWER Data}
 \usage{
-create_icasa(lonlat = NULL, dates = NULL, dsn = NULL,
-  file_out = NULL)
+create_icasa(lonlat, dates, dsn = NULL, file_out = NULL)
 }
 \arguments{
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -22,7 +21,8 @@ A ".txt" extension will be appended if not or otherwise specified by user.}
 }
 \description{
 Get NASA-POWER values for a single point or region and create
-an ICASA format text file suitable for use in DSSAT for crop modelling.
+an ICASA format text file suitable for use in DSSAT for crop modelling saving
+it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
