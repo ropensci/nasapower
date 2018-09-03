@@ -2,8 +2,8 @@
 #' @title Create an APSIM metFile File from NASA - POWER Data
 #'
 #' @description Get NASA-POWER values for a single point or region and create
-#' an APSIM \code{\link[APSIM]{metFile}} object suitable for use in APSIM for
-#' crop modelling.
+#' an APSIM \code{\link[APSIM]{metFile}} file suitable for use in APSIM for
+#' crop modelling saving it to local disk.
 #'
 #' @export
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
@@ -46,18 +46,20 @@
 #'  the end date and only a single day's values will be returned.
 #'
 #' @examples
-#' # Create a .met object for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
+#' # Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
 #'
 #' \dontrun{
-#' Kingsthorpe <- create_met(lonlat = c(151.81, -27.48),
-#'                           dates = c("1985-01-01", "1985-12-31")
+#' create_met(lonlat = c(151.81, -27.48),
+#'            dates = c("1985-01-01", "1985-12-31")
 #' )
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-create_met <- function(lonlat = NULL,
-                       dates = NULL) {
+create_met <- function(lonlat,
+                       dates,
+                       dsn = NULL,
+                       file_out = NULL) {
 
   if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
     stop(
@@ -65,6 +67,20 @@ create_met <- function(lonlat = NULL,
       "The `lonlat` must be numeric values. Global coverage is not ",
       "available for `create_met()`"
     )
+  }
+
+  if (is.null(file_out) | is.null(dsn)) {
+    message(
+      call. = FALSE,
+      "You you have not specifed a name or disk location defaulting to",
+      path.expand("~"), "/APSIM.met."
+    )
+    file_out <- "APSIM.met"
+    dsn <- path.expand("~")
+  }
+
+  if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
+    file_out <- paste0(file_out, ".txt")
   }
 
   power_data <- as.data.frame(
@@ -112,5 +128,6 @@ create_met <- function(lonlat = NULL,
     units = met_units
   )
 
-  return(out)
+  APSIM::writeMetFile(fileName = file.path(dsn, file_out),
+                      met = out)
 }
