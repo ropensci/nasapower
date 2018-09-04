@@ -16,9 +16,9 @@
 #' A ".txt" extension will be appended if not or otherwise specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
-#' \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMet}} that
-#' simplifies the querying of the POWER API and returns an
-#' \code{\link[APSIM]{metFile}} class object.
+#' \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
+#' simplifies the querying of the POWER API and writes the metfile to local
+#' disk.
 #'
 #' The weather values from POWER for temperature are 2 metre max and min
 #' temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,
