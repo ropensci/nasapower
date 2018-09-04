@@ -40,7 +40,6 @@ test_that("create_icasa creates assigns a .txt extension if not provided", {
       file_out = "icasa",
       dsn = tempdir()
     )
-    icasa <- readLines(file.path(tempdir(), "icasa.txt"))
     expect_true(any(grepl("icasa.txt", list.files(tempdir()))))
   })
 })
