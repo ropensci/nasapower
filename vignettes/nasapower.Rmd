@@ -94,18 +94,19 @@ display of time series data (_e.g._ Agroclimatology will use MJ/m^2^/day for
 radiation units, while SSE and SB use kW/m^2^/day as units).
 
 - `lonlat`
-  - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+
+    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
     length-2 numeric vector giving the decimal degree longitude and latitude in
     that order for data to download,  *e.g.*, `lonlat = c(-89.5, -179.5)`.  
   
-  - *For regional coverage* To get a region, supply a length-4 numeric
+    - *For regional coverage* To get a region, supply a length-4 numeric
     vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
     *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
     region, *e.g.*, a bounding box for the south-western corner of Australia:
     `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
     degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
   
-  - *For global coverage* To get global coverage for long term monthly
+    - *For global coverage* To get global coverage for long term monthly
     averages for the entire globe use `Global` in place of `lonlat` values.
     `temporal_average` will automatically be set to `CLIMATOLOGY` if this option
     is set.
@@ -144,11 +145,12 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
 `file_out`.
 
 - `lonlat`
-  - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+
+    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
     length-2 numeric vector giving the decimal degree longitude and latitude in
     that order for data to download,  *e.g.*, `lonlat = c(-179.5, -89.5)`.  
   
-  - *For regional coverage* To get a region, supply a length-4 numeric
+    - *For regional coverage* To get a region, supply a length-4 numeric
     vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
     *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
     region, *e.g.*, a bounding box for the south-western corner of Australia:
@@ -184,11 +186,12 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
 `file_out`.
 
 - `lonlat`
-  - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+
+    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
     length-2 numeric vector giving the decimal degree longitude and latitude in
     that order for data to download,  *e.g.*, `lonlat = c(-179.5, -89.5)`.
   
-  - *For regional coverage* To get a region, supply a length-4 numeric
+    - *For regional coverage* To get a region, supply a length-4 numeric
     vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
     *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
     region, *e.g.*, a bounding box for the south-western corner of Australia:
