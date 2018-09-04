@@ -161,10 +161,10 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
   API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
 
 - `dsn`, a file path to the directory for writing the resulting file,
-  _.e.g._, "~/Documents".
+  _.e.g._, "~/Documents". If none is given, defaults to user's home directory.
     
-- `file_out`, the file name for the resulting text file written to disk in
-  the location specified in the `dsn` parameter.
+- `file_out`, a file name for the resulting text file written to disk.
+   If none is provided, defaults to "APSIM.met"
 
 Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling
@@ -202,10 +202,10 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
   API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
   
 - `dsn`, a file path to the directory for writing the resulting file,
-  _.e.g._, "~/Documents".
+  _.e.g._, "~/Documents". If none is given, defaults to user's home directory.
     
-- `file_out`, the file name for the resulting text file written to disk in
-  the location specified in the `dsn` parameter.
+- `file_out`, a  file name for the resulting text file written to disk.
+   If none is provided, defaults to "ICASA.txt"
 
 Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an ICASA text file suitable for use in DSSAT for crop modelling.
