@@ -4,7 +4,7 @@
 \alias{create_met}
 \title{Create an APSIM metFile File from NASA - POWER Data}
 \usage{
-create_met(lonlat, dates, dsn = NULL, file_out = NULL)
+create_met(lonlat, dates, dsn, file_out)
 }
 \arguments{
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -16,8 +16,9 @@ more.}
 
 \item{dsn}{A file path where the resulting text file should be stored.}
 
-\item{file_out}{A file name for the resulting text file, \emph{e.g.} "ICASA.txt".
-A ".txt" extension will be appended if not or otherwise specified by user.}
+\item{file_out}{A file name for the resulting text file, \emph{e.g.}
+"Kingsthorpe.met". Also, a ".met" extension will be appended if given or
+otherwise specified by user.}
 }
 \description{
 Get NASA-POWER values for a single point or region and create
