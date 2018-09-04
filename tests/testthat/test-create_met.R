@@ -12,31 +12,17 @@ test_that("create_met stops if user specifies global coverage", {
   })
 })
 
-test_that("create_met creates an S4 object for APSIM use", {
+test_that("create_met creates a .met file for APSIM use", {
   vcr::use_cassette("create_met", {
     power_query <- create_met(lonlat = c(151.81, -27.48),
-                              dates = c("1985-01-01", "1985-01-02"))
+                              dates = c("1985-01-01", "1985-01-02"),
+                              dsn = tempdir(),
+                              file_out = "APSIM.met")
 
-    power_query_slots <- c("const",
-                           "lat",
-                           "lon",
-                           "tav",
-                           "amp",
-                           "units",
-                           "data")
-
-    data_names <- c("year",
-                    "day",
-                    "maxt",
-                    "mint",
-                    "radn",
-                    "rain")
-
-    expect_s4_class(power_query, "metFile")
-    expect_equal(methods::slotNames(power_query),
-                 power_query_slots)
-    expect_equal(names(power_query@data), data_names)
-
-    rm(power_query)
+    met <- readLines(file.path(tempdir(), "APSIM.met"))
+    expect_true(any(grepl("APSIM.met", list.files(tempdir()))))
+    expect_equal(length(met), 14)
+    expect_equal(nchar(met)[[1]], 21)
+    expect_equal(nchar(met)[[14]], 28)
   })
 })
