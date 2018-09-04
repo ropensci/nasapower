@@ -12,8 +12,10 @@
 #'  *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  See argument details for
 #'  more.
 #' @param dsn A file path where the resulting text file should be stored.
-#' @param file_out A file name for the resulting text file, _e.g._ "ICASA.txt".
-#' A ".txt" extension will be appended if not or otherwise specified by user.
+#'
+#' @param file_out A file name for the resulting text file, _e.g._
+#'  "Kingsthorpe.met". Also, a ".met" extension will be appended if given or
+#'  otherwise specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
 #' \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
@@ -64,8 +66,8 @@
 #'
 create_met <- function(lonlat,
                        dates,
-                       dsn = NULL,
-                       file_out = NULL) {
+                       dsn,
+                       file_out) {
 
   if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
     stop(
@@ -73,16 +75,6 @@ create_met <- function(lonlat,
       "The `lonlat` must be numeric values. Global coverage is not ",
       "available for `create_met()`"
     )
-  }
-
-  if (is.null(file_out) | is.null(dsn)) {
-    message(
-      call. = FALSE,
-      "You you have not specifed a name or disk location defaulting to",
-      path.expand("~"), "/APSIM.met."
-    )
-    file_out <- "APSIM.met"
-    dsn <- path.expand("~")
   }
 
   if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".met") {

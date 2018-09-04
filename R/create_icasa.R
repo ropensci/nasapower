@@ -12,8 +12,9 @@
 #'  *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  See argument details for
 #'  more.
 #' @param dsn A file path where the resulting text file should be stored.
-#' @param file_out A file name for the resulting text file, _e.g._ "ICASA.txt".
-#' A ".txt" extension will be appended if not or otherwise specified by user.
+#' @param file_out A file name for the resulting text file, _e.g._
+#'  "Kingsthorpe.txt".A ".txt" extension will be appended if not or otherwise
+#'  specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
 #' queryies the POWER API and writes a DSSAT ICASA weather file to disk. All
@@ -73,16 +74,6 @@ create_icasa <- function(lonlat,
       "The `lonlat` must be numeric values. Global coverage is not ",
       "available for `create_icasa()`"
     )
-  }
-
-  if (is.null(file_out) | is.null(dsn)) {
-    message(
-      call. = FALSE,
-      "You you have not specifed a name or disk location defaulting to",
-      path.expand("~"), "/ICASA.txt."
-    )
-    file_out <- "ICASA.txt"
-    dsn <- path.expand("~")
   }
 
   if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
