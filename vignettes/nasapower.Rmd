@@ -135,7 +135,9 @@ data for use in the APSIM modelling framework.
 
 ```{r create_met, eval=FALSE}
 create_met(lonlat = c(151.81, -27.48),
-           dates = c("1985-01-01", "1985-12-31"))
+           dates = c("1985-01-01", "1985-12-31"),
+           dsn = "~/Documents",
+           file_out = "Kingsthorpe.met")
 ```
 
 Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
@@ -175,7 +177,7 @@ for use in DSSAT modelling.
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
              dsn = "~/Documents",
-             file_out = "ICASA.txt")
+             file_out = "Kingsthorpe_ICASA.txt")
 ```
 
 Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and

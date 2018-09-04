@@ -261,7 +261,9 @@ power
 </h2>
 <p>The <code><a href="../reference/create_met.html">create_met()</a></code> function wraps <code><a href="../reference/get_power.html">get_power()</a></code>, <code>prepareMet()</code> and <code>writeMet()</code> from the <em>APSIM</em> package to simplify creating .met files from POWER data for use in the APSIM modelling framework.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
-           <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>))</code></pre></div>
+           <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
+           <span class="dt">dsn =</span> <span class="st">"~/Documents"</span>,
+           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)</code></pre></div>
 <p>Four arguments are passed to this function, <code>lonlat</code>, <code>dates</code>, <code>dsn</code> and <code>file_out</code>.</p>
 <ul>
 <li><code>lonlat</code></li>
@@ -281,7 +283,7 @@ power
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
              <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
              <span class="dt">dsn =</span> <span class="st">"~/Documents"</span>,
-             <span class="dt">file_out =</span> <span class="st">"ICASA.txt"</span>)</code></pre></div>
+             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</code></pre></div>
 <p>Four arguments are passed to this function, <code>lonlat</code>, <code>dates</code>, <code>dsn</code> and <code>file_out</code>.</p>
 <ul>
 <li><code>lonlat</code></li>

@@ -54,7 +54,9 @@
 #'
 #' \dontrun{
 #' create_met(lonlat = c(151.81, -27.48),
-#'            dates = c("1985-01-01", "1985-12-31")
+#'            dates = c("1985-01-01", "1985-12-31"),
+#'            dsn = "~/Documents",
+#'            file = "Kingsthorpe.met"
 #' )
 #' }
 #'
@@ -83,8 +85,8 @@ create_met <- function(lonlat,
     dsn <- path.expand("~")
   }
 
-  if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
-    file_out <- paste0(file_out, ".txt")
+  if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".met") {
+    file_out <- paste0(file_out, ".met")
   }
 
   power_data <- as.data.frame(

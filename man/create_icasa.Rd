@@ -66,7 +66,7 @@ the end date and only a single day's values will be returned.
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
              dsn = "~/Documents",
-             file = "ICASA.txt"
+             file = "Kingsthorpe.txt"
 )
 }
 
