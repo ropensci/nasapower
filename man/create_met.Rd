@@ -13,6 +13,11 @@ entered as x, y coordinates.  See argument details for more.}
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  See argument details for
 more.}
+
+\item{dsn}{A file path where the resulting text file should be stored.}
+
+\item{file_out}{A file name for the resulting text file, \emph{e.g.} "ICASA.txt".
+A ".txt" extension will be appended if not or otherwise specified by user.}
 }
 \description{
 Get NASA-POWER values for a single point or region and create
@@ -21,8 +26,9 @@ crop modelling saving it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
-and \code{\link[APSIM]{prepareMet}} that simplifies the querying of the
-POWER API and returns an \code{\link[APSIM]{metFile}} class object.
+\code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMet}} that
+simplifies the querying of the POWER API and returns an
+\code{\link[APSIM]{metFile}} class object.
 
 The weather values from POWER for temperature are 2 metre max and min
 temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,

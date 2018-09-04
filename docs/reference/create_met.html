@@ -148,13 +148,23 @@ entered as x, y coordinates.  See argument details for more.</p></td>
 <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  See argument details for
 more.</p></td>
     </tr>
+    <tr>
+      <th>dsn</th>
+      <td><p>A file path where the resulting text file should be stored.</p></td>
+    </tr>
+    <tr>
+      <th>file_out</th>
+      <td><p>A file name for the resulting text file, <em>e.g.</em> "ICASA.txt".
+A ".txt" extension will be appended if not or otherwise specified by user.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
-and <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> that simplifies the querying of the
-POWER API and returns an <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/metFile-class'>metFile</a></code> class object.</p>
+<code><a href='http://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> and <code>writeMet</code> that
+simplifies the querying of the POWER API and returns an
+<code><a href='http://www.rdocumentation.org/packages/APSIM/topics/metFile-class'>metFile</a></code> class object.</p>
 <p>The weather values from POWER for temperature are 2 metre max and min
 temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,
 PRECTOT from the POWER AG community on a daily time-step.</p>
