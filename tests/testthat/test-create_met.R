@@ -26,3 +26,15 @@ test_that("create_met creates a .met file for APSIM use", {
     expect_equal(nchar(met)[[14]], 28)
   })
 })
+
+test_that("create_met creates assigns a .met extension if not provided", {
+  vcr::use_cassette("create_icasa_assign_extension", {
+    create_met(
+      lonlat = c(151.81, -27.48),
+      dates = c("1983-01-01"),
+      file_out = "test",
+      dsn = tempdir()
+    )
+    expect_true(any(grepl("test.met", list.files(tempdir()))))
+  })
+})
