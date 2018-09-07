@@ -32,10 +32,10 @@ installed using the following code:
 ```r
 if (!require(remotes)) {
   install.packages("remotes")
-  library(remotes)
 }
 
-install_github("adamhsparks/nasapower", build_vignettes = TRUE)
+install_github("adamhsparks/nasapower",
+               build_vignettes = TRUE)
 ```
 
 ## Documentation
