@@ -20,7 +20,7 @@ test_that("create_icasa creates a txt file with proper values", {
     create_icasa(
       lonlat = c(151.81, -27.48),
       dates = c("1983-01-01"),
-      file_out = "icasa.txt",
+      file_out = "icasa",
       dsn = tempdir()
     )
     icasa <- readLines(file.path(tempdir(), "icasa.txt"))
@@ -28,18 +28,5 @@ test_that("create_icasa creates a txt file with proper values", {
     expect_equal(length(icasa), 16)
     expect_equal(nchar(icasa)[[1]], 47)
     expect_equal(nchar(icasa)[[16]], 73)
-  })
-})
-
-
-test_that("create_icasa creates assigns a .txt extension if not provided", {
-  vcr::use_cassette("create_icasa_assign_extension", {
-    create_icasa(
-      lonlat = c(151.81, -27.48),
-      dates = c("1983-01-01"),
-      file_out = "icasa",
-      dsn = tempdir()
-    )
-    expect_true(any(grepl("icasa.txt", list.files(tempdir()))))
   })
 })
