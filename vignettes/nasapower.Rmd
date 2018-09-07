@@ -134,13 +134,6 @@ The `create_met()` function wraps `get_power()`, `prepareMet()` and
 `writeMet()` from the _APSIM_ package to simplify creating .met files from POWER
 data for use in the APSIM modelling framework.
 
-```{r create_met, eval=FALSE}
-create_met(lonlat = c(151.81, -27.48),
-           dates = c("1985-01-01", "1985-12-31"),
-           dsn = "~/Documents",
-           file_out = "Kingsthorpe.met")
-```
-
 Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
 `file_out`.
 
@@ -165,22 +158,22 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
     
 - `file_out`, a file name for the resulting text file written to disk.
    If none is provided, defaults to "APSIM.met"
-
+   
 Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling
 and save it to local disk for use in APSIM modelling.
+
+```{r create_met, eval=FALSE}
+create_met(lonlat = c(151.81, -27.48),
+           dates = c("1985-01-01", "1985-12-31"),
+           dsn = "~/Documents",
+           file_out = "Kingsthorpe.met")
+```
 
 ## Using `create_icasa`
 
 The `create_icasa()` simplifies a `get_power()` query to create an ICASA file
 for use in DSSAT modelling.
-
-```{r create_icasa, eval=FALSE}
-create_icasa(lonlat = c(151.81, -27.48),
-             dates = c("1985-01-01", "1985-12-31"),
-             dsn = "~/Documents",
-             file_out = "Kingsthorpe_ICASA.txt")
-```
 
 Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
 `file_out`.
@@ -208,7 +201,15 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
    If none is provided, defaults to "ICASA.txt"
 
 Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
-create an ICASA text file suitable for use in DSSAT for crop modelling.
+create an ICASA text file suitable for use in DSSAT for crop modelling and save
+it to local disk.
+
+```{r create_icasa, eval=FALSE}
+create_icasa(lonlat = c(151.81, -27.48),
+             dates = c("1985-01-01", "1985-12-31"),
+             dsn = "~/Documents",
+             file_out = "Kingsthorpe_ICASA.txt")
+```
 
 ## Creating Spatial Objects from `get_power`
 

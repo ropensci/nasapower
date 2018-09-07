@@ -252,10 +252,6 @@ power
 <a href="#using-create_met" class="anchor"></a>Using <code>create_met</code>
 </h2>
 <p>The <code><a href="../reference/create_met.html">create_met()</a></code> function wraps <code><a href="../reference/get_power.html">get_power()</a></code>, <code>prepareMet()</code> and <code>writeMet()</code> from the <em>APSIM</em> package to simplify creating .met files from POWER data for use in the APSIM modelling framework.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
-           <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
-           <span class="dt">dsn =</span> <span class="st">"~/Documents"</span>,
-           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)</code></pre></div>
 <p>Four arguments are passed to this function, <code>lonlat</code>, <code>dates</code>, <code>dsn</code> and <code>file_out</code>.</p>
 <ul>
 <li>
@@ -266,20 +262,20 @@ power
 </ul>
 </li>
 <li><p><code>dates</code>, a vector of start and end dates for which to query the NASA-POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</p></li>
-<li><p><code>dsn</code>, an optional file path to the directory for writing the resulting file, <em>.e.g.</em>, “~/Documents”. If none is given, defaults to user’s home directory.</p></li>
-<li><p><code>file_out</code>, an optional file name for the resulting text file written to disk. If none is provided, defaults to “APSIM.met”</p></li>
+<li><p><code>dsn</code>, a file path to the directory for writing the resulting file, <em>.e.g.</em>, “~/Documents”. If none is given, defaults to user’s home directory.</p></li>
+<li><p><code>file_out</code>, a file name for the resulting text file written to disk. If none is provided, defaults to “APSIM.met”</p></li>
 </ul>
 <p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an APSIM weather.met object suitable for use in APSIM for crop modelling and save it to local disk for use in APSIM modelling.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
+           <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
+           <span class="dt">dsn =</span> <span class="st">"~/Documents"</span>,
+           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)</code></pre></div>
 </div>
 <div id="using-create_icasa" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-create_icasa" class="anchor"></a>Using <code>create_icasa</code>
 </h2>
 <p>The <code><a href="../reference/create_icasa.html">create_icasa()</a></code> simplifies a <code><a href="../reference/get_power.html">get_power()</a></code> query to create an ICASA file for use in DSSAT modelling.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
-             <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
-             <span class="dt">dsn =</span> <span class="st">"~/Documents"</span>,
-             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</code></pre></div>
 <p>Four arguments are passed to this function, <code>lonlat</code>, <code>dates</code>, <code>dsn</code> and <code>file_out</code>.</p>
 <ul>
 <li>
@@ -290,10 +286,14 @@ power
 </ul>
 </li>
 <li><p><code>dates</code>, a vector of start and end dates for which to query the NASA-POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</p></li>
-<li><p><code>dsn</code>, an optional file path to the directory for writing the resulting file, <em>.e.g.</em>, “~/Documents”. If none is given, defaults to user’s home directory.</p></li>
-<li><p><code>file_out</code>, an optional file name for the resulting text file written to disk. If none is provided, defaults to “ICASA.txt”</p></li>
+<li><p><code>dsn</code>, a file path to the directory for writing the resulting file, <em>.e.g.</em>, “~/Documents”. If none is given, defaults to user’s home directory.</p></li>
+<li><p><code>file_out</code>, a file name for the resulting text file written to disk. If none is provided, defaults to “ICASA.txt”</p></li>
 </ul>
-<p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an ICASA text file suitable for use in DSSAT for crop modelling.</p>
+<p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an ICASA text file suitable for use in DSSAT for crop modelling and save it to local disk.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
+             <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
+             <span class="dt">dsn =</span> <span class="st">"~/Documents"</span>,
+             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</code></pre></div>
 </div>
 <div id="creating-spatial-objects-from-get_power" class="section level2">
 <h2 class="hasAnchor">
