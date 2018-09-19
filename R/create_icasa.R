@@ -13,7 +13,7 @@
 #'  more.
 #' @param dsn A file path where the resulting text file should be stored.
 #' @param file_out A file name for the resulting text file, _e.g._
-#'  "Kingsthorpe.txt".A ".txt" extension will be appended if not or otherwise
+#'  "Kingsthorpe.txt".  A ".txt" extension will be appended if not or otherwise
 #'  specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
@@ -64,12 +64,17 @@
 #'
 create_icasa <- function(lonlat,
                          dates,
-                         dsn = NULL,
-                         file_out = NULL) {
+                         dsn,
+                         file_out) {
+
+  if (missing(dsn) || missing(file_out)) {
+    stop(call. = FALSE,
+         "You must provide a file location, `dsn` and file name, `file_out`.")
+  }
 
   temporal_average <- "DAILY"
   pars <- c("T2M") # this is a dummy variable to check lonlat values,
-                   # POWER will automatically select the proper pars for query
+  # POWER will automatically select the proper pars for query
 
   if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
     stop(

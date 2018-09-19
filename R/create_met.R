@@ -14,7 +14,7 @@
 #' @param dsn A file path where the resulting text file should be stored.
 #'
 #' @param file_out A file name for the resulting text file, _e.g._
-#'  "Kingsthorpe.met". Also, a ".met" extension will be appended if given or
+#'  "Kingsthorpe.met". A ".met" extension will be appended if given or
 #'  otherwise specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
@@ -72,6 +72,11 @@ create_met <- function(lonlat,
                        dates,
                        dsn,
                        file_out) {
+
+  if (missing(dsn) || missing(file_out)) {
+    stop(call. = FALSE,
+         "You must provide a file location, `dsn` and file name, `file_out`.")
+  }
 
   if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
     stop(

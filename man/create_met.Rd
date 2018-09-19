@@ -17,7 +17,7 @@ more.}
 \item{dsn}{A file path where the resulting text file should be stored.}
 
 \item{file_out}{A file name for the resulting text file, \emph{e.g.}
-"Kingsthorpe.met". Also, a ".met" extension will be appended if given or
+"Kingsthorpe.met". A ".met" extension will be appended if given or
 otherwise specified by user.}
 }
 \value{

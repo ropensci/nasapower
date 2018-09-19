@@ -4,7 +4,7 @@
 \alias{create_icasa}
 \title{Create a DSSAT ICASA File from NASA - POWER Data}
 \usage{
-create_icasa(lonlat, dates, dsn = NULL, file_out = NULL)
+create_icasa(lonlat, dates, dsn, file_out)
 }
 \arguments{
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -17,7 +17,7 @@ more.}
 \item{dsn}{A file path where the resulting text file should be stored.}
 
 \item{file_out}{A file name for the resulting text file, \emph{e.g.}
-"Kingsthorpe.txt".A ".txt" extension will be appended if not or otherwise
+"Kingsthorpe.txt".  A ".txt" extension will be appended if not or otherwise
 specified by user.}
 }
 \value{
