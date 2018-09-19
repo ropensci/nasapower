@@ -20,6 +20,10 @@ more.}
 "Kingsthorpe.met". Also, a ".met" extension will be appended if given or
 otherwise specified by user.}
 }
+\value{
+A text file in .met format saved to local disk for use in APSIM crop
+modelling.
+}
 \description{
 Get NASA-POWER values for a single point or region and create
 an APSIM \code{\link[APSIM]{metFile}} file suitable for use in APSIM for
@@ -65,13 +69,14 @@ the end date and only a single day's values will be returned.
 }
 
 \examples{
-# Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
+# Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
+# save it in the current R session tempdir as "APSIM_example.met".
 
 \dontrun{
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
-           dsn = "~/Documents",
-           file = "Kingsthorpe.met"
+           dsn = tmpdir(),
+           file = "APSIM_example.met"
 )
 }
 
