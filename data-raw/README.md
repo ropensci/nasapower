@@ -18,7 +18,7 @@ Using `jsonlite` read the JSON file into R creating a list.
 ``` r
 parameters <-
   jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json"
+    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json"
   )
 ```
 
