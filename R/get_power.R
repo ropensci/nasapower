@@ -113,6 +113,10 @@ get_power <- function(community,
   if (!is.null(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
+  if (!is.logical(meta)) {
+    stop(call. = FALSE,
+         "`meta` is a logical argument, please enter `meta = TRUE` or `FALSE`.")
+  }
   community <- toupper(community)
 
     # user input checks and formatting -------------------------------------------
