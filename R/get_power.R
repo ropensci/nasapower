@@ -63,8 +63,8 @@
 #'  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
 #'  *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
-#'  `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
-#'  degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.}
+#'  `lonlat = c(112.5, -55.5, 115.5, -50.5)`.
+#'  *Maximum area processed is 4.5 x 4.5 degrees (100 points).}
 #'
 #'  \item{For global coverage}{To get global coverage for long term
 #'  monthly averages for the entire globe use `Global` in place of
@@ -77,24 +77,45 @@
 #'  values will be returned.
 #'
 #' @section Argument details for `temporal_average`: There are three valid
-#'  values, one must be supplied. \describe{ \item{DAILY}{The daily average of
-#'  `pars` by year.} \item{INTERANNUAL}{The monthly average of `pars` by year.}
-#'  \item{CLIMATOLOGY}{The monthly average of `pars` at the surface of the earth
-#'  for a given month, averaged for that month over the 30-year period (Jan.
-#'  1984 - Dec. 2013).} }
+#'  values, one must be supplied.
+#'  \describe{
+#'   \item{DAILY}{The daily average of `pars` by year.}
+#'   \item{INTERANNUAL}{The monthly average of `pars` by year.}
+#'   \item{CLIMATOLOGY}{The monthly average of `pars` at the surface of the
+#'    earth for a given month, averaged for that month over the 30-year period
+#'     (Jan. 1984 - Dec. 2013).}
+#'  }
 #'
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 #'
 #' @examples
-#' # Fetch temperature and relative humidity for January 1 1985
-#'
 #' \dontrun{
-#' power <- get_power(community = "AG",
+#' # Fetch daily "AG" community temperature, relative humidity and precipitation
+#'  for January 1 1985
+#'
+#' daily_ag <- get_power(community = "AG",
 #'                    lonlat = c(-179.5, -89.5),
-#'                    pars = c("RH2M", "T2M"),
+#'                    pars = c("RH2M", "T2M", "PRECTOT"),
 #'                    dates = "1985-01-01",
 #'                    temporal_average = "DAILY")
+#'
+#' # Fetch global AG climatology for temperature, relative humidty and
+#' precipitation
+#'
+#' climatology_ag <- get_power(community = "AG",
+#'                             lonlat = "GLOBAL",
+#'                             pars = c("RH2M", "T2M", "PRECTOT"))
+#'
+#'
+#' # Fetch interannaul solar cooking parameters for a given region
+#' interannual_sse <- get_power(
+#'   community = "SSE",
+#' lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
+#' dates = c("1984", "1985"),
+#' temporal_average = "INTERANNUAL",
+#' pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN"))
+#'
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
