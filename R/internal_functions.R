@@ -29,80 +29,83 @@ check_dates <- function(dates, lonlat, temporal_average) {
          "\nYou have not entered dates for the query.\n")
   }
 
-  if (is.numeric(lonlat)) {
-    if (length(dates) == 1) {
-      dates <- c(dates, dates)
-    }
-    if (length(dates) > 2) {
-      stop(call. = FALSE,
-           "\nYou have supplied more than two dates for start and end dates.\n")
-    }
-
-    # put dates in list to use lapply
-    dates <- as.list(dates)
-
-    # check dates as entered by user
-    date_format <- function(x) {
-      tryCatch(
-        # try to parse the date format using lubridate
-        x <- lubridate::parse_date_time(x,
-                                        c(
-                                          "Ymd",
-                                          "dmY",
-                                          "mdY",
-                                          "BdY",
-                                          "Bdy",
-                                          "bdY",
-                                          "bdy"
-                                        )),
-        warning = function(c) {
-          stop(call. = FALSE,
-               "\n",
-               x,
-               " is not a valid entry for date. Enter as YYYY-MM-DD.\n")
-        }
-      )
-      return(as.Date(x))
-    }
-
-    # apply function to reformat/check dates
-    dates <- lapply(X = dates, FUN = date_format)
-
-    # if the stdate is > endate, flip order
-    if (dates[[2]] < dates[[1]]) {
-      message("\nYour start and end dates were reversed. ",
-              "They have been reordered.\n")
-      dates <- as.list(c(dates[2], dates[1]))
-    }
-
-    # check date to be sure it's not before POWER data start
-    if (dates[[1]] < "1981-01-01") {
-      stop(call. = FALSE,
-           "\n1981-01-01 is the earliest available data possible from POWER.\n")
-    }
-
-    # check end date to be sure it's not _after_
-    if (dates[[2]] > Sys.Date()) {
-      stop(call. = FALSE,
-           "\nThe data cannot possibly extend beyond this moment.\n")
-    }
-
-    dates <- lapply(dates, as.character)
-    dates <- gsub("-", "" , dates, ignore.case = TRUE)
+  if (temporal_average == "INTERANNUAL" & any(nchar(dates) > 4)) {
+    dates <- unique(substr(dates, 1, 4))
+    message("\nOnly years are used with `temporal_average = INTERANNUAL`. ",
+            "The dates have been set to ", dates[1], " ", dates[2], ".\n")
   }
 
   if (temporal_average == "INTERANNUAL" &&
       length(unique(substr(dates, 1, 4))) < 2) {
     stop(call. = FALSE,
-         "\nFor `temporal_average == INTERANNUAL`, at least two (2) years ",
-         "are required to be given.\n")
+         "\nFor `temporal_average = INTERANNUAL`, at least two (2) years ",
+         "are required to be provided.\n")
   }
 
-  if (temporal_average == "INTERANNUAL" & any(nchar(dates) > 4)) {
-    dates <- unique(substr(dates, 1, 4))
-    message("\nOnly years are used with INTERANNUAL temporal average. ",
-            "The dates have been set to ", dates[1], " ", dates[2], ".\n")
+  if (temporal_average == "DAILY") {
+    if (is.numeric(lonlat)) {
+      if (length(dates) == 1) {
+        dates <- c(dates, dates)
+      }
+      if (length(dates) > 2) {
+        stop(call. = FALSE,
+             "\nYou have supplied more than two dates for start and end.\n")
+      }
+
+      # put dates in list to use lapply
+      dates <- as.list(dates)
+
+      # check dates as entered by user
+      date_format <- function(x) {
+        tryCatch(
+          # try to parse the date format using lubridate
+          x <- lubridate::parse_date_time(x,
+                                          c(
+                                            "Ymd",
+                                            "dmY",
+                                            "mdY",
+                                            "BdY",
+                                            "Bdy",
+                                            "bdY",
+                                            "bdy"
+                                          )),
+          warning = function(c) {
+            stop(call. = FALSE,
+                 "\n",
+                 x,
+                 " is not a valid entry for date. Enter as YYYY-MM-DD.\n")
+          }
+        )
+        return(as.Date(x))
+      }
+
+      # apply function to reformat/check dates
+      dates <- lapply(X = dates, FUN = date_format)
+
+      # if the stdate is > endate, flip order
+      if (dates[[2]] < dates[[1]]) {
+        message("\nYour start and end dates were reversed. ",
+                "They have been reordered.\n")
+        dates <- as.list(c(dates[2], dates[1]))
+      }
+
+      # check date to be sure it's not before POWER data start
+      if (dates[[1]] < "1981-01-01") {
+        stop(call. = FALSE,
+             "\n1981-01-01 is the earliest available data possible from POWER.\n")
+      }
+
+      # check end date to be sure it's not _after_
+      if (dates[[2]] > Sys.Date()) {
+        stop(call. = FALSE,
+             "\nThe data cannot possibly extend beyond this moment.\n")
+      }
+
+      dates <- lapply(dates, as.character)
+      dates <- gsub("-", "" , dates, ignore.case = TRUE)
+    }
   }
+
   return(dates)
 }
 
@@ -134,10 +137,10 @@ check_pars <-
     if (!is.numeric(lonlat) &
         !is.null(temporal_average) &
         temporal_average != "CLIMATOLOGY") {
-        message(
-          "\nGlobal data are only available for Climatology.\n",
-          "\nSetting `temporal_average` to `CLIMATOLOGY`.\n"
-        )
+      message(
+        "\nGlobal data are only available for Climatology.\n",
+        "\nSetting `temporal_average` to `CLIMATOLOGY`.\n"
+      )
     }
 
     if (is.character(lonlat)) {
