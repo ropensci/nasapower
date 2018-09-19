@@ -148,3 +148,15 @@ test_that("get_power returns global AG data for climatology", {
     rm(power_query)
   })
 })
+
+# test `meta` argument checking ------------------------------------------------
+
+context("Test that `meta` can only be logical")
+test_that("`get_power()` correctly handles `meta` flag if not logical", {
+  expect_error(get_power(community = "AG",
+                     lonlat = c(-179.5, -89.5),
+                     pars = c("RH2M", "T2M"),
+                     dates = "1985-01-01",
+                     temporal_average = "DAILY",
+                     meta = 5))
+})
