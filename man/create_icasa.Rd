@@ -20,6 +20,10 @@ more.}
 "Kingsthorpe.txt".A ".txt" extension will be appended if not or otherwise
 specified by user.}
 }
+\value{
+A text file in ICASA format saved to local disk for use in DSSAT crop
+modelling.
+}
 \description{
 Get NASA-POWER values for a single point or region and create
 an ICASA format text file suitable for use in DSSAT for crop modelling saving
@@ -61,13 +65,13 @@ the end date and only a single day's values will be returned.
 
 \examples{
 # Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in "Documents".
+# save it in R `tempdir` as "ICASA_example.txt".
 
 \dontrun{
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
-             dsn = "~/Documents",
-             file = "Kingsthorpe.txt"
+             dsn = tempdir(),
+             file = ICASA_example.txt
 )
 }
 

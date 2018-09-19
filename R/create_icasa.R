@@ -45,15 +45,18 @@
 #'  If one date only is provided, it will be treated as both the start date and
 #'  the end date and only a single day's values will be returned.
 #'
+#' @return A text file in ICASA format saved to local disk for use in DSSAT crop
+#'  modelling.
+#'
 #' @examples
 #' # Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-#' # save it in "Documents".
+#' # save it in R `tempdir` as "ICASA_example.txt".
 #'
 #' \dontrun{
 #' create_icasa(lonlat = c(151.81, -27.48),
 #'              dates = c("1985-01-01", "1985-12-31"),
-#'              dsn = "~/Documents",
-#'              file = "Kingsthorpe.txt"
+#'              dsn = tempdir(),
+#'              file = ICASA_example.txt
 #' )
 #' }
 #'
