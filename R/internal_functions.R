@@ -76,9 +76,9 @@ check_dates <- function(dates, lonlat, temporal_average) {
     }
 
     # check date to be sure it's not before POWER data start
-    if (dates[[1]] < "1983-01-01") {
+    if (dates[[1]] < "1981-01-01") {
       stop(call. = FALSE,
-           "\nNASA-POWER data do not start before 1983-01-01.\n")
+           "\n1981-01-01 is the earliest available data possible from POWER.\n")
     }
 
     # check end date to be sure it's not _after_
