@@ -20,7 +20,7 @@ for pointing me to this file.
 
 Using `jsonlite` read the JSON file into R creating a list.
 
-```{r fetch_JSON}
+```{r fetch-JSON}
 parameters <-
   jsonlite::fromJSON(
     "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json"
@@ -29,7 +29,7 @@ parameters <-
 
 Replace UTF-8 characters in the dataset since R doesn't like this in packages.
 
-```{r, replace_utf}
+```{r, replace-utf}
 parameters$SG_DEC_AVG$climatology_definition <-
   gsub("°",
        " degrees",
@@ -46,17 +46,34 @@ parameters$SG_NOON$climatology_definition <-
        parameters$SG_NOON$climatology_definition)
 ```
 
+## View list of parameters
+
+The following list has the format:
+```
+## $PARAMETER_NAME
+## [1] "standard_name"
+```
+
+Where `PARAMETER_NAME` is used in the internal `parameters` list. The
+`"standard_name"` is a longer, more descriptive name for the parameter that may
+be more instructive to users.
+
+```{r view-list}
+purrr::map(parameters, "standard_name")
+```
+
+
 ## Save list for use in `nasapower` package
 
 Using `devtools` to save the list as an R data object for use in the
 `nasapower` package.
 
-```{r save_list, message=FALSE}
+```{r save-list, message=FALSE}
 devtools::use_data(parameters, overwrite = TRUE)
 ```
 
 ## Session Info
 
-```{r session_info}
+```{r session-info}
 sessioninfo::session_info()
 ```
