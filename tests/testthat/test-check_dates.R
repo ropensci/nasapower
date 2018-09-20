@@ -107,6 +107,6 @@ test_that(
     dates <- c("1983-01-01")
     lonlat <- c(-179.5, -89.5)
     expect_error(check_dates(dates, lonlat, temporal_average),
-                   regexp = "*\nFor `temporal_average = INTERANNUAL`, *)
+                   regexp = "*\nFor `temporal_average = INTERANNUAL`, *")
   }
 )

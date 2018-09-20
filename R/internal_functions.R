@@ -29,17 +29,16 @@ check_dates <- function(dates, lonlat, temporal_average) {
          "\nYou have not entered dates for the query.\n")
   }
 
+  if (temporal_average == "INTERANNUAL" & length(unique(dates)) < 2) {
+    stop(call. = FALSE,
+         "\nFor `temporal_average = INTERANNUAL`, at least two (2) years ",
+         "are required to be provided.\n")
+  }
+
   if (temporal_average == "INTERANNUAL" & any(nchar(dates) > 4)) {
     dates <- unique(substr(dates, 1, 4))
     message("\nOnly years are used with `temporal_average = INTERANNUAL`. ",
             "The dates have been set to ", dates[1], " ", dates[2], ".\n")
-  }
-
-  if (temporal_average == "INTERANNUAL" &&
-      length(unique(substr(dates, 1, 4))) < 2) {
-    stop(call. = FALSE,
-         "\nFor `temporal_average = INTERANNUAL`, at least two (2) years ",
-         "are required to be provided.\n")
   }
 
   if (temporal_average == "DAILY") {
