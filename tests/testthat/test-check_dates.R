@@ -99,3 +99,14 @@ test_that(
                    regexp = "*Only years are used with `temporal_average*")
   }
 )
+
+test_that(
+  "If temporal_average == INTERANNUAL and <2 dates provided, error",
+  {
+    temporal_average <- "INTERANNUAL"
+    dates <- c("1983-01-01")
+    lonlat <- c(-179.5, -89.5)
+    expect_error(check_dates(dates, lonlat, temporal_average),
+                   regexp = "*Only years are used with `temporal_average*")
+  }
+)
