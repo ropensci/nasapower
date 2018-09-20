@@ -374,9 +374,9 @@ power_query <- function(community,
     )
   }
 
-  # parse to an R list
+  # send the query
   tryCatch({
-    response <- client$get(query = query_list)
+    response <- client$get(query = query_list, retry = 5)
   }, # nocov start
   error = function(e) {
     e$message <-
@@ -386,7 +386,7 @@ power_query <- function(community,
     stop(e)
   }) # nocov end
 
-  # read resulting CSV file
+  # read (hopefully) resulting CSV file
   tryCatch({
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
