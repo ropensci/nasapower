@@ -6,7 +6,9 @@ test_that("create_met stops if user specifies global coverage", {
     expect_error(
       power_query <- create_met(
         lonlat = "global",
-        dates = c("1983-01-01")
+        dates = c("1983-01-01"),
+        dsn = tempdir(),
+        file_out = tmpfile.txt
       ), regexp = "*The `lonlat` must be numeric values.*"
     )
   })

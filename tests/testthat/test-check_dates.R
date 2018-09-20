@@ -50,10 +50,10 @@ test_that("`dates` entered in reverse order are corrected", {
 test_that("`dates` before the start of POWER data cause error", {
   temporal_average <- "DAILY"
   today <- as.character(Sys.Date())
-  dates <- c("1982-12-31", today)
+  dates <- c("1979-12-31", today)
   lonlat <- c(-179.5, -89.5)
   expect_error(check_dates(dates, lonlat, temporal_average),
-               regexp = "*NASA-POWER data do not start before 1983-01-01*")
+               regexp = "*1981-01-01 is the earliest available data possible*")
 })
 
 test_that("`dates` after today POWER cause error", {
@@ -96,18 +96,6 @@ test_that(
     dates <- c("1983-01-01", "1984-01-01")
     lonlat <- c(-179.5, -89.5)
     expect_message(check_dates(dates, lonlat, temporal_average),
-                   regexp = "*Only years are used with INTERANNUAL temporal.*")
-  }
-)
-
-test_that(
-  "If temporal_average == INTERANNUAL and dates are specified, that
-  a message is emitted about years only",
-  {
-    temporal_average <- "INTERANNUAL"
-    dates <- c("1983-01-01", "1983-02-02")
-    lonlat <- c(-179.5, -89.5)
-    expect_error(check_dates(dates, lonlat, temporal_average),
-                 regexp = "*For `temporal_average == INTERANNUAL`,*")
+                   regexp = "*Only years are used with `temporal_average*")
   }
 )
