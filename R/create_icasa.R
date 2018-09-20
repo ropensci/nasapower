@@ -104,7 +104,6 @@ create_icasa <- function(lonlat,
                      lonlat_identifier,
                      pars,
                      dates = dates,
-                     meta = FALSE,
                      outputList = "ICASA")
 
   file_out <- file.path(dsn, file_out)

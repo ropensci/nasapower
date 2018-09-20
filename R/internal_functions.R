@@ -319,7 +319,6 @@ power_query <- function(community,
                         lonlat_identifier,
                         pars,
                         dates,
-                        meta,
                         outputList) {
   power_url <- # nocov start
     "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
@@ -397,27 +396,38 @@ power_query <- function(community,
                            destfile = power_data,
                            mode = "wb",
                            quiet = TRUE)
-      if (isTRUE(meta)) {
-        meta <- readLines(power_data,
-                          pars$skip_lines)
-        meta <- gsub(pattern = "-99",
-                     replacement = "NA",
-                     x = meta)
 
-        NASA <- readr::read_csv(power_data,
-                                col_types = readr::cols(),
-                                na = "-99",
-                                skip = pars$skip_lines)
-
-        NASA <- list(meta, NASA)
-        names(NASA) <- c("POWER_meta", "POWER_data")
-        return(NASA)
-      }
+      meta <- readLines(power_data,
+                        pars$skip_lines)
+      meta <- meta[-c(1, pars$skip_lines)] #remove "HEADER ..." lines
+      meta <- gsub(pattern = "-99",
+                   replacement = "NA",
+                   x = meta)
 
       NASA <- readr::read_csv(power_data,
                               col_types = readr::cols(),
                               na = "-99",
                               skip = pars$skip_lines)
+
+      # put lon before lat (x, y format)
+      NASA <- NASA[, c(2, 1, 3:ncol(NASA))]
+
+      # if the temporal average is anything but climatology, add date fields
+      if (pars$temporal_average != "CLIMATOLOGY") {
+        NASA <- .format_dates(NASA)
+      }
+
+      attr(NASA, "class") <- c("POWER.Info", "data.frame")
+
+      # add attributes for printing df
+      attr(NASA, "POWER.Info") <- meta[1]
+      attr(NASA, "POWER.Dates") <- meta[2]
+      attr(NASA, "POWER.Location") <- meta[3]
+      attr(NASA, "POWER.Elevation") <- meta[4]
+      attr(NASA, "POWER.Climate_zone") <- meta[5]
+      attr(NASA, "POWER.Missing_value") <- meta[6]
+      attr(NASA, "POWER.Parameters") <- meta[8:length(meta)]
+
     } else {
       utils::download.file(txt$output$icasa,
                            destfile = power_data,
@@ -442,8 +452,23 @@ power_query <- function(community,
   })
 }
 
+#' @export
+print.POWER.Info <- function(x, ...) {
+  if (!is.null(attr(x, "POWER.Info"))) {
+    cat(attr(x, "POWER.Info"), "\n",
+        attr(x, "POWER.Dates"), "\n",
+        attr(x, "POWER.Location"), "\n",
+        attr(x, "POWER.Elevation"), "\n",
+        attr(x, "POWER.Climate_zone"), "\n",
+        attr(x, "POWER.Missing_value"), "\n",
+        attr(x, "POWER.Parameters"), "\n",
+        "\n")
+  }
+  print.data.frame(x, row.names = FALSE)
+}
+
 #' @noRd
-format_dates <- function(NASA) {
+.format_dates <- function(NASA) {
   # convert DOY to integer
   NASA$DOY <- as.integer(NASA$DOY)
 

@@ -33,47 +33,7 @@ the POWER data for use in the Agricultural Production Systems sIMulator (APSIM).
 
 ## Using `get_power`
 
-The `get_power()` function requires five arguments as seen in this example,
-the `meta` parameter is optional. If set to `TRUE` a `list` object is returned.
-The first object's name is `POWER_meta`, the second object's name is
-`POWER_data`. If set to `FALSE`, the default setting, a single `tibble` object with data is returned.
-
-### Setting `meta` to `TRUE`
-
-```{r example_1, eval=TRUE}
-power <- get_power(community = "AG",
-                   lonlat = c(179.5, -89.5),
-                   pars = c("RH2M", "T2M"),
-                   dates = c("1985-01-01", "1985-12-31"),
-                   temporal_average = "DAILY",
-                   meta = TRUE)
-
-power
-```
-
-#### Accessing objects within the list
-
-To access items in the list, you use the `$` to access the item by name.
-
-```{r access_list_items_1, eval=TRUE}
-power$POWER_meta
-
-power$POWER_data
-```
-
-Or to access items in the list, you may use indexing.
-
-```{r access_list_items_2, eval=TRUE}
-power[[1]]
-
-power[[2]]
-```
-
-
-### Setting `meta` to `FALSE`
-
-When `meta` is set to `FALSE` or not specified (as below) only a `tibble` object
-is returned by the `get_power()` function.
+The `get_power()` function requires five arguments as seen in this example. 
 
 ```{r example_2, eval=TRUE}
 power <- get_power(community = "AG",
@@ -124,9 +84,6 @@ radiation units, while SSE and SB use kW/m^2^/day as units).
 
 - `temporal_average`, a character vector of the desired temporal average(s).
   Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
-  
-- `meta`, Logical indicating whether to return a list of objects with metadata
-and data if `TRUE`. Otherwise return a `tibble` of data only.
 
 ## Using `create_met`
 

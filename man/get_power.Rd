@@ -5,7 +5,7 @@
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
 get_power(community, lonlat, pars, dates = NULL,
-  temporal_average = NULL, meta = FALSE)
+  temporal_average = NULL)
 }
 \arguments{
 \item{community}{A character vector providing community name: "AG", "SB" or
@@ -30,14 +30,6 @@ coverage.  See argument details for more.}
 \item{temporal_average}{Temporal average for data being queried, currently
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 more.}
-
-\item{meta}{A logical value indicating whether or not to include metadata
-with the data. If set to \code{TRUE} this causes the function to return a list
-with two objects. The first object, \code{POWER_meta} is a list of values of
-metadata for the data including data sources, dates queried, latitude,
-longitude, elevation, value for missing data and parameters queried.
-values. The second object, \code{POWER_data} is a \code{tibble} containing the POWER
-data. This is set to \code{FALSE} by default, only the POWER data are returned.}
 }
 \description{
 Get NASA-POWER global meteorology and surface solar energy
@@ -113,10 +105,10 @@ earth for a given month, averaged for that month over the 30-year period
  for January 1 1985
 
 daily_ag <- get_power(community = "AG",
-                   lonlat = c(-179.5, -89.5),
-                   pars = c("RH2M", "T2M", "PRECTOT"),
-                   dates = "1985-01-01",
-                   temporal_average = "DAILY")
+                     lonlat = c(-179.5, -89.5),
+                     pars = c("RH2M", "T2M", "PRECTOT"),
+                     dates = "1985-01-01",
+                     temporal_average = "DAILY")
 
 # Fetch global AG climatology for temperature, relative humidty and
 precipitation

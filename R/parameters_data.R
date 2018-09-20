@@ -1,7 +1,7 @@
 #' NASA - POWER Parameters Available for Download
 #'
-#' An \pkg{R} list object of metadata for NASA-POWER parameters available for
-#' querying from the NASA-POWER database.
+#' An \pkg{R} list object of NASA-POWER parameters and metadata available for
+#'  querying from the NASA-POWER database.
 #'
 #' @format A list with 146 weather and climate parameters contained within the
 #' NASA-POWER database.

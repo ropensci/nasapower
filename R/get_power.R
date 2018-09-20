@@ -24,13 +24,6 @@
 #' @param temporal_average Temporal average for data being queried, currently
 #'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 #'  more.
-#' @param meta A logical value indicating whether or not to include metadata
-#'  with the data. If set to `TRUE` this causes the function to return a list
-#'  with two objects. The first object, `POWER_meta` is a list of values of
-#'  metadata for the data including data sources, dates queried, latitude,
-#'  longitude, elevation, value for missing data and parameters queried.
-#'  values. The second object, `POWER_data` is a `tibble` containing the POWER
-#'  data. This is set to `FALSE` by default, only the POWER data are returned.
 #'
 #' @details Further details for each of the arguments are provided in their
 #' respective sections following below.
@@ -94,11 +87,11 @@
 #' # Fetch daily "AG" community temperature, relative humidity and precipitation
 #'  for January 1 1985
 #'
-#' daily_ag <- get_power(community = "AG",
-#'                    lonlat = c(-179.5, -89.5),
-#'                    pars = c("RH2M", "T2M", "PRECTOT"),
-#'                    dates = "1985-01-01",
-#'                    temporal_average = "DAILY")
+#'daily_ag <- get_power(community = "AG",
+#'                      lonlat = c(-179.5, -89.5),
+#'                      pars = c("RH2M", "T2M", "PRECTOT"),
+#'                      dates = "1985-01-01",
+#'                      temporal_average = "DAILY")
 #'
 #' # Fetch global AG climatology for temperature, relative humidty and
 #' precipitation
@@ -124,8 +117,7 @@ get_power <- function(community,
                       lonlat,
                       pars,
                       dates = NULL,
-                      temporal_average = NULL,
-                      meta = FALSE) {
+                      temporal_average = NULL) {
 
   if (is.character(lonlat)) {
     lonlat <- toupper(lonlat)
@@ -134,13 +126,9 @@ get_power <- function(community,
   if (!is.null(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
-  if (!is.logical(meta)) {
-    stop(call. = FALSE,
-         "`meta` is a logical argument, please enter `meta = TRUE` or `FALSE`.")
-  }
   community <- toupper(community)
 
-    # user input checks and formatting -------------------------------------------
+  # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
 
   check_community(community, pars)
@@ -160,26 +148,7 @@ get_power <- function(community,
                       lonlat_identifier,
                       pars,
                       dates,
-                      meta,
                       outputList = "CSV")
-  # add date fields ------------------------------------------------------------
-  # if the temporal average is anything but climatology, add date fields
-  temporal_average <- toupper(temporal_average)
-  if (temporal_average != "CLIMATOLOGY") {
-
-    if (isTRUE(meta)) {
-      NASA$POWER_data <- format_dates(NASA$POWER_data)
-    } else {
-      NASA <- format_dates(NASA)
-    }
-  }
-
-  # Put lon before lat (x, y format)
-  if (isTRUE(meta)) {
-    NASA$POWER_data <- NASA$POWER_data[, c(2, 1, 3:ncol(NASA$POWER_data))]
-  } else {
-    NASA <- NASA[, c(2, 1, 3:ncol(NASA))]
-  }
 
   # finish ---------------------------------------------------------------------
   return(NASA)

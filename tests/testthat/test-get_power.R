@@ -2,7 +2,7 @@
 # test queries -----------------------------------------------------------------
 context("Test that get_power queries the server and returns the proper
         requested data")
-test_that("get_power returns daily point AG data with no meta", {
+test_that("get_power returns daily point AG data", {
   vcr::use_cassette("SinglePoint_AG", {
     power_query <- get_power(
       community = "AG",
@@ -13,8 +13,7 @@ test_that("get_power returns daily point AG data with no meta", {
                 "RH2M",
                 "WS10M"),
       dates = c("1983-01-01"),
-      temporal_average = "Daily",
-      meta = FALSE
+      temporal_average = "Daily"
     )
 
     expect_is(power_query, "data.frame")
@@ -30,41 +29,6 @@ test_that("get_power returns daily point AG data with no meta", {
     expect_equal(power_query$T2M_MAX, -24.9)
     expect_equal(power_query$RH2M, 73.92)
     expect_equal(power_query$WS10M, 2.14)
-    rm(power_query)
-  })
-})
-
-test_that("get_power returns daily point AG data with meta", {
-  vcr::use_cassette("SinglePoint_AG", {
-    power_query <- get_power(
-      community = "AG",
-      lonlat = c(-179.5, -89.5),
-      pars =  c("T2M",
-                "T2M_MIN",
-                "T2M_MAX",
-                "RH2M",
-                "WS10M"),
-      dates = c("1983-01-01"),
-      temporal_average = "Daily",
-      meta = TRUE
-    )
-
-    expect_is(power_query, "list")
-    expect_is(power_query$POWER_meta, "character")
-    expect_equal(length(power_query$POWER_meta), 14)
-    expect_is(power_query$POWER_data, "data.frame")
-    expect_equal(power_query$POWER_data$LAT, -89.5, tolerance = 1e-3)
-    expect_equal(power_query$POWER_data$LON, -179.5, tolerance = 1e-3)
-    expect_equal(power_query$POWER_data$YEAR, 1983)
-    expect_equal(power_query$POWER_data$MM, 1)
-    expect_equal(power_query$POWER_data$DD, 1)
-    expect_equal(power_query$POWER_data$DOY, 1)
-    expect_equal(power_query$POWER_data$YYYYMMDD, as.Date("1983-01-01"))
-    expect_equal(power_query$POWER_data$T2M, -25.24)
-    expect_equal(power_query$POWER_data$T2M_MIN, -25.55)
-    expect_equal(power_query$POWER_data$T2M_MAX, -24.9)
-    expect_equal(power_query$POWER_data$RH2M, 73.92)
-    expect_equal(power_query$POWER_data$WS10M, 2.14)
     rm(power_query)
   })
 })
@@ -147,16 +111,4 @@ test_that("get_power returns global AG data for climatology", {
     )
     rm(power_query)
   })
-})
-
-# test `meta` argument checking ------------------------------------------------
-
-context("Test that `meta` can only be logical")
-test_that("`get_power()` correctly handles `meta` flag if not logical", {
-  expect_error(get_power(community = "AG",
-                     lonlat = c(-179.5, -89.5),
-                     pars = c("RH2M", "T2M"),
-                     dates = "1985-01-01",
-                     temporal_average = "DAILY",
-                     meta = 5))
 })

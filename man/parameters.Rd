@@ -161,7 +161,7 @@ NASA-POWER database.
 parameters
 }
 \description{
-An \pkg{R} list object of metadata for NASA-POWER parameters available for
+An \pkg{R} list object of NASA-POWER parameters and metadata available for
 querying from the NASA-POWER database.
 }
 \references{
