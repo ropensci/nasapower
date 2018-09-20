@@ -463,8 +463,11 @@ print.POWER.Info <- function(x, ...) {
         attr(x, "POWER.Missing_value"), "\n",
         attr(x, "POWER.Parameters"), "\n",
         "\n")
+    format(x)
   }
-  print.data.frame(x, row.names = FALSE)
+  print.data.frame(x,
+                   row.names = FALSE,
+                   max = length(attributes(x)) + 13)
 }
 
 #' @noRd
