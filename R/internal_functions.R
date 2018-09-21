@@ -24,7 +24,7 @@ check_dates <- function(dates, lonlat, temporal_average) {
          "Do you wish to query daily or interannual data instead?\n")
   }
 
-  if (is.null(dates) & temporal_average != "CLIMATOLOGY") {
+  if (missing(dates) & temporal_average != "CLIMATOLOGY") {
     stop(call. = FALSE,
          "\nYou have not entered dates for the query.\n")
   }
@@ -133,11 +133,9 @@ check_community <-
 check_pars <-
   function(pars, temporal_average, lonlat) {
 
-    if (!is.numeric(lonlat) &
-        !is.null(temporal_average) &
-        temporal_average != "CLIMATOLOGY") {
+    if (!is.numeric(lonlat) & temporal_average != "CLIMATOLOGY") {
       message(
-        "\nGlobal data are only available for Climatology.\n",
+        "\nGLOBAL data are only available for CLIMATOLOGY.\n",
         "\nSetting `temporal_average` to `CLIMATOLOGY`.\n"
       )
     }
@@ -225,11 +223,6 @@ check_lonlat <-
           "`, value to be sure it is valid.\n"
         )
       }
-      message("\nFetching single point data for lon ",
-              lonlat[1],
-              ", lat ",
-              lonlat[2],
-              "\n")
       identifier <- "SinglePoint"
       lon <- lonlat[1]
       lat <- lonlat[2]
@@ -278,17 +271,6 @@ check_lonlat <-
         stop(call. = FALSE,
              "\nThe first `lon` value must be the minimum value.\n")
       }
-      message(
-        "\nFetching regional data for the area within ",
-        lonlat[[1]],
-        " lon & ",
-        lonlat[[2]],
-        " lat, ",
-        lonlat[[3]],
-        " lon & ",
-        lonlat[[4]],
-        " lat\n"
-      )
       identifier <- "Regional"
       bbox <-  paste(lonlat[2],
                      lonlat[1],
@@ -426,7 +408,8 @@ power_query <- function(community,
       attr(NASA, "POWER.Elevation") <- meta[4]
       attr(NASA, "POWER.Climate_zone") <- meta[5]
       attr(NASA, "POWER.Missing_value") <- meta[6]
-      attr(NASA, "POWER.Parameters") <- meta[8:length(meta)]
+      attr(NASA, "POWER.Parameters") <- paste(meta[8:length(meta)],
+                                              collapse = ";\n ")
 
     } else {
       utils::download.file(txt$output$icasa,
@@ -461,13 +444,14 @@ print.POWER.Info <- function(x, ...) {
         attr(x, "POWER.Elevation"), "\n",
         attr(x, "POWER.Climate_zone"), "\n",
         attr(x, "POWER.Missing_value"), "\n",
+        "Parameters: \n",
         attr(x, "POWER.Parameters"), "\n",
         "\n")
     format(x)
   }
   print.data.frame(x,
                    row.names = FALSE,
-                   max = length(attributes(x)) + 13)
+                   max = length(attributes(x)) + 60)
 }
 
 #' @noRd
