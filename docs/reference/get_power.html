@@ -120,8 +120,7 @@ official NASA-POWER API are supported.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_power</span>(<span class='no'>community</span>, <span class='no'>lonlat</span>, <span class='no'>pars</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_power</span>(<span class='no'>community</span>, <span class='no'>lonlat</span>, <span class='no'>pars</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>temporal_average</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -159,22 +158,20 @@ coverage.  See argument details for more.</p></td>
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 more.</p></td>
     </tr>
-    <tr>
-      <th>meta</th>
-      <td><p>A logical value indicating whether or not to include metadata
-with the data. If set to <code>TRUE</code> this causes the function to return a list
-with two objects. The first object, <code>POWER_meta</code> is a list of values of
-metadata for the data including data sources, dates queried, latitude,
-longitude, elevation, value for missing data and parameters queried.
-values. The second object, <code>POWER_data</code> is a <code>tibble</code> containing the POWER
-data. This is set to <code>FALSE</code> by default, only the POWER data are returned.</p></td>
-    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A data frame of POWER data including location, dates (not including
+CLIMATOLOGY) and requested parameters. A header of metadata is included.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Further details for each of the arguments are provided in their
-respective sections following below.</p>
+    <p><em>Note</em> the associated metadata are not saved if the data are
+exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda
+or .rds.</p>
+<p>Further details for each of the arguments are provided in their respective
+sections follow.</p>
     
     <h2 class="hasAnchor" id="argument-details-for-community"><a class="anchor" href="#argument-details-for-community"></a>Argument details for <code>community</code></h2>
 
@@ -204,10 +201,10 @@ that order for data to download,<br />
 vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
 <em>e.g.</em>, <code>lonlat = c(xmin, ymin, xmax, ymax)</code> in that order for a given
 region, <em>e.g.</em>, a bounding box for the southwestern corner of Australia:
-<code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10
-degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></dd>
+<code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>.
+*Maximum area processed is 4.5 x 4.5 degrees (100 points).</p></dd>
     <dt>For global coverage</dt><dd><p>To get global coverage for long term
-monthly averages for the entire globe use <code>Global</code> in place of
+monthly averages for the entire globe use <code>GLOBAL</code> in place of
 <code>lonlat</code> values. <code>temporal_average</code> will automatically be set to
 <code>climatology</code> if this option is set.</p></dd>
 </dl>
@@ -222,11 +219,12 @@ values will be returned.</p>
 
     <p>There are three valid
 values, one must be supplied.</p><dl class='dl-horizontal'>
-<dt>DAILY</dt><dd><p>The daily average of
-<code>pars</code> by year.</p></dd> <dt>INTERANNUAL</dt><dd><p>The monthly average of <code>pars</code> by year.</p></dd>
-<dt>CLIMATOLOGY</dt><dd><p>The monthly average of <code>pars</code> at the surface of the earth
-for a given month, averaged for that month over the 30-year period (Jan.
-1984 - Dec. 2013).</p></dd> </dl>
+<dt>DAILY</dt><dd><p>The daily average of <code>pars</code> by year.</p></dd>
+<dt>INTERANNUAL</dt><dd><p>The monthly average of <code>pars</code> by year.</p></dd>
+<dt>CLIMATOLOGY</dt><dd><p>The monthly average of <code>pars</code> at the surface of the
+earth for a given month, averaged for that month over the 30-year period
+(Jan. 1984 - Dec. 2013).</p></dd>
+</dl>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -234,15 +232,34 @@ for a given month, averaged for that month over the 30-year period (Jan.
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Fetch temperature and relative humidity for January 1 1985
+    <pre class="examples"># NOT RUN {
+# Fetch daily "AG" community temperature, relative humidity and precipitation
+ for January 1 1985
 
-</div><span class='co'># NOT RUN {</span>
-<span class='no'>power</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
-                   <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
-                   <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>),
-                   <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
-                   <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>)
-<span class='co'># }</span><div class='input'>
+daily_ag <- get_power(community = "AG",
+                     lonlat = c(-179.5, -89.5),
+                     pars = c("RH2M", "T2M", "PRECTOT"),
+                     dates = "1985-01-01",
+                     temporal_average = "DAILY")
+
+# Fetch global AG climatology for temperature, relative humidty and
+precipitation
+
+climatology_ag <- get_power(community = "AG",
+                            lonlat = "GLOBAL",
+                            pars = c("RH2M", "T2M", "PRECTOT"))
+
+
+# Fetch interannaul solar cooking parameters for a given region
+interannual_sse <- get_power(community = "SSE",
+                             lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
+                             dates = c("1984", "1985"),
+                             temporal_average = "INTERANNUAL",
+                             pars = c("CLRSKY_SFC_SW_DWN",
+                                      "ALLSKY_SFC_SW_DWN")
+)
+# }
+<div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -250,6 +267,8 @@ for a given month, averaged for that month over the 30-year period (Jan.
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#argument-details-for-community">Argument details for <code>community</code></a></li>

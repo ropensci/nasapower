@@ -33,7 +33,8 @@ the POWER data for use in the Agricultural Production Systems sIMulator (APSIM).
 
 ## Using `get_power`
 
-The `get_power()` function requires five arguments as seen in this example. 
+The `get_power()` function requires five arguments as seen in this example and
+returns a data frame with a metadata header in the current R session.
 
 ```{r example_1, eval=TRUE}
 power <- get_power(community = "AG",
@@ -44,6 +45,9 @@ power <- get_power(community = "AG",
 
 power
 ```
+
+_Note_ the associated metadata are not saved if the data are exported to a
+file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
 
 ### Description of parameters for `get_power`
 

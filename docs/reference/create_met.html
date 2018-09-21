@@ -143,10 +143,15 @@ more.</p></td>
     <tr>
       <th>file_out</th>
       <td><p>A file name for the resulting text file, <em>e.g.</em>
-"Kingsthorpe.met". Also, a ".met" extension will be appended if given or
+"Kingsthorpe.met". A ".met" extension will be appended if given or
 otherwise specified by user.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A text file in .met format saved to local disk for use in APSIM crop
+modelling.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -186,13 +191,14 @@ the end date and only a single day's values will be returned.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30.
+    <pre class="examples"><div class='input'># Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
+# save it in the current R session tempdir as "APSIM_example.met".
 
 </div><span class='co'># NOT RUN {</span>
 <span class='fu'>create_met</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
            <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),
-           <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='st'>"~/Documents"</span>,
-           <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"Kingsthorpe.met"</span>
+           <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='fu'>tmpdir</span>(),
+           <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"APSIM_example.met"</span>
 )
 <span class='co'># }</span><div class='input'>
 </div></pre>
@@ -202,6 +208,8 @@ the end date and only a single day's values will be returned.</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#argument-details-for-lonlat">Argument details for <code>lonlat</code></a></li>
