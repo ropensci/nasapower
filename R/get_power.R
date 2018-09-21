@@ -25,8 +25,12 @@
 #'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 #'  more.
 #'
-#' @details Further details for each of the arguments are provided in their
-#' respective sections following below.
+#' @details _Note_ the associated metadata are not saved if the data are
+#'  exported to a file format other than an R data format, _e.g._, .Rdata, .rda
+#'  or .rds.
+#'
+#' Further details for each of the arguments are provided in their respective
+#'  sections follow.
 #'
 #' @section Argument details for `community`: There are three valid values, one
 #'  must be supplied. This  will affect the units of the parameter and the
@@ -81,8 +85,6 @@
 #'
 #' @return A data frame of POWER data including location, dates (not including
 #' CLIMATOLOGY) and requested parameters. A header of metadata is included.
-#' _Note_ the associated metadata are not saved if the data are exported to a
-#' file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
 #'
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}

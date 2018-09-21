@@ -33,8 +33,6 @@ more.}
 \value{
 A data frame of POWER data including location, dates (not including
 CLIMATOLOGY) and requested parameters. A header of metadata is included.
-\emph{Note} the associated metadata are not saved if the data are exported to a
-file format other than an R data format, \emph{e.g.}, .Rdata, .rda or .rds.
 }
 \description{
 Get NASA-POWER global meteorology and surface solar energy
@@ -42,8 +40,12 @@ climatology data and return a tidy data frame. All options offered by the
 official NASA-POWER API are supported.
 }
 \details{
-Further details for each of the arguments are provided in their
-respective sections following below.
+\emph{Note} the associated metadata are not saved if the data are
+exported to a file format other than an R data format, \emph{e.g.}, .Rdata, .rda
+or .rds.
+
+Further details for each of the arguments are provided in their respective
+sections follow.
 }
 \section{Argument details for \code{community}}{
  There are three valid values, one
