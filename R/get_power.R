@@ -79,6 +79,11 @@
 #'     (Jan. 1984 - Dec. 2013).}
 #'  }
 #'
+#' @return A data frame of POWER data including location, dates (not including
+#' CLIMATOLOGY) and requested parameters. A header of metadata is included.
+#' _Note_ the associated metadata are not saved if the data are exported to a
+#' file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
+#'
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 #'

@@ -30,6 +30,12 @@ coverage.  See argument details for more.}
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
 more.}
 }
+\value{
+A data frame of POWER data including location, dates (not including
+CLIMATOLOGY) and requested parameters. A header of metadata is included.
+\emph{Note} the associated metadata are not saved if the data are exported to a
+file format other than an R data format, \emph{e.g.}, .Rdata, .rda or .rds.
+}
 \description{
 Get NASA-POWER global meteorology and surface solar energy
 climatology data and return a tidy data frame. All options offered by the
