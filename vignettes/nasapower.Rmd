@@ -131,7 +131,7 @@ and save it to local disk for use in APSIM modelling.
 ```{r create_met, eval=FALSE}
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
-           dsn = "~/Documents",
+           dsn = tempdir(),
            file_out = "Kingsthorpe.met")
 ```
 
@@ -172,7 +172,7 @@ it to local disk.
 ```{r create_icasa, eval=FALSE}
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
-             dsn = "~/Documents",
+             dsn = tempdir(),
              file_out = "Kingsthorpe_ICASA.txt")
 ```
 
