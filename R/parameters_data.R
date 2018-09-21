@@ -157,7 +157,7 @@
 #'
 #' @author Adam H Sparks \email{adamhsparks@@gmail.com}
 #' @source
-#' \url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json}
+#' \url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json}
 #' @references
 #' \url{https://power.larc.nasa.gov/docs/v1/}
 
