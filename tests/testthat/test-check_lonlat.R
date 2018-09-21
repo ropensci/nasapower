@@ -59,7 +59,7 @@ test_that("check_lonlat stops if more than three are requested for global", {
 })
 
 test_that("check_lonlat handles single point properly", {
-  expect_message(test <- check_lonlat(lonlat = c(-179.5, -89.5), pars))
+  test <- check_lonlat(lonlat = c(-179.5, -89.5), pars)
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
   expect_equal(test$identifier, "SinglePoint")
@@ -114,13 +114,11 @@ test_that("check_lonlat checks validity of bbox lonmax values", {
 
 test_that("check_lonlat returns message with proper identifier when valid
           coordinates are given", {
-            expect_message(test <- check_lonlat(lonlat = c(-179.5,
-                                                           88.5,
-                                                           -179.5,
-                                                           89.5),
-                                                pars),
-                           regexp = "Fetching regional data for the*")
-
-          expect_equal(test$bbox, "88.5,-179.5,89.5,-179.5")
-          expect_equal(test$identifier, "Regional")
+            test <- check_lonlat(lonlat = c(-179.5,
+                                            88.5,
+                                            -179.5,
+                                            89.5),
+                                 pars)
+expect_equal(test$bbox, "88.5,-179.5,89.5,-179.5")
+expect_equal(test$identifier, "Regional")
           })
