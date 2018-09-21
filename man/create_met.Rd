@@ -74,10 +74,9 @@ the end date and only a single day's values will be returned.
 
 \dontrun{
 create_met(lonlat = c(151.81, -27.48),
-           dates = c("1985-01-01", "1985-12-31"),
-           dsn = tmpdir(),
-           file = "APSIM_example.met"
-)
+          dates = c("1985-01-01", "1985-12-31"),
+          dsn = tempdir(),
+          file = "APSIM_example.met")
 }
 
 }

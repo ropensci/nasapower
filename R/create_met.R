@@ -53,8 +53,8 @@
 #'
 #' @return A text file in .met format saved to local disk for use in APSIM crop
 #'  modelling.
-#' 
-#' @seealso \code{\link{create_icasa}} Create a DSSAT ICASA File from NASA - 
+#'
+#' @seealso \code{\link{create_icasa}} Create a DSSAT ICASA File from NASA -
 #' POWER Data
 #'
 #' @examples
@@ -62,11 +62,10 @@
 #' # save it in the current R session tempdir as "APSIM_example.met".
 #'
 #' \dontrun{
-#' create_met(lonlat = c(151.81, -27.48),
-#'            dates = c("1985-01-01", "1985-12-31"),
-#'            dsn = tmpdir(),
-#'            file = "APSIM_example.met"
-#' )
+#'create_met(lonlat = c(151.81, -27.48),
+#'           dates = c("1985-01-01", "1985-12-31"),
+#'           dsn = tempdir(),
+#'           file = "APSIM_example.met")
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
