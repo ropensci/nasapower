@@ -150,6 +150,8 @@ get_power <- function(community,
                       dates,
                       outputList = "CSV")
 
+  NASA <- NASA$power_data
+
   # finish ---------------------------------------------------------------------
   return(NASA)
 }

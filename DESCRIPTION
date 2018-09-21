@@ -20,6 +20,7 @@ License: MIT + file LICENSE
 Imports:
     APSIM,
     crul,
+    curl,
     lubridate,
     jsonlite,
     readr,

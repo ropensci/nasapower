@@ -357,7 +357,7 @@ power_query <- function(community,
 
   # send the query
   tryCatch({
-    response <- client$get(query = query_list, retry = 5)
+    response <- client$get(query = query_list, retry = 6)
   }, # nocov start
   error = function(e) {
     e$message <-
@@ -371,51 +371,58 @@ power_query <- function(community,
   tryCatch({
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
-    power_data <- file.path(tempdir(), "power_data_file")
+    raw_power_data <- file.path(tempdir(), "power_data_file")
 
     if (outputList == "CSV") {
-      utils::download.file(txt$output$csv,
-                           destfile = power_data,
-                           mode = "wb",
-                           quiet = TRUE)
+      curl::curl_download(txt$output$csv,
+                          destfile = raw_power_data,
+                          mode = "wb",
+                          quiet = TRUE
+      )
 
-      meta <- readLines(power_data,
+      meta <- readLines(raw_power_data,
                         pars$skip_lines)
       meta <- meta[-c(1, pars$skip_lines)] #remove "HEADER ..." lines
       meta <- gsub(pattern = "-99",
                    replacement = "NA",
                    x = meta)
 
-      NASA <- readr::read_csv(power_data,
-                              col_types = readr::cols(),
-                              na = "-99",
-                              skip = pars$skip_lines)
+      power_data <- readr::read_csv(raw_power_data,
+                                    col_types = readr::cols(),
+                                    na = "-99",
+                                    skip = pars$skip_lines)
 
       # put lon before lat (x, y format)
-      NASA <- NASA[, c(2, 1, 3:ncol(NASA))]
+      power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
       if (pars$temporal_average != "CLIMATOLOGY") {
-        NASA <- .format_dates(NASA)
+        power_data <- .format_dates(power_data)
       }
 
-      attr(NASA, "class") <- c("POWER.Info", "data.frame")
+      attr(power_data, "class") <- c("POWER.Info", "data.frame")
 
       # add attributes for printing df
-      attr(NASA, "POWER.Info") <- meta[1]
-      attr(NASA, "POWER.Dates") <- meta[2]
-      attr(NASA, "POWER.Location") <- meta[3]
-      attr(NASA, "POWER.Elevation") <- meta[4]
-      attr(NASA, "POWER.Climate_zone") <- meta[5]
-      attr(NASA, "POWER.Missing_value") <- meta[6]
-      attr(NASA, "POWER.Parameters") <- paste(meta[8:length(meta)],
-                                              collapse = ";\n ")
+      attr(power_data, "POWER.Info") <- meta[1]
+      attr(power_data, "POWER.Dates") <- meta[2]
+      attr(power_data, "POWER.Location") <- meta[3]
+      attr(power_data, "POWER.Elevation") <- meta[4]
+      attr(power_data, "POWER.Climate_zone") <- meta[5]
+      attr(power_data, "POWER.Missing_value") <- meta[6]
+      attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
+                                                    collapse = ";\n ")
+
+      # read raw data into R session for saving as desired by user
+      raw_power_data <- readLines(raw_power_data)
+
+      NASA <- list(power_data, raw_power_data)
+      names(NASA) <- c("power_data", "raw_power_data")
 
     } else {
-      utils::download.file(txt$output$icasa,
-                           destfile = power_data,
-                           mode = "wb",
-                           quiet = TRUE)
+      curl::curl_download(txt$output$icasa,
+                          destfile = power_data,
+                          mode = "wb",
+                          quiet = TRUE)
 
       NASA <- readLines(power_data)
     }
