@@ -416,11 +416,11 @@ power_query <- function(community,
 
     } else {
       curl::curl_download(txt$output$icasa,
-                          destfile = power_data,
+                          destfile = raw_power_data,
                           mode = "wb",
                           quiet = TRUE)
 
-      NASA <- readLines(power_data)
+      NASA <- readLines(raw_power_data)
     }
     return(NASA)
 
