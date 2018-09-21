@@ -44,6 +44,9 @@
 #'
 #'  If one date only is provided, it will be treated as both the start date and
 #'  the end date and only a single day's values will be returned.
+#' 
+#' @seealso \item \code{\link{create_met}} Create an APSIM metFile File from 
+#' NASA - POWER Data
 #'
 #' @return A text file in ICASA format saved to local disk for use in DSSAT crop
 #'  modelling.

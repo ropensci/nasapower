@@ -30,6 +30,8 @@
 #' \itemize{
 #' \item \code{\link{get_power}} Download NASA-POWER Data and Return a Tidy Data
 #'  Frame
+#' \item \code{\link{create_icasa}} Create a DSSAT ICASA File from NASA - POWER Data
+#' \item \code{\link{create_met}} Create an APSIM metFile File from NASA - POWER Data
 #' \item \code{citation(nasapower)} For proper citation of \pkg{nasaspower}
 #' }
 #'

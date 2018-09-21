@@ -53,6 +53,9 @@
 #'
 #' @return A text file in .met format saved to local disk for use in APSIM crop
 #'  modelling.
+#' 
+#' @seealso \code{\link{create_icasa}} Create a DSSAT ICASA File from NASA - 
+#' POWER Data
 #'
 #' @examples
 #' # Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and

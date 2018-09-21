@@ -76,6 +76,10 @@ create_icasa(lonlat = c(151.81, -27.48),
 }
 
 }
+\seealso{
+\item \code{\link{create_met}} Create an APSIM metFile File from
+NASA - POWER Data
+}
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}
 }
