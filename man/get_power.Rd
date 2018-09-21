@@ -110,7 +110,6 @@ earth for a given month, averaged for that month over the 30-year period
 \dontrun{
 # Fetch daily "AG" community temperature, relative humidity and precipitation
  for January 1 1985
-
 daily_ag <- get_power(community = "AG",
                      lonlat = c(-179.5, -89.5),
                      pars = c("RH2M", "T2M", "PRECTOT"),
@@ -119,20 +118,18 @@ daily_ag <- get_power(community = "AG",
 
 # Fetch global AG climatology for temperature, relative humidty and
 precipitation
-
 climatology_ag <- get_power(community = "AG",
                             lonlat = "GLOBAL",
                             pars = c("RH2M", "T2M", "PRECTOT"))
 
 
-# Fetch interannaul solar cooking parameters for a given region
+# Fetch interannual solar cooking parameters for a given region
 interannual_sse <- get_power(community = "SSE",
-                             lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
+                             lonlat = c(112.5, -55.5, 115.5, -50.5),
                              dates = c("1984", "1985"),
                              temporal_average = "INTERANNUAL",
                              pars = c("CLRSKY_SFC_SW_DWN",
-                                      "ALLSKY_SFC_SW_DWN")
-)
+                                      "ALLSKY_SFC_SW_DWN"))
 }
 
 }
