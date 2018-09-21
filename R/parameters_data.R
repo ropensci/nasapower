@@ -152,7 +152,6 @@
 #' \item{WS50M_MIN}{Minimum Wind Speed at 50 Meters}
 #' \item{WS50M_RANGE}{Wind Speed Range at 50 Meters}
 #' \item{WSC}{Corrected Wind Speed (Adjusted For Elevation)}
-
 #' }
 #'
 #' @author Adam H Sparks \email{adamhsparks@@gmail.com}

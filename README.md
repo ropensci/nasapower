@@ -4,6 +4,7 @@
 [![codecov](https://codecov.io/gh/adamhsparks/nasapower/branch/master/graph/badge.svg)](https://codecov.io/gh/adamhsparks/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/onboarding/issues/155)
 
 # _nasapower_: NASA-POWER Data from R <img align="right" src="man/figures/logo.png">
 
