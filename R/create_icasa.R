@@ -44,7 +44,7 @@
 #'
 #'  If one date only is provided, it will be treated as both the start date and
 #'  the end date and only a single day's values will be returned.
-#' 
+#'
 #' @seealso \code{\link{create_met}} Create an APSIM metFile File from NASA -
 #' POWER Data
 #'
@@ -56,11 +56,10 @@
 #' # save it in the current R session tempdir as "ICASA_example.txt".
 #'
 #' \dontrun{
-#' create_icasa(lonlat = c(151.81, -27.48),
-#'              dates = c("1985-01-01", "1985-12-31"),
-#'              dsn = tempdir(),
-#'              file = ICASA_example.txt
-#' )
+#'create_icasa(lonlat = c(151.81, -27.48),
+#'             dates = c("1985-01-01", "1985-12-31"),
+#'             dsn = tempdir(),
+#'             file = "ICASA_example.txt")
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
