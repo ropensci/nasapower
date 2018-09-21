@@ -4,8 +4,7 @@
 \alias{get_power}
 \title{Get NASA-POWER Data and Return a Tidy Data Frame}
 \usage{
-get_power(community, lonlat, pars, dates = NULL,
-  temporal_average = NULL)
+get_power(community, lonlat, pars, dates = NULL, temporal_average)
 }
 \arguments{
 \item{community}{A character vector providing community name: "AG", "SB" or
@@ -75,7 +74,7 @@ region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 *Maximum area processed is 4.5 x 4.5 degrees (100 points).}
 
 \item{For global coverage}{To get global coverage for long term
-monthly averages for the entire globe use \code{Global} in place of
+monthly averages for the entire globe use \code{GLOBAL} in place of
 \code{lonlat} values. \code{temporal_average} will automatically be set to
 \code{climatology} if this option is set.}
 }
@@ -119,13 +118,13 @@ climatology_ag <- get_power(community = "AG",
 
 
 # Fetch interannaul solar cooking parameters for a given region
-interannual_sse <- get_power(
-  community = "SSE",
-lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
-dates = c("1984", "1985"),
-temporal_average = "INTERANNUAL",
-pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN"))
-
+interannual_sse <- get_power(community = "SSE",
+                             lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
+                             dates = c("1984", "1985"),
+                             temporal_average = "INTERANNUAL",
+                             pars = c("CLRSKY_SFC_SW_DWN",
+                                      "ALLSKY_SFC_SW_DWN")
+)
 }
 
 }

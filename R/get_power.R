@@ -60,7 +60,7 @@
 #'  *Maximum area processed is 4.5 x 4.5 degrees (100 points).}
 #'
 #'  \item{For global coverage}{To get global coverage for long term
-#'  monthly averages for the entire globe use `Global` in place of
+#'  monthly averages for the entire globe use `GLOBAL` in place of
 #'  `lonlat` values. `temporal_average` will automatically be set to
 #'  `climatology` if this option is set.}
 #' }
@@ -102,13 +102,13 @@
 #'
 #'
 #' # Fetch interannaul solar cooking parameters for a given region
-#' interannual_sse <- get_power(
-#'   community = "SSE",
-#' lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
-#' dates = c("1984", "1985"),
-#' temporal_average = "INTERANNUAL",
-#' pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN"))
-#'
+#' interannual_sse <- get_power(community = "SSE",
+#'                              lonlat = lonlat = c(112.5, -55.5, 115.5, -50.5),
+#'                              dates = c("1984", "1985"),
+#'                              temporal_average = "INTERANNUAL",
+#'                              pars = c("CLRSKY_SFC_SW_DWN",
+#'                                       "ALLSKY_SFC_SW_DWN")
+#' )
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
@@ -117,7 +117,7 @@ get_power <- function(community,
                       lonlat,
                       pars,
                       dates = NULL,
-                      temporal_average = NULL) {
+                      temporal_average) {
 
   if (is.character(lonlat)) {
     lonlat <- toupper(lonlat)
