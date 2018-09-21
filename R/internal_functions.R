@@ -412,11 +412,7 @@ power_query <- function(community,
       attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
                                                     collapse = ";\n ")
 
-      # read raw data into R session for saving as desired by user
-      raw_power_data <- readLines(raw_power_data)
-
-      NASA <- list(power_data, raw_power_data)
-      names(NASA) <- c("power_data", "raw_power_data")
+      NASA <- power_data
 
     } else {
       curl::curl_download(txt$output$icasa,
