@@ -396,7 +396,7 @@ power_query <- function(community,
       power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
-      if (pars$temporal_average != "CLIMATOLOGY") {
+      if (pars$temporal_average == "DAILY") {
         power_data <- .format_dates(power_data)
       }
 
