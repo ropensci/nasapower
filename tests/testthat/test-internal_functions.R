@@ -101,9 +101,8 @@ test_that(
     temporal_average <- "INTERANNUAL"
     dates <- c("1983-01-01", "1984-01-01")
     lonlat <- c(-179.5, -89.5)
-    expect_message(.check_dates(dates, lonlat, temporal_average),
-      regexp = "*Only years are used with `temporal_average*"
-    )
+    years <- .check_dates(dates, lonlat, temporal_average)
+    expect_equal(nchar(dates[[1]]), 4)
   }
 )
 
