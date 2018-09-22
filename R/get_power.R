@@ -6,7 +6,7 @@
 #'   NASA-POWER API are supported.
 #'
 #' @param community A character vector providing community name: "AG", "SB" or
-#'   "SSE". See argument details for more.
+#'   "SSE".  See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y coordinates or `GLOBAL` for global area.  See argument
 #'   details for more.

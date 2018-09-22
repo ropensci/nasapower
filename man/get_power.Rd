@@ -9,7 +9,7 @@ get_power(community, lonlat, pars, dates = NULL,
 }
 \arguments{
 \item{community}{A character vector providing community name: "AG", "SB" or
-"SSE". See argument details for more.}
+"SSE".  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y coordinates or \code{GLOBAL} for global area.  See argument
