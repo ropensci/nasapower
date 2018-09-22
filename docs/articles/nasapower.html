@@ -91,40 +91,104 @@
 <h2 class="hasAnchor">
 <a href="#using-get_power" class="anchor"></a>Using <code>get_power</code>
 </h2>
-<p>The <code><a href="../reference/get_power.html">get_power()</a></code> function requires five arguments as seen in this example and returns a data frame with a metadata header in the current R session.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
-                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),
-                   <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>,
-                   <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">179.5</span>, <span class="op">-</span><span class="fl">89.5</span>),
-                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-31"</span>)
-                   )
-
-power
-<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
-<span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/31/1985  </span>
-<span class="co">#&gt;  Location: Latitude  -89.5   Longitude 179.5  </span>
-<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 2939.92 meters   Site = na  </span>
-<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
-<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
-<span class="co">#&gt;  Parameters: </span>
-<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span>
-<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;    LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M    T2M</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  1   1 1985-01-01 67.28 -25.45</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  2   2 1985-01-02 69.36 -27.18</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  3   3 1985-01-03 72.58 -27.69</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  4   4 1985-01-04 68.51 -26.98</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  5   5 1985-01-05 71.42 -28.57</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  6   6 1985-01-06 71.37 -29.52</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  7   7 1985-01-07 70.33 -29.24</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  8   8 1985-01-08 72.38 -28.94</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1  9   9 1985-01-09 73.10 -28.69</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1 10  10 1985-01-10 68.49 -28.22</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1 11  11 1985-01-11 73.59 -27.24</span>
-<span class="co">#&gt;  179.5 -89.49999 1985  1 12  12 1985-01-12 67.46 -26.90</span>
-<span class="co">#&gt;  [ reached getOption("max.print") -- omitted 19 rows ]</span></code></pre></div>
+<p>The <code><a href="../reference/get_power.html">get_power()</a></code> function has five arguments as seen in this example and returns a data frame with a metadata header in the current R session.</p>
+<div id="example-fetching-daily-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-fetching-daily-data" class="anchor"></a>Example fetching daily data</h3>
+<p>Fetch daily “AG” community temperature, relative humidity and precipitation for January 1 1985 for Kingsthorpe, Queensland, Australia.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">daily_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">                      <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">                      <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">                      <span class="dt">dates =</span> <span class="st">"1985-01-01"</span>,</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">                      <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">                      )</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">daily_ag</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span></a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt;  Parameters: </span></a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span></a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span></a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt;  </span></a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt;     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT</span></a>
+<a class="sourceLine" id="cb1-22" data-line-number="22"><span class="co">#&gt;  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07</span></a></code></pre></div>
+</div>
+<div id="example-fetching-interannual-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-fetching-interannual-data" class="anchor"></a>Example fetching interannual data</h3>
+<p>Fetch interannual solar cooking parameters for a given region.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">interannual_sse &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"SSE"</span>,</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">                            <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">112.5</span>, <span class="fl">-55.5</span>, <span class="fl">115.5</span>, <span class="fl">-50.5</span>),</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                            <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1984"</span>, <span class="st">"1985"</span>),</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                            <span class="dt">temporal_average =</span> <span class="st">"INTERANNUAL"</span>,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">                            <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"CLRSKY_SFC_SW_DWN"</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">                                     <span class="st">"ALLSKY_SFC_SW_DWN"</span>)</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">                                     )</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">interannual_sse</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Interannual Averages/Sums  </span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  Dates (month/day/year): 01/01/1984 through 12/31/1985  </span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  Location: Regional  </span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = na meters   Site = na  </span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA9  </span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;  Parameters: </span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;  ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day) ;</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  </span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt;  </span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;     LON    LAT         PARAMETER YEAR  JAN  FEB  MAR  APR  MAY  JUN  JUL</span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt;  112.75 -55.25 CLRSKY_SFC_SW_DWN 1984 8.50 6.84 4.64 2.52 1.19 0.69 0.94</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;  112.75 -55.25 CLRSKY_SFC_SW_DWN 1985 8.50 6.91 4.66 2.47 1.19 0.69 0.93</span></a>
+<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt;  112.75 -55.25 ALLSKY_SFC_SW_DWN 1984 4.95 4.14 2.48 1.34 0.67 0.39 0.58</span></a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt;  112.75 -55.25 ALLSKY_SFC_SW_DWN 1985 4.21 3.55 2.68 1.47 0.72 0.37 0.53</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt;   AUG  SEP  OCT  NOV  DEC  ANN</span></a>
+<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt;  1.96 3.87 6.19 8.18 9.24 4.56</span></a>
+<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt;  1.90 3.80 6.21 8.25 9.30 4.56</span></a>
+<a class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#&gt;  1.18 2.17 3.29 4.50 4.79 2.54</span></a>
+<a class="sourceLine" id="cb2-29" data-line-number="29"><span class="co">#&gt;  1.13 2.09 3.90 4.83 5.30 2.56</span></a>
+<a class="sourceLine" id="cb2-30" data-line-number="30"><span class="co">#&gt;  [ reached getOption("max.print") -- omitted 304 rows ]</span></a></code></pre></div>
+</div>
+<div id="example-fetching-climatology-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-fetching-climatology-data" class="anchor"></a>Example fetching climatology data</h3>
+<p>Fetch global AG climatology for temperature.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">climatology_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                           <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>),</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                           <span class="dt">temporal_average =</span> <span class="st">"CLIMATOLOGY"</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                           )</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">climatology_ag</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Climatologies  </span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt;  22-year Additional Solar Parameter Monthly &amp; Annual Climatologies (July 1983 - June 2005), 30-year Meteorological and Solar Monthly &amp; Annual Climatologies (January 1984 - December 2013)  </span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt;  Location: Global  </span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;  Parameter(s):  </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt;  Parameters: </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;  NA;</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;  NA;</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;  </span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt;      LON    LAT PARAMETER    JAN    FEB    MAR    APR    MAY    JUN    JUL</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt;  -179.75 -89.75       T2M -28.95 -40.68 -52.93 -57.84 -59.07 -59.62 -61.31</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt;  -179.25 -89.75       T2M -28.95 -40.68 -52.93 -57.85 -59.07 -59.62 -61.32</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt;  -178.75 -89.75       T2M -28.95 -40.68 -52.94 -57.85 -59.08 -59.62 -61.32</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt;  -178.25 -89.75       T2M -28.95 -40.68 -52.94 -57.85 -59.08 -59.62 -61.32</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt;     AUG    SEP    OCT    NOV    DEC    ANN</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt;  -61.78 -60.40 -52.45 -38.68 -28.88 -50.22</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt;  -61.78 -60.40 -52.45 -38.67 -28.88 -50.22</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt;  -61.79 -60.41 -52.45 -38.67 -28.88 -50.22</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt;  -61.79 -60.41 -52.46 -38.67 -28.88 -50.22</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">#&gt;  [ reached getOption("max.print") -- omitted 259196 rows ]</span></a></code></pre></div>
 <p><em>Note</em> the associated metadata are not saved if the data are exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda or .rds.</p>
+</div>
 <div id="description-of-parameters-for-get_power" class="section level3">
 <h3 class="hasAnchor">
 <a href="#description-of-parameters-for-get_power" class="anchor"></a>Description of parameters for <code>get_power</code>
@@ -164,10 +228,10 @@ power
 <li><p><code>file_out</code>, a file name for the resulting text file written to disk. If none is provided, defaults to “APSIM.met”</p></li>
 </ul>
 <p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an APSIM weather.met object suitable for use in APSIM for crop modelling and save it to local disk for use in APSIM modelling.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
-           <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
-           <span class="dt">dsn =</span> <span class="kw">tempdir</span>(),
-           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">           <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">           <span class="dt">dsn =</span> <span class="kw">tempdir</span>(),</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)</a></code></pre></div>
 </div>
 <div id="using-create_icasa" class="section level2">
 <h2 class="hasAnchor">
@@ -188,10 +252,10 @@ power
 <li><p><code>file_out</code>, a file name for the resulting text file written to disk. If none is provided, defaults to “ICASA.txt”</p></li>
 </ul>
 <p>Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an ICASA text file suitable for use in DSSAT for crop modelling and save it to local disk.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
-             <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
-             <span class="dt">dsn =</span> <span class="kw">tempdir</span>(),
-             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">             <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">             <span class="dt">dsn =</span> <span class="kw">tempdir</span>(),</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</a></code></pre></div>
 </div>
 <div id="creating-spatial-objects-from-get_power" class="section level2">
 <h2 class="hasAnchor">
@@ -202,29 +266,29 @@ power
 <h3 class="hasAnchor">
 <a href="#converting-regional-data-to-a-raster-object" class="anchor"></a>Converting Regional Data to a <em>raster</em> Object</h3>
 <p>Using <code>lapply</code> and <code>split</code> it is easy to create stacks of raster objects from a regional query.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nasapower)
-<span class="kw">library</span>(raster)
-
-power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
-                   <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">112.5</span>, <span class="op">-</span><span class="fl">55.5</span> , <span class="fl">115.5</span>, <span class="op">-</span><span class="fl">50.5</span>),
-                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),
-                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span>),
-                   <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>)
-
-
-<span class="co"># Use split to create a list of data frames split by YYYYMMDD</span>
-power &lt;-<span class="st"> </span><span class="kw">split</span>(power, power<span class="op">$</span>YYYYMMDD)
-
-<span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span>
-power &lt;-
-<span class="st">  </span><span class="kw">lapply</span>(power, <span class="cf">function</span>(x)
-  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span>))])
-
-<span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span>
-raster_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(power, rasterFromXYZ,
-              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">                   <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">112.5</span>, <span class="fl">-55.5</span> , <span class="fl">115.5</span>, <span class="fl">-50.5</span>),</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">                   <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">                   <span class="dt">dates =</span> <span class="kw">c</span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span>),</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">                   <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">power &lt;-<span class="st"> </span><span class="kw">split</span>(power, power<span class="op">$</span>YYYYMMDD)</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15">power &lt;-</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="st">  </span><span class="kw">lapply</span>(power, <span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17">  x[(<span class="op">!</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span>))])</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">raster_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(power, rasterFromXYZ,</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">              <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a></code></pre></div>
 <p>Plot the first item in the list.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(raster_list[[<span class="dv">1</span>]])</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(raster_list[[<span class="dv">1</span>]])</a></code></pre></div>
 <div class="figure">
 <img src="../man/figures/nasapower_Figure1.png" alt="Plot of RH2M and T2M for Jan 1"><p class="caption">Plot of RH2M and T2M for Jan 1</p>
 </div>
@@ -233,19 +297,19 @@ raster_list &lt;-<span class="st"> </span><span class="kw">lapply</span>(power, 
 <h3 class="hasAnchor">
 <a href="#converting-global-climatology-to-a-raster-object" class="anchor"></a>Converting Global Climatology to a <em>raster</em> Object</h3>
 <p>Converting global climatology to a <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick</a></code> is as simple as querying and then converting the resulting <code>tibble</code> to a raster object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(
-  <span class="dt">community =</span> <span class="st">"AG"</span>,
-  <span class="dt">lonlat =</span> <span class="st">"global"</span>,
-  <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),
-  <span class="dt">temporal_average =</span> <span class="st">"CLIMATOLOGY"</span>
-)
-
-<span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span>
-RH2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="op">-</span><span class="dv">3</span>])
-
-T2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[, <span class="op">-</span><span class="dv">3</span>])</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">power &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">  <span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">  <span class="dt">lonlat =</span> <span class="st">"global"</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">  <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">temporal_average =</span> <span class="st">"CLIMATOLOGY"</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span></a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">RH2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="dv">-3</span>])</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">T2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(power, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[, <span class="dv">-3</span>])</a></code></pre></div>
 <p>Plot the annual RH2M from the <code>RasterBrick</code> object.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(RH2M<span class="op">$</span>ANN)</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(RH2M<span class="op">$</span>ANN)</a></code></pre></div>
 <div class="figure">
 <img src="../man/figures/nasapower_Figure2.png" alt="Plot of ANN (annual mean) RH2M"><p class="caption">Plot of ANN (annual mean) RH2M</p>
 </div>

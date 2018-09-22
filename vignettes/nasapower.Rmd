@@ -6,9 +6,15 @@ output:
     toc: true
 vignette: >
   %\VignetteIndexEntry{nasapower}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r, include = FALSE}
+is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
+             "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+knitr::opts_chunk$set(eval = !is_check)
+```
 
 ```{r setup, include=FALSE}
 library(nasapower)
@@ -36,18 +42,54 @@ Transfer (DSSAT) modelling, `create_met()`.
 
 ## Using `get_power`
 
-The `get_power()` function requires five arguments as seen in this example and
+The `get_power()` function has five arguments as seen in this example and
 returns a data frame with a metadata header in the current R session.
 
-```{r get_power, eval=TRUE}
-power <- get_power(community = "AG",
-                   pars = c("RH2M", "T2M"),
-                   temporal_average = "DAILY",
-                   lonlat = c(179.5, -89.5),
-                   dates = c("1985-01-01", "1985-01-31")
-                   )
+### Example fetching daily data
 
-power
+Fetch daily "AG" community temperature, relative humidity and precipitation
+for January 1 1985 for Kingsthorpe, Queensland, Australia.
+
+```{r get_ag, eval=TRUE}
+
+daily_ag <- get_power(community = "AG",
+                      lonlat = c(151.81, -27.48),
+                      pars = c("RH2M", "T2M", "PRECTOT"),
+                      dates = "1985-01-01",
+                      temporal_average = "DAILY"
+                      )
+
+daily_ag
+```
+
+### Example fetching interannual data
+
+Fetch interannual solar cooking parameters for a given region.
+
+```{r interannual, eval=TRUE}
+interannual_sse <- get_power(community = "SSE",
+                            lonlat = c(112.5, -55.5, 115.5, -50.5),
+                            dates = c("1984", "1985"),
+                            temporal_average = "INTERANNUAL",
+                            pars = c("CLRSKY_SFC_SW_DWN",
+                                     "ALLSKY_SFC_SW_DWN")
+                                     )
+
+interannual_sse
+```
+
+### Example fetching climatology data
+
+Fetch global AG climatology for temperature.
+
+```{r get_climatology, eval = TRUE}
+
+climatology_ag <- get_power(community = "AG",
+                           pars = c("T2M"),
+                           temporal_average = "CLIMATOLOGY"
+                           )
+
+climatology_ag
 ```
 
 _Note_ the associated metadata are not saved if the data are exported to a
