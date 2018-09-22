@@ -6,6 +6,8 @@
 #' @param x A character string to match.
 #' @param table A table containing values to match `x` against.
 #'
+#' @return A function to use for checking if something is not in a vector
+#'
 #' @noRd
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
@@ -19,17 +21,15 @@
 #' `GLOBAL`.
 #'
 #' @param lonlat User entered `lonlat` value.
-#' @param temporal_average User entered `temporal_average` value.
+#'
+#' @return lonlat values
 #'
 #' @noRd
 #'
-.check_global <- function(lonlat, temporal_average) {
+.check_global <- function(lonlat) {
   if (is.character(lonlat)) {
     if (lonlat != "GLOBAL") {
       stop("\nYou have entered an invalid value for `lonlat`.\n")
-    }
-    if (temporal_average != "CLIMATOLOGY" | !is.null(temporal_average)) {
-      stop("Only CLIMATOLOGY is available for GLOBAL coverage.")
     }
   }
   return(lonlat)
@@ -44,6 +44,8 @@
 #' @param lonlat User entered `lonlat` value.
 #' @param temporal_average User entered `temporal_average` value.
 #'
+#' @return Validated dates in a list for use in .power_query()
+#'
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_average) {
 
@@ -53,7 +55,7 @@
          "Do you wish to query daily or interannual data instead?\n")
   }
 
-  if (missing(dates) & temporal_average != "CLIMATOLOGY") {
+  if (is.null(dates) & temporal_average != "CLIMATOLOGY") {
     stop(call. = FALSE,
          "\nYou have not entered dates for the query.\n")
   }
@@ -144,6 +146,8 @@
 #' @param community User entered `community` value.
 #' @param pars User entered `pars` value.
 #'
+#' @return Validated community and pars for use in .power_query()
+#'
 #' @noRd
 .check_community <-
   function(community, pars) {
@@ -173,6 +177,8 @@
 #' @param dates User entered `dates` value.
 #' @param lonlat User entered `lonlat` value.
 #' @param temporal_average User entered `temporal_average` value.
+#'
+#' @return Validated pars for use in .power_query()
 #'
 #' @noRd
 .check_pars <-
@@ -252,6 +258,8 @@
 #'
 #' @param lonlat User entered `lonlat` value.
 #' @param pars User entered `pars` value.
+#'
+#' @return A list called lonlat_identifier for use in .power_query()
 #'
 #' @noRd
 .check_lonlat <-
@@ -359,12 +367,14 @@
 #' @param outputList A value of either "CSV" or "ICASA" that tells the API the
 #' desired format in which to return the data.
 #'
+#' @return A tidy data.frame() of requested POWER data
+#'
 #' @noRd
 .power_query <- function(community,
-                        lonlat_identifier,
-                        pars,
-                        dates,
-                        outputList) {
+                         lonlat_identifier,
+                         pars,
+                         dates,
+                         outputList) {
   power_url <- # nocov start
     "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
@@ -524,12 +534,14 @@ print.POWER.Info <- function(x, ...) {
                    max = length(attributes(x)) + 60)
 }
 
-#' Adds %notin% function
+#' Format date columns in POWER data frame
 #'
-#' Negates `%in%`` for easier matching.
+#' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param x A character string to match.
-#' @param table A table containing values to match `x` against.
+#' @param NASA A tidy data.frame resulting from .power_query().
+#'
+#' @return A tidy data frame of power data with additional date information
+#'   columns.
 #'
 #' @noRd
 #'
