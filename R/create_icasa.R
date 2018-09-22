@@ -92,7 +92,6 @@ create_icasa <- function(lonlat,
 
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
-  lonlat <- .check_global(lonlat)
   dates <- .check_dates(dates,
                        lonlat,
                        temporal_average)
