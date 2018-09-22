@@ -230,30 +230,32 @@ values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"># NOT RUN {
-# Fetch daily "AG" community temperature, relative humidity and precipitation
- for January 1 1985
-daily_ag <- get_power(community = "AG",
-                     lonlat = c(-179.5, -89.5),
-                     pars = c("RH2M", "T2M", "PRECTOT"),
-                     dates = "1985-01-01",
-                     temporal_average = "DAILY")
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># Fetch daily "AG" community temperature, relative humidity and precipitation</span>
+<span class='co'># for January 1 1985</span>
+<span class='no'>daily_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
+                     <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
+                     <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
+                     <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
+                     <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>
+                     )
 
-# Fetch global AG climatology for temperature, relative humidity and
-# precipitation
-climatology_ag <- get_power(community = "AG",
-                            pars = c("RH2M", "T2M", "PRECTOT"),
-                            temporal_average = "CLIMATOLOGY")
+<span class='co'># Fetch global AG climatology for temperature, relative humidity and</span>
+<span class='co'># precipitation</span>
+<span class='no'>climatology_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
+                            <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
+                            <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"CLIMATOLOGY"</span>
+                            )
 
-# Fetch interannual solar cooking parameters for a given region
-interannual_sse <- get_power(community = "SSE",
-                             lonlat = c(112.5, -55.5, 115.5, -50.5),
-                             dates = c("1984", "1985"),
-                             temporal_average = "INTERANNUAL",
-                             pars = c("CLRSKY_SFC_SW_DWN",
-                                      "ALLSKY_SFC_SW_DWN"))
-# }
-<div class='input'>
+<span class='co'># Fetch interannual solar cooking parameters for a given region</span>
+<span class='no'>interannual_sse</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"SSE"</span>,
+                             <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>112.5</span>, -<span class='fl'>55.5</span>, <span class='fl'>115.5</span>, -<span class='fl'>50.5</span>),
+                             <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1984"</span>, <span class='st'>"1985"</span>),
+                             <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"INTERANNUAL"</span>,
+                             <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"CLRSKY_SFC_SW_DWN"</span>,
+                                      <span class='st'>"ALLSKY_SFC_SW_DWN"</span>)
+                                      )
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

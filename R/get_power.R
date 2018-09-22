@@ -86,7 +86,7 @@
 #' @examples
 #' \dontrun{
 #' # Fetch daily "AG" community temperature, relative humidity and precipitation
-#'  for January 1 1985
+#' # for January 1 1985
 #' daily_ag <- get_power(community = "AG",
 #'                      lonlat = c(-179.5, -89.5),
 #'                      pars = c("RH2M", "T2M", "PRECTOT"),
