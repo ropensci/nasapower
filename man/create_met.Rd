@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an APSIM metFile File from NASA - POWER Data}
+\title{Create an APSIM metFile file from NASA - POWER data}
 \usage{
 create_met(lonlat, dates, dsn, file_out)
 }
@@ -70,13 +70,13 @@ the end date and only a single day's values will be returned.
 
 \examples{
 # Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir as "APSIM_example.met".
+# save it in the current R session tempdir() as "APSIM_example.met".
 
 \dontrun{
 create_met(lonlat = c(151.81, -27.48),
-          dates = c("1985-01-01", "1985-12-31"),
-          dsn = tempdir(),
-          file = "APSIM_example.met")
+           dates = c("1985-01-01", "1985-12-31"),
+           dsn = tempdir(),
+           file = "APSIM_example.met")
 }
 
 }

@@ -1,22 +1,51 @@
 
+#' Adds %notin% function
+#'
+#' Negates `%in%`` for easier matching.
+#'
+#' @param x A character string to match.
+#' @param table A table containing values to match `x` against.
+#'
+#' @noRd
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
 }
 
+#' Check lonlat for global coverage and climatology agreement
+#'
+#' Validates `lonlat` to make sure that if it's not numeric, it's `GLOBAL` and
+#' the `temporal_average` is `CLIMATOLOGY`. Start/end dates are not required for
+#' `GLOBAL`.
+#'
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_average User entered `temporal_average` value.
+#'
 #' @noRd
-# start/end dates not required for global.
-check_global <- function(lonlat) {
+#'
+.check_global <- function(lonlat, temporal_average) {
   if (is.character(lonlat)) {
     if (lonlat != "GLOBAL") {
       stop("\nYou have entered an invalid value for `lonlat`.\n")
+    }
+    if (temporal_average != "CLIMATOLOGY" | !is.null(temporal_average)) {
+      stop("Only CLIMATOLOGY is available for GLOBAL coverage.")
     }
   }
   return(lonlat)
 }
 
+#' Check dates for validity when querying API
+#'
+#' Validates user entered date values against `lonlat` and `temporal_average`
+#' values
+#'
+#' @param dates User entered `dates` value.
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_average User entered `temporal_average` value.
+#'
 #' @noRd
-check_dates <- function(dates, lonlat, temporal_average) {
+.check_dates <- function(dates, lonlat, temporal_average) {
 
   if (!is.null(dates) & temporal_average == "CLIMATOLOGY") {
     stop(call. = FALSE,
@@ -108,8 +137,15 @@ check_dates <- function(dates, lonlat, temporal_average) {
   return(dates)
 }
 
+#' Check community for validity when querying API
+#'
+#' Validates user entered `community` values against `pars` for availability.
+#'
+#' @param community User entered `community` value.
+#' @param pars User entered `pars` value.
+#'
 #' @noRd
-check_community <-
+.check_community <-
   function(community, pars) {
     if (community %notin% c("AG", "SB", "SSE")) {
       stop(call. = FALSE,
@@ -129,8 +165,17 @@ check_community <-
     }
   }
 
+#' Check pars for validity when querying API
+#'
+#' Validates user entered date values against `lonlat` and `temporal_average`
+#' values
+#'
+#' @param dates User entered `dates` value.
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_average User entered `temporal_average` value.
+#'
 #' @noRd
-check_pars <-
+.check_pars <-
   function(pars, temporal_average, lonlat) {
 
     if (!is.numeric(lonlat) & temporal_average != "CLIMATOLOGY") {
@@ -201,9 +246,15 @@ check_pars <-
     return(pars)
   }
 
+#' Check lonlat for validity when querying API
+#'
+#' Validates user entered `lonlat` values and checks against `pars` values.
+#'
+#' @param lonlat User entered `lonlat` value.
+#' @param pars User entered `pars` value.
+#'
 #' @noRd
-#' @noRd
-check_lonlat <-
+.check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
     if (is.numeric(lonlat) & length(lonlat) == 2) {
@@ -296,8 +347,20 @@ check_lonlat <-
     return(lonlat_identifier)
   }
 
+#' Query the NASA - POWER API
+#'
+#' Constructs and sends a query to the POWER API using validated values from
+#' previous functions in this file.
+#'
+#' @param community A validated value for community from `check_community()`.
+#' @param lonlat_identifier A list of values, a result of `check_lonlat()`.
+#' @param pars A validated value from `check_pars()`.
+#' @param dates A list of valuse, a result of `check_dates()`.
+#' @param outputList A value of either "CSV" or "ICASA" that tells the API the
+#' desired format in which to return the data.
+#'
 #' @noRd
-power_query <- function(community,
+.power_query <- function(community,
                         lonlat_identifier,
                         pars,
                         dates,
@@ -438,6 +501,10 @@ power_query <- function(community,
   })
 }
 
+#' Prints Power.info object.
+#'
+#' @param x POWER.info object
+#' @param ... ignored
 #' @export
 print.POWER.Info <- function(x, ...) {
   if (!is.null(attr(x, "POWER.Info"))) {
@@ -457,7 +524,15 @@ print.POWER.Info <- function(x, ...) {
                    max = length(attributes(x)) + 60)
 }
 
+#' Adds %notin% function
+#'
+#' Negates `%in%`` for easier matching.
+#'
+#' @param x A character string to match.
+#' @param table A table containing values to match `x` against.
+#'
 #' @noRd
+#'
 .format_dates <- function(NASA) {
   # convert DOY to integer
   NASA$DOY <- as.integer(NASA$DOY)

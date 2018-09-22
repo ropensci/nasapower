@@ -1,43 +1,42 @@
 
-#' @title Get NASA-POWER Data and Return a Tidy Data Frame
+#' Get NASA-POWER data and return a tidy data frame
 #'
-#' @description Get NASA-POWER global meteorology and surface solar energy
-#' climatology data and return a tidy data frame. All options offered by the
-#' official NASA-POWER API are supported.
+#' Get NASA-POWER global meteorology and surface solar energy climatology data
+#'   and return a tidy data frame. All options offered by the official
+#'   NASA-POWER API are supported.
 #'
-#' @export
 #' @param community A character vector providing community name: "AG", "SB" or
-#' "SSE". See argument details for more.
+#'   "SSE". See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'  entered as x, y coordinates or `Global` for global area.  See argument
-#'  details for more.
+#'   entered as x, y coordinates or `GLOBAL` for global area.  See argument
+#'   details for more.
 #' @param pars A character vector of solar, meteorological or climatology
-#'  parameters to download.  See \code{names(parameters)} for a full list of
-#'  valid values and definitions.  Visit the
-#'  [POWER website](https://power.larc.nasa.gov/#resources) for the Parameter
-#'  Dictionary.  If downloading CLIMATOLOGY a maximum of 3 `pars` can be
-#'  specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
-#'  be specified at one time.
+#'   parameters to download.  See \code{names(parameters)} for a full list of
+#'   valid values and definitions.  Visit the
+#'   [POWER website](https://power.larc.nasa.gov/#resources) for the Parameter
+#'   Dictionary.  If downloading CLIMATOLOGY a maximum of 3 `pars` can be
+#'   specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
+#'   be specified at one time.
 #' @param dates A character vector of start and end dates in that order,\cr
-#'  *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not required for global
-#'  coverage.  See argument details for more.
+#'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not required for global
+#'   coverage.  See argument details for more.
 #' @param temporal_average Temporal average for data being queried, currently
-#'  supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
-#'  more.
+#'   supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
+#'   more.  Not required when `GLOBAL` area is specified in \code{lonlat}.
 #'
 #' @details _Note_ the associated metadata are not saved if the data are
-#'  exported to a file format other than an R data format, _e.g._, .Rdata, .rda
-#'  or .rds.
+#'   exported to a file format other than an R data format, _e.g._, .Rdata, .rda
+#'   or .rds.
 #'
 #' Further details for each of the arguments are provided in their respective
-#'  sections follow.
+#'   sections follow.
 #'
 #' @section Argument details for `community`: There are three valid values, one
-#'  must be supplied. This  will affect the units of the parameter and the
-#'  temporal display of time series data.
+#'   must be supplied. This  will affect the units of the parameter and the
+#'   temporal display of time series data.
 #'
-#'  \describe{
-#'  \item{AG}{Provides access to the Agroclimatology Archive, which
+#' \describe{
+#'   \item{AG}{Provides access to the Agroclimatology Archive, which
 #'  contains industry-friendly parameters formatted for input to crop models.}
 #'
 #'  \item{SB}{Provides access to the Sustainable Buildings Archive, which
@@ -74,7 +73,9 @@
 #'  values will be returned.
 #'
 #' @section Argument details for `temporal_average`: There are three valid
-#'  values, one must be supplied.
+#'  values.  If the \code{lonlat} is set to `GLOBAL`, this does not need
+#'  to be specified. However, it may be set to `CLIMATOLOGY` but no other value
+#'  is valid for this \code{latlon} value.
 #'  \describe{
 #'   \item{DAILY}{The daily average of `pars` by year.}
 #'   \item{INTERANNUAL}{The monthly average of `pars` by year.}
@@ -93,18 +94,17 @@
 #' \dontrun{
 #' # Fetch daily "AG" community temperature, relative humidity and precipitation
 #'  for January 1 1985
-#'daily_ag <- get_power(community = "AG",
+#' daily_ag <- get_power(community = "AG",
 #'                      lonlat = c(-179.5, -89.5),
 #'                      pars = c("RH2M", "T2M", "PRECTOT"),
 #'                      dates = "1985-01-01",
 #'                      temporal_average = "DAILY")
 #'
-#' # Fetch global AG climatology for temperature, relative humidty and
-#' precipitation
+#' # Fetch global AG climatology for temperature, relative humidity and
+#' # precipitation
 #' climatology_ag <- get_power(community = "AG",
 #'                             lonlat = "GLOBAL",
 #'                             pars = c("RH2M", "T2M", "PRECTOT"))
-#'
 #'
 #' # Fetch interannual solar cooking parameters for a given region
 #' interannual_sse <- get_power(community = "SSE",
@@ -117,11 +117,12 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
+#' @export
 get_power <- function(community,
                       lonlat,
                       pars,
                       dates = NULL,
-                      temporal_average) {
+                      temporal_average = NULL) {
 
   if (is.character(lonlat)) {
     lonlat <- toupper(lonlat)
@@ -135,20 +136,20 @@ get_power <- function(community,
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
 
-  check_community(community, pars)
-  lonlat <- check_global(lonlat)
-  dates <- check_dates(dates,
+  .check_community(community, pars)
+  lonlat <- .check_global(lonlat)
+  dates <- .check_dates(dates,
                        lonlat,
                        temporal_average)
-  pars <- check_pars(pars,
+  pars <- .check_pars(pars,
                      temporal_average,
                      lonlat)
-  lonlat_identifier <- check_lonlat(lonlat,
+  lonlat_identifier <- .check_lonlat(lonlat,
                                     pars)
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
-  NASA <- power_query(community,
+  NASA <- .power_query(community,
                       lonlat_identifier,
                       pars,
                       dates,

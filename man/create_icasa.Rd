@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_icasa.R
 \name{create_icasa}
 \alias{create_icasa}
-\title{Create a DSSAT ICASA File from NASA - POWER Data}
+\title{Create a DSSAT ICASA file from NASA - POWER data}
 \usage{
 create_icasa(lonlat, dates, dsn, file_out)
 }
@@ -25,9 +25,9 @@ A text file in ICASA format saved to local disk for use in DSSAT crop
 modelling.
 }
 \description{
-Get NASA-POWER values for a single point or region and create
-an ICASA format text file suitable for use in DSSAT for crop modelling saving
-it to local disk.
+Get NASA-POWER values for a single point or region and create an ICASA format
+text file suitable for use in DSSAT for crop modelling saving it to local
+disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}

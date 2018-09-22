@@ -2,16 +2,17 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get NASA-POWER Data and Return a Tidy Data Frame}
+\title{Get NASA-POWER data and return a tidy data frame}
 \usage{
-get_power(community, lonlat, pars, dates = NULL, temporal_average)
+get_power(community, lonlat, pars, dates = NULL,
+  temporal_average = NULL)
 }
 \arguments{
 \item{community}{A character vector providing community name: "AG", "SB" or
 "SSE". See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates or \code{Global} for global area.  See argument
+entered as x, y coordinates or \code{GLOBAL} for global area.  See argument
 details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
@@ -28,16 +29,16 @@ coverage.  See argument details for more.}
 
 \item{temporal_average}{Temporal average for data being queried, currently
 supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
-more.}
+more.  Not required when \code{GLOBAL} area is specified in \code{lonlat}.}
 }
 \value{
 A data frame of POWER data including location, dates (not including
 CLIMATOLOGY) and requested parameters. A header of metadata is included.
 }
 \description{
-Get NASA-POWER global meteorology and surface solar energy
-climatology data and return a tidy data frame. All options offered by the
-official NASA-POWER API are supported.
+Get NASA-POWER global meteorology and surface solar energy climatology data
+and return a tidy data frame. All options offered by the official
+NASA-POWER API are supported.
 }
 \details{
 \emph{Note} the associated metadata are not saved if the data are
@@ -96,7 +97,9 @@ values will be returned.
 
 \section{Argument details for \code{temporal_average}}{
  There are three valid
-values, one must be supplied.
+values.  If the \code{lonlat} is set to \code{GLOBAL}, this does not need
+to be specified. However, it may be set to \code{CLIMATOLOGY} but no other value
+is valid for this \code{latlon} value.
 \describe{
 \item{DAILY}{The daily average of \code{pars} by year.}
 \item{INTERANNUAL}{The monthly average of \code{pars} by year.}
@@ -116,12 +119,11 @@ daily_ag <- get_power(community = "AG",
                      dates = "1985-01-01",
                      temporal_average = "DAILY")
 
-# Fetch global AG climatology for temperature, relative humidty and
-precipitation
+# Fetch global AG climatology for temperature, relative humidity and
+# precipitation
 climatology_ag <- get_power(community = "AG",
                             lonlat = "GLOBAL",
                             pars = c("RH2M", "T2M", "PRECTOT"))
-
 
 # Fetch interannual solar cooking parameters for a given region
 interannual_sse <- get_power(community = "SSE",
