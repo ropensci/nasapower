@@ -55,7 +55,7 @@
 #' # save it in the current R session tempdir as "ICASA_example.txt".
 #'
 #' \dontrun{
-#'create_icasa(lonlat = c(151.81, -27.48),
+#' create_icasa(lonlat = c(151.81, -27.48),
 #'             dates = c("1985-01-01", "1985-12-31"),
 #'             dsn = tempdir(),
 #'             file = "ICASA_example.txt")
@@ -68,11 +68,11 @@ create_icasa <- function(lonlat,
                          dates,
                          dsn,
                          file_out) {
-
   if (missing(dsn) || missing(file_out)) {
-    stop(call. = FALSE,
-         "You must provide a file location, `dsn` and file name, `file_out`."
-         )
+    stop(
+      call. = FALSE,
+      "You must provide a file location, `dsn` and file name, `file_out`."
+    )
   }
 
   temporal_average <- "DAILY"
@@ -93,23 +93,28 @@ create_icasa <- function(lonlat,
 
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
-  dates <- .check_dates(dates,
-                       lonlat,
-                       temporal_average
-                       )
-  pars <- .check_pars(pars,
-                     temporal_average,
-                     lonlat)
-  lonlat_identifier <- .check_lonlat(lonlat,
-                                    pars
-                                    )
+  dates <- .check_dates(
+    dates,
+    lonlat,
+    temporal_average
+  )
+  pars <- .check_pars(
+    pars,
+    temporal_average,
+    lonlat
+  )
+  lonlat_identifier <- .check_lonlat(
+    lonlat,
+    pars
+  )
 
-  out <- .power_query(community = "AG",
-                     lonlat_identifier,
-                     pars,
-                     dates = dates,
-                     outputList = "ICASA"
-                     )
+  out <- .power_query(
+    community = "AG",
+    lonlat_identifier,
+    pars,
+    dates = dates,
+    outputList = "ICASA"
+  )
 
   file_out <- file.path(dsn, file_out)
   writeLines(out, file_out)

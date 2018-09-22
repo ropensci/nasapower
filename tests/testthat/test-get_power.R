@@ -7,11 +7,13 @@ test_that("get_power returns daily point AG data", {
     power_query <- get_power(
       community = "AG",
       lonlat = c(-179.5, -89.5),
-      pars =  c("T2M",
-                "T2M_MIN",
-                "T2M_MAX",
-                "RH2M",
-                "WS10M"),
+      pars = c(
+        "T2M",
+        "T2M_MIN",
+        "T2M_MAX",
+        "RH2M",
+        "WS10M"
+      ),
       dates = c("1983-01-01"),
       temporal_average = "Daily"
     )
@@ -38,7 +40,7 @@ test_that("get_power returns daily regional AG data", {
     power_query <- get_power(
       community = "AG",
       lonlat = c(112.5, -55.5, 115.5, -50.5),
-      pars =  "T2M",
+      pars = "T2M",
       dates = c("1983-01-01"),
       temporal_average = "Daily"
     )
@@ -60,8 +62,10 @@ test_that("get_power returns daily regional AG data", {
         -50.25
       )
     )
-    expect_equal(unique(power_query$LON),
-                 c(112.75, 113.25, 113.75, 114.25, 114.75, 115.25, 115.75))
+    expect_equal(
+      unique(power_query$LON),
+      c(112.75, 113.25, 113.75, 114.25, 114.75, 115.25, 115.75)
+    )
     expect_equal(power_query$YEAR[1], 1983)
     expect_equal(power_query$MM[1], 1)
     expect_equal(power_query$DD[1], 1)
@@ -78,7 +82,7 @@ test_that("get_power returns global AG data for climatology", {
     power_query <- get_power(
       community = "AG",
       lonlat = "Global",
-      pars =  "T2M",
+      pars = "T2M",
       temporal_average = "Climatology"
     )
 
@@ -118,12 +122,16 @@ test_that("get_power stops if `temporal_average` not valid", {
     power_query <- get_power(
       community = "AG",
       lonlat = c(-179.5, -89.5),
-      pars =  c("T2M",
-                "T2M_MIN",
-                "T2M_MAX",
-                "RH2M",
-                "WS10M"),
+      pars = c(
+        "T2M",
+        "T2M_MIN",
+        "T2M_MAX",
+        "RH2M",
+        "WS10M"
+      ),
       dates = c("1983-01-01"),
-      temporal_average = 1),
-    regexp  <- "\nYou have entered an invalid value for `temporal_average`.\n")
+      temporal_average = 1
+    ),
+    regexp <- "\nYou have entered an invalid value for `temporal_average`.\n"
+  )
 })

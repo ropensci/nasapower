@@ -9,7 +9,8 @@ test_that("create_icasa stops if user specifies global coverage", {
         dates = c("1983-01-01"),
         file_out = "icasa.txt",
         dsn = tmpdir()
-      ), regexp = "*The `lonlat` must be numeric values.*"
+      ),
+      regexp = "*The `lonlat` must be numeric values.*"
     )
   })
 })
@@ -36,13 +37,15 @@ test_that("create_icasa() fails if no dsn or file_out are supplied", {
     create_icasa(
       lonlat = c(151.81, -27.48),
       dates = c("1983-01-01"),
-      dsn = tempdir())
+      dsn = tempdir()
+    )
   )
 
   expect_error(
     create_icasa(
       lonlat = c(151.81, -27.48),
       dates = c("1983-01-01"),
-      file_out = tempfile())
+      file_out = tempfile()
+    )
   )
 })

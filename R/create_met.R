@@ -73,10 +73,11 @@ create_met <- function(lonlat,
                        dates,
                        dsn,
                        file_out) {
-
   if (missing(dsn) || missing(file_out)) {
-    stop(call. = FALSE,
-         "You must provide a file location, `dsn` and file name, `file_out`.")
+    stop(
+      call. = FALSE,
+      "You must provide a file location, `dsn` and file name, `file_out`."
+    )
   }
 
   if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
@@ -93,10 +94,12 @@ create_met <- function(lonlat,
 
   power_data <- as.data.frame(
     get_power(
-      pars = c("T2M_MAX",
-               "T2M_MIN",
-               "ALLSKY_SFC_SW_DWN",
-               "PRECTOT"),
+      pars = c(
+        "T2M_MAX",
+        "T2M_MIN",
+        "ALLSKY_SFC_SW_DWN",
+        "PRECTOT"
+      ),
       dates = dates,
       lonlat = lonlat,
       temporal_average = "DAILY",
@@ -105,28 +108,34 @@ create_met <- function(lonlat,
   )
 
   power_data <-
-    dplyr::select(power_data,
-                  "YEAR",
-                  "DOY",
-                  "T2M_MAX",
-                  "T2M_MIN",
-                  "PRECTOT",
-                  "ALLSKY_SFC_SW_DWN")
+    dplyr::select(
+      power_data,
+      "YEAR",
+      "DOY",
+      "T2M_MAX",
+      "T2M_MIN",
+      "PRECTOT",
+      "ALLSKY_SFC_SW_DWN"
+    )
 
-  met_names <- c("year",
-                 "day",
-                 "maxt",
-                 "mint",
-                 "radn",
-                 "rain")
+  met_names <- c(
+    "year",
+    "day",
+    "maxt",
+    "mint",
+    "radn",
+    "rain"
+  )
 
   met_units <-
-    c("()",
+    c(
+      "()",
       "()",
       "(oC)",
       "(oC)",
       "(MJ/m^2/day)",
-      "(mm)")
+      "(mm)"
+    )
 
   out <-
     suppressMessages(
@@ -136,8 +145,11 @@ create_met <- function(lonlat,
         lon = power_data[1, 1],
         newNames = met_names,
         units = met_units
-      ))
+      )
+    )
 
-  APSIM::writeMetFile(fileName = file.path(dsn, file_out),
-                      met = out)
+  APSIM::writeMetFile(
+    fileName = file.path(dsn, file_out),
+    met = out
+  )
 }

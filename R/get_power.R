@@ -116,14 +116,14 @@ get_power <- function(community,
                       temporal_average,
                       lonlat = NULL,
                       dates = NULL) {
-
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
   if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
-    stop(call. = FALSE,
-         "\nYou have entered an invalid value for `temporal_average`.\n"
-         )
+    stop(
+      call. = FALSE,
+      "\nYou have entered an invalid value for `temporal_average`.\n"
+    )
   }
   if (temporal_average == "CLIMATOLOGY") {
     lonlat <- "GLOBAL"
@@ -141,24 +141,27 @@ get_power <- function(community,
 
   .check_community(community, pars)
 
-  dates <- .check_dates(dates,
-                        lonlat,
-                        temporal_average
-                        )
-  pars <- .check_pars(pars,
-                      temporal_average,
-                      lonlat
-                      )
-  lonlat_identifier <- .check_lonlat(lonlat,
-                                     pars
-                                     )
+  dates <- .check_dates(
+    dates,
+    lonlat,
+    temporal_average
+  )
+  pars <- .check_pars(
+    pars,
+    temporal_average,
+    lonlat
+  )
+  lonlat_identifier <- .check_lonlat(
+    lonlat,
+    pars
+  )
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
   NASA <- .power_query(community,
-                       lonlat_identifier,
-                       pars,
-                       dates,
-                       outputList = "CSV"
-                       )
+    lonlat_identifier,
+    pars,
+    dates,
+    outputList = "CSV"
+  )
 }
