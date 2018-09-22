@@ -6,7 +6,7 @@
 #' @param x A character string to match.
 #' @param table A table containing values to match `x` against.
 #'
-#' @return A function to use for checking if something is not in a vector
+#' @return A function to use for checking if something is not in a table
 #'
 #' @noRd
 `%notin%` <- function(x, table) {
@@ -44,10 +44,7 @@
 
   if (temporal_average == "INTERANNUAL" & any(nchar(dates) > 4)) {
     dates <- unique(substr(dates, 1, 4))
-    message(
-      "\nOnly years are used with `temporal_average = INTERANNUAL`. ",
-      "The dates have been set to ", dates[1], " ", dates[2], ".\n"
-    )
+    return(dates)
   }
 
   if (temporal_average == "DAILY") {
