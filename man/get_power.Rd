@@ -110,13 +110,15 @@ daily_ag <- get_power(community = "AG",
                      lonlat = c(-179.5, -89.5),
                      pars = c("RH2M", "T2M", "PRECTOT"),
                      dates = "1985-01-01",
-                     temporal_average = "DAILY")
+                     temporal_average = "DAILY"
+                     )
 
 # Fetch global AG climatology for temperature, relative humidity and
 # precipitation
 climatology_ag <- get_power(community = "AG",
                             pars = c("RH2M", "T2M", "PRECTOT"),
-                            temporal_average = "CLIMATOLOGY")
+                            temporal_average = "CLIMATOLOGY"
+                            )
 
 # Fetch interannual solar cooking parameters for a given region
 interannual_sse <- get_power(community = "SSE",
@@ -124,7 +126,8 @@ interannual_sse <- get_power(community = "SSE",
                              dates = c("1984", "1985"),
                              temporal_average = "INTERANNUAL",
                              pars = c("CLRSKY_SFC_SW_DWN",
-                                      "ALLSKY_SFC_SW_DWN"))
+                                      "ALLSKY_SFC_SW_DWN")
+                                      )
 }
 
 }
