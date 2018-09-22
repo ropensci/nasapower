@@ -41,10 +41,11 @@ returns a data frame with a metadata header in the current R session.
 
 ```{r get_power, eval=TRUE}
 power <- get_power(community = "AG",
-                   lonlat = c(179.5, -89.5),
                    pars = c("RH2M", "T2M"),
-                   dates = c("1985-01-01", "1985-01-31"),
-                   temporal_average = "DAILY")
+                   temporal_average = "DAILY",
+                   lonlat = c(179.5, -89.5),
+                   dates = c("1985-01-01", "1985-01-31")
+                   )
 
 power
 ```
