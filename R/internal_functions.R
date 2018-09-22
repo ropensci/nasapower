@@ -237,6 +237,7 @@
     pars <- paste0(pars, collapse = ",")
     pars <- list(pars, temporal_average, skip_lines)
     names(pars) <- c("pars", "temporal_average", "skip_lines")
+    return(pars)
   }
 
 #' Check lonlat for validity when querying API
@@ -345,6 +346,7 @@
       lonlat_identifier <- list(lon, lat, identifier)
       names(lonlat_identifier) <- c("lon", "lat", "identifier")
     }
+    return(lonlat_identifier)
   }
 
 #' Query the NASA - POWER API
