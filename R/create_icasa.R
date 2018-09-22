@@ -71,7 +71,8 @@ create_icasa <- function(lonlat,
 
   if (missing(dsn) || missing(file_out)) {
     stop(call. = FALSE,
-         "You must provide a file location, `dsn` and file name, `file_out`.")
+         "You must provide a file location, `dsn` and file name, `file_out`."
+         )
   }
 
   temporal_average <- "DAILY"
@@ -94,18 +95,21 @@ create_icasa <- function(lonlat,
   # see internal_functions.R for these functions
   dates <- .check_dates(dates,
                        lonlat,
-                       temporal_average)
+                       temporal_average
+                       )
   pars <- .check_pars(pars,
                      temporal_average,
                      lonlat)
   lonlat_identifier <- .check_lonlat(lonlat,
-                                    pars)
+                                    pars
+                                    )
 
   out <- .power_query(community = "AG",
                      lonlat_identifier,
                      pars,
                      dates = dates,
-                     outputList = "ICASA")
+                     outputList = "ICASA"
+                     )
 
   file_out <- file.path(dsn, file_out)
   writeLines(out, file_out)

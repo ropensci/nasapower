@@ -27,20 +27,6 @@ test_that("check_pars stops if no `temporal_average` provided", {
   )
 })
 
-test_that("check_pars stops if `temporal_average` not valid", {
-  pars <- "T2M"
-  temporal_average <- "ad09jlave"
-  lonlat <- c(-179.5, -89.5)
-
-  expect_error(
-    .check_pars(
-      pars,
-      temporal_average,
-      lonlat
-    ),
-    regexp  <- "\nYou have entered an invalid value for `temporal_average`.\n")
-})
-
 test_that("check_pars stops if `pars` not valid", {
   pars <- "asdflkuewr"
   temporal_average <- "DAILY"

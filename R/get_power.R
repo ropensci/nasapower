@@ -122,7 +122,8 @@ get_power <- function(community,
   }
   if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
     stop(call. = FALSE,
-         "\nYou have entered an invalid value for `temporal_average`.\n")
+         "\nYou have entered an invalid value for `temporal_average`.\n"
+         )
   }
   if (temporal_average == "CLIMATOLOGY") {
     lonlat <- "GLOBAL"
@@ -142,12 +143,15 @@ get_power <- function(community,
 
   dates <- .check_dates(dates,
                         lonlat,
-                        temporal_average)
+                        temporal_average
+                        )
   pars <- .check_pars(pars,
                       temporal_average,
-                      lonlat)
+                      lonlat
+                      )
   lonlat_identifier <- .check_lonlat(lonlat,
-                                     pars)
+                                     pars
+                                     )
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
@@ -155,8 +159,6 @@ get_power <- function(community,
                        lonlat_identifier,
                        pars,
                        dates,
-                       outputList = "CSV")
-
-  # finish ---------------------------------------------------------------------
-  return(NASA)
+                       outputList = "CSV"
+                       )
 }
