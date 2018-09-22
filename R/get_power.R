@@ -86,13 +86,13 @@
 #' @examples
 #' \dontrun{
 #' # Fetch daily "AG" community temperature, relative humidity and precipitation
-#' # for January 1 1985
+#' # for January 1 1985 for Kingsthorpe, Queensland, Australia
 #' daily_ag <- get_power(community = "AG",
-#'                      lonlat = c(-179.5, -89.5),
-#'                      pars = c("RH2M", "T2M", "PRECTOT"),
-#'                      dates = "1985-01-01",
-#'                      temporal_average = "DAILY"
-#'                      )
+#'                       lonlat = c(151.81, -27.48),
+#'                       pars = c("RH2M", "T2M", "PRECTOT"),
+#'                       dates = "1985-01-01",
+#'                       temporal_average = "DAILY"
+#' )
 #'
 #' # Fetch global AG climatology for temperature, relative humidity and
 #' # precipitation
