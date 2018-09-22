@@ -58,7 +58,8 @@
 #' create_icasa(lonlat = c(151.81, -27.48),
 #'             dates = c("1985-01-01", "1985-12-31"),
 #'             dsn = tempdir(),
-#'             file = "ICASA_example.txt")
+#'             file = "ICASA_example.txt"
+#'             )
 #' }
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
