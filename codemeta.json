@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
-  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data.  nasapower provides an interface to the NASA - POWER API.\n    POWER (Prediction Of Worldwide Energy Resource) data are freely available\n    for download with a resolution of 0.5 by 0.5 arc degree longitude and\n    latitude and are funded through the NASA Earth Science Directorate Applied\n    Science Program. For more on the data themselves, please see\n    <https://power.larc.nasa.gov/>.",
+  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data.  nasapower provides an interface to the NASA - POWER API.\n    POWER (Prediction Of Worldwide Energy Resource) data are freely available\n    for download with a resolution of 0.5 by 0.5 arc degree longitude and\n    latitude and are funded through the NASA Earth Science Directorate Applied\n    Science Program. For more on the data themselves and a web-based data\n    viewer and access, please see <https://power.larc.nasa.gov/>.",
   "name": "nasapower: NASA-POWER Data from R",
   "codeRepository": "https://github.com/adamhsparks/nasapower",
   "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
@@ -48,18 +48,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=covr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "dplyr",
-      "name": "dplyr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=dplyr"
     },
     {
       "@type": "SoftwareApplication",
@@ -179,6 +167,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "dplyr",
+      "name": "dplyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dplyr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
       "provider": {
@@ -235,7 +235,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "210.518KB",
+  "fileSize": "210.745KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
