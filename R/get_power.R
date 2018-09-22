@@ -7,29 +7,25 @@
 #'
 #' @param community A character vector providing community name: "AG", "SB" or
 #'   "SSE".  See argument details for more.
-#' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'   entered as x, y coordinates or `GLOBAL` for global area.  See argument
-#'   details for more.
 #' @param pars A character vector of solar, meteorological or climatology
 #'   parameters to download.  See \code{names(parameters)} for a full list of
 #'   valid values and definitions.  Visit the
 #'   [POWER website](https://power.larc.nasa.gov/#resources) for the Parameter
 #'   Dictionary.  If downloading CLIMATOLOGY a maximum of 3 `pars` can be
-#'   specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
+#'   specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 #'   be specified at one time.
+#' @param temporal_average Temporal average for data being queried, supported
+#'   values are DAILY, INTERANNUAL and CLIMATOLOGY.  See argument details for
+#'   more.
+#' @param lonlat A numeric vector of geographic coordinates for a cell or region
+#'   entered as x, y coordinates.  Not used when `temporal_average` is set to
+#'   "CLIMATOLOGY".  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
-#'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not required for global
-#'   coverage.  See argument details for more.
-#' @param temporal_average Temporal average for data being queried, currently
-#'   supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
-#'   more.  Not required when `GLOBAL` area is specified in \code{lonlat}.
+#'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not used when
+#'   `temporal_average` is set to "CLIMATOLOGY".  See argument details for more.
 #'
-#' @details _Note_ the associated metadata are not saved if the data are
-#'   exported to a file format other than an R data format, _e.g._, .Rdata, .rda
-#'   or .rds.
-#'
-#' Further details for each of the arguments are provided in their respective
-#'   sections that follow.
+#' @details Further details for each of the arguments are provided in their
+#'   respective sections that follow.
 #'
 #' @section Argument details for `community`: There are three valid values, one
 #'   must be supplied. This  will affect the units of the parameter and the
@@ -48,6 +44,18 @@
 #'  powered renewable energy systems.}
 #'  }
 #'
+#' @section Argument details for `temporal_average`: There are three valid
+#'  values.  If the \code{lonlat} is set to `GLOBAL`, this does not need
+#'  to be specified. However, it may be set to `CLIMATOLOGY` but no other value
+#'  is valid for this \code{latlon} value.
+#'  \describe{
+#'   \item{DAILY}{The daily average of `pars` by year.}
+#'   \item{INTERANNUAL}{The monthly average of `pars` by year.}
+#'   \item{CLIMATOLOGY}{The monthly average of `pars` at the surface of the
+#'    earth for a given month, averaged for that month over the 30-year period
+#'     (Jan. 1984 - Dec. 2013).}
+#'  }
+#'
 #' @section Argument details for `lonlat`:
 #' \describe{
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
@@ -61,28 +69,17 @@
 #'  region, *e.g.*, a bounding box for the southwestern corner of Australia:
 #'  `lonlat = c(112.5, -55.5, 115.5, -50.5)`.
 #'  *Maximum area processed is 4.5 x 4.5 degrees (100 points).}
-#'
-#'  \item{For global coverage}{To get global coverage for long term
-#'  monthly averages for the entire globe use `GLOBAL` in place of
-#'  `lonlat` values. `temporal_average` will automatically be set to
-#'  `climatology` if this option is set.}
 #' }
 #'
 #' @section Argument details for `dates`: If one date only is provided, it will
 #'  be treated as both the start date and the end date and only a single day's
-#'  values will be returned.
+#'  values will be returned.  When `temporal_average` is set to "INTERANUAL",
+#'  use only two year values (YYYY), _e.g._ `dates = c(1983, 2010).  This
+#'  argument should not be used when `temporal_average` is set to "CLIMATOLOGY".
 #'
-#' @section Argument details for `temporal_average`: There are three valid
-#'  values.  If the \code{lonlat} is set to `GLOBAL`, this does not need
-#'  to be specified. However, it may be set to `CLIMATOLOGY` but no other value
-#'  is valid for this \code{latlon} value.
-#'  \describe{
-#'   \item{DAILY}{The daily average of `pars` by year.}
-#'   \item{INTERANNUAL}{The monthly average of `pars` by year.}
-#'   \item{CLIMATOLOGY}{The monthly average of `pars` at the surface of the
-#'    earth for a given month, averaged for that month over the 30-year period
-#'     (Jan. 1984 - Dec. 2013).}
-#'  }
+#' @note The associated metadata are not saved if the data are exported to a
+#'   file format other than a native R data format, _e.g._, .Rdata, .rda or
+#'   .rds.
 #'
 #' @return A data frame of POWER data including location, dates (not including
 #' CLIMATOLOGY) and requested parameters. A header of metadata is included.
@@ -103,8 +100,8 @@
 #' # Fetch global AG climatology for temperature, relative humidity and
 #' # precipitation
 #' climatology_ag <- get_power(community = "AG",
-#'                             lonlat = "GLOBAL",
-#'                             pars = c("RH2M", "T2M", "PRECTOT"))
+#'                             pars = c("RH2M", "T2M", "PRECTOT"),
+#'                             temporal_average = "CLIMATOLOGY")
 #'
 #' # Fetch interannual solar cooking parameters for a given region
 #' interannual_sse <- get_power(community = "SSE",
@@ -119,41 +116,50 @@
 #'
 #' @export
 get_power <- function(community,
-                      lonlat,
                       pars,
-                      dates = NULL,
-                      temporal_average = NULL) {
+                      temporal_average,
+                      lonlat = NULL,
+                      dates = NULL) {
 
-  if (is.character(lonlat)) {
-    lonlat <- toupper(lonlat)
-  }
-  pars <- toupper(pars)
-  if (!is.null(temporal_average)) {
+  if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
-  community <- toupper(community)
+  if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
+    stop(call. = FALSE,
+         "\nYou have entered an invalid value for `temporal_average`.\n")
+  }
+  if (temporal_average == "CLIMATOLOGY") {
+    lonlat <- "GLOBAL"
+    dates <- NULL
+  }
+  if (is.character(pars)) {
+    pars <- toupper(pars)
+  }
+  if (is.character(community)) {
+    community <- toupper(community)
+  }
 
   # user input checks and formatting -------------------------------------------
   # see internal_functions.R for these functions
 
   .check_community(community, pars)
-  lonlat <- .check_global(lonlat)
+
   dates <- .check_dates(dates,
-                       lonlat,
-                       temporal_average)
+                        lonlat,
+                        temporal_average)
   pars <- .check_pars(pars,
-                     temporal_average,
-                     lonlat)
+                      temporal_average,
+                      lonlat)
   lonlat_identifier <- .check_lonlat(lonlat,
-                                    pars)
+                                     pars)
 
   # submit query ---------------------------------------------------------------
   # see internal_functions.R for this function
   NASA <- .power_query(community,
-                      lonlat_identifier,
-                      pars,
-                      dates,
-                      outputList = "CSV")
+                       lonlat_identifier,
+                       pars,
+                       dates,
+                       outputList = "CSV")
 
   # finish ---------------------------------------------------------------------
   return(NASA)

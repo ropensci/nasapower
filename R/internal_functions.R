@@ -14,27 +14,6 @@
   match(x, table, nomatch = 0L) == 0L
 }
 
-#' Check lonlat for global coverage and climatology agreement
-#'
-#' Validates `lonlat` to make sure that if it's not numeric, it's `GLOBAL` and
-#' the `temporal_average` is `CLIMATOLOGY`. Start/end dates are not required for
-#' `GLOBAL`.
-#'
-#' @param lonlat User entered `lonlat` value.
-#'
-#' @return lonlat values
-#'
-#' @noRd
-#'
-.check_global <- function(lonlat) {
-  if (is.character(lonlat)) {
-    if (lonlat != "GLOBAL") {
-      stop("\nYou have entered an invalid value for `lonlat`.\n")
-    }
-  }
-  return(lonlat)
-}
-
 #' Check dates for validity when querying API
 #'
 #' Validates user entered date values against `lonlat` and `temporal_average`
@@ -49,7 +28,7 @@
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_average) {
 
-  if (!is.null(dates) & temporal_average == "CLIMATOLOGY") {
+  if (!is.null(dates)) {
     stop(call. = FALSE,
          "\nDates are not used when querying climatology data. ",
          "Do you wish to query daily or interannual data instead?\n")
@@ -193,11 +172,6 @@
 
     if (is.character(lonlat)) {
       temporal_average <- "CLIMATOLOGY"
-    }
-
-    if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
-      stop(call. = FALSE,
-           "\nYou have entered an invalid value for `temporal_average`.\n")
     }
 
     # check pars to make sure that they are valid
