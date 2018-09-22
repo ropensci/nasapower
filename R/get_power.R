@@ -21,7 +21,7 @@
 #'   entered as x, y coordinates.  Not used when `temporal_average` is set to
 #'   "CLIMATOLOGY".  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
-#'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not used when
+#'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not used when\cr
 #'   `temporal_average` is set to "CLIMATOLOGY".  See argument details for more.
 #'
 #' @section Argument details for `community`: There are three valid values, one
