@@ -55,7 +55,7 @@ test_that("`dates` before the start of POWER data cause error", {
   dates <- c("1979-12-31", today)
   lonlat <- c(-179.5, -89.5)
   expect_error(.check_dates(dates, lonlat, temporal_average),
-    regexp = "*1981-01-01 is the earliest available data possible*"
+    regexp = "*\n1981-01-01 is the earliest available data from POWER*"
   )
 })
 
