@@ -24,9 +24,6 @@
 #'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not used when
 #'   `temporal_average` is set to "CLIMATOLOGY".  See argument details for more.
 #'
-#' @details Further details for each of the arguments are provided in their
-#'   respective sections that follow.
-#'
 #' @section Argument details for `community`: There are three valid values, one
 #'   must be supplied. This  will affect the units of the parameter and the
 #'   temporal display of time series data.
@@ -45,11 +42,9 @@
 #'  }
 #'
 #' @section Argument details for `temporal_average`: There are three valid
-#'  values.  If the \code{lonlat} is set to `GLOBAL`, this does not need
-#'  to be specified. However, it may be set to `CLIMATOLOGY` but no other value
-#'  is valid for this \code{latlon} value.
+#'  values.
 #'  \describe{
-#'   \item{DAILY}{The daily average of `pars` by year.}
+#'   \item{DAILY}{The daily average of `pars` by day, month and year.}
 #'   \item{INTERANNUAL}{The monthly average of `pars` by year.}
 #'   \item{CLIMATOLOGY}{The monthly average of `pars` at the surface of the
 #'    earth for a given month, averaged for that month over the 30-year period
@@ -73,9 +68,10 @@
 #'
 #' @section Argument details for `dates`: If one date only is provided, it will
 #'  be treated as both the start date and the end date and only a single day's
-#'  values will be returned.  When `temporal_average` is set to "INTERANUAL",
-#'  use only two year values (YYYY), _e.g._ `dates = c(1983, 2010).  This
-#'  argument should not be used when `temporal_average` is set to "CLIMATOLOGY".
+#'  values will be returned, _e.g._, `dates = "1983-01-01"`.  When
+#'  `temporal_average` is set to "INTERANUAL", use only two year values (YYYY),
+#'   _e.g._ `dates = c(1983, 2010)`.  This argument should not be used when
+#'   `temporal_average` is set to "CLIMATOLOGY".
 #'
 #' @note The associated metadata are not saved if the data are exported to a
 #'   file format other than a native R data format, _e.g._, .Rdata, .rda or

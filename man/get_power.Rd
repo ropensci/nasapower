@@ -40,10 +40,6 @@ Get NASA-POWER global meteorology and surface solar energy climatology data
 and return a tidy data frame. All options offered by the official
 NASA-POWER API are supported.
 }
-\details{
-Further details for each of the arguments are provided in their
-respective sections that follow.
-}
 \note{
 The associated metadata are not saved if the data are exported to a
 file format other than a native R data format, \emph{e.g.}, .Rdata, .rda or
@@ -70,11 +66,9 @@ powered renewable energy systems.}
 
 \section{Argument details for \code{temporal_average}}{
  There are three valid
-values.  If the \code{lonlat} is set to \code{GLOBAL}, this does not need
-to be specified. However, it may be set to \code{CLIMATOLOGY} but no other value
-is valid for this \code{latlon} value.
+values.
 \describe{
-\item{DAILY}{The daily average of \code{pars} by year.}
+\item{DAILY}{The daily average of \code{pars} by day, month and year.}
 \item{INTERANNUAL}{The monthly average of \code{pars} by year.}
 \item{CLIMATOLOGY}{The monthly average of \code{pars} at the surface of the
 earth for a given month, averaged for that month over the 30-year period
@@ -102,8 +96,10 @@ region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 \section{Argument details for \code{dates}}{
  If one date only is provided, it will
 be treated as both the start date and the end date and only a single day's
-values will be returned.  When \code{temporal_average} is set to "INTERANUAL",
-use only two year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010). This argument should not be used when}temporal_average` is set to "CLIMATOLOGY".
+values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
+\code{temporal_average} is set to "INTERANUAL", use only two year values (YYYY),
+\emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used when
+\code{temporal_average} is set to "CLIMATOLOGY".
 }
 
 \examples{
