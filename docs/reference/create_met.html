@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an APSIM metFile File from NASA - POWER Data — create_met • nasapower</title>
+<title>Create an APSIM metFile file from NASA - POWER data — create_met • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Create an APSIM metFile File from NASA - POWER Data — create_met" />
+<meta property="og:title" content="Create an APSIM metFile file from NASA - POWER data — create_met" />
 
 <meta property="og:description" content="Get NASA-POWER values for a single point or region and create
 an APSIM metFile file suitable for use in APSIM for
@@ -107,7 +107,7 @@ crop modelling saving it to local disk." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an APSIM metFile File from NASA - POWER Data</h1>
+    <h1>Create an APSIM metFile file from NASA - POWER data</h1>
     <small class="dont-index">Source: <a href='https://github.com/adamhsparks/nasapower/blob/master/R/create_met.R'><code>R/create_met.R</code></a></small>
     <div class="hidden name"><code>create_met.Rd</code></div>
     </div>
@@ -197,14 +197,13 @@ POWER Data</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'># Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir as "APSIM_example.met".
+# save it in the current R session tempdir() as "APSIM_example.met".
 
 </div><span class='co'># NOT RUN {</span>
 <span class='fu'>create_met</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
            <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),
-           <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='fu'>tmpdir</span>(),
-           <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"APSIM_example.met"</span>
-)
+           <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>(),
+           <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"APSIM_example.met"</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

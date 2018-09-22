@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get NASA-POWER Data and Return a Tidy Data Frame — get_power • nasapower</title>
+<title>Get NASA-POWER data and return a tidy data frame — get_power • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Get NASA-POWER Data and Return a Tidy Data Frame — get_power" />
+<meta property="og:title" content="Get NASA-POWER data and return a tidy data frame — get_power" />
 
-<meta property="og:description" content="Get NASA-POWER global meteorology and surface solar energy
-climatology data and return a tidy data frame. All options offered by the
-official NASA-POWER API are supported." />
+<meta property="og:description" content="Get NASA-POWER global meteorology and surface solar energy climatology data
+and return a tidy data frame. All options offered by the official
+NASA-POWER API are supported." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -107,20 +107,21 @@ official NASA-POWER API are supported." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get NASA-POWER Data and Return a Tidy Data Frame</h1>
+    <h1>Get NASA-POWER data and return a tidy data frame</h1>
     <small class="dont-index">Source: <a href='https://github.com/adamhsparks/nasapower/blob/master/R/get_power.R'><code>R/get_power.R</code></a></small>
     <div class="hidden name"><code>get_power.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get NASA-POWER global meteorology and surface solar energy
-climatology data and return a tidy data frame. All options offered by the
-official NASA-POWER API are supported.</p>
+    <p>Get NASA-POWER global meteorology and surface solar energy climatology data
+and return a tidy data frame. All options offered by the official
+NASA-POWER API are supported.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_power</span>(<span class='no'>community</span>, <span class='no'>lonlat</span>, <span class='no'>pars</span>, <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>temporal_average</span>)</pre>
+    <pre class="usage"><span class='fu'>get_power</span>(<span class='no'>community</span>, <span class='no'>pars</span>, <span class='no'>temporal_average</span>, <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dates</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -128,13 +129,7 @@ official NASA-POWER API are supported.</p>
     <tr>
       <th>community</th>
       <td><p>A character vector providing community name: "AG", "SB" or
-"SSE". See argument details for more.</p></td>
-    </tr>
-    <tr>
-      <th>lonlat</th>
-      <td><p>A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates or <code>Global</code> for global area.  See argument
-details for more.</p></td>
+"SSE".  See argument details for more.</p></td>
     </tr>
     <tr>
       <th>pars</th>
@@ -143,20 +138,26 @@ parameters to download.  See <code>names(parameters)</code> for a full list of
 valid values and definitions.  Visit the
 <a href='https://power.larc.nasa.gov/#resources'>POWER website</a> for the Parameter
 Dictionary.  If downloading CLIMATOLOGY a maximum of 3 <code>pars</code> can be
-specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
+specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 be specified at one time.</p></td>
+    </tr>
+    <tr>
+      <th>temporal_average</th>
+      <td><p>Temporal average for data being queried, supported
+values are DAILY, INTERANNUAL and CLIMATOLOGY.  See argument details for
+more.</p></td>
+    </tr>
+    <tr>
+      <th>lonlat</th>
+      <td><p>A numeric vector of geographic coordinates for a cell or region
+entered as x, y coordinates.  Not used when <code>temporal_average</code> is set to
+"CLIMATOLOGY".  See argument details for more.</p></td>
     </tr>
     <tr>
       <th>dates</th>
       <td><p>A character vector of start and end dates in that order,<br />
-<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  Not required for global
-coverage.  See argument details for more.</p></td>
-    </tr>
-    <tr>
-      <th>temporal_average</th>
-      <td><p>Temporal average for data being queried, currently
-supported are DAILY, INTERANNUAL, CLIMATOLOGY.  See argument details for
-more.</p></td>
+<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  Not used when
+<code>temporal_average</code> is set to "CLIMATOLOGY".  See argument details for more.</p></td>
     </tr>
     </table>
     
@@ -165,13 +166,11 @@ more.</p></td>
     <p>A data frame of POWER data including location, dates (not including
 CLIMATOLOGY) and requested parameters. A header of metadata is included.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p><em>Note</em> the associated metadata are not saved if the data are
-exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda
-or .rds.</p>
-<p>Further details for each of the arguments are provided in their respective
-sections follow.</p>
+    <p>The associated metadata are not saved if the data are exported to a
+file format other than a native R data format, <em>e.g.</em>, .Rdata, .rda or
+.rds.</p>
     
     <h2 class="hasAnchor" id="argument-details-for-community"><a class="anchor" href="#argument-details-for-community"></a>Argument details for <code>community</code></h2>
 
@@ -189,6 +188,17 @@ parameters specifically tailored to assist in the design of solar and wind
 powered renewable energy systems.</p></dd>
 </dl>
     
+    <h2 class="hasAnchor" id="argument-details-for-temporal-average"><a class="anchor" href="#argument-details-for-temporal-average"></a>Argument details for <code>temporal_average</code></h2>
+
+    <p>There are three valid
+values.</p><dl class='dl-horizontal'>
+<dt>DAILY</dt><dd><p>The daily average of <code>pars</code> by day, month and year.</p></dd>
+<dt>INTERANNUAL</dt><dd><p>The monthly average of <code>pars</code> by year.</p></dd>
+<dt>CLIMATOLOGY</dt><dd><p>The monthly average of <code>pars</code> at the surface of the
+earth for a given month, averaged for that month over the 30-year period
+(Jan. 1984 - Dec. 2013).</p></dd>
+</dl>
+    
     <h2 class="hasAnchor" id="argument-details-for-lonlat"><a class="anchor" href="#argument-details-for-lonlat"></a>Argument details for <code>lonlat</code></h2>
 
     
@@ -203,28 +213,16 @@ vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
 region, <em>e.g.</em>, a bounding box for the southwestern corner of Australia:
 <code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>.
 *Maximum area processed is 4.5 x 4.5 degrees (100 points).</p></dd>
-    <dt>For global coverage</dt><dd><p>To get global coverage for long term
-monthly averages for the entire globe use <code>GLOBAL</code> in place of
-<code>lonlat</code> values. <code>temporal_average</code> will automatically be set to
-<code>climatology</code> if this option is set.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <code>dates</code></h2>
 
     <p>If one date only is provided, it will
 be treated as both the start date and the end date and only a single day's
-values will be returned.</p>
-    
-    <h2 class="hasAnchor" id="argument-details-for-temporal-average"><a class="anchor" href="#argument-details-for-temporal-average"></a>Argument details for <code>temporal_average</code></h2>
-
-    <p>There are three valid
-values, one must be supplied.</p><dl class='dl-horizontal'>
-<dt>DAILY</dt><dd><p>The daily average of <code>pars</code> by year.</p></dd>
-<dt>INTERANNUAL</dt><dd><p>The monthly average of <code>pars</code> by year.</p></dd>
-<dt>CLIMATOLOGY</dt><dd><p>The monthly average of <code>pars</code> at the surface of the
-earth for a given month, averaged for that month over the 30-year period
-(Jan. 1984 - Dec. 2013).</p></dd>
-</dl>
+values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
+<code>temporal_average</code> is set to "INTERANUAL", use only two year values (YYYY),
+<em>e.g.</em> <code>dates = c(1983, 2010)</code>.  This argument should not be used when
+<code>temporal_average</code> is set to "CLIMATOLOGY".</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -241,12 +239,11 @@ daily_ag <- get_power(community = "AG",
                      dates = "1985-01-01",
                      temporal_average = "DAILY")
 
-# Fetch global AG climatology for temperature, relative humidty and
-precipitation
+# Fetch global AG climatology for temperature, relative humidity and
+# precipitation
 climatology_ag <- get_power(community = "AG",
-                            lonlat = "GLOBAL",
-                            pars = c("RH2M", "T2M", "PRECTOT"))
-
+                            pars = c("RH2M", "T2M", "PRECTOT"),
+                            temporal_average = "CLIMATOLOGY")
 
 # Fetch interannual solar cooking parameters for a given region
 interannual_sse <- get_power(community = "SSE",
@@ -266,15 +263,15 @@ interannual_sse <- get_power(community = "SSE",
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#argument-details-for-community">Argument details for <code>community</code></a></li>
+
+      <li><a href="#argument-details-for-temporal-average">Argument details for <code>temporal_average</code></a></li>
 
       <li><a href="#argument-details-for-lonlat">Argument details for <code>lonlat</code></a></li>
 
       <li><a href="#argument-details-for-dates">Argument details for <code>dates</code></a></li>
-
-      <li><a href="#argument-details-for-temporal-average">Argument details for <code>temporal_average</code></a></li>
 
       <li><a href="#references">References</a></li>
       
