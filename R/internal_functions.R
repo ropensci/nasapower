@@ -45,6 +45,13 @@
     if (any(nchar(dates) > 4)) {
       dates <- unique(substr(dates, 1, 4))
     }
+    if (dates[[2]] < dates[[1]]) {
+      message(
+        "\nYour start and end dates were reversed. ",
+        "They have been reordered.\n"
+      )
+      dates <- c(dates[2], dates[1])
+    }
     return(dates)
   }
 
@@ -100,7 +107,7 @@
           "\nYour start and end dates were reversed. ",
           "They have been reordered.\n"
         )
-        dates <- as.list(c(dates[2], dates[1]))
+        dates <- c(dates[2], dates[1])
       }
 
       # check date to be sure it's not before POWER data start

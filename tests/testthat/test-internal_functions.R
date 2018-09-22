@@ -39,13 +39,23 @@ test_that("`dates` entered in incorrect formats are corrected", {
   expect_equal(dates[1], "19830101")
 })
 
-test_that("`dates` entered in reverse order are corrected", {
+test_that("DAILY `dates` entered in reverse order are corrected", {
   temporal_average <- "DAILY"
   today <- as.character(Sys.Date())
   dates <- c(today, "1983-01-01")
   lonlat <- c(-179.5, -89.5)
   expect_message(.check_dates(dates, lonlat, temporal_average),
     regexp = "*Your start and end dates were reversed.*"
+  )
+})
+
+test_that("INTERANNUAL `dates` entered in reverse order are corrected", {
+  temporal_average <- "INTERANNUAL"
+  today <- as.character(Sys.Date())
+  dates <- c(today, "1983-01-01")
+  lonlat <- c(-179.5, -89.5)
+  expect_message(.check_dates(dates, lonlat, temporal_average),
+                 regexp = "*Your start and end dates were reversed.*"
   )
 })
 
