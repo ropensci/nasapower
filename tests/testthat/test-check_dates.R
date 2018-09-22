@@ -80,14 +80,6 @@ test_that("Dates are returned as a vector of characters", {
   expect_is(dates, "character")
 })
 
-test_that("If temporal_average == CLIMATOLOGY, no dates can be specified", {
-  temporal_average <- "CLIMATOLOGY"
-  dates <- c("1983-01-01", "1983-02-02")
-  lonlat <- c(-179.5, -89.5)
-  expect_error(.check_dates(dates, lonlat, temporal_average),
-               regexp = "*Dates are not used when querying climatology data.*")
-})
-
 test_that(
   "If temporal_average == INTERANNUAL and dates are specified, that
   a message is emitted about years only",
