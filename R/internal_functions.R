@@ -28,12 +28,6 @@
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_average) {
 
-  if (!is.null(dates)) {
-    stop(call. = FALSE,
-         "\nDates are not used when querying climatology data. ",
-         "Do you wish to query daily or interannual data instead?\n")
-  }
-
   if (is.null(dates) & temporal_average != "CLIMATOLOGY") {
     stop(call. = FALSE,
          "\nYou have not entered dates for the query.\n")
