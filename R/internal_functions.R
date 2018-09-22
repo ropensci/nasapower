@@ -289,9 +289,9 @@
       }
 
       if (any(lonlat[1] < -180 ||
-              lonlat[3] < -180 ||
-              lonlat[1] > 180 ||
-              lonlat[3] > 180)) {
+        lonlat[3] < -180 ||
+        lonlat[1] > 180 ||
+        lonlat[3] > 180)) {
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
@@ -302,9 +302,9 @@
         )
       }
       if (any(lonlat[2] < -90 ||
-              lonlat[4] < -90 ||
-              lonlat[2] > 90 ||
-              lonlat[4] > 90)) {
+        lonlat[4] < -90 ||
+        lonlat[2] > 90 ||
+        lonlat[4] > 90)) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
@@ -328,10 +328,10 @@
       }
       identifier <- "Regional"
       bbox <- paste(lonlat[2],
-                    lonlat[1],
-                    lonlat[4],
-                    lonlat[3],
-                    sep = ","
+        lonlat[1],
+        lonlat[4],
+        lonlat[3],
+        sep = ","
       )
     } else if (lonlat == "GLOBAL") {
       identifier <- "Global"
@@ -447,9 +447,9 @@
 
     if (outputList == "CSV") {
       curl::curl_download(txt$output$csv,
-                          destfile = raw_power_data,
-                          mode = "wb",
-                          quiet = TRUE
+        destfile = raw_power_data,
+        mode = "wb",
+        quiet = TRUE
       )
 
       meta <- readLines(
@@ -464,9 +464,9 @@
       )
 
       power_data <- readr::read_csv(raw_power_data,
-                                    col_types = readr::cols(),
-                                    na = "-99",
-                                    skip = pars$skip_lines
+        col_types = readr::cols(),
+        na = "-99",
+        skip = pars$skip_lines
       )
 
       # put lon before lat (x, y format)
@@ -477,10 +477,12 @@
         power_data <- .format_dates(power_data)
       }
 
-      attr(power_data, "class") <- c("POWER.Info",
-                                     "tbl_df",
-                                     "tbl",
-                                     "data.frame")
+      attr(power_data, "class") <- c(
+        "POWER.Info",
+        "tbl_df",
+        "tbl",
+        "data.frame"
+      )
 
       # add attributes for printing df
       attr(power_data, "POWER.Info") <- meta[1]
@@ -490,15 +492,15 @@
       attr(power_data, "POWER.Climate_zone") <- meta[5]
       attr(power_data, "POWER.Missing_value") <- meta[6]
       attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
-                                                    collapse = ";\n "
+        collapse = ";\n "
       )
 
       NASA <- power_data
     } else {
       curl::curl_download(txt$output$icasa,
-                          destfile = raw_power_data,
-                          mode = "wb",
-                          quiet = TRUE
+        destfile = raw_power_data,
+        mode = "wb",
+        quiet = TRUE
       )
 
       NASA <- readLines(raw_power_data)
@@ -539,8 +541,8 @@ print.POWER.Info <- function(x, ...) {
     format(x)
   }
   print.data.frame(x,
-                   row.names = FALSE,
-                   max = length(attributes(x)) + 60
+    row.names = FALSE,
+    max = length(attributes(x)) + 60
   )
 }
 
@@ -561,24 +563,24 @@ print.POWER.Info <- function(x, ...) {
 
   # Calculate the full date from YEAR and DOY
   NASA <- tibble::add_column(NASA,
-                             YYYYMMDD = as.Date(NASA$DOY - 1,
-                                                origin = as.Date(paste(
-                                                  NASA$YEAR, "-01-01",
-                                                  sep = ""
-                                                ))
-                             ),
-                             .after = "DOY"
+    YYYYMMDD = as.Date(NASA$DOY - 1,
+      origin = as.Date(paste(
+        NASA$YEAR, "-01-01",
+        sep = ""
+      ))
+    ),
+    .after = "DOY"
   )
 
   # Extract month as integer
   NASA <- tibble::add_column(NASA,
-                             MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
-                             .after = "YEAR"
+    MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
+    .after = "YEAR"
   )
 
   # Extract day as integer
   NASA <- tibble::add_column(NASA,
-                             DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
-                             .after = "MM"
+    DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
+    .after = "MM"
   )
 }
