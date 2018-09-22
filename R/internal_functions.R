@@ -470,7 +470,10 @@
         power_data <- .format_dates(power_data)
       }
 
-      attr(power_data, "class") <- c("POWER.Info", "data.frame")
+      attr(power_data, "class") <- c("POWER.Info",
+                                     "tbl_df",
+                                     "tbl",
+                                     "data.frame")
 
       # add attributes for printing df
       attr(power_data, "POWER.Info") <- meta[1]
