@@ -46,7 +46,7 @@ exported to a file format other than an R data format, \emph{e.g.}, .Rdata, .rda
 or .rds.
 
 Further details for each of the arguments are provided in their respective
-sections follow.
+sections that follow.
 }
 \section{Argument details for \code{community}}{
  There are three valid values, one

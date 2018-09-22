@@ -29,7 +29,7 @@
 #'   or .rds.
 #'
 #' Further details for each of the arguments are provided in their respective
-#'   sections follow.
+#'   sections that follow.
 #'
 #' @section Argument details for `community`: There are three valid values, one
 #'   must be supplied. This  will affect the units of the parameter and the
