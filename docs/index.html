@@ -25,7 +25,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -75,8 +75,12 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     
+
+    
+    
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <div id="nasapower-nasa-power-data-from-r" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
@@ -95,6 +99,33 @@
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>,
                <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="example" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h3>
+<p>Fetch daily “AG” community temperature, relative humidity and precipitation for January 1 1985 for Kingsthorpe, Queensland, Australia.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nasapower)
+daily_ag &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
+                      <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
+                      <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),
+                      <span class="dt">dates =</span> <span class="st">"1985-01-01"</span>,
+                      <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>
+                      )
+                    
+daily_ag
+<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
+<span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span>
+<span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span>
+<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
+<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Parameters: </span>
+<span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span>
+<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span>
+<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt;     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT</span>
+<span class="co">#&gt;  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07</span></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
@@ -127,10 +158,9 @@
 <p><a href="https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf" class="uri">https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf</a></p>
 </div>
 </div>
-
   </div>
 
-  <div class="col-md-3" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
@@ -161,7 +191,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://travis-ci.org/adamhsparks/nasapower"><img src="https://travis-ci.org/adamhsparks/nasapower.svg?branch=master" alt="Travis-CI Build Status"></a></li>
@@ -173,6 +203,7 @@
 </ul>
 </div>
 </div>
+
 </div>
 
 
