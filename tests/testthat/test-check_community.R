@@ -4,11 +4,11 @@ context("Test that check_community function handles community strings
         correctly")
 
 test_that("check_community fails if one not provided", {
-  expect_error(check_community())
+  expect_error(.check_community())
 })
 
 test_that("check_community fails if invalid entry is supplied", {
-  expect_error(check_community("R"),
+  expect_error(.check_community("R"),
                regexp = "*You have provided an invalid `community` value.*")
 })
 
@@ -18,5 +18,5 @@ test_that(
     temporal_average <- "DAILY"
     lonlat <- "GLOBAL"
     community <- "AG"
-    expect_error(check_community(community, pars))
+    expect_error(.check_community(community, pars))
   })

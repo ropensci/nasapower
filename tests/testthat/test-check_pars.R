@@ -6,7 +6,7 @@ test_that("check_pars stops if no `par` provided", {
   lonlat = c(-179.5, -89.5)
 
   expect_error(
-    check_pars(
+    .check_pars(
       temporal_average,
       lonlat,
       pars
@@ -19,7 +19,7 @@ test_that("check_pars stops if no `temporal_average` provided", {
   lonlat = c(-179.5, -89.5)
 
   expect_error(
-    check_pars(
+    .check_pars(
       temporal_average,
       lonlat,
       pars
@@ -33,7 +33,7 @@ test_that("check_pars stops if `temporal_average` not valid", {
   lonlat = c(-179.5, -89.5)
 
   expect_error(
-    check_pars(
+    .check_pars(
       pars,
       temporal_average,
       lonlat
@@ -47,7 +47,7 @@ test_that("check_pars stops if `pars` not valid", {
   lonlat = c(-179.5, -89.5)
 
   expect_error(
-    check_pars(
+    .check_pars(
       pars,
       temporal_average,
       lonlat
@@ -61,7 +61,7 @@ test_that("check_pars stops if `pars` not valid", {
   lonlat = c(-179.5, -89.5)
 
   expect_error(
-    check_pars(
+    .check_pars(
       pars,
       temporal_average,
       lonlat
@@ -75,7 +75,7 @@ test_that("pars are returned as a comma separated string with no spaces", {
   temporal_average = "CLIMATOLOGY"
   lonlat = c(-179.5, -89.5)
 
-  pars <- check_pars(
+  pars <- .check_pars(
     pars,
     temporal_average,
     lonlat
@@ -95,7 +95,7 @@ test_that("`temporal_average` is set to `CLIMATOLOGY` when global data
             temporal_average <- "DAILY"
             lonlat <- "GLOBAL"
             expect_message(pars <-
-                             check_pars(pars,
+                             .check_pars(pars,
                                         temporal_average,
                                         lonlat)
             )
@@ -113,7 +113,7 @@ test_that("Only 3 pars are allowed when temporal_average == CLIMATOLOGY",
             temporal_average <- "CLIMATOLOGY"
             lonlat <- "GLOBAL"
             expect_error(pars <-
-                           check_pars(pars, temporal_average, lonlat),
+                           .check_pars(pars, temporal_average, lonlat),
                          regexp = "\nYou can only specify three*")
           })
 
@@ -144,7 +144,7 @@ test_that("Only 20 pars are allowed when temporal_average != CLIMATOLOGY", {
   )
   temporal_average <- "DAILY"
   lonlat = c(-179.5, -89.5)
-  expect_error(pars <- check_pars(pars, temporal_average, lonlat),
+  expect_error(pars <- .check_pars(pars, temporal_average, lonlat),
                regexp = "\nYou can only specify 20 parameters for download*")
 })
 
@@ -154,7 +154,7 @@ test_that("Only unique pars are queried", {
             "RH2M")
   temporal_average <- "CLIMATOLOGY"
   lonlat <- "GLOBAL"
-  pars <- check_pars(pars, temporal_average, lonlat)
+  pars <- .check_pars(pars, temporal_average, lonlat)
   expect_equal(pars[[1]], "RH2M")
   expect_equal(length(pars[[1]]), 1)
 })
@@ -164,5 +164,5 @@ test_that(
     pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
     temporal_average <- "DAILY"
     lonlat <- c(-179.5, -89.5)
-    expect_error(check_pars(pars, temporal_average, lonlat))
+    expect_error(.check_pars(pars, temporal_average, lonlat))
   })
