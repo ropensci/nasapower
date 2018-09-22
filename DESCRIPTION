@@ -21,6 +21,7 @@ Imports:
     APSIM,
     crul,
     curl,
+    dplyr,
     lubridate,
     jsonlite,
     readr,
@@ -35,7 +36,6 @@ LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
     covr,
-    dplyr,
     ggplot2,
     knitr,
     raster,
