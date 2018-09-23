@@ -443,13 +443,14 @@
   tryCatch({
     txt <-
       jsonlite::fromJSON(response$parse("UTF-8"))
-    raw_power_data <- file.path(tempdir(), "power_data_file")
 
     if ("messages" %in% names(txt)) {
-      return(txt$messages[[1]])
+      stop(call. = FALSE)
     }
 
     if (outputList == "CSV") {
+      raw_power_data <- file.path(tempdir(), "power_data_file")
+
       curl::curl_download(txt$output$csv,
         destfile = raw_power_data,
         mode = "wb",
@@ -513,11 +514,7 @@
   # sometimes the server responds but doesn't provide a CSV file
   error = function(e) {
     e$message <- paste(
-      "\nA CSV file was not created, this is a server error.",
-      "The server may not be responding or is currently responding improperly.",
-      "Please check <https://power.larc.nasa.gov/> for notifications if",
-      "you repeatedly get this error.",
-      sep = "\n"
+      unlist(txt$messages)
     )
     stop(e)
   }
