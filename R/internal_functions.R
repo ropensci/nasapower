@@ -445,6 +445,10 @@
       jsonlite::fromJSON(response$parse("UTF-8"))
     raw_power_data <- file.path(tempdir(), "power_data_file")
 
+    if ("messages" %in% names(txt)) {
+      return(txt$messages[[1]])
+    }
+
     if (outputList == "CSV") {
       curl::curl_download(txt$output$csv,
         destfile = raw_power_data,
