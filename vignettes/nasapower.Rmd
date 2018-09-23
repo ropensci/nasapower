@@ -10,20 +10,18 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
-             "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
-knitr::opts_chunk$set(eval = !is_check)
-```
-
 ```{r setup, include=FALSE}
 library(nasapower)
-knitr::opts_chunk$set(eval = FALSE,
-                      collapse = TRUE,
+
+is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
+             "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+
+knitr::opts_chunk$set(collapse = TRUE,
                       comment = "#>",
                       fig.width = 7,
                       fig.height = 7,
-                      fig.align = "center")
+                      fig.align = "center",
+                      eval = !is_check)
 ```
 
 ## Introduction
@@ -50,8 +48,7 @@ returns a data frame with a metadata header in the current R session.
 Fetch daily "AG" community temperature, relative humidity and precipitation
 for January 1 1985 for Kingsthorpe, Queensland, Australia.
 
-```{r get_ag, eval=TRUE}
-
+```{r get_ag}
 daily_ag <- get_power(community = "AG",
                       lonlat = c(151.81, -27.48),
                       pars = c("RH2M", "T2M", "PRECTOT"),
@@ -66,7 +63,7 @@ daily_ag
 
 Fetch interannual solar cooking parameters for a given region.
 
-```{r interannual, eval=TRUE}
+```{r interannual}
 interannual_sse <- get_power(community = "SSE",
                             lonlat = c(112.5, -55.5, 115.5, -50.5),
                             dates = c("1984", "1985"),
@@ -82,7 +79,7 @@ interannual_sse
 
 Fetch global AG climatology for temperature.
 
-```{r get_climatology, eval = TRUE}
+```{r get_climatology}
 
 climatology_ag <- get_power(community = "AG",
                            pars = c("T2M"),
@@ -171,7 +168,7 @@ Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling
 and save it to local disk for use in APSIM modelling.
 
-```{r create_met, eval=FALSE}
+```{r create_met}
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
            dsn = tempdir(),
@@ -212,7 +209,7 @@ Get NASA-POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an ICASA text file suitable for use in DSSAT for crop modelling and save
 it to local disk.
 
-```{r create_icasa, eval=FALSE}
+```{r create_icasa}
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
              dsn = tempdir(),
@@ -229,7 +226,7 @@ the resulting tidy data frame from `get_power()` to a spatial object in R using 
 Using `lapply` and `split` it is easy to create stacks of raster objects from
 a regional query.
 
-```{r raster_example, eval=FALSE}
+```{r raster_example}
 library(nasapower)
 library(raster)
 
@@ -266,7 +263,7 @@ plot(raster_list[[1]])
 Converting global climatology to a `raster::brick` is as simple as querying
 and then converting the resulting `tibble` to a raster object.
 
-```{r global_climatology, eval=FALSE}
+```{r global_climatology}
 power <- get_power(
   community = "AG",
   lonlat = "global",
