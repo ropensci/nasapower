@@ -136,8 +136,8 @@ NASA-POWER API are supported.</p>
       <td><p>A character vector of solar, meteorological or climatology
 parameters to download.  See <code>names(parameters)</code> for a full list of
 valid values and definitions.  Visit the
-<a href='https://power.larc.nasa.gov/#resources'>POWER website</a> for the Parameter
-Dictionary.  If downloading CLIMATOLOGY a maximum of 3 <code>pars</code> can be
+POWER websitehttps://power.larc.nasa.gov/#paramstable) for the Parameters
+Tables.  If downloading CLIMATOLOGY a maximum of 3 <code>pars</code> can be
 specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 be specified at one time.</p></td>
     </tr>
@@ -156,7 +156,7 @@ entered as x, y coordinates.  Not used when <code>temporal_average</code> is set
     <tr>
       <th>dates</th>
       <td><p>A character vector of start and end dates in that order,<br />
-<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  Not used when
+<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  Not used when<br />
 <code>temporal_average</code> is set to "CLIMATOLOGY".  See argument details for more.</p></td>
     </tr>
     </table>
@@ -232,13 +232,13 @@ values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># Fetch daily "AG" community temperature, relative humidity and precipitation</span>
-<span class='co'># for January 1 1985</span>
+<span class='co'># for January 1 1985 for Kingsthorpe, Queensland, Australia</span>
 <span class='no'>daily_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
-                     <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>179.5</span>, -<span class='fl'>89.5</span>),
-                     <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
-                     <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
-                     <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>
-                     )
+                      <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
+                      <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
+                      <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
+                      <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>
+)
 
 <span class='co'># Fetch global AG climatology for temperature, relative humidity and</span>
 <span class='co'># precipitation</span>
