@@ -227,18 +227,8 @@ Using `lapply` and `split` it is easy to create stacks of raster objects from
 a regional query.
 
 ```{r raster_example}
-library(nasapower)
-library(raster)
-
-power <- get_power(community = "AG",
-                   lonlat = c(112.5, -55.5 , 115.5, -50.5),
-                   pars = c("RH2M", "T2M"),
-                   dates = c("1985-01-01", "1985-01-02"),
-                   temporal_average = "DAILY")
-
-
 # Use split to create a list of data frames split by YYYYMMDD
-power <- split(power, power$YYYYMMDD)
+power <- split(daily_ag, power$YYYYMMDD)
 
 # Remove date information from data frame, list names will carry YYYYMMDD
 power <-
@@ -256,34 +246,31 @@ Plot the first item in the list.
 plot(raster_list[[1]])
 ```
 
-![Plot of RH2M and T2M for Jan 1](../man/figures/nasapower_Figure1.png)
-
 ### Converting Global Climatology to a _raster_ Object
 
 Converting global climatology to a `raster::brick` is as simple as querying
-and then converting the resulting `tibble` to a raster object.
+and then converting the resulting `tibble` to a raster object. Illustrated here
+using the `climatology_ag` object previously created.
 
 ```{r global_climatology}
-power <- get_power(
-  community = "AG",
-  lonlat = "global",
-  pars = c("RH2M", "T2M"),
-  temporal_average = "CLIMATOLOGY"
-)
-
 # create RasterBricks for the individual parameters and drop the parameter field
-RH2M <- rasterFromXYZ(subset(power, PARAMETER == "RH2M")[, -3])
+RH2M <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "RH2M")[, -3])
 
-T2M <- rasterFromXYZ(subset(power, PARAMETER == "T2M")[, -3])
+T2M <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[, -3])
+
+PRECIP <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "PRECTOT")[, -3])
 ```
 
-Plot the annual RH2M from the `RasterBrick` object.
+Plot the annual values from the resulting `RasterBrick()` objects.
 
-```{r plot_RH2M_ANN}
+```{r plot_climatology}
 plot(RH2M$ANN)
+
+plot(T2M$ANN)
+
+plot(PRECIP$ANN)
 ```
 
-![Plot of ANN (annual mean) RH2M](../man/figures/nasapower_Figure2.png)
 
 ## References
 
