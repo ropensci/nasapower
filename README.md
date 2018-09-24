@@ -2,10 +2,10 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Travis-CI Build
-Status](https://travis-ci.org/adamhsparks/nasapower.svg?branch=master)](https://travis-ci.org/adamhsparks/nasapower)
+Status](https://travis-ci.org/ropensci/nasapower.svg?branch=master)](https://travis-ci.org/ropensci/nasapower)
 [![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/adamhsparks/nasapower?branch=master&svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
-[![codecov](https://codecov.io/gh/adamhsparks/nasapower/branch/master/graph/badge.svg)](https://codecov.io/gh/adamhsparks/nasapower)
+Status](https://ci.appveyor.com/api/projects/status/github/ropensci/nasapower?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/nasapower)
+[![codecov](https://codecov.io/gh/ropensci/nasapower/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -43,7 +43,7 @@ if (!require(remotes)) {
   install.packages("remotes")
 }
 
-install_github("adamhsparks/nasapower",
+install_github("ropensci/nasapower",
                build_vignettes = TRUE)
 ```
 
@@ -81,7 +81,7 @@ daily_ag
 
 More documentation is available in the vignette in your R session,
 `vignette("nasapower")` or available online,
-<https://adamhsparks.github.io/nasapower/articles/nasapower.html>.
+<https://ropensci.github.io/nasapower/articles/nasapower.html>.
 
 ## Use of POWER Data
 
@@ -97,7 +97,7 @@ Team.
 ## Meta
 
   - Please [report any issues or
-    bugs](https://github.com/adamhsparks/nasapower/issues).
+    bugs](https://github.com/ropensci/nasapower/issues).
 
   - License: MIT
 
