@@ -429,6 +429,8 @@
   # send the query
   tryCatch({
     response <- client$get(query = query_list, retry = 6)
+    txt <- jsonlite::fromJSON(response$parse("UTF-8"))
+    raw_power_data <- file.path(tempdir(), "power_data_file")
   }, # nocov start
   error = function(e) {
     e$message <-
@@ -439,9 +441,7 @@
   }
   ) # nocov end
 
-  txt <- jsonlite::fromJSON(response$parse("UTF-8"))
-
-  if ("messages" %in% names(txt)) {
+  if ("messages" %in% names(txt) & "outputs" %notin% names(txt)) {
     stop(
       call. = FALSE,
       unlist(txt$messages)
@@ -450,8 +450,6 @@
 
   if ("csv" %in% names(txt$output)) {
     if (outputList == "CSV") {
-      raw_power_data <- file.path(tempdir(), "power_data_file")
-
       curl::curl_download(txt$output$csv,
         destfile = raw_power_data,
         mode = "wb",
@@ -500,8 +498,7 @@
       attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
         collapse = ";\n "
       )
-
-      NASA <- power_data
+      return(power_data)
     }
   } else if ("icasa" %in% names(txt$output)) {
     curl::curl_download(txt$output$icasa,
@@ -510,6 +507,8 @@
       quiet = TRUE
     )
 
+    power_data <- readLines(raw_power_data)
+    return(power_data)
   } else {
     stop(
       call. = FALSE,
