@@ -510,7 +510,6 @@
       quiet = TRUE
     )
 
-    NASA <- readLines(raw_power_data)
   } else {
     stop(
       call. = FALSE,
