@@ -121,8 +121,8 @@ radiation units, while SSE and SB use kW/m^2^/day as units).
 - `pars`, A character vector of solar, meteorological or climatology
   parameters to download.  See `names(parameters)` for a full list of
   valid values and definitions.  Visit the 
-  [POWER website](https://power.larc.nasa.gov/#resources) for the Parameter
-  Dictionary.  If downloading CLIMATOLOGY a maximum of 3 `pars` can be
+  [POWER website](https://power.larc.nasa.gov/#paramstable) for the Parameters
+  Table. If downloading CLIMATOLOGY a maximum of 3 `pars` can be
   specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
   be specified at one time.
 
