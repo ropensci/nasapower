@@ -97,7 +97,7 @@ region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
  If one date only is provided, it will
 be treated as both the start date and the end date and only a single day's
 values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
-\code{temporal_average} is set to "INTERANUAL", use only two year values (YYYY),
+\code{temporal_average} is set to "INTERANNUAL", use only two year values (YYYY),
 \emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used when
 \code{temporal_average} is set to "CLIMATOLOGY".
 }

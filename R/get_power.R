@@ -69,7 +69,7 @@
 #' @section Argument details for `dates`: If one date only is provided, it will
 #'  be treated as both the start date and the end date and only a single day's
 #'  values will be returned, _e.g._, `dates = "1983-01-01"`.  When
-#'  `temporal_average` is set to "INTERANUAL", use only two year values (YYYY),
+#'  `temporal_average` is set to "INTERANNUAL", use only two year values (YYYY),
 #'   _e.g._ `dates = c(1983, 2010)`.  This argument should not be used when
 #'   `temporal_average` is set to "CLIMATOLOGY".
 #'

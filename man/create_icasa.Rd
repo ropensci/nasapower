@@ -31,7 +31,7 @@ disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
-queryies the POWER API and writes a DSSAT ICASA weather file to disk. All
+queries the POWER API and writes a DSSAT ICASA weather file to disk. All
 necessary \code{pars} are automatically included in the query.
 
 Further details for each of the arguments are provided in their
