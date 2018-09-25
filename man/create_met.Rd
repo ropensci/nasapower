@@ -36,7 +36,7 @@ simplifies the querying of the POWER API and writes the metfile to local
 disk.
 
 The weather values from POWER for temperature are 2 metre max and min
-temperatures, T2M_MAX and T2M_MIN; radation, ALLSKY_SFC_SW_DWN; and rain,
+temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
 PRECTOT from the POWER AG community on a daily time-step.
 
 Further details for each of the arguments are provided in their
