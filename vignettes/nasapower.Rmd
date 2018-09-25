@@ -11,17 +11,16 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-library(nasapower)
-
-is_check <- ("CheckExEnv" %in% search()) || any(c("_R_CHECK_TIMINGS_",
-             "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
+is_check <- ("CheckExEnv" %in% search()) ||
+  any(c("_R_CHECK_TIMINGS_",
+        "_R_CHECK_LICENSE_") %in% names(Sys.getenv()))
 
 knitr::opts_chunk$set(collapse = TRUE,
                       comment = "#>",
                       fig.width = 7,
                       fig.height = 7,
                       fig.align = "center",
-                      eval = !is_check)
+                      eval = FALSE)
 ```
 
 ## Introduction
@@ -43,34 +42,50 @@ Transfer (DSSAT) modelling, `create_met()`.
 The `get_power()` function has five arguments as seen in this example and
 returns a data frame with a metadata header in the current R session.
 
-### Example fetching daily data
+### Example fetching daily data for a single point
 
 Fetch daily "AG" community temperature, relative humidity and precipitation
-for January 1 1985 for Kingsthorpe, Queensland, Australia.
+for January 1985 for Kingsthorpe, Queensland, Australia.
 
 ```{r get_ag}
-daily_ag <- get_power(community = "AG",
-                      lonlat = c(151.81, -27.48),
-                      pars = c("RH2M", "T2M", "PRECTOT"),
-                      dates = "1985-01-01",
-                      temporal_average = "DAILY"
-                      )
+library(nasapower)
+daily_single_ag <- get_power(community = "AG",
+                             lonlat = c(151.81, -27.48),
+                             pars = c("RH2M", "T2M", "PRECTOT"),
+                             dates = c("1985-01-01", "1985-01-31"),
+                             temporal_average = "DAILY"
+                            )
 
-daily_ag
+daily_single_ag
 ```
 
-### Example fetching interannual data
+### Example fetching daily data for an area
 
-Fetch interannual solar cooking parameters for a given region.
+Fetch daily "AG" community relative humidity and temperature for south east
+Queensland region.
+
+```{r daily_region}
+daily_region_ag <- get_power(community = "AG",
+                             lonlat = c(150.5, -28.5 , 153.5, -25.5),
+                             pars = c("RH2M", "T2M"),
+                             dates = c("1985-01-01", "1985-01-02"),
+                             temporal_average = "DAILY")
+
+daily_region_ag
+```
+
+### Example fetching interannual data for an area
+
+Fetch interannual solar cooking parameters for south east Queensland region.
 
 ```{r interannual}
 interannual_sse <- get_power(community = "SSE",
-                            lonlat = c(112.5, -55.5, 115.5, -50.5),
-                            dates = c("1984", "1985"),
-                            temporal_average = "INTERANNUAL",
-                            pars = c("CLRSKY_SFC_SW_DWN",
-                                     "ALLSKY_SFC_SW_DWN")
-                                     )
+                             lonlat = c(150.5, -28.5 , 153.5, -25.5),
+                             dates = c("1984", "1985"),
+                             temporal_average = "INTERANNUAL",
+                             pars = c("CLRSKY_SFC_SW_DWN",
+                                      "ALLSKY_SFC_SW_DWN")
+                            )
 
 interannual_sse
 ```
@@ -80,10 +95,9 @@ interannual_sse
 Fetch global AG climatology for temperature.
 
 ```{r get_climatology}
-
 climatology_ag <- get_power(community = "AG",
-                           pars = c("T2M"),
-                           temporal_average = "CLIMATOLOGY"
+                            pars = c("T2M", "PRECTOT", "RH2M"),
+                            temporal_average = "CLIMATOLOGY"
                            )
 
 climatology_ag
@@ -227,23 +241,29 @@ Using `lapply` and `split` it is easy to create stacks of raster objects from
 a regional query.
 
 ```{r raster_example}
+library(raster)
 # Use split to create a list of data frames split by YYYYMMDD
-power <- split(daily_ag, power$YYYYMMDD)
+daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
 
 # Remove date information from data frame, list names will carry YYYYMMDD
-power <-
-  lapply(power, function(x)
-  x[(!names(x) %in% c("YEAR", "MM", "DD", "DOY", "YYYYMMDD"))])
+daily_region_ag <-
+  lapply(daily_region_ag, function(x)
+    x[(!names(x) %in% c("YEAR", "MM", "DD", "DOY", "YYYYMMDD"))])
 
 # Create a list of raster bricks from each YYYYMMDD data frame
-raster_list <- lapply(power, rasterFromXYZ,
-              crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
+raster_list <- lapply(daily_region_ag, rasterFromXYZ,
+                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
+
+stack_names <- paste0(names(raster_list), rep(c("_RH2M", "_T2M"), 2))
+
+raster_stack <- stack(unlist(raster_list))
+names(raster_stack) <- stack_names
 ```
 
-Plot the first item in the list.
+Plot all the items in the stack.
 
 ```{r plot_fig1}
-plot(raster_list[[1]])
+plot(raster_stack)
 ```
 
 ### Converting Global Climatology to a _raster_ Object

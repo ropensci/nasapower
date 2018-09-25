@@ -1,25 +1,30 @@
-# nasapower 1.0.0.9004
+# nasapower 1.0.0
 
 ## Major changes
 
-- Provide access to all three communities, AG, SSE and and SB, not just AG
+- _nasapower_ is now a part of [rOpenSci](https://ropensci.org/) after 
+[peer-review of the code](https://github.com/ropensci/onboarding/issues/155)!
+
+- Provides access to all three communities, AG, SSE and and SB, not just AG
 
 - Uses new NASA-POWER API to download new 1/2 x 1/2 degree data
 
-- Add function `get_power()` to get weather data and optionally metadata as well
+- Adds function `get_power()` to get weather data and optionally metadata as
+well
 
-- Add function `create_met()` to create APSIM met objects from POWER data
+- Adds function `create_met()` to create APSIM met objects from POWER data
 
-- Add function `create_icasa()` to create a text file of weather data for use in
-DSSAT crop modelling
+- Adsd function `create_icasa()` to create a text file of weather data for use
+in DSSAT crop modelling
 
-- Internally, replace _httr_ package with _crul_
+- Internally, replaces _httr_ package with _crul_
 
 ### Deprecated functions
 
 - The `get_cell` and `get_region` functions are deprecated in favour of
 `get_power()`. The new POWER interface allows for the specification of single
-points or regional areas or `Global` through the `latlon` parameter.
+points or regional areas. Global coverage may be queryed for Climatology. See
+the help for `?get_power()` for more details.
 
 --------------------------------------------------------------------------------
 
