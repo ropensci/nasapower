@@ -3,8 +3,8 @@
 
 [![Travis-CI Build
 Status](https://travis-ci.org/ropensci/nasapower.svg?branch=master)](https://travis-ci.org/ropensci/nasapower)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/ropensci/nasapower?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/nasapower)
+[![Build
+status](https://ci.appveyor.com/api/projects/status/kwhvef9mkytj175r/branch/master?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower/branch/master)
 [![codecov](https://codecov.io/gh/ropensci/nasapower/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
