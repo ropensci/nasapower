@@ -14,9 +14,9 @@ get_power(community, pars, temporal_average, lonlat = NULL,
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{names(parameters)} for a full list of
 valid values and definitions.  Visit the
-\href{https://power.larc.nasa.gov/#resources}{POWER website} for the Parameter
-Dictionary.  If downloading CLIMATOLOGY a maximum of 3 \code{pars} can be
-specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
+\href{https://power.larc.nasa.gov/#paramstable}{POWER website} for the
+Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 \code{pars} can
+be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 be specified at one time.}
 
 \item{temporal_average}{Temporal average for data being queried, supported
@@ -28,7 +28,7 @@ entered as x, y coordinates.  Not used when \code{temporal_average} is set to
 "CLIMATOLOGY".  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
-\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  Not used when
+\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  Not used when\cr
 \code{temporal_average} is set to "CLIMATOLOGY".  See argument details for more.}
 }
 \value{
@@ -105,13 +105,13 @@ values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
 \examples{
 \dontrun{
 # Fetch daily "AG" community temperature, relative humidity and precipitation
-# for January 1 1985
+# for January 1 1985 for Kingsthorpe, Queensland, Australia
 daily_ag <- get_power(community = "AG",
-                     lonlat = c(-179.5, -89.5),
-                     pars = c("RH2M", "T2M", "PRECTOT"),
-                     dates = "1985-01-01",
-                     temporal_average = "DAILY"
-                     )
+                      lonlat = c(151.81, -27.48),
+                      pars = c("RH2M", "T2M", "PRECTOT"),
+                      dates = "1985-01-01",
+                      temporal_average = "DAILY"
+)
 
 # Fetch global AG climatology for temperature, relative humidity and
 # precipitation

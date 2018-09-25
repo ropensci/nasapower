@@ -429,6 +429,8 @@
   # send the query
   tryCatch({
     response <- client$get(query = query_list, retry = 6)
+    txt <- jsonlite::fromJSON(response$parse("UTF-8"))
+    raw_power_data <- file.path(tempdir(), "power_data_file")
   }, # nocov start
   error = function(e) {
     e$message <-
@@ -439,12 +441,14 @@
   }
   ) # nocov end
 
-  # read (hopefully) resulting CSV file
-  tryCatch({
-    txt <-
-      jsonlite::fromJSON(response$parse("UTF-8"))
-    raw_power_data <- file.path(tempdir(), "power_data_file")
+  if ("messages" %in% names(txt) & "outputs" %notin% names(txt)) {
+    stop(
+      call. = FALSE,
+      unlist(txt$messages)
+    )
+  }
 
+  if ("csv" %in% names(txt$output)) {
     if (outputList == "CSV") {
       curl::curl_download(txt$output$csv,
         destfile = raw_power_data,
@@ -494,30 +498,24 @@
       attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
         collapse = ";\n "
       )
-
-      NASA <- power_data
-    } else {
-      curl::curl_download(txt$output$icasa,
-        destfile = raw_power_data,
-        mode = "wb",
-        quiet = TRUE
-      )
-
-      NASA <- readLines(raw_power_data)
+      return(power_data)
     }
-  },
-  # sometimes the server responds but doesn't provide a CSV file
-  error = function(e) {
-    e$message <- paste(
-      "\nA CSV file was not created, this is a server error.",
-      "The server may not be responding or is currently responding improperly.",
-      "Please check <https://power.larc.nasa.gov/> for notifications if",
-      "you repeatedly get this error.",
-      sep = "\n"
+  } else if ("icasa" %in% names(txt$output)) {
+    curl::curl_download(txt$output$icasa,
+      destfile = raw_power_data,
+      mode = "wb",
+      quiet = TRUE
     )
-    stop(e)
+
+    power_data <- readLines(raw_power_data)
+    return(power_data)
+  } else {
+    stop(
+      call. = FALSE,
+      "Your requested data was not returned. Check",
+      "<https://power.larc.nasa.gov/> and/or try again later."
+    )
   }
-  )
 }
 
 #' Prints Power.info object.

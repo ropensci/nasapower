@@ -15,7 +15,7 @@
     POWER (Prediction Of Worldwide Energy Resource) data are freely available
     for download with a resolution of 0.5 by 0.5 arc degree longitude and
     latitude and are funded through the NASA Earth Science Directorate Applied
-    Science Program. For more on the data themselves and a web-based data
+    Science Program.  For more on the data themselves and a web-based data
     viewer and access, please see &lt;https://power.larc.nasa.gov/&gt;.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0.9004</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/adamhsparks/nasapower">
+  <a href="https://github.com/ropensci/nasapower">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -93,44 +93,44 @@
 <h3 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h3>
 <p><em>nasapower</em> is not yet available from CRAN, only GitHub. It can easily be installed using the following code:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(remotes)) {
-  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)
-}
-
-<span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"adamhsparks/nasapower"</span>,
-               <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(remotes)) {</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ropensci/nasapower"</span>,</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">               <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Fetch daily “AG” community temperature, relative humidity and precipitation for January 1 1985 for Kingsthorpe, Queensland, Australia.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nasapower)
-daily_ag &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
-                      <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span>),
-                      <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),
-                      <span class="dt">dates =</span> <span class="st">"1985-01-01"</span>,
-                      <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>
-                      )
-                    
-daily_ag
-<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
-<span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span>
-<span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span>
-<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span>
-<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
-<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
-<span class="co">#&gt;  Parameters: </span>
-<span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span>
-<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span>
-<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
-<span class="co">#&gt;  </span>
-<span class="co">#&gt;     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT</span>
-<span class="co">#&gt;  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">daily_ag &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">                      <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">                      <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">                      <span class="dt">dates =</span> <span class="st">"1985-01-01"</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">                      <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">                      )</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">                    </a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">daily_ag</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;  Parameters: </span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;  </span></a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt;     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07</span></a></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>More documentation is available in the vignette in your R session, <code><a href="articles/nasapower.html">vignette("nasapower")</a></code> or available online, <a href="https://adamhsparks.github.io/nasapower/articles/nasapower.html" class="uri">https://adamhsparks.github.io/nasapower/articles/nasapower.html</a>.</p>
+<p>More documentation is available in the vignette in your R session, <code><a href="articles/nasapower.html">vignette("nasapower")</a></code> or available online, <a href="https://ropensci.github.io/nasapower/articles/nasapower.html" class="uri">https://ropensci.github.io/nasapower/articles/nasapower.html</a>.</p>
 </div>
 <div id="use-of-power-data" class="section level2">
 <h2 class="hasAnchor">
@@ -144,7 +144,7 @@ daily_ag
 <h2 class="hasAnchor">
 <a href="#meta" class="anchor"></a>Meta</h2>
 <ul>
-<li><p>Please <a href="https://github.com/adamhsparks/nasapower/issues">report any issues or bugs</a>.</p></li>
+<li><p>Please <a href="https://github.com/ropensci/nasapower/issues">report any issues or bugs</a>.</p></li>
 <li><p>License: MIT</p></li>
 <li><p>Get citation information for <em>nasapower</em> in R by typing <code>citation(package = "nasapower")</code>.</p></li>
 <li><p>Please note that the <em>nasapower</em> project is released with a <a href="CONDUCT.html">Contributor Code of Conduct</a>. By participating in the <em>nasapower</em> project you agree to abide by its terms.</p></li>
@@ -156,6 +156,7 @@ daily_ag
 <a href="#references" class="anchor"></a>References</h2>
 <p><a href="https://power.larc.nasa.gov" class="uri">https://power.larc.nasa.gov</a></p>
 <p><a href="https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf" class="uri">https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf</a></p>
+<p><a href="https://ropensci.org"><img src="https://ropensci.org/public_images/ropensci_footer.png" alt="ropensci_footer"></a></p>
 </div>
 </div>
   </div>
@@ -164,9 +165,9 @@ daily_ag
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/adamhsparks/nasapower">https://​github.com/​adamhsparks/​nasapower</a>
+<li>Browse source code at <br><a href="https://github.com/ropensci/nasapower">https://​github.com/​ropensci/​nasapower</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/adamhsparks/nasapower/issues">https://​github.com/​adamhsparks/​nasapower/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/ropensci/nasapower/issues">https://​github.com/​ropensci/​nasapower/​issues</a>
 </li>
 </ul>
 </div>
@@ -194,9 +195,9 @@ daily_ag
       <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/adamhsparks/nasapower"><img src="https://travis-ci.org/adamhsparks/nasapower.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://ci.appveyor.com/project/adamhsparks/nasapower"><img src="https://ci.appveyor.com/api/projects/status/github/adamhsparks/nasapower?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
-<li><a href="https://codecov.io/gh/adamhsparks/nasapower"><img src="https://codecov.io/gh/adamhsparks/nasapower/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://travis-ci.org/ropensci/nasapower"><img src="https://travis-ci.org/ropensci/nasapower.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://ci.appveyor.com/project/ropensci/nasapower"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/nasapower?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
+<li><a href="https://codecov.io/gh/ropensci/nasapower"><img src="https://codecov.io/gh/ropensci/nasapower/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://zenodo.org/badge/latestdoi/109224461"><img src="https://zenodo.org/badge/109224461.svg" alt="DOI"></a></li>
 <li><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a></li>
 <li><a href="https://github.com/ropensci/onboarding/issues/155"><img src="https://badges.ropensci.org/155_status.svg"></a></li>

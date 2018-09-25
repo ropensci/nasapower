@@ -1,18 +1,18 @@
 Package: nasapower
 Type: Package
 Title: NASA-POWER Data from R
-Version: 1.0.0.9004
+Version: 1.0.0
 Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359"))
-URL: https://github.com/adamhsparks/nasapower
-BugReports: https://github.com/adamhsparks/nasapower/issues
+URL: https://github.com/ropensci/nasapower
+BugReports: https://github.com/ropensci/nasapower/issues
 Description: Download NASA-POWER global meteorology and surface solar energy
     climatology data.  nasapower provides an interface to the NASA - POWER API.
     POWER (Prediction Of Worldwide Energy Resource) data are freely available
     for download with a resolution of 0.5 by 0.5 arc degree longitude and
     latitude and are funded through the NASA Earth Science Directorate Applied
-    Science Program. For more on the data themselves and a web-based data
+    Science Program.  For more on the data themselves and a web-based data
     viewer and access, please see <https://power.larc.nasa.gov/>.
 Depends:
     R (>= 3.2.0)
@@ -44,4 +44,7 @@ Suggests:
     vcr
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
-X-schema.org-keywords: NASA, meteorological-data, weather, global, weather, weather-data, meteorology, NASA-POWER, agroclimatology, earth-science, data-access
+X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
+    weather-data, meteorology, NASA-POWER, agroclimatology, earth-science,
+    data-access
+X-schema.org-isPartOf: https://ropensci.org
