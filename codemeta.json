@@ -5,12 +5,12 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
-  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data.  nasapower provides an interface to the NASA - POWER API.\n    POWER (Prediction Of Worldwide Energy Resource) data are freely available\n    for download with a resolution of 0.5 by 0.5 arc degree longitude and\n    latitude and are funded through the NASA Earth Science Directorate Applied\n    Science Program. For more on the data themselves and a web-based data\n    viewer and access, please see <https://power.larc.nasa.gov/>.",
+  "description": "Download NASA-POWER global meteorology and surface solar energy\n    climatology data.  nasapower provides an interface to the NASA - POWER API.\n    POWER (Prediction Of Worldwide Energy Resource) data are freely available\n    for download with a resolution of 0.5 by 0.5 arc degree longitude and\n    latitude and are funded through the NASA Earth Science Directorate Applied\n    Science Program.  For more on the data themselves and a web-based data\n    viewer and access, please see <https://power.larc.nasa.gov/>.",
   "name": "nasapower: NASA-POWER Data from R",
-  "codeRepository": "https://github.com/adamhsparks/nasapower",
-  "issueTracker": "https://github.com/adamhsparks/nasapower/issues",
+  "codeRepository": "https://github.com/ropensci/nasapower",
+  "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0.9004",
+  "version": "1.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -235,7 +235,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/adamhsparks/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/adamhsparks/nasapower/blob/master/README.md",
-  "fileSize": "211.238KB",
+  "fileSize": "211.799KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
@@ -255,5 +255,6 @@
       "name": "{nasapower}: NASA-POWER Data from R",
       "url": "https://github.com/adamhsparks/nasapower"
     }
-  ]
+  ],
+  "isPartOf": "https://ropensci.org"
 }
