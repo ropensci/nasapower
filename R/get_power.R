@@ -10,9 +10,9 @@
 #' @param pars A character vector of solar, meteorological or climatology
 #'   parameters to download.  See \code{names(parameters)} for a full list of
 #'   valid values and definitions.  Visit the
-#'   [POWER website]https://power.larc.nasa.gov/#paramstable) for the Parameters
-#'   Tables.  If downloading CLIMATOLOGY a maximum of 3 `pars` can be
-#'   specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
+#'   [POWER website](https://power.larc.nasa.gov/#paramstable) for the
+#'   Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 `pars` can
+#'   be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 #'   be specified at one time.
 #' @param temporal_average Temporal average for data being queried, supported
 #'   values are DAILY, INTERANNUAL and CLIMATOLOGY.  See argument details for
