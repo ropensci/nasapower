@@ -92,40 +92,49 @@
 <div id="quick-start" class="section level3">
 <h3 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h3>
-<p><em>nasapower</em> is not yet available from CRAN, only GitHub. It can easily be installed using the following code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(remotes)) {</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ropensci/nasapower"</span>,</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">               <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><em>nasapower</em> can easily be installed using the following code</p>
+<div id="from-cran" class="section level4">
+<h4 class="hasAnchor">
+<a href="#from-cran" class="anchor"></a>From CRAN</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"nasapower"</span>)</a></code></pre></div>
+</div>
+<div id="from-github-for-the-version-in-development" class="section level4">
+<h4 class="hasAnchor">
+<a href="#from-github-for-the-version-in-development" class="anchor"></a>From GitHub for the version in-development</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(remotes)) {</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ropensci/nasapower"</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">               <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
 </div>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Fetch daily “AG” community temperature, relative humidity and precipitation for January 1 1985 for Kingsthorpe, Queensland, Australia.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">daily_ag &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">                      <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">                      <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">                      <span class="dt">dates =</span> <span class="st">"1985-01-01"</span>,</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">                      <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">                      )</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">                    </a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">daily_ag</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt;  Parameters: </span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="co">#&gt;  </span></a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt;     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT</span></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(nasapower)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">daily_ag &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">                      <span class="dt">lonlat =</span> <span class="kw">c</span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">                      <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">                      <span class="dt">dates =</span> <span class="st">"1985-01-01"</span>,</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">                      <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">                      )</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">                    </a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">daily_ag</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;  Parameters: </span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt;  </span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt;     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt;  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07</span></a></code></pre></div>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
