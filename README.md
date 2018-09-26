@@ -35,15 +35,20 @@ browser or an ESRI REST API.
 
 ### Quick start
 
-*nasapower* can easily be installed using the following code
+*nasapower* can easily be installed using the following code.
 
 #### From CRAN
+
+The stable version is available through CRAN.
 
 ``` r
 install.packages("nasapower")
 ```
 
 #### From GitHub for the version in-development
+
+A development version that may have new features or bug fixes is
+available through GitHub.
 
 ``` r
 if (!require(remotes)) {
