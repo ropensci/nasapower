@@ -42,8 +42,15 @@ and other forms of data available, _e.g._ your web browser or an ESRI REST API.
 
 ### Quick start
 
-_nasapower_ is not yet available from CRAN, only GitHub. It can easily be
-installed using the following code:
+_nasapower_ can easily be installed using the following code
+
+#### From CRAN
+
+```r
+install.packages("nasapower")
+```
+
+#### From GitHub for the version in-development
 
 ```r
 if (!require(remotes)) {
