@@ -38,7 +38,7 @@ an ICASA format text files for use in
 
 Please see
 <https://power.larc.nasa.gov/> for more on the data and other ways to access it
-and other forms of data available, _e.g._ your web browser or an ESRI REST API.
+and other forms of data available, _e.g._, your web browser or an ESRI REST API.
 
 ### Quick start
 

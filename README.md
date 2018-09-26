@@ -30,7 +30,7 @@ text files for use in [DSSAT (Decision Support System for Agrotechnology
 Transfer)](https://dssat.net/).
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
-ways to access it and other forms of data available, *e.g.* your web
+ways to access it and other forms of data available, *e.g.*, your web
 browser or an ESRI REST API.
 
 ### Quick start
