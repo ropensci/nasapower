@@ -7,7 +7,7 @@
 
 - Provides access to all three communities, AG, SSE and and SB, not just AG
 
-- Uses new NASA-POWER API to download new 1/2 x 1/2 degree data
+- Uses new `POWER` API to download new 1/2 x 1/2 degree data
 
 - Adds function `get_power()` to get weather data and optionally metadata as
 well

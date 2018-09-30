@@ -1,7 +1,7 @@
 
-#' Create an APSIM metFile file from NASA - POWER data
+#' Create an `APSIM` metFile file from `POWER` data
 #'
-#' Get NASA-POWER values for a single point or region and create
+#' Get `POWER` values for a single point or region and create
 #'   an APSIM \code{\link[APSIM]{metFile}} file suitable for use in APSIM for
 #'   crop modelling saving it to local disk.
 #'
@@ -23,7 +23,7 @@
 #'
 #'   The weather values from POWER for temperature are 2 metre max and min
 #'   temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
-#'   PRECTOT from the POWER AG community on a daily time-step.
+#'   PRECTOT from the `POWER` AG community on a daily time-step.
 #'
 #'   Further details for each of the arguments are provided in their
 #'   respective sections following below.
@@ -50,8 +50,8 @@
 #'   If one date only is provided, it will be treated as both the start date and
 #'   the end date and only a single day's values will be returned.
 #'
-#' @return A text file in .met format saved to local disk for use in APSIM crop
-#'   modelling.
+#' @return A text file in .met format saved to local disk for use in `APSIM`
+#'   crop modelling.
 #'
 #' @seealso \code{\link{create_icasa}} Create a DSSAT ICASA File from NASA -
 #'   POWER Data

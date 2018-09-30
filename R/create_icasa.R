@@ -1,7 +1,7 @@
 
-#' Create a DSSAT ICASA file from NASA - POWER data
+#' Create a `DSSAT` ICASA file from `POWER` data
 #'
-#' Get NASA-POWER values for a single point or region and create an ICASA format
+#' Get `POWER` values for a single point or region and create an ICASA format
 #'   text file suitable for use in DSSAT for crop modelling saving it to local
 #'   disk.
 #'
@@ -16,8 +16,8 @@
 #'   specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
-#'   queries the POWER API and writes a DSSAT ICASA weather file to disk. All
-#'   necessary `pars` are automatically included in the query.
+#'   queries the `POWER` API and writes a `DSSAT` ICASA weather file to disk.
+#'   All necessary `pars` are automatically included in the query.
 #'
 #'   Further details for each of the arguments are provided in their
 #'   respective sections following below.

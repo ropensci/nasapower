@@ -1,9 +1,9 @@
 
-#' Get NASA-POWER data and return a tidy data frame
+#' Get `POWER` data and return a tidy data frame
 #'
-#' Get NASA-POWER global meteorology and surface solar energy climatology data
-#'   and return a tidy data frame. All options offered by the official
-#'   NASA-POWER API are supported.
+#' Get `POWER` global meteorology and surface solar energy climatology data
+#'   and return a tidy data frame. All options offered by the official `POWER`
+#'   API are supported.
 #'
 #' @param community A character vector providing community name: "AG", "SB" or
 #'   "SSE".  See argument details for more.

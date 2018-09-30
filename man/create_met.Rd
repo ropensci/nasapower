@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an APSIM metFile file from NASA - POWER data}
+\title{Create an \code{APSIM} metFile file from \code{POWER} data}
 \usage{
 create_met(lonlat, dates, dsn, file_out)
 }
@@ -21,11 +21,11 @@ more.}
 otherwise specified by user.}
 }
 \value{
-A text file in .met format saved to local disk for use in APSIM crop
-modelling.
+A text file in .met format saved to local disk for use in \code{APSIM}
+crop modelling.
 }
 \description{
-Get NASA-POWER values for a single point or region and create
+Get \code{POWER} values for a single point or region and create
 an APSIM \code{\link[APSIM]{metFile}} file suitable for use in APSIM for
 crop modelling saving it to local disk.
 }
@@ -37,7 +37,7 @@ disk.
 
 The weather values from POWER for temperature are 2 metre max and min
 temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
-PRECTOT from the POWER AG community on a daily time-step.
+PRECTOT from the \code{POWER} AG community on a daily time-step.
 
 Further details for each of the arguments are provided in their
 respective sections following below.
@@ -72,7 +72,7 @@ the end date and only a single day's values will be returned.
 # Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
 # save it in the current R session tempdir() as "APSIM_example.met".
 
-\dontrun{
+\donttest{
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
            dsn = tempdir(),
