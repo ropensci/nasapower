@@ -84,7 +84,7 @@
 #' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Fetch daily "AG" community temperature, relative humidity and precipitation
 #' # for January 1 1985 for Kingsthorpe, Queensland, Australia
 #' daily_ag <- get_power(community = "AG",
