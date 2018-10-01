@@ -27,12 +27,14 @@
 #' }
 #'
 #' @seealso
+#'
 #' \itemize{
-#' \item \code{\link{get_power}} Download `POWER`` Data and Return a Tidy Data
+#'  \item{\code{\link{get_power}} Download `POWER`` Data and Return a Tidy Data}
 #'  Frame
-#' \item \code{\link{create_icasa}} Create a DSSAT ICASA File from `POWER` Data
-#' \item \code{\link{create_met}} Create an APSIM metFile File from `POWER` Data
-#' \item \code{citation(nasapower)} For proper citation of \pkg{nasaspower}
+#' \item{\code{\link{create_icasa}} Create a DSSAT ICASA File from `POWER` Data}
+#' \item{\code{\link{create_met}} Create an APSIM metFile File from `POWER`
+#'  Data}
+#' \item{\code{citation(nasapower)} For proper citation of \pkg{nasaspower}}
 #' }
 #'
 #' @references

@@ -31,8 +31,9 @@ funded through the NASA Earth Science Directorate Applied Science Program."
 }
 \seealso{
 \itemize{
-\item \code{\link{get_power}} Download \code{POWER`` Data and Return a Tidy Data Frame \item \code{\link{create_icasa}} Create a DSSAT ICASA File from}POWER\code{Data \item \code{\link{create_met}} Create an APSIM metFile File from}POWER` Data
-\item \code{citation(nasapower)} For proper citation of \pkg{nasaspower}
+\item{\code{\link{get_power}} Download \code{POWER`` Data and Return a Tidy Data} Frame \item{\code{\link{create_icasa}} Create a DSSAT ICASA File from }POWER\code{Data} \item{\code{\link{create_met}} Create an APSIM metFile File from}POWER`
+Data}
+\item{\code{citation(nasapower)} For proper citation of \pkg{nasaspower}}
 }
 }
 \author{
