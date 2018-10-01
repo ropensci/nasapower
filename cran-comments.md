@@ -1,20 +1,21 @@
 ## Test environments
 * local macOS 10.13.6 install, R 3.5.1
-* local ubuntu 18.04, R 3.5.1
+* local Ubuntu 18.04, R 3.5.1
 * win-builder (devel and release)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-* This is a revised new release at the request of CRAN maintainers, changes follow.
+* This is a resubmission of new release at the request of CRAN maintainers,
+  changes follow.
 
-  * Omits the redundant part "from R" in the Title.
+    * Omits the redundant part "from R" in the Title.
 
-  * Puts package names, software names and API names in single quotes (e.g.
-  'nasapower') in Title and Description.
+    * Puts package names, software names and API names in single quotes (e.g.
+    'nasapower') in Title and Description.
 
-  * Replaces \dontrun{} with \donttest{} in @examples
+    * Replaces \dontrun{} with \donttest{} in @examples
 
 ## Reverse dependencies
 
