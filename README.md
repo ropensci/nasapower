@@ -12,22 +12,22 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/onboarding/issues/155)
 
-# *nasapower*:NASA-POWER API Data Interface <img align="right" src="man/figures/logo.png">
+# *nasapower*:NASA POWER API Data Interface <img align="right" src="man/figures/logo.png">
 
 *nasapower* aims to make it quick and easy to automate downloading
 [NASA-POWER](https://power.larc.nasa.gov) global meteorology and surface
 solar energy climatology data in your R session as a tidy data frame
 `tibble` object for analysis and use in modelling or other purposes.
-POWER (Prediction Of Worldwide Energy Resource) data are freely
+`POWER (Prediction Of Worldwide Energy Resource)` data are freely
 available for download at a resolution of 0.5 arc degree longitude by
 0.5 arc degree latitude.
 
 *nasapower* offers further functionality to quickly and easily generate
-an [APSIM](https://github.com/fainges/R-APSIM) package `metFile` format
-text file from POWER data for use in the [Agricultural Production
-Systems sIMulator (APSIM)](http://www.apsim.info/) or an ICASA format
-text files for use in [DSSAT (Decision Support System for Agrotechnology
-Transfer)](https://dssat.net/).
+an [`APSIM`](https://github.com/fainges/R-APSIM) package `metFile`
+format text file from POWER data for use in the [`Agricultural
+Production Systems sIMulator (APSIM)`](http://www.apsim.info/) or an
+ICASA format text files for use in [`Decision Support System for
+Agrotechnology Transfer (DSSAT)`](https://dssat.net/).
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
 ways to access it and other forms of data available, *e.g.*, your web
