@@ -22,13 +22,13 @@ knitr::opts_chunk$set(collapse = TRUE,
 ## Introduction
 
 _nasapower_ aims to make it quick and easy to automate downloading
-NASA [`POWER`](https://power.larc.nasa.gov) global meteorology and surface solar
+NASA [POWER](https://power.larc.nasa.gov) global meteorology and surface solar
 energy climatology data  data in your R session as a tidy data frame for
-analysis and use in modelling or other purposes, `get_power()`. `POWER`
+analysis and use in modelling or other purposes, `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
 download through a web interface at a resolution of 0.5 arc degree longitude
 by 0.5 arc degree latitude. Two other functions are provided to quickly and
-easily generate weather.met files from the `POWER` data for use in the
+easily generate weather.met files from the POWER data for use in the
 `Agricultural Production Systems sIMulator (APSIM)`, `create_met()` and ICASA
 format text files for use in `Decision Support System for Agrotechnology
 Transfer (DSSAT)` modelling, `create_met()`.
@@ -136,7 +136,7 @@ radiation units, while SSE and SB use kW/m^2^/day as units).
   specified at one time for for DAILY and INTERANNUAL a maximum of 20 can
   be specified at one time.
 
-- `dates`, a vector of start and end dates for which to query the `POWER`
+- `dates`, a vector of start and end dates for which to query the POWER
   API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`. 
 
 - `temporal_average`, a character vector of the desired temporal average(s).
@@ -165,7 +165,7 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
     `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
     degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
     
-- `dates`, a vector of start and end dates for which to query the `POWER`
+- `dates`, a vector of start and end dates for which to query the POWER
   API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
 
 - `dsn`, a file path to the directory for writing the resulting file,
@@ -174,7 +174,7 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
 - `file_out`, a file name for the resulting text file written to disk.
    If none is provided, defaults to "APSIM.met"
    
-Get `POWER` values for a single point, Kingsthorpe, Queensland for 1985 and
+Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling
 and save it to local disk for use in `APSIM` modelling.
 
@@ -206,7 +206,7 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
     `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
     degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.
     
-- `dates`, a vector of start and end dates for which to query the `POWER`
+- `dates`, a vector of start and end dates for which to query the POWER
   API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
   
 - `dsn`, a file path to the directory for writing the resulting file,
@@ -215,7 +215,7 @@ Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
 - `file_out`, a  file name for the resulting text file written to disk.
    If none is provided, defaults to "ICASA.txt"
 
-Get `POWER` values for a single point, Kingsthorpe, Queensland for 1985 and
+Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an ICASA text file suitable for use in `DSSAT` for crop modelling and
 save it to local disk.
 

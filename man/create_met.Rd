@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an \code{APSIM} metFile file from \code{POWER} data}
+\title{Create an 'APSIM' metFile file from 'POWER' data}
 \usage{
 create_met(lonlat, dates, dsn, file_out)
 }
@@ -21,13 +21,13 @@ more.}
 otherwise specified by user.}
 }
 \value{
-A text file in .met format saved to local disk for use in \code{APSIM}
+A text file in .met format saved to local disk for use in 'APSIM'
 crop modelling.
 }
 \description{
-Get \code{POWER} values for a single point or region and create
-an APSIM \code{\link[APSIM]{metFile}} file suitable for use in APSIM for
-crop modelling saving it to local disk.
+Get 'POWER' values for a single point or region and create
+an 'APSIM' \code{\link[APSIM]{metFile}} file suitable for use in 'APSIM'
+for crop modelling saving it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
@@ -35,9 +35,9 @@ This function is essentially a wrapper for \code{\link{get_power}}
 simplifies the querying of the POWER API and writes the metfile to local
 disk.
 
-The weather values from POWER for temperature are 2 metre max and min
+The weather values from 'POWER' for temperature are 2 metre max and min
 temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
-PRECTOT from the \code{POWER} AG community on a daily time-step.
+PRECTOT from the 'POWER' AG community on a daily time-step.
 
 Further details for each of the arguments are provided in their
 respective sections following below.
@@ -82,8 +82,8 @@ create_met(lonlat = c(151.81, -27.48),
 
 }
 \seealso{
-\code{\link{create_icasa}} Create a DSSAT ICASA File from NASA -
-POWER Data
+\code{\link{create_icasa}} Create a 'DSSAT' 'ICASA' File from 'NASA'
+'POWER' Data
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}

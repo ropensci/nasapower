@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get \code{POWER} data and return a tidy data frame}
+\title{Get 'POWER' data and return a tidy data frame}
 \usage{
 get_power(community, pars, temporal_average, lonlat = NULL,
   dates = NULL)
@@ -36,9 +36,9 @@ A data frame of POWER data including location, dates (not including
 CLIMATOLOGY) and requested parameters. A header of metadata is included.
 }
 \description{
-Get \code{POWER} global meteorology and surface solar energy climatology data
-and return a tidy data frame. All options offered by the official \code{POWER}
-API are supported.
+Get 'POWER' global meteorology and surface solar energy climatology data
+and return a tidy data frame. All options offered by the official 'POWER'
+'API' are supported.
 }
 \note{
 The associated metadata are not saved if the data are exported to a

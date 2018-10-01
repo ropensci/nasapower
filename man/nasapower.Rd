@@ -4,7 +4,7 @@
 \name{nasapower}
 \alias{nasapower}
 \alias{nasapower-package}
-\title{NASA POWER API Data Interface}
+\title{'NASA' 'POWER' 'API' Data Client}
 \description{
 Client for 'NASA' 'POWER' global meteorology and surface solar energy
 climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy Resource)
@@ -16,9 +16,9 @@ web-based data viewer and access, please see \url{https://power.larc.nasa.gov/}.
 }
 \note{
 While \pkg{nasapower} does not redistribute the data in any way, we
-encourage users to follow the requests of the \code{POWER} Project Team.
+encourage users to follow the requests of the 'POWER' Project Team.
 \preformatted{
-When `POWER` data products are used in a publication, we request the
+When POWER data products are used in a publication, we request the
 following acknowledgment be included:
 
 "These data were obtained from the NASA Langley Research Center POWER Project
@@ -30,7 +30,11 @@ funded through the NASA Earth Science Directorate Applied Science Program."
 }
 \seealso{
 \itemize{
-\item{\code{\link{get_power}} Download \code{POWER`` Data and Return a Tidy Data} Frame \item{\code{\link{create_icasa}} Create a DSSAT ICASA File from }POWER\code{Data} \item{\code{\link{create_met}} Create an APSIM metFile File from}POWER`
+\item{\code{\link{get_power}} Download 'POWER' Data and Return a Tidy Data}
+Frame
+\item{\code{\link{create_icasa}} Create a 'DSSAT' 'ICASA' File from 'POWER'
+Data}
+\item{\code{\link{create_met}} Create an 'APSIM' metFile File from 'POWER'
 Data}
 \item{\code{citation(nasapower)} For proper citation of \pkg{nasaspower}}
 }

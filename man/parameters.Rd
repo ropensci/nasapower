@@ -3,9 +3,9 @@
 \docType{data}
 \name{parameters}
 \alias{parameters}
-\title{\code{POWER} Parameters Available for Download}
+\title{'POWER' Parameters Available for Download}
 \format{A list with 146 weather and climate parameters contained within the
-\code{POWER} database.
+'POWER' database.
 \describe{
 \item{ALLSKY_SFC_LW_DWN }{Downward Thermal Infrared (Longwave) Radiative Flux}
 \item{ALLSKY_SFC_SW_DWN}{All Sky Insolation Incident on a Horizontal Surface}
@@ -161,8 +161,8 @@
 parameters
 }
 \description{
-An \pkg{R} list object of \code{POWER} parameters and metadata available for
-querying from the \code{POWER} database.
+An \pkg{R} list object of 'POWER' parameters and metadata available for
+querying from the 'POWER' database.
 }
 \references{
 \url{https://power.larc.nasa.gov/docs/v1/}

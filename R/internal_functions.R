@@ -354,9 +354,9 @@
     return(lonlat_identifier)
   }
 
-#' Query the`POWER` API
+#' Query the'POWER' 'API'
 #'
-#' Constructs and sends a query to the `POWER` API using validated values from
+#' Constructs and sends a query to the 'POWER' 'API' using validated values from
 #' previous functions in this file.
 #'
 #' @param community A validated value for community from `check_community()`.
@@ -366,7 +366,7 @@
 #' @param outputList A value of either "CSV" or "ICASA" that tells the API the
 #' desired format in which to return the data.
 #'
-#' @return A tidy data.frame() of requested POWER data
+#' @return A tidy data.frame() of requested 'POWER' data
 #'
 #' @noRd
 .power_query <- function(community,

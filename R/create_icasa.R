@@ -1,7 +1,7 @@
 
-#' Create a `DSSAT` ICASA file from `POWER` data
+#' Create a 'DSSAT' 'ICASA' file from 'POWER' data
 #'
-#' Get `POWER` values for a single point or region and create an ICASA format
+#' Get 'POWER' values for a single point or region and create an 'ICASA' format
 #'   text file suitable for use in DSSAT for crop modelling saving it to local
 #'   disk.
 #'
@@ -16,8 +16,8 @@
 #'   specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
-#'   queries the `POWER` API and writes a `DSSAT` ICASA weather file to disk.
-#'   All necessary `pars` are automatically included in the query.
+#'   queries the 'POWER' 'API' and writes a 'DSSAT' 'ICASA' weather file to
+#'   disk.  All necessary `pars` are automatically included in the query.
 #'
 #'   Further details for each of the arguments are provided in their
 #'   respective sections following below.
@@ -47,12 +47,12 @@
 #' @seealso \code{\link{create_met}} Create an APSIM metFile File from NASA -
 #'   POWER Data
 #'
-#' @return A text file in ICASA format saved to local disk for use in DSSAT crop
-#'   modelling.
+#' @return A text file in 'ICASA' format saved to local disk for use in DSSAT
+#'   crop modelling.
 #'
 #' @examples
-#' # Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-#' # save it in the current R session tempdir as "ICASA_example.txt".
+#' # Create an 'ICASA' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
+#' #   and save it in the current R session tempdir as "ICASA_example.txt".
 #'
 #' \donttest{
 #' create_icasa(lonlat = c(151.81, -27.48),

@@ -7,15 +7,15 @@
 
 - Provides access to all three communities, AG, SSE and and SB, not just AG
 
-- Uses new `POWER` API to download new 1/2 x 1/2 degree data
+- Uses new 'POWER' 'API' to download new 1/2 x 1/2 degree data
 
 - Adds function `get_power()` to get weather data and optionally metadata as
 well
 
-- Adds function `create_met()` to create APSIM met objects from POWER data
+- Adds function `create_met()` to create 'APSIM' met objects from 'POWER' data
 
 - Adsd function `create_icasa()` to create a text file of weather data for use
-in DSSAT crop modelling
+in 'DSSAT' crop modelling
 
 - Internally, replaces _httr_ package with _crul_
 
