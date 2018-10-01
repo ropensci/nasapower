@@ -7,14 +7,14 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* This is a revised new release at the request of CRAN maintainers, changes follow.
 
-* Omits the redundant part "from R" in the Title.
+  * Omits the redundant part "from R" in the Title.
 
-* Puts package names, software names and API names in single quotes (e.g.
+  * Puts package names, software names and API names in single quotes (e.g.
   'nasapower') in Title and Description.
 
-* Replaces \dontrun{} with \donttest{} in @examples
+  * Replaces \dontrun{} with \donttest{} in @examples
 
 ## Reverse dependencies
 
