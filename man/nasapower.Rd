@@ -4,16 +4,15 @@
 \name{nasapower}
 \alias{nasapower}
 \alias{nasapower-package}
-\title{NASA \code{POWER} API Data Interface}
+\title{NASA POWER API Data Interface}
 \description{
-Download \code{POWER} global meteorology and surface solar energy climatology
-data for 141 parameters and create a tidy data frame for a single point, a
-region or global coverage.  \pkg{nasapower} provides an R interface to the
-\code{POWER} API.  \code{POWER (Prediction Of Worldwide Energy Resource)} data are
-freely available for download with a resolution of 0.5 arc degree longitude
-by 0.5 arc degree latitude and are funded through the NASA Earth Science
-Directorate Applied Science Program. For more on the data themselves, please
-see \url{https://power.larc.nasa.gov/}.
+Client for 'NASA' 'POWER' global meteorology and surface solar energy
+climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy Resource)
+data are freely available global meteorology and surface solar energy
+climatology data for download with a resolution of 0.5 by 0.5 arc degree
+longitude and latitude and are funded through the 'NASA' Earth Science
+Directorate Applied Science Program.  For more on the data themselves and a
+web-based data viewer and access, please see \url{https://power.larc.nasa.gov/}.
 }
 \note{
 While \pkg{nasapower} does not redistribute the data in any way, we
