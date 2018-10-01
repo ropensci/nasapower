@@ -1,6 +1,6 @@
 Package: nasapower
 Type: Package
-Title: NASA `POWER` API Data Interface
+Title: NASA POWER Data
 Version: 1.0.0
 Authors@R: person(given = "Adam H.", family = "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
