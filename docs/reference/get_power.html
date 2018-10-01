@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get NASA-POWER data and return a tidy data frame — get_power • nasapower</title>
+<title>Get <code>POWER</code> data and return a tidy data frame — get_power • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Get NASA-POWER data and return a tidy data frame — get_power" />
+<meta property="og:title" content="Get <code>POWER</code> data and return a tidy data frame — get_power" />
 
-<meta property="og:description" content="Get NASA-POWER global meteorology and surface solar energy climatology data
-and return a tidy data frame. All options offered by the official
-NASA-POWER API are supported." />
+<meta property="og:description" content="Get POWER global meteorology and surface solar energy climatology data
+and return a tidy data frame. All options offered by the official POWER
+API are supported." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -107,16 +107,16 @@ NASA-POWER API are supported." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get NASA-POWER data and return a tidy data frame</h1>
+    <h1>Get <code>POWER</code> data and return a tidy data frame</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/nasapower/blob/master/R/get_power.R'><code>R/get_power.R</code></a></small>
     <div class="hidden name"><code>get_power.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get NASA-POWER global meteorology and surface solar energy climatology data
-and return a tidy data frame. All options offered by the official
-NASA-POWER API are supported.</p>
+    <p>Get <code>POWER</code> global meteorology and surface solar energy climatology data
+and return a tidy data frame. All options offered by the official <code>POWER</code>
+API are supported.</p>
     
     </div>
 
@@ -230,8 +230,7 @@ values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Fetch daily "AG" community temperature, relative humidity and precipitation</span>
+    <pre class="examples"><div class='input'><span class='co'># Fetch daily "AG" community temperature, relative humidity and precipitation</span>
 <span class='co'># for January 1 1985 for Kingsthorpe, Queensland, Australia</span>
 <span class='no'>daily_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
                       <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
@@ -254,8 +253,7 @@ values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
                              <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"INTERANNUAL"</span>,
                              <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"CLRSKY_SFC_SW_DWN"</span>,
                                       <span class='st'>"ALLSKY_SFC_SW_DWN"</span>)
-                                      )
-<span class='co'># }</span><div class='input'>
+                                      )</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
