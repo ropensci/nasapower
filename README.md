@@ -12,7 +12,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/onboarding/issues/155)
 
-# *nasapower*: NASA POWER Global Meteorology and Surface Solar Energy Climatology Data Client <img align="right" src="man/figures/logo.png">
+# *nasapower*: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
 
 *nasapower* aims to make it quick and easy to automate downloading
 [NASA-POWER](https://power.larc.nasa.gov) global meteorology and surface
