@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a <code>DSSAT</code> ICASA file from <code>POWER</code> data — create_icasa • nasapower</title>
+<title>Create a 'DSSAT' 'ICASA' file from 'POWER' data — create_icasa • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Create a <code>DSSAT</code> ICASA file from <code>POWER</code> data — create_icasa" />
+<meta property="og:title" content="Create a 'DSSAT' 'ICASA' file from 'POWER' data — create_icasa" />
 
-<meta property="og:description" content="Get POWER values for a single point or region and create an ICASA format
+<meta property="og:description" content="Get 'POWER' values for a single point or region and create an 'ICASA' format
 text file suitable for use in DSSAT for crop modelling saving it to local
 disk." />
 
@@ -107,14 +107,14 @@ disk." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a <code>DSSAT</code> ICASA file from <code>POWER</code> data</h1>
+    <h1>Create a 'DSSAT' 'ICASA' file from 'POWER' data</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/nasapower/blob/master/R/create_icasa.R'><code>R/create_icasa.R</code></a></small>
     <div class="hidden name"><code>create_icasa.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get <code>POWER</code> values for a single point or region and create an ICASA format
+    <p>Get 'POWER' values for a single point or region and create an 'ICASA' format
 text file suitable for use in DSSAT for crop modelling saving it to local
 disk.</p>
     
@@ -150,14 +150,14 @@ specified by user.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A text file in ICASA format saved to local disk for use in DSSAT crop
-modelling.</p>
+    <p>A text file in 'ICASA' format saved to local disk for use in DSSAT
+crop modelling.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
-queries the <code>POWER</code> API and writes a <code>DSSAT</code> ICASA weather file to disk.
-All necessary <code>pars</code> are automatically included in the query.</p>
+queries the 'POWER' 'API' and writes a 'DSSAT' 'ICASA' weather file to
+disk.  All necessary <code>pars</code> are automatically included in the query.</p>
 <p>Further details for each of the arguments are provided in their
 respective sections following below.</p>
     
@@ -192,8 +192,8 @@ POWER Data</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir as "ICASA_example.txt".
+    <pre class="examples"><div class='input'># Create an 'ICASA' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
+#   and save it in the current R session tempdir as "ICASA_example.txt".
 
 </div><div class='input'><span class='fu'>create_icasa</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
             <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),
