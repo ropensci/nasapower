@@ -235,7 +235,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "fileSize": "212.066KB",
+  "fileSize": "212.06KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
