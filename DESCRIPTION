@@ -1,6 +1,6 @@
 Package: nasapower
 Type: Package
-Title: 'NASA' 'POWER' Global Meteorology and Surface Solar Energy Climatology Data Client
+Title: 'NASA' 'POWER' Global Meteorology, Surface Solar Energy and Climatology Data Client
 Version: 1.0.0
 Authors@R: c(
     person("Adam H.", "Sparks",
@@ -13,8 +13,8 @@ Authors@R: c(
     person("Alison", "Boyer", role = "rev"))
 URL: https://github.com/ropensci/nasapower
 BugReports: https://github.com/ropensci/nasapower/issues
-Description: Client for 'NASA' 'POWER' global meteorology and surface solar
-    energy climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
+Description: Client for 'NASA' 'POWER' global meteorology, surface solar
+    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
     Resource) data are freely available global meteorology and surface solar
     energy climatology data for download with a resolution of 0.5 by 0.5 arc
     degree longitude and latitude and are funded through the 'NASA' Earth
