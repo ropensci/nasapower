@@ -16,6 +16,8 @@
     'nasapower') in Title and Description.
 
     * Replaces \dontrun{} with \donttest{} in @examples
+    
+Thanks for the suggested improvements to the package.
 
 ## Reverse dependencies
 
