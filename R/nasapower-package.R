@@ -1,5 +1,5 @@
 
-#' @title 'NASA' 'POWER' 'API' Data Client
+#' @title 'NASA' 'POWER' Global Meteorology and Surface Solar Energy Climatology Data Client
 #'
 #' @name nasapower
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}

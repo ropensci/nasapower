@@ -4,7 +4,7 @@
 \name{nasapower}
 \alias{nasapower}
 \alias{nasapower-package}
-\title{'NASA' 'POWER' 'API' Data Client}
+\title{'NASA' 'POWER' Global Meteorology and Surface Solar Energy Climatology Data Client}
 \description{
 Client for 'NASA' 'POWER' global meteorology and surface solar energy
 climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy Resource)
