@@ -14,7 +14,7 @@ get_power(community, pars, temporal_average, lonlat = NULL,
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{names(parameters)} for a full list of
 valid values and definitions.  Visit the
-\href{https://power.larc.nasa.gov/#paramstable}{POWER website} for the
+\href{https://power.larc.nasa.gov/#paramstable}{'POWER' website} for the
 Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 \code{pars} can
 be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 be specified at one time.}
