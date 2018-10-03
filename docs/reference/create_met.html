@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an 'APSIM' metFile file from 'POWER' data — create_met • nasapower</title>
+<title>Create an 'APSIM' 'met' file from 'POWER' data — create_met • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Create an 'APSIM' metFile file from 'POWER' data — create_met" />
+<meta property="og:title" content="Create an 'APSIM' 'met' file from 'POWER' data — create_met" />
 
 <meta property="og:description" content="Get 'POWER' values for a single point or region and create
-an 'APSIM' metFile file suitable for use in 'APSIM'
-for crop modelling saving it to local disk." />
+an 'APSIM' 'met' file suitable for use in 'APSIM' for crop modelling saving
+it to local disk." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -107,7 +107,7 @@ for crop modelling saving it to local disk." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an 'APSIM' metFile file from 'POWER' data</h1>
+    <h1>Create an 'APSIM' 'met' file from 'POWER' data</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/nasapower/blob/master/R/create_met.R'><code>R/create_met.R</code></a></small>
     <div class="hidden name"><code>create_met.Rd</code></div>
     </div>
@@ -115,8 +115,8 @@ for crop modelling saving it to local disk." />
     <div class="ref-description">
     
     <p>Get 'POWER' values for a single point or region and create
-an 'APSIM' <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/metFile-class'>metFile</a></code> file suitable for use in 'APSIM'
-for crop modelling saving it to local disk.</p>
+an 'APSIM' 'met' file suitable for use in 'APSIM' for crop modelling saving
+it to local disk.</p>
     
     </div>
 
@@ -150,14 +150,14 @@ otherwise specified by user.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A text file in .met format saved to local disk for use in 'APSIM'
+    <p>A text file in 'met' format saved to local disk for use in 'APSIM'
 crop modelling.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
 <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> and <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/writeMetFile'>writeMetFile</a></code> that
-simplifies the querying of the POWER API and writes the metfile to local
+simplifies the querying of the 'POWER' 'API' and writes the 'met' to local
 disk.</p>
 <p>The weather values from 'POWER' for temperature are 2 metre max and min
 temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
@@ -196,8 +196,9 @@ the end date and only a single day's values will be returned.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir() as "APSIM_example.met".
+    <pre class="examples"><div class='input'># Create a 'met' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
+# save it in the current R session \code{\link{tempdir()}} as
+# "APSIM_example.met".
 
 </div><div class='input'><span class='fu'>create_met</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
            <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),

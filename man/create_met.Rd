@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an 'APSIM' metFile file from 'POWER' data}
+\title{Create an 'APSIM' 'met' file from 'POWER' data}
 \usage{
 create_met(lonlat, dates, dsn, file_out)
 }
@@ -21,18 +21,18 @@ more.}
 otherwise specified by user.}
 }
 \value{
-A text file in .met format saved to local disk for use in 'APSIM'
+A text file in 'met' format saved to local disk for use in 'APSIM'
 crop modelling.
 }
 \description{
 Get 'POWER' values for a single point or region and create
-an 'APSIM' \code{\link[APSIM]{metFile}} file suitable for use in 'APSIM'
-for crop modelling saving it to local disk.
+an 'APSIM' 'met' file suitable for use in 'APSIM' for crop modelling saving
+it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
 \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
-simplifies the querying of the POWER API and writes the metfile to local
+simplifies the querying of the 'POWER' 'API' and writes the 'met' to local
 disk.
 
 The weather values from 'POWER' for temperature are 2 metre max and min
@@ -69,8 +69,9 @@ the end date and only a single day's values will be returned.
 }
 
 \examples{
-# Create a .met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir() as "APSIM_example.met".
+# Create a 'met' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
+# save it in the current R session \\code{\\link{tempdir()}} as
+# "APSIM_example.met".
 
 \donttest{
 create_met(lonlat = c(151.81, -27.48),

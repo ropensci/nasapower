@@ -21,7 +21,7 @@ more.}
 specified by user.}
 }
 \value{
-A text file in 'ICASA' format saved to local disk for use in DSSAT
+A text file in 'ICASA' format saved to local disk for use in 'DSSAT'
 crop modelling.
 }
 \description{
@@ -77,7 +77,7 @@ create_icasa(lonlat = c(151.81, -27.48),
 
 }
 \seealso{
-\code{\link{create_met}} Create an APSIM metFile File from 'NASA'
+\code{\link{create_met}} Create an 'APSIM' 'met' File from 'NASA'
 'POWER' Data
 }
 \author{

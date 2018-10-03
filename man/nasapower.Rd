@@ -34,7 +34,7 @@ funded through the NASA Earth Science Directorate Applied Science Program."
 Frame
 \item{\code{\link{create_icasa}} Create a 'DSSAT' 'ICASA' File from 'POWER'
 Data}
-\item{\code{\link{create_met}} Create an 'APSIM' metFile File from 'POWER'
+\item{\code{\link{create_met}} Create an 'APSIM' 'met' File from 'POWER'
 Data}
 \item{\code{citation(nasapower)} For proper citation of \pkg{nasaspower}}
 }
