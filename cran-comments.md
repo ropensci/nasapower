@@ -10,7 +10,7 @@
 * This is a resubmission of new release at the request of CRAN maintainers,
   changes follow.
 
-    * Omits the redundant part "from R" in the Title.
+    * Rewords the title and omits the redundant part "from R" in the Title.
 
     * Puts package names, software names and API names in single quotes (e.g.
     'nasapower') in Title and Description.
