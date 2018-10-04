@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a 'DSSAT' 'ICASA' file from 'POWER' data — create_icasa • nasapower</title>
+<title>Create a <acronym>DSSAT</acronym> <acronym>ICASA</acronym> File from <acronym>POWER</acronym> Data — create_icasa • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Create a 'DSSAT' 'ICASA' file from 'POWER' data — create_icasa" />
+<meta property="og:title" content="Create a <acronym>DSSAT</acronym> <acronym>ICASA</acronym> File from <acronym>POWER</acronym> Data — create_icasa" />
 
-<meta property="og:description" content="Get 'POWER' values for a single point or region and create an 'ICASA' format
-text file suitable for use in DSSAT for crop modelling saving it to local
-disk." />
+<meta property="og:description" content="Get POWER values for a single point or region and create an
+ICASA format text file suitable for use in DSSAT for
+crop modelling; saving it to local disk." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -107,16 +107,16 @@ disk." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a 'DSSAT' 'ICASA' file from 'POWER' data</h1>
+    <h1>Create a <acronym>DSSAT</acronym> <acronym>ICASA</acronym> File from <acronym>POWER</acronym> Data</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/nasapower/blob/master/R/create_icasa.R'><code>R/create_icasa.R</code></a></small>
     <div class="hidden name"><code>create_icasa.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get 'POWER' values for a single point or region and create an 'ICASA' format
-text file suitable for use in DSSAT for crop modelling saving it to local
-disk.</p>
+    <p>Get <acronym>POWER</acronym> values for a single point or region and create an
+<acronym>ICASA</acronym> format text file suitable for use in <acronym>DSSAT</acronym> for
+crop modelling; saving it to local disk.</p>
     
     </div>
 
@@ -150,14 +150,15 @@ specified by user.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A text file in 'ICASA' format saved to local disk for use in 'DSSAT'
-crop modelling.</p>
+    <p>A text file in <acronym>ICASA</acronym> format saved to local disk for use in
+<acronym>DSSAT</acronym> crop modelling.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
-queries the 'POWER' 'API' and writes a 'DSSAT' 'ICASA' weather file to
-disk.  All necessary <code>pars</code> are automatically included in the query.</p>
+that queries the <acronym>POWER</acronym> <acronym>API</acronym> and writes a <acronym>DSSAT</acronym>
+<acronym>ICASA</acronym> weather file to disk.  All necessary <code>pars</code> are
+automatically included in the query.</p>
 <p>Further details for each of the arguments are provided in their
 respective sections following below.</p>
     
@@ -165,9 +166,9 @@ respective sections following below.</p>
 
     
     <dl class='dl-horizontal'>
-<dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply a
-length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download,<br />
+<dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply
+a length-2 numeric vector giving the decimal degree longitude and latitude
+in that order for data to download,<br />
 <em>e.g.</em>, <code>lonlat = c(151.81, -27.48)</code>.</p></dd>
     <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
 vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
@@ -181,18 +182,18 @@ degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in tota
 
     <p>If <code>dates</code> is unspecified, defaults to
 a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system.</p>
-<p>If one date only is provided, it will be treated as both the start date and
-the end date and only a single day's values will be returned.</p>
+current date according to the system. If one date only is provided, it will
+be treated as both the start date and the end date and only a single day's
+values will be returned.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='create_met.html'>create_met</a></code> Create an 'APSIM' 'met' File from 'NASA'
-'POWER' Data</p></div>
+    <div class='dont-index'><p><code><a href='create_met.html'>create_met</a></code> Create an <acronym>APSIM</acronym> met File from
+<acronym>NASA</acronym> <acronym>POWER</acronym> Data</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create an 'ICASA' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
+    <pre class="examples"><div class='input'># Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
 #   and save it in the current R session tempdir as "ICASA_example.txt".
 
 </div><div class='input'><span class='fu'>create_icasa</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),

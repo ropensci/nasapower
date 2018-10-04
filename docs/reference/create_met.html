@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an 'APSIM' 'met' file from 'POWER' data — create_met • nasapower</title>
+<title>Create an <acronym>APSIM</acronym> met File from <acronym>POWER</acronym> Data — create_met • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,11 @@
 
 
 
-<meta property="og:title" content="Create an 'APSIM' 'met' file from 'POWER' data — create_met" />
+<meta property="og:title" content="Create an <acronym>APSIM</acronym> met File from <acronym>POWER</acronym> Data — create_met" />
 
-<meta property="og:description" content="Get 'POWER' values for a single point or region and create
-an 'APSIM' 'met' file suitable for use in 'APSIM' for crop modelling saving
-it to local disk." />
+<meta property="og:description" content="Get POWER values for a single point or region and create
+an APSIM met file suitable for use in APSIM for crop
+modelling; saving it to local disk." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -107,16 +107,16 @@ it to local disk." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an 'APSIM' 'met' file from 'POWER' data</h1>
+    <h1>Create an <acronym>APSIM</acronym> met File from <acronym>POWER</acronym> Data</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/nasapower/blob/master/R/create_met.R'><code>R/create_met.R</code></a></small>
     <div class="hidden name"><code>create_met.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get 'POWER' values for a single point or region and create
-an 'APSIM' 'met' file suitable for use in 'APSIM' for crop modelling saving
-it to local disk.</p>
+    <p>Get <acronym>POWER</acronym> values for a single point or region and create
+an <acronym>APSIM</acronym> met file suitable for use in <acronym>APSIM</acronym> for crop
+modelling; saving it to local disk.</p>
     
     </div>
 
@@ -150,18 +150,18 @@ otherwise specified by user.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A text file in 'met' format saved to local disk for use in 'APSIM'
-crop modelling.</p>
+    <p>A text file in met format saved to local disk for use in
+<acronym>APSIM</acronym> crop modelling.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
 <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> and <code><a href='http://www.rdocumentation.org/packages/APSIM/topics/writeMetFile'>writeMetFile</a></code> that
-simplifies the querying of the 'POWER' 'API' and writes the 'met' to local
-disk.</p>
-<p>The weather values from 'POWER' for temperature are 2 metre max and min
-temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
-PRECTOT from the 'POWER' AG community on a daily time-step.</p>
+simplifies the querying of the <acronym>POWER</acronym> <acronym>API</acronym> and writes the
+met to local disk.</p>
+<p>The weather values from <acronym>POWER</acronym> for temperature are 2 metre max and
+min temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and
+rain, PRECTOT from the <acronym>POWER</acronym> AG community on a daily time-step.</p>
 <p>Further details for each of the arguments are provided in their
 respective sections following below.</p>
     
@@ -169,9 +169,9 @@ respective sections following below.</p>
 
     
     <dl class='dl-horizontal'>
-<dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply a
-length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download,<br />
+<dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply
+a length-2 numeric vector giving the decimal degree longitude and latitude
+in that order for data to download,<br />
 <em>e.g.</em>, <code>lonlat = c(151.81, -27.48)</code>.</p></dd>
     <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
 vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
@@ -191,12 +191,12 @@ the end date and only a single day's values will be returned.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='create_icasa.html'>create_icasa</a></code> Create a 'DSSAT' 'ICASA' File from 'NASA'
-'POWER' Data</p></div>
+    <div class='dont-index'><p><code><a href='create_icasa.html'>create_icasa</a></code> Create a <acronym>DSSAT</acronym> <acronym>ICASA</acronym>
+File from <acronym>NASA</acronym> <acronym>POWER</acronym> Data</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create a 'met' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
+    <pre class="examples"><div class='input'># Create a met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
 # save it in the current R session \code{\link{tempdir()}} as
 # "APSIM_example.met".
 
@@ -204,7 +204,9 @@ the end date and only a single day's values will be returned.</p>
            <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),
            <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>(),
            <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"APSIM_example.met"</span>
-           )</div><div class='input'>
+           )</div><div class='output co'>#&gt; [1] "Required column name check:"
+#&gt; [1] "maxt" "mint" "radn" "rain" "year" "day" 
+#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
