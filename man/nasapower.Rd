@@ -4,7 +4,7 @@
 \name{nasapower}
 \alias{nasapower}
 \alias{nasapower-package}
-\title{\acronym{NASA} \acronym{POWER} \acronym{API} Data Client}
+\title{\acronym{NASA} \acronym{POWER} \acronym{API} Client}
 \description{
 Client for \acronym{NASA} \acronym{POWER} global meteorology, surface solar
 energy and climatology data 'API'.  \acronym{POWER} (Prediction Of Worldwide

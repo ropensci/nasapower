@@ -1,5 +1,5 @@
 
-#' @title \acronym{NASA} \acronym{POWER} \acronym{API} Data Client
+#' @title \acronym{NASA} \acronym{POWER} \acronym{API} Client
 #'
 #' @name nasapower
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
