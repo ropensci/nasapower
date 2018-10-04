@@ -1,9 +1,9 @@
 
-#' Create a 'DSSAT' 'ICASA' file from 'POWER' data
+#' Create a \acronym{DSSAT} \acronym{ICASA} File from \acronym{POWER} Data
 #'
-#' Get 'POWER' values for a single point or region and create an 'ICASA' format
-#'   text file suitable for use in DSSAT for crop modelling saving it to local
-#'   disk.
+#' Get \acronym{POWER} values for a single point or region and create an
+#'   \acronym{ICASA} format text file suitable for use in \acronym{DSSAT} for
+#'   crop modelling; saving it to local disk.
 #'
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y coordinates.  See argument details for more.
@@ -16,17 +16,18 @@
 #'   specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
-#'   queries the 'POWER' 'API' and writes a 'DSSAT' 'ICASA' weather file to
-#'   disk.  All necessary `pars` are automatically included in the query.
+#'   that queries the \acronym{POWER} \acronym{API} and writes a \acronym{DSSAT}
+#'   \acronym{ICASA} weather file to disk.  All necessary `pars` are
+#'   automatically included in the query.
 #'
 #'   Further details for each of the arguments are provided in their
 #'   respective sections following below.
 #'
 #' @section Argument details for `lonlat`:
 #' \describe{
-#'   \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
-#'   length-2 numeric vector giving the decimal degree longitude and latitude in
-#'   that order for data to download,\cr
+#'   \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
+#'   a length-2 numeric vector giving the decimal degree longitude and latitude
+#'   in that order for data to download,\cr
 #'   *e.g.*, `lonlat = c(151.81, -27.48)`.}
 #'
 #'   \item{For regional coverage}{To get a region, supply a length-4 numeric
@@ -39,19 +40,18 @@
 #'
 #' @section Argument details for `dates`: If `dates` is unspecified, defaults to
 #'   a start date of 1983-01-01 (the earliest available data) and an end date of
-#'   current date according to the system.
+#'   current date according to the system. If one date only is provided, it will
+#'   be treated as both the start date and the end date and only a single day's
+#'   values will be returned.
 #'
-#'   If one date only is provided, it will be treated as both the start date and
-#'   the end date and only a single day's values will be returned.
+#' @seealso \code{\link{create_met}} Create an \acronym{APSIM} met File from
+#'   \acronym{NASA} \acronym{POWER} Data
 #'
-#' @seealso \code{\link{create_met}} Create an 'APSIM' 'met' File from 'NASA'
-#'   'POWER' Data
-#'
-#' @return A text file in 'ICASA' format saved to local disk for use in 'DSSAT'
-#'   crop modelling.
+#' @return A text file in \acronym{ICASA} format saved to local disk for use in
+#'   \acronym{DSSAT} crop modelling.
 #'
 #' @examples
-#' # Create an 'ICASA' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
+#' # Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
 #' #   and save it in the current R session tempdir as "ICASA_example.txt".
 #'
 #' \donttest{

@@ -1,16 +1,16 @@
 
-#' Get 'POWER' data and return a tidy data frame
+#' Get \acronym{POWER} Data and Return a Tidy Data Frame
 #'
-#' Get 'POWER' global meteorology and surface solar energy climatology data
-#'   and return a tidy data frame. All options offered by the official 'POWER'
-#'   'API' are supported.
+#' Get \acronym{POWER} global meteorology and surface solar energy climatology
+#'   data and return a tidy data frame. All options offered by the official
+#'   \acronym{POWER} \acronym{API} are supported.
 #'
 #' @param community A character vector providing community name: "AG", "SB" or
 #'   "SSE".  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
 #'   parameters to download.  See \code{names(parameters)} for a full list of
 #'   valid values and definitions.  Visit the
-#'   ['POWER' website](https://power.larc.nasa.gov/#paramstable) for the
+#'   [\acronym{POWER} website](https://power.larc.nasa.gov/#paramstable) for the
 #'   Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 `pars` can
 #'   be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 #'   be specified at one time.
@@ -67,18 +67,19 @@
 #' }
 #'
 #' @section Argument details for `dates`: If one date only is provided, it will
-#'  be treated as both the start date and the end date and only a single day's
-#'  values will be returned, _e.g._, `dates = "1983-01-01"`.  When
-#'  `temporal_average` is set to "INTERANNUAL", use only two year values (YYYY),
-#'   _e.g._ `dates = c(1983, 2010)`.  This argument should not be used when
-#'   `temporal_average` is set to "CLIMATOLOGY".
+#'   be treated as both the start date and the end date and only a single day's
+#'   values will be returned, _e.g._, `dates = "1983-01-01"`.  When
+#'   `temporal_average` is set to "INTERANNUAL", use only two year values
+#'   (YYYY), _e.g._ `dates = c(1983, 2010)`.  This argument should not be used
+#'   when `temporal_average` is set to "CLIMATOLOGY".
 #'
 #' @note The associated metadata are not saved if the data are exported to a
 #'   file format other than a native R data format, _e.g._, .Rdata, .rda or
 #'   .rds.
 #'
-#' @return A data frame of POWER data including location, dates (not including
-#' CLIMATOLOGY) and requested parameters. A header of metadata is included.
+#' @return A data frame of \acronym{POWER} data including location, dates (not
+#' including CLIMATOLOGY) and requested parameters. A header of metadata is
+#' included.
 #'
 #' @references
 #' \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}

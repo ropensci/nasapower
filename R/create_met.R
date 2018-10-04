@@ -1,9 +1,9 @@
 
-#' Create an 'APSIM' 'met' file from 'POWER' data
+#' Create an \acronym{APSIM} met File from \acronym{POWER} Data
 #'
-#' Get 'POWER' values for a single point or region and create
-#'   an 'APSIM' 'met' file suitable for use in 'APSIM' for crop modelling saving
-#'   it to local disk.
+#' Get \acronym{POWER} values for a single point or region and create
+#'   an \acronym{APSIM} met file suitable for use in \acronym{APSIM} for crop
+#'   modelling; saving it to local disk.
 #'
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'    entered as x, y coordinates.  See argument details for more.
@@ -18,21 +18,21 @@
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
 #'   \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
-#'   simplifies the querying of the 'POWER' 'API' and writes the 'met' to local
-#'   disk.
+#'   simplifies the querying of the \acronym{POWER} \acronym{API} and writes the
+#'   met to local disk.
 #'
-#'   The weather values from 'POWER' for temperature are 2 metre max and min
-#'   temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and rain,
-#'   PRECTOT from the 'POWER' AG community on a daily time-step.
+#'   The weather values from \acronym{POWER} for temperature are 2 metre max and
+#'   min temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and
+#'   rain, PRECTOT from the \acronym{POWER} AG community on a daily time-step.
 #'
 #'   Further details for each of the arguments are provided in their
 #'   respective sections following below.
 #'
 #' @section Argument details for `lonlat`:
 #' \describe{
-#'   \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
-#'   length-2 numeric vector giving the decimal degree longitude and latitude in
-#'   that order for data to download,\cr
+#'   \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
+#'   a length-2 numeric vector giving the decimal degree longitude and latitude
+#'   in that order for data to download,\cr
 #'   *e.g.*, `lonlat = c(151.81, -27.48)`.}
 #'
 #'   \item{For regional coverage}{To get a region, supply a length-4 numeric
@@ -50,14 +50,14 @@
 #'   If one date only is provided, it will be treated as both the start date and
 #'   the end date and only a single day's values will be returned.
 #'
-#' @return A text file in 'met' format saved to local disk for use in 'APSIM'
-#'   crop modelling.
+#' @return A text file in met format saved to local disk for use in
+#'   \acronym{APSIM} crop modelling.
 #'
-#' @seealso \code{\link{create_icasa}} Create a 'DSSAT' 'ICASA' File from 'NASA'
-#'   'POWER' Data
+#' @seealso \code{\link{create_icasa}} Create a \acronym{DSSAT} \acronym{ICASA}
+#'   File from \acronym{NASA} \acronym{POWER} Data
 #'
 #' @examples
-#' # Create a 'met' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
+#' # Create a met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
 #' # save it in the current R session \code{\link{tempdir()}} as
 #' # "APSIM_example.met".
 #'

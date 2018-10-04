@@ -1,22 +1,23 @@
 
-#' @title 'NASA' 'POWER' Global Meteorology and Surface Solar Energy Climatology Data Client
+#' @title \acronym{NASA} \acronym{POWER} \acronym{API} Data Client
 #'
 #' @name nasapower
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @docType package
 #'
 #' @description
-#' Client for 'NASA' 'POWER' global meteorology, surface solar energy
-#' and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
-#' Resource) data are freely available global meteorology and surface solar
-#' energy climatology data for download with a resolution of 0.5 by 0.5 arc
-#' degree longitude and latitude and are funded through the 'NASA' Earth Science
-#' Directorate Applied Science Program.  For more on the data themselves and a
-#' web-based data viewer and access, please see <https://power.larc.nasa.gov/>.
+#' Client for \acronym{NASA} \acronym{POWER} global meteorology, surface solar
+#' energy and climatology data 'API'.  \acronym{POWER} (Prediction Of Worldwide
+#' Energy Resource) data are freely available global meteorology and surface
+#' solar energy climatology data for download with a resolution of 0.5 by 0.5
+#' arc degree longitude and latitude and are funded through the \acronym{NASA}
+#' Earth Science Directorate Applied Science Program.  For more on the data
+#' themselves and a web-based data viewer and access, please see
+#' <https://power.larc.nasa.gov/>.
 #'
 #' @note
 #' While \pkg{nasapower} does not redistribute the data in any way, we
-#' encourage users to follow the requests of the 'POWER' Project Team.
+#' encourage users to follow the requests of the \acronym{POWER} Project Team.
 #' \preformatted{
 #' When POWER data products are used in a publication, we request the
 #' following acknowledgment be included:
@@ -28,12 +29,12 @@
 #' @seealso
 #'
 #' \itemize{
-#'  \item{\code{\link{get_power}} Download 'POWER' Data and Return a Tidy Data}
-#'  Frame
-#' \item{\code{\link{create_icasa}} Create a 'DSSAT' 'ICASA' File from 'POWER'
-#'    Data}
-#' \item{\code{\link{create_met}} Create an 'APSIM' 'met' File from 'POWER'
-#'  Data}
+#'  \item{\code{\link{get_power}} Download \acronym{POWER} Data and Return a
+#'   Tidy Data} Frame
+#' \item{\code{\link{create_icasa}} Create a \acronym{DSSAT} \acronym{ICASA}
+#'   File from \acronym{POWER} Data}
+#' \item{\code{\link{create_met}} Create an \acronym{APSIM} met File from
+#'   \acronym{POWER} Data}
 #' \item{\code{citation(nasapower)} For proper citation of \pkg{nasaspower}}
 #' }
 #'

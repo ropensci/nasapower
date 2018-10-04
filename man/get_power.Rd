@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get 'POWER' data and return a tidy data frame}
+\title{Get \acronym{POWER} Data and Return a Tidy Data Frame}
 \usage{
 get_power(community, pars, temporal_average, lonlat = NULL,
   dates = NULL)
@@ -14,7 +14,7 @@ get_power(community, pars, temporal_average, lonlat = NULL,
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{names(parameters)} for a full list of
 valid values and definitions.  Visit the
-\href{https://power.larc.nasa.gov/#paramstable}{'POWER' website} for the
+\href{https://power.larc.nasa.gov/#paramstable}{\acronym{POWER} website} for the
 Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 \code{pars} can
 be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
 be specified at one time.}
@@ -32,13 +32,14 @@ entered as x, y coordinates.  Not used when \code{temporal_average} is set to
 \code{temporal_average} is set to "CLIMATOLOGY".  See argument details for more.}
 }
 \value{
-A data frame of POWER data including location, dates (not including
-CLIMATOLOGY) and requested parameters. A header of metadata is included.
+A data frame of \acronym{POWER} data including location, dates (not
+including CLIMATOLOGY) and requested parameters. A header of metadata is
+included.
 }
 \description{
-Get 'POWER' global meteorology and surface solar energy climatology data
-and return a tidy data frame. All options offered by the official 'POWER'
-'API' are supported.
+Get \acronym{POWER} global meteorology and surface solar energy climatology
+data and return a tidy data frame. All options offered by the official
+\acronym{POWER} \acronym{API} are supported.
 }
 \note{
 The associated metadata are not saved if the data are exported to a
@@ -97,9 +98,9 @@ region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
  If one date only is provided, it will
 be treated as both the start date and the end date and only a single day's
 values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
-\code{temporal_average} is set to "INTERANNUAL", use only two year values (YYYY),
-\emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used when
-\code{temporal_average} is set to "CLIMATOLOGY".
+\code{temporal_average} is set to "INTERANNUAL", use only two year values
+(YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used
+when \code{temporal_average} is set to "CLIMATOLOGY".
 }
 
 \examples{

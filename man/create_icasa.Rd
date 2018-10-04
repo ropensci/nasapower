@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_icasa.R
 \name{create_icasa}
 \alias{create_icasa}
-\title{Create a 'DSSAT' 'ICASA' file from 'POWER' data}
+\title{Create a \acronym{DSSAT} \acronym{ICASA} File from \acronym{POWER} Data}
 \usage{
 create_icasa(lonlat, dates, dsn, file_out)
 }
@@ -21,18 +21,19 @@ more.}
 specified by user.}
 }
 \value{
-A text file in 'ICASA' format saved to local disk for use in 'DSSAT'
-crop modelling.
+A text file in \acronym{ICASA} format saved to local disk for use in
+\acronym{DSSAT} crop modelling.
 }
 \description{
-Get 'POWER' values for a single point or region and create an 'ICASA' format
-text file suitable for use in DSSAT for crop modelling saving it to local
-disk.
+Get \acronym{POWER} values for a single point or region and create an
+\acronym{ICASA} format text file suitable for use in \acronym{DSSAT} for
+crop modelling; saving it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
-queries the 'POWER' 'API' and writes a 'DSSAT' 'ICASA' weather file to
-disk.  All necessary \code{pars} are automatically included in the query.
+that queries the \acronym{POWER} \acronym{API} and writes a \acronym{DSSAT}
+\acronym{ICASA} weather file to disk.  All necessary \code{pars} are
+automatically included in the query.
 
 Further details for each of the arguments are provided in their
 respective sections following below.
@@ -40,9 +41,9 @@ respective sections following below.
 \section{Argument details for \code{lonlat}}{
 
 \describe{
-\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
-length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download,\cr
+\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
+a length-2 numeric vector giving the decimal degree longitude and latitude
+in that order for data to download,\cr
 \emph{e.g.}, \code{lonlat = c(151.81, -27.48)}.}
 
 \item{For regional coverage}{To get a region, supply a length-4 numeric
@@ -57,14 +58,13 @@ degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
 \section{Argument details for \code{dates}}{
  If \code{dates} is unspecified, defaults to
 a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system.
-
-If one date only is provided, it will be treated as both the start date and
-the end date and only a single day's values will be returned.
+current date according to the system. If one date only is provided, it will
+be treated as both the start date and the end date and only a single day's
+values will be returned.
 }
 
 \examples{
-# Create an 'ICASA' file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
+# Create an ICASA file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30
 #   and save it in the current R session tempdir as "ICASA_example.txt".
 
 \donttest{
@@ -77,8 +77,8 @@ create_icasa(lonlat = c(151.81, -27.48),
 
 }
 \seealso{
-\code{\link{create_met}} Create an 'APSIM' 'met' File from 'NASA'
-'POWER' Data
+\code{\link{create_met}} Create an \acronym{APSIM} met File from
+\acronym{NASA} \acronym{POWER} Data
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}
