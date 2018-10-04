@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: 'NASA' 'POWER' Global Meteorology, Surface Solar Energy and Climatology Data Client
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person("Adam H.", "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
