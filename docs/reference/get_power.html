@@ -65,7 +65,7 @@ and return a tidy data frame. All options offered by the official 'POWER'
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
       </span>
     </div>
 
@@ -237,13 +237,15 @@ values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
                       <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
                       <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
                       <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>
-)</div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(x$url$url, handle = x$url$handle): Timeout was reached: Operation timed out after 10006 milliseconds with 0 out of 0 bytes received</span></div><div class='input'>
+)
+
 <span class='co'># Fetch global AG climatology for temperature, relative humidity and</span>
 <span class='co'># precipitation</span>
 <span class='no'>climatology_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
                             <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
                             <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"CLIMATOLOGY"</span>
-                            )</div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(x$url$url, handle = x$url$handle): Timeout was reached: Operation timed out after 10001 milliseconds with 0 out of 0 bytes received</span></div><div class='input'>
+                            )
+
 <span class='co'># Fetch interannual solar cooking parameters for a given region</span>
 <span class='no'>interannual_sse</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"SSE"</span>,
                              <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>112.5</span>, -<span class='fl'>55.5</span>, <span class='fl'>115.5</span>, -<span class='fl'>50.5</span>),
@@ -251,7 +253,7 @@ values will be returned, <em>e.g.</em>, <code>dates = "1983-01-01"</code>.  When
                              <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"INTERANNUAL"</span>,
                              <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"CLRSKY_SFC_SW_DWN"</span>,
                                       <span class='st'>"ALLSKY_SFC_SW_DWN"</span>)
-                                      )</div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(x$url$url, handle = x$url$handle): Timeout was reached: Operation timed out after 10001 milliseconds with 0 out of 0 bytes received</span></div><div class='input'>
+                                      )</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

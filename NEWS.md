@@ -1,3 +1,13 @@
+# nasapower 1.0.1
+
+## Minor changes
+
+- Provides corrections to documentation formatting as per CRAN volunteers'
+requests
+
+- Provides edits and clarifications in DESCRIPTION's Description and Title about
+the package's uses and capabilities
+
 # nasapower 1.0.0
 
 ## Major changes
