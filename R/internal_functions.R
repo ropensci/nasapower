@@ -538,10 +538,8 @@ print.POWER.Info <- function(x, ...) {
     )
     format(x)
   }
-  print.data.frame(x,
-    row.names = FALSE,
-    max = length(attributes(x)) + 60
-  )
+  NextMethod(x)
+  invisible(x)
 }
 
 #' Format date columns in POWER data frame
