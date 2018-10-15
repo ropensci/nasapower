@@ -2,30 +2,28 @@
 #' Get \acronym{POWER} Data and Return a Tidy Data Frame
 #'
 #' Get \acronym{POWER} global meteorology and surface solar energy climatology
-#'   data and return a tidy data frame. All options offered by the official
-#'   \acronym{POWER} \acronym{API} are supported.
+#'   data and return a tidy data frame \code{link{[tibble]tible}}. All options
+#'   offered by the official \acronym{POWER} \acronym{API} are supported.
 #'
 #' @param community A character vector providing community name: "AG", "SB" or
 #'   "SSE".  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
-#'   parameters to download.  See \code{names(parameters)} for a full list of
-#'   valid values and definitions.  Visit the
-#'   [\acronym{POWER} website](https://power.larc.nasa.gov/#paramstable) for the
-#'   Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 `pars` can
-#'   be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
-#'   be specified at one time.
+#'   parameters to download.  See \code{help(parameters)} for a full list of
+#'   valid values and definitions.  If downloading "CLIMATOLOGY" a maximum of 3
+#'   \var{pars} can be specified at one time, for for "DAILY" and "INTERANNUAL"
+#'   a maximum of 20 can be specified at one time.
 #' @param temporal_average Temporal average for data being queried, supported
-#'   values are DAILY, INTERANNUAL and CLIMATOLOGY.  See argument details for
-#'   more.
+#'   values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".  See argument details
+#'   for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'   entered as x, y coordinates.  Not used when `temporal_average` is set to
-#'   "CLIMATOLOGY".  See argument details for more.
+#'   entered as x, y coordinates.  Not used when \var{temporal_average} is set
+#'   to "CLIMATOLOGY".  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.  Not used when\cr
 #'   `temporal_average` is set to "CLIMATOLOGY".  See argument details for more.
 #'
-#' @section Argument details for `community`: There are three valid values, one
-#'   must be supplied. This  will affect the units of the parameter and the
+#' @section Argument details for \var{community}: There are three valid values,
+#'   one must be supplied. This  will affect the units of the parameter and the
 #'   temporal display of time series data.
 #'
 #' \describe{
@@ -41,17 +39,17 @@
 #'  powered renewable energy systems.}
 #'  }
 #'
-#' @section Argument details for `temporal_average`: There are three valid
+#' @section Argument details for \var{temporal_average}: There are three valid
 #'  values.
 #'  \describe{
-#'   \item{DAILY}{The daily average of `pars` by day, month and year.}
-#'   \item{INTERANNUAL}{The monthly average of `pars` by year.}
-#'   \item{CLIMATOLOGY}{The monthly average of `pars` at the surface of the
+#'   \item{DAILY}{The daily average of \var{pars} by day, month and year.}
+#'   \item{INTERANNUAL}{The monthly average of \var{pars} by year.}
+#'   \item{CLIMATOLOGY}{The monthly average of \var{pars} at the surface of the
 #'    earth for a given month, averaged for that month over the 30-year period
 #'     (Jan. 1984 - Dec. 2013).}
 #'  }
 #'
-#' @section Argument details for `lonlat`:
+#' @section Argument details for \var{lonlat}:
 #' \describe{
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 #'  length-2 numeric vector giving the decimal degree longitude and latitude in
@@ -66,9 +64,9 @@
 #'  *Maximum area processed is 4.5 x 4.5 degrees (100 points).}
 #' }
 #'
-#' @section Argument details for `dates`: If one date only is provided, it will
-#'   be treated as both the start date and the end date and only a single day's
-#'   values will be returned, _e.g._, `dates = "1983-01-01"`.  When
+#' @section Argument details for \var{dates}: If one date only is provided, it
+#'   will be treated as both the start date and the end date and only a single
+#'   day's values will be returned, _e.g._, `dates = "1983-01-01"`.  When
 #'   `temporal_average` is set to "INTERANNUAL", use only two year values
 #'   (YYYY), _e.g._ `dates = c(1983, 2010)`.  This argument should not be used
 #'   when `temporal_average` is set to "CLIMATOLOGY".
@@ -78,7 +76,7 @@
 #'   .rds.
 #'
 #' @return A data frame of \acronym{POWER} data including location, dates (not
-#' including CLIMATOLOGY) and requested parameters. A header of metadata is
+#' including "CLIMATOLOGY") and requested parameters. A header of metadata is
 #' included.
 #'
 #' @references

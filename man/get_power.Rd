@@ -12,20 +12,18 @@ get_power(community, pars, temporal_average, lonlat = NULL,
 "SSE".  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
-parameters to download.  See \code{names(parameters)} for a full list of
-valid values and definitions.  Visit the
-\href{https://power.larc.nasa.gov/#paramstable}{\acronym{POWER} website} for the
-Parameters Tables.  If downloading CLIMATOLOGY a maximum of 3 \code{pars} can
-be specified at one time, for for DAILY and INTERANNUAL a maximum of 20 can
-be specified at one time.}
+parameters to download.  See \code{help(parameters)} for a full list of
+valid values and definitions.  If downloading "CLIMATOLOGY" a maximum of 3
+\var{pars} can be specified at one time, for for "DAILY" and "INTERANNUAL"
+a maximum of 20 can be specified at one time.}
 
 \item{temporal_average}{Temporal average for data being queried, supported
-values are DAILY, INTERANNUAL and CLIMATOLOGY.  See argument details for
-more.}
+values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".  See argument details
+for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates.  Not used when \code{temporal_average} is set to
-"CLIMATOLOGY".  See argument details for more.}
+entered as x, y coordinates.  Not used when \var{temporal_average} is set
+to "CLIMATOLOGY".  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  Not used when\cr
@@ -33,22 +31,22 @@ entered as x, y coordinates.  Not used when \code{temporal_average} is set to
 }
 \value{
 A data frame of \acronym{POWER} data including location, dates (not
-including CLIMATOLOGY) and requested parameters. A header of metadata is
+including "CLIMATOLOGY") and requested parameters. A header of metadata is
 included.
 }
 \description{
 Get \acronym{POWER} global meteorology and surface solar energy climatology
-data and return a tidy data frame. All options offered by the official
-\acronym{POWER} \acronym{API} are supported.
+data and return a tidy data frame \code{link{[tibble]tible}}. All options
+offered by the official \acronym{POWER} \acronym{API} are supported.
 }
 \note{
 The associated metadata are not saved if the data are exported to a
 file format other than a native R data format, \emph{e.g.}, .Rdata, .rda or
 .rds.
 }
-\section{Argument details for \code{community}}{
- There are three valid values, one
-must be supplied. This  will affect the units of the parameter and the
+\section{Argument details for \var{community}}{
+ There are three valid values,
+one must be supplied. This  will affect the units of the parameter and the
 temporal display of time series data.
 
 \describe{
@@ -65,19 +63,19 @@ powered renewable energy systems.}
 }
 }
 
-\section{Argument details for \code{temporal_average}}{
+\section{Argument details for \var{temporal_average}}{
  There are three valid
 values.
 \describe{
-\item{DAILY}{The daily average of \code{pars} by day, month and year.}
-\item{INTERANNUAL}{The monthly average of \code{pars} by year.}
-\item{CLIMATOLOGY}{The monthly average of \code{pars} at the surface of the
+\item{DAILY}{The daily average of \var{pars} by day, month and year.}
+\item{INTERANNUAL}{The monthly average of \var{pars} by year.}
+\item{CLIMATOLOGY}{The monthly average of \var{pars} at the surface of the
 earth for a given month, averaged for that month over the 30-year period
 (Jan. 1984 - Dec. 2013).}
 }
 }
 
-\section{Argument details for \code{lonlat}}{
+\section{Argument details for \var{lonlat}}{
 
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
@@ -94,10 +92,10 @@ region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
 }
 }
 
-\section{Argument details for \code{dates}}{
- If one date only is provided, it will
-be treated as both the start date and the end date and only a single day's
-values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
+\section{Argument details for \var{dates}}{
+ If one date only is provided, it
+will be treated as both the start date and the end date and only a single
+day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
 \code{temporal_average} is set to "INTERANNUAL", use only two year values
 (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used
 when \code{temporal_average} is set to "CLIMATOLOGY".

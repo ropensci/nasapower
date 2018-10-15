@@ -42,7 +42,7 @@ rain, PRECTOT from the \acronym{POWER} AG community on a daily time-step.
 Further details for each of the arguments are provided in their
 respective sections following below.
 }
-\section{Argument details for \code{lonlat}}{
+\section{Argument details for \var{lonlat}}{
 
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
@@ -59,10 +59,10 @@ degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
 }
 }
 
-\section{Argument details for \code{dates}}{
- If \code{dates} is unspecified, defaults to
-a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system.
+\section{Argument details for \var{dates}}{
+ If \var{dates} is unspecified,
+defaults to a start date of 1983-01-01 (the earliest available data) and an
+end date of current date according to the system.
 
 If one date only is provided, it will be treated as both the start date and
 the end date and only a single day's values will be returned.
@@ -70,8 +70,7 @@ the end date and only a single day's values will be returned.
 
 \examples{
 # Create a met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session \\code{\\link{tempdir()}} as
-# "APSIM_example.met".
+# save it in the current R session tempdir as "APSIM_example.met".
 
 \donttest{
 create_met(lonlat = c(151.81, -27.48),

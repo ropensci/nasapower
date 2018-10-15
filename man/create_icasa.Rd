@@ -32,13 +32,13 @@ crop modelling; saving it to local disk.
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
 that queries the \acronym{POWER} \acronym{API} and writes a \acronym{DSSAT}
-\acronym{ICASA} weather file to disk.  All necessary \code{pars} are
+\acronym{ICASA} weather file to disk.  All necessary \var{pars} are
 automatically included in the query.
 
 Further details for each of the arguments are provided in their
 respective sections following below.
 }
-\section{Argument details for \code{lonlat}}{
+\section{Argument details for \var{onlat}}{
 
 \describe{
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
@@ -55,12 +55,12 @@ degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
 }
 }
 
-\section{Argument details for \code{dates}}{
- If \code{dates} is unspecified, defaults to
-a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system. If one date only is provided, it will
-be treated as both the start date and the end date and only a single day's
-values will be returned.
+\section{Argument details for \var{dates}}{
+ If \var{dates} is unspecified,
+defaults to a start date of 1983-01-01 (the earliest available data) and an
+end date of current date according to the system. If one date only is
+provided, it will be treated as both the start date and the end date and
+only a single day's values will be returned.
 }
 
 \examples{
