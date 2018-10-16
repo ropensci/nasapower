@@ -518,9 +518,9 @@
   }
 }
 
-#' Prints Power.info object.
+#' Prints Power.Info object.
 #'
-#' @param x POWER.info object
+#' @param x POWER.Info object
 #' @param ... ignored
 #' @export
 print.POWER.Info <- function(x, ...) {
