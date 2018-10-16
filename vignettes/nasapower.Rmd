@@ -26,12 +26,12 @@ NASA [POWER](https://power.larc.nasa.gov) global meteorology and surface solar
 energy climatology data  data in your R session as a tidy data frame for
 analysis and use in modelling or other purposes, `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
-download through a web interface at a resolution of 0.5 arc degree longitude
-by 0.5 arc degree latitude. Two other functions are provided to quickly and
+download through a web interface at a resolution of 1/2 arc degree longitude
+by 1/2 arc degree latitude. Two other functions are provided to quickly and
 easily generate weather.met files from the POWER data for use in the
-`Agricultural Production Systems sIMulator (APSIM)`, `create_met()` and ICASA
-format text files for use in `Decision Support System for Agrotechnology
-Transfer (DSSAT)` modelling, `create_met()`.
+Agricultural Production Systems sIMulator (APSIM), `create_met()` and ICASA
+format text files for use in Decision Support System for Agrotechnology
+Transfer (DSSAT) modelling, `create_met()`.
 
 ## Using `get_power`
 
@@ -88,7 +88,7 @@ interannual_sse
 
 ### Example fetching climatology data
 
-Fetch global AG climatology for temperature.
+Fetch global "AG"" climatology for temperature.
 
 ```{r get_climatology}
 climatology_ag <- get_power(community = "AG",
@@ -229,7 +229,8 @@ create_icasa(lonlat = c(151.81, -27.48),
 ## Creating Spatial Objects from `get_power`
 
 If you require spatial objects to work with, it is rather simple to convert
-the resulting tidy data frame from `get_power()` to a spatial object in R using `raster::rasterFromXYZ()`.
+the resulting tidy data frame from `get_power()` to a spatial object in R using
+`raster::rasterFromXYZ()`.
 
 ### Converting Regional Data to a _raster_ Object
 

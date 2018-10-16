@@ -27,7 +27,7 @@ _nasapower_ aims to make it quick and easy to automate downloading
 energy and climatology data in your R session as a tidy data frame `tibble`
 object for analysis and use in modelling or other purposes. POWER (Prediction
 Of Worldwide Energy Resource) data are freely available for download at a
-resolution of 0.5 arc degree longitude by 0.5 arc degree latitude. 
+resolution of 1/2 arc degree longitude by 1/2 arc degree latitude. 
 
 _nasapower_ offers further functionality to quickly and easily generate an
 [`APSIM`](https://github.com/fainges/R-APSIM) package `metFile` format text file

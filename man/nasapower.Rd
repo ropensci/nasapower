@@ -7,12 +7,12 @@
 \title{\acronym{NASA} \acronym{POWER} \acronym{API} Client}
 \description{
 Client for \acronym{NASA} \acronym{POWER} global meteorology, surface solar
-energy and climatology data 'API'.  \acronym{POWER} (Prediction Of Worldwide
-Energy Resource) data are freely available global meteorology and surface
-solar energy climatology data for download with a resolution of 0.5 by 0.5
-arc degree longitude and latitude and are funded through the \acronym{NASA}
-Earth Science Directorate Applied Science Program.  For more on the data
-themselves and a web-based data viewer and access, please see
+energy and climatology data \acronym{API}.  \acronym{POWER} (Prediction Of
+Worldwide Energy Resource) data are freely available global meteorology and
+surface solar energy climatology data for download with a resolution of 0.5
+by 0.5 arc degree longitude and latitude and are funded through the
+\acronym{NASA} Earth Science Directorate Applied Science Program.  For more
+on the data themselves and a web-based data viewer and access, please see
 \url{https://power.larc.nasa.gov/}.
 }
 \note{
