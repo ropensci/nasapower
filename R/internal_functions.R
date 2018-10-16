@@ -220,14 +220,6 @@
       )
     }
 
-    if (lonlat != "GLOBAL" & temporal_average != "CLIMATOLOGY") {
-      stop(
-        "\nGLOBAL data are only available for CLIMATOLOGY.\n",
-        "\nPlease set `temporal_average` to `CLIMATOLOGY` and re-query or\n",
-        "select another `temporal_average`.\n"
-      )
-    }
-
     # calculate how many lines to skip in the header to read the CSV from server
     if (temporal_average == "CLIMATOLOGY") {
       skip_lines <- length(pars) + 7
