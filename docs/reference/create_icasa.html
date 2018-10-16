@@ -65,7 +65,7 @@ crop modelling; saving it to local disk." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1.9000</span>
       </span>
     </div>
 
@@ -157,12 +157,12 @@ specified by user.</p></td>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
 that queries the <acronym>POWER</acronym> <acronym>API</acronym> and writes a <acronym>DSSAT</acronym>
-<acronym>ICASA</acronym> weather file to disk.  All necessary <code>pars</code> are
+<acronym>ICASA</acronym> weather file to disk.  All necessary <var>pars</var> are
 automatically included in the query.</p>
 <p>Further details for each of the arguments are provided in their
 respective sections following below.</p>
     
-    <h2 class="hasAnchor" id="argument-details-for-lonlat"><a class="anchor" href="#argument-details-for-lonlat"></a>Argument details for <code>lonlat</code></h2>
+    <h2 class="hasAnchor" id="argument-details-for-onlat"><a class="anchor" href="#argument-details-for-onlat"></a>Argument details for <var>onlat</var></h2>
 
     
     <dl class='dl-horizontal'>
@@ -178,13 +178,13 @@ region, <em>e.g.</em>, a bounding box for the southwestern corner of Australia:
 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></dd>
 </dl>
     
-    <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <code>dates</code></h2>
+    <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <var>dates</var></h2>
 
-    <p>If <code>dates</code> is unspecified, defaults to
-a start date of 1983-01-01 (the earliest available data) and an end date of
-current date according to the system. If one date only is provided, it will
-be treated as both the start date and the end date and only a single day's
-values will be returned.</p>
+    <p>If <var>dates</var> is unspecified,
+defaults to a start date of 1983-01-01 (the earliest available data) and an
+end date of current date according to the system. If one date only is
+provided, it will be treated as both the start date and the end date and
+only a single day's values will be returned.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -212,9 +212,9 @@ values will be returned.</p>
 
       <li><a href="#details">Details</a></li>
 
-      <li><a href="#argument-details-for-lonlat">Argument details for <code>lonlat</code></a></li>
+      <li><a href="#argument-details-for-onlat">Argument details for <var>onlat</var></a></li>
 
-      <li><a href="#argument-details-for-dates">Argument details for <code>dates</code></a></li>
+      <li><a href="#argument-details-for-dates">Argument details for <var>dates</var></a></li>
 
       <li><a href="#see-also">See also</a></li>
       

@@ -19,15 +19,15 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 solar energy and climatology data in your R session as a tidy data frame
 `tibble` object for analysis and use in modelling or other purposes.
 POWER (Prediction Of Worldwide Energy Resource) data are freely
-available for download at a resolution of 0.5 arc degree longitude by
-0.5 arc degree latitude.
+available for download at a resolution of 1/2 arc degree longitude by
+1/2 arc degree latitude.
 
 *nasapower* offers further functionality to quickly and easily generate
 an [`APSIM`](https://github.com/fainges/R-APSIM) package `metFile`
-format text file from POWER data for use in the [`Agricultural
-Production Systems sIMulator (APSIM)`](http://www.apsim.info/) or an
-ICASA format text files for use in [`Decision Support System for
-Agrotechnology Transfer (DSSAT)`](https://dssat.net/).
+format text file from POWER data for use in the [Agricultural Production
+Systems sIMulator (APSIM)](http://www.apsim.info/) or an ICASA format
+text files for use in [Decision Support System for Agrotechnology
+Transfer (DSSAT)](https://dssat.net/).
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
 ways to access it and other forms of data available, *e.g.*, your web
@@ -85,8 +85,10 @@ daily_ag
 #>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
 #>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
 #>  
-#>     LON       LAT YEAR MM DD DOY   YYYYMMDD  RH2M   T2M PRECTOT
-#>  151.81 -27.47999 1985  1  1   1 1985-01-01 48.89 25.11    1.07
+#> # A tibble: 1 x 10
+#>     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOT
+#>   <dbl> <dbl> <int> <int> <int> <int> <date>     <dbl> <dbl>   <dbl>
+#> 1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1    1.07
 ```
 
 ## Documentation

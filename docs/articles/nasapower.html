@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1.9000</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>nasapower</em> aims to make it quick and easy to automate downloading NASA <a href="https://power.larc.nasa.gov">POWER</a> global meteorology and surface solar energy climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes, <code><a href="../reference/get_power.html">get_power()</a></code>. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 0.5 arc degree longitude by 0.5 arc degree latitude. Two other functions are provided to quickly and easily generate weather.met files from the POWER data for use in the <code>Agricultural Production Systems sIMulator (APSIM)</code>, <code><a href="../reference/create_met.html">create_met()</a></code> and ICASA format text files for use in <code>Decision Support System for Agrotechnology Transfer (DSSAT)</code> modelling, <code><a href="../reference/create_met.html">create_met()</a></code>.</p>
+<p><em>nasapower</em> aims to make it quick and easy to automate downloading NASA <a href="https://power.larc.nasa.gov">POWER</a> global meteorology and surface solar energy climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes, <code><a href="../reference/get_power.html">get_power()</a></code>. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude. Two other functions are provided to quickly and easily generate weather.met files from the POWER data for use in the Agricultural Production Systems sIMulator (APSIM), <code><a href="../reference/create_met.html">create_met()</a></code> and ICASA format text files for use in Decision Support System for Agrotechnology Transfer (DSSAT) modelling, <code><a href="../reference/create_met.html">create_met()</a></code>.</p>
 </div>
 <div id="using-get_power" class="section level2">
 <h2 class="hasAnchor">
@@ -135,7 +135,7 @@
 <div id="example-fetching-climatology-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-fetching-climatology-data" class="anchor"></a>Example fetching climatology data</h3>
-<p>Fetch global AG climatology for temperature.</p>
+<p>Fetch global “AG”" climatology for temperature.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">climatology_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">                            <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>, <span class="st">"RH2M"</span>),</a>
 <a class="sourceLine" id="cb4-3" data-line-number="3">                            <span class="dt">temporal_average =</span> <span class="st">"CLIMATOLOGY"</span></a>
