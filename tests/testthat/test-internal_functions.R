@@ -117,8 +117,8 @@ test_that("If temporal_average == INTERANNUAL and <2 dates provided, error", {
 
 
 # lonlat checks ----------------------------------------------------------------
-context("Test that check_lonlat function handles lat lon strings correctly")
-test_that("check_lonlat properly reports errors", {
+context("Test that .check_lonlat() function handles lat lon strings correctly")
+test_that(".check_lonlat() properly reports errors", {
   # set up pars argument for testing
   pars <- "T2M"
 
@@ -158,7 +158,7 @@ test_that("check_lonlat properly reports errors", {
   expect_error(.check_lonlat(lonlat, pars))
 })
 
-test_that("check_lonlat stops if more than three are requested for global", {
+test_that(".check_lonlat() stops if more than three are requested for global", {
   lonlat <- "Global"
   pars <- c(
     "T2M",
@@ -175,20 +175,20 @@ test_that("check_lonlat stops if more than three are requested for global", {
   expect_error(.check_lonlat(lonlat, pars))
 })
 
-test_that("check_lonlat handles single point properly", {
+test_that(".check_lonlat() handles single point properly", {
   test <- .check_lonlat(lonlat = c(-179.5, -89.5), pars)
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
   expect_equal(test$identifier, "SinglePoint")
 })
 
-test_that("check_lonlat checks validity of single lon values", {
+test_that(".check_lonlat() checks validity of single lon values", {
   expect_error(.check_lonlat(lonlat = c(179.5, 91), pars),
     regexp = "\nPlease check your latitude, `91`,*"
   )
 })
 
-test_that("check_lonlat checks validity of single lat values", {
+test_that(".check_lonlat() checks validity of single lat values", {
   expect_error(.check_lonlat(lonlat = c(182, 90), pars),
     regexp = "Please check your longitude, `182`,*"
   )

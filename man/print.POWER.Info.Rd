@@ -2,15 +2,15 @@
 % Please edit documentation in R/internal_functions.R
 \name{print.POWER.Info}
 \alias{print.POWER.Info}
-\title{Prints Power.info object.}
+\title{Prints Power.Info object.}
 \usage{
 \method{print}{POWER.Info}(x, ...)
 }
 \arguments{
-\item{x}{POWER.info object}
+\item{x}{POWER.Info object}
 
 \item{...}{ignored}
 }
 \description{
-Prints Power.info object.
+Prints Power.Info object.
 }
