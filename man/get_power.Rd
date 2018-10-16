@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get \acronym{POWER} Data and Return a Tidy Data Frame}
+\title{Get POWER Data and Return a Tidy Data Frame}
 \usage{
 get_power(community, pars, temporal_average, lonlat = NULL,
   dates = NULL)
@@ -14,7 +14,7 @@ get_power(community, pars, temporal_average, lonlat = NULL,
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{help(parameters)} for a full list of
 valid values and definitions.  If downloading "CLIMATOLOGY" a maximum of 3
-\var{pars} can be specified at one time, for for "DAILY" and "INTERANNUAL"
+\var{pars} can be specified at one time, for "DAILY" and "INTERANNUAL"
 a maximum of 20 can be specified at one time.}
 
 \item{temporal_average}{Temporal average for data being queried, supported

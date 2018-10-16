@@ -1,5 +1,5 @@
 
-#' Get \acronym{POWER} Data and Return a Tidy Data Frame
+#' Get POWER Data and Return a Tidy Data Frame
 #'
 #' Get \acronym{POWER} global meteorology and surface solar energy climatology
 #'   data and return a tidy data frame \code{link{[tibble]tible}}. All options
@@ -10,7 +10,7 @@
 #' @param pars A character vector of solar, meteorological or climatology
 #'   parameters to download.  See \code{help(parameters)} for a full list of
 #'   valid values and definitions.  If downloading "CLIMATOLOGY" a maximum of 3
-#'   \var{pars} can be specified at one time, for for "DAILY" and "INTERANNUAL"
+#'   \var{pars} can be specified at one time, for "DAILY" and "INTERANNUAL"
 #'   a maximum of 20 can be specified at one time.
 #' @param temporal_average Temporal average for data being queried, supported
 #'   values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".  See argument details
