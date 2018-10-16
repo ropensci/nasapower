@@ -178,17 +178,6 @@
 #' @noRd
 .check_pars <-
   function(pars, temporal_average, lonlat) {
-    if (!is.numeric(lonlat) & temporal_average != "CLIMATOLOGY") {
-      message(
-        "\nGLOBAL data are only available for CLIMATOLOGY.\n",
-        "\nSetting `temporal_average` to `CLIMATOLOGY`.\n"
-      )
-    }
-
-    if (is.character(lonlat)) {
-      temporal_average <- "CLIMATOLOGY"
-    }
-
     # check pars to make sure that they are valid
     if (any(pars %notin% names(parameters))) {
       stop(
@@ -231,6 +220,14 @@
       )
     }
 
+    if (lonlat != "GLOBAL" & temporal_average != "CLIMATOLOGY") {
+      stop(
+        "\nGLOBAL data are only available for CLIMATOLOGY.\n",
+        "\nPlease set `temporal_average` to `CLIMATOLOGY` and re-query or\n",
+        "select another `temporal_average`.\n"
+      )
+    }
+
     # calculate how many lines to skip in the header to read the CSV from server
     if (temporal_average == "CLIMATOLOGY") {
       skip_lines <- length(pars) + 7
@@ -259,7 +256,7 @@
   function(lonlat, pars) {
     bbox <- NULL
     if (is.numeric(lonlat) & length(lonlat) == 2) {
-      if (lonlat[1] < -180 || lonlat[1] > 180) {
+      if (lonlat[1] < -180 | lonlat[1] > 180) {
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
@@ -267,7 +264,7 @@
           "`, to be sure it is valid.\n"
         )
       }
-      if (lonlat[2] < -90 || lonlat[2] > 90) {
+      if (lonlat[2] < -90 | lonlat[2] > 90) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
@@ -278,7 +275,7 @@
       identifier <- "SinglePoint"
       lon <- lonlat[1]
       lat <- lonlat[2]
-    } else if (length(lonlat) == 4 && is.numeric(lonlat)) {
+    } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
       if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
         stop(
           call. = FALSE,
@@ -286,12 +283,10 @@
           "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
           "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n"
         )
-      }
-
-      if (any(lonlat[1] < -180 ||
-        lonlat[3] < -180 ||
-        lonlat[1] > 180 ||
-        lonlat[3] > 180)) {
+      } else if (any(lonlat[1] < -180 |
+              lonlat[3] < -180 |
+              lonlat[1] > 180 |
+              lonlat[3] > 180)) {
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
@@ -300,11 +295,10 @@
           lonlat[3],
           "`, values to be sure they are valid.\n"
         )
-      }
-      if (any(lonlat[2] < -90 ||
-        lonlat[4] < -90 ||
-        lonlat[2] > 90 ||
-        lonlat[4] > 90)) {
+      } else if (any(lonlat[2] < -90 |
+                     lonlat[4] < -90 |
+                     lonlat[2] > 90 |
+                     lonlat[4] > 90)) {
         stop(
           call. = FALSE,
           "\nPlease check your latitude, `",
@@ -313,14 +307,12 @@
           lonlat[4],
           "`, values to be sure they are valid.\n"
         )
-      }
-      if (lonlat[2] > lonlat[4]) {
+      } else if (lonlat[2] > lonlat[4]) {
         stop(
           call. = FALSE,
           "\nThe first `lat` value must be the minimum value.\n"
         )
-      }
-      if (lonlat[1] > lonlat[3]) {
+      } else if (lonlat[1] > lonlat[3]) {
         stop(
           call. = FALSE,
           "\nThe first `lon` value must be the minimum value.\n"
@@ -328,10 +320,10 @@
       }
       identifier <- "Regional"
       bbox <- paste(lonlat[2],
-        lonlat[1],
-        lonlat[4],
-        lonlat[3],
-        sep = ","
+                    lonlat[1],
+                    lonlat[4],
+                    lonlat[3],
+                    sep = ","
       )
     } else if (lonlat == "GLOBAL") {
       identifier <- "Global"
@@ -341,6 +333,7 @@
         "\nYou have entered an invalid request for `lonlat`.\n"
       )
     }
+
     if (!is.null(bbox)) {
       lonlat_identifier <- list(bbox, identifier)
       names(lonlat_identifier) <- c("bbox", "identifier")
@@ -451,9 +444,9 @@
   if ("csv" %in% names(txt$output)) {
     if (outputList == "CSV") {
       curl::curl_download(txt$output$csv,
-        destfile = raw_power_data,
-        mode = "wb",
-        quiet = TRUE
+                          destfile = raw_power_data,
+                          mode = "wb",
+                          quiet = TRUE
       )
 
       meta <- readLines(
@@ -468,9 +461,9 @@
       )
 
       power_data <- readr::read_csv(raw_power_data,
-        col_types = readr::cols(),
-        na = "-99",
-        skip = pars$skip_lines
+                                    col_types = readr::cols(),
+                                    na = "-99",
+                                    skip = pars$skip_lines
       )
 
       # put lon before lat (x, y format)
@@ -496,15 +489,15 @@
       attr(power_data, "POWER.Climate_zone") <- meta[5]
       attr(power_data, "POWER.Missing_value") <- meta[6]
       attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
-        collapse = ";\n "
+                                                    collapse = ";\n "
       )
       return(power_data)
     }
   } else if ("icasa" %in% names(txt$output)) {
     curl::curl_download(txt$output$icasa,
-      destfile = raw_power_data,
-      mode = "wb",
-      quiet = TRUE
+                        destfile = raw_power_data,
+                        mode = "wb",
+                        quiet = TRUE
     )
 
     power_data <- readLines(raw_power_data)
@@ -559,24 +552,24 @@ print.POWER.Info <- function(x, ...) {
 
   # Calculate the full date from YEAR and DOY
   NASA <- tibble::add_column(NASA,
-    YYYYMMDD = as.Date(NASA$DOY - 1,
-      origin = as.Date(paste(
-        NASA$YEAR, "-01-01",
-        sep = ""
-      ))
-    ),
-    .after = "DOY"
+                             YYYYMMDD = as.Date(NASA$DOY - 1,
+                                                origin = as.Date(paste(
+                                                  NASA$YEAR, "-01-01",
+                                                  sep = ""
+                                                ))
+                             ),
+                             .after = "DOY"
   )
 
   # Extract month as integer
   NASA <- tibble::add_column(NASA,
-    MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
-    .after = "YEAR"
+                             MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
+                             .after = "YEAR"
   )
 
   # Extract day as integer
   NASA <- tibble::add_column(NASA,
-    DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
-    .after = "MM"
+                             DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
+                             .after = "MM"
   )
 }

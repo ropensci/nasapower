@@ -81,9 +81,8 @@ test_that("get_power returns global AG data for climatology", {
   vcr::use_cassette("Global_AG", {
     power_query <- get_power(
       community = "AG",
-      lonlat = "Global",
       pars = "T2M",
-      temporal_average = "Climatology"
+      temporal_average = "CLIMATOLOGY"
     )
 
     expect_equal(nrow(power_query), 259200)
@@ -117,7 +116,7 @@ test_that("get_power returns global AG data for climatology", {
   })
 })
 
-test_that("get_power stops if `temporal_average` not valid", {
+test_that("get_power() stops if `temporal_average` not valid", {
   expect_error(
     power_query <- get_power(
       community = "AG",

@@ -1,6 +1,6 @@
 
 # test queries -----------------------------------------------------------------
-context("Test that create_icasa creates a text file")
+context("Test that create_icasa() creates a text file")
 test_that("create_icasa stops if user specifies global coverage", {
   vcr::use_cassette("create_icasa_global_stop", {
     expect_error(
@@ -16,7 +16,7 @@ test_that("create_icasa stops if user specifies global coverage", {
 })
 
 
-test_that("create_icasa creates a txt file with proper values", {
+test_that("create_icasa() creates a txt file with proper values", {
   vcr::use_cassette("create_icasa_file", {
     create_icasa(
       lonlat = c(151.81, -27.48),

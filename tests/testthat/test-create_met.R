@@ -1,6 +1,6 @@
 
 # test queries -----------------------------------------------------------------
-context("Test that create_met creates an APSIM .met file")
+context("Test that create_met() creates an APSIM .met file")
 test_that("create_met stops if user specifies global coverage", {
   vcr::use_cassette("create_met_global_stop", {
     expect_error(
@@ -15,7 +15,7 @@ test_that("create_met stops if user specifies global coverage", {
   })
 })
 
-test_that("create_met creates a .met file for APSIM use", {
+test_that("create_met() creates a .met file for APSIM use", {
   vcr::use_cassette("create_met", {
     power_query <- create_met(
       lonlat = c(151.81, -27.48),
@@ -34,7 +34,7 @@ test_that("create_met creates a .met file for APSIM use", {
 })
 
 
-test_that("create_met fails if no dsn or file_out are supplied", {
+test_that("create_met() fails if no dsn or file_out are supplied", {
   expect_error(
     create_met(
       lonlat = c(151.81, -27.48),
