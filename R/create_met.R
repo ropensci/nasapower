@@ -1,5 +1,5 @@
 
-#' Create an \acronym{APSIM} met File from \acronym{POWER} Data
+#' Create an APSIM met File from POWER Data
 #'
 #' Get \acronym{POWER} values for a single point or region and create
 #'   an \acronym{APSIM} met file suitable for use in \acronym{APSIM} for crop
@@ -74,18 +74,10 @@ create_met <- function(lonlat,
                        dates,
                        dsn,
                        file_out) {
-  if (missing(dsn) || missing(file_out)) {
+  if (missing(dsn) | missing(file_out)) {
     stop(
       call. = FALSE,
       "You must provide a file location, `dsn` and file name, `file_out`."
-    )
-  }
-
-  if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
-    stop(
-      call. = FALSE,
-      "The `lonlat` must be numeric values. Global coverage is not ",
-      "available for `create_met()`"
     )
   }
 
