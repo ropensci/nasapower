@@ -101,15 +101,14 @@ create_met <- function(lonlat,
   )
 
   power_data <-
-    dplyr::select(
-      power_data,
+    power_data[c(
       "YEAR",
       "DOY",
       "T2M_MAX",
       "T2M_MIN",
       "PRECTOT",
       "ALLSKY_SFC_SW_DWN"
-    )
+    )]
 
   met_names <- c(
     "year",

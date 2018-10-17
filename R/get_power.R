@@ -162,7 +162,8 @@ get_power <- function(community,
   )
   lonlat_identifier <- .check_lonlat(
     lonlat,
-    pars
+    pars,
+    temporal_average
   )
 
   # submit query ---------------------------------------------------------------

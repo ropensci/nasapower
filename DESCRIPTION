@@ -28,7 +28,6 @@ Imports:
     APSIM,
     crul,
     curl,
-    dplyr,
     lubridate,
     jsonlite,
     readr,

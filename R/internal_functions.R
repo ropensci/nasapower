@@ -245,7 +245,7 @@
 #'
 #' @noRd
 .check_lonlat <-
-  function(lonlat, pars) {
+  function(lonlat, pars, temporal_average) {
     bbox <- NULL
     if (is.numeric(lonlat) & length(lonlat) == 2) {
       if (lonlat[1] < -180 | lonlat[1] > 180) {
@@ -317,7 +317,7 @@
                     lonlat[3],
                     sep = ","
       )
-    } else if (lonlat == "GLOBAL") {
+    } else if (temporal_average == "CLIMATOLOGY") {
       identifier <- "Global"
     } else {
       stop(
