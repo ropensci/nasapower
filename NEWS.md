@@ -1,4 +1,23 @@
-# nasapower 1.0.1.9000
+# nasapower 1.0.2
+
+## Minor changes
+
+- Updates documentation examples
+
+- Provides nicer method of printing data in R console
+
+- Updates tests for better coverage and removes non-functional tests
+
+## Bug fixes
+
+- Corrects logical operators `&&` and `||` where they should be `&` or `|`
+
+- Removes extra code in `create_icasa()` and `create_met()` that peformed
+a duplicated check of `latlon` values
+
+- Removes unnecessary checks for `latlon` in `get_power()`
+
+--------------------------------------------------------------------------------
 
 # nasapower 1.0.1
 
