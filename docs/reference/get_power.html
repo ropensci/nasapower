@@ -231,28 +231,96 @@ when <code>temporal_average</code> is set to "CLIMATOLOGY".</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch daily "AG" community temperature, relative humidity and precipitation</span>
 <span class='co'># for January 1 1985 for Kingsthorpe, Queensland, Australia</span>
-<span class='no'>daily_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
-                      <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
-                      <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
-                      <span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
-                      <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>
+<span class='no'>ag_d</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(
+<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
+<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
+<span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
+<span class='kw'>dates</span> <span class='kw'>=</span> <span class='st'>"1985-01-01"</span>,
+<span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"DAILY"</span>
 )
 
-<span class='co'># Fetch global AG climatology for temperature, relative humidity and</span>
-<span class='co'># precipitation</span>
-<span class='no'>climatology_ag</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
-                            <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"RH2M"</span>, <span class='st'>"T2M"</span>, <span class='st'>"PRECTOT"</span>),
-                            <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"CLIMATOLOGY"</span>
-                            )
+<span class='no'>ag_d</span></div><div class='output co'>#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  
+#&gt;  Dates (month/day/year): 01/01/1985 through 01/01/1985  
+#&gt;  Location: Latitude  -27.48   Longitude 151.81  
+#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  
+#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  
+#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  
+#&gt;  Parameters: 
+#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;
+#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
+#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#&gt;  
+#&gt; # A tibble: 1 x 10
+#&gt;     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOT
+#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1    1.07</div><div class='input'>
+<span class='co'># Fetch global AG climatology for temperature</span>
+<span class='no'>ag_c</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"AG"</span>,
+<span class='kw'>pars</span> <span class='kw'>=</span> <span class='st'>"T2M"</span>,
+<span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"CLIMATOLOGY"</span>)
 
+<span class='no'>ag_c</span></div><div class='output co'>#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Climatologies  
+#&gt;  22-year Additional Solar Parameter Monthly &amp; Annual Climatologies (July 1983 - June 2005), 30-year Meteorological and Solar Monthly &amp; Annual Climatologies (January 1984 - December 2013)  
+#&gt;  Location: Global  
+#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  
+#&gt;  Parameter(s):  
+#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#&gt;  Parameters: 
+#&gt;  NA;
+#&gt;  NA;
+#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#&gt;  
+#&gt; # A tibble: 259,200 x 16
+#&gt;      LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP
+#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1 -180. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  2 -179. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  3 -179. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  4 -178. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  5 -178. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  6 -177. -89.8 T2M       -28.9 -40.7 -52.9 -57.9 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  7 -177. -89.8 T2M       -28.9 -40.7 -52.9 -57.9 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  8 -176. -89.8 T2M       -28.9 -40.7 -53.0 -57.9 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt;  9 -176. -89.8 T2M       -28.9 -40.7 -53.0 -57.9 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt; 10 -175. -89.8 T2M       -28.9 -40.7 -53.0 -57.9 -59.1 -59.6 -61.3 -61.8 -60.4
+#&gt; # ... with 259,190 more rows, and 4 more variables: OCT &lt;dbl&gt;, NOV &lt;dbl&gt;,
+#&gt; #   DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Fetch interannual solar cooking parameters for a given region</span>
-<span class='no'>interannual_sse</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(<span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"SSE"</span>,
-                             <span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>112.5</span>, -<span class='fl'>55.5</span>, <span class='fl'>115.5</span>, -<span class='fl'>50.5</span>),
-                             <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1984"</span>, <span class='st'>"1985"</span>),
-                             <span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"INTERANNUAL"</span>,
-                             <span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"CLRSKY_SFC_SW_DWN"</span>,
-                                      <span class='st'>"ALLSKY_SFC_SW_DWN"</span>)
-                                      )</div><div class='input'>
+<span class='no'>sse_i</span> <span class='kw'>&lt;-</span> <span class='fu'>get_power</span>(
+  <span class='kw'>community</span> <span class='kw'>=</span> <span class='st'>"SSE"</span>,
+<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>112.5</span>, -<span class='fl'>55.5</span>, <span class='fl'>115.5</span>, -<span class='fl'>50.5</span>),
+<span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1984"</span>, <span class='st'>"1985"</span>),
+<span class='kw'>temporal_average</span> <span class='kw'>=</span> <span class='st'>"INTERANNUAL"</span>,
+<span class='kw'>pars</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"CLRSKY_SFC_SW_DWN"</span>,
+<span class='st'>"ALLSKY_SFC_SW_DWN"</span>)
+)
+
+<span class='no'>sse_i</span></div><div class='output co'>#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Interannual Averages/Sums  
+#&gt;  Dates (month/day/year): 01/01/1984 through 12/31/1985  
+#&gt;  Location: Regional  
+#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = na meters   Site = na  
+#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  
+#&gt;  Value for missing model data cannot be computed or out of model availability range: NA9  
+#&gt;  Parameters: 
+#&gt;  ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day) ;
+#&gt;  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  
+#&gt;  
+#&gt; # A tibble: 308 x 17
+#&gt;      LON   LAT PARAMETER  YEAR   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG
+#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1  113. -55.2 CLRSKY_S…  1984  8.5   6.84  4.64  2.52  1.19  0.69 0.94   1.96
+#&gt;  2  113. -55.2 CLRSKY_S…  1985  8.5   6.91  4.66  2.47  1.19  0.69 0.93   1.9 
+#&gt;  3  113. -55.2 ALLSKY_S…  1984  4.95  4.14  2.48  1.34  0.67  0.39 0.580  1.18
+#&gt;  4  113. -55.2 ALLSKY_S…  1985  4.21  3.55  2.68  1.47  0.72  0.37 0.53   1.13
+#&gt;  5  113. -55.2 CLRSKY_S…  1984  8.5   6.84  4.64  2.52  1.19  0.69 0.94   1.96
+#&gt;  6  113. -55.2 CLRSKY_S…  1985  8.5   6.91  4.66  2.47  1.19  0.69 0.93   1.9 
+#&gt;  7  113. -55.2 ALLSKY_S…  1984  4.95  4.14  2.48  1.34  0.67  0.39 0.580  1.18
+#&gt;  8  113. -55.2 ALLSKY_S…  1985  4.21  3.55  2.68  1.47  0.72  0.37 0.53   1.13
+#&gt;  9  114. -55.2 CLRSKY_S…  1984  8.5   6.84  4.64  2.52  1.19  0.69 0.94   1.96
+#&gt; 10  114. -55.2 CLRSKY_S…  1985  8.5   6.91  4.66  2.47  1.19  0.69 0.93   1.9 
+#&gt; # ... with 298 more rows, and 5 more variables: SEP &lt;dbl&gt;, OCT &lt;dbl&gt;,
+#&gt; #   NOV &lt;dbl&gt;, DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</div><div class='input'>
+</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
