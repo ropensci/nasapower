@@ -1,8 +1,6 @@
 
 # test queries -----------------------------------------------------------------
 context("Test that create_icasa() creates a text file")
-test_that("create_icasa stops if user provides a non-numeric latlon value", {
-
 test_that("create_icasa() creates a txt file with proper values", {
   vcr::use_cassette("create_icasa_file", {
     create_icasa(
