@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create an <acronym>APSIM</acronym> met File from <acronym>POWER</acronym> Data — create_met • nasapower</title>
+<title>Create an APSIM met File from POWER Data — create_met • nasapower</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Create an <acronym>APSIM</acronym> met File from <acronym>POWER</acronym> Data — create_met" />
+<meta property="og:title" content="Create an APSIM met File from POWER Data — create_met" />
 
 <meta property="og:description" content="Get POWER values for a single point or region and create
 an APSIM met file suitable for use in APSIM for crop
@@ -107,7 +107,7 @@ modelling; saving it to local disk." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create an <acronym>APSIM</acronym> met File from <acronym>POWER</acronym> Data</h1>
+    <h1>Create an APSIM met File from POWER Data</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/nasapower/blob/master/R/create_met.R'><code>R/create_met.R</code></a></small>
     <div class="hidden name"><code>create_met.Rd</code></div>
     </div>
@@ -203,7 +203,9 @@ File from <acronym>NASA</acronym> <acronym>POWER</acronym> Data</p></div>
            <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),
            <span class='kw'>dsn</span> <span class='kw'>=</span> <span class='fu'>tempdir</span>(),
            <span class='kw'>file</span> <span class='kw'>=</span> <span class='st'>"APSIM_example.met"</span>
-           )</div><div class='input'>
+           )</div><div class='output co'>#&gt; [1] "Required column name check:"
+#&gt; [1] "maxt" "mint" "radn" "rain" "year" "day" 
+#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
