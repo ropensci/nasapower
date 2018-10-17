@@ -1,5 +1,5 @@
 
-#' Create a \acronym{DSSAT} \acronym{ICASA} File from \acronym{POWER} Data
+#' Create a DSSAT ICASA File from POWER Data
 #'
 #' Get \acronym{POWER} values for a single point or region and create an
 #'   \acronym{ICASA} format text file suitable for use in \acronym{DSSAT} for
@@ -69,7 +69,7 @@ create_icasa <- function(lonlat,
                          dates,
                          dsn,
                          file_out) {
-  if (missing(dsn) || missing(file_out)) {
+  if (missing(dsn) | missing(file_out)) {
     stop(
       call. = FALSE,
       "You must provide a file location, `dsn` and file name, `file_out`."
@@ -79,14 +79,6 @@ create_icasa <- function(lonlat,
   temporal_average <- "DAILY"
   pars <- c("T2M") # this is a dummy variable to check lonlat values,
   # POWER will automatically select the proper pars for query
-
-  if (!is.numeric(lonlat) && toupper(lonlat) == "GLOBAL") {
-    stop(
-      call. = FALSE,
-      "The `lonlat` must be numeric values. Global coverage is not ",
-      "available for `create_icasa()`"
-    )
-  }
 
   if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
     file_out <- paste0(file_out, ".txt")
