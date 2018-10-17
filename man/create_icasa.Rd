@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_icasa.R
 \name{create_icasa}
 \alias{create_icasa}
-\title{Create a \acronym{DSSAT} \acronym{ICASA} File from \acronym{POWER} Data}
+\title{Create a DSSAT ICASA File from POWER Data}
 \usage{
 create_icasa(lonlat, dates, dsn, file_out)
 }
