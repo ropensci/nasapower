@@ -8,6 +8,8 @@
 
 - Updates tests for better coverage and removes non-functional tests
 
+- Removes `dplyr` as an Import
+
 ## Bug fixes
 
 - Corrects logical operators `&&` and `||` where they should be `&` or `|`
