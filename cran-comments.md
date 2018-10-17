@@ -7,18 +7,20 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a resubmission of new release at the request of CRAN maintainers,
-  changes follow.
+* This is a new patch release at the request of CRAN maintainers, changes
+follow.
 
-    * Rewords the title and omits the redundant part "from R" in the Title.
+  ## Requested changes
+  
+  * Corrects logical operators `&&` and `||` where they should be `&` or `|`
 
-    * Puts package names, software names and API names in single quotes (e.g.
-    'nasapower') in Title and Description.
+  ## Other bug fixes
 
-    * Replaces \dontrun{} with \donttest{} in @examples
-    
-Thanks for the suggested improvements to the package.
+  * Removes extra code in `create_icasa()` and `create_met()` that peformed
+  a duplicated check of `latlon` values
+
+  * Removes unnecessary checks for `latlon` in `get_power()`
 
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+There are currently no reverse dependencies.
