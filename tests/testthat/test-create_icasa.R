@@ -1,7 +1,7 @@
 
 # test queries -----------------------------------------------------------------
 context("Test that create_icasa() creates a text file")
-test_that("create_icasa stops if user specifies global coverage", {
+test_that("create_icasa stops if user provides a non-numeric latlon value", {
   vcr::use_cassette("create_icasa_global_stop", {
     expect_error(
       create_icasa(
@@ -10,7 +10,7 @@ test_that("create_icasa stops if user specifies global coverage", {
         file_out = "icasa.txt",
         dsn = tempdir()
       ),
-      regexp = "*The `lonlat` must be numeric values.*"
+      regexp = "\nYou have entered an invalid request for `lonlat`.\n"
     )
   })
 })
