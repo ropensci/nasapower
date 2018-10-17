@@ -1,19 +1,6 @@
 
 # test queries -----------------------------------------------------------------
 context("Test that create_met() creates an APSIM .met file")
-test_that("create_met stops if user specifies non-numeric latlon", {
-  vcr::use_cassette("create_met_global_stop", {
-    expect_error(
-      power_query <- create_met(
-        lonlat = "global",
-        dates = "1983-01-01",
-        dsn = tempdir(),
-        file_out = "tmpfile.txt"
-      ),
-      regexp = "\nYou have entered an invalid request for `lonlat`.\n"
-    )
-  })
-})
 
 test_that("create_met() creates a .met file for APSIM use", {
   vcr::use_cassette("create_met", {
