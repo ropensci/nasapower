@@ -110,6 +110,7 @@ date = {2018-07},
   author = {Jeroen Ooms},
   year   = {2018},
   note   = {R package version 3.2},
+  date   = {201},
   url    = {https://CRAN.R-project.org/package=curl},
 }
 
