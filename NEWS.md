@@ -12,6 +12,8 @@
 
 ## Bug fixes
 
+- Corrects issue where `if()` was called with a vector of length 2 or more
+
 - Corrects logical operators `&&` and `||` where they should be `&` or `|`
 
 - Removes extra code in `create_icasa()` and `create_met()` that peformed
