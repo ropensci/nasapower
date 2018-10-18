@@ -4,7 +4,7 @@ authors:
 - affiliation: 1
   name: Adam H Sparks
   orcid: 0000-0002-0061-8359
-date: '2018-28-06'
+date: '2018-19-10'
 output: pdf_document
 bibliography: paper.bib
 tags:
@@ -74,8 +74,9 @@ modelling for modelling crop yields [@Bai2010; @vanWart2013;
 modelling [@Savary2012].
 
 While _nasapower_ does not redistribute any of the NASA POWER data, users are
-encouraged to please refer to the acknowledgement guidelines available at, <https://power.larc.nasa.gov/common/php/POWER_Acknowledgments.php> and
-properly acknowledge the data as requested.
+encouraged to please refer to the acknowledgement guidelines available at,
+<https://power.larc.nasa.gov/#contact> and properly acknowledge the data as
+requested.
 
 > When POWER data products are used in a publication, we request the following
 acknowledgment be included: "_These data were obtained from the NASA Langley
