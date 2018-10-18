@@ -41,12 +41,13 @@ the the query constructed using _crul_ [@Chamberlain2018] to interface with the
 POWER API. The query returns a json response, which is parsed by _jsonlite_
 [@Ooms2014] to obtain the url of the .csv file that has been requested. The .csv
 file is read directly into R using _readr_ [@Wickham2017]. Data are returned in
-a tidy data frame [@Wickham2014] as a _tibble_ [@Mueller2018]. Two other
-functions provide functionality to generate weather input files for agricultural
-crop modelling. The `create_met()` function is essentially a wrapper for the
-`get_power()` function coupled with the `prepareMet()` and `writeMet()`
-functions from _APSIM_ [@Fainges2017] to simplify the process of querying the
-data and creating .met files for use in Agricultural Production Systems
+a tidy data frame [@Wickham2014] as a _tibble_ [@Mueller2018] with a custom
+metadata header, which provides POWER metadata. Two other functions provide
+functionality to generate weather input files for agricultural crop modelling.
+The `create_met()` function is essentially a wrapper for the `get_power()`
+function coupled with the `prepareMet()` and `writeMet()` functions from
+_APSIM_ [@Fainges2017] to simplify the process of querying the data and
+creating .met files for use in Agricultural Production Systems
 sIMulator (APSIM). While the `create_icasa()` function wraps
 `get_power()` in a function that generates and locally saves a text file in
 ICASA format for use in the Decision Support System for Agrotechnology Transfer
