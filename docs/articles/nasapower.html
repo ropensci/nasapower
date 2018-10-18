@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.2.9000</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>nasapower</em> aims to make it quick and easy to automate downloading NASA <a href="https://power.larc.nasa.gov">POWER</a> global meteorology and surface solar energy climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes using <code><a href="../reference/get_power.html">get_power()</a></code>. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude. Two other functions are provided to quickly and easily generate weather.met files from the POWER data for use in the Agricultural Production Systems sIMulator (APSIM), <code><a href="../reference/create_met.html">create_met()</a></code> and ICASA format text files for use in Decision Support System for Agrotechnology Transfer (DSSAT) modelling, <code><a href="../reference/create_met.html">create_met()</a></code>.</p>
+<p><em>nasapower</em> aims to make it quick and easy to automate downloading NASA <a href="https://power.larc.nasa.gov">POWER</a> global meteorology, surface solar energy amd climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes using <code><a href="../reference/get_power.html">get_power()</a></code>. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude. Two other functions are provided to quickly and easily generate weather.met files from the POWER data for use in the Agricultural Production Systems sIMulator (APSIM), <code><a href="../reference/create_met.html">create_met()</a></code> and International Consortium for Agricultural Systems Applications (ICASA) format text files for use in the Decision Support System for Agrotechnology Transfer (DSSAT) framework, <code><a href="../reference/create_met.html">create_met()</a></code>.</p>
 </div>
 <div id="using-get_power-to-fetch-power-data" class="section level2">
 <h2 class="hasAnchor">
@@ -127,6 +127,7 @@
 <div id="example-fetching-climatology-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-fetching-climatology-data" class="anchor"></a>Example fetching climatology data</h3>
+<p>Global data are only available for the climatology <code>temporal_average</code>, setting this argumet as such will fetch global data.</p>
 <p>Fetch global “AG”" climatology for temperature, precipitation and relative humidity.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">climatology_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">                            <span class="dt">pars =</span> <span class="kw">c</span>(<span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>, <span class="st">"RH2M"</span>),</a>
@@ -134,14 +135,14 @@
 <a class="sourceLine" id="cb4-4" data-line-number="4">                           )</a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb4-6" data-line-number="6">climatology_ag</a></code></pre></div>
-<p><em>Note</em> the associated metadata are not saved if the data are exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda or .rds.</p>
+<p><em>Note</em> the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda or .rds.</p>
 </div>
 <div id="description-of-parameters-for-get_power" class="section level3">
 <h3 class="hasAnchor">
 <a href="#description-of-parameters-for-get_power" class="anchor"></a>Description of parameters for <code>get_power</code>
 </h3>
 <ul>
-<li><p><code>community</code>, a text string with valid values of: “AG” (Agroclimatology), “SSE” (Surface meteorology and Solar Energy) or “SB” (Sustainable Buildings). The selected user community will affect the units of the parameter and the temporal display of time series data (<em>e.g.</em> “AG” will use MJ/m<sup>2</sup>/day for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as units).</p></li>
+<li><p><code>community</code>, a text string with valid values of: “AG” (Agroclimatology), “SSE” (Surface meteorology and Solar Energy) or “SB” (Sustainable Buildings). The selected user community will affect the units of the parameter and the temporal display of time series data (<em>e.g.</em>, “AG” will use MJ/m<sup>2</sup>/day for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as units).</p></li>
 <li>
 <p><code>lonlat</code>, A numeric vector of geographic coordinates for a cell or region entered as x, y coordinates. Not used when <code>temporal_average</code> is set to “CLIMATOLOGY”.</p>
 <ul>
@@ -235,7 +236,7 @@
 <div id="converting-global-climatology-to-a-raster-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#converting-global-climatology-to-a-raster-object" class="anchor"></a>Converting Global Climatology to a <em>raster</em> Object</h3>
-<p>Converting global climatology to a <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick</a></code> is as simple as querying and then converting the resulting <code>tibble</code> to a raster object. Illustrated here using the <code>climatology_ag</code> object previously created.</p>
+<p>Converting global climatology to a <code><a href="http://www.rdocumentation.org/packages/raster/topics/brick">raster::brick</a></code> is as simple as querying and then converting the resulting <code>tibble</code> to a <em>raster</em> object. Illustrated here using the <code>climatology_ag</code> object previously created.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">RH2M &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="dv">-3</span>])</a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"></a>
