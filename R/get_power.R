@@ -135,7 +135,6 @@ get_power <- function(community,
     )
   }
   if (temporal_average == "CLIMATOLOGY") {
-    lonlat <- "GLOBAL"
     dates <- NULL
   }
   if (is.character(pars)) {
