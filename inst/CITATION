@@ -18,4 +18,4 @@ bibentry(bibtype = "Manual",
          author = c(person("Adam", "Sparks")),
          year = year,
          note = note,
-	 url = https://ropensci.github.io/nasapower/)
+	 url = "https://ropensci.github.io/nasapower/")
