@@ -35,24 +35,26 @@ functionality that the POWER API provides, which includes three user
 communities, AG (agroclimatology), SSE (Surface meteorology and Solar Energy)
 and SB (Sustainable Buildings); three temporal averages, Daily, Interannual and
 Climatology; three geographic options, single point, regional and global for the
-appropriate 141 parameters offered. _nasapower_ uses _lubridate_
-[@Grolemund2011] internally to format and parse dates which are passed along to
-the the query constructed using _crul_ [@Chamberlain2018] to interface with the
-POWER API. The query returns a json response, which is parsed by _jsonlite_
-[@Ooms2014] to obtain the url of the .csv file that has been requested. The .csv
-file is read directly into R using _readr_ [@Wickham2017]. Data are returned in
-a tidy data frame [@Wickham2014] as a _tibble_ [@Mueller2018] with a custom
-metadata header, which provides POWER metadata. Two other functions provide
-functionality to generate weather input files for agricultural crop modelling.
-The `create_met()` function is essentially a wrapper for the `get_power()`
-function coupled with the `prepareMet()` and `writeMet()` functions from
-_APSIM_ [@Fainges2017] to simplify the process of querying the data and
-creating .met files for use in Agricultural Production Systems
-sIMulator (APSIM). While the `create_icasa()` function wraps
-`get_power()` in a function that generates and locally saves a text file in
-ICASA format for use in the Decision Support System for Agrotechnology Transfer
-(DSSAT) model [@Jones2003; @Hoogenboom2017]. Extended documentation is provided
-with examples of converting it to spatial objects using _raster_ [@Hijmans2017].
+appropriate parameters offered. _nasapower_ uses _lubridate_ [@Grolemund2011]
+internally to format and parse dates which are passed along to the the query
+constructed using _crul_ [@Chamberlain2018] to interface with the POWER API. The
+query returns a json response, which is parsed by _jsonlite_ [@Ooms2014] to
+obtain the url of the .csv file that has been requested. The .csv file is
+downloaded to local disk using _curl_ [@Ooms2018] and read into R using _readr_
+[@Wickham2017]. Data are returned in a tidy data frame [@Wickham2014] as a
+_tibble_ [@Mueller2018] with a custom header, which provides POWER metadata. Two
+other functions provide functionality to generate weather input files for
+agricultural crop modelling. The `create_met()` function is a wrapper for the
+`get_power()` function coupled with the `prepareMet()` and `writeMet()`
+functions from _APSIM_ [@Fainges2017] to simplify the process of querying the
+data and creating text files in the .met format for use in Agricultural
+Production Systems sIMulator (APSIM). While the `create_icasa()` function wraps
+the `get_power()` into a function that generates and locally saves a text file
+in the International Consortium for Agricultural Systems Applications (ICASA)
+format for use in the Decision Support System for Agrotechnology Transfer
+(DSSAT) framework [@Jones2003; @Hoogenboom2017]. Extended documentation is
+provided with examples of converting it to spatial objects using _raster_
+[@Hijmans2017].
 
 Integrating this data retrieval and formatting in R will streamline processes
 with models such as APSIM [@Keating2003], DSSAT
