@@ -156,7 +156,7 @@
 \item{WSC}{Corrected Wind Speed (Adjusted For Elevation)}
 }}
 \source{
-\url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v108.json}
+\url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json}
 }
 \usage{
 parameters

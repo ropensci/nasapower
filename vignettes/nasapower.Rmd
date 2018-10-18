@@ -22,16 +22,17 @@ knitr::opts_chunk$set(collapse = TRUE,
 ## Introduction
 
 _nasapower_ aims to make it quick and easy to automate downloading
-NASA [POWER](https://power.larc.nasa.gov) global meteorology and surface solar
-energy climatology data  data in your R session as a tidy data frame for
+NASA [POWER](https://power.larc.nasa.gov) global meteorology, surface solar
+energy amd climatology data  data in your R session as a tidy data frame for
 analysis and use in modelling or other purposes using `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
 download through a web interface at a resolution of 1/2 arc degree longitude
 by 1/2 arc degree latitude. Two other functions are provided to quickly and
 easily generate weather.met files from the POWER data for use in the
-Agricultural Production Systems sIMulator (APSIM), `create_met()` and ICASA
-format text files for use in Decision Support System for Agrotechnology
-Transfer (DSSAT) modelling, `create_met()`.
+Agricultural Production Systems sIMulator (APSIM), `create_met()` and 
+International Consortium for Agricultural Systems Applications (ICASA) format
+text files for use in the Decision Support System for Agrotechnology Transfer
+(DSSAT) framework, `create_met()`.
 
 ## Using `get_power` to Fetch POWER Data
 
@@ -88,7 +89,11 @@ interannual_sse
 
 ### Example fetching climatology data
 
-Fetch global "AG"" climatology for temperature, precipitation and relative humidity.
+Global data are only available for the climatology `temporal_average`, setting
+this argumet as such will fetch global data. 
+
+Fetch global "AG"" climatology for temperature, precipitation and relative
+humidity.
 
 ```{r get_climatology}
 climatology_ag <- get_power(community = "AG",
@@ -99,15 +104,16 @@ climatology_ag <- get_power(community = "AG",
 climatology_ag
 ```
 
-_Note_ the associated metadata are not saved if the data are exported to a
-file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
+_Note_ the associated metadata in the data frame header are not saved if the
+data are exported to a file format other than an R data format, _e.g._, .Rdata,
+.rda or .rds.
 
 ### Description of parameters for `get_power`
 
 - `community`, a text string with valid values of: "AG" (Agroclimatology), "SSE"
 (Surface meteorology and Solar Energy) or "SB" (Sustainable Buildings). The
 selected user community will affect the units of the parameter and the temporal
-display of time series data (_e.g._ "AG" will use MJ/m^2^/day for radiation
+display of time series data (_e.g._, "AG" will use MJ/m^2^/day for radiation
 units, while SSE and SB use kW/m^2^/day as units).
 
 - `lonlat`, A numeric vector of geographic coordinates for a cell or region
@@ -260,8 +266,8 @@ plot(raster_stack)
 ### Converting Global Climatology to a _raster_ Object
 
 Converting global climatology to a `raster::brick` is as simple as querying
-and then converting the resulting `tibble` to a raster object. Illustrated here
-using the `climatology_ag` object previously created.
+and then converting the resulting `tibble` to a _raster_ object. Illustrated
+here using the `climatology_ag` object previously created.
 
 ```{r global_climatology}
 # create RasterBricks for the individual parameters and drop the parameter field
@@ -281,7 +287,6 @@ plot(T2M$ANN)
 
 plot(PRECIP$ANN)
 ```
-
 
 ## References
 
