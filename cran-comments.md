@@ -12,14 +12,26 @@ follow.
 
   ## Requested changes
   
-  * Corrects logical operators `&&` and `||` where they should be `&` or `|`
+    * Corrects issue where `if()` was called with a vector of length 2 or more
 
-  ## Other bug fixes
+  ## Bug fixes
+  
+    * Corrects logical operators `&&` and `||` where they should be `&` or `|`
 
-  * Removes extra code in `create_icasa()` and `create_met()` that peformed
-  a duplicated check of `latlon` values
+    * Removes extra code in `create_icasa()` and `create_met()` that peformed
+    a duplicated check of `latlon` values
 
-  * Removes unnecessary checks for `latlon` in `get_power()`
+    * Removes unnecessary checks for `latlon` in `get_power()`
+  
+  ## Minor changes
+  
+    * Updates documentation examples
+
+    * Provides nicer method of printing data in R console
+
+    * Updates tests for better coverage and removes non-functional tests
+
+    * Removes `dplyr` as an Import
 
 ## Reverse dependencies
 
