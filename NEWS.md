@@ -1,5 +1,7 @@
 # nasapower 1.0.2.9000
 
+- Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
+
 # nasapower 1.0.2
 
 ## Minor changes
