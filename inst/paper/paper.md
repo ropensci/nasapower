@@ -21,8 +21,9 @@ tags:
   - earth science
   - reproducibility
 affiliations:
-  index: 1
-  name: University of Southern Queensland, Centre for Crop Health, Toowoomba Queensland 4350, Australia
+  - name: University of Southern Queensland, Centre for Crop Health, Toowoomba Queensland 4350, Australia
+    index: 1
+
 ---
 
 # Summary and Statement of Need
