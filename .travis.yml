@@ -10,16 +10,21 @@ warnings_are_errors: true
 sudo: required
 cache: packages
 
+env:
+        global:
+                - MAKE_FLAGS="-j 2"
+                - _R_CHECK_FORCE_SUGGESTS=0
+
 matrix:
-    include:
-        - os: linux
-          r: release
-          dist: trusty # 14.04
-          env: R_CODECOV=true
-        - os: linux
-          r: devel
-          dist: trusty
-          env:  _R_CHECK_LENGTH_1_CONDITION_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
+        include:
+                - os: linux
+                  r: release
+                  dist: trusty # 14.04
+                  env: R_CODECOV=true
+                - os: linux
+                  r: devel
+                  dist: trusty
+                  env: _R_CHECK_LENGTH_1_CONDITION_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
 
 before_install:
     - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
