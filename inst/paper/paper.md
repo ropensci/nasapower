@@ -1,28 +1,29 @@
 ---
 title: 'nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R'
 authors:
-- affiliation: 1
-  name: Adam H Sparks
-  orcid: 0000-0002-0061-8359
-date: '2018-19-10'
+  - affiliation: 1
+    name: Adam H. Sparks
+    orcid: 0000-0002-0061-8359
+date: 19 Oct 2018
 output: pdf_document
 bibliography: paper.bib
 tags:
-- NASA
-- weather data
-- solar data
-- climate data
-- meteorology
-- agroclimatology
-- climatology
-- alternative energy
-- sustainable buildings
-- R
-- earth science
-- reproducibility
+  - NASA
+  - weather data
+  - solar data
+  - climate data
+  - meteorology
+  - agroclimatology
+  - climatology
+  - alternative energy
+  - sustainable buildings
+  - R
+  - earth science
+  - reproducibility
 affiliations:
-  index: 1
-  name: University of Southern Queensland, Centre for Crop Health, Toowoomba Queensland 4350, Australia
+  - name: University of Southern Queensland, Centre for Crop Health, Toowoomba Queensland 4350, Australia
+    index: 1
+
 ---
 
 # Summary and Statement of Need
