@@ -43,6 +43,7 @@ Suggests:
     covr,
     ggplot2,
     knitr,
+    pkgdown,
     raster,
     rmarkdown,
     testthat,
