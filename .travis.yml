@@ -24,7 +24,6 @@ matrix:
                 - os: linux
                   r: devel
                   dist: trusty
-                  env: _R_CHECK_LENGTH_1_CONDITION_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
 
 before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
