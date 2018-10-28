@@ -29,6 +29,7 @@ Imports:
     crul,
     curl,
     lubridate,
+    memoise,
     jsonlite,
     readr,
     tibble

@@ -354,7 +354,7 @@
 #' @return A tidy data.frame() of requested 'POWER' data
 #'
 #' @noRd
-.power_query <- function(community,
+.construct_query <- function(community,
                          lonlat_identifier,
                          pars,
                          dates,
@@ -502,6 +502,12 @@
     )
   }
 }
+
+#' Memoises the query for caching requests
+#'
+#' @param .construct_query A NASA POWER query to send
+#' @noRd
+.power_query <- memoise::memoise(.construct_query)
 
 #' Prints Power.Info object.
 #'
