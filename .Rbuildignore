@@ -10,4 +10,4 @@
 ^codemeta\.json$
 ^cran-comments\.md$
 ^data-raw$
-^.code-workspace$
+^nasapower.code-workspace$
