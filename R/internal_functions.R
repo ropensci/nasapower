@@ -362,7 +362,7 @@
   power_url <- # nocov start
     "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
   client <- crul::HttpClient$new(url = power_url)
-  user_agent <- "anonymous"
+  user_agent <- "nasapower"
 
   # check status
   status <- client$get()
@@ -523,6 +523,7 @@ print.POWER.Info <- function(x, ...) {
       attr(x, "POWER.Elevation"), "\n",
       attr(x, "POWER.Climate_zone"), "\n",
       attr(x, "POWER.Missing_value"), "\n",
+      "\n",
       "Parameters: \n",
       attr(x, "POWER.Parameters"), "\n",
       "\n"
