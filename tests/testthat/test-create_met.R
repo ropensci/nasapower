@@ -17,7 +17,7 @@ test_that("create_met() creates a .met file for APSIM use", {
     expect_equal(nchar(met)[[1]], 21)
     expect_equal(nchar(met)[[14]], 28)
     expect_equal(nchar(met)[[311]], 31)
-  })
+  }, record = "all")
 })
 
 

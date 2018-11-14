@@ -14,7 +14,7 @@ test_that("create_icasa() creates a txt file with proper values", {
     expect_equal(length(icasa), 16)
     expect_equal(nchar(icasa)[[1]], 47)
     expect_equal(nchar(icasa)[[16]], 73)
-  })
+  }, record = "all")
 })
 
 test_that("create_icasa() fails if no dsn or file_out are supplied", {
