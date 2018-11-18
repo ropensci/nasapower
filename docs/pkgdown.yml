@@ -1,9 +1,6 @@
-pandoc: 2.3.1
+pandoc: 1.19.2.4
 pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
-  menu:
-    - text: Vignette
-      href: nasapower.html
-    - text: JOSS paper
-      href: http://joss.theoj.org/papers/4e10b96b7d330496d89c169c9f4529be
+  nasapower: nasapower.html
+
