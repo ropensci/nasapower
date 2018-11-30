@@ -2,8 +2,6 @@
 
 - Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
 
-- Adds `memoise` for request caching
-
 - Configures tests to use `vcr` for quicker tests and stubbing using `webmockr`
 
 # nasapower 1.0.2
