@@ -4,7 +4,7 @@
 [![Travis-CI Build
 Status](https://travis-ci.org/ropensci/nasapower.svg?branch=master)](https://travis-ci.org/ropensci/nasapower)
 [![Build
-status](https://ci.appveyor.com/api/projects/status/5a0lrm33dvg9qr5d/branch/master?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower/branch/master)
+status](https://ci.appveyor.com/api/projects/status/5a0lrm33dvg9qr5d?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
 [![codecov](https://codecov.io/gh/ropensci/nasapower/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
@@ -88,7 +88,7 @@ daily_ag
 #>  
 #> # A tibble: 1 x 10
 #>     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOT
-#>   <dbl> <dbl> <int> <int> <int> <int> <date>     <dbl> <dbl>   <dbl>
+#>   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>   <dbl>
 #> 1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1    1.07
 ```
 
