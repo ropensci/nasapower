@@ -11,3 +11,4 @@
 ^cran-comments\.md$
 ^data-raw$
 ^nasapower.code-workspace$
+^vcr.log$
