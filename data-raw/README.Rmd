@@ -69,7 +69,7 @@ Using `devtools` to save the list as an R data object for use in the
 `nasapower` package.
 
 ```{r save-list, message=FALSE}
-devtools::use_data(parameters, overwrite = TRUE)
+usethis::use_data(parameters, overwrite = TRUE)
 ```
 
 ## Session Info

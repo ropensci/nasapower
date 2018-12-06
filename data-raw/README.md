@@ -497,12 +497,8 @@ Save list for use in `nasapower` package
 Using `devtools` to save the list as an R data object for use in the `nasapower` package.
 
 ``` r
-devtools::use_data(parameters, overwrite = TRUE)
+usethis::use_data(parameters, overwrite = TRUE)
 ```
-
-    ## Warning: 'devtools::use_data' is deprecated.
-    ## Use 'usethis::use_data()' instead.
-    ## See help("Deprecated") and help("devtools-deprecated").
 
     ## ✔ Setting active project to '/home/ubuntu/Development/nasapower'
     ## ✔ Saving 'parameters' to 'data/parameters.rda'
@@ -531,14 +527,10 @@ sessioninfo::session_info()
     ##  R .py           0.1.3   <NA>       [?] <NA>          
     ##    assertthat    0.2.0   2017-04-11 [1] CRAN (R 3.5.1)
     ##    backports     1.1.2   2017-12-13 [1] CRAN (R 3.5.1)
-    ##    base64enc     0.1-3   2015-07-28 [1] CRAN (R 3.5.1)
-    ##    callr         3.0.0   2018-08-24 [1] CRAN (R 3.5.1)
     ##    cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.1)
     ##    clisymbols    1.2.0   2017-05-21 [1] CRAN (R 3.5.1)
     ##    crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.1)
     ##    curl          3.2     2018-03-28 [1] CRAN (R 3.5.1)
-    ##    desc          1.2.0   2018-05-01 [1] CRAN (R 3.5.1)
-    ##    devtools      2.0.1   2018-10-26 [1] CRAN (R 3.5.1)
     ##    digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.1)
     ##    evaluate      0.12    2018-10-09 [1] CRAN (R 3.5.1)
     ##    fs            1.2.6   2018-08-23 [1] CRAN (R 3.5.1)
@@ -547,23 +539,14 @@ sessioninfo::session_info()
     ##    jsonlite      1.5     2017-06-01 [1] CRAN (R 3.5.1)
     ##    knitr         1.20    2018-02-20 [1] CRAN (R 3.5.1)
     ##    magrittr      1.5     2014-11-22 [1] CRAN (R 3.5.1)
-    ##    memoise       1.1.0   2017-04-21 [1] CRAN (R 3.5.1)
-    ##    pkgbuild      1.0.2   2018-10-16 [1] CRAN (R 3.5.1)
-    ##    pkgload       1.0.2   2018-10-29 [1] CRAN (R 3.5.1)
-    ##    prettyunits   1.0.2   2015-07-13 [1] CRAN (R 3.5.1)
-    ##    processx      3.2.0   2018-08-16 [1] CRAN (R 3.5.1)
-    ##    ps            1.2.1   2018-11-06 [1] CRAN (R 3.5.1)
     ##    purrr         0.2.5   2018-05-29 [1] CRAN (R 3.5.1)
-    ##    R6            2.3.0   2018-10-04 [1] CRAN (R 3.5.1)
     ##    Rcpp          1.0.0   2018-11-07 [1] CRAN (R 3.5.1)
-    ##    remotes       2.0.2   2018-10-30 [1] CRAN (R 3.5.1)
     ##    rlang         0.3.0.1 2018-10-25 [1] CRAN (R 3.5.1)
     ##    rmarkdown     1.10    2018-06-11 [1] CRAN (R 3.5.1)
     ##    rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.5.1)
     ##    sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.1)
     ##    stringi       1.2.4   2018-07-20 [1] CRAN (R 3.5.1)
     ##    stringr       1.3.1   2018-05-10 [1] CRAN (R 3.5.1)
-    ##    testthat      2.0.1   2018-10-13 [1] CRAN (R 3.5.1)
     ##    usethis       1.4.0   2018-08-14 [1] CRAN (R 3.5.1)
     ##    withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.1)
     ##    yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.1)
