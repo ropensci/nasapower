@@ -513,7 +513,7 @@ sessioninfo::session_info()
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.5.1 (2018-07-02)
-    ##  os       Ubuntu 16.04.5 LTS          
+    ##  os       Ubuntu 18.04.1 LTS          
     ##  system   x86_64, linux-gnu           
     ##  ui       X11                         
     ##  language en_AU:                      
