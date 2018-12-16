@@ -2,7 +2,7 @@
 # test queries -----------------------------------------------------------------
 context("Test that create_icasa() creates a text file")
 test_that("create_icasa() creates a txt file with proper values", {
-  vcr::use_cassette("create_icasa_file", {
+  skip_on_cran()
     create_icasa(
       lonlat = c(151.81, -27.48),
       dates = c("1983-01-01"),
@@ -14,7 +14,6 @@ test_that("create_icasa() creates a txt file with proper values", {
     expect_equal(length(icasa), 16)
     expect_equal(nchar(icasa)[[1]], 47)
     expect_equal(nchar(icasa)[[16]], 73)
-  })
 })
 
 test_that("create_icasa() fails if no dsn or file_out are supplied", {
