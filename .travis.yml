@@ -7,6 +7,7 @@
 # from Andy South (rnaturalearth's travis.yml to build sf)
 language: r
 warnings_are_errors: true
+r_check_args: --as-cran --run-donttest
 sudo: required
 cache: packages
 
