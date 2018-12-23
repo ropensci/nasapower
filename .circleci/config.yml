@@ -31,8 +31,8 @@ jobs:
             mkdir /root/main/artifacts
             R -e "devtools::install()"
             R -e "goodpractice::gp(checks = grep('(rcmdcheck|covr)', goodpractice::all_checks(), invert=TRUE, value=TRUE))"
-            R -e "cv <- covr::package_coverage(); print(cv); covr::report(x = cv, file = '/root/main/artifacts/gsodr-coverage.html', browse=FALSE)"
-            R CMD Rd2pdf --force --output='/root/main/artifacts/gsodr-manual.pdf' .
+            R -e "cv <- covr::package_coverage(); print(cv); covr::report(x = cv, file = '/root/main/artifacts/nasapower-coverage.html', browse=FALSE)"
+            R CMD Rd2pdf --force --output='/root/main/artifacts/nasapower-manual.pdf' .
           no_output_timeout: 30m
       - store_artifacts:
           path: /root/main/artifacts/
