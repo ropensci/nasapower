@@ -16,7 +16,8 @@ jobs:
       - run:
           command: |
             R -e "devtools::install_deps(dependencies = TRUE)"
-            R -e "devtools::install_github('MangoTheCat/goodpractice')"
+            R -e "install.packages('goodpractice')"
+            R -e "install.packages('DT')"
           no_output_timeout: 30m
       - run:
           command: |

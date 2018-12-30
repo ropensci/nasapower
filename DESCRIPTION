@@ -41,7 +41,6 @@ LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
     covr,
-    DT,
     ggplot2,
     knitr,
     pkgdown,

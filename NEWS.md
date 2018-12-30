@@ -2,7 +2,9 @@
 
 - Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
 
-- Configures tests to use `vcr` for quicker tests and stubbing using `webmockr`
+- Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable
+
+- Remove `vcr` from Suggests
 
 # nasapower 1.0.2
 
