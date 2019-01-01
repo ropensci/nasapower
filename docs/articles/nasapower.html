@@ -96,53 +96,151 @@
 <h3 class="hasAnchor">
 <a href="#example-fetching-daily-data-for-a-single-point" class="anchor"></a>Example fetching daily data for a single point</h3>
 <p>Fetch daily “AG” community temperature, relative humidity and precipitation for January 1985 for Kingsthorpe, Queensland, Australia.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nasapower)</a>
-<a class="sourceLine" id="cb1-2" title="2">daily_single_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb1-3" title="3">                             <span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
-<a class="sourceLine" id="cb1-4" title="4">                             <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),</a>
-<a class="sourceLine" id="cb1-5" title="5">                             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-31"</span>),</a>
-<a class="sourceLine" id="cb1-6" title="6">                             <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span></a>
-<a class="sourceLine" id="cb1-7" title="7">                            )</a>
-<a class="sourceLine" id="cb1-8" title="8"></a>
-<a class="sourceLine" id="cb1-9" title="9">daily_single_ag</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(nasapower)
+daily_single_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
+                             <span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),
+                             <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>),
+                             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-31"</span>),
+                             <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>
+                            )
+
+daily_single_ag
+<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
+<span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/31/1985  </span>
+<span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span>
+<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
+<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Parameters: </span>
+<span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span>
+<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span>
+<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; # A tibble: 31 x 10</span>
+<span class="co">#&gt;      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOT</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1    1.07</span>
+<span class="co">#&gt;  2  152. -27.5  1985     1     2     2 1985-01-02  41.8  28.4    0.5 </span>
+<span class="co">#&gt;  3  152. -27.5  1985     1     3     3 1985-01-03  40.4  27.5    0.03</span>
+<span class="co">#&gt;  4  152. -27.5  1985     1     4     4 1985-01-04  46.4  24.6    0.1 </span>
+<span class="co">#&gt;  5  152. -27.5  1985     1     5     5 1985-01-05  50.8  26.5    2.13</span>
+<span class="co">#&gt;  6  152. -27.5  1985     1     6     6 1985-01-06  58.6  26.8    5.32</span>
+<span class="co">#&gt;  7  152. -27.5  1985     1     7     7 1985-01-07  61.1  27.0   11.9 </span>
+<span class="co">#&gt;  8  152. -27.5  1985     1     8     8 1985-01-08  66.5  25.1    8.69</span>
+<span class="co">#&gt;  9  152. -27.5  1985     1     9     9 1985-01-09  55.8  26.1    2.45</span>
+<span class="co">#&gt; 10  152. -27.5  1985     1    10    10 1985-01-10  41.2  27.0    0.36</span>
+<span class="co">#&gt; # ... with 21 more rows</span></code></pre></div>
 </div>
 <div id="example-fetching-daily-data-for-an-area" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-fetching-daily-data-for-an-area" class="anchor"></a>Example fetching daily data for an area</h3>
 <p>Fetch daily “AG” community relative humidity and temperature for south east Queensland region.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">daily_region_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb2-2" title="2">                             <span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">150.5</span>, <span class="fl">-28.5</span> , <span class="fl">153.5</span>, <span class="fl">-25.5</span>),</a>
-<a class="sourceLine" id="cb2-3" title="3">                             <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),</a>
-<a class="sourceLine" id="cb2-4" title="4">                             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span>),</a>
-<a class="sourceLine" id="cb2-5" title="5">                             <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>)</a>
-<a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7">daily_region_ag</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">daily_region_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
+                             <span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">150.5</span>, <span class="fl">-28.5</span> , <span class="fl">153.5</span>, <span class="fl">-25.5</span>),
+                             <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"RH2M"</span>, <span class="st">"T2M"</span>),
+                             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span>),
+                             <span class="dt">temporal_average =</span> <span class="st">"DAILY"</span>)
+
+daily_region_ag
+<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
+<span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/02/1985  </span>
+<span class="co">#&gt;  Location: Regional  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = na meters   Site = na  </span>
+<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
+<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Parameters: </span>
+<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span>
+<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; # A tibble: 98 x 9</span>
+<span class="co">#&gt;      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  151. -28.2  1985     1     1     1 1985-01-01  39.7  26.5</span>
+<span class="co">#&gt;  2  151. -28.2  1985     1     1     1 1985-01-01  40.4  25.8</span>
+<span class="co">#&gt;  3  152. -28.2  1985     1     1     1 1985-01-01  47.0  24.0</span>
+<span class="co">#&gt;  4  152. -28.2  1985     1     1     1 1985-01-01  51.8  23.9</span>
+<span class="co">#&gt;  5  153. -28.2  1985     1     1     1 1985-01-01  56.2  24.9</span>
+<span class="co">#&gt;  6  153. -28.2  1985     1     1     1 1985-01-01  62.5  26.0</span>
+<span class="co">#&gt;  7  154. -28.2  1985     1     1     1 1985-01-01  74.7  26.1</span>
+<span class="co">#&gt;  8  151. -27.8  1985     1     1     1 1985-01-01  41.3  26.5</span>
+<span class="co">#&gt;  9  151. -27.8  1985     1     1     1 1985-01-01  43.4  26.0</span>
+<span class="co">#&gt; 10  152. -27.8  1985     1     1     1 1985-01-01  47.6  24.8</span>
+<span class="co">#&gt; # ... with 88 more rows</span></code></pre></div>
 </div>
 <div id="example-fetching-interannual-data-for-an-area" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-fetching-interannual-data-for-an-area" class="anchor"></a>Example fetching interannual data for an area</h3>
 <p>Fetch interannual solar cooking parameters for south east Queensland region.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">interannual_sse &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"SSE"</span>,</a>
-<a class="sourceLine" id="cb3-2" title="2">                             <span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">150.5</span>, <span class="fl">-28.5</span> , <span class="fl">153.5</span>, <span class="fl">-25.5</span>),</a>
-<a class="sourceLine" id="cb3-3" title="3">                             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1984"</span>, <span class="st">"1985"</span>),</a>
-<a class="sourceLine" id="cb3-4" title="4">                             <span class="dt">temporal_average =</span> <span class="st">"INTERANNUAL"</span>,</a>
-<a class="sourceLine" id="cb3-5" title="5">                             <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CLRSKY_SFC_SW_DWN"</span>,</a>
-<a class="sourceLine" id="cb3-6" title="6">                                      <span class="st">"ALLSKY_SFC_SW_DWN"</span>)</a>
-<a class="sourceLine" id="cb3-7" title="7">                            )</a>
-<a class="sourceLine" id="cb3-8" title="8"></a>
-<a class="sourceLine" id="cb3-9" title="9">interannual_sse</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">interannual_sse &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"SSE"</span>,
+                             <span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">150.5</span>, <span class="fl">-28.5</span> , <span class="fl">153.5</span>, <span class="fl">-25.5</span>),
+                             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1984"</span>, <span class="st">"1985"</span>),
+                             <span class="dt">temporal_average =</span> <span class="st">"INTERANNUAL"</span>,
+                             <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"CLRSKY_SFC_SW_DWN"</span>,
+                                      <span class="st">"ALLSKY_SFC_SW_DWN"</span>)
+                            )
+
+interannual_sse
+<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Interannual Averages/Sums  </span>
+<span class="co">#&gt;  Dates (month/day/year): 01/01/1984 through 12/31/1985  </span>
+<span class="co">#&gt;  Location: Regional  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = na meters   Site = na  </span>
+<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
+<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA9  </span>
+<span class="co">#&gt;  Parameters: </span>
+<span class="co">#&gt;  ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day) ;</span>
+<span class="co">#&gt;  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; # A tibble: 196 x 17</span>
+<span class="co">#&gt;      LON   LAT PARAMETER  YEAR   JAN   FEB   MAR   APR   MAY   JUN   JUL</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  151. -28.2 CLRSKY_S…  1984  8.5   7.96  6.92  5.54  4.49  3.89  4.14</span>
+<span class="co">#&gt;  2  151. -28.2 CLRSKY_S…  1985  8.87  8.1   6.94  5.6   4.44  4.03  4.2 </span>
+<span class="co">#&gt;  3  151. -28.2 ALLSKY_S…  1984  6.11  6.83  6.28  4.6   4.02  3.46  2.58</span>
+<span class="co">#&gt;  4  151. -28.2 ALLSKY_S…  1985  8.2   7.15  6.02  4.79  3.89  3.44  3.8 </span>
+<span class="co">#&gt;  5  151. -28.2 CLRSKY_S…  1984  8.45  8.09  6.77  5.5   4.41  3.95  4.15</span>
+<span class="co">#&gt;  6  151. -28.2 CLRSKY_S…  1985  8.76  8.03  6.93  5.57  4.39  3.93  4.2 </span>
+<span class="co">#&gt;  7  151. -28.2 ALLSKY_S…  1984  5.82  6.43  5.95  4.41  3.89  3.54  2.43</span>
+<span class="co">#&gt;  8  151. -28.2 ALLSKY_S…  1985  7.98  6.86  5.74  4.46  3.67  3.34  3.8 </span>
+<span class="co">#&gt;  9  152. -28.2 CLRSKY_S…  1984  8.45  8.09  6.77  5.5   4.41  3.95  4.15</span>
+<span class="co">#&gt; 10  152. -28.2 CLRSKY_S…  1985  8.76  8.03  6.93  5.57  4.39  3.93  4.2 </span>
+<span class="co">#&gt; # ... with 186 more rows, and 6 more variables: AUG &lt;dbl&gt;, SEP &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   OCT &lt;dbl&gt;, NOV &lt;dbl&gt;, DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="example-fetching-climatology-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-fetching-climatology-data" class="anchor"></a>Example fetching climatology data</h3>
 <p>Global data are only available for the climatology <code>temporal_average</code>, setting this argumet as such will fetch global data.</p>
 <p>Fetch global “AG”" climatology for temperature, precipitation and relative humidity.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">climatology_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,</a>
-<a class="sourceLine" id="cb4-2" title="2">                            <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>, <span class="st">"RH2M"</span>),</a>
-<a class="sourceLine" id="cb4-3" title="3">                            <span class="dt">temporal_average =</span> <span class="st">"CLIMATOLOGY"</span></a>
-<a class="sourceLine" id="cb4-4" title="4">                           )</a>
-<a class="sourceLine" id="cb4-5" title="5"></a>
-<a class="sourceLine" id="cb4-6" title="6">climatology_ag</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">climatology_ag &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_power.html">get_power</a></span>(<span class="dt">community =</span> <span class="st">"AG"</span>,
+                            <span class="dt">pars =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span>, <span class="st">"RH2M"</span>),
+                            <span class="dt">temporal_average =</span> <span class="st">"CLIMATOLOGY"</span>
+                           )
+
+climatology_ag
+<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Climatologies  </span>
+<span class="co">#&gt;  22-year Additional Solar Parameter Monthly &amp; Annual Climatologies (July 1983 - June 2005), 30-year Meteorological and Solar Monthly &amp; Annual Climatologies (January 1984 - December 2013)  </span>
+<span class="co">#&gt;  Location: Global  </span>
+<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Parameter(s):  </span>
+<span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1)  </span>
+<span class="co">#&gt;  Parameters: </span>
+<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
+<span class="co">#&gt;  </span>
+<span class="co">#&gt; # A tibble: 777,600 x 16</span>
+<span class="co">#&gt;      LON   LAT PARAMETER    JAN    FEB    MAR    APR   MAY    JUN    JUL</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 -180. -89.8 T2M       -29.0  -40.7  -52.9  -57.8  -59.1 -59.6  -61.3 </span>
+<span class="co">#&gt;  2 -180. -89.8 PRECTOT     0.14   0.16   0.21   0.21   0.2   0.17   0.16</span>
+<span class="co">#&gt;  3 -180. -89.8 RH2M       70.3   64.3   63.5   63.2   63.9  64.2   63.9 </span>
+<span class="co">#&gt;  4 -179. -89.8 T2M       -29.0  -40.7  -52.9  -57.8  -59.1 -59.6  -61.3 </span>
+<span class="co">#&gt;  5 -179. -89.8 PRECTOT     0.14   0.16   0.21   0.21   0.2   0.17   0.16</span>
+<span class="co">#&gt;  6 -179. -89.8 RH2M       70.3   64.3   63.4   63.2   63.9  64.2   63.9 </span>
+<span class="co">#&gt;  7 -179. -89.8 T2M       -29.0  -40.7  -52.9  -57.8  -59.1 -59.6  -61.3 </span>
+<span class="co">#&gt;  8 -179. -89.8 PRECTOT     0.14   0.16   0.21   0.21   0.2   0.17   0.17</span>
+<span class="co">#&gt;  9 -179. -89.8 RH2M       70.3   64.3   63.4   63.2   63.9  64.2   63.9 </span>
+<span class="co">#&gt; 10 -178. -89.8 T2M       -29.0  -40.7  -52.9  -57.8  -59.1 -59.6  -61.3 </span>
+<span class="co">#&gt; # ... with 777,590 more rows, and 6 more variables: AUG &lt;dbl&gt;, SEP &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   OCT &lt;dbl&gt;, NOV &lt;dbl&gt;, DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</span></code></pre></div>
 <p><em>Note</em> the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda or .rds.</p>
 </div>
 <div id="description-of-parameters-for-get_power" class="section level3">
@@ -157,8 +255,10 @@
 <li><p><em>For a single point</em> To get a specific cell, 1/2 x 1/2 degree, supply a length-2 numeric vector giving the decimal degree longitude and latitude in that order for data to download, <em>e.g.</em>, <code>lonlat = c(-89.5, -179.5)</code>.</p></li>
 <li><p><em>For regional coverage</em> To get a region, supply a length-4 numeric vector as lower left (lon, lat) and upper right (lon, lat) coordinates, <em>e.g.</em>, <code>lonlat = c(xmin, ymin, xmax, ymax)</code> in that order for a given region, <em>e.g.</em>, a bounding box for the south-western corner of Australia: <code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></li>
 </ul>
-<p><code>pars</code>. A character vector of parameters to download. See <code><a href="https://www.rdocumentation.org/packages/utils/topics/help">help(parameters)</a></code> for a full list of valid values and definitions. If downloading “CLIMATOLOGY” a maximum of 3 <code>pars</code> can be specified at one time, for “DAILY” and “INTERANNUAL” a maximum of 20 can be specified at one time.</p>
 </li>
+</ul>
+<p><code>pars</code>. A character vector of parameters to download. See <code><a href="https://www.rdocumentation.org/packages/utils/topics/help">help(parameters)</a></code> for a full list of valid values and definitions. If downloading “CLIMATOLOGY” a maximum of 3 <code>pars</code> can be specified at one time, for “DAILY” and “INTERANNUAL” a maximum of 20 can be specified at one time.</p>
+<ul>
 <li><p><code>dates</code>, a vector of start and end dates for which to query the POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</p></li>
 <li><p><code>temporal_average</code>, a character vector of the desired temporal average(s). Valid values are “DAILY”, “INTERANNUAL” and “CLIMATOLOGY”.</p></li>
 </ul>
@@ -183,10 +283,13 @@
 <li><p><code>file_out</code>, a file name for the resulting text file written to disk. If none is provided, defaults to “APSIM.met”</p></li>
 </ul>
 <p>Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an APSIM weather.met object suitable for use in APSIM for crop modelling and save it to local disk for use in <code>APSIM</code> modelling.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
-<a class="sourceLine" id="cb5-2" title="2">           <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),</a>
-<a class="sourceLine" id="cb5-3" title="3">           <span class="dt">dsn =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),</a>
-<a class="sourceLine" id="cb5-4" title="4">           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_met.html">create_met</a></span>(<span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),
+           <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
+           <span class="dt">dsn =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),
+           <span class="dt">file_out =</span> <span class="st">"Kingsthorpe.met"</span>)
+<span class="co">#&gt; [1] "Required column name check:"</span>
+<span class="co">#&gt; [1] "maxt" "mint" "radn" "rain" "year" "day" </span>
+<span class="co">#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE</span></code></pre></div>
 </div>
 <div id="using-create_icasa" class="section level2">
 <h2 class="hasAnchor">
@@ -207,10 +310,10 @@
 <li><p><code>file_out</code>, a file name for the resulting text file written to disk. If none is provided, defaults to “ICASA.txt”</p></li>
 </ul>
 <p>Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and create an ICASA text file suitable for use in <code>DSSAT</code> for crop modelling and save it to local disk.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),</a>
-<a class="sourceLine" id="cb6-2" title="2">             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),</a>
-<a class="sourceLine" id="cb6-3" title="3">             <span class="dt">dsn =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),</a>
-<a class="sourceLine" id="cb6-4" title="4">             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_icasa.html">create_icasa</a></span>(<span class="dt">lonlat =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">151.81</span>, <span class="fl">-27.48</span>),
+             <span class="dt">dates =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"1985-01-01"</span>, <span class="st">"1985-12-31"</span>),
+             <span class="dt">dsn =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempdir</a></span>(),
+             <span class="dt">file_out =</span> <span class="st">"Kingsthorpe_ICASA.txt"</span>)</code></pre></div>
 </div>
 <div id="creating-spatial-objects-from-get_power" class="section level2">
 <h2 class="hasAnchor">
@@ -221,42 +324,47 @@
 <h3 class="hasAnchor">
 <a href="#converting-regional-data-to-a-raster-object" class="anchor"></a>Converting Regional Data to a <em>raster</em> Object</h3>
 <p>Using <code>lapply</code> and <code>split</code> it is easy to create stacks of raster objects from a regional query.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(raster)</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co"># Use split to create a list of data frames split by YYYYMMDD</span></a>
-<a class="sourceLine" id="cb7-3" title="3">daily_region_ag &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/split">split</a></span>(daily_region_ag, daily_region_ag<span class="op">$</span>YYYYMMDD)</a>
-<a class="sourceLine" id="cb7-4" title="4"></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span></a>
-<a class="sourceLine" id="cb7-6" title="6">daily_region_ag &lt;-</a>
-<a class="sourceLine" id="cb7-7" title="7"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(daily_region_ag, <span class="cf">function</span>(x)</a>
-<a class="sourceLine" id="cb7-8" title="8">    x[(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span>))])</a>
-<a class="sourceLine" id="cb7-9" title="9"></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span></a>
-<a class="sourceLine" id="cb7-11" title="11">raster_list &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(daily_region_ag, rasterFromXYZ,</a>
-<a class="sourceLine" id="cb7-12" title="12">                      <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)</a>
-<a class="sourceLine" id="cb7-13" title="13"></a>
-<a class="sourceLine" id="cb7-14" title="14">stack_names &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(raster_list), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_RH2M"</span>, <span class="st">"_T2M"</span>), <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb7-15" title="15"></a>
-<a class="sourceLine" id="cb7-16" title="16">raster_stack &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span>(raster_list))</a>
-<a class="sourceLine" id="cb7-17" title="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(raster_stack) &lt;-<span class="st"> </span>stack_names</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(raster)
+<span class="co">#&gt; Loading required package: sp</span>
+<span class="co"># Use split to create a list of data frames split by YYYYMMDD</span>
+daily_region_ag &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/split">split</a></span>(daily_region_ag, daily_region_ag<span class="op">$</span>YYYYMMDD)
+
+<span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span>
+daily_region_ag &lt;-
+<span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(daily_region_ag, <span class="cf">function</span>(x)
+    x[(<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(x) <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span>))])
+
+<span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span>
+raster_list &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/lapply">lapply</a></span>(daily_region_ag, rasterFromXYZ,
+                      <span class="dt">crs =</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs "</span>)
+
+stack_names &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(raster_list), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"_RH2M"</span>, <span class="st">"_T2M"</span>), <span class="dv">2</span>))
+
+raster_stack &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/stack">stack</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/unlist">unlist</a></span>(raster_list))
+<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/names">names</a></span>(raster_stack) &lt;-<span class="st"> </span>stack_names</code></pre></div>
 <p>Plot all the items in the stack.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(raster_stack)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(raster_stack)</code></pre></div>
+<p><img src="nasapower_files/figure-html/plot_fig1-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 <div id="converting-global-climatology-to-a-raster-object" class="section level3">
 <h3 class="hasAnchor">
 <a href="#converting-global-climatology-to-a-raster-object" class="anchor"></a>Converting Global Climatology to a <em>raster</em> Object</h3>
 <p>Converting global climatology to a <code><a href="https://www.rdocumentation.org/packages/raster/topics/brick">raster::brick</a></code> is as simple as querying and then converting the resulting <code>tibble</code> to a <em>raster</em> object. Illustrated here using the <code>climatology_ag</code> object previously created.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span></a>
-<a class="sourceLine" id="cb9-2" title="2">RH2M &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="dv">-3</span>])</a>
-<a class="sourceLine" id="cb9-3" title="3"></a>
-<a class="sourceLine" id="cb9-4" title="4">T2M &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[, <span class="dv">-3</span>])</a>
-<a class="sourceLine" id="cb9-5" title="5"></a>
-<a class="sourceLine" id="cb9-6" title="6">PRECIP &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "PRECTOT"</span>)[, <span class="dv">-3</span>])</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create RasterBricks for the individual parameters and drop the parameter field</span>
+RH2M &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "RH2M"</span>)[, <span class="dv">-3</span>])
+
+T2M &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[, <span class="dv">-3</span>])
+
+PRECIP &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "PRECTOT"</span>)[, <span class="dv">-3</span>])</code></pre></div>
 <p>Plot the annual values from the resulting <code>RasterBrick()</code> objects.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(RH2M<span class="op">$</span>ANN)</a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(T2M<span class="op">$</span>ANN)</a>
-<a class="sourceLine" id="cb10-4" title="4"></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(PRECIP<span class="op">$</span>ANN)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(RH2M<span class="op">$</span>ANN)</code></pre></div>
+<p><img src="nasapower_files/figure-html/plot_climatology-1.png" width="672" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(T2M<span class="op">$</span>ANN)</code></pre></div>
+<p><img src="nasapower_files/figure-html/plot_climatology-2.png" width="672" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(PRECIP<span class="op">$</span>ANN)</code></pre></div>
+<p><img src="nasapower_files/figure-html/plot_climatology-3.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div id="references" class="section level2">
