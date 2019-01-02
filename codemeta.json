@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.2.9000",
+  "version": "1.0.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.5.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 3.5.2 (2018-12-20)",
   "author": [
     {
       "@type": "Person",
@@ -75,6 +75,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "pkgdown",
+      "name": "pkgdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=pkgdown"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "raster",
       "name": "raster",
       "provider": {
@@ -108,18 +120,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "vcr",
-      "name": "vcr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=vcr"
     }
   ],
   "softwareRequirements": [
@@ -218,7 +218,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "fileSize": "367.235KB",
+  "fileSize": "213.068KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
@@ -226,6 +226,32 @@
   ],
   "developmentStatus": "http://www.repostatus.org/#wip",
   "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2018",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": ["Adam", "H"],
+          "familyName": "Sparks"
+        }
+      ],
+      "name": "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R",
+      "identifier": "10.21105/joss.01035",
+      "paginiation": "1035",
+      "@id": "https://doi.org/10.21105/joss.01035",
+      "sameAs": "https://doi.org/10.21105/joss.01035",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "30",
+        "datePublished": "2018",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "3",
+          "name": "The Journal of Open Source Software"
+        }
+      }
+    },
     {
       "@type": "SoftwareSourceCode",
       "author": [

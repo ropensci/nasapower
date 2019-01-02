@@ -1,8 +1,14 @@
-# nasapower 1.0.2.9000
+# nasapower 1.0.3
+
+## Minor changes
 
 - Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
 
-- Configures tests to use `vcr` for quicker tests and stubbing using `webmockr`
+- Remove `vcr` from Suggests and Test Cases
+
+## Bug fixes
+
+- Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable
 
 # nasapower 1.0.2
 
