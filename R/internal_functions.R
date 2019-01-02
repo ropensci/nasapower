@@ -351,7 +351,7 @@
 #' @param outputList A value of either "CSV" or "ICASA" that tells the API the
 #' desired format in which to return the data.
 #'
-#' @return A tidy data.frame() of requested 'POWER' data
+#' @return A tidy tibble() of requested 'POWER' data
 #'
 #' @noRd
 .power_query <- function(community,
