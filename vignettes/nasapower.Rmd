@@ -16,7 +16,7 @@ knitr::opts_chunk$set(collapse = TRUE,
                       fig.width = 7,
                       fig.height = 7,
                       fig.align = "center",
-                      eval = FALSE)
+                      eval = TRUE)
 ```
 
 ## Introduction
@@ -296,12 +296,12 @@ plot(RH2M_ann)
 
 For systems with RAM of ~16GB or more, it is possible to create a `raster::brick()` of the resulting POWER query. To do so, subset the `tibble()` for the desired parameter and drop the `PARAMETER` column.
 
-```{r create-climatology-brick}
+```{r create-climatology-brick, eval=FALSE}
 T2M_brick <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[-3])
 
-T2M_brick
 
-plot(T2M_brick)
+
+
 ```
 
 ## References
