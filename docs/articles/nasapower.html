@@ -388,21 +388,7 @@ RH2M_ann
 <h4 class="hasAnchor">
 <a href="#for-systems-with-more-available-memory" class="anchor"></a>For systems with more available memory</h4>
 <p>For systems with RAM of ~16GB or more, it is possible to create a <code><a href="https://www.rdocumentation.org/packages/raster/topics/brick">raster::brick()</a></code> of the resulting POWER query. To do so, subset the <code>tibble()</code> for the desired parameter and drop the <code>PARAMETER</code> column.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">T2M_brick &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[<span class="op">-</span><span class="dv">3</span>])
-
-T2M_brick
-<span class="co">#&gt; class       : RasterBrick </span>
-<span class="co">#&gt; dimensions  : 360, 720, 259200, 13  (nrow, ncol, ncell, nlayers)</span>
-<span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span>
-<span class="co">#&gt; extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
-<span class="co">#&gt; coord. ref. : NA </span>
-<span class="co">#&gt; data source : in memory</span>
-<span class="co">#&gt; names       :    JAN,    FEB,    MAR,    APR,    MAY,    JUN,    JUL,    AUG,    SEP,    OCT,    NOV,    DEC,    ANN </span>
-<span class="co">#&gt; min values  : -40.88, -44.85, -57.06, -62.95, -65.00, -64.50, -66.26, -66.74, -65.38, -57.44, -44.34, -39.79, -54.75 </span>
-<span class="co">#&gt; max values  :  34.08,  32.84,  32.77,  34.30,  37.09,  39.34,  39.13,  38.65,  35.04,  32.46,  34.20,  33.83,  32.23</span>
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(T2M_brick)</code></pre></div>
-<p><img src="nasapower_files/figure-html/create-climatology-brick-1.png" width="672" style="display: block; margin: auto;"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">T2M_brick &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/rasterFromXYZ">rasterFromXYZ</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/subset">subset</a></span>(climatology_ag, PARAMETER <span class="op">==</span><span class="st"> "T2M"</span>)[<span class="op">-</span><span class="dv">3</span>])</code></pre></div>
 </div>
 </div>
 </div>
