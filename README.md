@@ -11,6 +11,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/onboarding/issues/155)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/nasapower)](https://cran.r-project.org/package=nasapower)
 
 # *nasapower*: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
 
