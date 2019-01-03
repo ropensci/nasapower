@@ -35,7 +35,7 @@
 #'   File from \acronym{POWER} Data}
 #' \item{\code{\link{create_met}} Create an \acronym{APSIM} met File from
 #'   \acronym{POWER} Data}
-#' \item{\code{citation(nasapower)} For proper citation of \pkg{nasaspower}}
+#' \item{\code{citation("nasapower")} For proper citation of \pkg{nasaspower}}
 #' }
 #'
 #' @references
