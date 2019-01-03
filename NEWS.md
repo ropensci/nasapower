@@ -36,7 +36,7 @@
 
 - Corrects logical operators `&&` and `||` where they should be `&` or `|`
 
-- Removes extra code in `create_icasa()` and `create_met()` that peformed
+- Removes extra code in `create_icasa()` and `create_met()` that performed
 a duplicated check of `latlon` values
 
 - Removes unnecessary checks for `latlon` in `get_power()`
@@ -145,7 +145,7 @@ multiple dates. https://github.com/ropensci/nasapower/issues/1
 
 - Enhanced documentation
 
-- Superflous function, `.onLoad()`, removed from zzz.R
+- Superfluous function, `.onLoad()`, removed from zzz.R
 
 - Tidied up startup message
 
