@@ -23,7 +23,7 @@ knitr::opts_chunk$set(collapse = TRUE,
 
 _nasapower_ aims to make it quick and easy to automate downloading
 NASA [POWER](https://power.larc.nasa.gov) global meteorology, surface solar
-energy and climatology data  data in your R session as a tidy data frame for
+energy amd climatology data  data in your R session as a tidy data frame for
 analysis and use in modelling or other purposes using `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
 download through a web interface at a resolution of 1/2 arc degree longitude
@@ -34,7 +34,7 @@ International Consortium for Agricultural Systems Applications (ICASA) format
 text files for use in the Decision Support System for Agrotechnology Transfer
 (DSSAT) framework, `create_met()`.
 
-## Using `get_power` to fetch POWER data
+## Using `get_power` to Fetch POWER Data
 
 The `get_power()` function has five arguments as seen in this example and
 returns a data frame with a metadata header in the current R session.
@@ -44,7 +44,7 @@ returns a data frame with a metadata header in the current R session.
 Fetch daily "AG" community temperature, relative humidity and precipitation
 for January 1985 for Kingsthorpe, Queensland, Australia.
 
-```{r get_ag}
+```{r get-ag}
 library(nasapower)
 daily_single_ag <- get_power(community = "AG",
                              lonlat = c(151.81, -27.48),
@@ -61,7 +61,7 @@ daily_single_ag
 Fetch daily "AG" community relative humidity and temperature for south east
 Queensland region.
 
-```{r daily_region}
+```{r daily-region}
 daily_region_ag <- get_power(community = "AG",
                              lonlat = c(150.5, -28.5 , 153.5, -25.5),
                              pars = c("RH2M", "T2M"),
@@ -71,9 +71,9 @@ daily_region_ag <- get_power(community = "AG",
 daily_region_ag
 ```
 
-### Example fetching inter-annual data for an area
+### Example fetching interannual data for an area
 
-Fetch inter annual solar cooking parameters for south east Queensland region.
+Fetch interannual solar cooking parameters for south east Queensland region.
 
 ```{r interannual}
 interannual_sse <- get_power(community = "SSE",
@@ -90,14 +90,14 @@ interannual_sse
 ### Example fetching climatology data
 
 Global data are only available for the climatology `temporal_average`, setting
-this argument as such will fetch global data. 
+this argumet as such will fetch global data. 
 
 Fetch global "AG"" climatology for temperature, precipitation and relative
 humidity.
 
-```{r get_climatology}
+```{r get-climatology}
 climatology_ag <- get_power(community = "AG",
-                            pars = c("T2M", "PRECTOT", "RH2M"),
+                            pars = c("T2M", "RH2M"),
                             temporal_average = "CLIMATOLOGY"
                            )
 
@@ -106,7 +106,7 @@ climatology_ag
 
 _Note_ the associated metadata in the data frame header are not saved if the
 data are exported to a file format other than an R data format, _e.g._, .Rdata,
-.Rda or .Rds.
+.rda or .rds.
 
 ### Description of parameters for `get_power`
 
@@ -178,7 +178,7 @@ Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling
 and save it to local disk for use in `APSIM` modelling.
 
-```{r create_met}
+```{r create-met}
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
            dsn = tempdir(),
@@ -219,25 +219,25 @@ Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an ICASA text file suitable for use in `DSSAT` for crop modelling and
 save it to local disk.
 
-```{r create_icasa}
+```{r create-icasa}
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
              dsn = tempdir(),
              file_out = "Kingsthorpe_ICASA.txt")
 ```
 
-## Creating spatial objects from `get_power`
+## Creating Spatial Objects from `get_power`
 
 If you require spatial objects to work with, it is rather simple to convert
 the resulting tidy data frame from `get_power()` to a spatial object in R using
 `raster::rasterFromXYZ()`.
 
-### Example converting regional data to a _raster_ object
+### Converting Regional Data to a _raster_ Object
 
 Using `lapply` and `split` it is easy to create stacks of raster objects from
 a regional query.
 
-```{r raster_example}
+```{r raster-example}
 library(raster)
 # Use split to create a list of data frames split by YYYYMMDD
 daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
@@ -249,7 +249,7 @@ daily_region_ag <-
 
 # Create a list of raster bricks from each YYYYMMDD data frame
 raster_list <- lapply(daily_region_ag, rasterFromXYZ,
-                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
+                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
 
 stack_names <- paste0(names(raster_list), rep(c("_RH2M", "_T2M"), 2))
 
@@ -259,33 +259,49 @@ names(raster_stack) <- stack_names
 
 Plot all the items in the stack.
 
-```{r plot_fig1}
+```{r plot-fig1}
 plot(raster_stack)
 ```
 
-### Example converting global climatology to a _raster_ object
+### Converting Global Climatology to a _raster_ Object
 
-Converting global climatology to a `raster::brick` is as simple as querying
-and then converting the resulting `tibble` to a _raster_ object. Illustrated
-here using the `climatology_ag` object previously created.
+Converting global climatology to a `raster` objects is as simple as querying
+and then converting the resulting `tibble` to a _raster_ object using `raster::rasterFromXYZ()`<sup>*</sup>. Illustrated here using the `climatology_ag` object previously created are two methods.
 
-```{r global_climatology}
-# create RasterBricks for the individual parameters and drop the parameter field
-RH2M <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "RH2M")[, -3])
+<sub>*: You may experience issues if you have <16GB RAM available converting the entire object to a `raster::brick()`.</sub>
 
-T2M <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[, -3])
+#### For low-memory systems
 
-PRECIP <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "PRECTOT")[, -3])
+For low-memory systems (e.g. a recent Apple Mac computer with 8GB RAM), it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.
+
+Using indexing pick the month or annual value and create a raster object.
+
+```{r create-single-raster}
+# split data frame into data frames for each parameter in a list
+climatology_list <- split(climatology_ag, climatology_ag$PARAMETER)
+
+# Remove PARAMETER information from data frame, list names supply this
+climatology_list <-
+  lapply(climatology_list, function(x) {x["PARAMETER"] <- NULL; x})
+
+RH2M_ann <- rasterFromXYZ(climatology_list$RH2M[c(1:2, 15)],
+                         crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+
+RH2M_ann
+
+plot(RH2M_ann)
 ```
 
-Plot the annual values from the resulting `RasterBrick()` objects.
+#### For systems with more available memory
 
-```{r plot_climatology}
-plot(RH2M$ANN)
+For systems with RAM of ~16GB or more, it is possible to create a `raster::brick()` of the resulting POWER query. To do so, subset the `tibble()` for the desired parameter and drop the `PARAMETER` column.
 
-plot(T2M$ANN)
+```{r create-climatology-brick}
+T2M_brick <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[-3])
 
-plot(PRECIP$ANN)
+T2M_brick
+
+plot(T2M_brick)
 ```
 
 ## References
