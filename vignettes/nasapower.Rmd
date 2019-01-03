@@ -11,12 +11,14 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
+LOCAL <- identical(Sys.getenv("LOCAL"), "true")
 knitr::opts_chunk$set(collapse = TRUE,
                       comment = "#>",
                       fig.width = 7,
                       fig.height = 7,
                       fig.align = "center",
-                      eval = TRUE)
+                      eval = TRUE,
+		      purl = CRAN)
 ```
 
 ## Introduction
