@@ -466,12 +466,9 @@
         power_data <- .format_dates(power_data)
       }
 
-      attr(power_data, "class") <- c(
-        "POWER.Info",
-        "tbl_df",
-        "tbl",
-        "data.frame"
-      )
+      # add new class
+      power_data <- tibble::new_tibble(power_data,
+                                       subclass = "POWER.Info")
 
       # add attributes for printing df
       attr(power_data, "POWER.Info") <- meta[1]

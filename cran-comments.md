@@ -14,11 +14,19 @@ follow.
   
     * Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable. Especially due to the unreliability of the NASA server
   
+  ## Bug fixes
+
+    * Fixes bug with the data frame class returned by `nasapower` that could result in known issues when creating `raster` objects
+    
+    * Spellcheck vignette
+  
   ## Minor changes
   
     * Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
 
     * Remove `vcr` from Suggests and Test Cases
+    
+    * Standardise formatting of vignette subheadings
 
 ## Reverse dependencies
 

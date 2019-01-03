@@ -6,9 +6,15 @@
 
 - Remove `vcr` from Suggests and Test Cases
 
+- Standardise formatting of vignette subheadings
+
 ## Bug fixes
 
 - Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable
+
+- Fixes bug with the data frame class returned by `nasapower` that could result in known issues when creating `raster` objects
+
+- Spellcheck vignette
 
 # nasapower 1.0.2
 
