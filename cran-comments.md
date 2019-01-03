@@ -12,11 +12,21 @@ follow.
 
   ## Requested changes
   
-    * Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable. Especially due to the unreliability of the NASA server
+    * Sets tests to not run on CRAN so that errors aren't reported when API is
+      unavailable. Especially due to the unreliability of the NASA server
   
-  ## Bug fixes
+  ## Minor changes
 
-    * Fixes bug with the data frame class returned by `nasapower` that could result in known issues when creating `raster` objects
+    * Adds citation information for JOSS paper,
+      http://joss.theoj.org/papers/10.21105/joss.01035 
+
+    * Flesh out examples using naspower data with raster to create spatial
+      objects for systems with low-RAM where the functionality may not work as
+      expected
+
+    * Standardise formatting of vignette subheadings
+
+    * Spell check package
 
 ## Documentation changes
 

@@ -4,15 +4,13 @@
 
 - Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
 
-- Remove `vcr` from Suggests and Test Cases
-
 ## Documentation changes
 
 - Flesh out examples using `naspower` data with `raster` to create spatial objects for systems with low-RAM where the functionality may not work as expected
 
 - Standardise formatting of vignette subheadings
 
-- Spellcheck vignette
+- Spell check vignette
 
 ## Bug fixes
 
