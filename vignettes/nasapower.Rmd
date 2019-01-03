@@ -92,7 +92,7 @@ interannual_sse
 Global data are only available for the climatology `temporal_average`, setting
 this argumet as such will fetch global data. 
 
-Fetch global "AG"" climatology for temperature, precipitation and relative
+Fetch global "AG"" climatology for temperature and relative
 humidity.
 
 ```{r get-climatology}
