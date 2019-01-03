@@ -45,7 +45,7 @@ returns a data frame with a metadata header in the current R session.
 Fetch daily "AG" community temperature, relative humidity and precipitation
 for January 1985 for Kingsthorpe, Queensland, Australia.
 
-```{r get-ag}
+```{r get-ag, eval=LOCAL}
 library(nasapower)
 daily_single_ag <- get_power(community = "AG",
                              lonlat = c(151.81, -27.48),
