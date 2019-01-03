@@ -46,10 +46,11 @@ Suggests:
     pkgdown,
     raster,
     rmarkdown,
-    testthat
+    testthat,
+    vcr
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
     weather-data, meteorology, NASA-POWER, agroclimatology, earth-science,
-    data-access
+    data-access, climate-data
 X-schema.org-isPartOf: https://ropensci.org
