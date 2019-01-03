@@ -10,6 +10,11 @@
 This is a new patch release at the request of CRAN maintainers, changes
 follow.
 
+Currently the POWER API is still responding, however with the US government
+shutdown it is unclear how long it will still respond. However, the new
+method of testing, should not result in failed tests on CRAN any longer if
+this happens.
+
   ## Requested changes
   
     * Sets tests to not run on CRAN so that errors aren't reported when API is
@@ -30,7 +35,9 @@ follow.
 
 ## Documentation changes
 
-    * Flesh out examples using `naspower` data with `raster` to create spatial objects for systems with low-RAM where the functionality may not work as expected
+    * Flesh out examples using `naspower` data with `raster` to create spatial
+      objects for systems with low-RAM where the functionality may not work as
+      expected
   
     * Standardise formatting of vignette subheadings
 
@@ -39,7 +46,8 @@ follow.
   
   ## Minor changes
   
-    * Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
+    * Adds citation information for JOSS paper,
+      http://joss.theoj.org/papers/10.21105/joss.01035
 
     * Remove `vcr` from Suggests and Test Cases
 
