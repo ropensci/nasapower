@@ -121,17 +121,11 @@ test_that("get_power returns global AG data for climatology", {
 
 test_that("get_power() stops if `temporal_average` not valid", {
   expect_error(
-    power_query = get_power(
+    power_query <- get_power(
       community = "AG",
       lonlat = c(-179.5, -89.5),
-      pars = c(
-        "T2M",
-        "T2M_MIN",
-        "T2M_MAX",
-        "RH2M",
-        "WS10M"
-      ),
-      dates = c("1983-01-01"),
+      pars = "T2M",
+      dates = "1983-01-01",
       temporal_average = 1
     ),
     regexp = "\nYou have entered an invalid value for `temporal_average`.\n"
