@@ -298,10 +298,6 @@ For systems with RAM of ~16GB or more, it is possible to create a `raster::brick
 
 ```{r create-climatology-brick, eval=FALSE}
 T2M_brick <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[-3])
-
-
-
-
 ```
 
 ## References
