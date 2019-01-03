@@ -17,16 +17,21 @@ follow.
   ## Bug fixes
 
     * Fixes bug with the data frame class returned by `nasapower` that could result in known issues when creating `raster` objects
-    
+
+## Documentation changes
+
+    * Flesh out examples using `naspower` data with `raster` to create spatial objects for systems with low-RAM where the functionality may not work as expected
+  
+    * Standardise formatting of vignette subheadings
+
     * Spellcheck vignette
+
   
   ## Minor changes
   
     * Adds citation information for JOSS paper, http://joss.theoj.org/papers/10.21105/joss.01035
 
     * Remove `vcr` from Suggests and Test Cases
-    
-    * Standardise formatting of vignette subheadings
 
 ## Reverse dependencies
 
