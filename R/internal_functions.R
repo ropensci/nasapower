@@ -419,7 +419,8 @@
   }, # nocov start
   error = function(e) {
     e$message <-
-      paste("\nSomething went wrong with the query. Please try again.\n")
+      paste("\nSomething went wrong with the query, no data were returned.\n",
+            "Please see <https://power.larc.nasa.gov> for potential server issues.\n")
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
