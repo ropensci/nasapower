@@ -1,3 +1,11 @@
+# nasapower 1.0.4
+
+## Minor changes
+
+- Corrects an instance where vignette example executed on CRAN but should not
+
+- Adds link to POWER website in error message when query fails
+
 # nasapower 1.0.3
 
 ## Minor changes
