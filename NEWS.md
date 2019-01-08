@@ -6,6 +6,8 @@
 
 - Adds link to POWER website in error message when query fails
 
+- Documentation .Rd files are now more readable with better formatting
+
 # nasapower 1.0.3
 
 ## Minor changes
