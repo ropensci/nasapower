@@ -6,3 +6,5 @@ inst/doc
 docs/.DS_Store
 .DS_Store
 *.code-workspace
+revdep/checks.noindex
+revdep/library.noindex
