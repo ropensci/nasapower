@@ -13,3 +13,4 @@
 ^nasapower.code-workspace$
 ^vcr.log$
 ^.circleci$
+^revdep$
