@@ -33,8 +33,8 @@
 <meta property="og:title" content="Create an APSIM met File from POWER Data — create_met" />
 
 <meta property="og:description" content="Get POWER values for a single point or region and create
-an APSIM met file suitable for use in APSIM for crop
-modelling; saving it to local disk." />
+  an APSIM met file suitable for use in APSIM for
+  crop modelling; saving it to local disk." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -117,8 +117,8 @@ modelling; saving it to local disk." />
     <div class="ref-description">
     
     <p>Get <acronym>POWER</acronym> values for a single point or region and create
-an <acronym>APSIM</acronym> met file suitable for use in <acronym>APSIM</acronym> for crop
-modelling; saving it to local disk.</p>
+  an <acronym>APSIM</acronym> <code>met</code> file suitable for use in <acronym>APSIM</acronym> for
+  crop modelling; saving it to local disk.</p>
     
     </div>
 
@@ -135,8 +135,8 @@ entered as x, y coordinates.  See argument details for more.</p></td>
     <tr>
       <th>dates</th>
       <td><p>A character vector of start and end dates in that order,<br />
-<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  See argument details for
-more.</p></td>
+<em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.  See argument
+details for more.</p></td>
     </tr>
     <tr>
       <th>dsn</th>
@@ -145,61 +145,65 @@ more.</p></td>
     <tr>
       <th>file_out</th>
       <td><p>A file name for the resulting text file, <em>e.g.</em>
-"Kingsthorpe.met". A ".met" extension will be appended if given or
-otherwise specified by user.</p></td>
+&#8220;Kingsthorpe.met&#8221;. A &#8220;.met&#8221; extension will be appended if
+given or otherwise specified by user.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A text file in met format saved to local disk for use in
-<acronym>APSIM</acronym> crop modelling.</p>
+  <acronym>APSIM</acronym> crop modelling.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function is essentially a wrapper for <code><a href='get_power.html'>get_power</a></code>
-<code><a href='https://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> and <code><a href='https://www.rdocumentation.org/packages/APSIM/topics/writeMetFile'>writeMetFile</a></code> that
-simplifies the querying of the <acronym>POWER</acronym> <acronym>API</acronym> and writes the
-met to local disk.</p>
+  <code><a href='https://www.rdocumentation.org/packages/APSIM/topics/prepareMet'>prepareMet</a></code> and <code><a href='https://www.rdocumentation.org/packages/APSIM/topics/writeMetFile'>writeMetFile</a></code> that
+  simplifies the querying of the <acronym>POWER</acronym> <acronym>API</acronym> and writes the
+  <code>met</code> to local disk.</p>
 <p>The weather values from <acronym>POWER</acronym> for temperature are 2 metre max and
-min temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and
-rain, PRECTOT from the <acronym>POWER</acronym> AG community on a daily time-step.</p>
+  min temperatures, &#8220;T2M_MAX&#8221; and &#8220;T2M_MIN&#8221;; radiation,
+  &#8220;ALLSKY_SFC_SW_DWN&#8221;; and rain, &#8220;PRECTOT&#8221; from the
+   <acronym>POWER</acronym> AG community on a daily time-step.</p>
 <p>Further details for each of the arguments are provided in their
-respective sections following below.</p>
+  respective sections following below.</p>
     
-    <h2 class="hasAnchor" id="argument-details-for-lonlat"><a class="anchor" href="#argument-details-for-lonlat"></a>Argument details for <var>lonlat</var></h2>
+    <h2 class="hasAnchor" id="argument-details-for-lonlat"><a class="anchor" href="#argument-details-for-lonlat"></a>Argument details for <code>lonlat</code></h2>
 
     
     <dl class='dl-horizontal'>
-<dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply
-a length-2 numeric vector giving the decimal degree longitude and latitude
-in that order for data to download,<br />
-<em>e.g.</em>, <code>lonlat = c(151.81, -27.48)</code>.</p></dd>
-    <dt>For regional coverage</dt><dd><p>To get a region, supply a length-4 numeric
-vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
-<em>e.g.</em>, <code>lonlat = c(xmin, ymin, xmax, ymax)</code> in that order for a given
-region, <em>e.g.</em>, a bounding box for the southwestern corner of Australia:
-<code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10
-degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></dd>
+  <dt>For a single point</dt><dd><p>To get a specific cell, 1/2 x 1/2 degree, supply
+  a length-two numeric vector giving the decimal degree longitude and
+  latitude in that order for data to download,<br />
+  <em>e.g.</em>, <code>lonlat = c(151.81, -27.48)</code>.</p></dd>
+    <dt>For regional coverage</dt><dd><p>To get a region, supply a length-four numeric
+  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+  <em>e.g.</em>, <code>lonlat = c(xmin, ymin, xmax, ymax)</code> in that order for a
+  given region, <em>e.g.</em>, a bounding box for the southwestern corner of
+  Australia: <code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max
+  bounding box is 10 x 10 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100
+  points maximum in total.</p></dd>
 </dl>
     
-    <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <var>dates</var></h2>
+    <h2 class="hasAnchor" id="argument-details-for-dates"><a class="anchor" href="#argument-details-for-dates"></a>Argument details for <code>dates</code></h2>
 
-    <p>If <var>dates</var> is unspecified,
-defaults to a start date of 1983-01-01 (the earliest available data) and an
-end date of current date according to the system.</p>
+    <p>If <code>dates</code> is unspecified,
+  defaults to a start date of 1983-01-01 (the earliest available data) and an
+  end date of current date according to the system.</p>
 <p>If one date only is provided, it will be treated as both the start date and
-the end date and only a single day's values will be returned.</p>
+  the end date and only a single day's values will be returned.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='create_icasa.html'>create_icasa</a></code> Create a <acronym>DSSAT</acronym> <acronym>ICASA</acronym>
-File from <acronym>NASA</acronym> <acronym>POWER</acronym> Data</p></div>
+    <div class='dont-index'><p><code><a href='create_icasa.html'>create_icasa</a></code> Create a DSSAT ICASA File from NASA POWER
+  Data</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># Create a met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir as "APSIM_example.met".
+    <pre class="examples"><div class='input'># Create a met file for Kingsthorpe, Qld
+# from 1985-01-01 to 1985-06-30 and
+# save it in the current R session
+# tempdir() as APSIM_example.met
 
 </div><div class='input'><span class='fu'>create_met</span>(<span class='kw'>lonlat</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>151.81</span>, -<span class='fl'>27.48</span>),
            <span class='kw'>dates</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"1985-01-01"</span>, <span class='st'>"1985-12-31"</span>),
@@ -219,9 +223,9 @@ File from <acronym>NASA</acronym> <acronym>POWER</acronym> Data</p></div>
 
       <li><a href="#details">Details</a></li>
 
-      <li><a href="#argument-details-for-lonlat">Argument details for <var>lonlat</var></a></li>
+      <li><a href="#argument-details-for-lonlat">Argument details for <code>lonlat</code></a></li>
 
-      <li><a href="#argument-details-for-dates">Argument details for <var>dates</var></a></li>
+      <li><a href="#argument-details-for-dates">Argument details for <code>dates</code></a></li>
 
       <li><a href="#see-also">See also</a></li>
       
@@ -229,7 +233,7 @@ File from <acronym>NASA</acronym> <acronym>POWER</acronym> Data</p></div>
     </ul>
 
     <h2>Author</h2>
-    <p>Adam H. Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a></p>
+    <p>Sparks, A. H. <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a></p>
   </div>
 </div>
 
