@@ -1,13 +1,13 @@
 #' Get NASA POWER Data and Return a Tidy Data Frame
 #'
 #' Get \acronym{POWER} global meteorology and surface solar energy climatology
-#'   data and return a tidy data frame \code{\link[tibble]{tible}}. All options
+#'   data and return a tidy data frame \code{\link[tibble]{tibble}}. All options
 #'   offered by the official \acronym{POWER} \acronym{API} are supported.
 #'
 #' @param community A character vector providing community name: \dQuote{AG},
 #'   \dQuote{SB} or \dQuote{SSE}.  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
-#'   parameters to download.  See \code{help(parameters)} for a full list of
+#'   parameters to download.  See \code{\link{parameters}} for a full list of
 #'   valid values and definitions.  If downloading \dQuote{CLIMATOLOGY} a
 #'   maximum of three \code{pars} can be specified at one time, for
 #'   \dQuote{DAILY} and \dQuote{INTERANNUAL} a maximum of 20 can be specified at
