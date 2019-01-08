@@ -18,12 +18,11 @@ comments without full functionality of the API.
 
   ## Requested changes
   
-    * Does not run any test on CRAN which require `vcr` since it is not
-    available on r-oldrel-osx-x86_64. I cannot control what is or is not
-    available there but by not running tests on CRAN should remove this issue
-    along with other issues related to the API not being availble which is
-    causing all other ERRORs reported on
-    <https://cran.r-project.org/web/checks/check_results_nasapower.html>.
+    * Does not run any test on CRAN which requires `vcr`. This will fix the
+    issue with `vcr` not available on r-oldrel-osx-x86_64. It should also fix
+    all other ERRORs related to the API not being available being reported:
+    <https://cran.r-project.org/web/checks/check_results_nasapower.html> since
+    it's not tested on CRAN, it will pass all tests.
     
     * Any examples in the vignette will no longer be evaluated on CRAN. The
     previous (rejected) submission had one code chunk that was still incorrectly
