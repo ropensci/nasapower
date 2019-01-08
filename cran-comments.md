@@ -1,3 +1,5 @@
+# nasapower v1.0.4
+
 ## Test environments
 * local macOS 10.14.2 install, R 3.5.2
 * local Ubuntu 18.04, R 3.5.2
@@ -7,49 +9,26 @@
 
 0 errors | 0 warnings | 1 note
 
-This is a new patch release at the request of CRAN maintainers, changes
-follow.
+This is a the second new patch release at the request of CRAN maintainers,
+changes follow.
 
-Currently the POWER API is still responding, however with the US government
-shutdown it is unclear how long it will still respond. However, the new
-method of testing, should not result in failed tests on CRAN any longer if
-this happens.
+With the US government partial shut down the POWER API is officially offline.
+It is unclear how long this will last. I've done my best to address CRAN's
+comments without full functionality of the API.
 
   ## Requested changes
   
-    * Sets tests to not run on CRAN so that errors aren't reported when API is
-      unavailable. Especially due to the unreliability of the NASA server
-  
-  ## Minor changes
-
-    * Adds citation information for JOSS paper,
-      http://joss.theoj.org/papers/10.21105/joss.01035 
-
-    * Flesh out examples using naspower data with raster to create spatial
-      objects for systems with low-RAM where the functionality may not work as
-      expected
-
-    * Standardise formatting of vignette subheadings
-
-    * Spell check package
-
-## Documentation changes
-
-    * Flesh out examples using `naspower` data with `raster` to create spatial
-      objects for systems with low-RAM where the functionality may not work as
-      expected
-  
-    * Standardise formatting of vignette subheadings
-
-    * Spellcheck vignette
-
-  
-  ## Minor changes
-  
-    * Adds citation information for JOSS paper,
-      http://joss.theoj.org/papers/10.21105/joss.01035
-
-    * Remove `vcr` from Suggests and Test Cases
+    * Does not run any test on CRAN which require `vcr` since it is not
+    available on r-oldrel-osx-x86_64. I cannot control what is or is not
+    available there but by not running tests on CRAN should remove this issue
+    along with other issues related to the API not being availble which is
+    causing all other ERRORs reported on
+    <https://cran.r-project.org/web/checks/check_results_nasapower.html>.
+    
+    * Any examples in the vignette will no longer be evaluated on CRAN. The
+    previous (rejected) submission had one code chunk that was still incorrectly
+    evaluated and the API failed leading to an error. No code chunks are
+    evaulated on CRAN now and so should not fail due to external circumstances.
 
 ## Reverse dependencies
 
