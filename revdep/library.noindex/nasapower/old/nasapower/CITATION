@@ -1,0 +1,21 @@
+citHeader("While nasapower does not redistribute the data in any way,\n",
+          "we encourage users to follow the requests of the POWER\n",
+          "Project Team:\n",
+          "\n",
+          "'When POWER data products are used in a publication, we\n",
+          "request the following acknowledgment be included:\n",
+          "These data were obtained from the NASA Langley Research\n",
+          "Center POWER Project funded through the NASA Earth Science\n",
+          "Directorate Applied Science Program.'\n",
+          "\n",
+          "To cite nasapower in publications, please use:")
+
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Manual",
+         title = "{nasapower}: NASA-POWER Data from R",
+         author = c(person("Adam", "Sparks")),
+         year = year,
+         note = note,
+         url = "https://github.com/adamhsparks/nasapower")

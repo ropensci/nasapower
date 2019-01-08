@@ -1,0 +1,47 @@
+Package: nasapower
+Type: Package
+Title: 'NASA' 'POWER' 'API' Client
+Version: 1.0.2
+Authors@R: c(
+    person("Adam H.", "Sparks",
+    role = c("aut", "cre"), email = "adamhsparks@gmail.com",
+    comment = c(ORCID = "0000-0002-0061-8359")),
+    person("Scott", "Chamberlain", role = "rev", 
+    email = "myrmecocystus@gmail.com",
+    comment = c(ORCID = "0000-0003-1444-9135")),
+    person("Hazel", "Kavili", role = "rev"),
+    person("Alison", "Boyer", role = "rev"))
+URL: https://ropensci.github.io/nasapower/
+BugReports: https://github.com/ropensci/nasapower/issues
+Description: Client for 'NASA' 'POWER' global meteorology, surface solar
+    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
+    Resource) data are freely available global meteorology and surface solar
+    energy climatology data for download with a resolution of 1/2 by 1/2 arc
+    degree longitude and latitude and are funded through the 'NASA' Earth
+    Science Directorate Applied Science Program.  For more on the data
+    themselves, a web-based data viewer and web access, please see
+    <https://power.larc.nasa.gov/>.
+Depends: R (>= 3.2.0)
+License: MIT + file LICENSE
+Imports: APSIM, crul, curl, lubridate, jsonlite, readr, tibble
+RoxygenNote: 6.1.0
+Encoding: UTF-8
+NeedsCompilation: no
+Repository: CRAN
+LazyData: TRUE
+ByteCompile: TRUE
+Suggests: covr, ggplot2, knitr, raster, rmarkdown, testthat, vcr
+VignetteBuilder: knitr
+X-schema.org-applicationCategory: Tools
+X-schema.org-keywords: NASA, meteorological-data, weather, global,
+        weather, weather-data, meteorology, NASA-POWER,
+        agroclimatology, earth-science, data-access
+X-schema.org-isPartOf: https://ropensci.org
+Packaged: 2018-10-18 01:52:11 UTC; asparks
+Author: Adam H. Sparks [aut, cre] (<https://orcid.org/0000-0002-0061-8359>),
+  Scott Chamberlain [rev] (<https://orcid.org/0000-0003-1444-9135>),
+  Hazel Kavili [rev],
+  Alison Boyer [rev]
+Maintainer: Adam H. Sparks <adamhsparks@gmail.com>
+Date/Publication: 2018-10-18 11:30:06 UTC
+Built: R 3.5.2; ; 2019-01-08 01:12:24 UTC; unix

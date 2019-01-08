@@ -1,0 +1,29 @@
+Metdata                 Weather data
+ap                      Angstrom-Prescott solar radiation model
+apcal                   Calibrate Angstrom-Prescott model
+bc                      Bristow-Campbell model
+bcauto                  Auto-calibrate Bristow-Campbell model
+bccal                   Calibrate Bristow-Campbell model
+cst                     Estimate clear sky transmissivity
+cstRead                 Read values of clear sky transmissivity
+dayOfYear               Convert 'Date' to number of day in a year
+degrees                 Convert radians to degrees
+deltaVP                 Slope of saturation vapour pressure curve
+es                      Mean saturation vapour pressure
+et0                     FAO Penman-Monteith evapotranspiration equation
+extrat                  Calculate extraterrestrial solar radiation
+ha                      Hargreaves solar radiation model
+hacal                   Calibrate Hargreaves model
+hauto                   Auto-calibrate Hargreaves model
+mh                      Mahmood-Hubbard solar radiation model
+modeval                 Model performance statistics.
+psychC                  Psychrometric constant
+radians                 Convert degrees to radians
+rnl                     Net longwave radiation
+rns                     Net shortwave radiation
+sirad-package           Functions for calculating daily solar radiation
+                        and evapotranspiration
+su                      Supit-Van Kappel solar radiation model
+sucal                   Calibrate Supit-Van Kappel model
+wind2                   Convert wind speed measured at a certain height
+                        to the wind speed at 2 meters

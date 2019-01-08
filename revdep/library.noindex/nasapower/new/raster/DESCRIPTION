@@ -1,0 +1,75 @@
+Package: raster
+Type: Package
+Title: Geographic Data Analysis and Modeling
+Version: 2.8-4
+Date: 2018-11-02
+Depends: methods, sp (>= 1.2-0), R (>= 3.0.0)
+Suggests: rgdal (>= 0.9-1), rgeos (>= 0.3-8), ncdf4, igraph, tcltk,
+        parallel, rasterVis, MASS, sf, testthat
+LinkingTo: Rcpp
+Imports: Rcpp
+SystemRequirements: C++11
+Authors@R: c(
+	person("Robert J.", "Hijmans", role = c("cre", "aut"),  email = "r.hijmans@gmail.com"),
+	person("Jacob", "van Etten", role = "ctb"),
+	person("Joe", "Cheng", role = "ctb"),
+	person("Michael", "Sumner", role = "ctb"),
+	person("Matteo", "Mattiuzzi", role = "ctb"),
+	person("Jonathan A.", "Greenberg", role = "ctb"),
+	person("Oscar", "Perpinan Lamigueiro", role = "ctb"),
+	person("Andrew", "Bevan", role = "ctb"),
+	person("Roger", "Bivand", role = "ctb"),
+	person("Lorenzo", "Busetto", role = "ctb"),
+	person("Mort", "Canty", role = "ctb"),
+	person("David", "Forrest", role = "ctb"),
+	person("Aniruddha", "Ghosh", role = "ctb"),
+	person("Duncan", "Golicher", role = "ctb"),
+	person("Josh", "Gray", role = "ctb"),
+	person("Paul", "Hiemstra", role = "ctb"),
+	person("Institute for Mathematics Applied Geosciences", role="cph"),
+	person("Charles", "Karney", role = "ctb"),
+	person("Steven", "Mosher", role = "ctb"),
+	person("Jakub", "Nowosad", role = "ctb"),
+	person("Edzer", "Pebesma", role = "ctb"),
+	person("Etienne B.", "Racine", role = "ctb"),
+	person("Barry", "Rowlingson", role = "ctb"),
+	person("Ashton", "Shortridge", role = "ctb"),
+	person("Bill", "Venables", role = "ctb"),
+	person("Rafael", "Wueest", role = "ctb")
+	)
+Description: Reading, writing, manipulating, analyzing and modeling of gridded spatial data. The package implements basic and high-level functions. Processing of very large files is supported.
+License: GPL (>= 3)
+URL: http://www.rspatial.org/
+ByteCompile: TRUE
+NeedsCompilation: yes
+Packaged: 2018-11-02 16:40:50 UTC; rhijm
+Author: Robert J. Hijmans [cre, aut],
+  Jacob van Etten [ctb],
+  Joe Cheng [ctb],
+  Michael Sumner [ctb],
+  Matteo Mattiuzzi [ctb],
+  Jonathan A. Greenberg [ctb],
+  Oscar Perpinan Lamigueiro [ctb],
+  Andrew Bevan [ctb],
+  Roger Bivand [ctb],
+  Lorenzo Busetto [ctb],
+  Mort Canty [ctb],
+  David Forrest [ctb],
+  Aniruddha Ghosh [ctb],
+  Duncan Golicher [ctb],
+  Josh Gray [ctb],
+  Paul Hiemstra [ctb],
+  Institute for Mathematics Applied Geosciences [cph],
+  Charles Karney [ctb],
+  Steven Mosher [ctb],
+  Jakub Nowosad [ctb],
+  Edzer Pebesma [ctb],
+  Etienne B. Racine [ctb],
+  Barry Rowlingson [ctb],
+  Ashton Shortridge [ctb],
+  Bill Venables [ctb],
+  Rafael Wueest [ctb]
+Maintainer: Robert J. Hijmans <r.hijmans@gmail.com>
+Repository: CRAN
+Date/Publication: 2018-11-03 17:00:02 UTC
+Built: R 3.5.2; x86_64-apple-darwin18.2.0; 2019-01-08 01:28:48 UTC; unix

@@ -1,0 +1,290 @@
+---
+title: "nasapower"
+author: "Adam H Sparks"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{nasapower}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,
+                      comment = "#>",
+                      fig.width = 7,
+                      fig.height = 7,
+                      fig.align = "center",
+                      eval = FALSE)
+```
+
+## Introduction
+
+_nasapower_ aims to make it quick and easy to automate downloading
+NASA [POWER](https://power.larc.nasa.gov) global meteorology and surface solar
+energy climatology data  data in your R session as a tidy data frame for
+analysis and use in modelling or other purposes using `get_power()`. POWER
+(Prediction Of Worldwide Energy Resource) data are freely available for
+download through a web interface at a resolution of 1/2 arc degree longitude
+by 1/2 arc degree latitude. Two other functions are provided to quickly and
+easily generate weather.met files from the POWER data for use in the
+Agricultural Production Systems sIMulator (APSIM), `create_met()` and ICASA
+format text files for use in Decision Support System for Agrotechnology
+Transfer (DSSAT) modelling, `create_met()`.
+
+## Using `get_power` to Fetch POWER Data
+
+The `get_power()` function has five arguments as seen in this example and
+returns a data frame with a metadata header in the current R session.
+
+### Example fetching daily data for a single point
+
+Fetch daily "AG" community temperature, relative humidity and precipitation
+for January 1985 for Kingsthorpe, Queensland, Australia.
+
+```{r get_ag}
+library(nasapower)
+daily_single_ag <- get_power(community = "AG",
+                             lonlat = c(151.81, -27.48),
+                             pars = c("RH2M", "T2M", "PRECTOT"),
+                             dates = c("1985-01-01", "1985-01-31"),
+                             temporal_average = "DAILY"
+                            )
+
+daily_single_ag
+```
+
+### Example fetching daily data for an area
+
+Fetch daily "AG" community relative humidity and temperature for south east
+Queensland region.
+
+```{r daily_region}
+daily_region_ag <- get_power(community = "AG",
+                             lonlat = c(150.5, -28.5 , 153.5, -25.5),
+                             pars = c("RH2M", "T2M"),
+                             dates = c("1985-01-01", "1985-01-02"),
+                             temporal_average = "DAILY")
+
+daily_region_ag
+```
+
+### Example fetching interannual data for an area
+
+Fetch interannual solar cooking parameters for south east Queensland region.
+
+```{r interannual}
+interannual_sse <- get_power(community = "SSE",
+                             lonlat = c(150.5, -28.5 , 153.5, -25.5),
+                             dates = c("1984", "1985"),
+                             temporal_average = "INTERANNUAL",
+                             pars = c("CLRSKY_SFC_SW_DWN",
+                                      "ALLSKY_SFC_SW_DWN")
+                            )
+
+interannual_sse
+```
+
+### Example fetching climatology data
+
+Fetch global "AG"" climatology for temperature, precipitation and relative humidity.
+
+```{r get_climatology}
+climatology_ag <- get_power(community = "AG",
+                            pars = c("T2M", "PRECTOT", "RH2M"),
+                            temporal_average = "CLIMATOLOGY"
+                           )
+
+climatology_ag
+```
+
+_Note_ the associated metadata are not saved if the data are exported to a
+file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
+
+### Description of parameters for `get_power`
+
+- `community`, a text string with valid values of: "AG" (Agroclimatology), "SSE"
+(Surface meteorology and Solar Energy) or "SB" (Sustainable Buildings). The
+selected user community will affect the units of the parameter and the temporal
+display of time series data (_e.g._ "AG" will use MJ/m^2^/day for radiation
+units, while SSE and SB use kW/m^2^/day as units).
+
+- `lonlat`, A numeric vector of geographic coordinates for a cell or region
+  entered as x, y coordinates. Not used when `temporal_average` is set to
+  "CLIMATOLOGY".
+
+    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+    length-2 numeric vector giving the decimal degree longitude and latitude in
+    that order for data to download,  *e.g.*, `lonlat = c(-89.5, -179.5)`.  
+  
+    - *For regional coverage* To get a region, supply a length-4 numeric
+    vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+    *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
+    region, *e.g.*, a bounding box for the south-western corner of Australia:
+    `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
+    degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
+    
+  `pars`. A character vector of parameters to download. See `help(parameters)`
+  for a full list of valid values and definitions.  If downloading 
+  "CLIMATOLOGY" a maximum of 3 `pars` can be specified at one time, for
+  "DAILY" and "INTERANNUAL" a maximum of 20 can be specified at one time.
+
+- `dates`, a vector of start and end dates for which to query the POWER
+  API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`. 
+
+- `temporal_average`, a character vector of the desired temporal average(s).
+  Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
+
+## Using `create_met`
+
+The `create_met()` function wraps `get_power()`, `prepareMet()` and 
+`writeMet()` from the [_APSIM_](https://CRAN.R-project.org/package=APSIM)
+package to simplify creating .met files from POWER data for use in the
+APSIM modelling framework.
+
+Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
+`file_out`.
+
+- `lonlat`
+
+    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+    length-2 numeric vector giving the decimal degree longitude and latitude in
+    that order for data to download,  *e.g.*, `lonlat = c(-179.5, -89.5)`.  
+  
+    - *For regional coverage* To get a region, supply a length-4 numeric
+    vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+    *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
+    region, *e.g.*, a bounding box for the south-western corner of Australia:
+    `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
+    degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.  
+    
+- `dates`, a vector of start and end dates for which to query the POWER
+  API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
+
+- `dsn`, a file path to the directory for writing the resulting file,
+  _.e.g._, "~/Documents". If none is given, defaults to user's home directory.
+    
+- `file_out`, a file name for the resulting text file written to disk.
+   If none is provided, defaults to "APSIM.met"
+   
+Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
+create an APSIM weather.met object suitable for use in APSIM for crop modelling
+and save it to local disk for use in `APSIM` modelling.
+
+```{r create_met}
+create_met(lonlat = c(151.81, -27.48),
+           dates = c("1985-01-01", "1985-12-31"),
+           dsn = tempdir(),
+           file_out = "Kingsthorpe.met")
+```
+
+## Using `create_icasa`
+
+The `create_icasa()` simplifies a `get_power()` query to create an ICASA file
+for use in DSSAT modelling.
+
+Four arguments are passed to this function, `lonlat`, `dates`, `dsn` and
+`file_out`.
+
+- `lonlat`
+
+    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a
+    length-2 numeric vector giving the decimal degree longitude and latitude in
+    that order for data to download,  *e.g.*, `lonlat = c(-179.5, -89.5)`.
+  
+    - *For regional coverage* To get a region, supply a length-4 numeric
+    vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+    *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given
+    region, *e.g.*, a bounding box for the south-western corner of Australia:
+    `lonlat = c(112.5, -55.5, 115.5, -50.5)`. *Max bounding box is 10 x 10
+    degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.
+    
+- `dates`, a vector of start and end dates for which to query the POWER
+  API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
+  
+- `dsn`, a file path to the directory for writing the resulting file,
+  _.e.g._, "~/Documents". If none is given, defaults to user's home directory.
+    
+- `file_out`, a  file name for the resulting text file written to disk.
+   If none is provided, defaults to "ICASA.txt"
+
+Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
+create an ICASA text file suitable for use in `DSSAT` for crop modelling and
+save it to local disk.
+
+```{r create_icasa}
+create_icasa(lonlat = c(151.81, -27.48),
+             dates = c("1985-01-01", "1985-12-31"),
+             dsn = tempdir(),
+             file_out = "Kingsthorpe_ICASA.txt")
+```
+
+## Creating Spatial Objects from `get_power`
+
+If you require spatial objects to work with, it is rather simple to convert
+the resulting tidy data frame from `get_power()` to a spatial object in R using
+`raster::rasterFromXYZ()`.
+
+### Converting Regional Data to a _raster_ Object
+
+Using `lapply` and `split` it is easy to create stacks of raster objects from
+a regional query.
+
+```{r raster_example}
+library(raster)
+# Use split to create a list of data frames split by YYYYMMDD
+daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
+
+# Remove date information from data frame, list names will carry YYYYMMDD
+daily_region_ag <-
+  lapply(daily_region_ag, function(x)
+    x[(!names(x) %in% c("YEAR", "MM", "DD", "DOY", "YYYYMMDD"))])
+
+# Create a list of raster bricks from each YYYYMMDD data frame
+raster_list <- lapply(daily_region_ag, rasterFromXYZ,
+                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
+
+stack_names <- paste0(names(raster_list), rep(c("_RH2M", "_T2M"), 2))
+
+raster_stack <- stack(unlist(raster_list))
+names(raster_stack) <- stack_names
+```
+
+Plot all the items in the stack.
+
+```{r plot_fig1}
+plot(raster_stack)
+```
+
+### Converting Global Climatology to a _raster_ Object
+
+Converting global climatology to a `raster::brick` is as simple as querying
+and then converting the resulting `tibble` to a raster object. Illustrated here
+using the `climatology_ag` object previously created.
+
+```{r global_climatology}
+# create RasterBricks for the individual parameters and drop the parameter field
+RH2M <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "RH2M")[, -3])
+
+T2M <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[, -3])
+
+PRECIP <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "PRECTOT")[, -3])
+```
+
+Plot the annual values from the resulting `RasterBrick()` objects.
+
+```{r plot_climatology}
+plot(RH2M$ANN)
+
+plot(T2M$ANN)
+
+plot(PRECIP$ANN)
+```
+
+
+## References
+
+<https://power.larc.nasa.gov>
+
+<https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf>
