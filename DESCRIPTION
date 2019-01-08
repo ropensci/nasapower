@@ -1,6 +1,6 @@
 Package: nasapower
 Type: Package
-Title: 'NASA' 'POWER' 'API' Client
+Title: NASA POWER API Client
 Version: 1.0.4
 Authors@R: c(
     person("Adam H.", "Sparks",
@@ -33,7 +33,6 @@ Imports:
     readr,
     tibble
 RoxygenNote: 6.1.1
-Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 NeedsCompilation: no
 Repository: CRAN
