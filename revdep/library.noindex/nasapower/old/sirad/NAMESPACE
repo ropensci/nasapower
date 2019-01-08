@@ -1,4 +1,0 @@
-export(ap,apcal,bc,bcauto,bccal,cst,cstRead,dayOfYear,degrees,deltaVP,es,et0,extrat,ha,hauto,hacal,mh,modeval,psychC,radians,rnl,rns,su,sucal,wind2) 
-importFrom(stats, aggregate, coef, cor, lm, median, na.omit, nls, quantile, sd, time)
-importFrom(zoo, zoo)
-importFrom(raster, raster, extract)

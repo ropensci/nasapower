@@ -1,6 +1,0 @@
-create_icasa            Create a DSSAT ICASA File from POWER Data
-create_met              Create an APSIM met File from POWER Data
-get_power               Get POWER Data and Return a Tidy Data Frame
-nasapower               NASA POWER API Client
-parameters              POWER Parameters Available for Download
-print.POWER.Info        Prints Power.Info object.
