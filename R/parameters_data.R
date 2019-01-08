@@ -1,7 +1,9 @@
-#' POWER Parameters Available for Download
+#' NASA POWER Parameters Available for Download
 #'
-#' An \pkg{R} list object of \acronym{POWER} parameters and metadata available for
-#'  querying from the \acronym{POWER} database.
+#' An \R \code{list} object of \acronym{POWER} parameters and metadata available
+#' for querying from the \acronym{POWER} database.
+#'
+#' @docType data
 #'
 #' @format A list with 146 weather and climate parameters contained within the
 #' \acronym{POWER} database.

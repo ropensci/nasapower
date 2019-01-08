@@ -2,109 +2,113 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get POWER Data and Return a Tidy Data Frame}
+\title{Get NASA POWER Data and Return a Tidy Data Frame}
 \usage{
 get_power(community, pars, temporal_average, lonlat = NULL,
   dates = NULL)
 }
 \arguments{
-\item{community}{A character vector providing community name: "AG", "SB" or
-"SSE".  See argument details for more.}
+\item{community}{A character vector providing community name: \dQuote{AG},
+\dQuote{SB} or \dQuote{SSE}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{help(parameters)} for a full list of
-valid values and definitions.  If downloading "CLIMATOLOGY" a maximum of 3
-\var{pars} can be specified at one time, for "DAILY" and "INTERANNUAL"
-a maximum of 20 can be specified at one time.}
+valid values and definitions.  If downloading \dQuote{CLIMATOLOGY} a
+maximum of three \code{pars} can be specified at one time, for
+\dQuote{DAILY} and \dQuote{INTERANNUAL} a maximum of 20 can be specified at
+one time.}
 
 \item{temporal_average}{Temporal average for data being queried, supported
-values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".  See argument details
-for more.}
+values are \dQuote{DAILY}, \dQuote{INTERANNUAL} and \dQuote{CLIMATOLOGY}.
+See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates.  Not used when \var{temporal_average} is set
-to "CLIMATOLOGY".  See argument details for more.}
+entered as x, y coordinates.  Not used when \code{temporal_average} is set
+to \dQuote{CLIMATOLOGY}.  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
-\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  Not used when\cr
-\code{temporal_average} is set to "CLIMATOLOGY".  See argument details for more.}
+\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
+Not used when\cr \code{temporal_average} is set to \dQuote{CLIMATOLOGY}.
+See argument details for more.}
 }
 \value{
 A data frame of \acronym{POWER} data including location, dates (not
-including "CLIMATOLOGY") and requested parameters. A header of metadata is
-included.
+including \dQuote{CLIMATOLOGY}) and requested parameters. A header of
+metadata is included.
 }
 \description{
 Get \acronym{POWER} global meteorology and surface solar energy climatology
-data and return a tidy data frame \code{link{[tibble]tible}}. All options
-offered by the official \acronym{POWER} \acronym{API} are supported.
+  data and return a tidy data frame \code{\link[tibble]{tible}}. All options
+  offered by the official \acronym{POWER} \acronym{API} are supported.
 }
 \note{
 The associated metadata are not saved if the data are exported to a
-file format other than a native R data format, \emph{e.g.}, .Rdata, .rda or
-.rds.
+  file format other than a native \R data format, \emph{e.g.}, .Rdata, .rda
+  or .rds.
 }
-\section{Argument details for \var{community}}{
- There are three valid values,
-one must be supplied. This  will affect the units of the parameter and the
-temporal display of time series data.
-
-\describe{
-\item{AG}{Provides access to the Agroclimatology Archive, which
-contains industry-friendly parameters formatted for input to crop models.}
-
-\item{SB}{Provides access to the Sustainable Buildings Archive, which
-contains industry-friendly parameters for the buildings community to include
-parameters in multi-year monthly averages.}
-
-\item{SSE}{Provides access to the Renewable Energy Archive, which contains
-parameters specifically tailored to assist in the design of solar and wind
-powered renewable energy systems.}
-}
-}
-
-\section{Argument details for \var{temporal_average}}{
+\section{Argument details for \dQuote{community}}{
  There are three valid
-values.
-\describe{
-\item{DAILY}{The daily average of \var{pars} by day, month and year.}
-\item{INTERANNUAL}{The monthly average of \var{pars} by year.}
-\item{CLIMATOLOGY}{The monthly average of \var{pars} at the surface of the
-earth for a given month, averaged for that month over the 30-year period
-(Jan. 1984 - Dec. 2013).}
-}
-}
-
-\section{Argument details for \var{lonlat}}{
+  values, one must be supplied. This  will affect the units of the parameter
+  and the temporal display of time series data.
 
 \describe{
-\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
-length-2 numeric vector giving the decimal degree longitude and latitude in
-that order for data to download,\cr
-\emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
+  \item{AG}{Provides access to the Agroclimatology Archive, which
+ contains industry-friendly parameters formatted for input to crop models.}
 
-\item{For regional coverage}{To get a region, supply a length-4 numeric
-vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
-\emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a given
-region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
-\code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.
-*Maximum area processed is 4.5 x 4.5 degrees (100 points).}
+ \item{SB}{Provides access to the Sustainable Buildings Archive, which
+ contains industry-friendly parameters for the buildings community to include
+ parameters in multi-year monthly averages.}
+
+ \item{SSE}{Provides access to the Renewable Energy Archive, which contains
+ parameters specifically tailored to assist in the design of solar and wind
+ powered renewable energy systems.}
+ }
+}
+
+\section{Argument details for \code{temporal_average}}{
+ There are three valid
+ values.
+ \describe{
+  \item{DAILY}{The daily average of \code{pars} by day, month and year.}
+  \item{INTERANNUAL}{The monthly average of \code{pars} by year.}
+  \item{CLIMATOLOGY}{The monthly average of \code{pars} at the surface of the
+   earth for a given month, averaged for that month over the 30-year period
+    (Jan. 1984 - Dec. 2013).}
+ }
+}
+
+\section{Argument details for \code{lonlat}}{
+
+\describe{
+ \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
+ length-two numeric vector giving the decimal degree longitude and latitude
+ in that order for data to download,\cr
+ \emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
+
+ \item{For regional coverage}{To get a region, supply a length-four numeric
+ vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+ \emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a
+ given region, \emph{e.g.}, a bounding box for the southwestern corner of
+ Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. *Maximum area
+ processed is 4.5 x 4.5 degrees (100 points).}
 }
 }
 
-\section{Argument details for \var{dates}}{
+\section{Argument details for \code{dates}}{
  If one date only is provided, it
-will be treated as both the start date and the end date and only a single
-day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
-\code{temporal_average} is set to "INTERANNUAL", use only two year values
-(YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used
-when \code{temporal_average} is set to "CLIMATOLOGY".
+  will be treated as both the start date and the end date and only a single
+  day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
+  When \code{temporal_average} is set to \dQuote{INTERANNUAL}, use only two
+  year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
+  argument should not be used when \code{temporal_average} is set to
+  \dQuote{CLIMATOLOGY}.
 }
 
 \examples{
 \donttest{
-# Fetch daily "AG" community temperature, relative humidity and precipitation
-# for January 1 1985 for Kingsthorpe, Queensland, Australia
+# Fetch daily "AG" community temperature, relative
+# humidity and precipitation for January 1 1985
+# for Kingsthorpe, Queensland, Australia
 ag_d <- get_power(
    community = "AG",
    lonlat = c(151.81, -27.48),
@@ -122,7 +126,8 @@ ag_c <- get_power(community = "AG",
 
 ag_c
 
-# Fetch interannual solar cooking parameters for a given region
+# Fetch interannual solar cooking parameters
+# for a given region
 sse_i <- get_power(
   community = "SSE",
   lonlat = c(112.5, -55.5, 115.5, -50.5),
@@ -138,7 +143,8 @@ sse_i
 }
 \references{
 \url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
+\url{https://power.larc.nasa.gov}
 }
 \author{
-Adam H. Sparks, \email{adamhsparks@gmail.com}
+Sparks, A. H. \email{adamhsparks@gmail.com}
 }

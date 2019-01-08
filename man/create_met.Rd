@@ -11,66 +11,70 @@ create_met(lonlat, dates, dsn, file_out)
 entered as x, y coordinates.  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
-\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  See argument details for
-more.}
+\emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  See argument
+details for more.}
 
 \item{dsn}{A file path where the resulting text file should be stored.}
 
 \item{file_out}{A file name for the resulting text file, \emph{e.g.}
-"Kingsthorpe.met". A ".met" extension will be appended if given or
-otherwise specified by user.}
+\dQuote{Kingsthorpe.met}. A \dQuote{.met} extension will be appended if
+given or otherwise specified by user.}
 }
 \value{
 A text file in met format saved to local disk for use in
-\acronym{APSIM} crop modelling.
+  \acronym{APSIM} crop modelling.
 }
 \description{
 Get \acronym{POWER} values for a single point or region and create
-an \acronym{APSIM} met file suitable for use in \acronym{APSIM} for crop
-modelling; saving it to local disk.
+  an \acronym{APSIM} \code{met} file suitable for use in \acronym{APSIM} for
+  crop modelling; saving it to local disk.
 }
 \details{
 This function is essentially a wrapper for \code{\link{get_power}}
-\code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
-simplifies the querying of the \acronym{POWER} \acronym{API} and writes the
-met to local disk.
+  \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
+  simplifies the querying of the \acronym{POWER} \acronym{API} and writes the
+  \code{met} to local disk.
 
-The weather values from \acronym{POWER} for temperature are 2 metre max and
-min temperatures, T2M_MAX and T2M_MIN; radiation, ALLSKY_SFC_SW_DWN; and
-rain, PRECTOT from the \acronym{POWER} AG community on a daily time-step.
+  The weather values from \acronym{POWER} for temperature are 2 metre max and
+  min temperatures, \dQuote{T2M_MAX} and \dQuote{T2M_MIN}; radiation,
+  \dQuote{ALLSKY_SFC_SW_DWN}; and rain, \dQuote{PRECTOT} from the
+   \acronym{POWER} AG community on a daily time-step.
 
-Further details for each of the arguments are provided in their
-respective sections following below.
+  Further details for each of the arguments are provided in their
+  respective sections following below.
 }
-\section{Argument details for \var{lonlat}}{
+\section{Argument details for \code{lonlat}}{
 
 \describe{
-\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
-a length-2 numeric vector giving the decimal degree longitude and latitude
-in that order for data to download,\cr
-\emph{e.g.}, \code{lonlat = c(151.81, -27.48)}.}
+  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
+  a length-two numeric vector giving the decimal degree longitude and
+  latitude in that order for data to download,\cr
+  \emph{e.g.}, \code{lonlat = c(151.81, -27.48)}.}
 
-\item{For regional coverage}{To get a region, supply a length-4 numeric
-vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
-\emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a given
-region, \emph{e.g.}, a bounding box for the southwestern corner of Australia:
-\code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. \emph{Max bounding box is 10 x 10
-degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100 points maximum in total.}
+  \item{For regional coverage}{To get a region, supply a length-four numeric
+  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+  \emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a
+  given region, \emph{e.g.}, a bounding box for the southwestern corner of
+  Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. \emph{Max
+  bounding box is 10 x 10 degrees} of 1/2 x 1/2 degree data, \emph{i.e.}, 100
+  points maximum in total.}
 }
 }
 
-\section{Argument details for \var{dates}}{
- If \var{dates} is unspecified,
-defaults to a start date of 1983-01-01 (the earliest available data) and an
-end date of current date according to the system.
+\section{Argument details for \code{dates}}{
+ If \code{dates} is unspecified,
+  defaults to a start date of 1983-01-01 (the earliest available data) and an
+  end date of current date according to the system.
 
-If one date only is provided, it will be treated as both the start date and
-the end date and only a single day's values will be returned.
+  If one date only is provided, it will be treated as both the start date and
+  the end date and only a single day's values will be returned.
 }
 
 \examples{
-# Create a met file for Kingsthorpe, Qld from 1985-01-01 to 1985-06-30 and
-# save it in the current R session tempdir as "APSIM_example.met".
+# Create a met file for Kingsthorpe, Qld
+# from 1985-01-01 to 1985-06-30 and
+# save it in the current R session
+# tempdir() as APSIM_example.met
 
 \donttest{
 create_met(lonlat = c(151.81, -27.48),
@@ -82,9 +86,9 @@ create_met(lonlat = c(151.81, -27.48),
 
 }
 \seealso{
-\code{\link{create_icasa}} Create a \acronym{DSSAT} \acronym{ICASA}
-File from \acronym{NASA} \acronym{POWER} Data
+\code{\link{create_icasa}} Create a DSSAT ICASA File from NASA POWER
+  Data
 }
 \author{
-Adam H. Sparks, \email{adamhsparks@gmail.com}
+Sparks, A. H. \email{adamhsparks@gmail.com}
 }

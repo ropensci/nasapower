@@ -4,16 +4,16 @@
 \name{nasapower}
 \alias{nasapower}
 \alias{nasapower-package}
-\title{\acronym{NASA} \acronym{POWER} \acronym{API} Client}
+\title{NASA POWER API Client}
 \description{
 Client for \acronym{NASA} \acronym{POWER} global meteorology, surface solar
 energy and climatology data \acronym{API}.  \acronym{POWER} (Prediction Of
 Worldwide Energy Resource) data are freely available global meteorology and
-surface solar energy climatology data for download with a resolution of 0.5
-by 0.5 arc degree longitude and latitude and are funded through the
+surface solar energy climatology data for download with a resolution of 1/2
+by 1/2 arc degree longitude and latitude and are funded through the
 \acronym{NASA} Earth Science Directorate Applied Science Program.  For more
 on the data themselves and a web-based data viewer and access, please see
-\url{https://power.larc.nasa.gov/}.
+<https://power.larc.nasa.gov/>.
 }
 \note{
 While \pkg{nasapower} does not redistribute the data in any way, we
@@ -27,19 +27,19 @@ funded through the NASA Earth Science Directorate Applied Science Program."
 }
 }
 \references{
-\url{https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf}
+\url{https://power.larc.nasa.gov/documents/POWER_Data_v9_methodology.pdf}
+\url{https://power.larc.nasa.gov}
 }
 \seealso{
 \itemize{
-\item{\code{\link{get_power}} Download \acronym{POWER} Data and Return a
-Tidy Data} Frame
-\item{\code{\link{create_icasa}} Create a \acronym{DSSAT} \acronym{ICASA}
-File from \acronym{POWER} Data}
-\item{\code{\link{create_met}} Create an \acronym{APSIM} met File from
-\acronym{POWER} Data}
+ \item{\code{\link{get_power}} Download POWER Data and Return a Tidy Data
+  Frame}
+\item{\code{\link{create_icasa}} Create a DSSAT ICASA File from POWER
+  Data}
+\item{\code{\link{create_met}} Create an APSIM met File from POWER Data}
 \item{\code{citation("nasapower")} For proper citation of \pkg{nasaspower}}
 }
 }
 \author{
-Adam H. Sparks, \email{adamhsparks@gmail.com}
+Sparks, A. H. \email{adamhsparks@gmail.com}
 }
