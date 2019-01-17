@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2019-01-08
+2019-01-18
 
 # Create parameters list for internal checks
 
@@ -18,7 +18,7 @@ Using `jsonlite` read the JSON file into R creating a list.
 ``` r
 parameters <-
   jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json"
+    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v110.json"
   )
 ```
 
@@ -505,7 +505,7 @@ Using `devtools` to save the list as an R data object for use in the
 usethis::use_data(parameters, overwrite = TRUE)
 ```
 
-    ## ✔ Setting active project to '/Users/U8004755/Development/nasapower'
+    ## ✔ Setting active project to '/Users/adamsparks/Development/nasapower'
     ## ✔ Saving 'parameters' to 'data/parameters.rda'
 
 ## Session Info
@@ -524,7 +524,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-01-08                  
+    ##  date     2019-01-18                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -533,7 +533,7 @@ sessioninfo::session_info()
     ##  cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.2)
     ##  clisymbols    1.2.0   2017-05-21 [1] CRAN (R 3.5.2)
     ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.2)
-    ##  curl          3.2     2018-03-28 [1] CRAN (R 3.5.2)
+    ##  curl          3.3     2019-01-10 [1] CRAN (R 3.5.2)
     ##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.2)
     ##  evaluate      0.12    2018-10-09 [1] CRAN (R 3.5.2)
     ##  fs            1.2.6   2018-08-23 [1] CRAN (R 3.5.2)
@@ -544,7 +544,7 @@ sessioninfo::session_info()
     ##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.5.2)
     ##  purrr         0.2.5   2018-05-29 [1] CRAN (R 3.5.2)
     ##  Rcpp          1.0.0   2018-11-07 [1] CRAN (R 3.5.2)
-    ##  rlang         0.3.0.1 2018-10-25 [1] CRAN (R 3.5.2)
+    ##  rlang         0.3.1   2019-01-08 [1] CRAN (R 3.5.2)
     ##  rmarkdown     1.11    2018-12-08 [1] CRAN (R 3.5.2)
     ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.5.2)
     ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.2)
@@ -555,6 +555,6 @@ sessioninfo::session_info()
     ##  xfun          0.4     2018-10-23 [1] CRAN (R 3.5.2)
     ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.2)
     ## 
-    ## [1] /Users/U8004755/Library/R/3.x/library
+    ## [1] /Users/adamsparks/Library/R/3.x/library
     ## [2] /usr/local/lib/R/3.5/site-library
     ## [3] /usr/local/Cellar/r/3.5.2/lib/R/library
