@@ -497,7 +497,7 @@ purrr::map(parameters, "standard_name")
 
 ## Save list for use in `nasapower` package
 
-Using `devtools` to save the list as an R data object for use in the
+Using `usethis` save the list as an R data object for use in the
 `nasapower`
     package.
 
