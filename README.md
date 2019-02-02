@@ -11,7 +11,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/onboarding/issues/155)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/nasapower)](https://cran.r-project.org/package=nasapower)
+[![CRAN](http://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 
 # *nasapower*: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
 
@@ -81,6 +81,7 @@ daily_ag
 #>  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  
 #>  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
+#>  
 #>  Parameters: 
 #>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;
 #>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;

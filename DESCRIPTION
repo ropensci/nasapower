@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: c(
     person("Adam H.", "Sparks",
     role = c("aut", "cre"), email = "adamhsparks@gmail.com",
@@ -45,8 +45,7 @@ Suggests:
     pkgdown,
     raster,
     rmarkdown,
-    testthat,
-    vcr
+    testthat
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,

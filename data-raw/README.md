@@ -1,7 +1,18 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2019-01-08
+2019-02-02
+
+# Note on 2019-02-02
+
+*From discussion with the POWER team, this file is apparently for
+internal use only and the use for validation as I’m doing here is not
+its intended use. However, I do not have a good way to validate requests
+before sending them to the API as I am currently awaiting a response
+from the POWER team on how to properly validate requests.*
+
+In the meantime I have implemented a small fix for the WS2M data in AG
+while I await the response from the POWER team.
 
 # Create parameters list for internal checks
 
@@ -18,7 +29,7 @@ Using `jsonlite` read the JSON file into R creating a list.
 ``` r
 parameters <-
   jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json"
+    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v110.json"
   )
 ```
 
@@ -40,6 +51,15 @@ parameters$SG_NOON$climatology_definition <-
   gsub("°",
        " degrees",
        parameters$SG_NOON$climatology_definition)
+```
+
+## Fix the WS2M issue in AG
+
+See [Issue 32](https://github.com/ropensci/nasapower/issues/32) for more
+on this until POWER properly addresses this, we fix it ourselves here.
+
+``` r
+parameters$W2SM$community <- c("AG", "SB", "SSE")
 ```
 
 ## View list of parameters
@@ -494,10 +514,13 @@ purrr::map(parameters, "standard_name")
     ## 
     ## $WSC
     ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
+    ## 
+    ## $W2SM
+    ## NULL
 
 ## Save list for use in `nasapower` package
 
-Using `devtools` to save the list as an R data object for use in the
+Using `usethis` save the list as an R data object for use in the
 `nasapower`
     package.
 
@@ -505,7 +528,7 @@ Using `devtools` to save the list as an R data object for use in the
 usethis::use_data(parameters, overwrite = TRUE)
 ```
 
-    ## ✔ Setting active project to '/Users/U8004755/Development/nasapower'
+    ## ✔ Setting active project to '/Users/adamsparks/Development/nasapower'
     ## ✔ Saving 'parameters' to 'data/parameters.rda'
 
 ## Session Info
@@ -524,7 +547,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-01-08                  
+    ##  date     2019-02-02                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -533,7 +556,7 @@ sessioninfo::session_info()
     ##  cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.2)
     ##  clisymbols    1.2.0   2017-05-21 [1] CRAN (R 3.5.2)
     ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.2)
-    ##  curl          3.2     2018-03-28 [1] CRAN (R 3.5.2)
+    ##  curl          3.3     2019-01-10 [1] CRAN (R 3.5.2)
     ##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.2)
     ##  evaluate      0.12    2018-10-09 [1] CRAN (R 3.5.2)
     ##  fs            1.2.6   2018-08-23 [1] CRAN (R 3.5.2)
@@ -542,9 +565,9 @@ sessioninfo::session_info()
     ##  jsonlite      1.6     2018-12-07 [1] CRAN (R 3.5.2)
     ##  knitr         1.21    2018-12-10 [1] CRAN (R 3.5.2)
     ##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.5.2)
-    ##  purrr         0.2.5   2018-05-29 [1] CRAN (R 3.5.2)
+    ##  purrr         0.3.0   2019-01-27 [1] CRAN (R 3.5.2)
     ##  Rcpp          1.0.0   2018-11-07 [1] CRAN (R 3.5.2)
-    ##  rlang         0.3.0.1 2018-10-25 [1] CRAN (R 3.5.2)
+    ##  rlang         0.3.1   2019-01-08 [1] CRAN (R 3.5.2)
     ##  rmarkdown     1.11    2018-12-08 [1] CRAN (R 3.5.2)
     ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.5.2)
     ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.2)
@@ -555,6 +578,6 @@ sessioninfo::session_info()
     ##  xfun          0.4     2018-10-23 [1] CRAN (R 3.5.2)
     ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.2)
     ## 
-    ## [1] /Users/U8004755/Library/R/3.x/library
+    ## [1] /Users/adamsparks/Library/R/3.x/library
     ## [2] /usr/local/lib/R/3.5/site-library
     ## [3] /usr/local/Cellar/r/3.5.2/lib/R/library
