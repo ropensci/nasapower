@@ -60,6 +60,9 @@ on this until POWER properly addresses this, we fix it ourselves here.
 
 ``` r
 parameters$WS2M$community <- c("AG", "SB", "SSE")
+parameters$WS2M_MAX$community <- c("AG", "SB", "SSE")
+parameters$WS2M_MIN$community <- c("AG", "SB", "SSE")
+parameters$WS2M_RANGE$community <- c("AG", "SB", "SSE")
 ```
 
 ## View list of parameters
@@ -514,6 +517,450 @@ purrr::map(parameters, "standard_name")
     ## 
     ## $WSC
     ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
+
+List the communities supported for each parameter.
+
+``` r
+purrr::map(parameters, "community")
+```
+
+    ## $ALLSKY_SFC_LW_DWN
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_00_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_03_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_06_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_09_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_12_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_15_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_18_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_21_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MAX_DIFF
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MIN_DIFF
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $ALLSKY_TOA_SW_DWN
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $CDD0
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CDD10
+    ## [1] "SB"  "SSE" "SB" 
+    ## 
+    ## $CDD18_3
+    ## [1] "SB"  "SSE" "SB" 
+    ## 
+    ## $CLD_AMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_00_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_03_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_06_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_09_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_12_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_15_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_18_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLD_AMT_21_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $CLRSKY_DIFF
+    ## [1] "SB"
+    ## 
+    ## $CLRSKY_NKT
+    ## [1] "SSE"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DIFF
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DIFF_MAX
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DIFF_MIN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DNR
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DNR_MAX
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DNR_MAX_DIFF
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DNR_MIN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $DNR_MIN_DIFF
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_1
+    ## [1] "SSE"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_14
+    ## [1] "SSE"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_21
+    ## [1] "SSE"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_3
+    ## [1] "SSE"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_7
+    ## [1] "SSE"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_MONTH
+    ## [1] "SSE"
+    ## 
+    ## $FROST_DAYS
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_00_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_03_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_06_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_09_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_12_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_15_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_18_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_21_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_00_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_03_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_06_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_09_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_12_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_15_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_18_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_CLRSKY_0_10_21_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_00_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_03_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_06_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_09_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_12_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_15_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_18_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $FRQ_NROVRCST_70_21_GMT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $HDD0
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $HDD10
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $HDD18_3
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $INSOL_MIN_CONSEC_1
+    ## [1] "SSE"
+    ## 
+    ## $INSOL_MIN_CONSEC_14
+    ## [1] "SSE"
+    ## 
+    ## $INSOL_MIN_CONSEC_21
+    ## [1] "SSE"
+    ## 
+    ## $INSOL_MIN_CONSEC_3
+    ## [1] "SSE"
+    ## 
+    ## $INSOL_MIN_CONSEC_7
+    ## [1] "SSE"
+    ## 
+    ## $INSOL_MIN_CONSEC_MONTH
+    ## [1] "SSE"
+    ## 
+    ## $KT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $KT_CLEAR
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $MIDDAY_INSOL
+    ## [1] "SSE"
+    ## 
+    ## $NKT
+    ## [1] "SSE"
+    ## 
+    ## $NO_SUN_BLACKDAYS_MAX
+    ## [1] "SSE"
+    ## 
+    ## $PHIS
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $PRECTOT
+    ## [1] "SB"  "SSE" "AG"  "SB"  "SSE"
+    ## 
+    ## $PS
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $PSC
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $QV2M
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $RH2M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $SG_DAY_COZ_ZEN_AVG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_DAY_HOUR_AVG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_DEC_AVG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_HR_AZM_ANG_AVG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_HR_HRZ_ANG_AVG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_HR_SET_ANG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_MAX_HRZ_ANG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_MID_COZ_ZEN_ANG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SG_NOON
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL_ANG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MAX_TILTED_ANG_ORT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL_ANG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MIN_TILTED_ANG_ORT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_OPTIMAL
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_OPTIMAL_ANG
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_TILTED_ANG_ORT
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SI_EF_TILTED_SURFACE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $SR
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $SRF_ALB
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $T10M
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $T10M_MAX
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $T10M_MIN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $T10M_RANGE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $T2M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $T2MDEW
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $T2MWET
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $T2M_MAX
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $T2M_MIN
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $T2M_RANGE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $TM_ZONES
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $TQV
+    ## [1] "SSE"
+    ## 
+    ## $TS
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $TS_AMP
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $TS_MAX
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $TS_MIN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $TS_RANGE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $T_ZONES
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $U10M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $V10M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WD10M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WD2M
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WD50M
+    ## [1] "AG"  "SB"  "SSE" "SB"  "SSE"
+    ## 
+    ## $WS10M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WS10M_MAX
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WS10M_MIN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WS10M_RANGE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WS2M
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WS2M_MAX
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WS2M_MIN
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WS2M_RANGE
+    ## [1] "AG"  "SB"  "SSE"
+    ## 
+    ## $WS50M
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WS50M_MAX
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WS50M_MIN
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WS50M_RANGE
+    ## [1] "SB"  "SSE"
+    ## 
+    ## $WSC
+    ## [1] "AG"  "SB"  "SSE" "SB"  "SSE"
 
 ## Save list for use in `nasapower` package
 

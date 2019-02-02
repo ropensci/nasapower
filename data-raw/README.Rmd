@@ -64,6 +64,9 @@ this until POWER properly addresses this, we fix it ourselves here.
 
 ```{r fix-ws2m}
 parameters$WS2M$community <- c("AG", "SB", "SSE")
+parameters$WS2M_MAX$community <- c("AG", "SB", "SSE")
+parameters$WS2M_MIN$community <- c("AG", "SB", "SSE")
+parameters$WS2M_RANGE$community <- c("AG", "SB", "SSE")
 ```
 
 ## View list of parameters
@@ -78,8 +81,14 @@ Where `PARAMETER_NAME` is used in the internal `parameters` list. The
 `"standard_name"` is a longer, more descriptive name for the parameter that may
 be more instructive to users.
 
-```{r view-list}
+```{r view-list-names}
 purrr::map(parameters, "standard_name")
+```
+
+List the communities supported for each parameter.
+
+```{r view-list-communinity}
+purrr::map(parameters, "community")
 ```
 
 ## Save list for use in `nasapower` package
