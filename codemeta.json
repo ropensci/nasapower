@@ -218,7 +218,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "fileSize": "214.035KB",
+  "fileSize": "214.038KB",
   "contIntegration": [
     "https://travis-ci.org/adamhsparks/nasapower",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
@@ -277,5 +277,8 @@
     "name": "Comprehensive R Archive Network (CRAN)",
     "url": "https://cran.r-project.org"
   },
-  "relatedLink": ["https://ropensci.github.io/nasapower/", "https://CRAN.R-project.org/package=nasapower"]
+  "relatedLink": [
+    "https://ropensci.github.io/nasapower/",
+    "https://CRAN.R-project.org/package=nasapower"
+  ]
 }
