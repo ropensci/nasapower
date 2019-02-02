@@ -59,7 +59,7 @@ See [Issue 32](https://github.com/ropensci/nasapower/issues/32) for more
 on this until POWER properly addresses this, we fix it ourselves here.
 
 ``` r
-parameters$W2SM$community <- c("AG", "SB", "SSE")
+parameters$WS2M$community <- c("AG", "SB", "SSE")
 ```
 
 ## View list of parameters
@@ -514,9 +514,6 @@ purrr::map(parameters, "standard_name")
     ## 
     ## $WSC
     ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
-    ## 
-    ## $W2SM
-    ## NULL
 
 ## Save list for use in `nasapower` package
 
