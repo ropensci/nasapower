@@ -3,7 +3,7 @@
 ## Minor changes
 
 - "Fixes" [Issue 32](https://github.com/ropensci/nasapower/issues/32) where WS2M
-is not available through _nasapower_ until the POWER team can properly address
+is not available through `nasapower` until the POWER team can properly address
 how pre-query validation should be performed
 
 # nasapower 1.0.4
