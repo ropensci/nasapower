@@ -4,7 +4,6 @@ context("Test that create_met() creates an APSIM .met file")
 
 test_that("create_met() creates a .met file for APSIM use", {
   skip_on_cran()
-  vcr::use_cassette(name = "create_met", {
     power_query <- create_met(
       lonlat = c(151.81, -27.48),
       dates = c("1985-01-01", "1985-12-31"),
@@ -18,7 +17,6 @@ test_that("create_met() creates a .met file for APSIM use", {
     expect_equal(nchar(met)[[1]], 21)
     expect_equal(nchar(met)[[14]], 28)
     expect_equal(nchar(met)[[311]], 31)
-  })
 })
 
 

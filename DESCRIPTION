@@ -45,8 +45,7 @@ Suggests:
     pkgdown,
     raster,
     rmarkdown,
-    testthat,
-    vcr
+    testthat
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
