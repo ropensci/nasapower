@@ -1,4 +1,4 @@
-# nasapower v1.0.5
+# nasapower v1.0.6
 
 ## Test environments
 * local macOS 10.14.2 install, R 3.5.2
@@ -9,11 +9,14 @@
 
 0 errors | 0 warnings | 1 note
 
-  ## Minor changes
+  ## Bug fixes
   
-    * "Fixes" [Issue 32](https://github.com/ropensci/nasapower/issues/32) where WS2M
-      is not available through `nasapower` until the POWER team can properly address
-      how pre-query validation should be performed
+    * Fixes bug where previous release was exactly the same as prior release due
+    to a typo locally
+
+## Minor changes
+
+    * Adds support for WS2M_MIN, WS2M_MAX and WS2M_RANGE in AG community
 
 ## Reverse dependencies
 

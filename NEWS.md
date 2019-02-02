@@ -1,3 +1,14 @@
+# nasapower 1.0.6
+
+## Minor changes
+
+- Adds support for WS2M_MIN, WS2M_MAX and WS2M_RANGE in AG community
+
+## Bug fixes
+  
+- Fixes bug where previous release did not support WS2M from AG community due to
+a local typo
+
 # nasapower 1.0.5
 
 ## Minor changes
