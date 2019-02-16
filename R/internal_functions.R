@@ -150,18 +150,6 @@
         "\nYou have provided an invalid `community` value.\n"
       )
     }
-
-    # check to make sure community is appropriate for given pars
-    for (i in pars) {
-      if (community %notin% parameters[[i]]$community) {
-        stop(
-          call. = FALSE,
-          "\nYou have entered an invalid value for `community` for ",
-          "the supplied `pars`. One or more `pars` are not, available for ",
-          "`", community, "`, please check.\n"
-        )
-      }
-    }
   }
 
 #' Check pars for validity when querying API

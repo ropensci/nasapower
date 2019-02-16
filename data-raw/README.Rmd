@@ -9,25 +9,14 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Note on 2019-02-02
-
-_From discussion with the POWER team, this file is apparently for internal use
-only and the use for validation as I'm doing here is not its intended use.
-However, I do not have a good way to validate requests before sending them to
-the API as I am currently awaiting a response from the POWER team on how to
-properly validate requests._
-
-In the meantime I have implemented a small fix for the WS2M data in AG while I
-await the response from the POWER team.
-
-# Create parameters list for internal checks
+# Create `parameters` list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested from the
 POWER dataset are valid. The POWER list of parameters that can be queried is
 available as a JSON file. Thanks to [raymondben](https://github.com/raymondben)
 for pointing me to this file.
 
-## Fetch list from JSON file
+## POWER JSON file
 
 Using `jsonlite` read the JSON file into R creating a list.
 
@@ -57,19 +46,7 @@ parameters$SG_NOON$climatology_definition <-
        parameters$SG_NOON$climatology_definition)
 ```
 
-## Fix the WS2M issue in AG
-
-See [Issue 32](https://github.com/ropensci/nasapower/issues/32) for more on
-this until POWER properly addresses this, we fix it ourselves here.
-
-```{r fix-ws2m}
-parameters$WS2M$community <- c("AG", "SB", "SSE")
-parameters$WS2M_MAX$community <- c("AG", "SB", "SSE")
-parameters$WS2M_MIN$community <- c("AG", "SB", "SSE")
-parameters$WS2M_RANGE$community <- c("AG", "SB", "SSE")
-```
-
-## View list of parameters
+## View list of parameters and units
 
 The following list has the format:
 ```
@@ -85,10 +62,16 @@ be more instructive to users.
 purrr::map(parameters, "standard_name")
 ```
 
-List the communities supported for each parameter.
+The following list has the format:
+```
+## $PARAMETER_NAME
+## [1] AG_Units
+## [2] SB_Units
+## [3] SSE_Units
+```
 
-```{r view-list-communinity}
-purrr::map(parameters, "community")
+```{r view-list-units}
+purrr::map(parameters, `[`, c("AG_Units", "SB_Units", "SSE_Units"))
 ```
 
 ## Save list for use in `nasapower` package

@@ -1,20 +1,9 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2019-02-02
+2019-02-16
 
-# Note on 2019-02-02
-
-*From discussion with the POWER team, this file is apparently for
-internal use only and the use for validation as I’m doing here is not
-its intended use. However, I do not have a good way to validate requests
-before sending them to the API as I am currently awaiting a response
-from the POWER team on how to properly validate requests.*
-
-In the meantime I have implemented a small fix for the WS2M data in AG
-while I await the response from the POWER team.
-
-# Create parameters list for internal checks
+# Create `parameters` list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested
 from the POWER dataset are valid. The POWER list of parameters that can
@@ -22,7 +11,7 @@ be queried is available as a JSON file. Thanks to
 [raymondben](https://github.com/raymondben) for pointing me to this
 file.
 
-## Fetch list from JSON file
+## POWER JSON file
 
 Using `jsonlite` read the JSON file into R creating a list.
 
@@ -53,19 +42,7 @@ parameters$SG_NOON$climatology_definition <-
        parameters$SG_NOON$climatology_definition)
 ```
 
-## Fix the WS2M issue in AG
-
-See [Issue 32](https://github.com/ropensci/nasapower/issues/32) for more
-on this until POWER properly addresses this, we fix it ourselves here.
-
-``` r
-parameters$WS2M$community <- c("AG", "SB", "SSE")
-parameters$WS2M_MAX$community <- c("AG", "SB", "SSE")
-parameters$WS2M_MIN$community <- c("AG", "SB", "SSE")
-parameters$WS2M_RANGE$community <- c("AG", "SB", "SSE")
-```
-
-## View list of parameters
+## View list of parameters and units
 
 The following list has the format:
 
@@ -518,449 +495,1621 @@ purrr::map(parameters, "standard_name")
     ## $WSC
     ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
 
-List the communities supported for each parameter.
+The following list has the format:
+
+    ## $PARAMETER_NAME
+    ## [1] AG_Units
+    ## [2] SB_Units
+    ## [3] SSE_Units
 
 ``` r
-purrr::map(parameters, "community")
+purrr::map(parameters, `[`, c("AG_Units", "SB_Units", "SSE_Units"))
 ```
 
     ## $ALLSKY_SFC_LW_DWN
-    ## [1] "AG"  "SB"  "SSE"
+    ## $ALLSKY_SFC_LW_DWN$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_LW_DWN$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_LW_DWN$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN
-    ## [1] "AG"  "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_00_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_00_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_00_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_00_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_03_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_03_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_03_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_03_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_06_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_06_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_06_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_06_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_09_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_09_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_09_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_09_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_12_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_12_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_12_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_12_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_15_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_15_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_15_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_15_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_18_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_18_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_18_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_18_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_21_GMT
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_21_GMT$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_21_GMT$SB_Units
+    ## [1] "kW/m^2"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_21_GMT$SSE_Units
+    ## [1] "kW/m^2"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_MAX_DIFF
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_MAX_DIFF$AG_Units
+    ## [1] "%"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MAX_DIFF$SB_Units
+    ## [1] "%"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MAX_DIFF$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $ALLSKY_SFC_SW_DWN_MIN_DIFF
-    ## [1] "SB"  "SSE"
+    ## $ALLSKY_SFC_SW_DWN_MIN_DIFF$AG_Units
+    ## [1] "%"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MIN_DIFF$SB_Units
+    ## [1] "%"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MIN_DIFF$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $ALLSKY_TOA_SW_DWN
-    ## [1] "AG"  "SB"  "SSE"
+    ## $ALLSKY_TOA_SW_DWN$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $ALLSKY_TOA_SW_DWN$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $ALLSKY_TOA_SW_DWN$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $CDD0
-    ## [1] "SB"  "SSE"
+    ## $CDD0$AG_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $CDD0$SB_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $CDD0$SSE_Units
+    ## [1] "Degree C-d"
+    ## 
     ## 
     ## $CDD10
-    ## [1] "SB"  "SSE" "SB" 
+    ## $CDD10$AG_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $CDD10$SB_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $CDD10$SSE_Units
+    ## [1] "Degree C-d"
+    ## 
     ## 
     ## $CDD18_3
-    ## [1] "SB"  "SSE" "SB" 
+    ## $CDD18_3$AG_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $CDD18_3$SB_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $CDD18_3$SSE_Units
+    ## [1] "Degree C-d"
+    ## 
     ## 
     ## $CLD_AMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_00_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_00_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_00_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_00_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_03_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_03_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_03_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_03_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_06_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_06_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_06_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_06_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_09_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_09_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_09_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_09_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_12_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_12_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_12_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_12_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_15_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_15_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_15_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_15_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_18_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_18_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_18_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_18_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLD_AMT_21_GMT
-    ## [1] "SB"  "SSE"
+    ## $CLD_AMT_21_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_21_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $CLD_AMT_21_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $CLRSKY_DIFF
-    ## [1] "SB"
+    ## $CLRSKY_DIFF$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $CLRSKY_DIFF$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $CLRSKY_DIFF$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $CLRSKY_NKT
-    ## [1] "SSE"
+    ## $CLRSKY_NKT$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $CLRSKY_NKT$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $CLRSKY_NKT$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $CLRSKY_SFC_SW_DWN
-    ## [1] "SB"  "SSE"
+    ## $CLRSKY_SFC_SW_DWN$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DIFF
-    ## [1] "SB"  "SSE"
+    ## $DIFF$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $DIFF$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $DIFF$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DIFF_MAX
-    ## [1] "SB"  "SSE"
+    ## $DIFF_MAX$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $DIFF_MAX$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $DIFF_MAX$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DIFF_MIN
-    ## [1] "SB"  "SSE"
+    ## $DIFF_MIN$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $DIFF_MIN$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $DIFF_MIN$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DNR
-    ## [1] "SB"  "SSE"
+    ## $DNR$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $DNR$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $DNR$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DNR_MAX
-    ## [1] "SB"  "SSE"
+    ## $DNR_MAX$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $DNR_MAX$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $DNR_MAX$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DNR_MAX_DIFF
-    ## [1] "SB"  "SSE"
+    ## $DNR_MAX_DIFF$AG_Units
+    ## [1] "%"
+    ## 
+    ## $DNR_MAX_DIFF$SB_Units
+    ## [1] "%"
+    ## 
+    ## $DNR_MAX_DIFF$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $DNR_MIN
-    ## [1] "SB"  "SSE"
+    ## $DNR_MIN$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $DNR_MIN$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $DNR_MIN$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $DNR_MIN_DIFF
-    ## [1] "SB"  "SSE"
+    ## $DNR_MIN_DIFF$AG_Units
+    ## [1] "%"
+    ## 
+    ## $DNR_MIN_DIFF$SB_Units
+    ## [1] "%"
+    ## 
+    ## $DNR_MIN_DIFF$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $EQVLNT_NO_SUN_BLACKDAYS_1
-    ## [1] "SSE"
+    ## $EQVLNT_NO_SUN_BLACKDAYS_1$AG_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_1$SB_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_1$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $EQVLNT_NO_SUN_BLACKDAYS_14
-    ## [1] "SSE"
+    ## $EQVLNT_NO_SUN_BLACKDAYS_14$AG_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_14$SB_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_14$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $EQVLNT_NO_SUN_BLACKDAYS_21
-    ## [1] "SSE"
+    ## $EQVLNT_NO_SUN_BLACKDAYS_21$AG_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_21$SB_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_21$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $EQVLNT_NO_SUN_BLACKDAYS_3
-    ## [1] "SSE"
+    ## $EQVLNT_NO_SUN_BLACKDAYS_3$AG_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_3$SB_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_3$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $EQVLNT_NO_SUN_BLACKDAYS_7
-    ## [1] "SSE"
+    ## $EQVLNT_NO_SUN_BLACKDAYS_7$AG_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_7$SB_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_7$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $EQVLNT_NO_SUN_BLACKDAYS_MONTH
-    ## [1] "SSE"
+    ## $EQVLNT_NO_SUN_BLACKDAYS_MONTH$AG_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_MONTH$SB_Units
+    ## [1] "days"
+    ## 
+    ## $EQVLNT_NO_SUN_BLACKDAYS_MONTH$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $FROST_DAYS
-    ## [1] "SB"  "SSE"
+    ## $FROST_DAYS$AG_Units
+    ## [1] "Days"
+    ## 
+    ## $FROST_DAYS$SB_Units
+    ## [1] "Days"
+    ## 
+    ## $FROST_DAYS$SSE_Units
+    ## [1] "Days"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_00_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_00_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_00_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_00_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_03_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_03_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_03_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_03_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_06_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_06_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_06_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_06_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_09_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_09_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_09_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_09_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_12_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_12_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_12_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_12_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_15_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_15_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_15_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_15_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_18_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_18_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_18_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_18_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_BRKNCLD_10_70_21_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_BRKNCLD_10_70_21_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_21_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_BRKNCLD_10_70_21_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_00_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_00_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_00_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_00_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_03_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_03_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_03_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_03_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_06_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_06_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_06_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_06_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_09_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_09_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_09_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_09_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_12_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_12_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_12_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_12_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_15_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_15_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_15_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_15_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_18_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_18_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_18_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_18_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_CLRSKY_0_10_21_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_CLRSKY_0_10_21_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_21_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_CLRSKY_0_10_21_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_00_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_00_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_00_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_00_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_03_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_03_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_03_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_03_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_06_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_06_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_06_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_06_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_09_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_09_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_09_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_09_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_12_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_12_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_12_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_12_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_15_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_15_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_15_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_15_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_18_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_18_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_18_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_18_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $FRQ_NROVRCST_70_21_GMT
-    ## [1] "SB"  "SSE"
+    ## $FRQ_NROVRCST_70_21_GMT$AG_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_21_GMT$SB_Units
+    ## [1] "%"
+    ## 
+    ## $FRQ_NROVRCST_70_21_GMT$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $HDD0
-    ## [1] "SB"  "SSE"
+    ## $HDD0$AG_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $HDD0$SB_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $HDD0$SSE_Units
+    ## [1] "Degree C-d"
+    ## 
     ## 
     ## $HDD10
-    ## [1] "SB"  "SSE"
+    ## $HDD10$AG_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $HDD10$SB_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $HDD10$SSE_Units
+    ## [1] "Degree C-d"
+    ## 
     ## 
     ## $HDD18_3
-    ## [1] "SB"  "SSE"
+    ## $HDD18_3$AG_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $HDD18_3$SB_Units
+    ## [1] "Degree C-d"
+    ## 
+    ## $HDD18_3$SSE_Units
+    ## [1] "Degree C-d"
+    ## 
     ## 
     ## $INSOL_MIN_CONSEC_1
-    ## [1] "SSE"
+    ## $INSOL_MIN_CONSEC_1$AG_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_1$SB_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_1$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $INSOL_MIN_CONSEC_14
-    ## [1] "SSE"
+    ## $INSOL_MIN_CONSEC_14$AG_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_14$SB_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_14$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $INSOL_MIN_CONSEC_21
-    ## [1] "SSE"
+    ## $INSOL_MIN_CONSEC_21$AG_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_21$SB_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_21$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $INSOL_MIN_CONSEC_3
-    ## [1] "SSE"
+    ## $INSOL_MIN_CONSEC_3$AG_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_3$SB_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_3$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $INSOL_MIN_CONSEC_7
-    ## [1] "SSE"
+    ## $INSOL_MIN_CONSEC_7$AG_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_7$SB_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_7$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $INSOL_MIN_CONSEC_MONTH
-    ## [1] "SSE"
+    ## $INSOL_MIN_CONSEC_MONTH$AG_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_MONTH$SB_Units
+    ## [1] "%"
+    ## 
+    ## $INSOL_MIN_CONSEC_MONTH$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $KT
-    ## [1] "SB"  "SSE"
+    ## $KT$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $KT$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $KT$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $KT_CLEAR
-    ## [1] "SB"  "SSE"
+    ## $KT_CLEAR$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $KT_CLEAR$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $KT_CLEAR$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $MIDDAY_INSOL
-    ## [1] "SSE"
+    ## $MIDDAY_INSOL$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $MIDDAY_INSOL$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $MIDDAY_INSOL$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $NKT
-    ## [1] "SSE"
+    ## $NKT$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $NKT$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $NKT$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $NO_SUN_BLACKDAYS_MAX
-    ## [1] "SSE"
+    ## $NO_SUN_BLACKDAYS_MAX$AG_Units
+    ## [1] "days"
+    ## 
+    ## $NO_SUN_BLACKDAYS_MAX$SB_Units
+    ## [1] "days"
+    ## 
+    ## $NO_SUN_BLACKDAYS_MAX$SSE_Units
+    ## [1] "days"
+    ## 
     ## 
     ## $PHIS
-    ## [1] "AG"  "SB"  "SSE"
+    ## $PHIS$AG_Units
+    ## [1] "m2 m-2"
+    ## 
+    ## $PHIS$SB_Units
+    ## [1] "m2 m-2"
+    ## 
+    ## $PHIS$SSE_Units
+    ## [1] "m2 m-2"
+    ## 
     ## 
     ## $PRECTOT
-    ## [1] "SB"  "SSE" "AG"  "SB"  "SSE"
+    ## $PRECTOT$AG_Units
+    ## [1] "mm day-1"
+    ## 
+    ## $PRECTOT$SB_Units
+    ## [1] "mm day-1"
+    ## 
+    ## $PRECTOT$SSE_Units
+    ## [1] "mm day-1"
+    ## 
     ## 
     ## $PS
-    ## [1] "AG"  "SB"  "SSE"
+    ## $PS$AG_Units
+    ## [1] "kPa"
+    ## 
+    ## $PS$SB_Units
+    ## [1] "kPa"
+    ## 
+    ## $PS$SSE_Units
+    ## [1] "kPa"
+    ## 
     ## 
     ## $PSC
-    ## [1] "SB"  "SSE"
+    ## $PSC$AG_Units
+    ## [1] "kPa"
+    ## 
+    ## $PSC$SB_Units
+    ## [1] "kPa"
+    ## 
+    ## $PSC$SSE_Units
+    ## [1] "kPa"
+    ## 
     ## 
     ## $QV2M
-    ## [1] "SB"  "SSE"
+    ## $QV2M$AG_Units
+    ## [1] "kg kg-1"
+    ## 
+    ## $QV2M$SB_Units
+    ## [1] "kg kg-1"
+    ## 
+    ## $QV2M$SSE_Units
+    ## [1] "kg kg-1"
+    ## 
     ## 
     ## $RH2M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $RH2M$AG_Units
+    ## [1] "%"
+    ## 
+    ## $RH2M$SB_Units
+    ## [1] "%"
+    ## 
+    ## $RH2M$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $SG_DAY_COZ_ZEN_AVG
-    ## [1] "SB"  "SSE"
+    ## $SG_DAY_COZ_ZEN_AVG$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $SG_DAY_COZ_ZEN_AVG$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $SG_DAY_COZ_ZEN_AVG$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $SG_DAY_HOUR_AVG
-    ## [1] "SB"  "SSE"
+    ## $SG_DAY_HOUR_AVG$AG_Units
+    ## [1] "hours"
+    ## 
+    ## $SG_DAY_HOUR_AVG$SB_Units
+    ## [1] "hours"
+    ## 
+    ## $SG_DAY_HOUR_AVG$SSE_Units
+    ## [1] "hours"
+    ## 
     ## 
     ## $SG_DEC_AVG
-    ## [1] "SB"  "SSE"
+    ## $SG_DEC_AVG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_DEC_AVG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_DEC_AVG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SG_HR_AZM_ANG_AVG
-    ## [1] "SB"  "SSE"
+    ## $SG_HR_AZM_ANG_AVG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_HR_AZM_ANG_AVG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_HR_AZM_ANG_AVG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SG_HR_HRZ_ANG_AVG
-    ## [1] "SB"  "SSE"
+    ## $SG_HR_HRZ_ANG_AVG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_HR_HRZ_ANG_AVG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_HR_HRZ_ANG_AVG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SG_HR_SET_ANG
-    ## [1] "SB"  "SSE"
+    ## $SG_HR_SET_ANG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_HR_SET_ANG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_HR_SET_ANG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SG_MAX_HRZ_ANG
-    ## [1] "SB"  "SSE"
+    ## $SG_MAX_HRZ_ANG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_MAX_HRZ_ANG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SG_MAX_HRZ_ANG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SG_MID_COZ_ZEN_ANG
-    ## [1] "SB"  "SSE"
+    ## $SG_MID_COZ_ZEN_ANG$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $SG_MID_COZ_ZEN_ANG$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $SG_MID_COZ_ZEN_ANG$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $SG_NOON
-    ## [1] "SB"  "SSE"
+    ## $SG_NOON$AG_Units
+    ## [1] "GMT Time"
+    ## 
+    ## $SG_NOON$SB_Units
+    ## [1] "GMT Time"
+    ## 
+    ## $SG_NOON$SSE_Units
+    ## [1] "GMT Time"
+    ## 
     ## 
     ## $SI_EF_MAX_OPTIMAL
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MAX_OPTIMAL$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $SI_EF_MAX_OPTIMAL_ANG
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MAX_OPTIMAL_ANG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL_ANG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL_ANG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SI_EF_MAX_TILTED_ANG_ORT
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MAX_TILTED_ANG_ORT$AG_Units
+    ## [1] "N/S Orientation"
+    ## 
+    ## $SI_EF_MAX_TILTED_ANG_ORT$SB_Units
+    ## [1] "N/S Orientation"
+    ## 
+    ## $SI_EF_MAX_TILTED_ANG_ORT$SSE_Units
+    ## [1] "N/S Orientation"
+    ## 
     ## 
     ## $SI_EF_MAX_TILTED_SURFACE
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MAX_TILTED_SURFACE$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $SI_EF_MIN_OPTIMAL
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MIN_OPTIMAL$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $SI_EF_MIN_OPTIMAL_ANG
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MIN_OPTIMAL_ANG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL_ANG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL_ANG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SI_EF_MIN_TILTED_ANG_ORT
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MIN_TILTED_ANG_ORT$AG_Units
+    ## [1] "N/S Orientation"
+    ## 
+    ## $SI_EF_MIN_TILTED_ANG_ORT$SB_Units
+    ## [1] "N/S Orientation"
+    ## 
+    ## $SI_EF_MIN_TILTED_ANG_ORT$SSE_Units
+    ## [1] "N/S Orientation"
+    ## 
     ## 
     ## $SI_EF_MIN_TILTED_SURFACE
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_MIN_TILTED_SURFACE$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $SI_EF_OPTIMAL
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_OPTIMAL$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $SI_EF_OPTIMAL$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $SI_EF_OPTIMAL$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $SI_EF_OPTIMAL_ANG
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_OPTIMAL_ANG$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SI_EF_OPTIMAL_ANG$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $SI_EF_OPTIMAL_ANG$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $SI_EF_TILTED_ANG_ORT
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_TILTED_ANG_ORT$AG_Units
+    ## [1] "N/S Orientation"
+    ## 
+    ## $SI_EF_TILTED_ANG_ORT$SB_Units
+    ## [1] "N/S Orientation"
+    ## 
+    ## $SI_EF_TILTED_ANG_ORT$SSE_Units
+    ## [1] "N/S Orientation"
+    ## 
     ## 
     ## $SI_EF_TILTED_SURFACE
-    ## [1] "SB"  "SSE"
+    ## $SI_EF_TILTED_SURFACE$AG_Units
+    ## [1] "MJ/m^2/day"
+    ## 
+    ## $SI_EF_TILTED_SURFACE$SB_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
+    ## $SI_EF_TILTED_SURFACE$SSE_Units
+    ## [1] "kW-hr/m^2/day"
+    ## 
     ## 
     ## $SR
-    ## [1] "AG"  "SB"  "SSE"
+    ## $SR$AG_Units
+    ## [1] "%"
+    ## 
+    ## $SR$SB_Units
+    ## [1] "%"
+    ## 
+    ## $SR$SSE_Units
+    ## [1] "%"
+    ## 
     ## 
     ## $SRF_ALB
-    ## [1] "SB"  "SSE"
+    ## $SRF_ALB$AG_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $SRF_ALB$SB_Units
+    ## [1] "dimensionless"
+    ## 
+    ## $SRF_ALB$SSE_Units
+    ## [1] "dimensionless"
+    ## 
     ## 
     ## $T10M
-    ## [1] "SB"  "SSE"
+    ## $T10M$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T10M$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T10M$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T10M_MAX
-    ## [1] "SB"  "SSE"
+    ## $T10M_MAX$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T10M_MAX$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T10M_MAX$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T10M_MIN
-    ## [1] "SB"  "SSE"
+    ## $T10M_MIN$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T10M_MIN$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T10M_MIN$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T10M_RANGE
-    ## [1] "SB"  "SSE"
+    ## $T10M_RANGE$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T10M_RANGE$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T10M_RANGE$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T2M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $T2M$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T2M$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T2M$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T2MDEW
-    ## [1] "AG"  "SB"  "SSE"
+    ## $T2MDEW$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T2MDEW$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T2MDEW$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T2MWET
-    ## [1] "AG"  "SB"  "SSE"
+    ## $T2MWET$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T2MWET$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T2MWET$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T2M_MAX
-    ## [1] "AG"  "SB"  "SSE"
+    ## $T2M_MAX$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T2M_MAX$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T2M_MAX$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T2M_MIN
-    ## [1] "AG"  "SB"  "SSE"
+    ## $T2M_MIN$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T2M_MIN$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T2M_MIN$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T2M_RANGE
-    ## [1] "SB"  "SSE"
+    ## $T2M_RANGE$AG_Units
+    ## [1] "C"
+    ## 
+    ## $T2M_RANGE$SB_Units
+    ## [1] "C"
+    ## 
+    ## $T2M_RANGE$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $TM_ZONES
-    ## [1] "SB"  "SSE"
+    ## $TM_ZONES$AG_Units
+    ## [1] "Moisture Zone"
+    ## 
+    ## $TM_ZONES$SB_Units
+    ## [1] "Moisture Zone"
+    ## 
+    ## $TM_ZONES$SSE_Units
+    ## [1] "Moisture Zone"
+    ## 
     ## 
     ## $TQV
-    ## [1] "SSE"
+    ## $TQV$AG_Units
+    ## [1] "cm"
+    ## 
+    ## $TQV$SB_Units
+    ## [1] "cm"
+    ## 
+    ## $TQV$SSE_Units
+    ## [1] "cm"
+    ## 
     ## 
     ## $TS
-    ## [1] "AG"  "SB"  "SSE"
+    ## $TS$AG_Units
+    ## [1] "C"
+    ## 
+    ## $TS$SB_Units
+    ## [1] "C"
+    ## 
+    ## $TS$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $TS_AMP
-    ## [1] "SB"  "SSE"
+    ## $TS_AMP$AG_Units
+    ## [1] "C"
+    ## 
+    ## $TS_AMP$SB_Units
+    ## [1] "C"
+    ## 
+    ## $TS_AMP$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $TS_MAX
-    ## [1] "SB"  "SSE"
+    ## $TS_MAX$AG_Units
+    ## [1] "C"
+    ## 
+    ## $TS_MAX$SB_Units
+    ## [1] "C"
+    ## 
+    ## $TS_MAX$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $TS_MIN
-    ## [1] "SB"  "SSE"
+    ## $TS_MIN$AG_Units
+    ## [1] "C"
+    ## 
+    ## $TS_MIN$SB_Units
+    ## [1] "C"
+    ## 
+    ## $TS_MIN$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $TS_RANGE
-    ## [1] "SB"  "SSE"
+    ## $TS_RANGE$AG_Units
+    ## [1] "C"
+    ## 
+    ## $TS_RANGE$SB_Units
+    ## [1] "C"
+    ## 
+    ## $TS_RANGE$SSE_Units
+    ## [1] "C"
+    ## 
     ## 
     ## $T_ZONES
-    ## [1] "SB"  "SSE"
+    ## $T_ZONES$AG_Units
+    ## [1] "Zone"
+    ## 
+    ## $T_ZONES$SB_Units
+    ## [1] "Zone"
+    ## 
+    ## $T_ZONES$SSE_Units
+    ## [1] "Zone"
+    ## 
     ## 
     ## $U10M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $U10M$AG_Units
+    ## [1] "m s-1"
+    ## 
+    ## $U10M$SB_Units
+    ## [1] "m s-1"
+    ## 
+    ## $U10M$SSE_Units
+    ## [1] "m s-1"
+    ## 
     ## 
     ## $V10M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $V10M$AG_Units
+    ## [1] "m s-1"
+    ## 
+    ## $V10M$SB_Units
+    ## [1] "m s-1"
+    ## 
+    ## $V10M$SSE_Units
+    ## [1] "m s-1"
+    ## 
     ## 
     ## $WD10M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $WD10M$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $WD10M$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $WD10M$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $WD2M
-    ## [1] "SB"  "SSE"
+    ## $WD2M$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $WD2M$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $WD2M$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $WD50M
-    ## [1] "AG"  "SB"  "SSE" "SB"  "SSE"
+    ## $WD50M$AG_Units
+    ## [1] "Degrees"
+    ## 
+    ## $WD50M$SB_Units
+    ## [1] "Degrees"
+    ## 
+    ## $WD50M$SSE_Units
+    ## [1] "Degrees"
+    ## 
     ## 
     ## $WS10M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $WS10M$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS10M_MAX
-    ## [1] "SB"  "SSE"
+    ## $WS10M_MAX$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M_MAX$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M_MAX$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS10M_MIN
-    ## [1] "SB"  "SSE"
+    ## $WS10M_MIN$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M_MIN$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M_MIN$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS10M_RANGE
-    ## [1] "SB"  "SSE"
+    ## $WS10M_RANGE$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M_RANGE$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS10M_RANGE$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS2M
-    ## [1] "AG"  "SB"  "SSE"
+    ## $WS2M$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS2M_MAX
-    ## [1] "AG"  "SB"  "SSE"
+    ## $WS2M_MAX$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M_MAX$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M_MAX$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS2M_MIN
-    ## [1] "AG"  "SB"  "SSE"
+    ## $WS2M_MIN$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M_MIN$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M_MIN$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS2M_RANGE
-    ## [1] "AG"  "SB"  "SSE"
+    ## $WS2M_RANGE$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M_RANGE$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS2M_RANGE$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS50M
-    ## [1] "SB"  "SSE"
+    ## $WS50M$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS50M_MAX
-    ## [1] "SB"  "SSE"
+    ## $WS50M_MAX$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M_MAX$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M_MAX$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS50M_MIN
-    ## [1] "SB"  "SSE"
+    ## $WS50M_MIN$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M_MIN$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M_MIN$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WS50M_RANGE
-    ## [1] "SB"  "SSE"
+    ## $WS50M_RANGE$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M_RANGE$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WS50M_RANGE$SSE_Units
+    ## [1] "m/s"
+    ## 
     ## 
     ## $WSC
-    ## [1] "AG"  "SB"  "SSE" "SB"  "SSE"
+    ## $WSC$AG_Units
+    ## [1] "m/s"
+    ## 
+    ## $WSC$SB_Units
+    ## [1] "m/s"
+    ## 
+    ## $WSC$SSE_Units
+    ## [1] "m/s"
 
 ## Save list for use in `nasapower` package
 
@@ -984,14 +2133,14 @@ sessioninfo::session_info()
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.5.2 (2018-12-20)
-    ##  os       macOS Mojave 10.14.2        
+    ##  os       macOS Mojave 10.14.3        
     ##  system   x86_64, darwin18.2.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-02-02                  
+    ##  date     2019-02-16                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -1002,7 +2151,7 @@ sessioninfo::session_info()
     ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.2)
     ##  curl          3.3     2019-01-10 [1] CRAN (R 3.5.2)
     ##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.2)
-    ##  evaluate      0.12    2018-10-09 [1] CRAN (R 3.5.2)
+    ##  evaluate      0.13    2019-02-12 [1] CRAN (R 3.5.2)
     ##  fs            1.2.6   2018-08-23 [1] CRAN (R 3.5.2)
     ##  glue          1.3.0   2018-07-17 [1] CRAN (R 3.5.2)
     ##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.5.2)
@@ -1015,8 +2164,8 @@ sessioninfo::session_info()
     ##  rmarkdown     1.11    2018-12-08 [1] CRAN (R 3.5.2)
     ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 3.5.2)
     ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.5.2)
-    ##  stringi       1.2.4   2018-07-20 [1] CRAN (R 3.5.2)
-    ##  stringr       1.3.1   2018-05-10 [1] CRAN (R 3.5.2)
+    ##  stringi       1.3.1   2019-02-13 [1] CRAN (R 3.5.2)
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.5.2)
     ##  usethis       1.4.0   2018-08-14 [1] CRAN (R 3.5.2)
     ##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.5.2)
     ##  xfun          0.4     2018-10-23 [1] CRAN (R 3.5.2)
