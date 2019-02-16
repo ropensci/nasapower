@@ -34,6 +34,7 @@ Imports:
     tibble
 RoxygenNote: 6.1.1
 Encoding: UTF-8
+Language: en-AU
 NeedsCompilation: no
 Repository: CRAN
 LazyData: TRUE
