@@ -1,16 +1,14 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
   "identifier": "nasapower",
   "description": "Client for 'NASA' 'POWER' global meteorology, surface solar\n    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy\n    Resource) data are freely available global meteorology and surface solar\n    energy climatology data for download with a resolution of 1/2 by 1/2 arc\n    degree longitude and latitude and are funded through the 'NASA' Earth\n    Science Directorate Applied Science Program.  For more on the data\n    themselves, a web-based data viewer and web access, please see\n    <https://power.larc.nasa.gov/>.",
   "name": "nasapower: NASA POWER API Client",
   "codeRepository": "https://github.com/ropensci/nasapower",
+  "relatedLink": ["https://ropensci.github.io/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -18,6 +16,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.5.2 (2018-12-20)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -215,16 +219,18 @@
     }
   ],
   "applicationCategory": "Tools",
-  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats"],
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "fileSize": "214.086KB",
-  "contIntegration": [
-    "https://travis-ci.org/adamhsparks/nasapower",
-    "https://ci.appveyor.com/project/adamhsparks/nasapower",
-    "https://codecov.io/github/adamhsparks/nasapower?branch=master"
-  ],
-  "developmentStatus": "http://www.repostatus.org/#wip",
+  "fileSize": "214.097KB",
+  "contIntegration": ["https://circleci.com/gh/ropensci/nasapower/tree/master", "https://ci.appveyor.com/project/adamhsparks/nasapower", "https://codecov.io/gh/ropensci/nasapower"],
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/onboarding/issues/155",
+    "provider": "http://ropensci.org"
+  },
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -264,21 +270,5 @@
       "name": "{nasapower}: NASA-POWER Data from R",
       "url": "https://ropensci.github.io/nasapower/"
     }
-  ],
-  "isPartOf": "https://ropensci.org",
-  "review": {
-    "@type": "Review",
-    "url": "https://github.com/ropensci/onboarding/issues/155",
-    "provider": "http://ropensci.org"
-  },
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Comprehensive R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
-  "relatedLink": [
-    "https://ropensci.github.io/nasapower/",
-    "https://CRAN.R-project.org/package=nasapower"
   ]
 }
