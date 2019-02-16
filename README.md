@@ -56,8 +56,8 @@ if (!require(remotes)) {
   install.packages("remotes")
 }
 
-install_github("ropensci/nasapower",
-               build_vignettes = TRUE)
+remotes::install_github("ropensci/nasapower",
+                       build_vignettes = TRUE)
 ```
 
 ### Example
