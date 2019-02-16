@@ -1,4 +1,9 @@
-# nasapower 1.0.6.9000
+# nasapower 1.0.7
+
+## Minor changes
+
+- Removes internal check for data - community agreement, as all data is
+available for all communities, only the units change
 
 # nasapower 1.0.6
 
