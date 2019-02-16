@@ -305,5 +305,5 @@ T2M_brick <- rasterFromXYZ(subset(climatology_ag, PARAMETER == "T2M")[-3])
 
 <https://power.larc.nasa.gov>
 
-<https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf>
+<https://power.larc.nasa.gov/documents/POWER_Data_v9_methodology.pdf>
 

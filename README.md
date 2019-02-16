@@ -134,6 +134,6 @@ Team.
 
 <https://power.larc.nasa.gov>
 
-<https://power.larc.nasa.gov/documents/POWER_Data_v8_methodology.pdf>
+<https://power.larc.nasa.gov/documents/POWER_Data_v9_methodology.pdf>
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
