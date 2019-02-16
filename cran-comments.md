@@ -14,6 +14,8 @@
     * Removes unecessary checks of user input that resulted in data being
     unavailable to the user when requested. This is a permanent fix for the
     WS2M issue reported in previous release.
+    
+    * Update links to latest documentation provided by the POWER team
 
 ## Reverse dependencies
 

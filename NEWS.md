@@ -5,6 +5,8 @@
 - Removes internal check for data - community agreement, as all data is
 available for all communities, only the units change
 
+- Update links to latest documentation provided by the POWER team
+
 # nasapower 1.0.6
 
 ## Minor changes
