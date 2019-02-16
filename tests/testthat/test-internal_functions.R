@@ -128,12 +128,7 @@ test_that(".check_community() properly reports errors", {
     "RH2M"
   )
   expect_error(.check_community(community, pars))
-
-  community <- "AG"
-  pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
-  expect_error(.check_community(community, pars))
-}
-)
+})
 
 # lonlat checks ----------------------------------------------------------------
 context("Test that .check_lonlat() handles lat lon strings correctly")
