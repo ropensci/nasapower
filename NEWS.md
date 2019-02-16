@@ -114,7 +114,7 @@ in 'DSSAT' crop modelling
 
 - The `get_cell` and `get_region` functions are deprecated in favour of
 `get_power()`. The new POWER interface allows for the specification of single
-points or regional areas. Global coverage may be queryed for Climatology. See
+points or regional areas. Global coverage may be queried for Climatology. See
 the help for `?get_power()` for more details.
 
 --------------------------------------------------------------------------------
