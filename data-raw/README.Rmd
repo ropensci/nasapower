@@ -62,18 +62,6 @@ be more instructive to users.
 purrr::map(parameters, "standard_name")
 ```
 
-The following list has the format:
-```
-## $PARAMETER_NAME
-## [1] AG_Units
-## [2] SB_Units
-## [3] SSE_Units
-```
-
-```{r view-list-units}
-purrr::map(parameters, `[`, c("AG_Units", "SB_Units", "SSE_Units"))
-```
-
 ## Save list for use in `nasapower` package
 
 Using `usethis` save the list as an R data object for use in the
