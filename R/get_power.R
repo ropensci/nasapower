@@ -16,8 +16,8 @@
 #'   values are \dQuote{DAILY}, \dQuote{INTERANNUAL} and \dQuote{CLIMATOLOGY}.
 #'   See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'   entered as x, y coordinates.  Not used when \code{temporal_average} is set
-#'   to \dQuote{CLIMATOLOGY}.  See argument details for more.
+#'   entered as x, y coordinates or \dQuote{GLOBAL} for global coverage (only
+#'   used for \dQuote{CLIMATOLOGY}).  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
 #'   Not used when\cr \code{temporal_average} is set to \dQuote{CLIMATOLOGY}.
@@ -63,6 +63,10 @@
 #'  given region, \emph{e.g.}, a bounding box for the southwestern corner of
 #'  Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. *Maximum area
 #'  processed is 4.5 x 4.5 degrees (100 points).}
+#'
+#'  \item{For global coverage}{To get global coverage for CLIMATOLOGY, supply
+#'  \dQuote{GLOBAL} while also specifying \dQuote{CLIMATOLOGY} for the
+#'  \code{temporal_average}.}
 #' }
 #'
 #' @section Argument details for \code{dates}: If one date only is provided, it
@@ -127,7 +131,7 @@
 get_power <- function(community,
                       pars,
                       temporal_average,
-                      lonlat = NULL,
+                      lonlat,
                       dates = NULL) {
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
@@ -144,37 +148,49 @@ get_power <- function(community,
   if (is.character(pars)) {
     pars <- toupper(pars)
   }
-  if (is.character(community)) {
-    community <- toupper(community)
+  if (is.character(lonlat)) {
+    lonlat <- toupper(lonlat)
+    if (lonlat == "GLOBAL" & temporal_average != "CLIMATOLOGY") {
+      stop(call. = FALSE,
+           "You have asked for 'GLOBAL' data. However, this is only available",
+           "for 'CLIMATOLOGY'.")
+    } else if (lonlat != "GLOBAL") {
+      stop(call. = FALSE,
+           "You have entered an invalid value for `lonlat`. Valid values are",
+           "`GLOBAL` with `CLIMATOLOGY` or a string of lon and lat values.")
+    }
+    if (is.character(community)) {
+      community <- toupper(community)
+    }
   }
 
-  # user input checks and formatting -------------------------------------------
-  # see internal_functions.R for these functions
+    # user input checks and formatting -------------------------------------------
+    # see internal_functions.R for these functions
 
-  .check_community(community, pars)
+    .check_community(community, pars)
 
-  dates <- .check_dates(
-    dates,
-    lonlat,
-    temporal_average
-  )
-  pars <- .check_pars(
-    pars,
-    temporal_average,
-    lonlat
-  )
-  lonlat_identifier <- .check_lonlat(
-    lonlat,
-    pars,
-    temporal_average
-  )
+    dates <- .check_dates(
+      dates,
+      lonlat,
+      temporal_average
+    )
+    pars <- .check_pars(
+      pars,
+      temporal_average,
+      lonlat
+    )
+    lonlat_identifier <- .check_lonlat(
+      lonlat,
+      pars
+    )
 
-  # submit query ---------------------------------------------------------------
-  # see internal_functions.R for this function
-  NASA <- .power_query(community,
-    lonlat_identifier,
-    pars,
-    dates,
-    outputList = "CSV"
-  )
-}
+    # submit query ---------------------------------------------------------------
+    # see internal_functions.R for this function
+    NASA <- .power_query(community,
+                         lonlat_identifier,
+                         pars,
+                         dates,
+                         outputList = "CSV"
+    )
+    return(NASA)
+  }
