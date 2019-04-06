@@ -208,17 +208,10 @@
       )
     }
 
-    # calculate how many lines to skip in the header to read the CSV from server
-    if (temporal_average == "CLIMATOLOGY") {
-      skip_lines <- length(pars) + 7
-    } else {
-      skip_lines <- length(pars) + 9
-    }
-
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
-    pars <- list(pars, temporal_average, skip_lines)
-    names(pars) <- c("pars", "temporal_average", "skip_lines")
+    pars <- list(pars, temporal_average)
+    names(pars) <- c("pars", "temporal_average")
     return(pars)
   }
 
@@ -325,6 +318,17 @@
       lonlat_identifier <- list(lon, lat, identifier)
       names(lonlat_identifier) <- c("lon", "lat", "identifier")
     }
+
+    # calculate how many lines to skip in the header to read the CSV from server
+    if (lonlat_identifier$identifier == "Global") {
+      lonlat_identifier$skip_lines <- length(pars) + 7
+    } else if (temporal_average == "CLIMATOLOGY" &
+               lonlat_identifier$identifier != "Global") {
+      lonlat_identifier$skip_lines <- length(pars) + 8
+    } else {
+      lonlat_identifier$skip_lines <- length(pars) + 9
+    }
+    lonlat_identifier
     return(lonlat_identifier)
   }
 
@@ -432,21 +436,27 @@
                           quiet = TRUE
       )
 
-      meta <- readLines(
-        raw_power_data,
-        pars$skip_lines
+      power_data <- readLines(
+        raw_power_data
       )
-      meta <- meta[-c(1, pars$skip_lines)] # remove "HEADER ..." lines
+
+      # create meta ojbect
+      meta <- power_data[c(grep("-BEGIN HEADER-",
+                                power_data):grep("-END HEADER-",
+                                                 power_data))]
+      # strip BEGIN/END HEADER lines
+      meta <- meta[-c(1, max(length(meta)))]
+      # replace missing values with NA
       meta <- gsub(
-        pattern = "-99",
+        pattern = "-999",
         replacement = "NA",
         x = meta
       )
 
       power_data <- readr::read_csv(raw_power_data,
                                     col_types = readr::cols(),
-                                    na = "-99",
-                                    skip = pars$skip_lines
+                                    na = "-999",
+                                    skip = length(meta) + 2
       )
 
       # put lon before lat (x, y format)
