@@ -4,19 +4,23 @@ context("Test that create_met() creates an APSIM .met file")
 
 test_that("create_met() creates a .met file for APSIM use", {
   skip_on_cran()
-    power_query <- create_met(
+    create_met(
       lonlat = c(151.81, -27.48),
       dates = c("1985-01-01", "1985-12-31"),
       dsn = tempdir(),
       file_out = "APSIM"
     )
 
-    met <- readLines(file.path(tempdir(), "APSIM.met"))
     expect_true(any(grepl("APSIM.met", list.files(tempdir()))))
     expect_equal(length(met), 377)
     expect_equal(nchar(met)[[1]], 21)
     expect_equal(nchar(met)[[14]], 28)
     expect_equal(nchar(met)[[311]], 31)
+    met <- readLines(file.path(tempdir(), "APSIM.met"))
+    expect_true(met[4] == "Latitude = -27.48")
+    expect_true(met[6] == "Longitude = 151.81")
+    expect_true(met[8] == "tav = 13.975064516129")
+    expect_true(met[9] == "amp = 18.6052245903738")
 })
 
 
