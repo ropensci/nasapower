@@ -1,5 +1,9 @@
 # nasapower 1.0.7.9000
 
+## Bug fixes
+
+- Fixes bug where CLIMATE could not be requested for a single point
+
 # nasapower 1.0.7
 
 ## Minor changes
