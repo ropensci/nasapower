@@ -125,6 +125,7 @@ ag_d
 # Fetch global AG climatology for temperature
 ag_c <- get_power(community = "AG",
    pars = "T2M",
+   lonlat = "GLOBAL",
    temporal_average = "CLIMATOLOGY")
 
 ag_c
