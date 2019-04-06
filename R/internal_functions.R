@@ -362,7 +362,7 @@
   status <- client$get()
   status$raise_for_status() # nocov end
 
-  if (lonlat_identifier$identifier == "SinglePoint") {
+  if (lonlat_identifier$identifier == "SinglePoint" & !is.null(dates)) {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -378,13 +378,40 @@
     )
   }
 
-  if (lonlat_identifier$identifier == "Regional") {
+  if (lonlat_identifier$identifier == "SinglePoint" & is.null(dates)) {
+    query_list <- list(
+      request = "execute",
+      identifier = lonlat_identifier$identifier,
+      parameters = I(pars$pars),
+      userCommunity = community,
+      tempAverage = pars$temporal_average,
+      outputList = outputList,
+      lon = lonlat_identifier$lon,
+      lat = lonlat_identifier$lat,
+      user = user_agent
+    )
+  }
+
+  if (lonlat_identifier$identifier == "Regional" & !is.null(dates)) {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
       startDate = dates[[1]],
       endDate = dates[[2]],
+      userCommunity = community,
+      tempAverage = pars$temporal_average,
+      bbox = I(lonlat_identifier$bbox),
+      outputList = outputList,
+      user = user_agent
+    )
+  }
+
+  if (lonlat_identifier$identifier == "Regional" & is.null(dates)) {
+    query_list <- list(
+      request = "execute",
+      identifier = lonlat_identifier$identifier,
+      parameters = I(pars$pars),
       userCommunity = community,
       tempAverage = pars$temporal_average,
       bbox = I(lonlat_identifier$bbox),
