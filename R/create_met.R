@@ -136,8 +136,8 @@ create_met <- function(lonlat,
     suppressMessages(
       APSIM::prepareMet(
         power_data,
-        lat = power_data[2, 1],
-        lon = power_data[1, 1],
+        lat = lonlat[2],
+        lon = lonlat[1],
         newNames = met_names,
         units = met_units
       )
