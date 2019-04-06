@@ -227,7 +227,7 @@
 #'
 #' @noRd
 .check_lonlat <-
-  function(lonlat, pars, temporal_average) {
+  function(lonlat, pars) {
     bbox <- NULL
     if (is.numeric(lonlat) & length(lonlat) == 2) {
       if (lonlat[1] < -180 | lonlat[1] > 180) {
@@ -299,7 +299,7 @@
                     lonlat[3],
                     sep = ","
       )
-    } else if (temporal_average == "CLIMATOLOGY") {
+    } else if (lonlat == "GLOBAL") {
       identifier <- "Global"
     } else {
       stop(
@@ -318,17 +318,6 @@
       lonlat_identifier <- list(lon, lat, identifier)
       names(lonlat_identifier) <- c("lon", "lat", "identifier")
     }
-
-    # calculate how many lines to skip in the header to read the CSV from server
-    if (lonlat_identifier$identifier == "Global") {
-      lonlat_identifier$skip_lines <- length(pars) + 7
-    } else if (temporal_average == "CLIMATOLOGY" &
-               lonlat_identifier$identifier != "Global") {
-      lonlat_identifier$skip_lines <- length(pars) + 8
-    } else {
-      lonlat_identifier$skip_lines <- length(pars) + 9
-    }
-    lonlat_identifier
     return(lonlat_identifier)
   }
 

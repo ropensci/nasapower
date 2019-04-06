@@ -80,7 +80,8 @@ test_that("get_power returns global AG data for climatology", {
     power_query <- get_power(
       community = "AG",
       pars = "T2M",
-      temporal_average = "CLIMATOLOGY"
+      temporal_average = "CLIMATOLOGY",
+      lonlat = "GLOBAL"
     )
 
     expect_equal(nrow(power_query), 259200)

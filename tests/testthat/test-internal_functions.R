@@ -138,59 +138,48 @@ test_that(".check_lonlat() properly reports errors", {
 
   # out-of-scope latitude for singlePoint
   lonlat <- c(-27.5, 151.5)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # out-of-scope longitude for singlePoint
   lonlat <- c(0, 181)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # non-numeric values for singlePoint
   lonlat <- c("x", 181)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # out-of-scope latitude for regional
   lonlat <- c(-90, 90, -181, 181)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # out-of-scope longitude for regional
   lonlat <- c(-91, 91, -180, 180)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # incorrect orders for regional
   lonlat <- c(-91, 91, -180, 180)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # non-numeric values for regional
   lonlat <- c(112.91972, -55.11694, "x", 159.256088)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # incorrect order of values requested for regional
   lonlat <- c(-90, 90, 180, -180)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   lonlat <- c(90, -90, -180, 180)
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 
   # invalid lonlat value
   lonlat <- "x"
-  temporal_average <- "DAILY"
-  expect_error(.check_lonlat(lonlat, pars, temporal_average))
+  expect_error(.check_lonlat(lonlat, pars))
 })
 
 test_that(".check_lonlat() handles single point properly", {
   temporal_average <- "DAILY"
   test <- .check_lonlat(lonlat = c(-179.5, -89.5),
-                        pars,
-                        temporal_average)
+                        pars)
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
   expect_equal(test$identifier, "SinglePoint")
@@ -199,8 +188,7 @@ test_that(".check_lonlat() handles single point properly", {
 test_that(".check_lonlat() checks validity of single lon values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(179.5, 91),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nPlease check your latitude, `91`,*"
   )
 })
@@ -208,8 +196,7 @@ test_that(".check_lonlat() checks validity of single lon values", {
 test_that(".check_lonlat() checks validity of single lat values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(182, 90),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "Please check your longitude, `182`,*"
   )
 })
@@ -219,8 +206,7 @@ test_that(".check_lonlat() checks validity of single lat values", {
 test_that(".check_lonlat() handles bboxes that are too large", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "Please provide correct bounding box values*"
   )
 })
@@ -228,8 +214,7 @@ test_that(".check_lonlat() handles bboxes that are too large", {
 test_that(".check_lonlat() checks order of the latitude values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 179.5, -89.5),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nThe first `lat` value must be the minimum value.\n"
   )
 })
@@ -237,8 +222,7 @@ test_that(".check_lonlat() checks order of the latitude values", {
 test_that(".check_lonlat() checks order of the longitude values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(179.5, -89.5, -179.5, 89.5),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nThe first `lon` value must be the minimum value.\n"
   )
 })
@@ -246,8 +230,7 @@ test_that(".check_lonlat() checks order of the longitude values", {
 test_that(".check_lonlat() checks validity of bbox latmin values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(-179.5, 91, -179.5, 90),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nPlease check your latitude, `91`, `90`*"
   )
 })
@@ -255,8 +238,7 @@ test_that(".check_lonlat() checks validity of bbox latmin values", {
 test_that(".check_lonlat() checks validity of bbox latmax values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(-179.5, 90, -179.5, 93),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nPlease check your latitude, `90`, `93`,*"
   )
 })
@@ -264,8 +246,7 @@ test_that(".check_lonlat() checks validity of bbox latmax values", {
 test_that(".check_lonlat() checks validity of bbox lonmin values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(-181.5, 89.5, -179.5, 89.5),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nPlease check your longitude, `-181.5`, `-179.5`*"
   )
 })
@@ -273,8 +254,7 @@ test_that(".check_lonlat() checks validity of bbox lonmin values", {
 test_that(".check_lonlat() checks validity of bbox lonmax values", {
   temporal_average <- "DAILY"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 181, 89.5),
-                             pars,
-                             temporal_average),
+                             pars),
     regexp = "\nPlease check your longitude, `-179.5`, `181`,*"
   )
 })
@@ -289,8 +269,7 @@ test_that(".check_lonlat() returns message with proper identifier when valid
       -179.5,
       89.5
     ),
-    pars,
-    temporal_average
+    pars
   )
   expect_equal(test$bbox, "88.5,-179.5,89.5,-179.5")
   expect_equal(test$identifier, "Regional")
@@ -358,11 +337,11 @@ test_that("pars are returned as a comma separated string with no spaces", {
     temporal_average,
     lonlat
   )
-  expect_named(pars, c("pars", "temporal_average", "skip_lines"))
+  expect_named(pars, c("pars", "temporal_average"))
   expect_equal(nchar(pars$pars), 42)
   expect_equal(pars$pars, "ALLSKY_SFC_SW_DWN_03_GMT,ALLSKY_SFC_LW_DWN")
   expect_equal(pars$temporal_average, "CLIMATOLOGY")
-  expect_length(pars, 3)
+  expect_length(pars, 2)
 })
 
 test_that("Only 3 pars are allowed when `temporal_average` = CLIMATOLOGY", {
