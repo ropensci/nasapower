@@ -4,6 +4,11 @@
 
 - Fixes bug where CLIMATE could not be requested for a single point
 
+## Minor changes
+
+- Change how `GLOBAL` values are requested. This is now specified in `lonlat`
+in conjunction with `temporal_average = CLIMATOLOGY`.
+
 # nasapower 1.0.7
 
 ## Minor changes
