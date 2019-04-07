@@ -88,6 +88,10 @@ create_icasa <- function(lonlat,
     outputList = "ICASA"
   )
 
+  # dummy `pars` list for .send_query arguments
+  pars <- vector(mode = "list", length = 1)
+  names(pars) <- "temporal_average"
+
   out <- .send_query(.query_list = query_list, .pars = pars)
   writeLines(out, icasa[[1]])
 }
