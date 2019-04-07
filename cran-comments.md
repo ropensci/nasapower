@@ -1,8 +1,8 @@
-# nasapower v1.0.7
+# nasapower v1.1.0
 
 ## Test environments
-* local macOS 10.14.2 install, R 3.5.2
-* local Ubuntu 18.04, R 3.5.2
+* local macOS 10.14.2 install, R 3.5.3
+* local Ubuntu 18.04, R 3.5.3
 * win-builder (devel, release and oldrel)
 
 ## R CMD check results
@@ -11,11 +11,19 @@
 
   ## Bug fixes
   
-    * Removes unecessary checks of user input that resulted in data being
-    unavailable to the user when requested. This is a permanent fix for the
-    WS2M issue reported in previous release.
+    - Fixes bug where CLIMATE could not be requested for a single point
+
+    - Fixes bug where .met files were not created
     
-    * Update links to latest documentation provided by the POWER team
+  ## Major changes
+
+    - Change how `GLOBAL` values are requested. This is now specified in
+    `lonlat` in conjunction with `temporal_average = CLIMATOLOGY`.
+
+## Minor changes
+
+    - Refactor code to split internal functions by functionality and add more
+    complete test coverage
 
 ## Reverse dependencies
 

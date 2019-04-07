@@ -14,14 +14,14 @@
   ],
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.2",
+    "version": "3.5.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.2 (2018-12-20)",
+  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -229,7 +229,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "fileSize": "214.155KB",
+  "fileSize": "216.503KB",
   "contIntegration": [
     "https://circleci.com/gh/ropensci/nasapower/tree/master",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",
@@ -280,5 +280,8 @@
       "name": "{nasapower}: NASA-POWER Data from R",
       "url": "https://ropensci.github.io/nasapower/"
     }
-  ]
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {}
 }
