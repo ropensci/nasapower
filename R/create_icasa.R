@@ -80,7 +80,7 @@ create_icasa <- function(lonlat,
     .lonlat = lonlat
   )
 
-  out <- .power_query(
+  query_list <- .power_query(
     community = "AG",
     pars = icasa[[2]],
     lonlat_identifier = icasa[[3]],
@@ -88,6 +88,7 @@ create_icasa <- function(lonlat,
     outputList = "ICASA"
   )
 
+  out <- .send_query(.query_list = query_list, .pars = pars)
   writeLines(out, icasa[[1]])
 }
 

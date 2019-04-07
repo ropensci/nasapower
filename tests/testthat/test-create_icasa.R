@@ -42,12 +42,14 @@ test_that(".icasa_checks creates a proper file path for `file_out`", {
 
   expect_equal(icasa[[1]], file.path(tempdir(), "ICASA.txt"))
 
-  out <- .power_query(
+  query_list <- .power_query(
     community = "AG",
     pars = icasa[[2]],
     lonlat_identifier = icasa[[3]],
     dates = icasa[[4]],
     outputList = "ICASA")
+
+  out <- .send_query(query_list)
 
   expect_equal(out[[1]], "! TMAX     Maximum Temperature at 2 Meters (C) ")
   expect_equal(out[[2]], "! RH2M     Relative Humidity at 2 Meters (%) ")

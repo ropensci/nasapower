@@ -258,9 +258,9 @@
           "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n"
         )
       } else if (any(lonlat[1] < -180 |
-              lonlat[3] < -180 |
-              lonlat[1] > 180 |
-              lonlat[3] > 180)) {
+                     lonlat[3] < -180 |
+                     lonlat[1] > 180 |
+                     lonlat[3] > 180)) {
         stop(
           call. = FALSE,
           "\nPlease check your longitude, `",
@@ -342,14 +342,8 @@
                          pars,
                          dates,
                          outputList) {
-  power_url <- # nocov start
-    "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
-  client <- crul::HttpClient$new(url = power_url)
-  user_agent <- "nasapower"
 
-  # check status
-  status <- client$get()
-  status$raise_for_status() # nocov end
+  user_agent <- "nasapower"
 
   if (lonlat_identifier$identifier == "SinglePoint" & !is.null(dates)) {
     query_list <- list(
@@ -420,17 +414,33 @@
       user = user_agent
     )
   }
+  return(query_list)
+}
 
-  # send the query
+#' Sends the Query to the API
+#'
+#' @param .query_list A query list created by `.power_query`
+#' @noRd
+#'
+.send_query <- function(.query_list, .pars) {
+  power_url <- # nocov start
+    "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
+  client <- crul::HttpClient$new(url = power_url)
+
+  # check status
+  status <- client$get()
+  status$raise_for_status() # nocov end
+
   tryCatch({
-    response <- client$get(query = query_list, retry = 6)
+    response <- client$get(query = .query_list, retry = 6)
     txt <- jsonlite::fromJSON(response$parse("UTF-8"))
     raw_power_data <- file.path(tempdir(), "power_data_file")
   }, # nocov start
   error = function(e) {
     e$message <-
-      paste("\nSomething went wrong with the query, no data were returned.\n",
-            "Please see <https://power.larc.nasa.gov> for potential server issues.\n")
+      paste("\nSomething went wrong with the query, no data were returned.",
+            "Please see <https://power.larc.nasa.gov> for potential",
+            "server issues.\n")
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
@@ -445,7 +455,7 @@
   }
 
   if ("csv" %in% names(txt$output)) {
-    if (outputList == "CSV") {
+    if (.query_list$outputList == "CSV") {
       curl::curl_download(txt$output$csv,
                           destfile = raw_power_data,
                           mode = "wb",
@@ -479,7 +489,7 @@
       power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
-      if (pars$temporal_average == "DAILY") {
+      if (.pars$temporal_average == "DAILY") {
         power_data <- .format_dates(power_data)
       }
 

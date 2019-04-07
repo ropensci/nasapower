@@ -187,11 +187,12 @@ get_power <- function(community,
 
     # submit query ---------------------------------------------------------------
     # see internal_functions.R for this function
-    NASA <- .power_query(community,
+    query_list <- .power_query(community,
                          lonlat_identifier,
                          pars,
                          dates,
                          outputList = "CSV"
     )
-    return(NASA)
+    out <- .send_query(.query_list = query_list, .pars = pars)
+    return(out)
   }
