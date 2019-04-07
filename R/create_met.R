@@ -84,7 +84,7 @@ create_met <- function(lonlat,
 
   APSIM::writeMetFile(
     fileName = file.path(dsn, file_out),
-    met = out
+    met = power_data
   )
 }
 
