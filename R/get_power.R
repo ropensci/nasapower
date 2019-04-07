@@ -153,12 +153,12 @@ get_power <- function(community,
     lonlat <- toupper(lonlat)
     if (lonlat == "GLOBAL" & temporal_average != "CLIMATOLOGY") {
       stop(call. = FALSE,
-           "You have asked for 'GLOBAL' data. However, this is only available",
-           "for 'CLIMATOLOGY'.")
+           "\nYou have asked for 'GLOBAL' data. However, this is only",
+           "available for 'CLIMATOLOGY'.\n")
     } else if (lonlat != "GLOBAL") {
       stop(call. = FALSE,
-           "You have entered an invalid value for `lonlat`. Valid values are",
-           "`GLOBAL` with `CLIMATOLOGY` or a string of lon and lat values.")
+           "\nYou have entered an invalid value for `lonlat`. Valid values are",
+           "`GLOBAL` with `CLIMATOLOGY` or a string of lon and lat values.\n")
     }
     if (is.character(community)) {
       community <- toupper(community)

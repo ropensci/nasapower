@@ -71,46 +71,55 @@ create_icasa <- function(lonlat,
                          dates,
                          dsn,
                          file_out) {
-  if (missing(dsn) | missing(file_out)) {
-    stop(
-      call. = FALSE,
-      "You must provide a file location, `dsn` and file name, `file_out`."
-    )
-  }
-
-  temporal_average <- "DAILY"
-  pars <- c("T2M") # this is a dummy variable to check lonlat values,
-  # POWER will automatically select the proper pars for query
-
-  if (substr(file_out, nchar(file_out) - 3, nchar(file_out)) != ".txt") {
-    file_out <- paste0(file_out, ".txt")
-  }
-
   # user input checks and formatting -------------------------------------------
-  # see internal_functions.R for these functions
-  dates <- .check_dates(
-    dates,
-    lonlat,
-    temporal_average
-  )
-  pars <- .check_pars(
-    pars,
-    temporal_average,
-    lonlat
-  )
-  lonlat_identifier <- .check_lonlat(
-    lonlat,
-    pars
+
+  icasa <- .icasa_checks(
+    .dsn = dsn,
+    .file_out = file_out,
+    .dates = dates,
+    .lonlat = lonlat
   )
 
   out <- .power_query(
     community = "AG",
-    lonlat_identifier,
-    pars,
-    dates = dates,
+    pars = icasa[[2]],
+    lonlat_identifier = icasa[[3]],
+    dates = icasa[[4]],
     outputList = "ICASA"
   )
 
-  file_out <- file.path(dsn, file_out)
-  writeLines(out, file_out)
+  writeLines(out, icasa[[1]])
 }
+
+.icasa_checks <-
+  function(.dsn,
+           .file_out,
+           .dates,
+           .lonlat) {
+    if (missing(.dsn) | missing(.file_out)) {
+      stop(call. = FALSE,
+           "You must provide a file location, `dsn` and file name, `file_out`.")
+    }
+    if (substr(.file_out, nchar(.file_out) - 3, nchar(.file_out)) != ".txt") {
+      .file_out <- paste0(.file_out, ".txt")
+    }
+
+    file_out <- file.path(.dsn, .file_out)
+
+    # these are dummy variables to check other values,
+    # POWER will automatically select the proper pars and temp_avg for query
+    .temporal_average <- "DAILY"
+    .pars <- "T2M"
+
+    # see internal_functions.R for these functions
+    dates <- .check_dates(.dates,
+                          .lonlat,
+                          .temporal_average)
+    pars <- .check_pars(.pars,
+                        .temporal_average,
+                        .lonlat)
+    lonlat_identifier <- .check_lonlat(.lonlat,
+                                       .pars)
+
+    return(list(file_out, pars, lonlat_identifier, dates))
+  }

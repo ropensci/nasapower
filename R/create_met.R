@@ -105,7 +105,6 @@ create_met <- function(lonlat,
       "You must provide a file location, `dsn` and file name, `file_out`."
     )
   }
-
   if (substr(.file_out, nchar(.file_out) - 3, nchar(.file_out)) != ".met") {
     .file_out <- paste0(.file_out, ".met")
   }
