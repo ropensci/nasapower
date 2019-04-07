@@ -12,11 +12,11 @@ test_that("create_met() creates a .met file for APSIM use", {
     )
 
     expect_true(any(grepl("APSIM.met", list.files(tempdir()))))
+    met <- readLines(file.path(tempdir(), "APSIM.met"))
     expect_equal(length(met), 377)
     expect_equal(nchar(met)[[1]], 21)
     expect_equal(nchar(met)[[14]], 28)
     expect_equal(nchar(met)[[311]], 31)
-    met <- readLines(file.path(tempdir(), "APSIM.met"))
     expect_equal(met[4], "Latitude = -27.48")
     expect_equal(met[6], "Longitude = 151.81")
     expect_equal(met[8], "tav = 13.975064516129")
