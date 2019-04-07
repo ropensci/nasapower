@@ -165,7 +165,7 @@ get_power <- function(community,
     }
   }
 
-    # user input checks and formatting -------------------------------------------
+    # user input checks and formatting -----------------------------------------
     # see internal_functions.R for these functions
 
     .check_community(community, pars)
@@ -185,7 +185,7 @@ get_power <- function(community,
       pars
     )
 
-    # submit query ---------------------------------------------------------------
+    # submit query -------------------------------------------------------------
     # see internal_functions.R for this function
     query_list <- .power_query(community,
                          lonlat_identifier,

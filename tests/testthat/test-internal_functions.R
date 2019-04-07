@@ -65,7 +65,7 @@ test_that("`dates` before the start of POWER data cause error", {
   dates <- c("1979-12-31", today)
   lonlat <- c(-179.5, -89.5)
   expect_error(.check_dates(dates, lonlat, temporal_average),
-               regexp = "*\n1981-01-01 is the earliest available data from POWER*"
+               regexp = "*\n1981-01-01 is the earliest available data from*"
   )
 })
 
@@ -312,7 +312,8 @@ test_that(".check_pars()  stops if `pars` not valid", {
   ))
 })
 
-test_that(".check_pars()  stops if `pars` not valid for given temporal_average", {
+test_that(".check_pars()  stops if `pars` not valid for given
+          temporal_average", {
   pars <- "ALLSKY_SFC_SW_DWN_03_GMT"
   temporal_average <- "INTERANNUAL"
   lonlat <- c(-179.5, -89.5)
@@ -508,7 +509,7 @@ test_that(".power_query assembles a proper query for regional and != NULL
           {
             temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
-            lonlat = c(112.5, -55.5, 115.5, -50.5)
+            lonlat <- c(112.5, -55.5, 115.5, -50.5)
             community <- "AG"
             pars <- "T2M"
             outputList <- "CSV"
@@ -550,7 +551,7 @@ test_that(".power_query assembles a proper query for regional and NULL dates",
           {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
-            lonlat = c(112.5, -55.5, 115.5, -50.5)
+            lonlat <- c(112.5, -55.5, 115.5, -50.5)
             community <- "AG"
             pars <- "T2M"
             outputList <- "CSV"
@@ -590,7 +591,7 @@ test_that(".power_query assembles a proper query for global climatology",
           {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
-            lonlat = "GLOBAL"
+            lonlat <- "GLOBAL"
             community <- "AG"
             pars <- "T2M"
             outputList <- "CSV"

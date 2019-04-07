@@ -43,15 +43,15 @@ test_that("create_met() fails if no dsn or file_out are supplied", {
 })
 
 test_that(".met_checks assigns a '.met' file ext if none supplied", {
-    dsn = tempdir()
-    file_out = "APSIM"
+    dsn <- tempdir()
+    file_out <- "APSIM"
     file_out <- .met_checks(.dsn = dsn, .file_out = file_out)
     expect_equal(file_out, "APSIM.met")
 })
 
 test_that(".get_power_data returns an APSIM metFile s4 object", {
-  lonlat = c(151.81, -27.48)
-  dates = c("1983-01-01", "1983-01-02")
+  lonlat <- c(151.81, -27.48)
+  dates <- c("1983-01-01", "1983-01-02")
   power_data <- .get_met_data(.dates = dates, .lonlat = lonlat)
   expect_s4_class(power_data, "metFile")
 })
