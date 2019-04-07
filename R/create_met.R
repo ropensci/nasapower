@@ -67,7 +67,7 @@
 #' create_met(lonlat = c(151.81, -27.48),
 #'            dates = c("1985-01-01", "1985-12-31"),
 #'            dsn = tempdir(),
-#'            file = "APSIM_example.met"
+#'            file_out = "APSIM_example.met"
 #'            )
 #' }
 #'
@@ -109,7 +109,7 @@ create_met <- function(lonlat,
   if (substr(.file_out, nchar(.file_out) - 3, nchar(.file_out)) != ".met") {
     .file_out <- paste0(.file_out, ".met")
   }
-
+  return(.file_out)
 }
 
 #' Query POWER API and Return Data for APSIM .met File

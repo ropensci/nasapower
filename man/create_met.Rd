@@ -80,7 +80,7 @@ This function is essentially a wrapper for \code{\link{get_power}}
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
            dsn = tempdir(),
-           file = "APSIM_example.met"
+           file_out = "APSIM_example.met"
            )
 }
 
