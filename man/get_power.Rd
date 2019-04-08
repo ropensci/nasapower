@@ -138,7 +138,7 @@ ag_c_global <- get_power(
   temporal_average = "CLIMATOLOGY"
 )
 
-ag_c
+ag_c_global
 
 # Fetch interannual solar cooking parameters
 # for a given region
