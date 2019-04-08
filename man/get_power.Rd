@@ -113,20 +113,30 @@ The associated metadata are not saved if the data are exported to a
 # humidity and precipitation for January 1 1985
 # for Kingsthorpe, Queensland, Australia
 ag_d <- get_power(
-   community = "AG",
-   lonlat = c(151.81, -27.48),
-   pars = c("RH2M", "T2M", "PRECTOT"),
-   dates = "1985-01-01",
-   temporal_average = "DAILY"
+  community = "AG",
+  lonlat = c(151.81, -27.48),
+  pars = c("RH2M", "T2M", "PRECTOT"),
+  dates = "1985-01-01",
+  temporal_average = "DAILY"
 )
 
-ag_d
+# Fetch single point climatology for air temperature
+ag_c_point <- get_power(
+  community = "AG",
+  pars = "T2M",
+  c(151.81, -27.48),
+  temporal_average = "CLIMATOLOGY"
+)
 
-# Fetch global AG climatology for temperature
-ag_c <- get_power(community = "AG",
-   pars = "T2M",
-   lonlat = "GLOBAL",
-   temporal_average = "CLIMATOLOGY")
+ag_c_point
+
+# Fetch global AG climatology for air temperature
+ag_c_global <- get_power(
+  community = "AG",
+  pars = "T2M",
+  lonlat = "GLOBAL",
+  temporal_average = "CLIMATOLOGY"
+)
 
 ag_c
 

@@ -1,8 +1,6 @@
-# nasapower 1.0.7.9000
+# nasapower 1.1.0
 
 ## Bug fixes
-
-- Fixes bug where CLIMATE could not be requested for a single point
 
 - Fixes bug where .met files were not created
 
@@ -12,6 +10,10 @@
 in conjunction with `temporal_average = CLIMATOLOGY`.
 
 ## Minor changes
+
+- Adds example of fetching climate for a single point
+
+- Fixes bug where CLIMATE could not be requested for a single point
 
 - Refactor code to split internal functions by functionality and add more
 complete test coverage
