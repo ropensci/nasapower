@@ -532,6 +532,7 @@
 #' @param x POWER.Info object
 #' @param ... ignored
 #' @export
+#' @noRd
 print.POWER.Info <- function(x, ...) {
   if (!is.null(attr(x, "POWER.Info"))) {
     cat(
