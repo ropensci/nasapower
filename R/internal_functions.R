@@ -502,7 +502,8 @@
 
       # add new class
       power_data <- tibble::new_tibble(power_data,
-                                       subclass = "POWER.Info")
+                                       subclass = "POWER.Info",
+                                       nrow = nrow(power_data))
 
       # add attributes for printing df
       attr(power_data, "POWER.Info") <- meta[1]
