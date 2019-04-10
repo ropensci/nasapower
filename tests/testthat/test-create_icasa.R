@@ -66,4 +66,3 @@ test_that(".icasa_checks creates a proper file path for `file_out`", {
   expect_equal(out[[15]], " @   DATE    TMAX    RH2M     T2M    TMIN    RAIN    TDEW    WIND    SRAD")
   expect_equal(out[[16]], "    83001    31.4    75.1    24.6    20.0     9.1    19.9     2.8     -99")
 })
-
