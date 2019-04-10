@@ -2,7 +2,8 @@
 
 ## Bug fixes
 
-- Fixes bug where .met files were not created
+- Fixes bug where .met files were not created properly including where "radn"
+and "rain" col headers were reversed
 
 ## Major changes
 
