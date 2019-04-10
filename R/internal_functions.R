@@ -229,7 +229,14 @@
 .check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
-    if (is.numeric(lonlat) & length(lonlat) == 2) {
+    if (lonlat == "GLOBAL") {
+      identifier <- "Global"
+    } else if (!is.numeric(lonlat)) {
+      stop(
+        call. = FALSE,
+        "\nYou have entered an invalid request for `lonlat`.\n"
+      )
+    } else if (is.numeric(lonlat) & length(lonlat) == 2) {
       if (lonlat[1] < -180 | lonlat[1] > 180) {
         stop(
           call. = FALSE,
@@ -299,8 +306,6 @@
                     lonlat[3],
                     sep = ","
       )
-    } else if (lonlat == "GLOBAL") {
-      identifier <- "Global"
     } else {
       stop(
         call. = FALSE,
