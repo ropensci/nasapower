@@ -145,8 +145,8 @@ create_met <- function(lonlat,
       "DOY",
       "T2M_MAX",
       "T2M_MIN",
-      "PRECTOT",
-      "ALLSKY_SFC_SW_DWN"
+      "ALLSKY_SFC_SW_DWN",
+      "PRECTOT"
     )]
 
   met_names <- c(

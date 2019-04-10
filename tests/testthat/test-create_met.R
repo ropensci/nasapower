@@ -4,12 +4,12 @@ context("Test that create_met() creates an APSIM .met file")
 
 test_that("create_met() creates a .met file for APSIM use", {
   skip_on_cran()
-    create_met(
+  expect_s4_class(create_met(
       lonlat = c(151.81, -27.48),
       dates = c("1985-01-01", "1985-12-31"),
       dsn = tempdir(),
       file_out = "APSIM"
-    )
+    ))
 
     expect_true(any(grepl("APSIM.met", list.files(tempdir()))))
     met <- readLines(file.path(tempdir(), "APSIM.met"))
@@ -47,11 +47,4 @@ test_that(".met_checks assigns a '.met' file ext if none supplied", {
     file_out <- "APSIM"
     file_out <- .met_checks(.dsn = dsn, .file_out = file_out)
     expect_equal(file_out, "APSIM.met")
-})
-
-test_that(".get_power_data returns an APSIM metFile s4 object", {
-  lonlat <- c(151.81, -27.48)
-  dates <- c("1983-01-01", "1983-01-02")
-  power_data <- .get_met_data(.dates = dates, .lonlat = lonlat)
-  expect_s4_class(power_data, "metFile")
 })
