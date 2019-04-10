@@ -1,7 +1,6 @@
 
 # test queries -----------------------------------------------------------------
-context("Test that get_power queries the server and returns the proper
-        requested data")
+context("get_power()")
 test_that("get_power returns daily point AG data", {
   skip_on_cran()
     power_query <- get_power(
