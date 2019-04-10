@@ -85,7 +85,7 @@ create_met <- function(lonlat,
                       met = power_data)
 }
 
-#' Check User inputs for Creating a Valid .met File
+#' Check User Inputs for Creating a Valid .met File
 #'
 #' Check user inputs for the `dsn` and `file_out`
 #'
