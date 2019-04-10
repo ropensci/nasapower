@@ -229,7 +229,16 @@
 .check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
-    if (is.numeric(lonlat) & length(lonlat) == 2) {
+    if (is.character(lonlat) & length(lonlat) == 1) {
+      if (lonlat == "GLOBAL") {
+        identifier <- "Global"
+      } else if (is.character(lonlat)) {
+        stop(
+          call. = FALSE,
+          "\nYou have entered an invalid request for `lonlat`.\n"
+        )
+      }
+    } else if (is.numeric(lonlat) & length(lonlat) == 2) {
       if (lonlat[1] < -180 | lonlat[1] > 180) {
         stop(
           call. = FALSE,
@@ -299,8 +308,6 @@
                     lonlat[3],
                     sep = ","
       )
-    } else if (lonlat == "GLOBAL") {
-      identifier <- "Global"
     } else {
       stop(
         call. = FALSE,
@@ -495,7 +502,8 @@
 
       # add new class
       power_data <- tibble::new_tibble(power_data,
-                                       subclass = "POWER.Info")
+                                       subclass = "POWER.Info",
+                                       nrow = nrow(power_data))
 
       # add attributes for printing df
       attr(power_data, "POWER.Info") <- meta[1]

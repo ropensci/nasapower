@@ -49,7 +49,20 @@ test_that(".icasa_checks creates a proper file path for `file_out`", {
     dates = icasa[[4]],
     outputList = "ICASA")
 
-  out <- .send_query(query_list)
+  expect_named(query_list,
+               c("request",
+                 "identifier",
+                 "parameters",
+                 "startDate",
+                 "endDate",
+                 "userCommunity",
+                 "tempAverage",
+                 "outputList",
+                 "lon",
+                 "lat",
+                 "user"))
+
+  out <- .send_query(query_list, .pars = icasa[[2]])
 
   expect_equal(out[[1]], "! TMAX     Maximum Temperature at 2 Meters (C) ")
   expect_equal(out[[2]], "! RH2M     Relative Humidity at 2 Meters (%) ")
@@ -66,4 +79,3 @@ test_that(".icasa_checks creates a proper file path for `file_out`", {
   expect_equal(out[[15]], " @   DATE    TMAX    RH2M     T2M    TMIN    RAIN    TDEW    WIND    SRAD")
   expect_equal(out[[16]], "    83001    31.4    75.1    24.6    20.0     9.1    19.9     2.8     -99")
 })
-

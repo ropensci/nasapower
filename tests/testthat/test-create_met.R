@@ -1,10 +1,10 @@
 
 # test queries -----------------------------------------------------------------
-context("Test that create_met() creates an APSIM .met file")
+context("create_met()")
 
 test_that("create_met() creates a .met file for APSIM use", {
   skip_on_cran()
-    create_met(
+  create_met(
       lonlat = c(151.81, -27.48),
       dates = c("1985-01-01", "1985-12-31"),
       dsn = tempdir(),
@@ -50,8 +50,27 @@ test_that(".met_checks assigns a '.met' file ext if none supplied", {
 })
 
 test_that(".get_power_data returns an APSIM metFile s4 object", {
+  skip_on_cran()
   lonlat <- c(151.81, -27.48)
-  dates <- c("1983-01-01", "1983-01-02")
+  dates <- c("1983-01-01", "1983-12-31")
   power_data <- .get_met_data(.dates = dates, .lonlat = lonlat)
   expect_s4_class(power_data, "metFile")
+})
+
+context(".get_met_data()")
+
+test_that(
+  ".get_met_data creates an APSIM.met s4 object",
+  {
+    lonlat = c(151.81, -27.48)
+    dates = c("1985-01-01", "1985-12-31")
+
+    met_file <- .get_met_data(.dates = dates, .lonlat = lonlat)
+    expect_s4_class(met_file, "metFile")
+    expect_named(met_file@data,
+                 c("maxt", "mint", "radn", "rain", "year", "day"))
+    expect_equal(met_file@lat, -27.5, tolerance = 0.1)
+    expect_equal(met_file@lon, 152, tolerance = 0.1)
+    expect_equal(met_file@tav, 14, tolerance = 0.1)
+    expect_equal(met_file@amp, 18.6, tolerance = 0.1)
 })

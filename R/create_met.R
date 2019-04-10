@@ -77,18 +77,15 @@ create_met <- function(lonlat,
                        dates,
                        dsn,
                        file_out) {
-
   file_out <- .met_checks(.dsn = dsn, .file_out = file_out)
 
   power_data <- .get_met_data(.dates = dates, .lonlat = lonlat)
 
-  APSIM::writeMetFile(
-    fileName = file.path(dsn, file_out),
-    met = power_data
-  )
+  APSIM::writeMetFile(fileName = file.path(dsn, file_out),
+                      met = power_data)
 }
 
-#' Check User inputs for Creating a Valid .met File
+#' Check User Inputs for Creating a Valid .met File
 #'
 #' Check user inputs for the `dsn` and `file_out`
 #'
@@ -100,10 +97,8 @@ create_met <- function(lonlat,
 #' @noRd
 .met_checks <- function(.dsn, .file_out) {
   if (missing(.dsn) | missing(.file_out)) {
-    stop(
-      call. = FALSE,
-      "You must provide a file location, `dsn` and file name, `file_out`."
-    )
+    stop(call. = FALSE,
+         "You must provide a file location, `dsn` and file name, `file_out`.")
   }
   if (substr(.file_out, nchar(.file_out) - 3, nchar(.file_out)) != ".met") {
     .file_out <- paste0(.file_out, ".met")
@@ -126,12 +121,10 @@ create_met <- function(lonlat,
 .get_met_data <- function(.dates, .lonlat) {
   power_data <- as.data.frame(
     get_power(
-      pars = c(
-        "T2M_MAX",
-        "T2M_MIN",
-        "ALLSKY_SFC_SW_DWN",
-        "PRECTOT"
-      ),
+      pars = c("T2M_MAX",
+               "T2M_MIN",
+               "ALLSKY_SFC_SW_DWN",
+               "PRECTOT"),
       dates = .dates,
       lonlat = .lonlat,
       temporal_average = "DAILY",
@@ -140,33 +133,27 @@ create_met <- function(lonlat,
   )
 
   power_data <-
-    power_data[c(
-      "YEAR",
-      "DOY",
-      "T2M_MAX",
-      "T2M_MIN",
-      "PRECTOT",
-      "ALLSKY_SFC_SW_DWN"
-    )]
+    power_data[c("T2M_MAX",
+                 "T2M_MIN",
+                 "ALLSKY_SFC_SW_DWN",
+                 "PRECTOT",
+                 "YEAR",
+                 "DOY")]
 
-  met_names <- c(
-    "year",
-    "day",
-    "maxt",
-    "mint",
-    "radn",
-    "rain"
-  )
+  met_names <- c("maxt",
+                 "mint",
+                 "radn",
+                 "rain",
+                 "year",
+                 "day")
 
   met_units <-
-    c(
-      "()",
-      "()",
-      "(oC)",
+    c("(oC)",
       "(oC)",
       "(MJ/m^2/day)",
-      "(mm)"
-    )
+      "(mm)",
+      "()",
+      "()")
 
   out <-
     suppressMessages(
