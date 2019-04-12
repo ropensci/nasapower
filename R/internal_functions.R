@@ -479,7 +479,14 @@
                                                  power_data))]
       # strip BEGIN/END HEADER lines
       meta <- meta[-c(1, max(length(meta)))]
+
       # replace missing values with NA
+      meta <- gsub(
+        pattern = "-99",
+        replacement = "NA",
+        x = meta
+      )
+
       meta <- gsub(
         pattern = "-999",
         replacement = "NA",
@@ -488,7 +495,7 @@
 
       power_data <- readr::read_csv(raw_power_data,
                                     col_types = readr::cols(),
-                                    na = "-999",
+                                    na = c("-99", "-999"),
                                     skip = length(meta) + 2
       )
 
