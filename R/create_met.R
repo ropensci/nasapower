@@ -83,6 +83,16 @@ create_met <- function(lonlat,
 
   APSIM::writeMetFile(fileName = file.path(dsn, file_out),
                       met = power_data)
+
+  # check and alert for missing values
+  m <- as.data.frame(which(is.na(power_data), arr.ind = TRUE))
+  if (nrow(m) > 0) {
+    col_names <- names(power_data)[unique(m[, 2])][match(m[, 2],
+                                                         c(unique(m[, 2])))]
+    m <- data.frame(col_names, m[, c(2, 1)])
+    message("You have missing values in your .MET file, see below.")
+    m
+  }
 }
 
 #' Check User Inputs for Creating a Valid .met File
