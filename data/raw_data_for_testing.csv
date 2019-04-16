@@ -12,6 +12,7 @@ ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizon
 T2M_MAX MERRA2 1/2x1/2 Maximum Temperature at 2 Meters (C)
 -END HEADER-
 LAT,LON,YEAR,DOY,T2M_MAX,T2M_MIN,ALLSKY_SFC_SW_DWN,PRECTOT
+-27.47999,151.81001,1985,001,   32.66,   16.87,             30.96,    1.07
 -27.47999,151.81001,1985,002,   36.85,   19.55,             30.89,    0.50
 -27.47999,151.81001,1985,003,   36.05,   20.80,             33.19,    0.03
 -27.47999,151.81001,1985,004,   32.72,   16.90,             32.69,    0.10
