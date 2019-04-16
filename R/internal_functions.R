@@ -344,7 +344,7 @@
 #' @return A tidy tibble() of requested 'POWER' data
 #'
 #' @noRd
-.power_query <- function(community,
+.build_query <- function(community,
                          lonlat_identifier,
                          pars,
                          dates,
