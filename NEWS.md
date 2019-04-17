@@ -1,4 +1,18 @@
-# nasapower (development version)
+# nasapower 1.1.1
+
+## Bug fixes
+
+- Fixes bug where missing values in POWER data were not properly replaced with
+`NA` in `tibble` output
+
+- Fixes bug in documentation for `create_icasa()` where the parameter for
+`file_out` was misidentified as just `file`
+
+## Minor changes
+
+- Users are now notified if creating a .met file that has any missing values
+through a console message and .csv file being written to disk to accompany the
+resulting .met file describing which values are missing
 
 # nasapower 1.1.0
 

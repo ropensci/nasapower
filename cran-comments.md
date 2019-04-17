@@ -9,24 +9,19 @@
 
 0 errors | 0 warnings | 1 note
 
-## Bug fixes
+# Bug fixes
 
-- Fixes bug where .met files were not created properly including where "radn"
-and "rain" col headers were reversed
+- Fixes bug where missing values in POWER data were not properly replaced with
+`NA` in `tibble` output
 
-## Major changes
-
-- Change how `GLOBAL` values are requested. This is now specified in `lonlat` in
-conjunction with `temporal_average = CLIMATOLOGY`.
+- Fixes bug in documentation for `create_icasa()` where the parameter for
+`file_out` was misidentified as just `file`
 
 ## Minor changes
 
-- Adds example of fetching climate for a single point
-
-- Fixes bug where CLIMATE could not be requested for a single point
-
-- Refactor code to split internal functions by functionality and add more 
-complete test coverage
+- Users are now notified if creating a .met file that has any missing values
+through a console message and .csv file being written to disk to accompany the
+resulting .met file describing which values are missing
 
 ## Reverse dependencies
 
