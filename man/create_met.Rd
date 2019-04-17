@@ -74,7 +74,7 @@ This function is essentially a wrapper for \code{\link{get_power}}
 # Create a met file for Kingsthorpe, Qld
 # from 1985-01-01 to 1985-06-30 and
 # save it in the current R session
-# tempdir() as APSIM_example.met
+# tempdir() as `APSIM_example.met`
 
 \donttest{
 create_met(lonlat = c(151.81, -27.48),

@@ -61,7 +61,7 @@
 #' # Create a met file for Kingsthorpe, Qld
 #' # from 1985-01-01 to 1985-06-30 and
 #' # save it in the current R session
-#' # tempdir() as APSIM_example.met
+#' # tempdir() as `APSIM_example.met`
 #'
 #' \donttest{
 #' create_met(lonlat = c(151.81, -27.48),
@@ -79,14 +79,14 @@ create_met <- function(lonlat,
                        file_out) {
   file_out <- .met_checks(.dsn = dsn, .file_out = file_out)
 
-  power_data <- .get_met_data(.dates = dates, .lonlat = lonlat)
-
-  .check_met_missing(.power_data = power_data, .file_out = file_out)
+  power_data <-
+    .get_met_data(.dates = dates,
+                  .dsn = dsn,
+                  .lonlat = lonlat,
+                  .file_out = file_out)
 
   APSIM::writeMetFile(fileName = file.path(dsn, file_out),
                       met = power_data)
-
-
 }
 
 #' Check User Inputs for Creating a Valid .met File
@@ -122,7 +122,7 @@ create_met <- function(lonlat,
 #' the file and corresponding units
 #'
 #' @noRd
-.get_met_data <- function(.dates, .lonlat) {
+.get_met_data <- function(.dates, .lonlat, .dsn, .file_out) {
   power_data <- as.data.frame(
     get_power(
       pars = c("T2M_MAX",
@@ -135,6 +135,10 @@ create_met <- function(lonlat,
       community = "AG"
     )
   )
+
+  .check_met_missing(.power_data = power_data,
+                     .dsn = .dsn,
+                     .file_out = .file_out)
 
   power_data <-
     power_data[c("T2M_MAX",
@@ -185,8 +189,9 @@ create_met <- function(lonlat,
 #'
 #' @noRd
 .check_met_missing <- function(.power_data, .dsn, .file_out) {
-  m <- as.data.frame(which(is.na(.power_data), arr.ind = TRUE))
-  if (nrow(m) > 0) {
+  if (any(is.na(as.data.frame(.power_data)))) {
+    m <-
+      as.data.frame(which(is.na(as.data.frame(.power_data)), arr.ind = TRUE))
     col_names <- names(.power_data)[unique(m[, 2])][match(m[, 2],
                                                           c(unique(m[, 2])))]
     m <- data.frame(col_names, m[, c(2, 1)])
@@ -195,7 +200,7 @@ create_met <- function(lonlat,
       tools::file_path_sans_ext(.file_out),
       "_missing.csv` has been created as well.\n",
       paste0(capture.output(m), collapse = "\n")
-      )
+    )
     readr::write_csv(x = m,
                      path = file.path(.dsn, paste0(.file_out, "_missing.csv")))
   }
