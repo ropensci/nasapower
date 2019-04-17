@@ -204,5 +204,6 @@ get_power <- function(community,
                          outputList = "CSV"
     )
     out <- .send_query(.query_list = query_list, .pars = pars)
+    out <- .import_power(.txt = out, .pars = pars, .query_list = query_list)
     return(out)
   }
