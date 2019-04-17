@@ -60,8 +60,8 @@ test_that(".get_power_data returns an APSIM metFile s4 object", {
 context(".get_met_data()")
 
 test_that(
-  ".get_met_data creates an APSIM.met s4 object",
-  {
+  ".get_met_data creates an APSIM.met s4 object", {
+    skip_on_cran()
     lonlat = c(151.81, -27.48)
     dates = c("1985-01-01", "1985-12-31")
 
@@ -73,4 +73,18 @@ test_that(
     expect_equal(met_file@lon, 152, tolerance = 0.1)
     expect_equal(met_file@tav, 14, tolerance = 0.1)
     expect_equal(met_file@amp, 18.6, tolerance = 0.1)
+})
+
+context(".check_met_missing()")
+test_that(".check_met_missing correctly identifies missing values", {
+  power_data <- readr::read_csv(
+    system.file("testdata", "power_data_for_testing.csv",
+                package = "nasapower"),
+    na = c("-99", "-999"))
+  expect_message(
+    .check_met_missing(.power_data = power_data,
+                     .dsn = tempdir(),
+                     .file_out = "test_met.met"),
+    regexp = "There are missing values in your .MET file, an auxillary file*")
+  expect_true(file.exists(file.path(tempdir(), "test_met.met_missing.csv")))
 })

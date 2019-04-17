@@ -417,7 +417,7 @@ test_that("If an invalid temporal average is given for `pars`,
           })
 
 # query constructs -------------------------------------------------------------
-test_that(".power_query assembles a proper query for single point and != NULL
+test_that(".build_query assembles a proper query for single point and != NULL
           dates",
           {
             temporal_average <- "DAILY"
@@ -437,7 +437,7 @@ test_that(".power_query assembles a proper query for single point and != NULL
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .power_query(community,
+            query_list <- .build_query(community,
                                         lonlat_identifier,
                                         pars,
                                         dates,
@@ -462,7 +462,7 @@ test_that(".power_query assembles a proper query for single point and != NULL
           })
 
 
-test_that(".power_query assembles a proper query for single point and NULL
+test_that(".build_query assembles a proper query for single point and NULL
           dates",
           {
             temporal_average <- "CLIMATOLOGY"
@@ -482,7 +482,7 @@ test_that(".power_query assembles a proper query for single point and NULL
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .power_query(community,
+            query_list <- .build_query(community,
                                        lonlat_identifier,
                                        pars,
                                        dates,
@@ -504,7 +504,7 @@ test_that(".power_query assembles a proper query for single point and NULL
             )
           })
 
-test_that(".power_query assembles a proper query for regional and != NULL
+test_that(".build_query assembles a proper query for regional and != NULL
           dates",
           {
             temporal_average <- "DAILY"
@@ -524,7 +524,7 @@ test_that(".power_query assembles a proper query for regional and != NULL
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .power_query(community,
+            query_list <- .build_query(community,
                                        lonlat_identifier,
                                        pars,
                                        dates,
@@ -547,7 +547,7 @@ test_that(".power_query assembles a proper query for regional and != NULL
             )
           })
 
-test_that(".power_query assembles a proper query for regional and NULL dates",
+test_that(".build_query assembles a proper query for regional and NULL dates",
           {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
@@ -566,7 +566,7 @@ test_that(".power_query assembles a proper query for regional and NULL dates",
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .power_query(community,
+            query_list <- .build_query(community,
                                        lonlat_identifier,
                                        pars,
                                        dates,
@@ -587,7 +587,7 @@ test_that(".power_query assembles a proper query for regional and NULL dates",
             )
           })
 
-test_that(".power_query assembles a proper query for global climatology",
+test_that(".build_query assembles a proper query for global climatology",
           {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
@@ -606,7 +606,7 @@ test_that(".power_query assembles a proper query for global climatology",
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .power_query(community,
+            query_list <- .build_query(community,
                                        lonlat_identifier,
                                        pars,
                                        dates,
