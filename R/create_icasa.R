@@ -80,7 +80,7 @@ create_icasa <- function(lonlat,
     .lonlat = lonlat
   )
 
-  query_list <- .power_query(
+  query_list <- .build_query(
     community = "AG",
     pars = icasa[[2]],
     lonlat_identifier = icasa[[3]],
@@ -93,7 +93,7 @@ create_icasa <- function(lonlat,
   names(pars) <- "temporal_average"
 
   out <- .send_query(.query_list = query_list, .pars = pars)
-  curl::curl_download(out$output$icasa,
+  curl::curl_download(out$outputs$icasa,
                       destfile = icasa[[1]],
                       mode = "wb",
                       quiet = TRUE)
