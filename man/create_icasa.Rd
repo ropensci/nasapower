@@ -74,7 +74,7 @@ This function is essentially a wrapper for \code{\link{get_power}}
 create_icasa(lonlat = c(151.81, -27.48),
             dates = c("1985-01-01", "1985-12-31"),
             dsn = tempdir(),
-            file = "ICASA_example.txt"
+            file_out = "ICASA_example.txt"
             )
 }
 
