@@ -222,6 +222,11 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
     }
   ],
   "applicationCategory": "Tools",
@@ -229,7 +234,7 @@
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "fileSize": "218.138KB",
+  "fileSize": "218.153KB",
   "contIntegration": [
     "https://circleci.com/gh/ropensci/nasapower/tree/master",
     "https://ci.appveyor.com/project/adamhsparks/nasapower",

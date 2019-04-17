@@ -199,7 +199,7 @@ create_met <- function(lonlat,
       "\nThere are missing values in your .MET file, an auxillary file `",
       tools::file_path_sans_ext(.file_out),
       "_missing.csv` has been created as well.\n",
-      paste0(capture.output(m), collapse = "\n")
+      paste0(utils::capture.output(m), collapse = "\n")
     )
     readr::write_csv(x = m,
                      path = file.path(.dsn, paste0(.file_out, "_missing.csv")))
