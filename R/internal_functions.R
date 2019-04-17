@@ -526,8 +526,8 @@
       )
       return(power_data)
     }
-  } else if ("icasa" %in% names(txt$output)) {
-    curl::curl_download(txt$output$icasa,
+  } else if ("icasa" %in% names(.txt$output)) {
+    curl::curl_download(.txt$output$icasa,
                         destfile = raw_power_data,
                         mode = "wb",
                         quiet = TRUE
