@@ -441,7 +441,6 @@
   tryCatch({
     response <- client$get(query = .query_list, retry = 6)
     txt <- jsonlite::fromJSON(response$parse("UTF-8"))
-    raw_power_data <- file.path(tempdir(), "power_data_file")
   }, # nocov start
   error = function(e) {
     e$message <-
@@ -453,17 +452,28 @@
     stop(e)
   }
   ) # nocov end
+}
 
-  if ("messages" %in% names(txt) & "outputs" %notin% names(txt)) {
+
+#' Imports Data After Download
+#'
+#' @param .query_list A query list created by `.power_query`
+#' @noRd
+#'
+
+.import_power <- function(.txt, .pars, .query_list) {
+  raw_power_data <- file.path(tempdir(), "power_data_file")
+
+  if ("messages" %in% names(.txt) & "outputs" %notin% names(.txt)) {
     stop(
       call. = FALSE,
-      unlist(txt$messages)
+      unlist(.txt$messages)
     )
   }
 
-  if ("csv" %in% names(txt$output)) {
+  if ("csv" %in% names(.txt$output)) {
     if (.query_list$outputList == "CSV") {
-      curl::curl_download(txt$output$csv,
+      curl::curl_download(.txt$output$csv,
                           destfile = raw_power_data,
                           mode = "wb",
                           quiet = TRUE
@@ -479,14 +489,7 @@
                                                  power_data))]
       # strip BEGIN/END HEADER lines
       meta <- meta[-c(1, max(length(meta)))]
-
       # replace missing values with NA
-      meta <- gsub(
-        pattern = "-99",
-        replacement = "NA",
-        x = meta
-      )
-
       meta <- gsub(
         pattern = "-999",
         replacement = "NA",
@@ -495,7 +498,7 @@
 
       power_data <- readr::read_csv(raw_power_data,
                                     col_types = readr::cols(),
-                                    na = c("-99", "-999"),
+                                    na = "-999",
                                     skip = length(meta) + 2
       )
 
@@ -509,8 +512,7 @@
 
       # add new class
       power_data <- tibble::new_tibble(power_data,
-                                       subclass = "POWER.Info",
-                                       nrow = nrow(power_data))
+                                       subclass = "POWER.Info")
 
       # add attributes for printing df
       attr(power_data, "POWER.Info") <- meta[1]
