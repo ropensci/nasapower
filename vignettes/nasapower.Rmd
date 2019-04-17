@@ -11,6 +11,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
+LOCAL <- identical(Sys.getenv("LOCAL"), "TRUE")
 knitr::opts_chunk$set(collapse = TRUE,
                       comment = "#>",
                       fig.width = 7,
@@ -43,7 +44,7 @@ returns a data frame with a metadata header in the current R session.
 Fetch daily "AG" community temperature, relative humidity and precipitation
 for January 1985 for Kingsthorpe, Queensland, Australia.
 
-```{r get-ag}
+```{r get-ag, eval=LOCAL}
 library(nasapower)
 daily_single_ag <- get_power(community = "AG",
                              lonlat = c(151.81, -27.48),
@@ -60,7 +61,7 @@ daily_single_ag
 Fetch daily "AG" community relative humidity and temperature for south east
 Queensland region.
 
-```{r daily-region}
+```{r daily-region, eval=LOCAL}
 daily_region_ag <- get_power(community = "AG",
                              lonlat = c(150.5, -28.5 , 153.5, -25.5),
                              pars = c("RH2M", "T2M"),
@@ -74,7 +75,7 @@ daily_region_ag
 
 Fetch interannual solar cooking parameters for south east Queensland region.
 
-```{r interannual}
+```{r interannual, eval=LOCAL}
 interannual_sse <- get_power(community = "SSE",
                              lonlat = c(150.5, -28.5 , 153.5, -25.5),
                              dates = c("1984", "1985"),
@@ -94,7 +95,7 @@ this argument as such will fetch global data.
 Fetch global "AG"" climatology for temperature and relative
 humidity.
 
-```{r get-climatology}
+```{r get-climatology, eval=LOCAL}
 climatology_ag <- get_power(community = "AG",
                             pars = c("T2M", "RH2M"),
                             lonlat = "GLOBAL",
@@ -178,7 +179,7 @@ Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an APSIM weather.met object suitable for use in APSIM for crop modelling
 and save it to local disk for use in `APSIM` modelling.
 
-```{r create-met}
+```{r create-met, eval=LOCAL}
 create_met(lonlat = c(151.81, -27.48),
            dates = c("1985-01-01", "1985-12-31"),
            dsn = tempdir(),
@@ -219,7 +220,7 @@ Get POWER values for a single point, Kingsthorpe, Queensland for 1985 and
 create an ICASA text file suitable for use in `DSSAT` for crop modelling and
 save it to local disk.
 
-```{r create-icasa}
+```{r create-icasa, eval=FALSE}
 create_icasa(lonlat = c(151.81, -27.48),
              dates = c("1985-01-01", "1985-12-31"),
              dsn = tempdir(),
@@ -237,7 +238,7 @@ the resulting tidy data frame from `get_power()` to a spatial object in R using
 Using `lapply` and `split` it is easy to create stacks of raster objects from
 a regional query.
 
-```{r raster-example}
+```{r raster-example, eval=LOCAL}
 library(raster)
 # Use split to create a list of data frames split by YYYYMMDD
 daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
@@ -259,7 +260,7 @@ names(raster_stack) <- stack_names
 
 Plot all the items in the stack.
 
-```{r plot-fig1}
+```{r plot-fig1, eval=LOCAL}
 plot(raster_stack)
 ```
 
@@ -276,7 +277,7 @@ For low-memory systems (e.g. a recent Apple Mac computer with 8GB RAM), it is us
 
 Using indexing pick the month or annual value and create a raster object.
 
-```{r create-single-raster}
+```{r create-single-raster, eval=LOCAL}
 # split data frame into data frames for each parameter in a list
 climatology_list <- split(climatology_ag, climatology_ag$PARAMETER)
 
