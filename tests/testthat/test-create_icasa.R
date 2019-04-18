@@ -35,6 +35,7 @@ test_that("create_icasa() fails if no dsn or file_out are supplied", {
 })
 
 test_that(".icasa_checks creates a proper file path for `file_out`", {
+  skip_on_cran()
   icasa <- .icasa_checks(.dsn = tempdir(),
                      .file_out = "ICASA.txt",
                      .dates = c("1983-01-01"),

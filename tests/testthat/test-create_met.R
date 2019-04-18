@@ -50,8 +50,7 @@ test_that(".met_checks assigns a '.met' file ext if none supplied", {
 })
 
 context(".get_met_data()")
-test_that(
-  ".get_met_data creates an APSIM.met s4 object", {
+test_that(".get_met_data creates an APSIM.met s4 object", {
     skip_on_cran()
     lonlat = c(151.81, -27.48)
     dates = c("1985-01-01", "1985-12-31")
