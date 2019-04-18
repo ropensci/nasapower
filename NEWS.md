@@ -2,8 +2,11 @@
 
 ## Bug fixes
 
+- Fix issues reported at https://cloud.r-project.org//web/checks/check_results_nasapower.html with
+failing tests. These tests should be skipped on CRAN but were not.
+
 - Fixes bug where missing values in POWER data were not properly replaced with
-`NA` in `tibble` output
+`NA` in `tibble` and metFile outputs
 
 - Fixes bug in documentation for `create_icasa()` where the parameter for
 `file_out` was misidentified as just `file`

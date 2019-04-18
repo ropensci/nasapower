@@ -72,7 +72,7 @@
         <li>
   <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
-
+     
   </a>
 </li>
 <li>
@@ -85,21 +85,21 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-
+      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/nasapower">
     <span class="fa fa-github fa-lg"></span>
-
+     
   </a>
 </li>
       </ul>
-
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-
+      
       </header>
 
 <div class="row">
@@ -117,7 +117,8 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
-<li><p>Fixes bug where missing values in POWER data were not properly replaced with <code>NA</code> in <code>tibble</code> output</p></li>
+<li><p>Fix issues reported at <a href="https://cloud.r-project.org//web/checks/check_results_nasapower.html" class="uri">https://cloud.r-project.org//web/checks/check_results_nasapower.html</a> with failing tests. These tests should be skipped on CRAN but were not.</p></li>
+<li><p>Fixes bug where missing values in POWER data were not properly replaced with <code>NA</code> in <code>tibble</code> and metFile outputs</p></li>
 <li><p>Fixes bug in documentation for <code><a href="../reference/create_icasa.html">create_icasa()</a></code> where the parameter for <code>file_out</code> was misidentified as just <code>file</code></p></li>
 </ul>
 </div>
@@ -482,7 +483,8 @@
       </footer>
    </div>
 
-
+  
 
   </body>
 </html>
+
