@@ -1,4 +1,4 @@
-# nasapower v1.1.0
+# nasapower v1.1.1
 
 ## Test environments
 * local macOS 10.14.4 install, R 3.5.3
