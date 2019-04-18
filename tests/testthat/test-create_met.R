@@ -49,23 +49,17 @@ test_that(".met_checks assigns a '.met' file ext if none supplied", {
     expect_equal(file_out, "APSIM.met")
 })
 
-test_that(".get_power_data returns an APSIM metFile s4 object", {
-  skip_on_cran()
-  lonlat <- c(151.81, -27.48)
-  dates <- c("1983-01-01", "1983-12-31")
-  power_data <- .get_met_data(.dates = dates, .lonlat = lonlat)
-  expect_s4_class(power_data, "metFile")
-})
-
 context(".get_met_data()")
-
 test_that(
   ".get_met_data creates an APSIM.met s4 object", {
     skip_on_cran()
     lonlat = c(151.81, -27.48)
     dates = c("1985-01-01", "1985-12-31")
 
-    met_file <- .get_met_data(.dates = dates, .lonlat = lonlat)
+    met_file <- .get_met_data(.dates = dates,
+                              .file_out = "example.met",
+                              .dsn = tempdir(),
+                              .lonlat = lonlat)
     expect_s4_class(met_file, "metFile")
     expect_named(met_file@data,
                  c("maxt", "mint", "radn", "rain", "year", "day"))

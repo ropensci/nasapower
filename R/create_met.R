@@ -136,9 +136,9 @@ create_met <- function(lonlat,
     )
   )
 
-  .check_met_missing(.power_data = power_data,
+  .check_met_missing(.power_data = power_data, #nocov start
                      .dsn = .dsn,
-                     .file_out = .file_out)
+                     .file_out = .file_out) #nocov end
 
   power_data <-
     power_data[c("T2M_MAX",
