@@ -14,6 +14,9 @@ based on feedback from v1.1.0.
 
 # Bug fixes
 
+- Fix issues reported at https://cloud.r-project.org//web/checks/check_results_nasapower.html with
+failing tests. These tests should be skipped on CRAN but were not.
+
 - Fixes bug where missing values in POWER data were not properly replaced with
 `NA` in `tibble` output
 
