@@ -9,6 +9,9 @@
 
 0 errors | 0 warnings | 1 note
 
+This is a minor release mainly for bug fixes but also including new functionality
+based on feedback from v1.1.0.
+
 # Bug fixes
 
 - Fixes bug where missing values in POWER data were not properly replaced with
