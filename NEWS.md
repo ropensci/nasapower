@@ -1,5 +1,7 @@
 # nasapower (development version)
 
+- Correct URL in BibTeX version of citation
+
 # nasapower 1.1.1
 
 ## Bug fixes
