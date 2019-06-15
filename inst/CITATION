@@ -33,9 +33,9 @@ bibentry(bibtype = "Manual",
          author = c(person("Adam", "Sparks")),
          year = year,
          note = note,
-	 url = "https://ropensci.github.io/nasapower/")
+	 url = "https://CRAN.R-project.org/package=nasapower")
 
- textVersion = paste("Adam H Sparks, (", year, ").",
+ textVersion = paste0("Adam H Sparks, (", year, ").",
   " nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R. ",
   note, ".",
-  " https://CRAN.R-project.org/package=nasapower", sep = "")
+  " https://CRAN.R-project.org/package=nasapower")
