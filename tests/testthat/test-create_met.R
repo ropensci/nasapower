@@ -19,8 +19,8 @@ test_that("create_met() creates a .met file for APSIM use", {
     expect_equal(nchar(met)[[311]], 31)
     expect_equal(met[4], "Latitude = -27.48")
     expect_equal(met[6], "Longitude = 151.81")
-    expect_equal(met[8], "tav = 13.975064516129")
-    expect_equal(met[9], "amp = 18.6052245903738")
+    expect_equal(met[8], "tav = 18.6052245903738")
+    expect_equal(met[9], "amp = 13.975064516129")
 })
 
 
@@ -64,8 +64,8 @@ test_that(".get_met_data creates an APSIM.met s4 object", {
                  c("maxt", "mint", "radn", "rain", "year", "day"))
     expect_equal(met_file@lat, -27.5, tolerance = 0.1)
     expect_equal(met_file@lon, 152, tolerance = 0.1)
-    expect_equal(met_file@tav, 14, tolerance = 0.1)
-    expect_equal(met_file@amp, 18.6, tolerance = 0.1)
+    expect_equal(met_file@amp, 14, tolerance = 0.1)
+    expect_equal(met_file@tav, 18.6, tolerance = 0.1)
 })
 
 context(".check_met_missing()")
