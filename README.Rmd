@@ -89,7 +89,7 @@ daily_ag
 
 More documentation is available in the vignette in your R session,
 `vignette("nasapower")` or available online,
-<https://ropensci.github.io/nasapower/articles/nasapower.html>.
+<https://docs.ropensci.org/nasapower/>.
 
 ## Use of POWER Data
 
