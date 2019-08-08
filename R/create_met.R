@@ -1,4 +1,4 @@
-#' Create an APSIM met File from POWER Data
+#' Create an APSIM met file from POWER data
 #'
 #' Get \acronym{POWER} values for a single point or region and create
 #'   an \acronym{APSIM} \code{met} file suitable for use in \acronym{APSIM} for

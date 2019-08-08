@@ -1,4 +1,4 @@
-#' Add %notin% Function
+#' Add %notin% function
 #'
 #' Negates `%in%`` for easier matching.
 #'
@@ -424,7 +424,7 @@
   return(query_list)
 }
 
-#' Sends the Query to the API
+#' Sends the query to the API
 #'
 #' @param .query_list A query list created by `.build_query`
 #' @noRd
@@ -455,7 +455,7 @@
 }
 
 
-#' Imports Data After Download
+#' Imports data after download
 #'
 #' @param .query_list A query list created by `.build_query`
 #' @noRd

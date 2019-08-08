@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get NASA POWER Data and Return a Tidy Data Frame}
+\title{Get NASA POWER data and return a tidy data frame}
 \usage{
 get_power(community, pars, temporal_average, lonlat, dates = NULL)
 }
