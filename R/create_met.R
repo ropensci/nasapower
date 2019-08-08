@@ -167,7 +167,7 @@ create_met <- function(lonlat,
       "()",
       "()")
 
-  invisible(capture.output(
+  invisible(utils::capture.output(
     out <-
       APSIM::prepareMet(
         power_data,
