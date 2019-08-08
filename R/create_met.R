@@ -1,4 +1,5 @@
-#' Create an APSIM met File from POWER Data
+
+#' Create an APSIM met file from POWER data
 #'
 #' Get \acronym{POWER} values for a single point or region and create
 #'   an \acronym{APSIM} \code{met} file suitable for use in \acronym{APSIM} for
@@ -80,10 +81,12 @@ create_met <- function(lonlat,
   file_out <- .met_checks(.dsn = dsn, .file_out = file_out)
 
   power_data <-
-    .get_met_data(.dates = dates,
-                  .dsn = dsn,
-                  .lonlat = lonlat,
-                  .file_out = file_out)
+    .get_met_data(
+      .dates = dates,
+      .dsn = dsn,
+      .lonlat = lonlat,
+      .file_out = file_out
+    )
 
   APSIM::writeMetFile(fileName = file.path(dsn, file_out),
                       met = power_data)
@@ -136,7 +139,8 @@ create_met <- function(lonlat,
     )
   )
 
-  .check_met_missing(.power_data = power_data, #nocov start
+  .check_met_missing(.power_data = power_data,
+                     #nocov start
                      .dsn = .dsn,
                      .file_out = .file_out) #nocov end
 
@@ -163,8 +167,8 @@ create_met <- function(lonlat,
       "()",
       "()")
 
-  out <-
-    suppressMessages(
+  invisible(capture.output(
+    out <-
       APSIM::prepareMet(
         power_data,
         lat = .lonlat[2],
@@ -172,7 +176,7 @@ create_met <- function(lonlat,
         newNames = met_names,
         units = met_units
       )
-    )
+  ))
   return(out)
 }
 

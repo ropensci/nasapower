@@ -1,6 +1,8 @@
 # nasapower (development version)
 
 - Correct URL in BibTeX version of citation
+- Supress output in console from `APSIM::createMetFile()`
+- Help file titles are now in sentence case
 
 # nasapower 1.1.1
 

@@ -1,4 +1,4 @@
-#' Get NASA POWER Data and Return a Tidy Data Frame
+#' Get NASA POWER data and return a tidy data frame
 #'
 #' Get \acronym{POWER} global meteorology and surface solar energy climatology
 #'   data and return a tidy data frame \code{\link[tibble]{tibble}}. All options
