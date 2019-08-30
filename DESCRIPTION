@@ -11,7 +11,7 @@ Authors@R: c(
     comment = c(ORCID = "0000-0003-1444-9135")),
     person("Hazel", "Kavili", role = "rev"),
     person("Alison", "Boyer", role = "rev"))
-URL: https://github.com/ropensci/nasapower, https://docs.ropensci.org/nasapower/ 
+URL: https://docs.ropensci.org/nasapower/ 
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
     energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
