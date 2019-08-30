@@ -1,9 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![CircleCI](https://circleci.com/gh/ropensci/nasapower/tree/master.svg?style=svg)](https://circleci.com/gh/ropensci/nasapower/tree/master)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/5a0lrm33dvg9qr5d?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
+[![Build Status](https://travis-ci.org/ropensci/nasapower.svg?branch=master)](https://travis-ci.org/ropensci/nasapower)
+[![Build Status](https://ci.appveyor.com/api/projects/status/5a0lrm33dvg9qr5d?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
