@@ -1,14 +1,22 @@
 # nasapower (development version)
 
+## Minor changes
+
+- Update documentation URL
+
 - Correct URL in BibTeX version of citation
-- Supress output in console from `APSIM::createMetFile()`
+
+- Supress output in console from `APSIM::createMetFile()` for cleaner user
+experience
+
 - Help file titles are now in sentence case
 
 # nasapower 1.1.1
 
 ## Bug fixes
 
-- Fix issues reported at https://cloud.r-project.org//web/checks/check_results_nasapower.html with
+- Fix issues reported at
+https://cloud.r-project.org//web/checks/check_results_nasapower.html with
 failing tests. These tests should be skipped on CRAN but were not.
 
 - Fixes bug where missing values in POWER data were not properly replaced with
