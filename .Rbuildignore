@@ -13,3 +13,5 @@
 ^data-raw$
 ^.circleci$
 ^revdep$
+^doc$
+^Meta$

@@ -1,6 +1,6 @@
 # vignettes that depend on internet access need to be precompiled
 library(knitr)
-knit("vignettes/nasapower.orig", "vignettes/nasapower.Rmd")
+knit("vignettes/nasapower.Rmd.orig", "vignettes/nasapower.Rmd")
 
 # remove file path such that vignettes will build with figures
 replace <- readLines("vignettes/nasapower.Rmd")
