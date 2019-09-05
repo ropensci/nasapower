@@ -111,7 +111,7 @@ Applied Science Program."
 `citation(package = "nasapower")`.
 
 * Please note that the _nasapower_ project is released with a
-[Contributor Code of Conduct](CONDUCT.md).
+[Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
 By participating in the _nasapower_ project you agree to abide by its terms.
 
 * The U.S. Earth System Research Laboratory, Physical Science Division of the

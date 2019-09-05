@@ -1,8 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Build Status](https://travis-ci.org/ropensci/nasapower.svg?branch=master)](https://travis-ci.org/ropensci/nasapower)
-[![Build Status](https://ci.appveyor.com/api/projects/status/5a0lrm33dvg9qr5d?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
+[![Build
+Status](https://travis-ci.org/ropensci/nasapower.svg?branch=master)](https://travis-ci.org/ropensci/nasapower)
+[![Build
+Status](https://ci.appveyor.com/api/projects/status/5a0lrm33dvg9qr5d?svg=true)](https://ci.appveyor.com/project/adamhsparks/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -119,8 +121,10 @@ Team.
     `citation(package = "nasapower")`.
 
   - Please note that the *nasapower* project is released with a
-    [Contributor Code of Conduct](CONDUCT.md). By participating in the
-    *nasapower* project you agree to abide by its terms.
+    [Contributor Code of
+    Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
+    By participating in the *nasapower* project you agree to abide by
+    its terms.
 
   - The U.S. Earth System Research Laboratory, Physical Science Division
     of the National Atmospheric & Oceanic Administration (NOAA)
