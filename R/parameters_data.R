@@ -1,4 +1,4 @@
-#' NASA POWER Parameters Available for Download
+#' NASA POWER parameters available for download
 #'
 #' An \R \code{list} object of \acronym{POWER} parameters and metadata available
 #' for querying from the \acronym{POWER} database.

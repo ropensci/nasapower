@@ -3,7 +3,7 @@
 \docType{data}
 \name{parameters}
 \alias{parameters}
-\title{NASA POWER Parameters Available for Download}
+\title{NASA POWER parameters available for download}
 \format{A list with 146 weather and climate parameters contained within the
 \acronym{POWER} database.
 

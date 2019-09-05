@@ -1,4 +1,4 @@
-#' NASA POWER API Client
+#' NASA POWER API client
 #'
 #' @name nasapower
 #' @author Sparks, A. H. \email{adamhsparks@@gmail.com}
