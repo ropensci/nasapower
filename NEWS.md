@@ -263,7 +263,7 @@ multiple dates. https://github.com/ropensci/nasapower/issues/1
 
 * Add new functionality to download regions in addition to single cells
 
-* Add static documentation website, <https://ropensci.github.io/nasapower/>
+* Add static documentation website, <https://docs.ropensci.org/nasapower/>
 
 * Add startup message
 
