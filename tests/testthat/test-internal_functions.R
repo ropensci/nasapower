@@ -374,7 +374,7 @@ test_that("Only 20 pars are allowed when `temporal_average` != CLIMATOLOGY", {
     "HDD10",
     "HDD18_3",
     "KT",
-    "KT_CLEAR",
+    "WSC",
     "PRECTOT",
     "PS",
     "QV2M",
