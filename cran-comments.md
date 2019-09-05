@@ -27,5 +27,4 @@ queries
 * Updates vignette to improve quality and reduce build-time
 
 ## Reverse dependencies
-
-There are currently no reverse dependencies.
+There is one reverse dependency, `ClimMobTools`, no problems are found.
