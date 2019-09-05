@@ -1,15 +1,18 @@
-# nasapower (development version)
+# nasapower 1.1.2
 
 ## Minor changes
 
-- Update documentation URL
+* Update documentation URL
 
-- Correct URL in BibTeX version of citation
+* Correct URL in BibTeX version of citation
 
-- Supress output in console from `APSIM::createMetFile()` for cleaner user
+* Supress output in console from `APSIM::createMetFile()` for cleaner user
 experience
 
-- Help file titles are now in sentence case
+* Updates `parameters` internal data used to check against API before submitting
+queries
+
+* Updates vignette to improve quality and reduce build-time
 
 # nasapower 1.1.1
 
