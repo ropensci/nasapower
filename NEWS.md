@@ -12,7 +12,8 @@
 
 ## Bug fixes
 
-- Fix issues reported at https://cloud.r-project.org//web/checks/check_results_nasapower.html with
+- Fix issues reported at
+https://cloud.r-project.org//web/checks/check_results_nasapower.html with
 failing tests. These tests should be skipped on CRAN but were not.
 
 - Fixes bug where missing values in POWER data were not properly replaced with
@@ -66,7 +67,7 @@ available for all communities, only the units change
 - Adds support for WS2M_MIN, WS2M_MAX and WS2M_RANGE in AG community
 
 ## Bug fixes
-  
+
 - Fixes bug where previous release did not support WS2M from AG community due to
 a local typo
 
@@ -147,7 +148,7 @@ the package's uses and capabilities
 
 ## Major changes
 
-- _nasapower_ is now a part of [rOpenSci](https://ropensci.org/) after 
+- _nasapower_ is now a part of [rOpenSci](https://ropensci.org/) after
 [peer-review of the code](https://github.com/ropensci/onboarding/issues/155)!
 
 - Provides access to all three communities, AG, SSE and and SB, not just AG
@@ -259,7 +260,7 @@ multiple dates. https://github.com/ropensci/nasapower/issues/1
 
 * Add new functionality to download regions in addition to single cells
 
-* Add static documentation website, <https://ropensci.github.io/nasapower/>
+* Add static documentation website, <https://docs.ropensci.org/nasapower/>
 
 * Add startup message
 
