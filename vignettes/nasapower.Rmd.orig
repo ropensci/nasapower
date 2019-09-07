@@ -27,12 +27,13 @@ energy amd climatology data  data in your R session as a tidy data frame for
 analysis and use in modelling or other purposes using `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
 download through a web interface at a resolution of 1/2 arc degree longitude
-by 1/2 arc degree latitude. Two other functions are provided to quickly and
-easily generate weather.met files from the POWER data for use in the
-Agricultural Production Systems sIMulator (APSIM), `create_met()` and
-International Consortium for Agricultural Systems Applications (ICASA) format
-text files for use in the Decision Support System for Agrotechnology Transfer
-(DSSAT) framework, `create_met()`.
+by 1/2 arc degree latitude.
+
+Two other functions are provided to quickly and easily generate weather.met
+files from the POWER data for use in the Agricultural Production Systems
+sIMulator (APSIM), `create_met()` and International Consortium for Agricultural
+Systems Applications (ICASA) format text files for use in the Decision Support
+System for Agrotechnology Transfer (DSSAT) framework, `create_met()`.
 
 ## Using `get_power` to Fetch POWER Data
 
@@ -283,7 +284,7 @@ and then converting the resulting `tibble` to a _raster_ object using `raster::r
 
 #### For low-memory systems
 
-For low-memory systems (e.g. a recent Apple Mac computer with 8GB RAM), it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.
+For low-memory systems, a computer with 8GB or less RAM, it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.
 
 Using indexing pick the month or annual value and create a raster object.
 
