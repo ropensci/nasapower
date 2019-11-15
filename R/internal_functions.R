@@ -27,10 +27,8 @@
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_average) {
   if (is.null(dates) & temporal_average != "CLIMATOLOGY") {
-    stop(
-      call. = FALSE,
-      "\nYou have not entered dates for the query.\n"
-    )
+    stop(call. = FALSE,
+         "\nYou have not entered dates for the query.\n")
   }
 
   if (temporal_average == "INTERANNUAL") {
@@ -45,10 +43,8 @@
       dates <- unique(substr(dates, 1, 4))
     }
     if (dates[[2]] < dates[[1]]) {
-      message(
-        "\nYour start and end dates were reversed. ",
-        "They have been reordered.\n"
-      )
+      message("\nYour start and end dates were reversed. ",
+              "They have been reordered.\n")
       dates <- c(dates[2], dates[1])
     }
     return(dates)
@@ -60,10 +56,8 @@
         dates <- c(dates, dates)
       }
       if (length(dates) > 2) {
-        stop(
-          call. = FALSE,
-          "\nYou have supplied more than two dates for start and end.\n"
-        )
+        stop(call. = FALSE,
+             "\nYou have supplied more than two dates for start and end.\n")
       }
 
       # put dates in list to use lapply
@@ -73,25 +67,21 @@
       date_format <- function(x) {
         tryCatch(
           # try to parse the date format using lubridate
-          x <- lubridate::parse_date_time(
-            x,
-            c(
-              "Ymd",
-              "dmY",
-              "mdY",
-              "BdY",
-              "Bdy",
-              "bdY",
-              "bdy"
-            )
-          ),
+          x <- lubridate::parse_date_time(x,
+                                          c(
+                                            "Ymd",
+                                            "dmY",
+                                            "mdY",
+                                            "BdY",
+                                            "Bdy",
+                                            "bdY",
+                                            "bdy"
+                                          )),
           warning = function(c) {
-            stop(
-              call. = FALSE,
-              "\n",
-              x,
-              " is not a valid entry for date. Enter as YYYY-MM-DD.\n"
-            )
+            stop(call. = FALSE,
+                 "\n",
+                 x,
+                 " is not a valid entry for date. Enter as YYYY-MM-DD.\n")
           }
         )
         as.Date(x)
@@ -102,27 +92,21 @@
 
       # if the stdate is > endate, flip order
       if (dates[[2]] < dates[[1]]) {
-        message(
-          "\nYour start and end dates were reversed. ",
-          "They have been reordered.\n"
-        )
+        message("\nYour start and end dates were reversed. ",
+                "They have been reordered.\n")
         dates <- c(dates[2], dates[1])
       }
 
       # check date to be sure it's not before POWER data start
       if (dates[[1]] < "1981-01-01") {
-        stop(
-          call. = FALSE,
-          "\n1981-01-01 is the earliest available data from POWER.\n"
-        )
+        stop(call. = FALSE,
+             "\n1981-01-01 is the earliest available data from POWER.\n")
       }
 
       # check end date to be sure it's not _after_
       if (dates[[2]] > Sys.Date()) {
-        stop(
-          call. = FALSE,
-          "\nThe data cannot possibly extend beyond this moment.\n"
-        )
+        stop(call. = FALSE,
+             "\nThe data cannot possibly extend beyond this moment.\n")
       }
 
       dates <- lapply(dates, as.character)
@@ -145,10 +129,8 @@
 .check_community <-
   function(community, pars) {
     if (community %notin% c("AG", "SB", "SSE")) {
-      stop(
-        call. = FALSE,
-        "\nYou have provided an invalid `community` value.\n"
-      )
+      stop(call. = FALSE,
+           "\nYou have provided an invalid `community` value.\n")
     }
   }
 
@@ -168,13 +150,9 @@
   function(pars, temporal_average, lonlat) {
     # check pars to make sure that they are valid
     if (any(pars %notin% names(parameters))) {
-      stop(
-        call. = FALSE,
-        paste0(
-          "\n", pars[which(pars %notin% names(parameters))],
-          " is/are not valid in 'pars'.\n"
-        )
-      )
+      stop(call. = FALSE,
+           paste0("\n", pars[which(pars %notin% names(parameters))],
+                  " is/are not valid in 'pars'.\n"))
     }
 
     # check to make sure temporal_average is appropriate for given pars
@@ -184,7 +162,9 @@
           call. = FALSE,
           "\nYou have entered an invalid value for `temporal_average` for ",
           "the supplied `pars`. One or more `pars` are not, available for ",
-          "`", temporal_average, "`, please check.\n"
+          "`",
+          temporal_average,
+          "`, please check.\n"
         )
       }
     }
@@ -202,10 +182,8 @@
     }
 
     if (length(pars) > 20 & temporal_average != "CLIMATOLOGY") {
-      stop(
-        call. = FALSE,
-        "\nYou can only specify 20 parameters for download at a time.\n"
-      )
+      stop(call. = FALSE,
+           "\nYou can only specify 20 parameters for download at a time.\n")
     }
 
     # all good? great. now we format it for the API
@@ -233,10 +211,8 @@
       if (lonlat == "GLOBAL") {
         identifier <- "Global"
       } else if (is.character(lonlat)) {
-        stop(
-          call. = FALSE,
-          "\nYou have entered an invalid request for `lonlat`.\n"
-        )
+        stop(call. = FALSE,
+             "\nYou have entered an invalid request for `lonlat`.\n")
       }
     } else if (is.numeric(lonlat) & length(lonlat) == 2) {
       if (lonlat[1] < -180 | lonlat[1] > 180) {
@@ -291,28 +267,21 @@
           "`, values to be sure they are valid.\n"
         )
       } else if (lonlat[2] > lonlat[4]) {
-        stop(
-          call. = FALSE,
-          "\nThe first `lat` value must be the minimum value.\n"
-        )
+        stop(call. = FALSE,
+             "\nThe first `lat` value must be the minimum value.\n")
       } else if (lonlat[1] > lonlat[3]) {
-        stop(
-          call. = FALSE,
-          "\nThe first `lon` value must be the minimum value.\n"
-        )
+        stop(call. = FALSE,
+             "\nThe first `lon` value must be the minimum value.\n")
       }
       identifier <- "Regional"
       bbox <- paste(lonlat[2],
                     lonlat[1],
                     lonlat[4],
                     lonlat[3],
-                    sep = ","
-      )
+                    sep = ",")
     } else {
-      stop(
-        call. = FALSE,
-        "\nYou have entered an invalid request for `lonlat`.\n"
-      )
+      stop(call. = FALSE,
+           "\nYou have entered an invalid request for `lonlat`.\n")
     }
 
     if (!is.null(bbox)) {
@@ -349,10 +318,10 @@
                          pars,
                          dates,
                          outputList) {
-
   user_agent <- "nasapower"
 
-  if (lonlat_identifier$identifier == "SinglePoint" & !is.null(dates)) {
+  if (lonlat_identifier$identifier == "SinglePoint" &
+      !is.null(dates)) {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -368,7 +337,8 @@
     )
   }
 
-  if (lonlat_identifier$identifier == "SinglePoint" & is.null(dates)) {
+  if (lonlat_identifier$identifier == "SinglePoint" &
+      is.null(dates)) {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -382,7 +352,8 @@
     )
   }
 
-  if (lonlat_identifier$identifier == "Regional" & !is.null(dates)) {
+  if (lonlat_identifier$identifier == "Regional" &
+      !is.null(dates)) {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -444,14 +415,15 @@
   }, # nocov start
   error = function(e) {
     e$message <-
-      paste("\nSomething went wrong with the query, no data were returned.",
-            "Please see <https://power.larc.nasa.gov> for potential",
-            "server issues.\n")
+      paste(
+        "\nSomething went wrong with the query, no data were returned.",
+        "Please see <https://power.larc.nasa.gov> for potential",
+        "server issues.\n"
+      )
     # Otherwise refers to open.connection
     e$call <- NULL
     stop(e)
-  }
-  ) # nocov end
+  }) # nocov end
 }
 
 
@@ -465,23 +437,20 @@
   raw_power_data <- file.path(tempdir(), "power_data_file")
 
   if ("messages" %in% names(.txt) & "outputs" %notin% names(.txt)) {
-    stop(
-      call. = FALSE,
-      unlist(.txt$messages)
-    )
+    stop(call. = FALSE,
+         unlist(.txt$messages))
   }
 
   if ("csv" %in% names(.txt$output)) {
     if (.query_list$outputList == "CSV") {
-      curl::curl_download(.txt$output$csv,
-                          destfile = raw_power_data,
-                          mode = "wb",
-                          quiet = TRUE
+      curl::curl_download(
+        .txt$output$csv,
+        destfile = raw_power_data,
+        mode = "wb",
+        quiet = TRUE
       )
 
-      power_data <- readLines(
-        raw_power_data
-      )
+      power_data <- readLines(raw_power_data)
 
       # create meta ojbect
       meta <- power_data[c(grep("-BEGIN HEADER-",
@@ -490,24 +459,29 @@
       # strip BEGIN/END HEADER lines
       meta <- meta[-c(1, max(length(meta)))]
       # replace missing values with NA
-      meta <- gsub(
-        pattern = "-999",
-        replacement = "NA",
-        x = meta
-      )
+      meta <- gsub(pattern = "-999",
+                   replacement = "NA",
+                   x = meta)
 
-      power_data <- readr::read_csv(raw_power_data,
-                                    col_types = readr::cols(),
-                                    na = "-999",
-                                    skip = length(meta) + 2
+      power_data <- readr::read_csv(
+        raw_power_data,
+        col_types = readr::cols(),
+        na = "-999",
+        skip = length(meta) + 2
       )
 
       # put lon before lat (x, y format)
       power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
-      if (.pars$temporal_average == "DAILY") {
-        power_data <- .format_dates(power_data)
+      if (.pars$temporal_average == "DAILY" &
+          .query_list$userCommunity == "SSE" |
+          .query_list$userCommunity == "SB") {
+        power_data <- .format_dates_SSE_SB(power_data)
+      }
+      if (.pars$temporal_average == "DAILY" &
+          .query_list$userCommunity == "AG") {
+        power_data <- .format_dates_AG(power_data)
       }
 
       # add new class
@@ -522,16 +496,17 @@
       attr(power_data, "POWER.Elevation") <- meta[4]
       attr(power_data, "POWER.Climate_zone") <- meta[5]
       attr(power_data, "POWER.Missing_value") <- meta[6]
-      attr(power_data, "POWER.Parameters") <- paste(meta[8:length(meta)],
-                                                    collapse = ";\n "
-      )
+      attr(power_data, "POWER.Parameters") <-
+        paste(meta[8:length(meta)],
+              collapse = ";\n ")
       return(power_data)
     }
   } else if ("icasa" %in% names(.txt$output)) {
-    curl::curl_download(.txt$output$icasa,
-                        destfile = raw_power_data,
-                        mode = "wb",
-                        quiet = TRUE
+    curl::curl_download(
+      .txt$output$icasa,
+      destfile = raw_power_data,
+      mode = "wb",
+      quiet = TRUE
     )
 
     power_data <- readLines(raw_power_data)
@@ -554,15 +529,22 @@
 print.POWER.Info <- function(x, ...) {
   if (!is.null(attr(x, "POWER.Info"))) {
     cat(
-      attr(x, "POWER.Info"), "\n",
-      attr(x, "POWER.Dates"), "\n",
-      attr(x, "POWER.Location"), "\n",
-      attr(x, "POWER.Elevation"), "\n",
-      attr(x, "POWER.Climate_zone"), "\n",
-      attr(x, "POWER.Missing_value"), "\n",
+      attr(x, "POWER.Info"),
+      "\n",
+      attr(x, "POWER.Dates"),
+      "\n",
+      attr(x, "POWER.Location"),
+      "\n",
+      attr(x, "POWER.Elevation"),
+      "\n",
+      attr(x, "POWER.Climate_zone"),
+      "\n",
+      attr(x, "POWER.Missing_value"),
+      "\n",
       "\n",
       "Parameters: \n",
-      attr(x, "POWER.Parameters"), "\n",
+      attr(x, "POWER.Parameters"),
+      "\n",
       "\n"
     )
     format(x)
@@ -571,7 +553,7 @@ print.POWER.Info <- function(x, ...) {
   invisible(x)
 }
 
-#' Format date columns in POWER data frame
+#' Format date columns in POWER data frame for the AG community
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
@@ -582,7 +564,7 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' @noRd
 #'
-.format_dates <- function(NASA) {
+.format_dates_AG <- function(NASA) {
   # convert DOY to integer
   NASA$DOY <- as.integer(NASA$DOY)
 
@@ -592,20 +574,46 @@ print.POWER.Info <- function(x, ...) {
                                                 origin = as.Date(paste(
                                                   NASA$YEAR, "-01-01",
                                                   sep = ""
-                                                ))
-                             ),
-                             .after = "DOY"
-  )
+                                                ))),
+                             .after = "DOY")
 
   # Extract month as integer
   NASA <- tibble::add_column(NASA,
                              MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
-                             .after = "YEAR"
-  )
+                             .after = "YEAR")
 
   # Extract day as integer
   NASA <- tibble::add_column(NASA,
                              DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
-                             .after = "MM"
-  )
+                             .after = "MM")
+}
+
+#' Format date columns in POWER data frame for the SSE community
+#'
+#' Formats columns as integers for DOY and adds columns for year, month and day.
+#'
+#' @param NASA A tidy data.frame resulting from \code{.build_query}.
+#'
+#' @return A tidy data frame of power data with additional date information
+#'   columns.
+#'
+#' @noRd
+#'
+.format_dates_SSE_SB <- function(NASA) {
+  names(NASA)[names(NASA) == "DY"] <- "DD"
+  names(NASA)[names(NASA) == "MO"] <- "MM"
+
+  # create YYYYMMDD col
+  NASA$YYYYMMDD <- paste0(NASA$YEAR, NASA$MM, NASA$DD)
+
+  # add day of year col
+  NASA$DOY <- lubridate::yday(lubridate::as_date(NASA$YYYYMMDD))
+
+  # set integer cols
+  NASA$YYYYMMDD <- lubridate::as_date(NASA$YYYYMMDD)
+  NASA$MM <- as.integer(NASA$MM)
+  NASA$DD <- as.integer(NASA$DD)
+
+  refcols <- c("LON", "LAT", "YEAR", "MM", "DD", "DOY", "YYYYMMDD")
+  NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
 }
