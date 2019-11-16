@@ -33,7 +33,7 @@ Imports:
     readr,
     tibble,
     utils
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Encoding: UTF-8
 Language: en-AU
 NeedsCompilation: no
@@ -45,8 +45,11 @@ Suggests:
     ggplot2,
     knitr,
     pkgdown,
+    purrr,
     raster,
     rmarkdown,
+    rnaturalearth,
+    sf,
     testthat
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
