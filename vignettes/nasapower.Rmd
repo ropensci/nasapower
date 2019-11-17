@@ -20,12 +20,13 @@ energy amd climatology data  data in your R session as a tidy data frame for
 analysis and use in modelling or other purposes using `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
 download through a web interface at a resolution of 1/2 arc degree longitude
-by 1/2 arc degree latitude. Two other functions are provided to quickly and
-easily generate weather.met files from the POWER data for use in the
-Agricultural Production Systems sIMulator (APSIM), `create_met()` and
-International Consortium for Agricultural Systems Applications (ICASA) format
-text files for use in the Decision Support System for Agrotechnology Transfer
-(DSSAT) framework, `create_met()`.
+by 1/2 arc degree latitude.
+
+Two other functions are provided to quickly and easily generate weather.met
+files from the POWER data for use in the Agricultural Production Systems
+sIMulator (APSIM), `create_met()` and International Consortium for Agricultural
+Systems Applications (ICASA) format text files for use in the Decision Support
+System for Agrotechnology Transfer (DSSAT) framework, `create_met()`.
 
 ## Using `get_power` to Fetch POWER Data
 
@@ -148,18 +149,18 @@ interannual_sse
 #>  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  
 #>  
 #> # A tibble: 196 x 17
-#>      LON   LAT PARAMETER  YEAR   JAN   FEB   MAR   APR   MAY   JUN   JUL
-#>    <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1  151. -28.2 CLRSKY_S…  1984  8.5   7.96  6.92  5.54  4.49  3.89  4.14
-#>  2  151. -28.2 CLRSKY_S…  1985  8.87  8.1   6.94  5.6   4.44  4.03  4.2 
-#>  3  151. -28.2 ALLSKY_S…  1984  6.11  6.83  6.28  4.6   4.02  3.46  2.58
-#>  4  151. -28.2 ALLSKY_S…  1985  8.2   7.15  6.02  4.79  3.89  3.44  3.8 
-#>  5  151. -28.2 CLRSKY_S…  1984  8.45  8.09  6.77  5.5   4.41  3.95  4.15
-#>  6  151. -28.2 CLRSKY_S…  1985  8.76  8.03  6.93  5.57  4.39  3.93  4.2 
-#>  7  151. -28.2 ALLSKY_S…  1984  5.82  6.43  5.95  4.41  3.89  3.54  2.43
-#>  8  151. -28.2 ALLSKY_S…  1985  7.98  6.86  5.74  4.46  3.67  3.34  3.8 
-#>  9  152. -28.2 CLRSKY_S…  1984  8.45  8.09  6.77  5.5   4.41  3.95  4.15
-#> 10  152. -28.2 CLRSKY_S…  1985  8.76  8.03  6.93  5.57  4.39  3.93  4.2 
+#>      LON   LAT PARAMETER   YEAR   JAN   FEB   MAR   APR   MAY   JUN   JUL
+#>    <dbl> <dbl> <chr>      <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1  151. -28.2 CLRSKY_SF…  1984  8.5   7.96  6.92  5.54  4.49  3.89  4.14
+#>  2  151. -28.2 CLRSKY_SF…  1985  8.87  8.1   6.94  5.6   4.44  4.03  4.2 
+#>  3  151. -28.2 ALLSKY_SF…  1984  6.11  6.83  6.28  4.6   4.02  3.46  2.58
+#>  4  151. -28.2 ALLSKY_SF…  1985  8.2   7.15  6.02  4.79  3.89  3.44  3.8 
+#>  5  151. -28.2 CLRSKY_SF…  1984  8.45  8.09  6.77  5.5   4.41  3.95  4.15
+#>  6  151. -28.2 CLRSKY_SF…  1985  8.76  8.03  6.93  5.57  4.39  3.93  4.2 
+#>  7  151. -28.2 ALLSKY_SF…  1984  5.82  6.43  5.95  4.41  3.89  3.54  2.43
+#>  8  151. -28.2 ALLSKY_SF…  1985  7.98  6.86  5.74  4.46  3.67  3.34  3.8 
+#>  9  152. -28.2 CLRSKY_SF…  1984  8.45  8.09  6.77  5.5   4.41  3.95  4.15
+#> 10  152. -28.2 CLRSKY_SF…  1985  8.76  8.03  6.93  5.57  4.39  3.93  4.2 
 #> # … with 186 more rows, and 6 more variables: AUG <dbl>, SEP <dbl>,
 #> #   OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
 ```
@@ -293,9 +294,9 @@ create_met(
   file_out = file.path(tempdir(), "Kingsthorpe.met")
 )
 #> Warning in file(fileName, "w"): cannot open file '/var/folders/
-#> _x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpLMlK3Z//var/folders/_x/
-#> gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpLMlK3Z/Kingsthorpe.met': No such file
-#> or directory
+#> _x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpb2cNj1//var/folders/_x/
+#> gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpb2cNj1/Kingsthorpe.met': No such
+#> file or directory
 #> Error in file(fileName, "w"): cannot open the connection
 ```
 
@@ -383,7 +384,7 @@ Plot all the items in the stack.
 plot(raster_stack)
 ```
 
-<img src="plot-fig1-1.png" title="plot of chunk plot-fig1" alt="plot of chunk plot-fig1" style="display: block; margin: auto;" />
+<img src="vignettes/plot-fig1-1.png" title="plot of chunk plot-fig1" alt="plot of chunk plot-fig1" style="display: block; margin: auto;" />
 
 ### Converting Global Climatology to a _raster_ Object
 
@@ -394,7 +395,7 @@ and then converting the resulting `tibble` to a _raster_ object using `raster::r
 
 #### For low-memory systems
 
-For low-memory systems (e.g. a recent Apple Mac computer with 8GB RAM), it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.
+For low-memory systems, a computer with 8GB or less RAM, it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.
 
 Using indexing pick the month or annual value and create a raster object.
 
@@ -426,7 +427,7 @@ RH2M_ann
 plot(RH2M_ann)
 ```
 
-<img src="create-single-raster-1.png" title="plot of chunk create-single-raster" alt="plot of chunk create-single-raster" style="display: block; margin: auto;" />
+<img src="vignettes/create-single-raster-1.png" title="plot of chunk create-single-raster" alt="plot of chunk create-single-raster" style="display: block; margin: auto;" />
 
 #### For systems with more available memory
 
@@ -442,15 +443,15 @@ T2M_brick
 #> resolution : 0.5, 0.5  (x, y)
 #> extent     : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
 #> crs        : NA 
-#> source     : memory
-#> names      :    JAN,    FEB,    MAR,    APR,    MAY,    JUN,    JUL,    AUG,    SEP,    OCT,    NOV,    DEC,    ANN 
-#> min values : -40.88, -44.85, -57.06, -62.95, -65.00, -64.50, -66.26, -66.74, -65.38, -57.44, -44.34, -39.79, -54.75 
-#> max values :  34.08,  32.84,  32.77,  34.30,  37.09,  39.34,  39.13,  38.65,  35.04,  32.46,  34.20,  33.83,  32.23
+#> source     : /private/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T/Rtmpb2cNj1/raster/r_tmp_2019-11-17_204447_12924_83526.grd 
+#> names      : layer.1, layer.2, layer.3, layer.4, layer.5, layer.6, layer.7, layer.8, layer.9, layer.10, layer.11, layer.12, layer.13 
+#> min values :  -40.88,  -44.85,  -57.06,  -62.95,  -65.00,  -64.50,  -66.26,  -66.74,  -65.38,   -57.44,   -44.34,   -39.79,   -54.75 
+#> max values :   34.08,   32.84,   32.77,   34.30,   37.09,   39.34,   39.13,   38.65,   35.04,    32.46,    34.20,    33.83,    32.23
 
 plot(T2M_brick)
 ```
 
-<img src="create-climatology-brick-1.png" title="plot of chunk create-climatology-brick" alt="plot of chunk create-climatology-brick" style="display: block; margin: auto;" />
+<img src="vignettes/create-climatology-brick-1.png" title="plot of chunk create-climatology-brick" alt="plot of chunk create-climatology-brick" style="display: block; margin: auto;" />
 
 ## References
 
