@@ -108,11 +108,9 @@ data for the states where rust was reported and save a CSV file of the rainfall.
 power <- vector(mode = "list", 2) # hold two growing seasons
 precip <- vector(mode = "list", nrow(coords)) # hold the cells
 
-# the seasons aren't just two days, but to shorten run time for this example,
-# we'll use two days only
 seasons <- list(
-  c("2014-11-01", "2014-11-02"),
-  c("2015-11-01", "2015-11-02")
+  c("2014-11-01", "2015-03-01"),
+  c("2015-11-01", "2016-03-01")
 )
 
 for (i in seq_along(seasons)) {
@@ -148,7 +146,6 @@ for (i in seq_along(seasons)) {
   }
   precip_df <- bind_rows(precip)
   power[[i]] <- precip_df
-  message("Loop number", i)
 }
 power_df <- bind_rows(power)
 
@@ -156,8 +153,6 @@ power_df <- bind_rows(power)
 power_df <- data.frame(STATE = c(rep("PR", nrow(PR_coords)),
                                  rep("RS", nrow(RS_coords))),
                        power_df)
-
-glimpse(power_df)
 ```
 
 ## Acknowledgements
