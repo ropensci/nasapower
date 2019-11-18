@@ -1,5 +1,3 @@
-# nasapower (development version)
-
 # nasapower 1.1.3
 
 ## Bug Fixes
