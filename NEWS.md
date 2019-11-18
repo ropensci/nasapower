@@ -1,4 +1,16 @@
-# nasapower (development version)
+# nasapower 1.1.3
+
+## Bug Fixes
+
+* Corrects bug when querying the SB or SSE communities resulting in an error
+
+* Corrects example in vignette when creating a .met file
+
+## Minor Changes
+
+* Update documentation to use ROxygen 7.0.0
+
+* Add new vignette, "Using nasapower with large geographic areas"
 
 # nasapower 1.1.2
 
