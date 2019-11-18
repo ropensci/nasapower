@@ -25,6 +25,7 @@ straightforward.
 However, if you wish to have daily data for a larger area it can be trickier to implement.
 
 Here I demonstrate fetching multiple seasons of rainfall data for two states in Brazil and two growing seasons using `nasapower`.
+An example of this use case can be found in Emerson Del Ponte's slide deck from the International Congress of Plant Pathology, 2019, ["Can rainfall be a useful predictor of epidemic risk across temporal and spatial scales?"](https://speakerdeck.com/emdelponte/can-rainfall-be-a-useful-predictor-of-epidemic-risk-across-temporal-and-spatial-scales?slide=23)
 
 ## Load libraries
 
@@ -103,20 +104,21 @@ coords <- rbind(PR_coords, RS_coords)
 Using nested `for()` loops, query the NASA-POWER database to gather precipitation
 data for the states where rust was reported and save a CSV file of the rainfall.
 
-```{r query_power, eval=TRUE, include=TRUE}
+```{r query_power, eval=FALSE, include=TRUE}
 
 power <- vector(mode = "list", 2) # hold two growing seasons
 precip <- vector(mode = "list", nrow(coords)) # hold the cells
 
 seasons <- list(
-  c("2014-11-01", "2015-03-01"),
-  c("2015-11-01", "2016-03-01")
+  c("2014-11-01", "2015-03-31"),
+  c("2015-11-01", "2016-03-31")
 )
 
 for (i in seq_along(seasons)) {
   # two "seasons" (outer loop 2x)
   season <- seasons[[i]]
 
+  # inner loop for each pair coords
   for (j in seq_along(1:nrow(coords))) {
     NA_df <-
       data.frame(
