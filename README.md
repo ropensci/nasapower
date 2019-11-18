@@ -53,12 +53,13 @@ A development version that may have new features or bug fixes is
 available through GitHub.
 
 ``` r
-if (!require(remotes)) {
-  install.packages("remotes")
+if (!require(devtools)) {
+  install.packages("devtools")
 }
 
-remotes::install_github("ropensci/nasapower",
-                       build_vignettes = TRUE)
+devtools::install_github("ropensci/nasapower",
+                         build_vignettes = TRUE
+)
 ```
 
 ### Example
