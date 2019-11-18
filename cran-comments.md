@@ -12,19 +12,17 @@
 
 This is a minor patch release
 
-## Minor changes
- 
-* Update documentation URL
+## Bug Fixes
 
-* Correct URL in BibTeX version of citation
+* Corrects bug when querying the SB or SSE communities resulting in an error
 
-* Supress output in console from `APSIM::createMetFile()` for cleaner user
-experience
+* Corrects example in vignette when creating a .met file
 
-* Updates `parameters` internal data used to check against API before submitting
-queries
+## Minor Changes
 
-* Updates vignette to improve quality and reduce build-time
+* Update documentation to use ROxygen 7.0.0
+
+* Add new vignette, "Using nasapower with large geographic areas"
 
 ## Reverse dependencies
 There is one reverse dependency, `ClimMobTools`, no problems are found.

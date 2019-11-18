@@ -1,0 +1,194 @@
+---
+title: "Using nasapower with large geographic areas"
+subtitle: "An example with two states in Brazil, Rio Grande do Sul and Paraná"
+author: "Adam H Sparks"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Using nasapower with large geographic areas}
+  %\VignetteEngine{knitr::rmarkdown_notangle}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE,
+                      comment = "#>",
+                      fig.width = 7,
+                      fig.height = 7,
+                      fig.align = "center",
+                      fig.path = "vignettes/")
+```
+
+Fetching POWER data using `nasapower` for small, single queries is easy and
+straightforward.
+However, if you wish to have daily data for a larger area it can be trickier to implement.
+
+Here I demonstrate fetching multiple seasons of rainfall data for two states in Brazil and two growing seasons using `nasapower`.
+An example of this use case can be found in Emerson Del Ponte's slide deck from the International Congress of Plant Pathology, 2019, ["Can rainfall be a useful predictor of epidemic risk across temporal and spatial scales?"](https://speakerdeck.com/emdelponte/can-rainfall-be-a-useful-predictor-of-epidemic-risk-across-temporal-and-spatial-scales?slide=23)
+
+## Load libraries
+
+To get the rainfall data for the states in Brazil, we will use `nasapower` (Sparks 2019), `rnaturalearth` (South 2017), `raster` (Hijmans 2019) packages to fetch the data, `dplyr` (Wickham et al. 2019) for data manipulation and `ggplot2` (Wickham 2016) to visualise the final data.
+
+```{r load_libraries, eval=TRUE, include=TRUE, message=FALSE}
+library(rnaturalearth)
+library(raster)
+library(dplyr)
+library(nasapower)
+library(ggplot2)
+library(purrr)
+```
+
+## Data import
+
+To get the state data we will use `rnaturalearth` to download simple features
+data for Brazil and subset the states Rio Grande do Sul and Paraná into separate
+objects.
+
+```{r get_states, eval=TRUE, include=TRUE}
+BRA <- ne_states(country = "Brazil",
+                 returnclass = "sf")
+
+# subset spatial objects of only the states of interest
+RS <- BRA[BRA$name_en == "Rio Grande do Sul", ]
+PR <- BRA[BRA$name_en == "Paraná", ]
+```
+
+## Get the rainfall data
+
+Now that we have objects for the states we can create a raster grid to represent
+the 0.5 x 0.5 degree grid that is the NASA-POWER data and select only cells
+that fall within the two states of interest.
+
+### POWER source
+
+Create a grid of 0.5 x 0.5 arc degrees and extract the x, y values from it for
+each state to use the coordinates to query the POWER data.
+
+```{r create_coords, eval=TRUE, include=TRUE, message=FALSE, warning=FALSE}
+# create a global 0.5 x 0.5 degree raster object
+r <- raster(xmn = -180,
+            xmx = 180,
+            ymn = -90,
+            ymx = 90,
+            resolution = 0.5)
+
+values(r) <- 1:ncell(r)
+
+plot(r, main = "Full global raster at 0.5 x 0.5 degrees")
+
+# Extract the two states, first crop by bounding box, then mask the raster
+PR_coords <- crop(r, PR)
+RS_coords <- crop(r, RS)
+
+PR_coords <- mask(PR_coords, PR)
+plot(PR_coords, main = "Paraná")
+# add the sf object, note the use of indexing to plot only the first column
+# to avoid warning messages
+plot(PR[, 1], col = NA, add = TRUE)
+
+RS_coords <- mask(RS_coords, RS)
+plot(RS_coords, main = "Rio Grande do Sul")
+plot(RS[, 1], col = NA, add = TRUE)
+
+# extract the centroid values of the cells to use querying the POWER data
+PR_coords <- as.data.frame(xyFromCell(PR_coords, 1:ncell(PR_coords)))
+RS_coords <- as.data.frame(xyFromCell(RS_coords, 1:ncell(RS_coords)))
+names(PR_coords) <- names(RS_coords) <- c("LON", "LAT")
+coords <- rbind(PR_coords, RS_coords)
+```
+
+**WARNING** This step is time intensive. **WARNING**
+
+Using nested `for()` loops, query the NASA-POWER database to gather precipitation
+data for the states where rust was reported and save a CSV file of the rainfall.
+
+```{r query_power, eval=FALSE, include=TRUE}
+
+power <- vector(mode = "list", 2) # hold two growing seasons
+precip <- vector(mode = "list", nrow(coords)) # hold the cells
+
+seasons <- list(
+  c("2014-11-01", "2015-03-31"),
+  c("2015-11-01", "2016-03-31")
+)
+
+for (i in seq_along(seasons)) {
+  # two "seasons" (outer loop 2x)
+  season <- seasons[[i]]
+
+  # inner loop for each pair coords
+  for (j in seq_along(1:nrow(coords))) {
+    NA_df <-
+      data.frame(
+        LON = coords[1, 1],
+        LAT = coords[1, 2],
+        YEAR = NA,
+        MM = NA,
+        DD = NA,
+        DOY = NA,
+        YYYYMMDD = NA,
+        PRECTOT = NA
+      )
+
+    p_get_power <- possibly(get_power, otherwise = NA_df)
+
+    # 312 coordinate pairs (inner loop 312x)
+    site <- as.numeric(coords[j,])
+    power_precip <- p_get_power(
+      community = "AG",
+      lonlat = site,
+      pars = "PRECTOT",
+      dates = season,
+      temporal_average = "DAILY"
+    )
+    precip[[j]] <- power_precip
+    Sys.sleep(5) # wait 5 seconds between requests so we don't hammer the server
+  }
+  precip_df <- bind_rows(precip)
+  power[[i]] <- precip_df
+}
+power_df <- bind_rows(power)
+
+# adds states to rows
+power_df <- data.frame(STATE = c(rep("PR", nrow(PR_coords)),
+                                 rep("RS", nrow(RS_coords))),
+                       power_df)
+```
+
+## Acknowledgements
+
+> These data were obtained from the NASA Langley Research Center POWER Project
+funded through the NASA Earth Science Directorate Applied Science Program.
+
+## References
+
+Lionel Henry and Hadley Wickham (2019). purrr: Functional Programming Tools.
+  R package version 0.3.2. https://CRAN.R-project.org/package=purrr
+
+Robert J. Hijmans (2019). raster: Geographic Data Analysis and Modeling. R package
+  version 3.0-2. https://CRAN.R-project.org/package=raster
+
+Andy South (2017). _rnaturalearth: World Map Data from Natural Earth_. R package
+  version 0.1.0. https://CRAN.R-project.org/package=rnaturalearth
+
+Adam Sparks (2018). nasapower: A NASA POWER Global Meteorology, Surface Solar
+  Energy and Climatology Data Client for R. Journal of Open Source Software,
+  3(30), 1035, https://doi.org/10.21105/joss.01035
+
+Adam Sparks (2019). _nasapower: NASA-POWER Data from R_. R package version 1.1.2,
+  <URL: https://CRAN.R-project.org/package=nasapower>.
+
+Hadley Wickham. ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag
+  New York, 2016.
+
+Hadley Wickham, Romain François, Lionel Henry and Kirill Müller (2019). dplyr: A
+  Grammar of Data Manipulation. R package version 0.8.3.
+  https://CRAN.R-project.org/package=dplyr
+
+## Session information
+
+```{r session_info, eval=TRUE, include=TRUE}
+sessioninfo::session_info()
+```

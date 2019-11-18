@@ -1,11 +1,22 @@
-# vignettes that depend on internet access need to be precompiled
+# vignettes that depend on internet access need to be precompiled and take a
+# while to run
 library(knitr)
 knit("vignettes/nasapower.Rmd.orig", "vignettes/nasapower.Rmd")
+knit(
+  "vignettes/nasapower_states_example.Rmd.orig",
+  "vignettes/nasapower_states_example.Rmd"
+)
 
 # remove file path such that vignettes will build with figures
 replace <- readLines("vignettes/nasapower.Rmd")
 replace <- gsub("<img src=\"vignettes/", "<img src=\"", replace)
 fileConn <- file("vignettes/nasapower.Rmd")
+writeLines(replace, fileConn)
+close(fileConn)
+
+replace <- readLines("vignettes/nasapower_states_example.Rmd")
+replace <- gsub("<img src=\"vignettes/", "<img src=\"", replace)
+fileConn <- file("vignettes/nasapower_states_example.Rmd")
 writeLines(replace, fileConn)
 close(fileConn)
 

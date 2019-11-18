@@ -1,6 +1,6 @@
 
 # test queries -----------------------------------------------------------------
-context("get_power()")
+context("get_power() AG Community")
 test_that("get_power returns daily point AG data", {
   skip_on_cran()
     power_query <- get_power(
@@ -31,6 +31,39 @@ test_that("get_power returns daily point AG data", {
     expect_equal(power_query$RH2M, 73.92)
     expect_equal(power_query$WS10M, 2.14)
     rm(power_query)
+})
+
+context("get_power() SB Community")
+test_that("get_power returns daily point SB data", {
+  skip_on_cran()
+  power_query <- get_power(
+    community = "SB",
+    lonlat = c(-179.5, -89.5),
+    pars = c(
+      "T2M",
+      "T2M_MIN",
+      "T2M_MAX",
+      "RH2M",
+      "WS10M"
+    ),
+    dates = c("1983-01-01"),
+    temporal_average = "Daily"
+  )
+
+  expect_is(power_query, "data.frame")
+  expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+  expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+  expect_equal(power_query$YEAR, 1983)
+  expect_equal(power_query$MM, 1)
+  expect_equal(power_query$DD, 1)
+  expect_equal(power_query$DOY, 1)
+  expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+  expect_equal(power_query$T2M, -25.24)
+  expect_equal(power_query$T2M_MIN, -25.55)
+  expect_equal(power_query$T2M_MAX, -24.9)
+  expect_equal(power_query$RH2M, 73.92)
+  expect_equal(power_query$WS10M, 2.14)
+  rm(power_query)
 })
 
 test_that("get_power returns daily regional AG data", {

@@ -23,7 +23,7 @@ knitr::opts_chunk$set(collapse = TRUE,
 
 _nasapower_ aims to make it quick and easy to automate downloading
 NASA [POWER](https://power.larc.nasa.gov) global meteorology, surface solar
-energy amd climatology data  data in your R session as a tidy data frame for
+energy and climatology data  data in your R session as a tidy data frame for
 analysis and use in modelling or other purposes using `get_power()`. POWER
 (Prediction Of Worldwide Energy Resource) data are freely available for
 download through a web interface at a resolution of 1/2 arc degree longitude
@@ -190,7 +190,7 @@ create_met(
   lonlat = c(151.81, -27.48),
   dates = c("1985-01-01", "1985-12-31"),
   dsn = tempdir(),
-  file_out = file.path(tempdir(), "Kingsthorpe.met")
+  file_out = "Kingsthorpe.met"
 )
 ```
 
