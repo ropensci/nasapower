@@ -2,8 +2,10 @@
 # while to run
 library(knitr)
 knit("vignettes/nasapower.Rmd.orig", "vignettes/nasapower.Rmd")
-knit("vignettes/nasapower_states_example.Rmd.orig",
-     "vignettes/nasapower_states_example.Rmd")
+knit(
+  "vignettes/nasapower_states_example.Rmd.orig",
+  "vignettes/nasapower_states_example.Rmd"
+)
 
 # remove file path such that vignettes will build with figures
 replace <- readLines("vignettes/nasapower.Rmd")
