@@ -33,7 +33,7 @@ Imports:
     readr,
     tibble,
     utils
-RoxygenNote: 7.0.0
+RoxygenNote: 7.0.1
 Encoding: UTF-8
 Language: en-AU
 NeedsCompilation: no
