@@ -139,8 +139,7 @@ create_met <- function(lonlat,
     )
   )
 
-  .check_met_missing(.power_data = power_data,
-                     #nocov start
+  .check_met_missing(.power_data = power_data, #nocov start
                      .dsn = .dsn,
                      .file_out = .file_out) #nocov end
 
