@@ -32,7 +32,8 @@ Imports:
     jsonlite,
     readr,
     tibble,
-    utils
+    utils,
+    vcr (>= 0.5)
 RoxygenNote: 7.0.2
 Encoding: UTF-8
 Language: en-AU
