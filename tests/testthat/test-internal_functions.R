@@ -419,8 +419,7 @@ test_that("If an invalid temporal average is given for `pars`,
 # query constructs -------------------------------------------------------------
 test_that(".build_query assembles a proper query for single point and != NULL
           dates",
-          {
-            temporal_average <- "DAILY"
+          {temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(-179.5, -89.5)
             community <- "AG"
@@ -506,8 +505,7 @@ test_that(".build_query assembles a proper query for single point and NULL
 
 test_that(".build_query assembles a proper query for regional and != NULL
           dates",
-          {
-            temporal_average <- "DAILY"
+          {temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             community <- "AG"
@@ -548,8 +546,7 @@ test_that(".build_query assembles a proper query for regional and != NULL
           })
 
 test_that(".build_query assembles a proper query for regional and NULL dates",
-          {
-            temporal_average <- "CLIMATOLOGY"
+          {temporal_average <- "CLIMATOLOGY"
             dates <- NULL
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             community <- "AG"
@@ -588,8 +585,7 @@ test_that(".build_query assembles a proper query for regional and NULL dates",
           })
 
 test_that(".build_query assembles a proper query for global climatology",
-          {
-            temporal_average <- "CLIMATOLOGY"
+          {temporal_average <- "CLIMATOLOGY"
             dates <- NULL
             lonlat <- "GLOBAL"
             community <- "AG"
