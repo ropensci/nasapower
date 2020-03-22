@@ -4,7 +4,8 @@
 \name{parameters}
 \alias{parameters}
 \title{NASA POWER parameters available for download}
-\format{A list with 146 weather and climate parameters contained within the
+\format{
+A list with 146 weather and climate parameters contained within the
 \acronym{POWER} database.
 
 \describe{
@@ -154,7 +155,8 @@
 \item{WS50M_MIN}{Minimum Wind Speed at 50 Meters}
 \item{WS50M_RANGE}{Wind Speed Range at 50 Meters}
 \item{WSC}{Corrected Wind Speed (Adjusted For Elevation)}
-}}
+}
+}
 \source{
 \url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json}
 }
