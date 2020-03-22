@@ -3,7 +3,7 @@ Type: Package
 Title: NASA POWER API Client
 Version: 1.1.3.9000
 Authors@R: 
-    c(person(given = "Adam",
+    c(person(given = "Adam H.",
             family = "Sparks",
             role = c("aut", "cre"),
             email = "adamhsparks@gmail.com",

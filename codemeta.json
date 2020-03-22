@@ -27,7 +27,7 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -39,7 +39,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -333,5 +333,5 @@
     }
   ],
   "relatedLink": "https://CRAN.R-project.org/package=nasapower",
-  "fileSize": "513.648KB"
+  "fileSize": "513.634KB"
 }
