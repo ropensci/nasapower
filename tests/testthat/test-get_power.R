@@ -156,8 +156,8 @@ test_that("get_power() stops if `temporal_average` not valid", {
 })
 
 test_that("get_power() stops if `temporal_average` != CLIMATOLOGY
-          when lonlat == GLOBAL",
-          {expect_error(
+          when lonlat == GLOBAL", {
+            expect_error(
               power_query <- get_power(
                 community = "AG",
                 lonlat = "GLOBAL",

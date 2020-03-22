@@ -418,8 +418,8 @@ test_that("If an invalid temporal average is given for `pars`,
 
 # query constructs -------------------------------------------------------------
 test_that(".build_query assembles a proper query for single point and != NULL
-          dates",
-          {temporal_average <- "DAILY"
+          dates", {
+            temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(-179.5, -89.5)
             community <- "AG"
@@ -462,8 +462,7 @@ test_that(".build_query assembles a proper query for single point and != NULL
 
 
 test_that(".build_query assembles a proper query for single point and NULL
-          dates",
-          {
+          dates", {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
             lonlat <- c(-179.5, -89.5)
@@ -504,8 +503,8 @@ test_that(".build_query assembles a proper query for single point and NULL
           })
 
 test_that(".build_query assembles a proper query for regional and != NULL
-          dates",
-          {temporal_average <- "DAILY"
+          dates", {
+            temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             community <- "AG"
@@ -545,79 +544,79 @@ test_that(".build_query assembles a proper query for regional and != NULL
             )
           })
 
-test_that(".build_query assembles a proper query for regional and NULL dates",
-          {temporal_average <- "CLIMATOLOGY"
-            dates <- NULL
-            lonlat <- c(112.5, -55.5, 115.5, -50.5)
-            community <- "AG"
-            pars <- "T2M"
-            outputList <- "CSV"
+test_that(".build_query assembles a proper query for regional and NULL dates", {
+  temporal_average <- "CLIMATOLOGY"
+  dates <- NULL
+  lonlat <- c(112.5, -55.5, 115.5, -50.5)
+  community <- "AG"
+  pars <- "T2M"
+  outputList <- "CSV"
 
-            dates <- .check_dates(dates,
-                                  lonlat,
-                                  temporal_average)
-            pars <- .check_pars(pars,
-                                temporal_average,
-                                lonlat)
-            lonlat_identifier <- .check_lonlat(lonlat,
-                                               pars)
-            user_agent <- "nasapower"
+  dates <- .check_dates(dates,
+                        lonlat,
+                        temporal_average)
+  pars <- .check_pars(pars,
+                      temporal_average,
+                      lonlat)
+  lonlat_identifier <- .check_lonlat(lonlat,
+                                     pars)
+  user_agent <- "nasapower"
 
-            query_list <- .build_query(community,
-                                       lonlat_identifier,
-                                       pars,
-                                       dates,
-                                       outputList)
+  query_list <- .build_query(community,
+                             lonlat_identifier,
+                             pars,
+                             dates,
+                             outputList)
 
-            expect_named(
-              query_list,
-              c(
-                "request",
-                "identifier",
-                "parameters",
-                "userCommunity",
-                "tempAverage",
-                "bbox",
-                "outputList",
-                "user"
-              )
-            )
-          })
+  expect_named(
+    query_list,
+    c(
+      "request",
+      "identifier",
+      "parameters",
+      "userCommunity",
+      "tempAverage",
+      "bbox",
+      "outputList",
+      "user"
+    )
+  )
+})
 
-test_that(".build_query assembles a proper query for global climatology",
-          {temporal_average <- "CLIMATOLOGY"
-            dates <- NULL
-            lonlat <- "GLOBAL"
-            community <- "AG"
-            pars <- "T2M"
-            outputList <- "CSV"
+test_that(".build_query assembles a proper query for global climatology", {
+  temporal_average <- "CLIMATOLOGY"
+  dates <- NULL
+  lonlat <- "GLOBAL"
+  community <- "AG"
+  pars <- "T2M"
+  outputList <- "CSV"
 
-            dates <- .check_dates(dates,
-                                  lonlat,
-                                  temporal_average)
-            pars <- .check_pars(pars,
-                                temporal_average,
-                                lonlat)
-            lonlat_identifier <- .check_lonlat(lonlat,
-                                               pars)
-            user_agent <- "nasapower"
+  dates <- .check_dates(dates,
+                        lonlat,
+                        temporal_average)
+  pars <- .check_pars(pars,
+                      temporal_average,
+                      lonlat)
+  lonlat_identifier <- .check_lonlat(lonlat,
+                                     pars)
+  user_agent <- "nasapower"
 
-            query_list <- .build_query(community,
-                                       lonlat_identifier,
-                                       pars,
-                                       dates,
-                                       outputList)
+  query_list <- .build_query(community,
+                             lonlat_identifier,
+                             pars,
+                             dates,
+                             outputList)
 
-            expect_named(
-              query_list,
-              c(
-                "request",
-                "identifier",
-                "parameters",
-                "userCommunity",
-                "tempAverage",
-                "outputList",
-                "user"
-              )
-            )
-          })
+  expect_named(
+    query_list,
+    c(
+      "request",
+      "identifier",
+      "parameters",
+      "userCommunity",
+      "tempAverage",
+      "outputList",
+      "user"
+    )
+  )
+})
