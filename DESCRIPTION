@@ -40,8 +40,7 @@ Imports:
     jsonlite,
     readr,
     tibble,
-    utils,
-    vcr (>= 0.5)
+    utils
 RoxygenNote: 7.1.0
 Encoding: UTF-8
 Language: en-AU
@@ -59,7 +58,8 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     sf,
-    testthat
+    testthat,
+    vcr (>= 0.5)
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
