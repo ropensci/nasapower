@@ -1,5 +1,5 @@
 
-#' Create a DSSAT ICASA file from POWER data
+#' Create a DSSAT ICASA File from POWER Data
 #'
 #' Get \acronym{POWER} values for a single point or region and create an
 #'   \acronym{ICASA} format text file suitable for use in \acronym{DSSAT} for

@@ -3,7 +3,7 @@
 \docType{data}
 \name{parameters}
 \alias{parameters}
-\title{NASA POWER parameters available for download}
+\title{NASA POWER Parameters Available for Download}
 \format{
 A list with 146 weather and climate parameters contained within the
 \acronym{POWER} database.
@@ -158,7 +158,7 @@ A list with 146 weather and climate parameters contained within the
 }
 }
 \source{
-\url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json}
+\url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v110.json}
 }
 \usage{
 parameters

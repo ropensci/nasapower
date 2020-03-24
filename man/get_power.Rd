@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get NASA POWER data}
+\title{Get NASA POWER Data from the POWER Web API.}
 \usage{
 get_power(community, pars, temporal_average, lonlat, dates = NULL)
 }

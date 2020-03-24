@@ -1,4 +1,5 @@
-#' NASA POWER parameters available for download
+
+#' NASA POWER Parameters Available for Download
 #'
 #' An \R \code{list} object of \acronym{POWER} parameters and metadata available
 #' for querying from the \acronym{POWER} database.
@@ -159,8 +160,7 @@
 #'
 #' @author Adam H Sparks \email{adamhsparks@@gmail.com}
 #' @source
-#' \url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v109.json}
+#' \url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v110.json}
 #' @references
 #' \url{https://power.larc.nasa.gov/docs/v1/}
-
 "parameters"

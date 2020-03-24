@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an APSIM met file from POWER data}
+\title{Create an APSIM met File from POWER Data}
 \usage{
 create_met(lonlat, dates, dsn, file_out)
 }
