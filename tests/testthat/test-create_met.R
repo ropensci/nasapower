@@ -58,7 +58,8 @@ test_that(".get_met_data creates an APSIM.met s4 object", {
     .dates = dates,
     .file_out = "example.met",
     .dsn = tempdir(),
-    .lonlat = lonlat
+    .lonlat = lonlat,
+    .missing_csv = FALSE
   )
   expect_s4_class(met_file, "metFile")
   expect_named(met_file@data,

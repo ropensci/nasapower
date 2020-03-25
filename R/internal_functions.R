@@ -463,6 +463,11 @@
                    replacement = "NA",
                    x = meta)
 
+      # replace missing values with NA
+      meta <- gsub(pattern = "-99",
+                   replacement = "NA",
+                   x = meta)
+
       power_data <- readr::read_csv(
         raw_power_data,
         col_types = readr::cols(),

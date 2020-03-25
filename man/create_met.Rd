@@ -4,7 +4,7 @@
 \alias{create_met}
 \title{Create an APSIM met File from POWER Data}
 \usage{
-create_met(lonlat, dates, dsn, file_out)
+create_met(lonlat, dates, dsn, file_out, missing_csv = FALSE)
 }
 \arguments{
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -19,6 +19,11 @@ details for more.}
 \item{file_out}{A file name for the resulting text file, \emph{e.g.}
 \dQuote{Kingsthorpe.met}. A \dQuote{.met} extension will be appended if
 given or otherwise specified by user.}
+
+\item{missing_csv}{A boolean value indicating whether a csv file is to be
+written to disk with a record of missing values. If `FALSE`, the default,
+no file is created, only a message is emitted. If `TRUE` a csv file is
+created with a record of all missing values in the .met file.}
 }
 \value{
 A text file in met format saved to local disk for use in

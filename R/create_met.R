@@ -11,10 +11,13 @@
 #'    \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  See argument
 #'    details for more.
 #' @param dsn A file path where the resulting text file should be stored.
-#'
 #' @param file_out A file name for the resulting text file, \emph{e.g.}
 #'   \dQuote{Kingsthorpe.met}. A \dQuote{.met} extension will be appended if
 #'   given or otherwise specified by user.
+#' @param missing_csv A boolean value indicating whether a csv file is to be
+#'   written to disk with a record of missing values. If `FALSE`, the default,
+#'   no file is created, only a message is emitted. If `TRUE` a csv file is
+#'   created with a record of all missing values in the .met file.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
 #'   \code{\link[APSIM]{prepareMet}} and \code{\link[APSIM]{writeMetFile}} that
@@ -77,7 +80,8 @@
 create_met <- function(lonlat,
                        dates,
                        dsn,
-                       file_out) {
+                       file_out,
+                       missing_csv = FALSE) {
   file_out <- .met_checks(.dsn = dsn, .file_out = file_out)
 
   power_data <-
@@ -85,7 +89,8 @@ create_met <- function(lonlat,
       .dates = dates,
       .dsn = dsn,
       .lonlat = lonlat,
-      .file_out = file_out
+      .file_out = file_out,
+      .missing_csv = missing_csv
     )
 
   APSIM::writeMetFile(fileName = file.path(dsn, file_out),
@@ -125,7 +130,7 @@ create_met <- function(lonlat,
 #' the file and corresponding units
 #'
 #' @noRd
-.get_met_data <- function(.dates, .lonlat, .dsn, .file_out) {
+.get_met_data <- function(.dates, .lonlat, .dsn, .file_out, .missing_csv) {
   power_data <- as.data.frame(
     get_power(
       pars = c("T2M_MAX",
@@ -139,9 +144,12 @@ create_met <- function(lonlat,
     )
   )
 
-  .check_met_missing(.power_data = power_data, #nocov start
-                     .dsn = .dsn,
-                     .file_out = .file_out) #nocov end
+  if (isTRUE(.missing_csv)) {
+    .check_met_missing(.power_data = power_data,
+                       #nocov start
+                       .dsn = .dsn,
+                       .file_out = .file_out) #nocov end
+  }
 
   power_data <-
     power_data[c("T2M_MAX",
@@ -167,8 +175,7 @@ create_met <- function(lonlat,
       "()")
 
   invisible(utils::capture.output(
-    out <-
-      APSIM::prepareMet(
+    out <- APSIM::prepareMet(
         power_data,
         lat = .lonlat[2],
         lon = .lonlat[1],
