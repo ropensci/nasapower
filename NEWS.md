@@ -1,5 +1,13 @@
 # nasapower (development version)
 
+## Minor Changes
+
+* Now includes relative humidity and wind speed in .met files for APSIM models
+
+* Writing an APSIM file to disk is optional to allow the use to work with the data in R first, _e.g._ possibly imputing missing data
+
+* Use vcr for enhanced testing
+
 # nasapower 1.1.3
 
 ## Bug Fixes
