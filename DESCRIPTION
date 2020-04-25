@@ -56,7 +56,6 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     sf,
-    testthat,
     vcr (>= 0.5)
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
