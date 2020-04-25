@@ -30,9 +30,12 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Scott Chamberlain \email{myrmecocystus@gmail.com} (\href{https://orcid.org/0000-0003-1444-9135}{ORCID}) [reviewer]
-  \item Hazel Kavili [reviewer]
-  \item Alison Boyer [reviewer]
+  \item Scott Chamberlain \email{myrmecocystus@gmail.com} (\href{https://orcid.org/0000-0003-1444-9135}{ORCID}) (Scott Chamberlain reviewed nasapower for rOpenSci, see
+                        https://github.com/ropensci/software-review/issues/155) [reviewer]
+  \item Hazel Kavili (Hazel Kavili reviewed nasapower for rOpenSci, see
+            https://github.com/ropensci/software-review/issues/155) [reviewer]
+  \item Alison Boyer (Alison Boyer reviewed nasapower for rOpenSci, see
+            https://github.com/ropensci/software-review/issues/155) [reviewer]
 }
 
 }
