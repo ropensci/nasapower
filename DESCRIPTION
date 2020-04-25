@@ -49,7 +49,6 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    covr,
     ggplot2,
     knitr,
     purrr,
