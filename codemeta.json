@@ -132,6 +132,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "vcr",
       "name": "vcr",
       "version": ">= 0.5",
@@ -297,5 +309,5 @@
     }
   ],
   "relatedLink": "https://CRAN.R-project.org/package=nasapower",
-  "fileSize": "513.922KB"
+  "fileSize": "513.929KB"
 }
