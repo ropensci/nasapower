@@ -12,14 +12,21 @@ Authors@R:
             family = "Chamberlain",
             role = "rev", 
             email = "myrmecocystus@gmail.com",
-            comment = c(ORCID = "0000-0003-1444-9135")),
+            comment = c(ORCID = "0000-0003-1444-9135",
+                        "Scott Chamberlain reviewed nasapower for rOpenSci, see
+                        https://github.com/ropensci/software-review/issues/155")
+                        ),
      person(given = "Hazel",
             family = "Kavili",
-            role = "rev"),
+            role = "rev",
+            comment = "Hazel Kavili reviewed nasapower for rOpenSci, see
+            https://github.com/ropensci/software-review/issues/155"),
      person(given = "Alison",
             family = "Boyer",
-            role = "rev"))
-URL: https://docs.ropensci.org/nasapower/ 
+            role = "rev",
+            comment = "Alison Boyer reviewed nasapower for rOpenSci, see
+            https://github.com/ropensci/software-review/issues/155"))
+URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
     energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
@@ -49,10 +56,8 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    covr,
     ggplot2,
     knitr,
-    pkgdown,
     purrr,
     raster,
     rmarkdown,
