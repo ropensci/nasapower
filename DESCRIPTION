@@ -19,7 +19,7 @@ Authors@R:
      person(given = "Alison",
             family = "Boyer",
             role = "rev"))
-URL: https://docs.ropensci.org/nasapower/ 
+URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
     energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
