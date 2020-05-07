@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2020-03-24
+2020-05-07
 
 # Create `parameters` list for internal checks before sending queries to POWER server
 
@@ -18,7 +18,7 @@ Using `jsonlite` read the JSON file into R creating a list.
 ``` r
 parameters <-
   jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v110.json"
+    "https://power.larc.nasa.gov/system/parameters.json"
   )
 ```
 
@@ -345,29 +345,20 @@ purrr::map(parameters, "standard_name")
     ## $SG_NOON
     ## [1] "Solar Noon"
     ## 
-    ## $SI_EF_MAX_OPTIMAL
-    ## [1] "Maximum Solar Irradiance Optimal"
+    ## $SI_EF_TILTED_SURFACE_HORIZONTAL
+    ## [1] "Solar Irradiance for Equator Facing Horizontal Surface"
     ## 
-    ## $SI_EF_MAX_OPTIMAL_ANG
-    ## [1] "Maximum Solar Irradiance Optimal Angle"
+    ## $SI_EF_TILTED_SURFACE_LAT_MINUS15
+    ## [1] "Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
     ## 
-    ## $SI_EF_MAX_TILTED_ANG_ORT
-    ## [1] "Maximum Solar Irradiance Tilted Surface Orientation"
+    ## $SI_EF_TILTED_SURFACE_LATITUDE
+    ## [1] "Solar Irradiance for Equator Facing Latitude Tilt"
     ## 
-    ## $SI_EF_MAX_TILTED_SURFACE
-    ## [1] "Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## $SI_EF_TILTED_SURFACE_LAT_PLUS15
+    ## [1] "Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
     ## 
-    ## $SI_EF_MIN_OPTIMAL
-    ## [1] "Minimum Solar Irradiance Optimal"
-    ## 
-    ## $SI_EF_MIN_OPTIMAL_ANG
-    ## [1] "Minimum Solar Irradiance Optimal Angle"
-    ## 
-    ## $SI_EF_MIN_TILTED_ANG_ORT
-    ## [1] "MinimumSolar Irradiance Tilted Surface Orientation"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE
-    ## [1] "Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## $SI_EF_TILTED_SURFACE_VERTICAL
+    ## [1] "Solar Irradiance for Equator Facing Vertical Surface"
     ## 
     ## $SI_EF_OPTIMAL
     ## [1] "Solar Irradiance Optimal"
@@ -375,11 +366,74 @@ purrr::map(parameters, "standard_name")
     ## $SI_EF_OPTIMAL_ANG
     ## [1] "Solar Irradiance Optimal Angle"
     ## 
-    ## $SI_EF_TILTED_ANG_ORT
+    ## $SI_EF_OPTIMAL_ANG_ORT
     ## [1] "Solar Irradiance Tilted Surface Orientation"
+    ## 
+    ## $SI_EF_TRACKER
+    ## [1] "Solar Irradiance Irradiance Tracking the Sun"
     ## 
     ## $SI_EF_TILTED_SURFACE
     ## [1] "Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE_HORIZONTAL
+    ## [1] "Minimum Solar Irradiance for Equator Facing Horizontal Surface"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE_LAT_MINUS15
+    ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE_LATITUDE
+    ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Tilt"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE_LAT_PLUS15
+    ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE_VERTICAL
+    ## [1] "Minimum Solar Irradiance for Equator Facing Vertical Surface"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL
+    ## [1] "Minimum Solar Irradiance Optimal"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL_ANG
+    ## [1] "Minimum Solar Irradiance Optimal Angle"
+    ## 
+    ## $SI_EF_MIN_OPTIMAL_ANG_ORT
+    ## [1] "Minimum Solar Irradiance Tilted Surface Orientation"
+    ## 
+    ## $SI_EF_MIN_TRACKER
+    ## [1] "Minimum Solar Irradiance Irradiance Tracking the Sun"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE
+    ## [1] "Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_HORIZONTAL
+    ## [1] "Maximum Solar Irradiance for Equator Facing Horizontal Surface"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_LAT_MINUS15
+    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_LATITUDE
+    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Tilt"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_LAT_PLUS15
+    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_VERTICAL
+    ## [1] "Maximum Solar Irradiance for Equator Facing Vertical Surface"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL
+    ## [1] "Maximum Solar Irradiance Optimal"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL_ANG
+    ## [1] "Maximum Solar Irradiance Optimal Angle"
+    ## 
+    ## $SI_EF_MAX_OPTIMAL_ANG_ORT
+    ## [1] "Maximum Solar Irradiance Tilted Surface Orientation"
+    ## 
+    ## $SI_EF_MAX_TRACKER
+    ## [1] "Maximum Solar Irradiance Irradiance Tracking the Sun"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE
+    ## [1] "Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
     ## 
     ## $SR
     ## [1] "Surface Roughness"
@@ -503,48 +557,49 @@ sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.3 (2020-02-29)
-    ##  os       macOS Catalina 10.15.3      
-    ##  system   x86_64, darwin15.6.0        
+    ##  version  R version 4.0.0 (2020-04-24)
+    ##  os       macOS Catalina 10.15.4      
+    ##  system   x86_64, darwin17.0          
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-03-24                  
+    ##  date     2020-05-07                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version    date       lib source                             
-    ##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.0)                     
-    ##  backports     1.1.5      2019-10-02 [1] CRAN (R 3.6.0)                     
-    ##  cli           2.0.2      2020-02-28 [1] CRAN (R 3.6.0)                     
-    ##  clisymbols    1.2.0      2017-05-21 [1] CRAN (R 3.6.0)                     
-    ##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.0)                     
-    ##  curl          4.3        2019-12-02 [1] CRAN (R 3.6.0)                     
-    ##  desc          1.2.0      2018-05-01 [1] CRAN (R 3.6.0)                     
-    ##  digest        0.6.25     2020-02-23 [1] CRAN (R 3.6.0)                     
-    ##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.0)                     
-    ##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.0)                     
-    ##  fs            1.3.2      2020-03-05 [1] CRAN (R 3.6.0)                     
-    ##  glue          1.3.2.9000 2020-03-19 [1] Github (tidyverse/glue@29eb0ff)    
-    ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.0)                     
-    ##  jsonlite      1.6.1      2020-02-02 [1] CRAN (R 3.6.0)                     
-    ##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.0)                     
-    ##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.0)                     
-    ##  prompt        1.0.0      2020-03-13 [1] Github (gaborcsardi/prompt@b332c42)
-    ##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.0)                     
-    ##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.0)                     
-    ##  Rcpp          1.0.4      2020-03-17 [1] CRAN (R 3.6.3)                     
-    ##  rlang         0.4.5      2020-03-01 [1] CRAN (R 3.6.0)                     
-    ##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.0)                     
-    ##  rprojroot     1.3-2      2018-01-03 [1] CRAN (R 3.6.0)                     
-    ##  rstudioapi    0.11       2020-02-07 [1] CRAN (R 3.6.0)                     
-    ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                     
-    ##  stringi       1.4.6      2020-02-17 [1] CRAN (R 3.6.0)                     
-    ##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.0)                     
-    ##  usethis       1.5.1.9000 2020-03-24 [1] Github (r-lib/usethis@01dbd8f)     
-    ##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.0)                     
-    ##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.0)                     
-    ##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.0)                     
+    ##  package     * version date       lib source                             
+    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                     
+    ##  backports     1.1.6   2020-04-05 [1] CRAN (R 4.0.0)                     
+    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.0)                     
+    ##  clisymbols    1.2.0   2017-05-21 [1] CRAN (R 4.0.0)                     
+    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)                     
+    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.0)                     
+    ##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.0)                     
+    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.0)                     
+    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)                     
+    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)                     
+    ##  fs            1.4.1   2020-04-04 [1] CRAN (R 4.0.0)                     
+    ##  glue          1.4.0   2020-04-03 [1] CRAN (R 4.0.0)                     
+    ##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 4.0.0)                     
+    ##  jsonlite      1.6.1   2020-02-02 [1] CRAN (R 4.0.0)                     
+    ##  knitr         1.28    2020-02-06 [1] CRAN (R 4.0.0)                     
+    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.0)                     
+    ##  prompt        1.0.0   2020-04-25 [1] Github (gaborcsardi/prompt@b332c42)
+    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.0)                     
+    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.0)                     
+    ##  Rcpp          1.0.4.6 2020-04-09 [1] CRAN (R 4.0.0)                     
+    ##  rlang         0.4.6   2020-05-02 [1] CRAN (R 4.0.0)                     
+    ##  rmarkdown     2.1     2020-01-20 [1] CRAN (R 4.0.0)                     
+    ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 4.0.0)                     
+    ##  rstudioapi    0.11    2020-02-07 [1] CRAN (R 4.0.0)                     
+    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                     
+    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)                     
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                     
+    ##  usethis       1.6.1   2020-04-29 [1] CRAN (R 4.0.0)                     
+    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)                     
+    ##  xfun          0.13    2020-04-13 [1] CRAN (R 4.0.0)                     
+    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                     
     ## 
-    ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
+    ## [1] /Users/adamsparks/.R/library
+    ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
