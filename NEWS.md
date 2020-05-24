@@ -1,10 +1,17 @@
 # nasapower (development version)
 
+## Major Changes
+
+* Use newest values from POWER team to validate user inputs for API requests, see <https://github.com/ropensci/nasapower/issues/48> for more.
+
+* Following a UNIX-like philosophy, this relase removes functionality to write APSIM .met and DSSAT ICASA files to disk.
+_nasapower_ now will only fetch the appropriate data and return a `data.frame()` in-session, please use [APSIM](https://CRAN.R-project.org/package=APSIM) or [DSSAT](https://CRAN.R-project.org/package=DSSAT) for this functionality.
+This allows users to interact with the data and impute missing values or investigate other aspects before saving to disk using the appropriate package.
+Please see vignettes for examples of use.
+
 ## Minor Changes
 
-* Now includes relative humidity and wind speed in .met files for APSIM models
-
-* Writing an APSIM file to disk is optional to allow the use to work with the data in R first, _e.g._ possibly imputing missing data
+* Now includes relative humidity and wind speed in data for for APSIM models
 
 * Use vcr for enhanced testing
 

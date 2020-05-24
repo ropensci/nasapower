@@ -506,15 +506,9 @@
               collapse = ";\n ")
       return(power_data)
     }
-  } else if ("icasa" %in% names(.txt$output)) {
-    curl::curl_download(
-      .txt$output$icasa,
-      destfile = raw_power_data,
-      mode = "wb",
-      quiet = TRUE
-    )
 
     power_data <- readLines(raw_power_data)
+
     return(power_data)
   } else {
     stop(

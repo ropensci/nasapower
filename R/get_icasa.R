@@ -1,19 +1,15 @@
 
-#' Create a DSSAT ICASA File from POWER Data
+#' Get Data Suitable for Creating a DSSAT ICASA File from the POWER Web API
 #'
 #' Get \acronym{POWER} values for a single point or region and create an
 #'   \acronym{ICASA} format text file suitable for use in \acronym{DSSAT} for
-#'   crop modelling; saving it to local disk.
+#'   crop modelling.
 #'
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y coordinates.  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.  See argument
 #'   details for  more.
-#' @param dsn A file path where the resulting text file should be stored.
-#' @param file_out A file name for the resulting text file, \emph{e.g.}
-#'   \dQuote{Kingsthorpe.txt}.  A \dQuote{.txt} extension will be appended if
-#'   not or otherwise specified by user.
 #'
 #' @details This function is essentially a wrapper for \code{\link{get_power}}
 #'   that queries the \acronym{POWER} \acronym{API} and writes a \acronym{DSSAT}
@@ -45,14 +41,14 @@
 #'   provided, it will be treated as both the start date and the end date and
 #'   only a single day's values will be returned.
 #'
-#' @seealso \code{\link{create_met}} Create an APSIM met File from NASA POWER
-#'   Data
+#' @seealso \code{\link{get_met}} Get Data Suitable for Creating an
+#'  \acronym{APSIM} .met file from the \acronym{POWER} Web \acronym{API}.
 #'
-#' @return A text file in \acronym{ICASA} format saved to local disk for use in
-#'   \acronym{DSSAT} crop modelling.
+#' @return An \code{data frame} object of data suitable for use in
+#'  \acronym{DSSAT} crop modelling.
 #'
 #' @examples
-#' # Create an ICASA file for Kingsthorpe,
+#' # Get data for an ICASA file for Kingsthorpe,
 #' # Qld from 1985-01-01 to 1985-06-30
 #' # and save it in the current R session
 #' # tempdir() as ICASA_example.txt
@@ -68,15 +64,11 @@
 #' @author Sparks, A. H. \email{adamhsparks@@gmail.com}
 #'
 #' @export
-create_icasa <- function(lonlat,
-                         dates,
-                         dsn,
-                         file_out) {
+get_icasa <- function(lonlat,
+                         dates) {
   # user input checks and formatting -------------------------------------------
 
   icasa <- .icasa_checks(
-    .dsn = dsn,
-    .file_out = file_out,
     .dates = dates,
     .lonlat = lonlat
   )
@@ -101,19 +93,8 @@ create_icasa <- function(lonlat,
 }
 
 .icasa_checks <-
-  function(.dsn,
-           .file_out,
-           .dates,
+  function(.dates,
            .lonlat) {
-    if (missing(.dsn) | missing(.file_out)) {
-      stop(call. = FALSE,
-           "You must provide a file location, `dsn` and file name, `file_out`.")
-    }
-    if (substr(.file_out, nchar(.file_out) - 3, nchar(.file_out)) != ".txt") {
-      .file_out <- paste0(.file_out, ".txt")
-    }
-
-    file_out <- file.path(.dsn, .file_out)
 
     # these are dummy variables to check other values,
     # POWER will automatically select the proper pars and temp_avg for query
@@ -132,3 +113,86 @@ create_icasa <- function(lonlat,
 
     return(list(file_out, pars, lonlat_identifier, dates))
   }
+
+
+#' Query POWER API and Return Data for an APSIM .met File
+#'
+#' Given user-supplied dates and lon and lat values, query POWER API and return
+#' a `data.frame` of requested data.
+#'
+#' @param .dates user supplied `dates` value
+#' @param .lonlat user supplied `lonlat` value
+#'
+#' @return A `list` of POWER data suitable for creating a .met file, names for
+#' the file and corresponding units
+#'
+#' @noRd
+#'
+.get_met_data <- function(.dates, .lonlat, .dsn, .file_out, .missing_csv) {
+  power_data <- as.data.frame(
+    get_power(
+      pars = c("T2M_MAX",
+               "T2M_MIN",
+               "ALLSKY_SFC_SW_DWN",
+               "PRECTOT",
+               "RH2M",
+               "T2MDEW",
+               "WS2M"),
+      dates = .dates,
+      lonlat = .lonlat,
+      temporal_average = "DAILY",
+      community = "AG"
+    )
+  )
+
+  if (isTRUE(.missing_csv)) {
+    .check_met_missing(.power_data = power_data,
+                       #nocov start
+                       .dsn = .dsn,
+                       .file_out = .file_out) #nocov end
+  }
+
+  power_data <-
+    power_data[c(
+      "YYYYMMDD",
+      "ALLSKY_SFC_SW_DWN",
+      "T2M_MAX",
+      "T2M_MIN",
+      "PRECTOT",
+      "T2MDEW",
+      "WS2M"
+    )]
+
+  return(out)
+}
+
+#' Check for Missing Values in .met File
+#'
+#' Checks for missing values in .met file. If missing values are found, a
+#' message is emitted as well as an auxiliary .csv file being written to disk
+#' alongside the .met file for the user to refer to
+#'
+#' @param .power_data data from a `get_power()` query
+#' @param .file_out user-supplied file name for .met file output
+#'
+#' @return A .csv file if missing values are found
+#'
+#' @noRd
+.check_met_missing <- function(.power_data, .dsn, .file_out) {
+  if (any(is.na(as.data.frame(.power_data)))) {
+    m <-
+      as.data.frame(which(is.na(as.data.frame(.power_data)), arr.ind = TRUE))
+    col_names <- names(.power_data)[unique(m[, 2])][match(m[, 2],
+                                                          c(unique(m[, 2])))]
+    m <- data.frame(col_names, m[, c(2, 1)])
+    message(
+      "\nThere are missing values in your .MET file, an auxillary file `",
+      tools::file_path_sans_ext(.file_out),
+      "_missing.csv` has been created as well.\n",
+      paste0(utils::capture.output(m), collapse = "\n")
+    )
+    readr::write_csv(x = m,
+                     path = file.path(.dsn, paste0(.file_out, "_missing.csv")))
+  }
+}
+

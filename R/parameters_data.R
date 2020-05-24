@@ -6,11 +6,11 @@
 #'
 #' @docType data
 #'
-#' @format A list with 146 weather and climate parameters contained within the
-#' \acronym{POWER} database.
+#' @format A list with 161 weather and climate parameters contained within the
+#'  database.
 #'
 #' \describe{
-#' \item{ALLSKY_SFC_LW_DWN }{Downward Thermal Infrared (Longwave) Radiative Flux}
+#' \item{ALLSKY_SFC_LW_DWN}{Downward Thermal Infrared (Longwave) Radiative Flux}
 #' \item{ALLSKY_SFC_SW_DWN}{All Sky Insolation Incident on a Horizontal Surface}
 #' \item{ALLSKY_SFC_SW_DWN_00_GMT}{All Sky Insolation Incident On A Horizontal Surface at 00 GMT}
 #' \item{ALLSKY_SFC_SW_DWN_03_GMT}{All Sky Insolation Incident On A Horizontal Surface at 03 GMT}
@@ -20,7 +20,7 @@
 #' \item{ALLSKY_SFC_SW_DWN_15_GMT}{All Sky Insolation Incident On A Horizontal Surface at 15 GMT}
 #' \item{ALLSKY_SFC_SW_DWN_18_GMT}{All Sky Insolation Incident On A Horizontal Surface at 18 GMT}
 #' \item{ALLSKY_SFC_SW_DWN_21_GMT}{All Sky Insolation Incident On A Horizontal Surface at 21 GMT}
-#' \item{ALLSKY_SFC_SW_DWN_MAX_DIFF}{Maximum Monthly Difference From Monthly Averaged All Sky Insolation}
+#' \item{ALLSKY_SFC_SW_DWN_MAX_DIFF}{Maximum Monthly Difference From Monthly Averaged All Sky Insolation }
 #' \item{ALLSKY_SFC_SW_DWN_MIN_DIFF}{Minimum Monthly Difference From Monthly Averaged All Sky Insolation}
 #' \item{ALLSKY_TOA_SW_DWN}{Top-of-atmosphere Insolation}
 #' \item{CDD0}{Cooling Degree Days Above 0 C}
@@ -53,30 +53,30 @@
 #' \item{EQVLNT_NO_SUN_BLACKDAYS_7}{Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive 7-day Period}
 #' \item{EQVLNT_NO_SUN_BLACKDAYS_MONTH}{Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive Month Period}
 #' \item{FROST_DAYS}{Frost Days}
-#' \item{FRQ_BRKNCLD_10_70_00_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 00 GMT}
-#' \item{FRQ_BRKNCLD_10_70_03_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 03 GMT}
-#' \item{FRQ_BRKNCLD_10_70_06_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 06 GMT}
-#' \item{FRQ_BRKNCLD_10_70_09_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 09 GMT}
-#' \item{FRQ_BRKNCLD_10_70_12_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 12 GMT}
-#' \item{FRQ_BRKNCLD_10_70_15_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 15 GMT}
-#' \item{FRQ_BRKNCLD_10_70_18_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 18 GMT}
-#' \item{FRQ_BRKNCLD_10_70_21_GMT}{Frequency Of Broken-cloud Skies 10 - 70 percent At 21 GMT}
-#' \item{FRQ_CLRSKY_0_10_00_GMT}{Frequency Of Clear Skies < 10 percent At 00 GMT}
-#' \item{FRQ_CLRSKY_0_10_03_GMT}{Frequency Of Clear Skies < 10 percent At 03 GMT}
-#' \item{FRQ_CLRSKY_0_10_06_GMT}{Frequency Of Clear Skies < 10 percent At 06 GMT}
-#' \item{FRQ_CLRSKY_0_10_09_GMT}{Frequency Of Clear Skies < 10 percent At 09 GMT}
-#' \item{FRQ_CLRSKY_0_10_12_GMT}{Frequency Of Clear Skies < 10 percent At 12 GMT}
-#' \item{FRQ_CLRSKY_0_10_15_GMT}{Frequency Of Clear Skies < 10 percent At 15 GMT}
-#' \item{FRQ_CLRSKY_0_10_18_GMT}{Frequency Of Clear Skies < 10 percent At 18 GMT}
-#' \item{FRQ_CLRSKY_0_10_21_GMT}{Frequency Of Clear Skies < 10 percent At 21 GMT}
-#' \item{FRQ_NROVRCST_70_00_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 00 GMT}
-#' \item{FRQ_NROVRCST_70_03_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 03 GMT}
-#' \item{FRQ_NROVRCST_70_06_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 06 GMT}
-#' \item{FRQ_NROVRCST_70_09_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 09 GMT}
-#' \item{FRQ_NROVRCST_70_12_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 12 GMT}
-#' \item{FRQ_NROVRCST_70_15_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 15 GMT}
-#' \item{FRQ_NROVRCST_70_18_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 18 GMT}
-#' \item{FRQ_NROVRCST_70_21_GMT}{Frequency Of Near-overcast Skies >= 70 percent At 21 GMT}
+#' \item{FRQ_BRKNCLD_10_70_00_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 00 GMT}
+#' \item{FRQ_BRKNCLD_10_70_03_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 03 GMT}
+#' \item{FRQ_BRKNCLD_10_70_06_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 06 GMT}
+#' \item{FRQ_BRKNCLD_10_70_09_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 09 GMT}
+#' \item{FRQ_BRKNCLD_10_70_12_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 12 GMT}
+#' \item{FRQ_BRKNCLD_10_70_15_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 15 GMT}
+#' \item{FRQ_BRKNCLD_10_70_18_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 18 GMT}
+#' \item{FRQ_BRKNCLD_10_70_21_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \% At 21 GMT}
+#' \item{FRQ_CLRSKY_0_10_00_GMT}{Frequency Of Clear Skies < 10 \% At 00 GMT}
+#' \item{FRQ_CLRSKY_0_10_03_GMT}{Frequency Of Clear Skies < 10 \% At 03 GMT}
+#' \item{FRQ_CLRSKY_0_10_06_GMT}{Frequency Of Clear Skies < 10 \% At 06 GMT}
+#' \item{FRQ_CLRSKY_0_10_09_GMT}{Frequency Of Clear Skies < 10 \% At 09 GMT}
+#' \item{FRQ_CLRSKY_0_10_12_GMT}{Frequency Of Clear Skies < 10 \% At 12 GMT}
+#' \item{FRQ_CLRSKY_0_10_15_GMT}{Frequency Of Clear Skies < 10 \% At 15 GMT}
+#' \item{FRQ_CLRSKY_0_10_18_GMT}{Frequency Of Clear Skies < 10 \% At 18 GMT}
+#' \item{FRQ_CLRSKY_0_10_21_GMT}{Frequency Of Clear Skies < 10 \% At 21 GMT}
+#' \item{FRQ_NROVRCST_70_00_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 00 GMT}
+#' \item{FRQ_NROVRCST_70_03_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 03 GMT}
+#' \item{FRQ_NROVRCST_70_06_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 06 GMT}
+#' \item{FRQ_NROVRCST_70_09_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 09 GMT}
+#' \item{FRQ_NROVRCST_70_12_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 12 GMT}
+#' \item{FRQ_NROVRCST_70_15_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 15 GMT}
+#' \item{FRQ_NROVRCST_70_18_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 18 GMT}
+#' \item{FRQ_NROVRCST_70_21_GMT}{Frequency Of Near-overcast Skies >= 70 \% At 21 GMT}
 #' \item{HDD0}{Heating Degree Days Below 0 C}
 #' \item{HDD10}{Heating Degree Days Below 10 C}
 #' \item{HDD18_3}{Heating Degree Days Below 18.3 C}
@@ -106,18 +106,36 @@
 #' \item{SG_MAX_HRZ_ANG}{Maximum Solar Angle Relative To The Horizon}
 #' \item{SG_MID_COZ_ZEN_ANG}{Cosine Solar Zenith Angle At Mid-Time Between Sunrise And Solar Noon}
 #' \item{SG_NOON}{Solar Noon}
-#' \item{SI_EF_MAX_OPTIMAL}{Maximum Solar Irradiance Optimal}
-#' \item{SI_EF_MAX_OPTIMAL_ANG}{Maximum Solar Irradiance Optimal Angle}
-#' \item{SI_EF_MAX_TILTED_ANG_ORT}{Maximum Solar Irradiance Tilted Surface Orientation}
-#' \item{SI_EF_MAX_TILTED_SURFACE}{Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)}
-#' \item{SI_EF_MIN_OPTIMAL}{Minimum Solar Irradiance Optimal}
-#' \item{SI_EF_MIN_OPTIMAL_ANG}{Minimum Solar Irradiance Optimal Angle}
-#' \item{SI_EF_MIN_TILTED_ANG_ORT}{MinimumSolar Irradiance Tilted Surface Orientation}
-#' \item{SI_EF_MIN_TILTED_SURFACE}{Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)}
+#' \item{SI_EF_TILTED_SURFACE_HORIZONTAL}{Solar Irradiance for Equator Facing Horizontal Surface}
+#' \item{SI_EF_TILTED_SURFACE_LAT_MINUS15}{Solar Irradiance for Equator Facing Latitude Minus 15 Tilt}
+#' \item{SI_EF_TILTED_SURFACE_LATITUDE}{Solar Irradiance for Equator Facing Latitude Tilt}
+#' \item{SI_EF_TILTED_SURFACE_LAT_PLUS15}{Solar Irradiance for Equator Facing Latitude Plus 15 Tilt}
+#' \item{SI_EF_TILTED_SURFACE_VERTICAL}{Solar Irradiance for Equator Facing Vertical Surface}
 #' \item{SI_EF_OPTIMAL}{Solar Irradiance Optimal}
 #' \item{SI_EF_OPTIMAL_ANG}{Solar Irradiance Optimal Angle}
-#' \item{SI_EF_TILTED_ANG_ORT}{Solar Irradiance Tilted Surface Orientation}
+#' \item{SI_EF_OPTIMAL_ANG_ORT}{Solar Irradiance Tilted Surface Orientation}
+#' \item{SI_EF_TRACKER}{Solar Irradiance Irradiance Tracking the Sun}
 #' \item{SI_EF_TILTED_SURFACE}{Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)}
+#' \item{SI_EF_MIN_TILTED_SURFACE_HORIZONTAL}{Minimum Solar Irradiance for Equator Facing Horizontal Surface}
+#' \item{SI_EF_MIN_TILTED_SURFACE_LAT_MINUS15}{Minimum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt}
+#' \item{SI_EF_MIN_TILTED_SURFACE_LATITUDE}{Minimum Solar Irradiance for Equator Facing Latitude Tilt}
+#' \item{SI_EF_MIN_TILTED_SURFACE_LAT_PLUS15}{Minimum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt}
+#' \item{SI_EF_MIN_TILTED_SURFACE_VERTICAL}{Minimum Solar Irradiance for Equator Facing Vertical Surface}
+#' \item{SI_EF_MIN_OPTIMAL}{Minimum Solar Irradiance Optimal}
+#' \item{SI_EF_MIN_OPTIMAL_ANG}{Minimum Solar Irradiance Optimal Angle}
+#' \item{SI_EF_MIN_OPTIMAL_ANG_ORT}{Minimum Solar Irradiance Tilted Surface Orientation}
+#' \item{SI_EF_MIN_TRACKER}{Minimum Solar Irradiance Irradiance Tracking the Sun}
+#' \item{SI_EF_MIN_TILTED_SURFACE}{Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)}
+#' \item{SI_EF_MAX_TILTED_SURFACE_HORIZONTAL}{Maximum Solar Irradiance for Equator Facing Horizontal Surface}
+#' \item{SI_EF_MAX_TILTED_SURFACE_LAT_MINUS15}{Maximum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt}
+#' \item{SI_EF_MAX_TILTED_SURFACE_LATITUDE}{Maximum Solar Irradiance for Equator Facing Latitude Tilt}
+#' \item{SI_EF_MAX_TILTED_SURFACE_LAT_PLUS15}{Maximum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt}
+#' \item{SI_EF_MAX_TILTED_SURFACE_VERTICAL}{Maximum Solar Irradiance for Equator Facing Vertical Surface}
+#' \item{SI_EF_MAX_OPTIMAL}{Maximum Solar Irradiance Optimal}
+#' \item{SI_EF_MAX_OPTIMAL_ANG}{Maximum Solar Irradiance Optimal Angle}
+#' \item{SI_EF_MAX_OPTIMAL_ANG_ORT}{Maximum Solar Irradiance Tilted Surface Orientation}
+#' \item{SI_EF_MAX_TRACKER}{Maximum Solar Irradiance Irradiance Tracking the Sun}
+#' \item{SI_EF_MAX_TILTED_SURFACE}{Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)}
 #' \item{SR}{Surface Roughness}
 #' \item{SRF_ALB}{Surface Albedo}
 #' \item{T10M}{Temperature at 10 Meters}
@@ -138,11 +156,8 @@
 #' \item{TS_MIN}{Minimum Earth Skin Temperature}
 #' \item{TS_RANGE}{Earth Skin Temperature Range}
 #' \item{T_ZONES}{Climate Thermal Zones}
-#' \item{U10M}{Eastward Wind at 10 Meters }
-#' \item{V10M}{Northward Wind at 10 Meters }
-#' \item{WD10M}{Wind Direction at 10 Meters (Meteorological Convention)}
-#' \item{WD2M}{Wind Direction at 2 Meters (Meteorological Convention)}
-#' \item{WD50M}{Wind Direction at 50 Meters (Meteorological Convention)}
+#' \item{U10M}{Eastward Wind at 10 Meters}
+#' \item{V10M}{Northward Wind at 10 Meters}
 #' \item{WS10M}{Wind Speed at 10 Meters}
 #' \item{WS10M_MAX}{Maximum Wind Speed at 10 Meters}
 #' \item{WS10M_MIN}{Minimum Wind Speed at 10 Meters}
@@ -158,9 +173,9 @@
 #' \item{WSC}{Corrected Wind Speed (Adjusted For Elevation)}
 #' }
 #'
-#' @author Adam H Sparks \email{adamhsparks@@gmail.com}
+#' @author Sparks, A. H. \email{adamhsparks@@gmail.com}
 #' @source
-#' \url{https://power.larc.nasa.gov/RADAPP/GEODATA/powerWeb/POWER_Parameters_v110.json}
+#' \url{https://power.larc.nasa.gov/system/parameters.json}
 #' @references
-#' \url{https://power.larc.nasa.gov/docs/v1/}
+#' \url{https://power.larc.nasa.gov/docs}
 "parameters"

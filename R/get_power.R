@@ -1,5 +1,5 @@
 
-#' Get NASA POWER Data from the POWER Web API.
+#' Get NASA POWER Data from the POWER Web API
 #'
 #' Get \acronym{POWER} global meteorology and surface solar energy climatology
 #'   data and return a tidy data frame \code{\link[tibble]{tibble}}. All options
