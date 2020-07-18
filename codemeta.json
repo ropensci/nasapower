@@ -7,17 +7,16 @@
   "identifier": "nasapower",
   "description": "Client for 'NASA' 'POWER' global meteorology, surface solar\n    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy\n    Resource) data are freely available global meteorology and surface solar\n    energy climatology data for download with a resolution of 1/2 by 1/2 arc\n    degree longitude and latitude and are funded through the 'NASA' Earth\n    Science Directorate Applied Science Program.  For more on the data\n    themselves, a web-based data viewer and web access, please see\n    <https://power.larc.nasa.gov/>.",
   "name": "nasapower: NASA POWER API Client",
-  "codeRepository": "https://docs.ropensci.org/nasapower/",
+  "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "1.1.3.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
+  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -46,6 +45,30 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "apsimx",
+      "name": "apsimx",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=apsimx"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "DSSAT",
+      "name": "DSSAT",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=DSSAT"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "ggplot2",
@@ -165,18 +188,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "APSIM",
-      "name": "APSIM",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=APSIM"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "crul",
       "name": "crul",
       "provider": {
@@ -255,18 +266,15 @@
   ],
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data"],
+  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/master/README.md",
-  "contIntegration": [
-    "https://travis-ci.org/ropensci/nasapower",
-    "https://ci.appveyor.com/project/adamhsparks/nasapower"
-  ],
+  "contIntegration": "https://codecov.io/gh/ropensci/nasapower",
   "developmentStatus": "https://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
-    "url": "https://github.com/ropensci/onboarding/issues/155",
-    "provider": "http://ropensci.org"
+    "url": "https://github.com/ropensci/software-review/issues/155",
+    "provider": "https://ropensci.org"
   },
   "citation": [
     {
@@ -281,7 +289,7 @@
       ],
       "name": "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R",
       "identifier": "10.21105/joss.01035",
-      "paginiation": "1035",
+      "pagination": "1035",
       "@id": "https://doi.org/10.21105/joss.01035",
       "sameAs": "https://doi.org/10.21105/joss.01035",
       "isPartOf": {
@@ -308,6 +316,6 @@
       "url": "https://CRAN.R-project.org/package=nasapower"
     }
   ],
-  "relatedLink": "https://CRAN.R-project.org/package=nasapower",
-  "fileSize": "513.929KB"
+  "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
+  "fileSize": "713.869KB"
 }

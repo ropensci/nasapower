@@ -47,7 +47,7 @@ Imports:
     readr,
     tibble,
     utils
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 Language: en-AU
 NeedsCompilation: no
@@ -55,7 +55,8 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    APSIM,
+    apsimx,
+    DSSAT,
     ggplot2,
     knitr,
     purrr,
