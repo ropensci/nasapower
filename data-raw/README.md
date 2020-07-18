@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2020-05-07
+2020-07-18
 
 # Create `parameters` list for internal checks before sending queries to POWER server
 
@@ -557,49 +557,50 @@ sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 4.0.0 (2020-04-24)
-    ##  os       macOS Catalina 10.15.4      
+    ##  version  R version 4.0.2 (2020-06-22)
+    ##  os       macOS Catalina 10.15.6      
     ##  system   x86_64, darwin17.0          
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-05-07                  
+    ##  date     2020-07-18                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version date       lib source                             
-    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)                     
-    ##  backports     1.1.6   2020-04-05 [1] CRAN (R 4.0.0)                     
-    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.0)                     
-    ##  clisymbols    1.2.0   2017-05-21 [1] CRAN (R 4.0.0)                     
-    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)                     
-    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.0)                     
-    ##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.0)                     
-    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.0)                     
-    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)                     
-    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)                     
-    ##  fs            1.4.1   2020-04-04 [1] CRAN (R 4.0.0)                     
-    ##  glue          1.4.0   2020-04-03 [1] CRAN (R 4.0.0)                     
-    ##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 4.0.0)                     
-    ##  jsonlite      1.6.1   2020-02-02 [1] CRAN (R 4.0.0)                     
-    ##  knitr         1.28    2020-02-06 [1] CRAN (R 4.0.0)                     
-    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.0)                     
-    ##  prompt        1.0.0   2020-04-25 [1] Github (gaborcsardi/prompt@b332c42)
-    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.0)                     
-    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.0)                     
-    ##  Rcpp          1.0.4.6 2020-04-09 [1] CRAN (R 4.0.0)                     
-    ##  rlang         0.4.6   2020-05-02 [1] CRAN (R 4.0.0)                     
-    ##  rmarkdown     2.1     2020-01-20 [1] CRAN (R 4.0.0)                     
-    ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 4.0.0)                     
-    ##  rstudioapi    0.11    2020-02-07 [1] CRAN (R 4.0.0)                     
-    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)                     
-    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)                     
-    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)                     
-    ##  usethis       1.6.1   2020-04-29 [1] CRAN (R 4.0.0)                     
-    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)                     
-    ##  xfun          0.13    2020-04-13 [1] CRAN (R 4.0.0)                     
-    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                     
+    ##  package     * version date       lib source        
+    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.1)
+    ##  backports     1.1.8   2020-06-17 [1] CRAN (R 4.0.1)
+    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.1)
+    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.1)
+    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.1)
+    ##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.1)
+    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.1)
+    ##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.1)
+    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.1)
+    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.1)
+    ##  fs            1.4.2   2020-06-30 [1] CRAN (R 4.0.1)
+    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.1)
+    ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.1)
+    ##  jsonlite      1.7.0   2020-06-25 [1] CRAN (R 4.0.1)
+    ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.1)
+    ##  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.1)
+    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.1)
+    ##  pillar        1.4.6   2020-07-10 [1] CRAN (R 4.0.2)
+    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.1)
+    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.1)
+    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.1)
+    ##  rlang         0.4.7   2020-07-09 [1] CRAN (R 4.0.2)
+    ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.0)
+    ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 4.0.0)
+    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.1)
+    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
+    ##  tibble        3.0.3   2020-07-10 [1] CRAN (R 4.0.2)
+    ##  usethis       1.6.1   2020-04-29 [1] CRAN (R 4.0.1)
+    ##  vctrs         0.3.2   2020-07-15 [1] CRAN (R 4.0.2)
+    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)
+    ##  xfun          0.15    2020-06-21 [1] CRAN (R 4.0.0)
+    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
     ## 
-    ## [1] /Users/adamsparks/.R/library
-    ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+    ## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library

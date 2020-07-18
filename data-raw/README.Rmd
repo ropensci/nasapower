@@ -11,10 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Create `parameters` list for internal checks before sending queries to POWER server
 
-These data are used for internal checks to be sure that data requested from the
-POWER dataset are valid. The POWER list of parameters that can be queried is
-available as a JSON file. Thanks to [raymondben](https://github.com/raymondben)
-for pointing me to this file.
+These data are used for internal checks to be sure that data requested from the POWER dataset are valid.
+The POWER list of parameters that can be queried is available as a JSON file.
+Thanks to [raymondben](https://github.com/raymondben) for pointing me to this file.
 
 ## POWER JSON file
 
@@ -54,9 +53,8 @@ The following list has the format:
 ## [1] "standard_name"
 ```
 
-Where `PARAMETER_NAME` is used in the internal `parameters` list. The
-`"standard_name"` is a longer, more descriptive name for the parameter that may
-be more instructive to users.
+Where `PARAMETER_NAME` is used in the internal `parameters` list.
+The `"standard_name"` is a longer, more descriptive name for the parameter that may be more instructive to users.
 
 ```{r view-list-names}
 purrr::map(parameters, "standard_name")
@@ -64,8 +62,7 @@ purrr::map(parameters, "standard_name")
 
 ## Save list for use in `nasapower` package
 
-Using `usethis` save the list as an R data object for use in the
-`nasapower` package.
+Using `usethis` save the list as an R data object for use in the `nasapower` package.
 
 ```{r save-list, message=FALSE}
 usethis::use_data(parameters, overwrite = TRUE)
