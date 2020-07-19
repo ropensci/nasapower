@@ -5,7 +5,7 @@
 * Use newest values from POWER team to validate user inputs for API requests, see <https://github.com/ropensci/nasapower/issues/48> for more.
 
 * Following a UNIX-like philosophy, this release removes functionality to write APSIM .met and DSSAT ICASA files to disk.
-_nasapower_ now will only fetch the appropriate data and return a `tiblle()` object in-session, please use [APSIM](https://CRAN.R-project.org/package=APSIM) or [DSSAT](https://CRAN.R-project.org/package=DSSAT) for fetching and/or writing .met or .icasa files to disk.
+_nasapower_ now will only fetch the appropriate data and return a `tibble()` object in-session, please use [APSIM](https://CRAN.R-project.org/package=APSIM) or the POWER web API data access viewer, <https://power.larc.nasa.gov/data-access-viewer/>, for fetching and/or writing .met or .icasa files, respectively.
 This allows users to interact with the data and impute missing values or investigate other aspects before saving to disk using the appropriate package.
 Please see vignettes for examples of use.
 
