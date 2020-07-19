@@ -22,7 +22,7 @@ An example of this use case can be found in Emerson Del Ponte's slide deck from 
 
 ## Load libraries
 
-To get the rainfall data for the states in Brazil, we will use `nasapower` (Sparks 2019), `rnaturalearth` (South 2017), `raster` (Hijmans 2019) packages to fetch the data, `dplyr` (Wickham et al. 2019) for data manipulation and `ggplot2` (Wickham 2016) to visualise the final data.
+To get the rainfall data for the states in Brazil, we will use `nasapower` (Sparks 2019), `rnaturalearth` (South 2017), `terra` (Hijmans 2020) packages to fetch the data, `dplyr` (Wickham et al. 2019) for data manipulation and `ggplot2` (Wickham 2016) to visualise the final data.
 
 
 ```r
