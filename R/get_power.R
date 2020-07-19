@@ -1,10 +1,10 @@
 
 #' Get NASA POWER Data from the POWER Web API
 #'
-#' Get \acronym{POWER} global meteorology and surface solar energy climatology
-#'   data and return a tidy data frame \code{\link[tibble]{tibble}} object. All
-#'   options offered by the official \acronym{POWER} \acronym{API} are
-#'   supported.
+#' @description Get \acronym{POWER} global meteorology and surface solar energy
+#'   climatology data and return a tidy data frame \code{\link[tibble]{tibble}}
+#'   object. All options offered by the official \acronym{POWER} \acronym{API}
+#'   are supported.
 #'
 #' @param community A character vector providing community name: \dQuote{AG},
 #'   \dQuote{SB} or \dQuote{SSE}.  See argument details for more.

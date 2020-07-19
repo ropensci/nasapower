@@ -47,10 +47,10 @@ including \dQuote{CLIMATOLOGY}) and requested parameters. A header of
 metadata is included.
 }
 \description{
-Get \acronym{POWER} global meteorology and surface solar energy climatology
-  data and return a tidy data frame \code{\link[tibble]{tibble}} object. All
-  options offered by the official \acronym{POWER} \acronym{API} are
-  supported.
+Get \acronym{POWER} global meteorology and surface solar energy
+  climatology data and return a tidy data frame \code{\link[tibble]{tibble}}
+  object. All options offered by the official \acronym{POWER} \acronym{API}
+  are supported.
 }
 \note{
 The associated metadata are not saved if the data are exported to a
