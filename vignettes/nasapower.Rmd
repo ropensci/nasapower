@@ -125,7 +125,7 @@ The selected user community will affect the units of the parameter and the tempo
 
 ## Creating Spatial Objects from `get_power`
 
-If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from `get_power()` to a spatial object in R using `raster::rasterFromXYZ()`.
+If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from `get_power()` to a spatial object in R using `terra::rast(type = "xyz")`.
 
 ### Converting Regional Data to a _raster_ Object
 
@@ -134,6 +134,7 @@ Using `lapply` and `split` it is easy to create stacks of raster objects from a 
 
 ```r
 library(raster)
+#> Loading required package: sp
 # Use split to create a list of data frames split by YYYYMMDD
 daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
 #> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'split': object 'daily_region_ag' not found
@@ -145,16 +146,17 @@ daily_region_ag <-
 #> Error in lapply(daily_region_ag, function(x) x[(!names(x) %in% c("YEAR", : object 'daily_region_ag' not found
 
 # Create a list of raster bricks from each YYYYMMDD data frame
-raster_list <- lapply(daily_region_ag, rasterFromXYZ,
-                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
-#> Error in lapply(daily_region_ag, rasterFromXYZ, crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"): object 'daily_region_ag' not found
+raster_list <- lapply(daily_region_ag, rast,
+                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+                      type = "xyz")
+#> Error in match.fun(FUN): object 'rast' not found
 
 stack_names <-
   paste0(names(raster_list), rep(c("_RH2M", "_T2M"), 2))
 #> Error in paste0(names(raster_list), rep(c("_RH2M", "_T2M"), 2)): object 'raster_list' not found
 
-raster_stack <- stack(unlist(raster_list))
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'stack': object 'raster_list' not found
+raster_stack <- c(unlist(raster_list))
+#> Error in unlist(raster_list): object 'raster_list' not found
 names(raster_stack) <- stack_names
 #> Error in eval(expr, envir, enclos): object 'stack_names' not found
 ```
@@ -167,9 +169,9 @@ plot(raster_stack)
 #> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'raster_stack' not found
 ```
 
-### Converting Global Climatology to a _raster_ Object
+### Converting Global Climatology to a Gridded Spatial Object
 
-Converting global climatology to a `raster` objects is as simple as querying and then converting the resulting `tibble` to a _raster_ object using `terra::rast(type = "xyz")`<sup>*</sup>.
+Converting global climatology to a `terra` objects is as simple as querying and then converting the resulting `tibble` to a _terra_ object using `terra::rast(type = "xyz")`<sup>*</sup>.
 Illustrated here using the `climatology_ag` object previously created are two methods.
 
 <sub>*: You may experience issues if you have <16GB RAM available converting the entire object to a `terra::rast()`.</sub>
@@ -194,9 +196,10 @@ climatology_list <-
   })
 #> Error in lapply(climatology_list, function(x) {: object 'climatology_list' not found
 
-RH2M_ann <- rasterFromXYZ(climatology_list$RH2M[c(1:2, 15)],
-                          crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
-#> Error in rasterFromXYZ(climatology_list$RH2M[c(1:2, 15)], crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"): object 'climatology_list' not found
+RH2M_ann <- rast(climatology_list$RH2M[c(1:2, 15)],
+                          crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+                          type = "xyz")
+#> Error in rast(climatology_list$RH2M[c(1:2, 15)], crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs", : could not find function "rast"
 
 RH2M_ann
 #> Error in eval(expr, envir, enclos): object 'RH2M_ann' not found
@@ -213,8 +216,9 @@ To do so, subset the `tibble()` for the desired parameter and drop the `PARAMETE
 
 ```r
 library("terra")
-T2M_brick <- rast(subset(climatology_ag, PARAMETER == "T2M")[-3], type = "xyz")
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'rast': error in evaluating the argument 'x' in selecting a method for function 'subset': object 'climatology_ag' not found
+#> This is terra version 0.7.11 (alpha-release)
+T2M_brick <- c(subset(climatology_ag, PARAMETER == "T2M")[-3], type = "xyz")
+#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'subset': object 'climatology_ag' not found
 
 T2M_brick
 #> Error in eval(expr, envir, enclos): object 'T2M_brick' not found

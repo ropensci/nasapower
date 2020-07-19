@@ -120,7 +120,7 @@ The selected user community will affect the units of the parameter and the tempo
 
 ## Creating Spatial Objects from `get_power`
 
-If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from `get_power()` to a spatial object in R using `raster::rasterFromXYZ()`.
+If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from `get_power()` to a spatial object in R using `terra::rast(type = "xyz")`.
 
 ### Converting Regional Data to a _raster_ Object
 
@@ -137,13 +137,14 @@ daily_region_ag <-
     x[(!names(x) %in% c("YEAR", "MM", "DD", "DOY", "YYYYMMDD"))])
 
 # Create a list of raster bricks from each YYYYMMDD data frame
-raster_list <- lapply(daily_region_ag, rasterFromXYZ,
-                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+raster_list <- lapply(daily_region_ag, rast,
+                      crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+                      type = "xyz")
 
 stack_names <-
   paste0(names(raster_list), rep(c("_RH2M", "_T2M"), 2))
 
-raster_stack <- stack(unlist(raster_list))
+raster_stack <- c(unlist(raster_list))
 names(raster_stack) <- stack_names
 ```
 
@@ -153,9 +154,9 @@ Plot all the items in the stack.
 plot(raster_stack)
 ```
 
-### Converting Global Climatology to a _raster_ Object
+### Converting Global Climatology to a Gridded Spatial Object
 
-Converting global climatology to a `raster` objects is as simple as querying and then converting the resulting `tibble` to a _raster_ object using `terra::rast(type = "xyz")`<sup>*</sup>.
+Converting global climatology to a `terra` objects is as simple as querying and then converting the resulting `tibble` to a _terra_ object using `terra::rast(type = "xyz")`<sup>*</sup>.
 Illustrated here using the `climatology_ag` object previously created are two methods.
 
 <sub>*: You may experience issues if you have <16GB RAM available converting the entire object to a `terra::rast()`.</sub>
@@ -177,8 +178,9 @@ climatology_list <-
     x
   })
 
-RH2M_ann <- rasterFromXYZ(climatology_list$RH2M[c(1:2, 15)],
-                          crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+RH2M_ann <- rast(climatology_list$RH2M[c(1:2, 15)],
+                          crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
+                          type = "xyz")
 
 RH2M_ann
 
@@ -192,7 +194,7 @@ To do so, subset the `tibble()` for the desired parameter and drop the `PARAMETE
 
 ```{r create-climatology-brick, eval=TRUE}
 library("terra")
-T2M_brick <- rast(subset(climatology_ag, PARAMETER == "T2M")[-3], type = "xyz")
+T2M_brick <- c(subset(climatology_ag, PARAMETER == "T2M")[-3], type = "xyz")
 
 T2M_brick
 
