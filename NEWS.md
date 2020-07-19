@@ -4,16 +4,16 @@
 
 * Use newest values from POWER team to validate user inputs for API requests, see <https://github.com/ropensci/nasapower/issues/48> for more.
 
-* Following a UNIX-like philosophy, this relase removes functionality to write APSIM .met and DSSAT ICASA files to disk.
-_nasapower_ now will only fetch the appropriate data and return a `data.frame()` in-session, please use [APSIM](https://CRAN.R-project.org/package=APSIM) or [DSSAT](https://CRAN.R-project.org/package=DSSAT) for this functionality.
+* Following a UNIX-like philosophy, this release removes functionality to write APSIM .met and DSSAT ICASA files to disk.
+_nasapower_ now will only fetch the appropriate data and return a `tiblle()` object in-session, please use [APSIM](https://CRAN.R-project.org/package=APSIM) or [DSSAT](https://CRAN.R-project.org/package=DSSAT) for fetching and/or writing .met or .icasa files to disk.
 This allows users to interact with the data and impute missing values or investigate other aspects before saving to disk using the appropriate package.
 Please see vignettes for examples of use.
 
 ## Minor Changes
 
-* Now includes relative humidity and wind speed in data for for APSIM models
-
 * Use vcr for enhanced testing
+
+--------------------------------------------------------------------------------
 
 # nasapower 1.1.3
 
@@ -35,9 +35,11 @@ Please see vignettes for examples of use.
 
 - Correct URL in BibTeX version of citation
 
-- Supress output in console from `APSIM::createMetFile()`
+- Suppress output in console from `APSIM::createMetFile()`
 
 - Help file titles are now in sentence case
+
+
 
 # nasapower 1.1.1
 
@@ -58,6 +60,8 @@ failing tests. These tests should be skipped on CRAN but were not.
 - Users are now notified if creating a .met file that has any missing values
 through a console message and .csv file being written to disk to accompany the
 resulting .met file describing which values are missing
+
+--------------------------------------------------------------------------------
 
 # nasapower 1.1.0
 
@@ -82,6 +86,8 @@ in conjunction with `temporal_average = CLIMATOLOGY`.
 - Refactor code to split internal functions by functionality and add more
 complete test coverage
 
+--------------------------------------------------------------------------------
+
 # nasapower 1.0.7
 
 ## Minor changes
@@ -90,6 +96,8 @@ complete test coverage
 available for all communities, only the units change
 
 - Update links to latest documentation provided by the POWER team
+
+--------------------------------------------------------------------------------
 
 # nasapower 1.0.6
 
@@ -101,6 +109,8 @@ available for all communities, only the units change
 
 - Fixes bug where previous release did not support WS2M from AG community due to
 a local typo
+
+--------------------------------------------------------------------------------
 
 # nasapower 1.0.5
 
@@ -120,6 +130,8 @@ how pre-query validation should be performed
 
 - Documentation .Rd files are now more readable with better formatting
 
+--------------------------------------------------------------------------------
+
 # nasapower 1.0.3
 
 ## Minor changes
@@ -137,6 +149,8 @@ how pre-query validation should be performed
 ## Bug fixes
 
 - Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable
+
+--------------------------------------------------------------------------------
 
 # nasapower 1.0.2
 
