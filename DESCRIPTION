@@ -55,12 +55,10 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    apsimx,
-    DSSAT,
     ggplot2,
     knitr,
     purrr,
-    raster,
+    terra,
     rmarkdown,
     rnaturalearth,
     sf,

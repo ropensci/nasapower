@@ -33,7 +33,7 @@ To get the rainfall data for the states in Brazil, we will use `nasapower` (Spar
 
 ```{r load_libraries, eval=TRUE, include=TRUE, message=FALSE}
 library(rnaturalearth)
-library(raster)
+library(terra)
 library(dplyr)
 library(nasapower)
 library(ggplot2)
@@ -68,11 +68,11 @@ each state to use the coordinates to query the POWER data.
 
 ```{r create_coords, eval=TRUE, include=TRUE, message=FALSE, warning=FALSE}
 # create a global 0.5 x 0.5 degree raster object
-r <- raster(xmn = -180,
-            xmx = 180,
-            ymn = -90,
-            ymx = 90,
-            resolution = 0.5)
+r <- rast(xmn = -180,
+          xmx = 180,
+          ymn = -90,
+          ymx = 90,
+          resolution = 0.5)
 
 values(r) <- 1:ncell(r)
 
@@ -93,8 +93,8 @@ plot(RS_coords, main = "Rio Grande do Sul")
 plot(RS[, 1], col = NA, add = TRUE)
 
 # extract the centroid values of the cells to use querying the POWER data
-PR_coords <- as.data.frame(xyFromCell(PR_coords, 1:ncell(PR_coords)))
-RS_coords <- as.data.frame(xyFromCell(RS_coords, 1:ncell(RS_coords)))
+PR_coords <- as.data.frame(rast(PR_coords, 1:ncell(PR_coords)), type = "xyz")
+RS_coords <- as.data.frame(xyFromCell(RS_coords, 1:ncell(RS_coords)), type = "xyz")
 names(PR_coords) <- names(RS_coords) <- c("LON", "LAT")
 coords <- rbind(PR_coords, RS_coords)
 ```
@@ -167,8 +167,8 @@ funded through the NASA Earth Science Directorate Applied Science Program.
 Lionel Henry and Hadley Wickham (2019). purrr: Functional Programming Tools.
   R package version 0.3.2. https://CRAN.R-project.org/package=purrr
 
-Robert J. Hijmans (2019). raster: Geographic Data Analysis and Modeling. R package
-  version 3.0-2. https://CRAN.R-project.org/package=raster
+  Robert J. Hijmans (2020). terra: Spatial Data Analysis. R package version 0.7-11.
+  https://CRAN.R-project.org/package=terra
 
 Andy South (2017). _rnaturalearth: World Map Data from Natural Earth_. R package
   version 0.1.0. https://CRAN.R-project.org/package=rnaturalearth
