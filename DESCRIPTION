@@ -37,7 +37,7 @@ Description: Client for 'NASA' 'POWER' global meteorology, surface solar
     themselves, a web-based data viewer and web access, please see
     <https://power.larc.nasa.gov/>.
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.5.0)
 License: MIT + file LICENSE
 Imports:
     APSIM,
