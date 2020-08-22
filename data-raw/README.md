@@ -1,9 +1,10 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2020-07-18
+2020-08-22
 
-# Create `parameters` list for internal checks before sending queries to POWER server
+Create `parameters` list for internal checks before sending queries to POWER server
+===================================================================================
 
 These data are used for internal checks to be sure that data requested
 from the POWER dataset are valid. The POWER list of parameters that can
@@ -11,38 +12,36 @@ be queried is available as a JSON file. Thanks to
 [raymondben](https://github.com/raymondben) for pointing me to this
 file.
 
-## POWER JSON file
+POWER JSON file
+---------------
 
 Using `jsonlite` read the JSON file into R creating a list.
 
-``` r
-parameters <-
-  jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/system/parameters.json"
-  )
-```
+    parameters <-
+      jsonlite::fromJSON(
+        "https://power.larc.nasa.gov/system/parameters.json"
+      )
 
 Replace UTF-8 characters in the dataset since R doesn’t like this in
 packages.
 
-``` r
-parameters$SG_DEC_AVG$climatology_definition <-
-  gsub("°",
-       " degrees",
-       parameters$SG_DEC_AVG$climatology_definition)
+    parameters$SG_DEC_AVG$climatology_definition <-
+      gsub("°",
+           " degrees",
+           parameters$SG_DEC_AVG$climatology_definition)
 
-parameters$SG_HR_SET_ANG$climatology_definition <-
-  gsub("°",
-       " degrees",
-       parameters$SG_HR_SET_ANG$climatology_definition)
+    parameters$SG_HR_SET_ANG$climatology_definition <-
+      gsub("°",
+           " degrees",
+           parameters$SG_HR_SET_ANG$climatology_definition)
 
-parameters$SG_NOON$climatology_definition <-
-  gsub("°",
-       " degrees",
-       parameters$SG_NOON$climatology_definition)
-```
+    parameters$SG_NOON$climatology_definition <-
+      gsub("°",
+           " degrees",
+           parameters$SG_NOON$climatology_definition)
 
-## View list of parameters and units
+View list of parameters and units
+---------------------------------
 
 The following list has the format:
 
@@ -53,9 +52,7 @@ Where `PARAMETER_NAME` is used in the internal `parameters` list. The
 `"standard_name"` is a longer, more descriptive name for the parameter
 that may be more instructive to users.
 
-``` r
-purrr::map(parameters, "standard_name")
-```
+    purrr::map(parameters, "standard_name")
 
     ## $ALLSKY_SFC_LW_DWN
     ## [1] "Downward Thermal Infrared (Longwave) Radiative Flux"
@@ -540,20 +537,18 @@ purrr::map(parameters, "standard_name")
     ## $WSC
     ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
 
-## Save list for use in `nasapower` package
+Save list for use in `nasapower` package
+----------------------------------------
 
 Using `usethis` save the list as an R data object for use in the
 `nasapower` package.
 
-``` r
-usethis::use_data(parameters, overwrite = TRUE)
-```
+    usethis::use_data(parameters, overwrite = TRUE)
 
-## Session Info
+Session Info
+------------
 
-``` r
-sessioninfo::session_info()
-```
+    sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
@@ -565,42 +560,43 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-07-18                  
+    ##  date     2020-08-22                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
-    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.1)
-    ##  backports     1.1.8   2020-06-17 [1] CRAN (R 4.0.1)
-    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.1)
-    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.1)
+    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)
+    ##  backports     1.1.8   2020-06-17 [1] CRAN (R 4.0.2)
+    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.2)
+    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.2)
     ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.1)
-    ##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.1)
-    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.1)
-    ##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.1)
+    ##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.2)
+    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.2)
+    ##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.2)
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.1)
-    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.1)
-    ##  fs            1.4.2   2020-06-30 [1] CRAN (R 4.0.1)
-    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.1)
-    ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.1)
-    ##  jsonlite      1.7.0   2020-06-25 [1] CRAN (R 4.0.1)
-    ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.1)
-    ##  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.1)
-    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.1)
+    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.2)
+    ##  fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.2)
+    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.2)
+    ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.2)
+    ##  jsonlite      1.7.0   2020-06-25 [1] CRAN (R 4.0.2)
+    ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.2)
+    ##  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.2)
+    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.2)
     ##  pillar        1.4.6   2020-07-10 [1] CRAN (R 4.0.2)
-    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.1)
-    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.1)
-    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.1)
+    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.2)
+    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.2)
+    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.2)
     ##  rlang         0.4.7   2020-07-09 [1] CRAN (R 4.0.2)
-    ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.0)
-    ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 4.0.0)
-    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.1)
-    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)
-    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
+    ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.2)
+    ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 4.0.2)
+    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)
+    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.2)
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)
     ##  tibble        3.0.3   2020-07-10 [1] CRAN (R 4.0.2)
-    ##  usethis       1.6.1   2020-04-29 [1] CRAN (R 4.0.1)
+    ##  usethis       1.6.1   2020-04-29 [1] CRAN (R 4.0.2)
     ##  vctrs         0.3.2   2020-07-15 [1] CRAN (R 4.0.2)
-    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)
-    ##  xfun          0.15    2020-06-21 [1] CRAN (R 4.0.0)
-    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
+    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.2)
+    ##  xfun          0.16    2020-07-24 [1] CRAN (R 4.0.2)
+    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.2)
     ## 
-    ## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+    ## [1] /Users/adamsparks/.R/library
+    ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
