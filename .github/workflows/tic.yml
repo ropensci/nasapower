@@ -23,7 +23,7 @@ jobs:
         config:
           # use a different tic template type if you do not want to build on all listed platforms
           - { os: windows-latest, r: "release" }
-          - { os: macOS-latest, r: "release", pkgdown: "true", latex: "true" }
+          - { os: macOS-latest, r: "release", pkgdown: "false", latex: "false" }
           - { os: ubuntu-latest, r: "devel" }
           - { os: ubuntu-latest, r: "release" }
 
@@ -37,7 +37,7 @@ jobs:
       RGL_USE_NULL: true
       # if you use bookdown or blogdown, replace "PKGDOWN" by the respective
       # capitalized term. This also might need to be done in tic.R
-      BUILD_PKGDOWN: ${{ matrix.config.pkgdown }}
+      #BUILD_PKGDOWN: ${{ matrix.config.pkgdown }}
       # macOS >= 10.15.4 linking
       SDKROOT: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
       # use GITHUB_TOKEN from GitHub to workaround rate limits in {remotes}
