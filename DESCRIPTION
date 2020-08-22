@@ -56,6 +56,7 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
+    aspsimx,
     ggplot2,
     knitr,
     purrr,
