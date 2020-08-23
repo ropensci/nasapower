@@ -28,9 +28,6 @@
 #'   in metres.  If provided this will return a corrected atmospheric pressure
 #'   value adjusted to the elevation provided.  Only used with `lonlat` as a
 #'   single point of x, y coordinates, not for use with \dQuote{GLOBAL}.
-#' @param ag_modelling A `TRUE`/`FALSE` value indicating whether to fetch a
-#'  predefined set of data commonly used for use in agricultural crop modelling
-#'  simulations. See argument details for more.
 #'
 #' @section Argument details for \dQuote{community}: There are three valid
 #'   values, one must be supplied. This  will affect the units of the parameter
@@ -85,11 +82,6 @@
 #'   year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
 #'   argument should not be used when \code{temporal_average} is set to
 #'   \dQuote{CLIMATOLOGY}.
-#'
-#' @section Argument details for \code{ag_modelling}: this parameter is a
-#'   shortcut that simplifies the querying of the \acronym{POWER} \acronym{API},
-#'   fetching the most commonly used data for agricultural modelling without the
-#'   user needing to specify the \code{community} and every \code{par}.
 #'
 #'   The weather values from \acronym{POWER} for temperature are 2 metre max and
 #'   min temperatures, \dQuote{T2M_MAX} and \dQuote{T2M_MIN}; radiation,
@@ -166,8 +158,7 @@ get_power <- function(community,
                       temporal_average,
                       lonlat,
                       dates = NULL,
-                      site_elevation = NULL,
-                      ag_modelling = FALSE) {
+                      site_elevation = NULL) {
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
