@@ -70,13 +70,13 @@ This function is essentially a wrapper for \code{\link{get_power}}
 
 \examples{
 # Create an ICASA file for Kingsthorpe,
-# Qld from 1985-01-01 to 1985-06-30
+# Qld from 1995-01-01 to 1995-06-30
 # and save it in the current R session
 # tempdir() as ICASA_example.txt
 
 \donttest{
 create_icasa(lonlat = c(151.81, -27.48),
-            dates = c("1985-01-01", "1985-12-31"),
+            dates = c("1995-01-01", "1995-12-31"),
             dsn = tempdir(),
             file_out = "ICASA_example.txt"
             )

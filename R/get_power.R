@@ -162,6 +162,17 @@ get_power <- function(community,
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
+  if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
+    message("\nYou have provided `site_elevation` for a region or `GLOBAL`.",
+            "\nThe `site_elevation` value will be ignored.")
+    site_elevation <- NULL
+  }
+  if (!is.numeric(site_elevation)) {
+    stop(
+      call. = FALSE,
+      "\nYou have entered an invalid value for `site_elevation`.\n"
+    )
+  }
   if (temporal_average %notin% c("DAILY", "INTERANNUAL", "CLIMATOLOGY")) {
     stop(
       call. = FALSE,
@@ -188,17 +199,6 @@ get_power <- function(community,
     if (is.character(community)) {
       community <- toupper(community)
     }
-  }
-
-  if (isTRUE(ag_modelling)) {
-    community <- "AG"
-    pars <- c("T2M_MAX",
-               "T2M_MIN",
-               "ALLSKY_SFC_SW_DWN",
-               "PRECTOT",
-               "RH2M",
-               "T2MDEW",
-               "WS2M")
   }
 
     # user input checks and formatting -----------------------------------------

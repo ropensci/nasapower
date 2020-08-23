@@ -321,38 +321,76 @@
                          outputList) {
   user_agent <- "nasapower"
 
+  # If user has given a site_elevation value, use it
   if (lonlat_identifier$identifier == "SinglePoint" &
-      !is.null(dates)) {
-    query_list <- list(
-      request = "execute",
-      identifier = lonlat_identifier$identifier,
-      parameters = I(pars$pars),
-      startDate = dates[[1]],
-      endDate = dates[[2]],
-      userCommunity = community,
-      tempAverage = pars$temporal_average,
-      siteElev = site_elevation,
-      outputList = outputList,
-      lon = lonlat_identifier$lon,
-      lat = lonlat_identifier$lat,
-      user = user_agent
-    )
+      !is.null(site_elevation)) {
+    if (!is.null(dates)) {
+      query_list <- list(
+        request = "execute",
+        identifier = lonlat_identifier$identifier,
+        parameters = I(pars$pars),
+        startDate = dates[[1]],
+        endDate = dates[[2]],
+        userCommunity = community,
+        tempAverage = pars$temporal_average,
+        siteElev = site_elevation,
+        outputList = outputList,
+        lon = lonlat_identifier$lon,
+        lat = lonlat_identifier$lat,
+        user = user_agent
+      )
+    }
+
+    if (lonlat_identifier$identifier == "SinglePoint" &
+        is.null(dates)) {
+      query_list <- list(
+        request = "execute",
+        identifier = lonlat_identifier$identifier,
+        parameters = I(pars$pars),
+        userCommunity = community,
+        tempAverage = pars$temporal_average,
+        outputList = outputList,
+        siteElev = site_elevation,
+        lon = lonlat_identifier$lon,
+        lat = lonlat_identifier$lat,
+        user = user_agent
+      )
+    }
   }
 
+  # if no site elevation value provided, send request without
   if (lonlat_identifier$identifier == "SinglePoint" &
-      is.null(dates)) {
-    query_list <- list(
-      request = "execute",
-      identifier = lonlat_identifier$identifier,
-      parameters = I(pars$pars),
-      userCommunity = community,
-      tempAverage = pars$temporal_average,
-      outputList = outputList,
-      siteElev = site_elevation,
-      lon = lonlat_identifier$lon,
-      lat = lonlat_identifier$lat,
-      user = user_agent
-    )
+      is.null(site_elevation)) {
+    if (!is.null(dates)) {
+      query_list <- list(
+        request = "execute",
+        identifier = lonlat_identifier$identifier,
+        parameters = I(pars$pars),
+        startDate = dates[[1]],
+        endDate = dates[[2]],
+        userCommunity = community,
+        tempAverage = pars$temporal_average,
+        outputList = outputList,
+        lon = lonlat_identifier$lon,
+        lat = lonlat_identifier$lat,
+        user = user_agent
+      )
+    }
+
+    if (lonlat_identifier$identifier == "SinglePoint" &
+        is.null(dates)) {
+      query_list <- list(
+        request = "execute",
+        identifier = lonlat_identifier$identifier,
+        parameters = I(pars$pars),
+        userCommunity = community,
+        tempAverage = pars$temporal_average,
+        outputList = outputList,
+        lon = lonlat_identifier$lon,
+        lat = lonlat_identifier$lat,
+        user = user_agent
+      )
+    }
   }
 
   if (lonlat_identifier$identifier == "Regional" &
