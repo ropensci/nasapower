@@ -1,6 +1,6 @@
 # vignettes that depend on internet access need to be precompiled and take a
 # while to run
-library(knitr)
+library("knitr")
 knit("vignettes/nasapower.Rmd.orig", "vignettes/nasapower.Rmd")
 knit(
   "vignettes/nasapower_states_example.Rmd.orig",
@@ -21,7 +21,7 @@ writeLines(replace, fileConn)
 close(fileConn)
 
 # build vignettes
-library(devtools)
+library("devtools")
 build_vignettes()
 
 # move resource files to /doc
