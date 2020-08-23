@@ -16,8 +16,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 *nasapower* aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
 POWER (Prediction Of Worldwide Energy Resource) data are freely available for download at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude.
 
-*nasapower* offers further functionality to quickly and easily generate an [`APSIM`](https://github.com/fainges/R-APSIM) package `metFile` format text file from POWER data for use in the [Agricultural Production Systems sIMulator (APSIM)](http://www.apsim.info/) or an ICASA format text files for use in [Decision Support System for Agrotechnology Transfer (DSSAT)](https://dssat.net/).
-
 Please see <https://power.larc.nasa.gov/> for more on the data and other ways to access it and other forms of data available, *e.g.*, your web browser or an ESRI REST API.
 
 ### Quick start
