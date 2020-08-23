@@ -6,12 +6,12 @@
 
 * Following a UNIX-like philosophy, this release removes functionality to write APSIM .met and DSSAT ICASA files to disk.
 _nasapower_ now will only fetch the appropriate data and return a `tibble()` object in-session, please use [APSIM](https://CRAN.R-project.org/package=APSIM) or the POWER web API data access viewer, <https://power.larc.nasa.gov/data-access-viewer/>, for fetching and/or writing .met or .icasa files, respectively.
-This allows users to interact with the data and impute missing values or investigate other aspects before saving to disk using the appropriate package.
-Please see vignettes for examples of use.
 
 ## Minor Changes
 
 * Use vcr for enhanced testing
+
+* Replace raster with terra for examples of converting to spatial data
 
 --------------------------------------------------------------------------------
 
