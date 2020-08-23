@@ -24,6 +24,10 @@
 #'   \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
 #'   Not used when\cr \code{temporal_average} is set to \dQuote{CLIMATOLOGY}.
 #'   See argument details for more.
+#' @param site_elevation A user-supplied value for elevation at a single point
+#'   in metres.  If provided this will return a corrected atmospheric pressure
+#'   value adjusted to the elevation provided.  Only used with `lonlat` as a
+#'   single point of x, y coordinates, not for use with \dQuote{GLOBAL}.
 #' @param ag_modelling A `TRUE`/`FALSE` value indicating whether to fetch a
 #'  predefined set of data commonly used for use in agricultural crop modelling
 #'  simulations. See argument details for more.
@@ -162,6 +166,7 @@ get_power <- function(community,
                       temporal_average,
                       lonlat,
                       dates = NULL,
+                      site_elevation = NULL,
                       ag_modelling = FALSE) {
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
@@ -231,6 +236,7 @@ get_power <- function(community,
                          lonlat_identifier,
                          pars,
                          dates,
+                         site_elevation,
                          outputList = "CSV"
     )
     out <- .send_query(.query_list = query_list, .pars = pars)

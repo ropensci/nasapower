@@ -317,6 +317,7 @@
                          lonlat_identifier,
                          pars,
                          dates,
+                         site_elevation,
                          outputList) {
   user_agent <- "nasapower"
 
@@ -330,6 +331,7 @@
       endDate = dates[[2]],
       userCommunity = community,
       tempAverage = pars$temporal_average,
+      siteElev = site_elevation,
       outputList = outputList,
       lon = lonlat_identifier$lon,
       lat = lonlat_identifier$lat,
@@ -346,6 +348,7 @@
       userCommunity = community,
       tempAverage = pars$temporal_average,
       outputList = outputList,
+      siteElev = site_elevation,
       lon = lonlat_identifier$lon,
       lat = lonlat_identifier$lat,
       user = user_agent
