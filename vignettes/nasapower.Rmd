@@ -45,9 +45,9 @@ daily_single_ag
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  
 #>  Parameters: 
-#>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;
+#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C) ;
 #>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1)  
 #>  
 #> # A tibble: 31 x 10
 #>      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M
@@ -88,8 +88,8 @@ daily_region_ag
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  
 #>  Parameters: 
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C) ;
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
+#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
+#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
 #>  
 #> # A tibble: 98 x 9
 #>      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M
@@ -172,11 +172,11 @@ climatology_ag
 #>  Location: Global  
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  Parameter(s):  
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
 #>  
 #>  Parameters: 
 #>  NA;
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
+#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
 #>  
 #> # A tibble: 518,400 x 16
 #>      LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL
@@ -229,7 +229,6 @@ Using `lapply` and `split` it is easy to create stacks of raster objects from a 
 
 ```r
 library("terra")
-#> terra version 0.8.6 (beta-release)
 # Use split to create a list of data frames split by YYYYMMDD
 daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
 
