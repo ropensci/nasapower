@@ -88,9 +88,9 @@ plot(RS[, 1], col = NA, add = TRUE)
 
 # extract the centroid values of the cells to use querying the POWER data
 PR_coords <-
-  as.data.frame(xyFromCell(PR_coords, 1:ncell(PR_coords)), type = "xyz")
+  na.omit(as.data.frame(PR_coords, xy = TRUE)
 RS_coords <-
-  as.data.frame(xyFromCell(RS_coords, 1:ncell(RS_coords)), type = "xyz")
+  na.omit(as.data.frame(RS_coords, xy = TRUE
 names(PR_coords) <- names(RS_coords) <- c("LON", "LAT")
 coords <- rbind(PR_coords, RS_coords)
 ```
