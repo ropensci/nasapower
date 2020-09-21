@@ -491,7 +491,7 @@
 
       power_data <- readLines(raw_power_data)
 
-      # create meta ojbect
+      # create meta object
       meta <- power_data[c(grep("-BEGIN HEADER-",
                                 power_data):grep("-END HEADER-",
                                                  power_data))]
