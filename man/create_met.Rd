@@ -20,7 +20,7 @@ details for more.}
 \dQuote{Kingsthorpe.met}. A \dQuote{.met} extension will be appended if
 given or otherwise specified by user.}
 
-\item{missing_csv}{A boolean value indicating whether a csv file is to be
+\item{missing_csv}{A Boolean value indicating whether a csv file is to be
 written to disk with a record of missing values. If `FALSE`, the default,
 no file is created, only a message is emitted. If `TRUE` a csv file is
 created with a record of all missing values in the .met file.}
