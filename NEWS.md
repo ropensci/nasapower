@@ -6,14 +6,17 @@
 
 * Following a UNIX-like philosophy, this release removes functionality to write APSIM .met and DSSAT ICASA files to disk.
 _nasapower_ now will only fetch the appropriate data and return a `tibble()` object in-session, please use [apsimx](https://cran.r-project.org/package=apsimx) or the POWER web API data access viewer, <https://power.larc.nasa.gov/data-access-viewer/>, for fetching and/or writing .met or .icasa files, respectively.
+Note that  `create_icasa()` ideally should have been deprecated, but the server was not responding properly when queried for some time before the current release of _nasapower_ so the function has been removed.
 
 ## Minor Changes
 
-* Use vcr for enhanced testing
+* Replace _raster_ with _terra_ for examples of converting to spatial data in vignettes
 
-* Replace raster with terra for examples of converting to spatial data
+## Internal Changes
 
---------------------------------------------------------------------------------
+* Use _vcr_ for enhanced testing
+
+* Refactor the internal handling of temporary files to allow for more efficient use of the _future_ package
 
 # nasapower 1.1.3
 
@@ -39,8 +42,6 @@ _nasapower_ now will only fetch the appropriate data and return a `tibble()` obj
 
 - Help file titles are now in sentence case
 
-
-
 # nasapower 1.1.1
 
 ## Bug fixes
@@ -60,8 +61,6 @@ failing tests. These tests should be skipped on CRAN but were not.
 - Users are now notified if creating a .met file that has any missing values
 through a console message and .csv file being written to disk to accompany the
 resulting .met file describing which values are missing
-
---------------------------------------------------------------------------------
 
 # nasapower 1.1.0
 
@@ -86,8 +85,6 @@ in conjunction with `temporal_average = CLIMATOLOGY`.
 - Refactor code to split internal functions by functionality and add more
 complete test coverage
 
---------------------------------------------------------------------------------
-
 # nasapower 1.0.7
 
 ## Minor changes
@@ -96,8 +93,6 @@ complete test coverage
 available for all communities, only the units change
 
 - Update links to latest documentation provided by the POWER team
-
---------------------------------------------------------------------------------
 
 # nasapower 1.0.6
 
@@ -109,8 +104,6 @@ available for all communities, only the units change
 
 - Fixes bug where previous release did not support WS2M from AG community due to
 a local typo
-
---------------------------------------------------------------------------------
 
 # nasapower 1.0.5
 
@@ -130,8 +123,6 @@ how pre-query validation should be performed
 
 - Documentation .Rd files are now more readable with better formatting
 
---------------------------------------------------------------------------------
-
 # nasapower 1.0.3
 
 ## Minor changes
@@ -149,8 +140,6 @@ how pre-query validation should be performed
 ## Bug fixes
 
 - Fixes tests to not run on CRAN so that errors aren't reported when API is unavailable
-
---------------------------------------------------------------------------------
 
 # nasapower 1.0.2
 
@@ -175,8 +164,6 @@ a duplicated check of `latlon` values
 
 - Removes unnecessary checks for `latlon` in `get_power()`
 
---------------------------------------------------------------------------------
-
 # nasapower 1.0.1
 
 ## Minor changes
@@ -186,8 +173,6 @@ requests
 
 - Provides edits and clarifications in DESCRIPTION's Description and Title about
 the package's uses and capabilities
-
---------------------------------------------------------------------------------
 
 # nasapower 1.0.0 (unreleased)
 
@@ -217,8 +202,6 @@ in 'DSSAT' crop modelling
 points or regional areas. Global coverage may be queried for Climatology. See
 the help for `?get_power()` for more details.
 
---------------------------------------------------------------------------------
-
 # nasapower 0.1.4
 
 ### Bug Fixes
@@ -226,8 +209,6 @@ the help for `?get_power()` for more details.
 - Fixes bug related to date columns where `MONTH`, `DAY` and `YYYY-MM-DD` were
 incorrectly reported in final data frame. This did not affect the weather data,
 `YEAR` or `DOY` columns.
-
---------------------------------------------------------------------------------
 
 # nasapower 0.1.3
 
@@ -266,8 +247,6 @@ download
 - Add a check to see if POWER website is responding before making request for
 data. If not, stop and return error message to user.
 
---------------------------------------------------------------------------------
-
 # nasapower 0.1.2
 
 ### Bug fixes
@@ -289,15 +268,11 @@ multiple dates. https://github.com/ropensci/nasapower/issues/1
 
 - Remove DATE from DESCRIPTION
 
---------------------------------------------------------------------------------
-
 # nasapower 0.1.1
 
 ### Minor improvements
 
 - Fix issues in documentation, typos, incorrect links, etc.
-
---------------------------------------------------------------------------------
 
 # nasapower 0.1.0
 
@@ -313,15 +288,11 @@ multiple dates. https://github.com/ropensci/nasapower/issues/1
 
 * Better documentation
 
---------------------------------------------------------------------------------
-
 # nasapower 0.0.2
 
 ### New features
 
 * Added citation file
-
---------------------------------------------------------------------------------
 
 # nasapower 0.0.1
 
