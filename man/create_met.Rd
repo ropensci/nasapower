@@ -2,7 +2,7 @@
 % Please edit documentation in R/deprecated_create_met.R
 \name{create_met}
 \alias{create_met}
-\title{Create an APSIM met File from POWER Data}
+\title{Deprecated function to create an APSIM met file from POWER data}
 \usage{
 create_met(lonlat, dates, dsn, file_out, missing_csv = FALSE)
 }

@@ -1,7 +1,5 @@
 
-
-
-#' Create an APSIM met File from POWER Data
+#' Deprecated function to create an APSIM met file from POWER data
 #'
 #' @note This function is deprecated and will be removed in a future release of
 #' \CRANpkg{nasapower}.  Please use \code{\link[apsimx]{get_power_apsim_met}}
