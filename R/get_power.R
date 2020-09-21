@@ -167,7 +167,7 @@ get_power <- function(community,
             "\nThe `site_elevation` value will be ignored.")
     site_elevation <- NULL
   }
-  if (!is.numeric(site_elevation)) {
+  if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
     stop(
       call. = FALSE,
       "\nYou have entered an invalid value for `site_elevation`.\n"
