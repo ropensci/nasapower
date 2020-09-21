@@ -341,8 +341,7 @@
       )
     }
 
-    if (lonlat_identifier$identifier == "SinglePoint" &
-        is.null(dates)) {
+    if (is.null(dates)) {
       query_list <- list(
         request = "execute",
         identifier = lonlat_identifier$identifier,
@@ -377,8 +376,7 @@
       )
     }
 
-    if (lonlat_identifier$identifier == "SinglePoint" &
-        is.null(dates)) {
+    if (is.null(dates)) {
       query_list <- list(
         request = "execute",
         identifier = lonlat_identifier$identifier,
