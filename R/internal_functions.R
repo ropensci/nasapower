@@ -473,7 +473,9 @@
 #'
 
 .import_power <- function(.txt, .pars, .query_list) {
-  raw_power_data <- file.path(tempdir(), "power_data_file")
+  raw_power_data <- tempfile(pattern = "tmp_power_file",
+                             tmpdir = tempdir(),
+                             fileext = ".csv")
 
   if ("messages" %in% names(.txt) & "outputs" %notin% names(.txt)) {
     stop(call. = FALSE,
