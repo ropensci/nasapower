@@ -95,10 +95,6 @@ create_met(lonlat = c(151.81, -27.48),
 }
 
 }
-\seealso{
-\code{\link{create_icasa}} Create a DSSAT ICASA File from NASA POWER
-  Data
-}
 \author{
 Sparks, A. H. \email{adamhsparks@gmail.com}
 }
