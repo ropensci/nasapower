@@ -53,7 +53,7 @@ test_that("get_power returns daily point AG data", {
   })
 })
 
-test_that("get_power returns daily point AG data with adjusted atmospheric air pressure",
+test_that("get_power() returns daily point AG data with adjusted atmospheric air pressure",
           {
             skip_on_cran()
             vcr::use_cassette("get_power_corrected_PS", {
@@ -142,7 +142,7 @@ test_that("get_power returns daily point SB data", {
   })
 })
 
-test_that("get_power returns daily regional AG data", {
+test_that("get_power() returns daily regional AG data", {
   skip_on_cran()
   vcr::use_cassette("get_power_corrected_AG_regional", {
     power_query <- get_power(
@@ -185,7 +185,7 @@ test_that("get_power returns daily regional AG data", {
   })
 })
 
-test_that("get_power returns global AG data for climatology", {
+test_that("get_power() returns global AG data for climatology", {
   skip_on_cran()
   vcr::use_cassette("get_power_corrected_AG_climatology", {
     power_query <- get_power(
