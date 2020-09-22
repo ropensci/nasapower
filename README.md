@@ -96,7 +96,7 @@ While *nasapower* does not redistribute the data or provide it in any way, we en
 
   - License: MIT
 
-  - Get citation information for *nasapower* in R by typing `citation(package = "nasapower")`.
+  - To cite *nasapower*, please use the output from `citation(package = "nasapower")`.
 
   - Please note that the *nasapower* project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
     By participating in the *nasapower* project you agree to abide by its terms.
