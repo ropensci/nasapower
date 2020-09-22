@@ -40,7 +40,8 @@ See argument details for more.}
 \item{site_elevation}{A user-supplied value for elevation at a single point
 in metres.  If provided this will return a corrected atmospheric pressure
 value adjusted to the elevation provided.  Only used with `lonlat` as a
-single point of x, y coordinates, not for use with \dQuote{GLOBAL}.}
+single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
+a regional request.}
 }
 \value{
 A data frame of \acronym{POWER} data including location, dates (not

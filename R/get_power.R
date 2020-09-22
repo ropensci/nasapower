@@ -27,7 +27,8 @@
 #' @param site_elevation A user-supplied value for elevation at a single point
 #'   in metres.  If provided this will return a corrected atmospheric pressure
 #'   value adjusted to the elevation provided.  Only used with `lonlat` as a
-#'   single point of x, y coordinates, not for use with \dQuote{GLOBAL}.
+#'   single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
+#'   a regional request.
 #'
 #' @section Argument details for \dQuote{community}: There are three valid
 #'   values, one must be supplied. This  will affect the units of the parameter
