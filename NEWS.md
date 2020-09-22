@@ -1,4 +1,10 @@
-# nasapower (development version)
+# nasapower 1.2.0
+
+## Bug Fixes
+
+* Correct any missing or redirecting URLs
+
+* Replace deprecated `subclass` with `class` in `new_tibble()`
 
 ## Major Changes
 
@@ -15,13 +21,9 @@ When this is used it will return a corrected atmospheric pressure value adjusted
 
 * Replace _raster_ with _terra_ for examples of converting to spatial data in vignettes
 
-## Internal Changes
-
 * Use _vcr_ for enhanced testing
 
 * Refactor the internal handling of temporary files to allow for more efficient use of the _future_ package
-
-* Replace deprecated `subclass` with `class` in `new_tibble()`
 
 # nasapower 1.1.3
 
