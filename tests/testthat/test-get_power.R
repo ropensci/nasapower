@@ -1,4 +1,5 @@
 
+
 # test queries -----------------------------------------------------------------
 context("get_power() AG Community")
 test_that("get_power returns daily point AG data", {
@@ -32,6 +33,7 @@ test_that("get_power returns daily point AG data", {
     expect_equal(power_query$WS10M, 2.14)
     expect_equal(power_query$PS, 68.57)
     expect_named(
+      power_query,
       c(
         "LON",
         "LAT",
@@ -86,6 +88,7 @@ test_that("get_power returns daily point AG data with adjusted atmospheric air p
               expect_equal(power_query$PS, 68.57)
               expect_equal(power_query$PSC, 101.2)
               expect_named(
+                power_query,
                 c(
                   "LON",
                   "LAT",
