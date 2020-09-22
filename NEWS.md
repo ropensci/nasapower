@@ -8,6 +8,9 @@
 _nasapower_ now will only fetch the appropriate data and return a `tibble()` object in-session, please use [apsimx](https://cran.r-project.org/package=apsimx) or the POWER web API data access viewer, <https://power.larc.nasa.gov/data-access-viewer/>, for fetching and/or writing .met or .icasa files, respectively.
 Note that  `create_icasa()` ideally should have been deprecated, but the server was not responding properly when queried for some time before the current release of _nasapower_ so the function has been removed.
 
+* Add ability to `get_power()` to accept a user-provided `site_elevation` parameter that is passed to the API.
+When this is used it will return a corrected atmospheric pressure value adjusted to the elevation provided.
+
 ## Minor Changes
 
 * Replace _raster_ with _terra_ for examples of converting to spatial data in vignettes
