@@ -82,9 +82,12 @@ jobs:
           Rscript -e "if (!requireNamespace('remotes')) install.packages('remotes', type = 'source')"
           Rscript -e "if (getRversion() < '3.2' && !requireNamespace('curl')) install.packages('curl', type = 'source')"
 
-      - name: "[Stage] [Linux] Install curl"
+      - name: "[Stage] [Linux] Install System Libraries"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev
+        run: |
+          sudo R CMD javareconf
+          sudo apt install -y ccache libcurl4-openssl-dev libglu1-mesa-dev libgmp-dev libgs-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev
+
 
       - name: "[Stage] Install"
         if: matrix.config.os != 'macOS-latest' || matrix.config.r != 'devel'
