@@ -21,6 +21,8 @@ When this is used it will return a corrected atmospheric pressure value adjusted
 
 * Refactor the internal handling of temporary files to allow for more efficient use of the _future_ package
 
+* Replace deprecated `subclass` with `class` in `new_tibble()`
+
 # nasapower 1.1.3
 
 ## Bug Fixes
