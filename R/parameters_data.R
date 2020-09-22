@@ -177,5 +177,5 @@
 #' @source
 #' \url{https://power.larc.nasa.gov/system/parameters.json}
 #' @references
-#' \url{https://power.larc.nasa.gov/docs}
+#' \url{https://power.larc.nasa.gov/docs/}
 "parameters"

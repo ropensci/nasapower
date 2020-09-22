@@ -183,7 +183,7 @@ An \R \code{list} object of \acronym{POWER} parameters and metadata available
 for querying from the \acronym{POWER} database.
 }
 \references{
-\url{https://power.larc.nasa.gov/docs}
+\url{https://power.larc.nasa.gov/docs/}
 }
 \author{
 Sparks, A. H. \email{adamhsparks@gmail.com}

@@ -6,7 +6,7 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/onboarding/issues/155)
+[![](https://github.com/ropensci/software-review/issues/155)](https://github.com/ropensci/software-review/issues/155)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
 [![CRAN](http://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 <!-- badges: end -->
@@ -98,10 +98,10 @@ While *nasapower* does not redistribute the data or provide it in any way, we en
 
   - Get citation information for *nasapower* in R by typing `citation(package = "nasapower")`.
 
-  - Please note that the *nasapower* project is released with a [Contributor Code of     Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
+  - Please note that the *nasapower* project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
     By participating in the *nasapower* project you agree to abide by its terms.
 
-  - The U.S. Earth System Research Laboratory, Physical Science Division of the National Atmospheric & Oceanic Administration (NOAA) maintains a list of gridded climate data sets that provide different data and different resolutions <https://www.esrl.noaa.gov/psd/data/gridded/>.
+  - The U.S. Earth System Research Laboratory, Physical Science Division of the National Atmospheric & Oceanic Administration (NOAA) maintains a list of gridded climate data sets that provide different data and different resolutions <https://psl.noaa.gov/data/gridded/>.
 
 ## References
 

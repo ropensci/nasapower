@@ -178,7 +178,7 @@ sse_i
 
 }
 \references{
-\url{https://power.larc.nasa.gov/documents/POWER_Data_v9_methodology.pdf}
+\url{https://power.larc.nasa.gov/docs/methodology/}
 \url{https://power.larc.nasa.gov}
 }
 \author{
