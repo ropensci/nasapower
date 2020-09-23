@@ -46,8 +46,8 @@ daily_single_ag
 #>  
 #>  Parameters: 
 #>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C) ;
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
-#>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1)  
+#>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;
+#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
 #>  
 #> # A tibble: 31 x 10
 #>      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M
@@ -172,11 +172,11 @@ climatology_ag
 #>  Location: Global  
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  Parameter(s):  
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
+#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
 #>  
 #>  Parameters: 
 #>  NA;
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
 #>  
 #> # A tibble: 518,400 x 16
 #>      LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL
@@ -229,6 +229,7 @@ Using `lapply` and `split` it is easy to create stacks of raster objects from a 
 
 ```r
 library("terra")
+#> terra version 0.8.6 (beta-release)
 # Use split to create a list of data frames split by YYYYMMDD
 daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
 
@@ -357,4 +358,4 @@ plot(T2M)
 
 <https://power.larc.nasa.gov>
 
-<https://power.larc.nasa.gov/documents/POWER_Data_v9_methodology.pdf>
+<https://power.larc.nasa.gov/docs/methodology/>
