@@ -6,8 +6,6 @@
 
 * Replace deprecated `subclass` with `class` in `new_tibble()`
 
-## Bug Fixes
-
 * Correct any missing or redirecting URLs
 
 * Replace deprecated `subclass` with `class` in `new_tibble()`
