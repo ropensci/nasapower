@@ -16,7 +16,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Tue, 22 Sep 2020 04:03:48 GMT
+      date: Wed, 23 Sep 2020 11:03:13 GMT
       server: Apache
       x-frame-options: SAMEORIGIN
       x-content-type-options: nosniff
@@ -39,7 +39,7 @@ http_interactions:
           }
          ]
         }
-  recorded_at: 2020-09-22 04:03:51 GMT
+  recorded_at: 2020-09-23 11:03:16 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2
 - request:
     method: get
@@ -58,7 +58,7 @@ http_interactions:
       explanation: Request fulfilled, document follows
     headers:
       status: HTTP/1.1 200 OK
-      date: Tue, 22 Sep 2020 04:03:48 GMT
+      date: Wed, 23 Sep 2020 11:03:14 GMT
       server: Apache
       x-frame-options: SAMEORIGIN
       x-content-type-options: nosniff
@@ -112,7 +112,7 @@ http_interactions:
          },
          "messages": [],
          "outputs": {
-          "csv": "https://power.larc.nasa.gov/downloads/POWER_SinglePoint_Daily_19830101_19830101_89d50S_179d50W_24f467fd.csv"
+          "csv": "https://power.larc.nasa.gov/downloads/POWER_SinglePoint_Daily_19830101_19830101_89d50S_179d50W_17a94c36.csv"
          },
          "parameterInformation": {
           "RH2M": {
@@ -143,10 +143,10 @@ http_interactions:
           ],
           [
            "Total Script:",
-           2.02
+           1.56
           ]
          ],
          "type": "FeatureCollection"
         }
-  recorded_at: 2020-09-22 04:03:51 GMT
+  recorded_at: 2020-09-23 11:03:16 GMT
   recorded_with: vcr/0.5.4, webmockr/0.6.2
