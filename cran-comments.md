@@ -9,7 +9,16 @@
 
 0 errors | 0 warnings | 1 note
 
-This is a major version release
+This is a resubmission of a major version release
+
+## CRAN Requested Corrections
+
+* Fix the NOTE, 
+> Found the following (possibly) invalid URLs:
+   URL: https://github.com/ropensci/onboarding/issues/155 (moved to https://github.com/ropensci/software-review/issues/155)
+     From: NEWS.md
+     Status: 200
+The moved URL has been replaced with the updated version.
 
 ## Bug Fixes
 
