@@ -8,10 +8,6 @@
 
 * Replace deprecated `subclass` with `class` in `new_tibble()`
 
-* Correct any missing or redirecting URLs
-
-* Replace deprecated `subclass` with `class` in `new_tibble()`
-
 ## Major Changes to Functionality
 
 * Following a UNIX-like philosophy, this release removes functionality to write APSIM .met and DSSAT ICASA files to disk.
