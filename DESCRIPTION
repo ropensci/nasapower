@@ -45,8 +45,7 @@ Imports:
     lubridate,
     jsonlite,
     readr,
-    tibble,
-    utils
+    tibble
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 Language: en-AU
