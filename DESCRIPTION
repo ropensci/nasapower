@@ -40,7 +40,6 @@ Depends:
     R (>= 3.5.0)
 License: MIT + file LICENSE
 Imports:
-    APSIM,
     crul,
     curl,
     lubridate,
@@ -64,8 +63,7 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     sf,
-    testthat,
-    vcr
+    testthat
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
