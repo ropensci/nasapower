@@ -101,8 +101,7 @@ test_that("Dates are returned as a vector of characters", {
 
 test_that(
   "If temporal_average == INTERANNUAL and dates are specified, that only years
-  are returned",
-  {
+  are returned", {
     temporal_average <- "INTERANNUAL"
     dates <- c("1983-01-01", "1984-01-01")
     lonlat <- c(-179.5, -89.5)
@@ -112,8 +111,7 @@ test_that(
   }
 )
 
-test_that("If temporal_average == INTERANNUAL and <2 dates provided, error",
-          {
+test_that("If temporal_average == INTERANNUAL and <2 dates provided, error", {
             temporal_average <- "INTERANNUAL"
             dates <- c("1983-01-01")
             lonlat <- c(-179.5, -89.5)
@@ -258,8 +256,7 @@ test_that(".check_lonlat() checks validity of bbox lonmax values", {
 
 test_that(
   ".check_lonlat() returns message with proper identifier when valid
-          coordinates are given",
-  {
+          coordinates are given", {
     temporal_average <- "DAILY"
     test <- .check_lonlat(lonlat = c(-179.5,
                                      88.5,
@@ -303,8 +300,7 @@ test_that(".check_pars()  stops if `pars` not valid", {
 })
 
 test_that(".check_pars()  stops if `pars` not valid for given
-          temporal_average",
-          {
+          temporal_average", {
             pars <- "ALLSKY_SFC_SW_DWN_03_GMT"
             temporal_average <- "INTERANNUAL"
             lonlat <- c(-179.5, -89.5)
@@ -346,8 +342,7 @@ test_that("Only 3 pars are allowed when `temporal_average` = CLIMATOLOGY", {
   )
 })
 
-test_that("Only 20 pars are allowed when `temporal_average` != CLIMATOLOGY",
-          {
+test_that("Only 20 pars are allowed when `temporal_average` != CLIMATOLOGY", {
             pars <- c(
               "ALLSKY_SFC_LW_DWN",
               "ALLSKY_TOA_SW_DWN",
@@ -393,8 +388,7 @@ test_that("Only unique `pars` are queried", {
 })
 
 test_that("If an invalid temporal average is given for `pars`,
-          an error occurs",
-          {
+          an error occurs", {
             pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
             temporal_average <- "DAILY"
             lonlat <- c(-179.5, -89.5)
@@ -403,8 +397,7 @@ test_that("If an invalid temporal average is given for `pars`,
 
 # query constructs -------------------------------------------------------------
 test_that(".build_query assembles a proper query for single point and != NULL
-          dates",
-          {
+          dates", {
             temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(-179.5, -89.5)
@@ -451,8 +444,7 @@ test_that(".build_query assembles a proper query for single point and != NULL
 
 
 test_that(".build_query assembles a proper query for single point and NULL
-          dates",
-          {
+          dates", {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
             lonlat <- c(-179.5, -89.5)
@@ -495,8 +487,7 @@ test_that(".build_query assembles a proper query for single point and NULL
           })
 
 test_that(".build_query assembles a proper query for regional and != NULL
-          dates",
-          {
+          dates", {
             temporal_average <- "DAILY"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
@@ -539,8 +530,7 @@ test_that(".build_query assembles a proper query for regional and != NULL
             )
           })
 
-test_that(".build_query assembles a proper query for regional and NULL dates",
-          {
+test_that(".build_query assembles a proper query for regional and NULL dates", {
             temporal_average <- "CLIMATOLOGY"
             dates <- NULL
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
