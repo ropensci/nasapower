@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -152,18 +152,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "vcr",
-      "name": "vcr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=vcr"
     }
   ],
   "softwareRequirements": [
@@ -172,18 +160,6 @@
       "identifier": "R",
       "name": "R",
       "version": ">= 3.5.0"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "APSIM",
-      "name": "APSIM",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=APSIM"
     },
     {
       "@type": "SoftwareApplication",
@@ -256,11 +232,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "utils",
-      "name": "utils"
     }
   ],
   "applicationCategory": "Tools",
@@ -316,5 +287,5 @@
     }
   ],
   "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
-  "fileSize": "128822.472KB"
+  "fileSize": "53242.394KB"
 }
