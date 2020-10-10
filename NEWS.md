@@ -190,7 +190,7 @@ well
 
 - Adds function `create_met()` to create 'APSIM' met objects from 'POWER' data
 
-- Adsd function `create_icasa()` to create a text file of weather data for use in 'DSSAT' crop modelling
+- Adds function `create_icasa()` to create a text file of weather data for use in 'DSSAT' crop modelling
 
 - Internally, replaces _httr_ package with _crul_
 
