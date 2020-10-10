@@ -1,10 +1,18 @@
+# nasapower 3.0.0
+
+## Major Changes to Functionality
+
+* Due to the removal of the CRAN package _APSIM_ from CRAN, the removal of the `create_met()` function has been implemented sooner than expected to keep _nasapower_ on CRAN
+
+* Deprecates `create_met()`
+
+## Bug fixes
+
+* Properly deprecates `create_icasa()`
+
 # nasapower 2.0.0
 
 ## Bug Fixes
-
-* Correct any missing or redirecting URLs
-
-* Replace deprecated `subclass` with `class` in `new_tibble()`
 
 * Correct any missing or redirecting URLs
 
@@ -159,8 +167,7 @@ These tests should be skipped on CRAN but were not.
 
 - Corrects logical operators `&&` and `||` where they should be `&` or `|`
 
-- Removes extra code in `create_icasa()` and `create_met()` that performed
-a duplicated check of `latlon` values
+- Removes extra code in `create_icasa()` and `create_met()` that performed a duplicated check of `latlon` values
 
 - Removes unnecessary checks for `latlon` in `get_power()`
 
@@ -168,8 +175,7 @@ a duplicated check of `latlon` values
 
 ## Minor changes
 
-- Provides corrections to documentation formatting as per CRAN volunteers'
-requests
+- Provides corrections to documentation formatting as per CRAN volunteers' requests
 
 - Provides edits and clarifications in DESCRIPTION's Description and Title about the package's uses and capabilities
 
@@ -183,12 +189,11 @@ requests
 
 - Uses new 'POWER' 'API' to download new 1/2 x 1/2 degree data
 
-- Adds function `get_power()` to get weather data and optionally metadata as
-well
+- Adds function `get_power()` to get weather data and optionally metadata as well
 
 - Adds function `create_met()` to create 'APSIM' met objects from 'POWER' data
 
-- Adsd function `create_icasa()` to create a text file of weather data for use in 'DSSAT' crop modelling
+- Adds function `create_icasa()` to create a text file of weather data for use in 'DSSAT' crop modelling
 
 - Internally, replaces _httr_ package with _crul_
 

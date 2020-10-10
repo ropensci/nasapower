@@ -560,7 +560,7 @@
   }
 }
 
-#' Prints Power.Info object.
+#' Prints Power.Info object
 #'
 #' @param x POWER.Info object
 #' @param ... ignored

@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 2.0.0
+Version: 3.0.0
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
@@ -40,14 +40,12 @@ Depends:
     R (>= 3.5.0)
 License: MIT + file LICENSE
 Imports:
-    APSIM,
     crul,
     curl,
     lubridate,
     jsonlite,
     readr,
-    tibble,
-    utils
+    tibble
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 Language: en-AU
@@ -64,8 +62,7 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     sf,
-    testthat,
-    vcr
+    testthat
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
