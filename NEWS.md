@@ -4,7 +4,7 @@
 
 * Due to the removal of the CRAN package _APSIM_ from CRAN, the removal of the `create_met()` function has been implemented sooner than expected to keep _nasapower_ on CRAN
 
-* Deprecates `create_icasa()`
+* Deprecates `create_met()`
 
 ## Bug fixes
 
