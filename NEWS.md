@@ -161,8 +161,7 @@ These tests should be skipped on CRAN but were not.
 
 - Corrects logical operators `&&` and `||` where they should be `&` or `|`
 
-- Removes extra code in `create_icasa()` and `create_met()` that performed
-a duplicated check of `latlon` values
+- Removes extra code in `create_icasa()` and `create_met()` that performed a duplicated check of `latlon` values
 
 - Removes unnecessary checks for `latlon` in `get_power()`
 
@@ -170,8 +169,7 @@ a duplicated check of `latlon` values
 
 ## Minor changes
 
-- Provides corrections to documentation formatting as per CRAN volunteers'
-requests
+- Provides corrections to documentation formatting as per CRAN volunteers' requests
 
 - Provides edits and clarifications in DESCRIPTION's Description and Title about the package's uses and capabilities
 
@@ -185,8 +183,7 @@ requests
 
 - Uses new 'POWER' 'API' to download new 1/2 x 1/2 degree data
 
-- Adds function `get_power()` to get weather data and optionally metadata as
-well
+- Adds function `get_power()` to get weather data and optionally metadata as well
 
 - Adds function `create_met()` to create 'APSIM' met objects from 'POWER' data
 
