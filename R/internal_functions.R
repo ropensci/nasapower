@@ -512,7 +512,7 @@
       power_data <- readr::read_csv(
         raw_power_data,
         col_types = readr::cols(),
-        na = c("-999", "-99"),
+        na = c("-999", "-99", "-99.00"),
         skip = length(meta) + 2
       )
 

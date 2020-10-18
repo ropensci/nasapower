@@ -1,10 +1,15 @@
 # nasapower (development version)
 
+## Bug fixes
+
+* Fix bug where Solar Radiation, "ALLSKY_SFC_SW_DWN", and perhaps others that were missed, return a numeric `-99.00` value rather than the proper `NA` for missing data.
+Thanks to Fernando Miguez, <https://github.com/femiguez>, for the assistance in isolating the issue.
+
 # nasapower 3.0.0
 
 ## Major Changes to Functionality
 
-* Due to the removal of the CRAN package _APSIM_ from CRAN, the removal of the `create_met()` function has been implemented sooner than expected to keep _nasapower_ on CRAN
+* Due to the removal of the CRAN package _APSIM_ from CRAN, the removal of the `create_met()` function has been implemented sooner than expected to keep _nasapower_ on CRAN.
 
 * Deprecates `create_met()`
 

@@ -25,7 +25,14 @@ Authors@R:
             family = "Boyer",
             role = "rev",
             comment = "Alison Boyer reviewed nasapower for rOpenSci, see
-            https://github.com/ropensci/software-review/issues/155"))
+            https://github.com/ropensci/software-review/issues/155"),
+    person(given = "Fernando",
+            family = "Miguez",
+            role = "ctb",
+            comment = c(ORCID = "0000-0002-4627-8329",
+                        "Fernando Miguez provided assistance in identifying
+                        improper missing value handling in the POWER data, see 
+                        <https://github.com/femiguez/apsimx/pull/26>")))
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
