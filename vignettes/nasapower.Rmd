@@ -131,8 +131,8 @@ interannual_sse
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  
 #>  Parameters: 
-#>  ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day) ;
-#>  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  
+#>  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day) ;
+#>  ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  
 #>  
 #> # A tibble: 196 x 17
 #>      LON   LAT PARAMETER  YEAR   JAN   FEB   MAR   APR   MAY   JUN
@@ -172,11 +172,11 @@ climatology_ag
 #>  Location: Global  
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  Parameter(s):  
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
+#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
 #>  
 #>  Parameters: 
 #>  NA;
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  
+#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
 #>  
 #> # A tibble: 518,400 x 16
 #>      LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL
