@@ -1,25 +1,19 @@
-# nasapower v2.0.0
+# nasapower v3.0.1
 
 ## Test environments
-* local macOS, R 4.0.2
-* win-builder, R Under development (unstable) (2020-10-09 r79316)
-* win-builder, R 4.0.2
+* local macOS, R 4.0.3
+* win-builder, R Under development (unstable) ((2020-10-23 r79366)
+* win-builder, R 4.0.3
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-This is a new major release
-
-## Major changes to functionality
-
-* Due to the removal of the CRAN package _APSIM_ from CRAN, the removal of the `create_met()` function has been implemented sooner than expected to keep _nasapower_ on CRAN
-
-* Deprecates `create_icasa()`
+This is a new patch release
 
 ## Bug fixes
 
-* Properly deprecates `create_icasa()`
+* Properly replace `-99.00` values with `NA` values
 
 ## Reverse dependencies
 
