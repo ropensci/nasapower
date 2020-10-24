@@ -16,7 +16,7 @@ NULL
 #' @param ... unused arguments
 #' @rdname nasapower-defunct
 #' @export
-create_met <- function(...){
+create_met <- function(...) {
   .Defunct()
 }
 
@@ -25,6 +25,6 @@ create_met <- function(...){
 #' @param ... unused arguments
 #' @rdname nasapower-defunct
 #' @export
-create_icasa <- function(...){
+create_icasa <- function(...) {
   .Defunct()
 }
