@@ -2,7 +2,7 @@
 
 ## Test environments
 * local macOS, R 4.0.3
-* win-builder, R Under development (unstable) ((2020-10-23 r79366)
+* win-builder, R Under development (unstable) (2020-10-23 r79366)
 * win-builder, R 4.0.3
 
 ## R CMD check results
