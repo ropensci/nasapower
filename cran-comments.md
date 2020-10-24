@@ -17,4 +17,4 @@ This is a new patch release
 
 ## Reverse dependencies
 
-No ERRORs or WARNINGs found
+No ERRORs or WARNINGs were found
