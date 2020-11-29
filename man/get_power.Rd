@@ -142,6 +142,8 @@ ag_d <- get_power(
   temporal_average = "DAILY"
 )
 
+ag_d
+
 # Fetch single point climatology for air temperature
 ag_c_point <- get_power(
   community = "AG",
