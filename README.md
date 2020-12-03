@@ -108,5 +108,3 @@ While *nasapower* does not redistribute the data or provide it in any way, we en
 <https://power.larc.nasa.gov>
 
 <https://power.larc.nasa.gov/docs/methodology/>
-
-[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
