@@ -154,7 +154,7 @@
 #'
 #' }
 #'
-#' @author Sparks, A. H. \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks \email{adamhsparks@@gmail.com}
 #'
 #' @export
 get_power <- function(community,

@@ -185,5 +185,5 @@ sse_i
 \url{https://power.larc.nasa.gov}
 }
 \author{
-Sparks, A. H. \email{adamhsparks@gmail.com}
+Adam H. Sparks \email{adamhsparks@gmail.com}
 }
