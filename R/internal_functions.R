@@ -450,7 +450,7 @@
 
   tryCatch({
     response <- client$get(query = .query_list, retry = 6)
-    txt <- jsonlite::fromJSON(response$parse("UTF-8"))
+    jsonlite::fromJSON(response$parse("UTF-8"))
   }, # nocov start
   error = function(e) {
     e$message <-
