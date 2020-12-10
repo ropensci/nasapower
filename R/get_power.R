@@ -30,7 +30,7 @@
 #'   single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
 #'   a regional request.
 #'
-#' @section Argument details for \dQuote{community}: There are three valid
+#' @section Argument details for \dQuote{community}: there are three valid
 #'   values, one must be supplied.  This  will affect the units of the parameter
 #'   and the temporal display of time series data.
 #'

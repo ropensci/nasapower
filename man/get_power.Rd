@@ -61,7 +61,7 @@ The associated metadata are not saved if the data are exported to a
   or .rds.
 }
 \section{Argument details for \dQuote{community}}{
- There are three valid
+ there are three valid
   values, one must be supplied.  This  will affect the units of the parameter
   and the temporal display of time series data.
 
