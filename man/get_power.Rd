@@ -44,9 +44,10 @@ single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
 a regional request.}
 }
 \value{
-A data frame of \acronym{POWER} data including location, dates (not
-including \dQuote{CLIMATOLOGY}) and requested parameters. A header of
-metadata is included.
+A data frame as a \code{POWER.Info} class, an extension of the
+\code{\link[tibble]{tibble}}, object of \acronym{POWER} data including
+location, dates (not including \dQuote{CLIMATOLOGY}) and requested
+parameters.  A header of metadata is included in this object.
 }
 \description{
 Get \acronym{POWER} global meteorology and surface solar energy
@@ -60,8 +61,8 @@ The associated metadata are not saved if the data are exported to a
   or .rds.
 }
 \section{Argument details for \dQuote{community}}{
- There are three valid
-  values, one must be supplied. This  will affect the units of the parameter
+ there are three valid
+  values, one must be supplied.  This  will affect the units of the parameter
   and the temporal display of time series data.
 
 \describe{
@@ -102,7 +103,7 @@ The associated metadata are not saved if the data are exported to a
  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
  \emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a
  given region, \emph{e.g.}, a bounding box for the south western corner of
- Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}. *Maximum area
+ Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.  *Maximum area
  processed is 4.5 x 4.5 degrees (100 points).}
 
  \item{For global coverage}{To get global coverage for CLIMATOLOGY, supply
@@ -112,7 +113,7 @@ The associated metadata are not saved if the data are exported to a
 }
 
 \section{Argument details for \code{dates}}{
- If one date only is provided, it
+ if one date only is provided, it
   will be treated as both the start date and the end date and only a single
   day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
   When \code{temporal_average} is set to \dQuote{INTERANNUAL}, use only two
@@ -184,5 +185,5 @@ sse_i
 \url{https://power.larc.nasa.gov}
 }
 \author{
-Sparks, A. H. \email{adamhsparks@gmail.com}
+Adam H. Sparks \email{adamhsparks@gmail.com}
 }
