@@ -53,7 +53,7 @@ Imports:
     jsonlite,
     readr,
     tibble
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9001
 Encoding: UTF-8
 Language: en-AU
 NeedsCompilation: no

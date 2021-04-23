@@ -131,10 +131,10 @@ The associated metadata are not saved if the data are exported to a
 }
 
 \examples{
-\donttest{
-# Fetch daily "AG" community temperature, relative
-# humidity and precipitation for January 1 1985
-# for Kingsthorpe, Queensland, Australia
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+# Fetch daily "AG" community temperature, relative humidity and precipitation
+# for January 1 1985 at Kingsthorpe, Queensland, Australia
 ag_d <- get_power(
   community = "AG",
   lonlat = c(151.81, -27.48),
@@ -165,8 +165,7 @@ ag_c_global <- get_power(
 
 ag_c_global
 
-# Fetch interannual solar cooking parameters
-# for a given region
+# Fetch interannual solar cooking parameters for a given region
 sse_i <- get_power(
   community = "SSE",
   lonlat = c(112.5, -55.5, 115.5, -50.5),
@@ -176,9 +175,7 @@ sse_i <- get_power(
 )
 
 sse_i
-
-}
-
+\dontshow{\}) # examplesIf}
 }
 \references{
 \url{https://power.larc.nasa.gov/docs/methodology/}
