@@ -55,7 +55,7 @@ Imports:
     tibble
 RoxygenNote: 7.1.1.9001
 Encoding: UTF-8
-Language: en-AU
+Language: en-US
 NeedsCompilation: no
 Repository: CRAN
 LazyData: TRUE
@@ -69,7 +69,8 @@ Suggests:
     rmarkdown,
     rnaturalearth,
     sf,
-    testthat
+    testthat,
+    spelling
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
