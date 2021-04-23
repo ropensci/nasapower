@@ -33,7 +33,7 @@ bibentry(bibtype = "Manual",
          author = c(person("Adam", "Sparks")),
          year = year,
          note = note,
-         doi = 10.5281/zenodo.1040727,
+         doi = "10.5281/zenodo.1040727",
 	 url = "https://CRAN.R-project.org/package=nasapower")
 
  textVersion = paste0("Adam H Sparks, (", year, ").",
