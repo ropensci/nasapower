@@ -85,9 +85,9 @@ More documentation is available in the vignette in your R session, `vignette("na
 While *nasapower* does not redistribute the data or provide it in any way, we encourage users to follow the requests of the POWER Project Team.
 
 > When POWER data products are used in a publication, we request the
-> following acknowledgement be included: “These data were obtained from
-> the NASA Langley Research Center POWER Project funded through the NASA
-> Earth Science Directorate Applied Science Program.”
+  following acknowledgement be included: “These data were obtained from
+  the NASA Langley Research Center POWER Project funded through the NASA
+  Earth Science Directorate Applied Science Program.”
 
 ## Meta
 
