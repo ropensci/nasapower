@@ -26,16 +26,16 @@
 #'
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_average) {
-  if (is.null(dates) & temporal_average != "CLIMATOLOGY") {
+  if (is.null(dates) & temporal_average != "climatology") {
     stop(call. = FALSE,
          "\nYou have not entered dates for the query.\n")
   }
 
-  if (temporal_average == "INTERANNUAL") {
+  if (temporal_average == "monthly") {
     if (length(unique(dates)) < 2) {
       stop(
         call. = FALSE,
-        "\nFor `temporal_average = INTERANNUAL`, at least two (2) years ",
+        "\nFor `temporal_average = monthly`, at least two (2) years ",
         "are required to be provided.\n"
       )
     }
@@ -50,7 +50,7 @@
     return(dates)
   }
 
-  if (temporal_average == "DAILY") {
+  if (temporal_average == "daily") {
     if (is.numeric(lonlat)) {
       if (length(dates) == 1) {
         dates <- c(dates, dates)
@@ -173,15 +173,15 @@
     pars <- unique(pars)
 
     # check pars to make sure < allowed
-    if (length(pars) > 3 & temporal_average == "CLIMATOLOGY") {
+    if (length(pars) > 3 & temporal_average == "climatology") {
       stop(
         call. = FALSE,
         "\nYou can only specify three (3) parameters for download when ",
-        "querying CLIMATOLOGY.\n"
+        "querying climatology.\n"
       )
     }
 
-    if (length(pars) > 20 & temporal_average != "CLIMATOLOGY") {
+    if (length(pars) > 20 & temporal_average != "climatology") {
       stop(call. = FALSE,
            "\nYou can only specify 20 parameters for download at a time.\n")
     }
@@ -208,7 +208,7 @@
   function(lonlat, pars) {
     bbox <- NULL
     if (is.character(lonlat) & length(lonlat) == 1) {
-      if (lonlat == "GLOBAL") {
+      if (lonlat == "global") {
         identifier <- "Global"
       } else if (is.character(lonlat)) {
         stop(call. = FALSE,
@@ -441,7 +441,7 @@
 #'
 .send_query <- function(.query_list, .pars) {
   power_url <- # nocov start
-    "https://power.larc.nasa.gov/cgi-bin/v1/DataAccess.py?"
+    "https://power.larc.nasa.gov/beta/api/temporal"
   client <- crul::HttpClient$new(url = power_url)
 
   # check status
@@ -520,12 +520,12 @@
       power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
-      if (.pars$temporal_average == "DAILY" &
+      if (.pars$temporal_average == "daily" &
           .query_list$userCommunity == "SSE" |
           .query_list$userCommunity == "SB") {
         power_data <- .format_dates_SSE_SB(power_data)
       }
-      if (.pars$temporal_average == "DAILY" &
+      if (.pars$temporal_average == "daily" &
           .query_list$userCommunity == "AG") {
         power_data <- .format_dates_AG(power_data)
       }

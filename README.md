@@ -54,7 +54,7 @@ daily_ag <- get_power(community = "AG",
                       lonlat = c(151.81, -27.48),
                       pars = c("RH2M", "T2M", "PRECTOT"),
                       dates = "1985-01-01",
-                      temporal_average = "DAILY"
+                      temporal_average = "daily"
                       )
                     
 daily_ag

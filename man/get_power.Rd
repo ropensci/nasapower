@@ -14,39 +14,39 @@ get_power(
 )
 }
 \arguments{
-\item{community}{A character vector providing community name: \dQuote{AG},
-\dQuote{SB} or \dQuote{SSE}.  See argument details for more.}
+\item{community}{A character vector providing community name: \dQuote{ag},
+\dQuote{sb} or \dQuote{re}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{\link{parameters}} for a full list of
-valid values and definitions.  If downloading \dQuote{CLIMATOLOGY} a
+valid values and definitions.  If downloading \dQuote{climatology} a
 maximum of three \code{pars} can be specified at one time, for
-\dQuote{DAILY} and \dQuote{INTERANNUAL} a maximum of 20 can be specified at
+\dQuote{daily} and \dQuote{monthly} a maximum of 20 can be specified at
 one time.}
 
 \item{temporal_average}{Temporal average for data being queried, supported
-values are \dQuote{DAILY}, \dQuote{INTERANNUAL} and \dQuote{CLIMATOLOGY}.
-See argument details for more.}
+values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
+\dQuote{climatology}.  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates or \dQuote{GLOBAL} for global coverage (only
-used for \dQuote{CLIMATOLOGY}).  See argument details for more.}
+entered as x, y coordinates or \dQuote{global} for global coverage (only
+used for \dQuote{climatology}).  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
-Not used when\cr \code{temporal_average} is set to \dQuote{CLIMATOLOGY}.
+Not used when\cr \code{temporal_average} is set to \dQuote{climatology}.
 See argument details for more.}
 
 \item{site_elevation}{A user-supplied value for elevation at a single point
 in metres.  If provided this will return a corrected atmospheric pressure
 value adjusted to the elevation provided.  Only used with `lonlat` as a
-single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
+single point of x, y coordinates, not for use with \dQuote{global} or with
 a regional request.}
 }
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
 \code{\link[tibble]{tibble}}, object of \acronym{POWER} data including
-location, dates (not including \dQuote{CLIMATOLOGY}) and requested
+location, dates (not including \dQuote{climatology}) and requested
 parameters.  A header of metadata is included in this object.
 }
 \description{
@@ -66,28 +66,30 @@ The associated metadata are not saved if the data are exported to a
   and the temporal display of time series data.
 
 \describe{
-  \item{AG}{Provides access to the Agroclimatology Archive, which
+  \item{ag}{Provides access to the Agroclimatology Archive, which
  contains industry-friendly parameters formatted for input to crop models.}
 
- \item{SB}{Provides access to the Sustainable Buildings Archive, which
+ \item{sb}{Provides access to the Sustainable Buildings Archive, which
  contains industry-friendly parameters for the buildings community to include
  parameters in multi-year monthly averages.}
 
- \item{SSE}{Provides access to the Renewable Energy Archive, which contains
+ \item{re}{Provides access to the Renewable Energy Archive, which contains
  parameters specifically tailored to assist in the design of solar and wind
  powered renewable energy systems.}
  }
 }
 
 \section{Argument details for \code{temporal_average}}{
- There are three valid
+ There are four valid
  values.
  \describe{
-  \item{DAILY}{The daily average of \code{pars} by day, month and year.}
-  \item{INTERANNUAL}{The monthly average of \code{pars} by year.}
-  \item{CLIMATOLOGY}{The monthly average of \code{pars} at the surface of the
-   earth for a given month, averaged for that month over the 30-year period
-    (Jan. 1984 - Dec. 2013).}
+  \item{hourly}{The hourly average of \code{pars} by hour, day, month and
+   year.}
+  \item{daily}{The daily average of \code{pars} by day, month and year.}
+  \item{monthly}{The monthly average of \code{pars} by month and year.}
+  \item{climatology}{Provide parameters as 22-year climatologies (solar)
+   and 30-year climatologies (meteorology); the period climatology and
+   monthly average, maximum, and/or minimum values.}
  }
 }
 
@@ -106,8 +108,8 @@ The associated metadata are not saved if the data are exported to a
  Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.  *Maximum area
  processed is 4.5 x 4.5 degrees (100 points).}
 
- \item{For global coverage}{To get global coverage for CLIMATOLOGY, supply
- \dQuote{GLOBAL} while also specifying \dQuote{CLIMATOLOGY} for the
+ \item{For global coverage}{To get global coverage for \dQuote{climatology},
+ supply \dQuote{global} while also specifying \dQuote{climatology} for the
  \code{temporal_average}.}
 }
 }
@@ -116,16 +118,16 @@ The associated metadata are not saved if the data are exported to a
  if one date only is provided, it
   will be treated as both the start date and the end date and only a single
   day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
-  When \code{temporal_average} is set to \dQuote{INTERANNUAL}, use only two
+  When \code{temporal_average} is set to \dQuote{monthly}, use only two
   year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
   argument should not be used when \code{temporal_average} is set to
-  \dQuote{CLIMATOLOGY}.
+  \dQuote{climatology}.
 
   The weather values from \acronym{POWER} for temperature are 2 metre max and
   min temperatures, \dQuote{T2M_MAX} and \dQuote{T2M_MIN}; radiation,
   \dQuote{ALLSKY_SFC_SW_DWN}; rain, \dQuote{PRECTOT}; relative humidity at 2
   metres, \dQuote{RH2M}; and wind at 2 metres \dQuote{WS2M} from the
-  \acronym{POWER} \sQuote{AG} community on a daily time-step.
+  \acronym{POWER} \sQuote{ag} community on a daily time-step.
 
   If further parameters are desired, the user may pass them along.
 }
@@ -133,44 +135,44 @@ The associated metadata are not saved if the data are exported to a
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-# Fetch daily "AG" community temperature, relative humidity and precipitation
+# Fetch daily "ag" community temperature, relative humidity and precipitation
 # for January 1 1985 at Kingsthorpe, Queensland, Australia
 ag_d <- get_power(
-  community = "AG",
+  community = "ag",
   lonlat = c(151.81, -27.48),
   pars = c("RH2M", "T2M", "PRECTOT"),
   dates = "1985-01-01",
-  temporal_average = "DAILY"
+  temporal_average = "daily"
 )
 
 ag_d
 
 # Fetch single point climatology for air temperature
 ag_c_point <- get_power(
-  community = "AG",
+  community = "ag",
   pars = "T2M",
   c(151.81, -27.48),
-  temporal_average = "CLIMATOLOGY"
+  temporal_average = "climatology"
 )
 
 ag_c_point
 
-# Fetch global AG climatology for air temperature
+# Fetch global ag climatology for air temperature
 ag_c_global <- get_power(
-  community = "AG",
+  community = "ag",
   pars = "T2M",
-  lonlat = "GLOBAL",
-  temporal_average = "CLIMATOLOGY"
+  lonlat = "global",
+  temporal_average = "climatology"
 )
 
 ag_c_global
 
 # Fetch interannual solar cooking parameters for a given region
 sse_i <- get_power(
-  community = "SSE",
+  community = "re",
   lonlat = c(112.5, -55.5, 115.5, -50.5),
   dates = c("1984", "1985"),
-  temporal_average = "INTERANNUAL",
+  temporal_average = "monthly",
   pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
 )
 

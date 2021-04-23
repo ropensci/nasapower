@@ -2,7 +2,7 @@
 # Date handling and checking ---------------------------------------------------
 context("Check dates handles dates correctly")
 test_that("Missing `dates` are properly handled", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   dates <- NULL
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -10,7 +10,7 @@ test_that("Missing `dates` are properly handled", {
 })
 
 test_that("`dates` with one value set one day query", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   dates <- "1983-01-01"
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -20,7 +20,7 @@ test_that("`dates` with one value set one day query", {
 })
 
 test_that("`dates` > 2 cause an error", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   dates <- c("1983-01-01", "1983-01-02", "1983-01-03")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -30,7 +30,7 @@ test_that("`dates` > 2 cause an error", {
 })
 
 test_that("`dates` entered in incorrect formats are corrected", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   dates <- "01-01-1983"
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -42,8 +42,8 @@ test_that("`dates` entered in incorrect formats are corrected", {
   expect_equal(dates[1], "19830101")
 })
 
-test_that("DAILY `dates` entered in reverse order are corrected", {
-  temporal_average <- "DAILY"
+test_that("daily `dates` entered in reverse order are corrected", {
+  temporal_average <- "daily"
   today <- as.character(Sys.Date())
   dates <- c(today, "1983-01-01")
   lonlat <- c(-179.5, -89.5)
@@ -52,8 +52,8 @@ test_that("DAILY `dates` entered in reverse order are corrected", {
                  regexp = "*Your start and end dates were reversed.*")
 })
 
-test_that("INTERANNUAL `dates` entered in reverse order are corrected", {
-  temporal_average <- "INTERANNUAL"
+test_that("monthly `dates` entered in reverse order are corrected", {
+  temporal_average <- "monthly"
   today <- as.character(Sys.Date())
   dates <- c(today, "1983-01-01")
   lonlat <- c(-179.5, -89.5)
@@ -63,7 +63,7 @@ test_that("INTERANNUAL `dates` entered in reverse order are corrected", {
 })
 
 test_that("`dates` before the start of POWER data cause error", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   today <- as.character(Sys.Date())
   dates <- c("1979-12-31", today)
   lonlat <- c(-179.5, -89.5)
@@ -73,7 +73,7 @@ test_that("`dates` before the start of POWER data cause error", {
 })
 
 test_that("`dates` after today POWER cause error", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   tomorrow <- as.character(Sys.Date() + 1)
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -82,7 +82,7 @@ test_that("`dates` after today POWER cause error", {
 })
 
 test_that("Invalid `dates` are handled", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   dates <- c("1983-01-01", "1983-02-31")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -91,7 +91,7 @@ test_that("Invalid `dates` are handled", {
 })
 
 test_that("Dates are returned as a vector of characters", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   dates <- c("1983-01-01", "1983-02-02")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
@@ -100,9 +100,9 @@ test_that("Dates are returned as a vector of characters", {
 })
 
 test_that(
-  "If temporal_average == INTERANNUAL and dates are specified, that only years
+  "If temporal_average == monthly and dates are specified, that only years
   are returned", {
-    temporal_average <- "INTERANNUAL"
+    temporal_average <- "monthly"
     dates <- c("1983-01-01", "1984-01-01")
     lonlat <- c(-179.5, -89.5)
     site_elevation <- NULL
@@ -111,13 +111,13 @@ test_that(
   }
 )
 
-test_that("If temporal_average == INTERANNUAL and <2 dates provided, error", {
-            temporal_average <- "INTERANNUAL"
+test_that("If temporal_average == monthly and <2 dates provided, error", {
+            temporal_average <- "monthly"
             dates <- c("1983-01-01")
             lonlat <- c(-179.5, -89.5)
             site_elevation <- NULL
             expect_error(.check_dates(dates, lonlat, temporal_average),
-                         regexp = "*\nFor `temporal_average = INTERANNUAL`, *")
+                         regexp = "*\nFor `temporal_average = monthly`, *")
           })
 
 
@@ -181,7 +181,7 @@ test_that(".check_lonlat() properly reports errors", {
 })
 
 test_that(".check_lonlat() handles single point properly", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   test <- .check_lonlat(lonlat = c(-179.5, -89.5),
                         pars)
   expect_equal(test$lon, -179.5)
@@ -190,14 +190,14 @@ test_that(".check_lonlat() handles single point properly", {
 })
 
 test_that(".check_lonlat() checks validity of single lon values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(179.5, 91),
                              pars),
                regexp = "\nPlease check your latitude, `91`,*")
 })
 
 test_that(".check_lonlat() checks validity of single lat values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(182, 90),
                              pars),
                regexp = "Please check your longitude, `182`,*")
@@ -206,49 +206,49 @@ test_that(".check_lonlat() checks validity of single lat values", {
 # bbox checks ------------------------------------------------------------------
 
 test_that(".check_lonlat() handles bboxes that are too large", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5),
                              pars),
                regexp = "Please provide correct bounding box values*")
 })
 
 test_that(".check_lonlat() checks order of the latitude values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 179.5, -89.5),
                              pars),
                regexp = "\nThe first `lat` value must be the minimum value.\n")
 })
 
 test_that(".check_lonlat() checks order of the longitude values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(179.5, -89.5, -179.5, 89.5),
                              pars),
                regexp = "\nThe first `lon` value must be the minimum value.\n")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmin values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 91, -179.5, 90),
                              pars),
                regexp = "\nPlease check your latitude, `91`, `90`*")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmax values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 90, -179.5, 93),
                              pars),
                regexp = "\nPlease check your latitude, `90`, `93`,*")
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmin values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(-181.5, 89.5, -179.5, 89.5),
                              pars),
                regexp = "\nPlease check your longitude, `-181.5`, `-179.5`*")
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmax values", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 181, 89.5),
                              pars),
                regexp = "\nPlease check your longitude, `-179.5`, `181`,*")
@@ -257,7 +257,7 @@ test_that(".check_lonlat() checks validity of bbox lonmax values", {
 test_that(
   ".check_lonlat() returns message with proper identifier when valid
           coordinates are given", {
-    temporal_average <- "DAILY"
+    temporal_average <- "daily"
     test <- .check_lonlat(lonlat = c(-179.5,
                                      88.5,
                                      -179.5,
@@ -272,7 +272,7 @@ test_that(
 # parameter checks -------------------------------------------------------------
 context("Test that check_pars handles pars strings correctly")
 test_that(".check_pars() stops if no `pars` provided", {
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   lonlat <- c(-179.5, -89.5)
 
   expect_error(.check_pars(temporal_average,
@@ -291,7 +291,7 @@ test_that(".check_pars()  stops if no `temporal_average` provided", {
 
 test_that(".check_pars()  stops if `pars` not valid", {
   pars <- "asdflkuewr"
-  temporal_average <- "DAILY"
+  temporal_average <- "daily"
   lonlat <- c(-179.5, -89.5)
 
   expect_error(.check_pars(pars,
@@ -302,7 +302,7 @@ test_that(".check_pars()  stops if `pars` not valid", {
 test_that(".check_pars()  stops if `pars` not valid for given
           temporal_average", {
             pars <- "ALLSKY_SFC_SW_DWN_03_GMT"
-            temporal_average <- "INTERANNUAL"
+            temporal_average <- "monthly"
             lonlat <- c(-179.5, -89.5)
 
             expect_error(.check_pars(pars,
@@ -313,7 +313,7 @@ test_that(".check_pars()  stops if `pars` not valid for given
 test_that("pars are returned as a comma separated string with no spaces", {
   pars <- c("ALLSKY_SFC_SW_DWN_03_GMT",
             "ALLSKY_SFC_LW_DWN")
-  temporal_average <- "CLIMATOLOGY"
+  temporal_average <- "climatology"
   lonlat <- c(-179.5, -89.5)
 
   pars <- .check_pars(pars,
@@ -322,18 +322,18 @@ test_that("pars are returned as a comma separated string with no spaces", {
   expect_named(pars, c("pars", "temporal_average"))
   expect_equal(nchar(pars$pars), 42)
   expect_equal(pars$pars, "ALLSKY_SFC_SW_DWN_03_GMT,ALLSKY_SFC_LW_DWN")
-  expect_equal(pars$temporal_average, "CLIMATOLOGY")
+  expect_equal(pars$temporal_average, "climatology")
   expect_length(pars, 2)
 })
 
-test_that("Only 3 pars are allowed when `temporal_average` = CLIMATOLOGY", {
+test_that("Only 3 pars are allowed when `temporal_average` = climatology", {
   pars <- c(
     "ALLSKY_SFC_SW_DWN_03_GMT",
     "ALLSKY_SFC_LW_DWN",
     "ALLSKY_SFC_SW_DWN_06_GMT",
     "RH2M"
   )
-  temporal_average <- "CLIMATOLOGY"
+  temporal_average <- "climatology"
   lonlat <- NULL
   expect_error(
     pars <-
@@ -342,7 +342,7 @@ test_that("Only 3 pars are allowed when `temporal_average` = CLIMATOLOGY", {
   )
 })
 
-test_that("Only 20 pars are allowed when `temporal_average` != CLIMATOLOGY", {
+test_that("Only 20 pars are allowed when `temporal_average` != climatology", {
             pars <- c(
               "ALLSKY_SFC_LW_DWN",
               "ALLSKY_TOA_SW_DWN",
@@ -368,7 +368,7 @@ test_that("Only 20 pars are allowed when `temporal_average` != CLIMATOLOGY", {
               "T2M_MIN",
               "T2M_MAX"
             )
-            temporal_average <- "DAILY"
+            temporal_average <- "daily"
             lonlat <- c(-179.5, -89.5)
             expect_error(
               pars <- .check_pars(pars, temporal_average, lonlat),
@@ -380,7 +380,7 @@ test_that("Only unique `pars` are queried", {
   pars <- c("RH2M",
             "RH2M",
             "RH2M")
-  temporal_average <- "CLIMATOLOGY"
+  temporal_average <- "climatology"
   lonlat <- NULL
   pars <- .check_pars(pars, temporal_average, lonlat)
   expect_equal(pars[[1]], "RH2M")
@@ -390,7 +390,7 @@ test_that("Only unique `pars` are queried", {
 test_that("If an invalid temporal average is given for `pars`,
           an error occurs", {
             pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
-            temporal_average <- "DAILY"
+            temporal_average <- "daily"
             lonlat <- c(-179.5, -89.5)
             expect_error(.check_pars(pars, temporal_average, lonlat))
           })
@@ -398,7 +398,7 @@ test_that("If an invalid temporal average is given for `pars`,
 # query constructs -------------------------------------------------------------
 test_that(".build_query assembles a proper query for single point and != NULL
           dates", {
-            temporal_average <- "DAILY"
+            temporal_average <- "daily"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(-179.5, -89.5)
             site_elevation <- 50
@@ -445,7 +445,7 @@ test_that(".build_query assembles a proper query for single point and != NULL
 
 test_that(".build_query assembles a proper query for single point and NULL
           dates", {
-            temporal_average <- "CLIMATOLOGY"
+            temporal_average <- "climatology"
             dates <- NULL
             lonlat <- c(-179.5, -89.5)
             site_elevation <- NULL
@@ -488,7 +488,7 @@ test_that(".build_query assembles a proper query for single point and NULL
 
 test_that(".build_query assembles a proper query for regional and != NULL
           dates", {
-            temporal_average <- "DAILY"
+            temporal_average <- "daily"
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             site_elevation <- NULL
@@ -531,7 +531,7 @@ test_that(".build_query assembles a proper query for regional and != NULL
           })
 
 test_that(".build_query assembles a proper query for regional and NULL dates", {
-            temporal_average <- "CLIMATOLOGY"
+            temporal_average <- "climatology"
             dates <- NULL
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             site_elevation <- NULL
@@ -572,9 +572,9 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
           })
 
 test_that(".build_query assembles a proper query for global climatology", {
-  temporal_average <- "CLIMATOLOGY"
+  temporal_average <- "climatology"
   dates <- NULL
-  lonlat <- "GLOBAL"
+  lonlat <- "global"
   community <- "AG"
   pars <- "T2M"
   site_elevation <- NULL

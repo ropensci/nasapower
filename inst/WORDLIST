@@ -14,7 +14,6 @@ Gridded
 Hadley
 Hijmans
 ICASA
-INTERANNUAL
 Insolation
 Irradiance
 JOSS
@@ -59,7 +58,6 @@ gridded
 https
 httr
 icasa
-interannual
 larc
 lon
 lonlat
