@@ -14,7 +14,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 # *nasapower*: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
 
 *nasapower* aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
-POWER (Prediction Of Worldwide Energy Resource) data are freely available for download at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude.
+POWER (Prediction Of Worldwide Energy Resource) data are freely available for download with a  spatial resolution of 1/2 arc degree longitude by 1/2 arc degree latitude and various temporal resolutions depending on the POWER parameter.
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other ways to access it and other forms of data available, *e.g.*, your web browser or an ESRI REST API.
 
