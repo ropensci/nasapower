@@ -61,14 +61,8 @@ Repository: CRAN
 LazyData: TRUE
 ByteCompile: TRUE
 Suggests:
-    apsimx,
-    ggplot2,
     knitr,
-    purrr,
-    terra,
     rmarkdown,
-    rnaturalearth,
-    sf,
     testthat,
     spelling
 VignetteBuilder: knitr
