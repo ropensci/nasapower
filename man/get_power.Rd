@@ -132,53 +132,6 @@ The associated metadata are not saved if the data are exported to a
   If further parameters are desired, the user may pass them along.
 }
 
-\examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-
-# Fetch daily "ag" community temperature, relative humidity and precipitation
-# for January 1 1985 at Kingsthorpe, Queensland, Australia
-ag_d <- get_power(
-  community = "ag",
-  lonlat = c(151.81, -27.48),
-  pars = c("RH2M", "T2M", "PRECTOT"),
-  dates = "1985-01-01",
-  temporal_average = "daily"
-)
-
-ag_d
-
-# Fetch single point climatology for air temperature
-ag_c_point <- get_power(
-  community = "ag",
-  pars = "T2M",
-  c(151.81, -27.48),
-  temporal_average = "climatology"
-)
-
-ag_c_point
-
-# Fetch global ag climatology for air temperature
-ag_c_global <- get_power(
-  community = "ag",
-  pars = "T2M",
-  lonlat = "global",
-  temporal_average = "climatology"
-)
-
-ag_c_global
-
-# Fetch interannual solar cooking parameters for a given region
-sse_i <- get_power(
-  community = "re",
-  lonlat = c(112.5, -55.5, 115.5, -50.5),
-  dates = c("1984", "1985"),
-  temporal_average = "monthly",
-  pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
-)
-
-sse_i
-\dontshow{\}) # examplesIf}
-}
 \references{
 \url{https://power.larc.nasa.gov/docs/methodology/}
 \url{https://power.larc.nasa.gov}
