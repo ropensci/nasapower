@@ -15,14 +15,14 @@
 
 #' Check dates for validity when querying API
 #'
-#' Validates user entered date values against \code{lonlat} and
-#' \code{temporal_average} values
+#' Validates user entered date values against `lonlat` and
+#' `temporal_average` values
 #'
-#' @param dates User entered \code{dates} value.
-#' @param lonlat User entered \code{lonlat} value.
-#' @param temporal_average User entered \code{temporal_average} value.
+#' @param dates User entered `dates` value.
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_average User entered `temporal_average` value.
 #'
-#' @return Validated dates in a list for use in \code{.build_query}
+#' @return Validated dates in a list for use in `.build_query`
 #'
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_average) {
@@ -117,11 +117,11 @@
 
 #' Check community for validity when querying API
 #'
-#' Validates user entered \code{community} values against
-#' \code{pars} for availability.
+#' Validates user entered `community` values against
+#' `pars` for availability.
 #'
-#' @param community User entered \code{community} value.
-#' @param pars User entered \code{pars} value.
+#' @param community User entered `community` value.
+#' @param pars User entered `pars` value.
 #'
 #' @return Validated community and pars for use in .build_query()
 #'
@@ -136,12 +136,12 @@
 
 #' Check pars for validity when querying API
 #'
-#' Validates user entered date values against \code{lonlat} and
-#' \code{temporal_average} values
+#' Validates user entered date values against `lonlat` and
+#' `temporal_average` values
 #'
-#' @param dates User entered \code{dates} value.
-#' @param lonlat User entered \code{lonlat} value.
-#' @param temporal_average User entered \code{temporal_average} value.
+#' @param dates User entered `dates` value.
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_average User entered `temporal_average` value.
 #'
 #' @return Validated pars for use in .build_query()
 #'
@@ -195,13 +195,13 @@
 
 #' Check lonlat for validity when querying API
 #'
-#' Validates user entered \code{lonlat} values and checks against \code{pars}
+#' Validates user entered `lonlat` values and checks against `pars`
 #' values.
 #'
-#' @param lonlat User entered \code{lonlat} value.
-#' @param pars User entered \code{pars} value.
+#' @param lonlat User entered `lonlat` value.
+#' @param pars User entered `pars` value.
 #'
-#' @return A list called lonlat_identifier for use in \code{.build_query}
+#' @return A list called lonlat_identifier for use in `.build_query`
 #'
 #' @noRd
 .check_lonlat <-
@@ -303,10 +303,10 @@
 #' previous functions in this file.
 #'
 #' @param community A validated value for community from
-#'  \code{check_community()}.
-#' @param lonlat_identifier A list of values, a result of \code{check_lonlat()}
-#' @param pars A validated value from \code{check_pars()}.
-#' @param dates A list of valuse, a result of \code{check_dates()}.
+#'  `check_community()`.
+#' @param lonlat_identifier A list of values, a result of `check_lonlat()`
+#' @param pars A validated value from `check_pars()`.
+#' @param dates A list of valuse, a result of `check_dates()`.
 #' @param outputList A value of either \sQuote{CSV} or \sQuote{ICASA} that
 #' tells the \sQuote{API} the desired format in which to return the data.
 #'
@@ -597,7 +597,7 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from \code{.build_query}.
+#' @param NASA A tidy data.frame resulting from `.build_query`.
 #'
 #' @return A tidy data frame of power data with additional date information
 #'   columns.
@@ -632,7 +632,7 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from \code{.build_query}.
+#' @param NASA A tidy data.frame resulting from `.build_query`.
 #'
 #' @return A tidy data frame of power data with additional date information
 #'   columns.

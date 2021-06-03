@@ -1,7 +1,7 @@
 
 #' NASA POWER parameters available for download
 #'
-#' An \R \code{list} object of \acronym{POWER} parameters and metadata available
+#' An \R `list` object of \acronym{POWER} parameters and metadata available
 #' for querying from the \acronym{POWER} database.
 #'
 #' @docType data
@@ -240,7 +240,7 @@
 #'
 #' @author Sparks, A. H. \email{adamhsparks@@gmail.com}
 #' @source
-#' \url{https://power.larc.nasa.gov/system/parameters.json}
+#' <https://power.larc.nasa.gov/system/parameters.json>
 #' @references
-#' \url{https://power.larc.nasa.gov/docs/}
+#' <https://power.larc.nasa.gov/docs/>
 "parameters"

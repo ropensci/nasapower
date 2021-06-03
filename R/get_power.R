@@ -2,16 +2,16 @@
 #' Get NASA POWER data from the POWER web API
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
-#'   climatology data and return a tidy data frame \code{\link[tibble]{tibble}}
+#'   climatology data and return a tidy data frame [tibble::tibble()]
 #'   object. All options offered by the official \acronym{POWER} \acronym{API}
 #'   are supported.
 #'
 #' @param community A character vector providing community name: \dQuote{ag},
 #'   \dQuote{sb} or \dQuote{re}.  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
-#'   parameters to download.  See \code{\link{parameters}} for a full list of
+#'   parameters to download.  See [parameters()] for a full list of
 #'   valid values and definitions.  If downloading \dQuote{climatology} a
-#'   maximum of three \code{pars} can be specified at one time, for
+#'   maximum of three `pars` can be specified at one time, for
 #'   \dQuote{daily} and \dQuote{monthly} a maximum of 20 can be specified at
 #'   one time.
 #' @param temporal_average Temporal average for data being queried, supported
@@ -21,8 +21,8 @@
 #'   entered as x, y coordinates or \dQuote{global} for global coverage (only
 #'   used for \dQuote{climatology}).  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
-#'   \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
-#'   Not used when\cr \code{temporal_average} is set to \dQuote{climatology}.
+#'   _e.g._, `dates = c("1983-01-01", "2017-12-31")`.
+#'   Not used when\cr `temporal_average` is set to \dQuote{climatology}.
 #'   See argument details for more.
 #' @param site_elevation A user-supplied value for elevation at a single point
 #'   in metres.  If provided this will return a corrected atmospheric pressure
@@ -47,43 +47,43 @@
 #'  powered renewable energy systems.}
 #'  }
 #'
-#' @section Argument details for \code{temporal_average}: There are four valid
+#' @section Argument details for `temporal_average`: There are four valid
 #'  values.
 #'  \describe{
-#'   \item{hourly}{The hourly average of \code{pars} by hour, day, month and
+#'   \item{hourly}{The hourly average of `pars` by hour, day, month and
 #'    year.}
-#'   \item{daily}{The daily average of \code{pars} by day, month and year.}
-#'   \item{monthly}{The monthly average of \code{pars} by month and year.}
+#'   \item{daily}{The daily average of `pars` by day, month and year.}
+#'   \item{monthly}{The monthly average of `pars` by month and year.}
 #'   \item{climatology}{Provide parameters as 22-year climatologies (solar)
 #'    and 30-year climatologies (meteorology); the period climatology and
 #'    monthly average, maximum, and/or minimum values.}
 #'  }
 #'
-#' @section Argument details for \code{lonlat}:
+#' @section Argument details for `lonlat`:
 #' \describe{
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 #'  length-two numeric vector giving the decimal degree longitude and latitude
 #'  in that order for data to download,\cr
-#'  \emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
+#'  _e.g._, `lonlat = c(-89.5, -179.5)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-four numeric
 #'  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
-#'  \emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a
-#'  given region, \emph{e.g.}, a bounding box for the south western corner of
-#'  Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.  *Maximum area
+#'  _e.g._, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a
+#'  given region, _e.g._, a bounding box for the south western corner of
+#'  Australia: `lonlat = c(112.5, -55.5, 115.5, -50.5)`.  *Maximum area
 #'  processed is 4.5 x 4.5 degrees (100 points).}
 #'
 #'  \item{For global coverage}{To get global coverage for \dQuote{climatology},
 #'  supply \dQuote{global} while also specifying \dQuote{climatology} for the
-#'  \code{temporal_average}.}
+#'  `temporal_average`.}
 #' }
 #'
-#' @section Argument details for \code{dates}: if one date only is provided, it
+#' @section Argument details for `dates`: if one date only is provided, it
 #'   will be treated as both the start date and the end date and only a single
-#'   day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
-#'   When \code{temporal_average} is set to \dQuote{monthly}, use only two
-#'   year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
-#'   argument should not be used when \code{temporal_average} is set to
+#'   day's values will be returned, _e.g._, `dates = "1983-01-01"`.
+#'   When `temporal_average` is set to \dQuote{monthly}, use only two
+#'   year values (YYYY), _e.g._ `dates = c(1983, 2010)`.  This
+#'   argument should not be used when `temporal_average` is set to
 #'   \dQuote{climatology}.
 #'
 #'   The weather values from \acronym{POWER} for temperature are 2 metre max and
@@ -95,17 +95,17 @@
 #'   If further parameters are desired, the user may pass them along.
 #'
 #' @note The associated metadata are not saved if the data are exported to a
-#'   file format other than a native \R data format, \emph{e.g.}, .Rdata, .rda
+#'   file format other than a native \R data format, _e.g._, .Rdata, .rda
 #'   or .rds.
 #'
-#' @return A data frame as a \code{POWER.Info} class, an extension of the
-#' \code{\link[tibble]{tibble}}, object of \acronym{POWER} data including
-#' location, dates (not including \dQuote{climatology}) and requested
-#' parameters.  A header of metadata is included in this object.
+#' @return A data frame as a `POWER.Info` class, an extension of the
+#' [tibble::tibble], object of \acronym{POWER} data including location, dates
+#' (not including \dQuote{climatology}) and requested parameters.  A header of
+#'  metadata is included in this object.
 #'
 #' @references
-#' \url{https://power.larc.nasa.gov/docs/methodology/}
-#' \url{https://power.larc.nasa.gov}
+#' <https://power.larc.nasa.gov/docs/methodology/>
+#' <https://power.larc.nasa.gov>
 #'
 #' @examplesIf interactive()
 #'

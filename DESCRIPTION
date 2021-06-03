@@ -71,3 +71,4 @@ X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
     weather-data, meteorology, NASA-POWER, agroclimatology, earth-science,
     data-access, climate-data
 X-schema.org-isPartOf: https://ropensci.org
+Roxygen: list(markdown = TRUE)
