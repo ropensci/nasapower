@@ -123,7 +123,7 @@
 #' @param community User entered `community` value.
 #' @param pars User entered `pars` value.
 #'
-#' @return Validated community and pars for use in .build_query()
+#' @return Validated community and pars for use in [.build_query()]
 #'
 #' @noRd
 .check_community <-
@@ -143,7 +143,7 @@
 #' @param lonlat User entered `lonlat` value.
 #' @param temporal_average User entered `temporal_average` value.
 #'
-#' @return Validated pars for use in .build_query()
+#' @return Validated pars for use in [.build_query()]
 #'
 #' @noRd
 .check_pars <-
@@ -201,7 +201,7 @@
 #' @param lonlat User entered `lonlat` value.
 #' @param pars User entered `pars` value.
 #'
-#' @return A list called lonlat_identifier for use in `.build_query`
+#' @return A list called `lonlat_identifier` for use in [.build_query()]
 #'
 #' @noRd
 .check_lonlat <-
@@ -299,18 +299,18 @@
 
 #' Query the POWER API
 #'
-#' Constructs and sends a query to the POWER API using validated values from
+#' Constructs and sends a query to the 'POWER' 'API' using validated values from
 #' previous functions in this file.
 #'
 #' @param community A validated value for community from
-#'  `check_community()`.
-#' @param lonlat_identifier A list of values, a result of `check_lonlat()`
-#' @param pars A validated value from `check_pars()`.
-#' @param dates A list of valuse, a result of `check_dates()`.
+#'  [check_community()].
+#' @param lonlat_identifier A list of values, a result of [check_lonlat()]
+#' @param pars A validated value from [check_pars()].
+#' @param dates A list of valuse, a result of [check_dates()].
 #' @param outputList A value of either \sQuote{CSV} or \sQuote{ICASA} that
 #' tells the \sQuote{API} the desired format in which to return the data.
 #'
-#' @return A tidy tibble() of requested 'POWER' data
+#' @return A [tibble::tibble()] of requested 'POWER' data
 #'
 #' @noRd
 .build_query <- function(community,
@@ -436,7 +436,7 @@
 
 #' Sends the query to the API
 #'
-#' @param .query_list A query list created by `.build_query`
+#' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
 .send_query <- function(.query_list, .pars) {
@@ -468,7 +468,7 @@
 
 #' Imports data after download
 #'
-#' @param .query_list A query list created by `.build_query`
+#' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
 
@@ -597,9 +597,9 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from `.build_query`.
+#' @param NASA A tidy data.frame resulting from [build_query()].
 #'
-#' @return A tidy data frame of power data with additional date information
+#' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #'
 #' @noRd
@@ -632,9 +632,9 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from `.build_query`.
+#' @param NASA A tidy data.frame resulting from [.build_query()].
 #'
-#' @return A tidy data frame of power data with additional date information
+#' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #'
 #' @noRd

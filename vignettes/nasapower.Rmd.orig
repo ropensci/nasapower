@@ -24,7 +24,7 @@ knitr::opts_chunk$set(collapse = TRUE,
 _nasapower_ aims to make it quick and easy to automate downloading NASA [POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data  data in your R session as a tidy data frame for analysis and use in modelling or other purposes using `get_power()`.
 POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude.
 
-## Using `get_power` to Fetch POWER Data
+## Using `get_power()` to Fetch POWER Data
 
 The `get_power()` function has five arguments as seen in this example and returns a data frame with a metadata header in the current R session.
 
