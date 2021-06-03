@@ -122,12 +122,3 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
-      - name: "[Stage] Before Deploy"
-        run: |
-          Rscript -e "tic::before_deploy()"
-
-      - name: "[Stage] Deploy"
-        run: Rscript -e "tic::deploy()"
-
-      - name: "[Stage] After Deploy"
-        run: Rscript -e "tic::after_deploy()"
