@@ -56,8 +56,8 @@ Surface}
 \item{DNR_MAX_DIFF}{Maximum Difference From Monthly Averaged Direct Normal
 Radiation}
 \item{DNR_MIN}{Minimum Direct Normal Radiation}
-\item{DNR_MIN_DIFF}{Minimum Difference From Monthly Averaged Direct Norma
-l Radiation}
+\item{DNR_MIN_DIFF}{Minimum Difference From Monthly Averaged Direct Normal
+Radiation}
 \item{EQVLNT_NO_SUN_BLACKDAYS_1}{Equivalent Number Of NO-SUN Or BLACK Days
 Over A Consecutive 1-day Period}
 \item{EQVLNT_NO_SUN_BLACKDAYS_14}{Equivalent Number Of NO-SUN Or BLACK Days
@@ -71,45 +71,45 @@ Over A Consecutive 7-day Period}
 \item{EQVLNT_NO_SUN_BLACKDAYS_MONTH}{Equivalent Number Of NO-SUN Or BLACK
 Days Over A Consecutive Month Period}
 \item{FROST_DAYS}{Frost Days}
-\item{FRQ_BRKNCLD_10_70_00_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_00_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 00 GMT}
-\item{FRQ_BRKNCLD_10_70_03_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_03_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 03 GMT}
-\item{FRQ_BRKNCLD_10_70_06_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_06_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 06 GMT}
-\item{FRQ_BRKNCLD_10_70_09_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_09_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 09 GMT}
-\item{FRQ_BRKNCLD_10_70_12_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_12_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 12 GMT}
-\item{FRQ_BRKNCLD_10_70_15_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_15_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 15 GMT}
-\item{FRQ_BRKNCLD_10_70_18_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_18_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 18 GMT}
-\item{FRQ_BRKNCLD_10_70_21_GMT}{Frequency Of Broken-cloud Skies 10 - 70 \\% At
+\item{FRQ_BRKNCLD_10_70_21_GMT}{Frequency Of Broken-cloud Skies 10 - 70\% At
 21 GMT}
-\item{FRQ_CLRSKY_0_10_00_GMT}{Frequency Of Clear Skies < 10 \\% At 00 GMT}
-\item{FRQ_CLRSKY_0_10_03_GMT}{Frequency Of Clear Skies < 10 \\% At 03 GMT}
-\item{FRQ_CLRSKY_0_10_06_GMT}{Frequency Of Clear Skies < 10 \\% At 06 GMT}
-\item{FRQ_CLRSKY_0_10_09_GMT}{Frequency Of Clear Skies < 10 \\% At 09 GMT}
-\item{FRQ_CLRSKY_0_10_12_GMT}{Frequency Of Clear Skies < 10 \\% At 12 GMT}
-\item{FRQ_CLRSKY_0_10_15_GMT}{Frequency Of Clear Skies < 10 \\% At 15 GMT}
-\item{FRQ_CLRSKY_0_10_18_GMT}{Frequency Of Clear Skies < 10 \\% At 18 GMT}
-\item{FRQ_CLRSKY_0_10_21_GMT}{Frequency Of Clear Skies < 10 \\% At 21 GMT}
-\item{FRQ_NROVRCST_70_00_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_CLRSKY_0_10_00_GMT}{Frequency Of Clear Skies < 10\% At 00 GMT}
+\item{FRQ_CLRSKY_0_10_03_GMT}{Frequency Of Clear Skies < 10\% At 03 GMT}
+\item{FRQ_CLRSKY_0_10_06_GMT}{Frequency Of Clear Skies < 10\% At 06 GMT}
+\item{FRQ_CLRSKY_0_10_09_GMT}{Frequency Of Clear Skies < 10\% At 09 GMT}
+\item{FRQ_CLRSKY_0_10_12_GMT}{Frequency Of Clear Skies < 10\% At 12 GMT}
+\item{FRQ_CLRSKY_0_10_15_GMT}{Frequency Of Clear Skies < 10\% At 15 GMT}
+\item{FRQ_CLRSKY_0_10_18_GMT}{Frequency Of Clear Skies < 10\% At 18 GMT}
+\item{FRQ_CLRSKY_0_10_21_GMT}{Frequency Of Clear Skies < 10\% At 21 GMT}
+\item{FRQ_NROVRCST_70_00_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 00 GMT}
-\item{FRQ_NROVRCST_70_03_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_03_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 03 GMT}
-\item{FRQ_NROVRCST_70_06_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_06_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 06 GMT}
-\item{FRQ_NROVRCST_70_09_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_09_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 09 GMT}
-\item{FRQ_NROVRCST_70_12_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_12_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 12 GMT}
-\item{FRQ_NROVRCST_70_15_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_15_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 15 GMT}
-\item{FRQ_NROVRCST_70_18_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_18_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 18 GMT}
-\item{FRQ_NROVRCST_70_21_GMT}{Frequency Of Near-overcast Skies >= 70 \\% At
+\item{FRQ_NROVRCST_70_21_GMT}{Frequency Of Near-overcast Skies >= 70\% At
 21 GMT}
 \item{HDD0}{Heating Degree Days Below 0 C}
 \item{HDD10}{Heating Degree Days Below 10 C}
