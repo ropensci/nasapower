@@ -459,10 +459,15 @@
     },
     "roxygen2": {
       "Package": "roxygen2",
-      "Version": "7.1.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "fcd94e00cc409b25d07ca50f7bf339f5"
+      "Version": "7.1.1.9001",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "roxygen2",
+      "RemoteUsername": "r-lib",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "e8cd3131f22db8256168f0b40adcd58144b2f794",
+      "Hash": "c6ecf61fac282122f3b05c7d0cf432f5"
     },
     "rprojroot": {
       "Package": "rprojroot",
