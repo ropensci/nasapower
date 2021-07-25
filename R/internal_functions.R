@@ -151,8 +151,8 @@
     # check pars to make sure that they are valid
     if (any(pars %notin% names(parameters))) {
       stop(call. = FALSE,
-           paste0("\n", pars[which(pars %notin% names(parameters))],
-                  " is not valid in 'pars'.\n"))
+           "\n", pars[which(pars %notin% names(parameters))],
+                  " is not valid in 'pars'.\n")
     }
 
     # check to make sure temporal_average is appropriate for given pars
