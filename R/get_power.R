@@ -100,8 +100,8 @@
 #'
 #' @return A data frame as a `POWER.Info` class, an extension of the
 #' [tibble::tibble], object of \acronym{POWER} data including location, dates
-#' (not including \dQuote{climatology}) and requested parameters.  A header of
-#'  metadata is included in this object.
+#' (not including \dQuote{climatology}) and requested parameters.  A decorative
+#' header of metadata is included in this object.
 #'
 #' @references
 #' <https://power.larc.nasa.gov/docs/methodology/>
