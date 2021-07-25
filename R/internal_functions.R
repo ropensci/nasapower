@@ -231,7 +231,7 @@
           "`, value to be sure it is valid.\n"
         )
       }
-      identifier <- "Point"
+      identifier <- "point"
       lon <- lonlat[1]
       lat <- lonlat[2]
     } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
@@ -273,7 +273,7 @@
         stop(call. = FALSE,
              "\nThe first `lon` value must be the minimum value.\n")
       }
-      identifier <- "Regional"
+      identifier <- "regional"
       bbox <- paste(lonlat[2],
                     lonlat[1],
                     lonlat[4],
@@ -287,8 +287,8 @@
     if (!is.null(bbox)) {
       lonlat_identifier <- list(bbox, identifier)
       names(lonlat_identifier) <- c("bbox", "identifier")
-    } else if (identifier == "Global") {
-      lonlat_identifier <- list("Global")
+    } else if (identifier == "global") {
+      lonlat_identifier <- list("global")
       names(lonlat_identifier) <- "identifier"
     } else {
       lonlat_identifier <- list(lon, lat, identifier)
