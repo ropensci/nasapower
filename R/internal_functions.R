@@ -306,7 +306,7 @@
 #'  [check_community()].
 #' @param lonlat_identifier A list of values, a result of [check_lonlat()]
 #' @param pars A validated value from [check_pars()].
-#' @param dates A list of valuse, a result of [check_dates()].
+#' @param dates A list of values, a result of [check_dates()].
 #' @param outputList A value of either \sQuote{CSV} or \sQuote{ICASA} that
 #' tells the \sQuote{API} the desired format in which to return the data.
 #'
