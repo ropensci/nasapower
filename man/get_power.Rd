@@ -14,8 +14,8 @@ get_power(
 )
 }
 \arguments{
-\item{community}{A character vector providing community name: \dQuote{AG},
-\dQuote{SB} or \dQuote{RE}.  See argument details for more.}
+\item{community}{A character vector providing community name: \dQuote{ag},
+\dQuote{sb} or \dQuote{re}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{\link[=parameters]{parameters()}} for a full list of
@@ -46,8 +46,8 @@ a regional request.}
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
 \link[tibble:tibble]{tibble::tibble}, object of \acronym{POWER} data including location, dates
-(not including \dQuote{climatology}) and requested parameters.  A header of
-metadata is included in this object.
+(not including \dQuote{climatology}) and requested parameters.  A decorative
+header of metadata is included in this object.
 }
 \description{
 Get \acronym{POWER} global meteorology and surface solar energy
@@ -99,7 +99,7 @@ monthly average, maximum, and/or minimum values.}
 \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 length-two numeric vector giving the decimal degree longitude and latitude
 in that order for data to download,\cr
-\emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
+\emph{e.g.}, \code{lonlat = c(-179.5, -89.5)}.}
 
 \item{For regional coverage}{To get a region, supply a length-four numeric
 vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
