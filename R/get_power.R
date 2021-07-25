@@ -164,15 +164,15 @@ get_power <- function(community,
 
   # user input checks and formatting -------------------------------------------
   if (is.character(temporal_average)) {
-    temporal_average <- toupper(temporal_average)
+    temporal_average <- tolower(temporal_average)
     if (temporal_average == "climatology") {
       dates <- NULL
     }
   }
   if (is.character(community)) {
-    community <- tolower(community)
+    community <- toupper(community)
   }
-  if (is.character(pars)) {
+   if (is.character(pars)) {
     pars <- toupper(pars)
   }
 
