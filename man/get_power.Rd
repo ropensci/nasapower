@@ -14,8 +14,8 @@ get_power(
 )
 }
 \arguments{
-\item{community}{A character vector providing community name: \dQuote{ag},
-\dQuote{sb} or \dQuote{re}.  See argument details for more.}
+\item{community}{A character vector providing community name: \dQuote{AG},
+\dQuote{SB} or \dQuote{RE}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
 parameters to download.  See \code{\link[=parameters]{parameters()}} for a full list of
