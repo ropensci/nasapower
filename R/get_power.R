@@ -64,7 +64,7 @@
 #'  \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
 #'  length-two numeric vector giving the decimal degree longitude and latitude
 #'  in that order for data to download,\cr
-#'  _e.g._, `lonlat = c(-89.5, -179.5)`.}
+#'  _e.g._, `lonlat = c(-179.5, -89.5)`.}
 #'
 #'  \item{For regional coverage}{To get a region, supply a length-four numeric
 #'  vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
