@@ -10,7 +10,8 @@ get_power(
   temporal_average,
   lonlat,
   dates = NULL,
-  site_elevation = NULL
+  site_elevation = NULL,
+  wind_elevation = NULL
 )
 }
 \arguments{
@@ -42,6 +43,16 @@ in metres.  If provided this will return a corrected atmospheric pressure
 value adjusted to the elevation provided.  Only used with \code{lonlat} as a
 single point of x, y coordinates, not for use with \dQuote{global} or with
 a regional request.}
+
+\item{wind_elevation}{A user-supplied value for elevation at a single point
+in metres.  Wind Elevation values in Meters are required to be between 10m
+and 300m.  Only used with \code{lonlat} as a single point of x, y coordinates,
+not for use with \dQuote{global} or with a regional request.  If this
+parameter is provided, the \code{wind-surface} parameter is required with the
+request, see \url{https://power.larc.nasa.gov/beta/docs/methodology/meteorology/wind/}}
+
+\item{wind_surface}{A user-supplied wind surface for which the corrected
+wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 }
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
@@ -56,9 +67,9 @@ object. All options offered by the official \acronym{POWER} \acronym{API}
 are supported.
 }
 \note{
-The associated metadata are not saved if the data are exported to a
-file format other than a native \R data format, \emph{e.g.}, .Rdata, .rda
-or .rds.
+The associated metadata shown in the decorative header are not saved if
+the data are exported to a file format other than a native \R data format,
+\emph{e.g.}, .Rdata, .rda or .rds.
 }
 \section{Argument details for \dQuote{community}}{
  there are three valid
@@ -122,14 +133,33 @@ When \code{temporal_average} is set to \dQuote{monthly}, use only two
 year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
 argument should not be used when \code{temporal_average} is set to
 \dQuote{climatology}.
+}
 
-The weather values from \acronym{POWER} for temperature are 2 metre max and
-min temperatures, \dQuote{T2M_MAX} and \dQuote{T2M_MIN}; radiation,
-\dQuote{ALLSKY_SFC_SW_DWN}; rain, \dQuote{PRECTOT}; relative humidity at 2
-metres, \dQuote{RH2M}; and wind at 2 metres \dQuote{WS2M} from the
-\acronym{POWER} \sQuote{ag} community on a daily time-step.
+\section{wind-surface}{
+ There are 17 surfaces that may be used for corrected
+wind-speed values using the following equation:
+\deqn{WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha}
+Valid surface types are described here.
 
-If further parameters are desired, the user may pass them along.
+\describe{
+\item{vegtype_1}{35-m broadleaf-evergreen trees (70\% coverage)}
+\item{vegtype_2}{20-m broadleaf-deciduous trees (75\% coverage)}
+\item{vegtype_3}{20-m broadleaf and needleleaf trees (75\% coverage)}
+\item{vegtype_4}{17-m needleleaf-evergreen trees (75\% coverage)}
+\item{vegtype_5}{14-m needleleaf-deciduous trees (50\% coverage)}
+\item{vegtype_6}{Savanna:18-m broadleaf trees (30\%) & groundcover}
+\item{vegtype_7}{0.6-m perennial groundcover (100\%)}
+\item{vegtype_8}{0.5-m broadleaf shrubs (variable \%) & groundcover}
+\item{vegtype_9}{0.5-m broadleaf shrubs (10\%) with bare soil}
+\item{vegtype_10}{Tundra: 0.6-m trees/shrubs (variable \%) & groundcover}
+\item{vegtype_11}{Rough bare soil}
+\item{vegtype_12}{Crop: 20-m broadleaf-deciduous trees (10\%) & wheat}
+\item{vegtype_20}{Rough glacial snow/ice}
+\item{seaice}{Smooth sea ice}
+\item{openwater}{Open water}
+\item{airportice}{Airport: flat ice/snow}
+\item{airportgrass}{Airport: flat rough grass}
+}
 }
 
 \examples{
