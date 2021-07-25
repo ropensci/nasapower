@@ -29,6 +29,14 @@
 #'   value adjusted to the elevation provided.  Only used with `lonlat` as a
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
+#' @param wind_elevation A user-supplied value for elevation at a single point
+#'   in metres.  Wind Elevation values in Meters are required to be between 10m
+#'   and 300m.  Only used with `lonlat` as a single point of x, y coordinates,
+#'   not for use with \dQuote{global} or with a regional request.  If this
+#'   parameter is provided, the `wind-surface` parameter is required with the
+#'   request, see \url{https://power.larc.nasa.gov/beta/docs/methodology/meteorology/wind/}
+#' @param wind_surface A user-supplied wind surface for which the corrected
+#'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
 #'
 #' @section Argument details for \dQuote{community}: there are three valid
 #'   values, one must be supplied.  This  will affect the units of the parameter
@@ -160,7 +168,8 @@ get_power <- function(community,
                       temporal_average,
                       lonlat,
                       dates = NULL,
-                      site_elevation = NULL) {
+                      site_elevation = NULL,
+                      wind_elevation = NULL) {
 
   # user input checks and formatting -------------------------------------------
   if (is.character(temporal_average)) {
