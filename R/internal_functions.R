@@ -128,7 +128,7 @@
 #' @noRd
 .check_community <-
   function(community, pars) {
-    if (community %notin% c("AG", "SB", "SSE")) {
+    if (community %notin% c("AG", "SB", "RE")) {
       stop(call. = FALSE,
            "\nYou have provided an invalid `community` value.\n")
     }
