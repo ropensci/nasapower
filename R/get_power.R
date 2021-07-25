@@ -6,8 +6,8 @@
 #'   object. All options offered by the official \acronym{POWER} \acronym{API}
 #'   are supported.
 #'
-#' @param community A character vector providing community name: \dQuote{AG},
-#'   \dQuote{SB} or \dQuote{RE}.  See argument details for more.
+#' @param community A character vector providing community name: \dQuote{ag},
+#'   \dQuote{sb} or \dQuote{re}.  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
 #'   parameters to download.  See [parameters()] for a full list of
 #'   valid values and definitions.  If downloading \dQuote{climatology} a
