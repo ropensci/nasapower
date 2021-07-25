@@ -165,16 +165,15 @@ get_power <- function(community,
   # user input checks and formatting -------------------------------------------
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
+    if (temporal_average == "climatology") {
+      dates <- NULL
+    }
   }
   if (is.character(community)) {
-    community <- toupper(community)
+    community <- tolower(community)
   }
   if (is.character(pars)) {
     pars <- toupper(pars)
-  }
-
-  if (temporal_average == "climatology") {
-    dates <- NULL
   }
 
   if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
