@@ -187,7 +187,7 @@ get_power <- function(community,
       "\nYou have entered an invalid value for `site_elevation`.\n"
     )
   }
-  if (temporal_average %notin% c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")) {
+  if (temporal_average %notin% c("hourly", "daily", "monthly", "climatology")) {
     stop(
       call. = FALSE,
       "\nYou have entered an invalid value for `temporal_average`.\n"
