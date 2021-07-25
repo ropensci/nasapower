@@ -186,7 +186,7 @@ test_that(".check_lonlat() handles single point properly", {
                         pars)
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
-  expect_equal(test$identifier, "SinglePoint")
+  expect_equal(test$identifier, "Point")
 })
 
 test_that(".check_lonlat() checks validity of single lon values", {

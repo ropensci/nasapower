@@ -231,7 +231,7 @@
           "`, value to be sure it is valid.\n"
         )
       }
-      identifier <- "SinglePoint"
+      identifier <- "Point"
       lon <- lonlat[1]
       lat <- lonlat[2]
     } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
@@ -322,7 +322,7 @@
   user_agent <- "nasapower"
 
   # If user has given a site_elevation value, use it
-  if (lonlat_identifier$identifier == "SinglePoint" &
+  if (lonlat_identifier$identifier == "Point" &
       !is.null(site_elevation)) {
     if (!is.null(dates)) {
       query_list <- list(
@@ -358,7 +358,7 @@
   }
 
   # if no site elevation value provided, send request without
-  if (lonlat_identifier$identifier == "SinglePoint" &
+  if (lonlat_identifier$identifier == "Point" &
       is.null(site_elevation)) {
     if (!is.null(dates)) {
       query_list <- list(
