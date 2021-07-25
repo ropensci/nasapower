@@ -161,9 +161,22 @@ get_power <- function(community,
                       lonlat,
                       dates = NULL,
                       site_elevation = NULL) {
+
+  # user input checks and formatting -------------------------------------------
   if (is.character(temporal_average)) {
     temporal_average <- toupper(temporal_average)
   }
+  if (is.character(community)) {
+    community <- toupper(community)
+  }
+  if (is.character(pars)) {
+    pars <- toupper(pars)
+  }
+
+  if (temporal_average == "climatology") {
+    dates <- NULL
+  }
+
   if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
     message("\nYou have provided `site_elevation` for a region or `global`.",
             "\nThe `site_elevation` value will be ignored.")
@@ -175,20 +188,14 @@ get_power <- function(community,
       "\nYou have entered an invalid value for `site_elevation`.\n"
     )
   }
-  if (temporal_average %notin% c("hourly", "daily", "monthly", "climatology")) {
+  if (temporal_average %notin% c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")) {
     stop(
       call. = FALSE,
       "\nYou have entered an invalid value for `temporal_average`.\n"
     )
   }
-  if (temporal_average == "climatology") {
-    dates <- NULL
-  }
-  if (is.character(pars)) {
-    pars <- toupper(pars)
-  }
   if (is.character(lonlat)) {
-    lonlat <- toupper(lonlat)
+    lonlat <- tolower(lonlat)
     if (lonlat == "global" & temporal_average != "climatology") {
       stop(call. = FALSE,
            "\nYou have asked for 'global' data. However, this is only",
@@ -198,12 +205,8 @@ get_power <- function(community,
            "\nYou have entered an invalid value for `lonlat`. Valid values are",
            "`global` with `climatology` or a string of lon and lat values.\n")
     }
-    if (is.character(community)) {
-      community <- tolower(community)
-    }
   }
 
-    # user input checks and formatting -----------------------------------------
     # see internal_functions.R for these functions
 
     .check_community(community, pars)
