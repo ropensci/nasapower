@@ -330,9 +330,8 @@
         startDate = dates[[1]],
         endDate = dates[[2]],
         userCommunity = community,
-        tempAverage = pars$temporal_average,
         siteElev = site_elevation,
-        outputList = outputList,
+        outputList = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -345,8 +344,7 @@
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
         userCommunity = community,
-        tempAverage = pars$temporal_average,
-        outputList = outputList,
+        outputList = "CSV",
         siteElev = site_elevation,
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
@@ -366,8 +364,7 @@
         startDate = dates[[1]],
         endDate = dates[[2]],
         userCommunity = community,
-        tempAverage = pars$temporal_average,
-        outputList = outputList,
+        outputList = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -380,8 +377,7 @@
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
         userCommunity = community,
-        tempAverage = pars$temporal_average,
-        outputList = outputList,
+        outputList = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -398,9 +394,8 @@
       startDate = dates[[1]],
       endDate = dates[[2]],
       userCommunity = community,
-      tempAverage = pars$temporal_average,
       bbox = I(lonlat_identifier$bbox),
-      outputList = outputList,
+      outputList = "CSV",
       user = user_agent
     )
   }
@@ -411,9 +406,8 @@
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
       userCommunity = community,
-      tempAverage = pars$temporal_average,
       bbox = I(lonlat_identifier$bbox),
-      outputList = outputList,
+      outputList = "CSV",
       user = user_agent
     )
   }
@@ -424,7 +418,6 @@
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
       userCommunity = community,
-      tempAverage = pars$temporal_average,
       outputList = "CSV",
       user = user_agent
     )
