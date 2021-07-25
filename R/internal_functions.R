@@ -431,9 +431,11 @@
 #' @noRd
 #'
 .send_query <- function(.query_list, .pars) {
-  power_url <- # nocov start
+  climatology_url <- # nocov start
     "https://power.larc.nasa.gov/beta/api/temporal"
   client <- crul::HttpClient$new(url = power_url)
+
+  path =
 
   # check status
   status <- client$get()
