@@ -157,7 +157,7 @@
 
     # check to make sure temporal_average is appropriate for given pars
     for (i in pars) {
-      if (temporal_average %notin% parameters[[i]]$include) {
+      if (toupper(temporal_average) %notin% parameters[[i]]$include) {
         stop(
           call. = FALSE,
           "\nYou have entered an invalid value for `temporal_average` for ",
