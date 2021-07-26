@@ -17,7 +17,6 @@ MJ
 NOAA
 ORCID
 Optimise
-PRECTOT
 Precipitable
 ROxygen
 Radiative
@@ -29,6 +28,7 @@ YYYY
 acknowledgement
 ag
 apsimx
+broadleaf
 climatologies
 codecov
 crul
@@ -37,6 +37,7 @@ favour
 femiguez
 github
 gridded
+groundcover
 https
 httr
 icasa
@@ -44,10 +45,10 @@ interannual
 larc
 lon
 metFile
-metre
 metres
 modelling
 nasa
+needleleaf
 noaa
 pre
 psl
