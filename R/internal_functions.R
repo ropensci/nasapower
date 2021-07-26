@@ -209,7 +209,7 @@
     bbox <- NULL
     if (is.character(lonlat) & length(lonlat) == 1) {
       if (lonlat == "global") {
-        identifier <- "Global"
+        identifier <- "global"
       } else if (is.character(lonlat)) {
         stop(call. = FALSE,
              "\nYou have entered an invalid request for `lonlat`.\n")
@@ -320,7 +320,7 @@
   user_agent <- "nasapower"
 
   # If user has given a site_elevation value, use it
-  if (lonlat_identifier$identifier == "Point" &
+  if (lonlat_identifier$identifier == "point" &
       !is.null(site_elevation)) {
     if (!is.null(dates)) {
       query_list <- list(
@@ -354,7 +354,7 @@
   }
 
   # if no site elevation value provided, send request without
-  if (lonlat_identifier$identifier == "Point" &
+  if (lonlat_identifier$identifier == "point" &
       is.null(site_elevation)) {
     if (!is.null(dates)) {
       query_list <- list(
@@ -385,7 +385,7 @@
     }
   }
 
-  if (lonlat_identifier$identifier == "Regional" &
+  if (lonlat_identifier$identifier == "regional" &
       !is.null(dates)) {
     query_list <- list(
       request = "execute",
@@ -400,7 +400,7 @@
     )
   }
 
-  if (lonlat_identifier$identifier == "Regional" & is.null(dates)) {
+  if (lonlat_identifier$identifier == "regional" & is.null(dates)) {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
@@ -412,7 +412,7 @@
     )
   }
 
-  if (lonlat_identifier$identifier == "Global") {
+  if (lonlat_identifier$identifier == "global") {
     query_list <- list(
       request = "execute",
       identifier = lonlat_identifier$identifier,
