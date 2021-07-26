@@ -12,57 +12,37 @@ knitr::opts_chunk$set(echo = TRUE)
 # Create `parameters` list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested from the POWER dataset are valid.
-The POWER list of parameters that can be queried is available as a JSON file.
-Thanks to [raymondben](https://github.com/raymondben) for pointing me to this file.
+The POWER list of parameters that can be queried is available as an API query from the POWER server.
 
 ## POWER JSON file
 
-Using `jsonlite` read the JSON file into R creating a list.
+Using `jsonlite::fromJSON()` read the JSON file into R creating a list.
 
 ```{r fetch-JSON}
 parameters <-
   jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/system/parameters.json"
+    "https://power.larc.nasa.gov/beta/api/system/manager/system/parameters"
   )
-```
-
-Replace UTF-8 characters in the dataset since R doesn't like this in packages.
-
-```{r, replace-utf}
-parameters$SG_DEC_AVG$climatology_definition <-
-  gsub("°",
-       " degrees",
-       parameters$SG_DEC_AVG$climatology_definition)
-
-parameters$SG_HR_SET_ANG$climatology_definition <-
-  gsub("°",
-       " degrees",
-       parameters$SG_HR_SET_ANG$climatology_definition)
-
-parameters$SG_NOON$climatology_definition <-
-  gsub("°",
-       " degrees",
-       parameters$SG_NOON$climatology_definition)
 ```
 
 ## View list of parameters and units
 
-The following list has the format:
+The following list of `r length(parameters)` valid POWER parameters has the following format:
 ```
 ## $PARAMETER_NAME
 ## [1] "standard_name"
 ```
 
-Where `PARAMETER_NAME` is used in the internal `parameters` list.
-The `"standard_name"` is a longer, more descriptive name for the parameter that may be more instructive to users.
+Where `PARAMETER_NAME` is used in the internal `parameters` list and is used in checking against user requests for API queries.
+The `standard_name` is a longer, more descriptive name for the parameter that may be more instructive to users in finding the data that they wish to fetch from the POWER server.
 
 ```{r view-list-names}
-purrr::map(parameters, "standard_name")
+purrr::map(parameters, "longname")
 ```
 
 ## Save list for use in `nasapower` package
 
-Using `usethis` save the list as an R data object for use in the `nasapower` package.
+Using `usethis()` save the list as an R data object for use in the _nasapower_ package.
 
 ```{r save-list, message=FALSE}
 usethis::use_data(parameters, overwrite = TRUE)
