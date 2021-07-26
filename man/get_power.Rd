@@ -11,7 +11,8 @@ get_power(
   lonlat,
   dates = NULL,
   site_elevation = NULL,
-  wind_elevation = NULL
+  wind_elevation = NULL,
+  wind_surface = NULL
 )
 }
 \arguments{
