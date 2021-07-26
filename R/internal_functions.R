@@ -316,12 +316,12 @@
                          pars,
                          dates,
                          site_elevation,
-                         outputList) {
+                         wind_elevation,
+                         wind_surface) {
   user_agent <- "nasapower"
 
   # If user has given a site_elevation value, use it
-  if (lonlat_identifier$identifier == "point" &
-      !is.null(site_elevation)) {
+  if (lonlat_identifier$identifier == "point") {
     if (!is.null(dates)) {
       query_list <- list(
         request = "execute",

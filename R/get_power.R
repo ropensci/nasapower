@@ -186,7 +186,8 @@ get_power <- function(community,
                       lonlat,
                       dates = NULL,
                       site_elevation = NULL,
-                      wind_elevation = NULL) {
+                      wind_elevation = NULL,
+                      wind_surface = NULL) {
 
   # user input checks and formatting -------------------------------------------
   if (is.character(temporal_average)) {
@@ -256,9 +257,16 @@ get_power <- function(community,
                          pars,
                          dates,
                          site_elevation,
-                         outputList = "json"
+                         wind_elevation,
+                         wind_surface
     )
-    out <- .send_query(.query_list = query_list, .pars = pars)
-    out <- .import_power(.txt = out, .pars = pars, .query_list = query_list)
+    out <-
+      .send_query(.query_list = query_list,
+                  .pars = pars,
+                  .temporal_average = temporal_average)
+    out <-
+      .import_power(.txt = out,
+                    .pars = pars,
+                    .query_list = query_list)
     return(out)
   }
