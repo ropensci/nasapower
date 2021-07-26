@@ -2,7 +2,7 @@
 
 ## Major changes
 
-* Adds support for new NASA POWER API 2.0, which inlcudes new `hourly` data.
+* Adds support for new NASA POWER API 2.0, which includes new `hourly` data.
 
 * Removes `SSE` community, replaces with `RE`.
 
