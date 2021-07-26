@@ -331,7 +331,8 @@
         endDate = dates[[2]],
         userCommunity = community,
         siteElev = site_elevation,
-        outputList = "CSV",
+
+        format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -344,7 +345,7 @@
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
         userCommunity = community,
-        outputList = "CSV",
+        format = "CSV",
         siteElev = site_elevation,
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
@@ -364,7 +365,7 @@
         startDate = dates[[1]],
         endDate = dates[[2]],
         userCommunity = community,
-        outputList = "CSV",
+        format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -377,7 +378,7 @@
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
         userCommunity = community,
-        outputList = "CSV",
+        format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -395,7 +396,7 @@
       endDate = dates[[2]],
       userCommunity = community,
       bbox = I(lonlat_identifier$bbox),
-      outputList = "CSV",
+      format = "CSV",
       user = user_agent
     )
   }
@@ -407,7 +408,7 @@
       parameters = I(pars$pars),
       userCommunity = community,
       bbox = I(lonlat_identifier$bbox),
-      outputList = "CSV",
+      format = "CSV",
       user = user_agent
     )
   }
@@ -418,7 +419,7 @@
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
       userCommunity = community,
-      outputList = "CSV",
+      format = "CSV",
       user = user_agent
     )
   }
@@ -430,12 +431,13 @@
 #' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
-.send_query <- function(.query_list, .pars) {
+.send_query <- function(.query_list, .pars, .temporal_average) {
   climatology_url <- # nocov start
     "https://power.larc.nasa.gov/beta/api/temporal"
   client <- crul::HttpClient$new(url = power_url)
 
-  path =
+  path <- paste0(.temporal_average, "/",
+                 .query_list$lonlat_identifier$identifier)
 
   # check status
   status <- client$get()
@@ -476,7 +478,7 @@
   }
 
   if ("csv" %in% names(.txt$output)) {
-    if (.query_list$outputList == "CSV") {
+    if (.query_list$format == "CSV") {
       curl::curl_download(
         .txt$output$csv,
         destfile = raw_power_data,
