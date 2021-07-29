@@ -22,11 +22,11 @@ parameters <- parameters[order(names(parameters))]
 
 ## View list of parameters and units
 
-The following list of 389 valid POWER parameters has the following
-format:
+The following printout of `parameters` displays the list of 389 valid
+POWER parameters and the `longname`.
 
     ## $PARAMETER_NAME
-    ## [1] "standard_name"
+    ## [1] "longname"
 
 Where `PARAMETER_NAME` is used in the internal `parameters` list and is
 used in checking against user requests for API queries. The
