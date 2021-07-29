@@ -1,9 +1,9 @@
 Fetch NASA-POWER Parameters
 ================
 Adam H Sparks
-2021-07-26
+2021-07-29
 
-# Create `parameters` list for internal checks before sending queries to POWER server
+# Create parameters list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested
 from the POWER dataset are valid. The POWER list of parameters that can
@@ -1223,14 +1223,14 @@ sessioninfo::session_info()
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 4.1.0 (2021-05-18)
-    ##  os       macOS Big Sur 11.5          
+    ##  os       macOS Big Sur 11.5.1        
     ##  system   aarch64, darwin20           
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Perth             
-    ##  date     2021-07-26                  
+    ##  date     2021-07-29                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  ! package     * version date       lib source        
@@ -1269,7 +1269,7 @@ sessioninfo::session_info()
     ##  P yaml          2.2.1   2020-02-01 [?] CRAN (R 4.1.0)
     ## 
     ## [1] /Users/adamsparks/Development/GitHub/rOpenSci/nasapower/renv/library/R-4.1/aarch64-apple-darwin20
-    ## [2] /private/var/folders/tr/fwv720l96bz2btcr0jr_gs840000gn/T/RtmpVVpP67/renv-system-library
+    ## [2] /private/var/folders/tr/fwv720l96bz2btcr0jr_gs840000gn/T/RtmpaRhZTY/renv-system-library
     ## [3] /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library
     ## 
     ##  P ── Loaded and on-disk path mismatch.

@@ -9,7 +9,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Create `parameters` list for internal checks before sending queries to POWER server
+# Create parameters list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested from the POWER dataset are valid.
 The POWER list of parameters that can be queried is available as an API query from the POWER server.
