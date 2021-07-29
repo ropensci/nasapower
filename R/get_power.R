@@ -263,7 +263,7 @@ get_power <- function(community,
     out <-
       .send_query(.query_list = query_list,
                   .pars = pars,
-                  .temporal_average = temporal_average)
+                  .temporal_api = temporal_average)
     out <-
       .import_power(.txt = out,
                     .pars = pars,
