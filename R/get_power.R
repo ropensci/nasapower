@@ -139,7 +139,7 @@
 #' ag_d <- get_power(
 #'   community = "ag",
 #'   lonlat = c(151.81, -27.48),
-#'   pars = c("RH2M", "T2M", "PRECTOT"),
+#'   pars = c("RH2M", "T2M", "PRECTOTCORR"),
 #'   dates = "1985-01-01",
 #'   temporal_average = "daily"
 #' )

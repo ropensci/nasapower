@@ -52,28 +52,10 @@ Fetch daily “AG” community temperature, relative humidity and precipitation 
 library(nasapower)
 daily_ag <- get_power(community = "AG",
                       lonlat = c(151.81, -27.48),
-                      pars = c("RH2M", "T2M", "PRECTOT"),
+                      pars = c("RH2M", "T2M", "PRECTOTCORR"),
                       dates = "1985-01-01",
                       temporal_average = "daily"
                       )
-                    
-daily_ag
-#> NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  
-#>  Dates (month/day/year): 01/01/1985 through 01/01/1985  
-#>  Location: Latitude  -27.48   Longitude 151.81  
-#>  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  
-#>  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  
-#>  Value for missing model data cannot be computed or out of model availability range: -99  
-#>  
-#>  Parameters: 
-#>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
-#>  
-#> # A tibble: 1 x 10
-#>     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOT
-#>   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>   <dbl>
-#> 1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1    1.07
 ```
 
 ## Documentation

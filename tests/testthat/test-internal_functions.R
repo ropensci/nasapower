@@ -356,7 +356,7 @@ test_that("Only 20 pars are allowed when `temporal_average` != climatology", {
               "HDD18_3",
               "KT",
               "WSC",
-              "PRECTOT",
+              "PRECTOTCORR",
               "PS",
               "QV2M",
               "RH2M",
