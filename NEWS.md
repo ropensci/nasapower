@@ -2,11 +2,11 @@
 
 ## Major changes
 
-* Adds support for new NASA POWER API 2.0, which includes new `hourly` data.
+* Adds support for new NASA POWER 2.0, which includes new `hourly` data.
 
 * Removes `SSE` community, replaces with `RE`.
 
-* Adds new parameters, 
+* Adds new parameters to `get_power()`, 
   - `site_elevation` and
   - `wind_elevation.
 
