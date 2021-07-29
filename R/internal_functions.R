@@ -16,26 +16,26 @@
 #' Check dates for validity when querying API
 #'
 #' Validates user entered date values against `lonlat` and
-#' `temporal_average` values
+#' `temporal_api` values
 #'
 #' @param dates User entered `dates` value.
 #' @param lonlat User entered `lonlat` value.
-#' @param temporal_average User entered `temporal_average` value.
+#' @param temporal_api User entered `temporal_api` value.
 #'
 #' @return Validated dates in a list for use in `.build_query`
 #'
 #' @noRd
-.check_dates <- function(dates, lonlat, temporal_average) {
-  if (is.null(dates) & temporal_average != "climatology") {
+.check_dates <- function(dates, lonlat, temporal_api) {
+  if (is.null(dates) & temporal_api != "climatology") {
     stop(call. = FALSE,
          "\nYou have not entered dates for the query.\n")
   }
 
-  if (temporal_average == "monthly") {
+  if (temporal_api == "monthly") {
     if (length(unique(dates)) < 2) {
       stop(
         call. = FALSE,
-        "\nFor `temporal_average = monthly`, at least two (2) years ",
+        "\nFor `temporal_api = monthly`, at least two (2) years ",
         "are required to be provided.\n"
       )
     }
@@ -50,7 +50,7 @@
     return(dates)
   }
 
-  if (temporal_average == "daily") {
+  if (temporal_api == "daily") {
     if (is.numeric(lonlat)) {
       if (length(dates) == 1) {
         dates <- c(dates, dates)
@@ -137,17 +137,17 @@
 #' Check pars for validity when querying API
 #'
 #' Validates user entered date values against `lonlat` and
-#' `temporal_average` values
+#' `temporal_api` values
 #'
 #' @param dates User entered `dates` value.
 #' @param lonlat User entered `lonlat` value.
-#' @param temporal_average User entered `temporal_average` value.
+#' @param temporal_api User entered `temporal_api` value.
 #'
 #' @return Validated pars for use in [.build_query()]
 #'
 #' @noRd
 .check_pars <-
-  function(pars, temporal_average, lonlat) {
+  function(pars, temporal_api, lonlat) {
     # check pars to make sure that they are valid
     if (any(pars %notin% names(parameters))) {
       stop(call. = FALSE,
@@ -155,15 +155,15 @@
                   " is not valid in 'pars'.\n")
     }
 
-    # check to make sure temporal_average is appropriate for given pars
+    # check to make sure temporal_api is appropriate for given pars
     for (i in pars) {
-      if (toupper(temporal_average) %notin% parameters[[i]]$include) {
+      if (toupper(temporal_api) %notin% parameters[[i]]$include) {
         stop(
           call. = FALSE,
-          "\nYou have entered an invalid value for `temporal_average` for ",
+          "\nYou have entered an invalid value for `temporal_api` for ",
           "the supplied `pars`. One or more `pars` are not, available for ",
           "`",
-          temporal_average,
+          temporal_api,
           "`, please check.\n"
         )
       }
@@ -173,7 +173,7 @@
     pars <- unique(pars)
 
     # check pars to make sure < allowed
-    if (length(pars) > 3 & temporal_average == "climatology") {
+    if (length(pars) > 3 & temporal_api == "climatology") {
       stop(
         call. = FALSE,
         "\nYou can only specify three (3) parameters for download when ",
@@ -181,15 +181,15 @@
       )
     }
 
-    if (length(pars) > 20 & temporal_average != "climatology") {
+    if (length(pars) > 20 & temporal_api != "climatology") {
       stop(call. = FALSE,
            "\nYou can only specify 20 parameters for download at a time.\n")
     }
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
-    pars <- list(pars, temporal_average)
-    names(pars) <- c("pars", "temporal_average")
+    pars <- list(pars, temporal_api)
+    names(pars) <- c("pars", "temporal_api")
     return(pars)
   }
 
@@ -431,12 +431,12 @@
 #' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
-.send_query <- function(.query_list, .pars, .temporal_average) {
+.send_query <- function(.query_list, .pars, .temporal_api) {
   climatology_url <- # nocov start
     "https://power.larc.nasa.gov/beta/api/temporal"
   client <- crul::HttpClient$new(url = power_url)
 
-  path <- paste0(.temporal_average, "/",
+  path <- paste0(.temporal_api, "/",
                  .query_list$lonlat_identifier$identifier)
 
   # check status
@@ -515,12 +515,12 @@
       power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
-      if (.pars$temporal_average == "daily" &
+      if (.pars$temporal_api == "daily" &
           .query_list$userCommunity == "SSE" |
           .query_list$userCommunity == "SB") {
         power_data <- .format_dates_SSE_SB(power_data)
       }
-      if (.pars$temporal_average == "daily" &
+      if (.pars$temporal_api == "daily" &
           .query_list$userCommunity == "AG") {
         power_data <- .format_dates_AG(power_data)
       }
