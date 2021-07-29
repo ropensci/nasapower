@@ -15,9 +15,9 @@ Using `jsonlite::fromJSON()` read the JSON file into R creating a list.
 
 ``` r
 parameters <-
-  jsonlite::fromJSON(
-    "https://power.larc.nasa.gov/beta/api/system/manager/system/parameters"
-  )
+  jsonlite::fromJSON("https://power.larc.nasa.gov/beta/api/system/manager/system/parameters")
+
+parameters <- parameters[order(names(parameters))]
 ```
 
 ## View list of parameters and units
@@ -38,15 +38,6 @@ to fetch from the POWER server.
 purrr::map(parameters, "longname")
 ```
 
-    ## $AOD_55_ADJ
-    ## [1] "Adjusted Aerosol Optical Depth 55"
-    ## 
-    ## $AOD_55
-    ## [1] "Aerosol Optical Depth 55"
-    ## 
-    ## $AOD_84
-    ## [1] "Aerosol Optical Depth 84"
-    ## 
     ## $AIRMASS
     ## [1] "Air Mass"
     ## 
@@ -64,9 +55,6 @@ purrr::map(parameters, "longname")
     ## 
     ## $ALLSKY_NKT
     ## [1] "All Sky Normalized Insolation Clearness Index"
-    ## 
-    ## $ALLSKY_SRF_ALB
-    ## [1] "All Sky Surface Albedo"
     ## 
     ## $ALLSKY_SFC_LW_DWN
     ## [1] "All Sky Surface Longwave Downward Irradiance"
@@ -149,21 +137,6 @@ purrr::map(parameters, "longname")
     ## $ALLSKY_SFC_SW_DWN
     ## [1] "All Sky Surface Shortwave Downward Irradiance"
     ## 
-    ## $ALLSKY_SFC_SW_DWN_MAX
-    ## [1] "All Sky Surface Shortwave Downward Irradiance Maximum"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_MAX_RD
-    ## [1] "All Sky Surface Shortwave Downward Irradiance Maximum Relative Difference"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_MIN
-    ## [1] "All Sky Surface Shortwave Downward Irradiance Minimum"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_MIN_RD
-    ## [1] "All Sky Surface Shortwave Downward Irradiance Minimum Relative Difference"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_SD
-    ## [1] "All Sky Surface Shortwave Downward Irradiance Standard Deviation"
-    ## 
     ## $ALLSKY_SFC_SW_DWN_00
     ## [1] "All Sky Surface Shortwave Downward Irradiance at 00 GMT"
     ## 
@@ -239,6 +212,21 @@ purrr::map(parameters, "longname")
     ## $ALLSKY_SFC_SW_DWN_HR
     ## [1] "All Sky Surface Shortwave Downward Irradiance at GMT Times"
     ## 
+    ## $ALLSKY_SFC_SW_DWN_MAX
+    ## [1] "All Sky Surface Shortwave Downward Irradiance Maximum"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MAX_RD
+    ## [1] "All Sky Surface Shortwave Downward Irradiance Maximum Relative Difference"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MIN
+    ## [1] "All Sky Surface Shortwave Downward Irradiance Minimum"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_MIN_RD
+    ## [1] "All Sky Surface Shortwave Downward Irradiance Minimum Relative Difference"
+    ## 
+    ## $ALLSKY_SFC_SW_DWN_SD
+    ## [1] "All Sky Surface Shortwave Downward Irradiance Standard Deviation"
+    ## 
     ## $ALLSKY_SFC_SW_UP
     ## [1] "All Sky Surface Shortwave Upward Irradiance"
     ## 
@@ -287,245 +275,26 @@ purrr::map(parameters, "longname")
     ## $ALLSKY_SFC_UVB_SD
     ## [1] "All Sky Surface UVB Irradiance Standard Deviation"
     ## 
-    ## $SG_MID_COZ_ZEN_ANG
-    ## [1] "Average Cosine Solar Zenith Angle At Mid-Time Between Sunrise And Solar Noon for Climatological Month"
+    ## $ALLSKY_SRF_ALB
+    ## [1] "All Sky Surface Albedo"
     ## 
-    ## $SG_DEC
-    ## [1] "Average Declination for Climatological Month"
+    ## $AOD_55
+    ## [1] "Aerosol Optical Depth 55"
     ## 
-    ## $SG_HRZ_HR
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month"
+    ## $AOD_55_ADJ
+    ## [1] "Adjusted Aerosol Optical Depth 55"
     ## 
-    ## $SG_HRZ_00
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 00 GMT"
+    ## $AOD_84
+    ## [1] "Aerosol Optical Depth 84"
     ## 
-    ## $SG_HRZ_01
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 01 GMT"
+    ## $CDD0
+    ## [1] "Cooling Degree Days Above 0 C"
     ## 
-    ## $SG_HRZ_02
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 02 GMT"
+    ## $CDD10
+    ## [1] "Cooling Degree Days Above 10 C"
     ## 
-    ## $SG_HRZ_03
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 03 GMT"
-    ## 
-    ## $SG_HRZ_04
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 04 GMT"
-    ## 
-    ## $SG_HRZ_05
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 05 GMT"
-    ## 
-    ## $SG_HRZ_06
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 06 GMT"
-    ## 
-    ## $SG_HRZ_07
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 07 GMT"
-    ## 
-    ## $SG_HRZ_08
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 08 GMT"
-    ## 
-    ## $SG_HRZ_09
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 09 GMT"
-    ## 
-    ## $SG_HRZ_10
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 10 GMT"
-    ## 
-    ## $SG_HRZ_11
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 11 GMT"
-    ## 
-    ## $SG_HRZ_12
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 12 GMT"
-    ## 
-    ## $SG_HRZ_13
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 13 GMT"
-    ## 
-    ## $SG_HRZ_14
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 14 GMT"
-    ## 
-    ## $SG_HRZ_15
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 15 GMT"
-    ## 
-    ## $SG_HRZ_16
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 16 GMT"
-    ## 
-    ## $SG_HRZ_17
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 17 GMT"
-    ## 
-    ## $SG_HRZ_18
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 18 GMT"
-    ## 
-    ## $SG_HRZ_19
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 19 GMT"
-    ## 
-    ## $SG_HRZ_20
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 20 GMT"
-    ## 
-    ## $SG_HRZ_21
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 21 GMT"
-    ## 
-    ## $SG_HRZ_22
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 22 GMT"
-    ## 
-    ## $SG_HRZ_23
-    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 23 GMT"
-    ## 
-    ## $SG_SAA_HR
-    ## [1] "Average Solar Azimuth Angle for Climatological Month"
-    ## 
-    ## $SG_SAA_00
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 00 GMT"
-    ## 
-    ## $SG_SAA_01
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 01 GMT"
-    ## 
-    ## $SG_SAA_02
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 02 GMT"
-    ## 
-    ## $SG_SAA_03
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 03 GMT"
-    ## 
-    ## $SG_SAA_04
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 04 GMT"
-    ## 
-    ## $SG_SAA_05
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 05 GMT"
-    ## 
-    ## $SG_SAA_06
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 06 GMT"
-    ## 
-    ## $SG_SAA_07
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 07 GMT"
-    ## 
-    ## $SG_SAA_08
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 08 GMT"
-    ## 
-    ## $SG_SAA_09
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 09 GMT"
-    ## 
-    ## $SG_SAA_10
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 10 GMT"
-    ## 
-    ## $SG_SAA_11
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 11 GMT"
-    ## 
-    ## $SG_SAA_12
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 12 GMT"
-    ## 
-    ## $SG_SAA_13
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 13 GMT"
-    ## 
-    ## $SG_SAA_14
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 14 GMT"
-    ## 
-    ## $SG_SAA_15
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 15 GMT"
-    ## 
-    ## $SG_SAA_16
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 16 GMT"
-    ## 
-    ## $SG_SAA_17
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 17 GMT"
-    ## 
-    ## $SG_SAA_18
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 18 GMT"
-    ## 
-    ## $SG_SAA_19
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 19 GMT"
-    ## 
-    ## $SG_SAA_20
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 20 GMT"
-    ## 
-    ## $SG_SAA_21
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 21 GMT"
-    ## 
-    ## $SG_SAA_22
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 22 GMT"
-    ## 
-    ## $SG_SAA_23
-    ## [1] "Average Solar Azimuth Angle for Climatological Month at 23 GMT"
-    ## 
-    ## $SG_HR_SET_ANG
-    ## [1] "Average Sunset Hour Angle for Climatological Month"
-    ## 
-    ## $CLRSKY_DAYS
-    ## [1] "Clear Sky Day"
-    ## 
-    ## $CLRSKY_KT
-    ## [1] "Clear Sky Insolation Clearness Index"
-    ## 
-    ## $CLRSKY_KT_MAX
-    ## [1] "Clear Sky Insolation Clearness Index Maximum"
-    ## 
-    ## $CLRSKY_KT_MIN
-    ## [1] "Clear Sky Insolation Clearness Index Minimum"
-    ## 
-    ## $CLRSKY_KT_SD
-    ## [1] "Clear Sky Insolation Clearness Index Standard Deviation"
-    ## 
-    ## $CLRSKY_NKT
-    ## [1] "Clear Sky Normalized Insolation Clearness Index"
-    ## 
-    ## $CLRSKY_SRF_ALB
-    ## [1] "Clear Sky Surface Albedo"
-    ## 
-    ## $CLRSKY_SFC_LW_DWN
-    ## [1] "Clear Sky Surface Longwave Downward Irradiance"
-    ## 
-    ## $CLRSKY_SFC_LW_DWN_MAX
-    ## [1] "Clear Sky Surface Longwave Downward Irradiance Maximum"
-    ## 
-    ## $CLRSKY_SFC_LW_DWN_MIN
-    ## [1] "Clear Sky Surface Longwave Downward Irradiance Minimum"
-    ## 
-    ## $CLRSKY_SFC_LW_DWN_SD
-    ## [1] "Clear Sky Surface Longwave Downward Irradiance Standard Deviation"
-    ## 
-    ## $CLRSKY_SFC_LW_UP
-    ## [1] "Clear Sky Surface Longwave Upward Irradiance"
-    ## 
-    ## $CLRSKY_SFC_LW_UP_MAX
-    ## [1] "Clear Sky Surface Longwave Upward Irradiance Maximum"
-    ## 
-    ## $CLRSKY_SFC_LW_UP_MIN
-    ## [1] "Clear Sky Surface Longwave Upward Irradiance Minimum"
-    ## 
-    ## $CLRSKY_SFC_LW_UP_SD
-    ## [1] "Clear Sky Surface Longwave Upward Irradiance Standard Deviation"
-    ## 
-    ## $CLRSKY_SFC_PAR_TOT
-    ## [1] "Clear Sky Surface PAR Total"
-    ## 
-    ## $CLRSKY_SFC_PAR_TOT_MAX
-    ## [1] "Clear Sky Surface PAR Total Maximum"
-    ## 
-    ## $CLRSKY_SFC_PAR_TOT_MIN
-    ## [1] "Clear Sky Surface PAR Total Minimum"
-    ## 
-    ## $CLRSKY_SFC_PAR_TOT_SD
-    ## [1] "Clear Sky Surface PAR Total Standard Deviation"
-    ## 
-    ## $CLRSKY_SFC_SW_DWN
-    ## [1] "Clear Sky Surface Shortwave Downward Irradiance"
-    ## 
-    ## $CLRSKY_SFC_SW_DWN_MAX
-    ## [1] "Clear Sky Surface Shortwave Downward Irradiance Maximum"
-    ## 
-    ## $CLRSKY_SFC_SW_DWN_MIN
-    ## [1] "Clear Sky Surface Shortwave Downward Irradiance Minimum"
-    ## 
-    ## $CLRSKY_SFC_SW_DWN_SD
-    ## [1] "Clear Sky Surface Shortwave Downward Irradiance Standard Deviation"
-    ## 
-    ## $CLRSKY_SFC_SW_UP
-    ## [1] "Clear Sky Surface Shortwave Upward Irradiance"
-    ## 
-    ## $CLRSKY_SFC_SW_UP_MAX
-    ## [1] "Clear Sky Surface Shortwave Upward Irradiance Maximum"
-    ## 
-    ## $CLRSKY_SFC_SW_UP_MIN
-    ## [1] "Clear Sky Surface Shortwave Upward Irradiance Minimum"
-    ## 
-    ## $CLRSKY_SFC_SW_UP_SD
-    ## [1] "Clear Sky Surface Shortwave Upward Irradiance Standard Deviation"
+    ## $CDD18_3
+    ## [1] "Cooling Degree Days Above 18.3 C"
     ## 
     ## $CLOUD_AMT
     ## [1] "Cloud Amount"
@@ -689,26 +458,86 @@ purrr::map(parameters, "longname")
     ## $CLOUD_OD_HR
     ## [1] "Cloud Optical Visible Depth at GMT Times"
     ## 
-    ## $CDD0
-    ## [1] "Cooling Degree Days Above 0 C"
+    ## $CLRSKY_DAYS
+    ## [1] "Clear Sky Day"
     ## 
-    ## $CDD10
-    ## [1] "Cooling Degree Days Above 10 C"
+    ## $CLRSKY_KT
+    ## [1] "Clear Sky Insolation Clearness Index"
     ## 
-    ## $CDD18_3
-    ## [1] "Cooling Degree Days Above 18.3 C"
+    ## $CLRSKY_KT_MAX
+    ## [1] "Clear Sky Insolation Clearness Index Maximum"
     ## 
-    ## $PSC
-    ## [1] "Corrected Atmospheric Pressure (Adjusted For Site Elevation)"
+    ## $CLRSKY_KT_MIN
+    ## [1] "Clear Sky Insolation Clearness Index Minimum"
     ## 
-    ## $WSC
-    ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
+    ## $CLRSKY_KT_SD
+    ## [1] "Clear Sky Insolation Clearness Index Standard Deviation"
     ## 
-    ## $SG_DAY_COZ_ZEN_AVG
-    ## [1] "Daylight Average Of Hourly Cosine Solar Zenith Angles for Climatological Month"
+    ## $CLRSKY_NKT
+    ## [1] "Clear Sky Normalized Insolation Clearness Index"
     ## 
-    ## $T2MDEW
-    ## [1] "Dew/Frost Point at 2 Meters"
+    ## $CLRSKY_SFC_LW_DWN
+    ## [1] "Clear Sky Surface Longwave Downward Irradiance"
+    ## 
+    ## $CLRSKY_SFC_LW_DWN_MAX
+    ## [1] "Clear Sky Surface Longwave Downward Irradiance Maximum"
+    ## 
+    ## $CLRSKY_SFC_LW_DWN_MIN
+    ## [1] "Clear Sky Surface Longwave Downward Irradiance Minimum"
+    ## 
+    ## $CLRSKY_SFC_LW_DWN_SD
+    ## [1] "Clear Sky Surface Longwave Downward Irradiance Standard Deviation"
+    ## 
+    ## $CLRSKY_SFC_LW_UP
+    ## [1] "Clear Sky Surface Longwave Upward Irradiance"
+    ## 
+    ## $CLRSKY_SFC_LW_UP_MAX
+    ## [1] "Clear Sky Surface Longwave Upward Irradiance Maximum"
+    ## 
+    ## $CLRSKY_SFC_LW_UP_MIN
+    ## [1] "Clear Sky Surface Longwave Upward Irradiance Minimum"
+    ## 
+    ## $CLRSKY_SFC_LW_UP_SD
+    ## [1] "Clear Sky Surface Longwave Upward Irradiance Standard Deviation"
+    ## 
+    ## $CLRSKY_SFC_PAR_TOT
+    ## [1] "Clear Sky Surface PAR Total"
+    ## 
+    ## $CLRSKY_SFC_PAR_TOT_MAX
+    ## [1] "Clear Sky Surface PAR Total Maximum"
+    ## 
+    ## $CLRSKY_SFC_PAR_TOT_MIN
+    ## [1] "Clear Sky Surface PAR Total Minimum"
+    ## 
+    ## $CLRSKY_SFC_PAR_TOT_SD
+    ## [1] "Clear Sky Surface PAR Total Standard Deviation"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN
+    ## [1] "Clear Sky Surface Shortwave Downward Irradiance"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN_MAX
+    ## [1] "Clear Sky Surface Shortwave Downward Irradiance Maximum"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN_MIN
+    ## [1] "Clear Sky Surface Shortwave Downward Irradiance Minimum"
+    ## 
+    ## $CLRSKY_SFC_SW_DWN_SD
+    ## [1] "Clear Sky Surface Shortwave Downward Irradiance Standard Deviation"
+    ## 
+    ## $CLRSKY_SFC_SW_UP
+    ## [1] "Clear Sky Surface Shortwave Upward Irradiance"
+    ## 
+    ## $CLRSKY_SFC_SW_UP_MAX
+    ## [1] "Clear Sky Surface Shortwave Upward Irradiance Maximum"
+    ## 
+    ## $CLRSKY_SFC_SW_UP_MIN
+    ## [1] "Clear Sky Surface Shortwave Upward Irradiance Minimum"
+    ## 
+    ## $CLRSKY_SFC_SW_UP_SD
+    ## [1] "Clear Sky Surface Shortwave Upward Irradiance Standard Deviation"
+    ## 
+    ## $CLRSKY_SRF_ALB
+    ## [1] "Clear Sky Surface Albedo"
     ## 
     ## $DIFFUSE_ILLUMINANCE
     ## [1] "Diffuse Illuminance"
@@ -716,59 +545,23 @@ purrr::map(parameters, "longname")
     ## $DIRECT_ILLUMINANCE
     ## [1] "Direct Illuminance"
     ## 
-    ## $TS
-    ## [1] "Earth Skin Temperature"
-    ## 
-    ## $TS_ADJ
-    ## [1] "Earth Skin Temperature Adjusted"
-    ## 
-    ## $TS_AMP
-    ## [1] "Earth Skin Temperature Amplitude"
-    ## 
-    ## $TS_MAX
-    ## [1] "Earth Skin Temperature Maximum"
-    ## 
-    ## $TS_MAX_AVG
-    ## [1] "Earth Skin Temperature Maximum Average"
-    ## 
-    ## $TS_MIN
-    ## [1] "Earth Skin Temperature Minimum"
-    ## 
-    ## $TS_MIN_AVG
-    ## [1] "Earth Skin Temperature Minimum Average"
-    ## 
-    ## $TS_RANGE
-    ## [1] "Earth Skin Temperature Range"
-    ## 
-    ## $TS_RANGE_AVG
-    ## [1] "Earth Skin Temperature Range Average"
-    ## 
-    ## $U10M
-    ## [1] "Eastward Wind at 10 Meters"
-    ## 
-    ## $U2M
-    ## [1] "Eastward Wind at 2 Meters"
-    ## 
-    ## $U50M
-    ## [1] "Eastward Wind at 50 Meters"
-    ## 
-    ## $NO_SUN_BLACKDAYS_MAX
-    ## [1] "Equivalent No-Sun Days"
+    ## $DISPH
+    ## [1] "Zero Plane Displacement Height"
     ## 
     ## $EQUIV_NO_SUN_CONSEC_01
     ## [1] "Equivalent No-Sun Days Over A Consecutive 1-day Period"
-    ## 
-    ## $EQUIV_NO_SUN_CONSEC_14
-    ## [1] "Equivalent No-Sun Days Over A Consecutive 14-day Period"
-    ## 
-    ## $EQUIV_NO_SUN_CONSEC_21
-    ## [1] "Equivalent No-Sun Days Over A Consecutive 21-day Period"
     ## 
     ## $EQUIV_NO_SUN_CONSEC_03
     ## [1] "Equivalent No-Sun Days Over A Consecutive 3-day Period"
     ## 
     ## $EQUIV_NO_SUN_CONSEC_07
     ## [1] "Equivalent No-Sun Days Over A Consecutive 7-day Period"
+    ## 
+    ## $EQUIV_NO_SUN_CONSEC_14
+    ## [1] "Equivalent No-Sun Days Over A Consecutive 14-day Period"
+    ## 
+    ## $EQUIV_NO_SUN_CONSEC_21
+    ## [1] "Equivalent No-Sun Days Over A Consecutive 21-day Period"
     ## 
     ## $EQUIV_NO_SUN_CONSEC_MONTH
     ## [1] "Equivalent No-Sun Days Over A Consecutive Month Period"
@@ -782,8 +575,23 @@ purrr::map(parameters, "longname")
     ## $FROST_DAYS
     ## [1] "Frost Days"
     ## 
+    ## $FRSEAICE
+    ## [1] "Ice Covered Fraction"
+    ## 
+    ## $FRSNO
+    ## [1] "Land Snowcover Fraction"
+    ## 
     ## $GLOBAL_ILLUMINANCE
     ## [1] "Global Illuminance"
+    ## 
+    ## $GWETPROF
+    ## [1] "Profile Soil Moisture"
+    ## 
+    ## $GWETROOT
+    ## [1] "Root Zone Soil Wetness"
+    ## 
+    ## $GWETTOP
+    ## [1] "Surface Soil Wetness"
     ## 
     ## $HDD0
     ## [1] "Heating Degree Days Below 0 C"
@@ -794,47 +602,44 @@ purrr::map(parameters, "longname")
     ## $HDD18_3
     ## [1] "Heating Degree Days Below 18.3 C"
     ## 
-    ## $FRSEAICE
-    ## [1] "Ice Covered Fraction"
+    ## $INSOL_CONSEC_01
+    ## [1] "Surplus Insolation Over A Consecutive 1-day Period"
     ## 
-    ## $FRSNO
-    ## [1] "Land Snowcover Fraction"
+    ## $INSOL_CONSEC_01_MIN
+    ## [1] "Minimum Insolation Over A Consecutive 1-day Period"
+    ## 
+    ## $INSOL_CONSEC_03
+    ## [1] "Surplus Insolation Over A Consecutive 3-day Period"
+    ## 
+    ## $INSOL_CONSEC_03_MIN
+    ## [1] "Minimum Insolation Over A Consecutive 3-day Period"
+    ## 
+    ## $INSOL_CONSEC_07
+    ## [1] "Surplus Insolation Over A Consecutive 7-day Period"
+    ## 
+    ## $INSOL_CONSEC_07_MIN
+    ## [1] "Minimum Insolation Over A Consecutive 7-day Period"
+    ## 
+    ## $INSOL_CONSEC_14
+    ## [1] "Surplus Insolation Over A Consecutive 14-day Period"
+    ## 
+    ## $INSOL_CONSEC_14_MIN
+    ## [1] "Minimum Insolation Over A Consecutive 14-day Period"
+    ## 
+    ## $INSOL_CONSEC_21
+    ## [1] "Surplus Insolation Over A Consecutive 21-day Period"
+    ## 
+    ## $INSOL_CONSEC_21_MIN
+    ## [1] "Minimum Insolation Over A Consecutive 21-day Period"
+    ## 
+    ## $INSOL_CONSEC_MONTH
+    ## [1] "Surplus Insolation Over A Consecutive Month Period"
+    ## 
+    ## $INSOL_CONSEC_MONTH_MIN
+    ## [1] "Minimum Insolation Over A Consecutive Month Period"
     ## 
     ## $MAX_EQUIV_NO_SUN_DEFICIT
     ## [1] "Maximum Equivalent No-Sun Days Deficit"
-    ## 
-    ## $SG_HRZ_MAX
-    ## [1] "Maximum Solar Angle Relative To The Horizon for Climatological Month"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_TRACKER
-    ## [1] "Maximum Solar Irradiance Irradiance Tracking the Sun"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_OPTIMAL
-    ## [1] "Maximum Solar Irradiance Optimal"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_OPTIMAL_ANG
-    ## [1] "Maximum Solar Irradiance Optimal Angle"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_OPTIMAL_ANG_ORT
-    ## [1] "Maximum Solar Irradiance Tilted Surface Orientation"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_HORIZONTAL
-    ## [1] "Maximum Solar Irradiance for Equator Facing Horizontal Surface"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_LAT_MINUS15
-    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_LAT_PLUS15
-    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_LATITUDE
-    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Tilt"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE
-    ## [1] "Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_VERTICAL
-    ## [1] "Maximum Solar Irradiance for Equator Facing Vertical Surface"
     ## 
     ## $MIDDAY_INSOL
     ## [1] "Midday Insolation Incident"
@@ -848,32 +653,257 @@ purrr::map(parameters, "longname")
     ## $MIDDAY_INSOL_SD
     ## [1] "Midday Insolation Incident Standard Deviation"
     ## 
-    ## $INSOL_CONSEC_01_MIN
-    ## [1] "Minimum Insolation Over A Consecutive 1-day Period"
+    ## $NO_SUN_BLACKDAYS_MAX
+    ## [1] "Equivalent No-Sun Days"
     ## 
-    ## $INSOL_CONSEC_14_MIN
-    ## [1] "Minimum Insolation Over A Consecutive 14-day Period"
+    ## $PBLTOP
+    ## [1] "Planetary Boundary Layer Top Pressure"
     ## 
-    ## $INSOL_CONSEC_21_MIN
-    ## [1] "Minimum Insolation Over A Consecutive 21-day Period"
+    ## $PRECSNO
+    ## [1] "Snow Precipitation"
     ## 
-    ## $INSOL_CONSEC_03_MIN
-    ## [1] "Minimum Insolation Over A Consecutive 3-day Period"
+    ## $PRECSNOLAND
+    ## [1] "Precipitation Land"
     ## 
-    ## $INSOL_CONSEC_07_MIN
-    ## [1] "Minimum Insolation Over A Consecutive 7-day Period"
+    ## $PRECSNOLAND_SUM
+    ## [1] "Snow Precipitation Land Sum"
     ## 
-    ## $INSOL_CONSEC_MONTH_MIN
-    ## [1] "Minimum Insolation Over A Consecutive Month Period"
+    ## $PRECTOTCORR
+    ## [1] "Precipitation Corrected"
     ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_OPTIMAL
-    ## [1] "Minimum Solar Irradiance Optimal"
+    ## $PRECTOTCORR_SUM
+    ## [1] "Precipitation Corrected Sum"
     ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_OPTIMAL_ANG
-    ## [1] "Minimum Solar Irradiance Optimal Angle"
+    ## $PS
+    ## [1] "Surface Pressure"
     ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_OPTIMAL_ANG_ORT
-    ## [1] "Minimum Solar Irradiance Tilted Surface Orientation"
+    ## $PSC
+    ## [1] "Corrected Atmospheric Pressure (Adjusted For Site Elevation)"
+    ## 
+    ## $PW
+    ## [1] "Precipitable Water"
+    ## 
+    ## $QV10M
+    ## [1] "Specific Humidity at 10 Meters"
+    ## 
+    ## $QV2M
+    ## [1] "Specific Humidity at 2 Meters"
+    ## 
+    ## $RH2M
+    ## [1] "Relative Humidity at 2 Meters"
+    ## 
+    ## $RHOA
+    ## [1] "Surface Air Density"
+    ## 
+    ## $SG_DAY_COZ_ZEN_AVG
+    ## [1] "Daylight Average Of Hourly Cosine Solar Zenith Angles for Climatological Month"
+    ## 
+    ## $SG_DAY_HOURS
+    ## [1] "Solar Geometry Day Hours"
+    ## 
+    ## $SG_DEC
+    ## [1] "Average Declination for Climatological Month"
+    ## 
+    ## $SG_HR_SET_ANG
+    ## [1] "Average Sunset Hour Angle for Climatological Month"
+    ## 
+    ## $SG_HRZ_00
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 00 GMT"
+    ## 
+    ## $SG_HRZ_01
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 01 GMT"
+    ## 
+    ## $SG_HRZ_02
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 02 GMT"
+    ## 
+    ## $SG_HRZ_03
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 03 GMT"
+    ## 
+    ## $SG_HRZ_04
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 04 GMT"
+    ## 
+    ## $SG_HRZ_05
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 05 GMT"
+    ## 
+    ## $SG_HRZ_06
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 06 GMT"
+    ## 
+    ## $SG_HRZ_07
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 07 GMT"
+    ## 
+    ## $SG_HRZ_08
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 08 GMT"
+    ## 
+    ## $SG_HRZ_09
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 09 GMT"
+    ## 
+    ## $SG_HRZ_10
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 10 GMT"
+    ## 
+    ## $SG_HRZ_11
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 11 GMT"
+    ## 
+    ## $SG_HRZ_12
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 12 GMT"
+    ## 
+    ## $SG_HRZ_13
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 13 GMT"
+    ## 
+    ## $SG_HRZ_14
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 14 GMT"
+    ## 
+    ## $SG_HRZ_15
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 15 GMT"
+    ## 
+    ## $SG_HRZ_16
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 16 GMT"
+    ## 
+    ## $SG_HRZ_17
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 17 GMT"
+    ## 
+    ## $SG_HRZ_18
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 18 GMT"
+    ## 
+    ## $SG_HRZ_19
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 19 GMT"
+    ## 
+    ## $SG_HRZ_20
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 20 GMT"
+    ## 
+    ## $SG_HRZ_21
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 21 GMT"
+    ## 
+    ## $SG_HRZ_22
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 22 GMT"
+    ## 
+    ## $SG_HRZ_23
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month at 23 GMT"
+    ## 
+    ## $SG_HRZ_HR
+    ## [1] "Average Hourly Solar Angles Relative To The Horizon for Climatological Month"
+    ## 
+    ## $SG_HRZ_MAX
+    ## [1] "Maximum Solar Angle Relative To The Horizon for Climatological Month"
+    ## 
+    ## $SG_MID_COZ_ZEN_ANG
+    ## [1] "Average Cosine Solar Zenith Angle At Mid-Time Between Sunrise And Solar Noon for Climatological Month"
+    ## 
+    ## $SG_NOON
+    ## [1] "Solar Geometry Based Noon"
+    ## 
+    ## $SG_SAA
+    ## [1] "Solar Azimuth Angle"
+    ## 
+    ## $SG_SAA_00
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 00 GMT"
+    ## 
+    ## $SG_SAA_01
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 01 GMT"
+    ## 
+    ## $SG_SAA_02
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 02 GMT"
+    ## 
+    ## $SG_SAA_03
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 03 GMT"
+    ## 
+    ## $SG_SAA_04
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 04 GMT"
+    ## 
+    ## $SG_SAA_05
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 05 GMT"
+    ## 
+    ## $SG_SAA_06
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 06 GMT"
+    ## 
+    ## $SG_SAA_07
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 07 GMT"
+    ## 
+    ## $SG_SAA_08
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 08 GMT"
+    ## 
+    ## $SG_SAA_09
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 09 GMT"
+    ## 
+    ## $SG_SAA_10
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 10 GMT"
+    ## 
+    ## $SG_SAA_11
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 11 GMT"
+    ## 
+    ## $SG_SAA_12
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 12 GMT"
+    ## 
+    ## $SG_SAA_13
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 13 GMT"
+    ## 
+    ## $SG_SAA_14
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 14 GMT"
+    ## 
+    ## $SG_SAA_15
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 15 GMT"
+    ## 
+    ## $SG_SAA_16
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 16 GMT"
+    ## 
+    ## $SG_SAA_17
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 17 GMT"
+    ## 
+    ## $SG_SAA_18
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 18 GMT"
+    ## 
+    ## $SG_SAA_19
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 19 GMT"
+    ## 
+    ## $SG_SAA_20
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 20 GMT"
+    ## 
+    ## $SG_SAA_21
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 21 GMT"
+    ## 
+    ## $SG_SAA_22
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 22 GMT"
+    ## 
+    ## $SG_SAA_23
+    ## [1] "Average Solar Azimuth Angle for Climatological Month at 23 GMT"
+    ## 
+    ## $SG_SAA_HR
+    ## [1] "Average Solar Azimuth Angle for Climatological Month"
+    ## 
+    ## $SG_SZA
+    ## [1] "Solar Zenith Angle"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE
+    ## [1] "Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_HORIZONTAL
+    ## [1] "Maximum Solar Irradiance for Equator Facing Horizontal Surface"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_LAT_MINUS15
+    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_LAT_PLUS15
+    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_LATITUDE
+    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Tilt"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_OPTIMAL
+    ## [1] "Maximum Solar Irradiance Optimal"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_OPTIMAL_ANG
+    ## [1] "Maximum Solar Irradiance Optimal Angle"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_OPTIMAL_ANG_ORT
+    ## [1] "Maximum Solar Irradiance Tilted Surface Orientation"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_TRACKER
+    ## [1] "Maximum Solar Irradiance Irradiance Tracking the Sun"
+    ## 
+    ## $SI_EF_MAX_TILTED_SURFACE_VERTICAL
+    ## [1] "Maximum Solar Irradiance for Equator Facing Vertical Surface"
+    ## 
+    ## $SI_EF_MIN_TILTED_SURFACE
+    ## [1] "Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
     ## 
     ## $SI_EF_MIN_TILTED_SURFACE_HORIZONTAL
     ## [1] "Minimum Solar Irradiance for Equator Facing Horizontal Surface"
@@ -887,98 +917,23 @@ purrr::map(parameters, "longname")
     ## $SI_EF_MIN_TILTED_SURFACE_LATITUDE
     ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Tilt"
     ## 
-    ## $SI_EF_MIN_TILTED_SURFACE
-    ## [1] "Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## $SI_EF_MIN_TILTED_SURFACE_OPTIMAL
+    ## [1] "Minimum Solar Irradiance Optimal"
     ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_VERTICAL
-    ## [1] "Minimum Solar Irradiance for Equator Facing Vertical Surface"
+    ## $SI_EF_MIN_TILTED_SURFACE_OPTIMAL_ANG
+    ## [1] "Minimum Solar Irradiance Optimal Angle"
     ## 
-    ## $V10M
-    ## [1] "Northward Wind at 10 Meters"
-    ## 
-    ## $V2M
-    ## [1] "Northward Wind at 2 Meters"
-    ## 
-    ## $V50M
-    ## [1] "Northward Wind at 50 Meters"
-    ## 
-    ## $PBLTOP
-    ## [1] "Planetary Boundary Layer Top Pressure"
-    ## 
-    ## $PW
-    ## [1] "Precipitable Water"
-    ## 
-    ## $PRECTOTCORR
-    ## [1] "Precipitation Corrected"
-    ## 
-    ## $PRECTOTCORR_SUM
-    ## [1] "Precipitation Corrected Sum"
-    ## 
-    ## $PRECSNOLAND
-    ## [1] "Precipitation Land"
-    ## 
-    ## $GWETPROF
-    ## [1] "Profile Soil Moisture"
-    ## 
-    ## $RH2M
-    ## [1] "Relative Humidity at 2 Meters"
-    ## 
-    ## $GWETROOT
-    ## [1] "Root Zone Soil Wetness"
-    ## 
-    ## $SLP
-    ## [1] "Sea Level Pressure"
-    ## 
-    ## $SNODP
-    ## [1] "Snow Depth"
-    ## 
-    ## $PRECSNO
-    ## [1] "Snow Precipitation"
-    ## 
-    ## $PRECSNOLAND_SUM
-    ## [1] "Snow Precipitation Land Sum"
-    ## 
-    ## $SG_SAA
-    ## [1] "Solar Azimuth Angle"
-    ## 
-    ## $SG_NOON
-    ## [1] "Solar Geometry Based Noon"
-    ## 
-    ## $SG_DAY_HOURS
-    ## [1] "Solar Geometry Day Hours"
-    ## 
-    ## $SOLAR_DEFICITS_BLW_CONSEC_01
-    ## [1] "Solar Irradiance Deficit Over A Consecutive 1-day Period"
-    ## 
-    ## $SOLAR_DEFICITS_BLW_CONSEC_14
-    ## [1] "Solar Irradiance Deficit Over A Consecutive 14-day Period"
-    ## 
-    ## $SOLAR_DEFICITS_BLW_CONSEC_21
-    ## [1] "Solar Irradiance Deficit Over A Consecutive 21-day Period"
-    ## 
-    ## $SOLAR_DEFICITS_BLW_CONSEC_03
-    ## [1] "Solar Irradiance Deficit Over A Consecutive 3-day Period"
-    ## 
-    ## $SOLAR_DEFICITS_BLW_CONSEC_07
-    ## [1] "Solar Irradiance Deficit Over A Consecutive 7-day Period"
-    ## 
-    ## $SOLAR_DEFICITS_BLW_CONSEC_MONTH
-    ## [1] "Solar Irradiance Deficit Over A Consecutive Month Period"
+    ## $SI_EF_MIN_TILTED_SURFACE_OPTIMAL_ANG_ORT
+    ## [1] "Minimum Solar Irradiance Tilted Surface Orientation"
     ## 
     ## $SI_EF_MIN_TILTED_SURFACE_TRACKER
     ## [1] "Solar Irradiance Irradiance Tracking the Sun"
     ## 
-    ## $SI_EF_TILTED_SURFACE_OPTIMAL
-    ## [1] "Solar Irradiance Optimal"
+    ## $SI_EF_MIN_TILTED_SURFACE_VERTICAL
+    ## [1] "Minimum Solar Irradiance for Equator Facing Vertical Surface"
     ## 
-    ## $SI_EF_TILTED_SURFACE_OPTIMAL_ANG
-    ## [1] "Solar Irradiance Optimal Angle"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_OPTIMAL_ANG_ORT
-    ## [1] "Solar Irradiance Tilted Surface Orientation"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_TRACKER
-    ## [1] "Solar Irradiance Tracking the Sun"
+    ## $SI_EF_TILTED_SURFACE
+    ## [1] "Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
     ## 
     ## $SI_EF_TILTED_SURFACE_HORIZONTAL
     ## [1] "Solar Irradiance for Equator Facing Horizontal Surface"
@@ -992,56 +947,50 @@ purrr::map(parameters, "longname")
     ## $SI_EF_TILTED_SURFACE_LATITUDE
     ## [1] "Solar Irradiance for Equator Facing Latitude Tilt"
     ## 
-    ## $SI_EF_TILTED_SURFACE
-    ## [1] "Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
+    ## $SI_EF_TILTED_SURFACE_OPTIMAL
+    ## [1] "Solar Irradiance Optimal"
+    ## 
+    ## $SI_EF_TILTED_SURFACE_OPTIMAL_ANG
+    ## [1] "Solar Irradiance Optimal Angle"
+    ## 
+    ## $SI_EF_TILTED_SURFACE_OPTIMAL_ANG_ORT
+    ## [1] "Solar Irradiance Tilted Surface Orientation"
+    ## 
+    ## $SI_EF_TILTED_SURFACE_TRACKER
+    ## [1] "Solar Irradiance Tracking the Sun"
     ## 
     ## $SI_EF_TILTED_SURFACE_VERTICAL
     ## [1] "Solar Irradiance for Equator Facing Vertical Surface"
     ## 
-    ## $SG_SZA
-    ## [1] "Solar Zenith Angle"
+    ## $SLP
+    ## [1] "Sea Level Pressure"
     ## 
-    ## $SZA
-    ## [1] "Solar Zenith Angle"
+    ## $SNODP
+    ## [1] "Snow Depth"
     ## 
-    ## $QV10M
-    ## [1] "Specific Humidity at 10 Meters"
+    ## $SOLAR_DEFICITS_BLW_CONSEC_01
+    ## [1] "Solar Irradiance Deficit Over A Consecutive 1-day Period"
     ## 
-    ## $QV2M
-    ## [1] "Specific Humidity at 2 Meters"
+    ## $SOLAR_DEFICITS_BLW_CONSEC_03
+    ## [1] "Solar Irradiance Deficit Over A Consecutive 3-day Period"
     ## 
-    ## $RHOA
-    ## [1] "Surface Air Density"
+    ## $SOLAR_DEFICITS_BLW_CONSEC_07
+    ## [1] "Solar Irradiance Deficit Over A Consecutive 7-day Period"
+    ## 
+    ## $SOLAR_DEFICITS_BLW_CONSEC_14
+    ## [1] "Solar Irradiance Deficit Over A Consecutive 14-day Period"
+    ## 
+    ## $SOLAR_DEFICITS_BLW_CONSEC_21
+    ## [1] "Solar Irradiance Deficit Over A Consecutive 21-day Period"
+    ## 
+    ## $SOLAR_DEFICITS_BLW_CONSEC_MONTH
+    ## [1] "Solar Irradiance Deficit Over A Consecutive Month Period"
     ## 
     ## $SRF_ALB_ADJ
     ## [1] "Surface Albedo Adjusted"
     ## 
-    ## $PS
-    ## [1] "Surface Pressure"
-    ## 
-    ## $Z0M
-    ## [1] "Surface Roughness"
-    ## 
-    ## $GWETTOP
-    ## [1] "Surface Soil Wetness"
-    ## 
-    ## $INSOL_CONSEC_01
-    ## [1] "Surplus Insolation Over A Consecutive 1-day Period"
-    ## 
-    ## $INSOL_CONSEC_14
-    ## [1] "Surplus Insolation Over A Consecutive 14-day Period"
-    ## 
-    ## $INSOL_CONSEC_21
-    ## [1] "Surplus Insolation Over A Consecutive 21-day Period"
-    ## 
-    ## $INSOL_CONSEC_03
-    ## [1] "Surplus Insolation Over A Consecutive 3-day Period"
-    ## 
-    ## $INSOL_CONSEC_07
-    ## [1] "Surplus Insolation Over A Consecutive 7-day Period"
-    ## 
-    ## $INSOL_CONSEC_MONTH
-    ## [1] "Surplus Insolation Over A Consecutive Month Period"
+    ## $SZA
+    ## [1] "Solar Zenith Angle"
     ## 
     ## $T10M
     ## [1] "Temperature at 10 Meters"
@@ -1085,6 +1034,15 @@ purrr::map(parameters, "longname")
     ## $T2M_RANGE_AVG
     ## [1] "Temperature at 2 Meters Range Average"
     ## 
+    ## $T2MDEW
+    ## [1] "Dew/Frost Point at 2 Meters"
+    ## 
+    ## $T2MWET
+    ## [1] "Wet Bulb Temperature at 2 Meters"
+    ## 
+    ## $TO3
+    ## [1] "Total Column Ozone"
+    ## 
     ## $TOA_SW_DNI
     ## [1] "Top-Of-Atmosphere Shortwave Direct Normal Radiation"
     ## 
@@ -1109,9 +1067,6 @@ purrr::map(parameters, "longname")
     ## $TOA_SW_DWN_SD
     ## [1] "Top-Of-Atmosphere Shortwave Downward Irradiance Standard Deviation"
     ## 
-    ## $TO3
-    ## [1] "Total Column Ozone"
-    ## 
     ## $TQV
     ## [1] "Total Column Precipitable Water"
     ## 
@@ -1124,8 +1079,50 @@ purrr::map(parameters, "longname")
     ## $TROPT
     ## [1] "Tropopause Temperature using blended TROPP estimate."
     ## 
-    ## $T2MWET
-    ## [1] "Wet Bulb Temperature at 2 Meters"
+    ## $TS
+    ## [1] "Earth Skin Temperature"
+    ## 
+    ## $TS_ADJ
+    ## [1] "Earth Skin Temperature Adjusted"
+    ## 
+    ## $TS_AMP
+    ## [1] "Earth Skin Temperature Amplitude"
+    ## 
+    ## $TS_MAX
+    ## [1] "Earth Skin Temperature Maximum"
+    ## 
+    ## $TS_MAX_AVG
+    ## [1] "Earth Skin Temperature Maximum Average"
+    ## 
+    ## $TS_MIN
+    ## [1] "Earth Skin Temperature Minimum"
+    ## 
+    ## $TS_MIN_AVG
+    ## [1] "Earth Skin Temperature Minimum Average"
+    ## 
+    ## $TS_RANGE
+    ## [1] "Earth Skin Temperature Range"
+    ## 
+    ## $TS_RANGE_AVG
+    ## [1] "Earth Skin Temperature Range Average"
+    ## 
+    ## $U10M
+    ## [1] "Eastward Wind at 10 Meters"
+    ## 
+    ## $U2M
+    ## [1] "Eastward Wind at 2 Meters"
+    ## 
+    ## $U50M
+    ## [1] "Eastward Wind at 50 Meters"
+    ## 
+    ## $V10M
+    ## [1] "Northward Wind at 10 Meters"
+    ## 
+    ## $V2M
+    ## [1] "Northward Wind at 2 Meters"
+    ## 
+    ## $V50M
+    ## [1] "Northward Wind at 50 Meters"
     ## 
     ## $WD10M
     ## [1] "Wind Direction at 10 Meters"
@@ -1199,11 +1196,14 @@ purrr::map(parameters, "longname")
     ## $WS50M_RANGE_AVG
     ## [1] "Wind Speed at 50 Meters Range Average"
     ## 
+    ## $WSC
+    ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
+    ## 
+    ## $Z0M
+    ## [1] "Surface Roughness"
+    ## 
     ## $ZENITH_LUMINANCE
     ## [1] "Zenith luminance"
-    ## 
-    ## $DISPH
-    ## [1] "Zero Plane Displacement Height"
 
 ## Save list for use in `nasapower` package
 
