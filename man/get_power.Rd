@@ -20,7 +20,7 @@ get_power(
 \dQuote{sb} or \dQuote{re}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
-parameters to download.  See \code{\link[=parameters]{parameters()}} for a full list of
+parameters to download.  See \link{parameters} for a full list of
 valid values and definitions.  If downloading \dQuote{climatology} a
 maximum of three \code{pars} can be specified at one time, for
 \dQuote{daily} and \dQuote{monthly} a maximum of 20 can be specified at
@@ -171,7 +171,7 @@ Valid surface types are described here.
 ag_d <- get_power(
   community = "ag",
   lonlat = c(151.81, -27.48),
-  pars = c("RH2M", "T2M", "PRECTOT"),
+  pars = c("RH2M", "T2M", "PRECTOTCORR"),
   dates = "1985-01-01",
   temporal_average = "daily"
 )

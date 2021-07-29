@@ -9,7 +9,7 @@
 #' @param community A character vector providing community name: \dQuote{ag},
 #'   \dQuote{sb} or \dQuote{re}.  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
-#'   parameters to download.  See [parameters()] for a full list of
+#'   parameters to download.  See [parameters] for a full list of
 #'   valid values and definitions.  If downloading \dQuote{climatology} a
 #'   maximum of three `pars` can be specified at one time, for
 #'   \dQuote{daily} and \dQuote{monthly} a maximum of 20 can be specified at
