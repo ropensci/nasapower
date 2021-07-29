@@ -11,16 +11,16 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![CRAN](http://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 <!-- badges: end -->
 
-# *nasapower*: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
+# _nasapower_: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
 
-*nasapower* aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
+_nasapower_ aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
 POWER (Prediction Of Worldwide Energy Resource) data are freely available for download with a  spatial resolution of 1/2 arc degree longitude by 1/2 arc degree latitude and various temporal resolutions depending on the POWER parameter.
 
-Please see <https://power.larc.nasa.gov/> for more on the data and other ways to access it and other forms of data available, *e.g.*, your web browser or an ESRI REST API.
+Please see <https://power.larc.nasa.gov/> for more on the data and other ways to access it and other forms of data available, _e.g._, your web browser or an ESRI REST API.
 
 ### Quick start
 
-*nasapower* can easily be installed using the following code.
+_nasapower_ can easily be installed using the following code.
 
 #### From CRAN
 
@@ -64,7 +64,7 @@ More documentation is available in the vignette in your R session, `vignette("na
 
 ## Use of POWER Data
 
-While *nasapower* does not redistribute the data or provide it in any way, we encourage users to follow the requests of the POWER Project Team.
+While _nasapower_ does not redistribute the data or provide it in any way, we encourage users to follow the requests of the POWER Project Team.
 
 > When POWER data products are used in a publication, we request the
   following acknowledgement be included: “These data were obtained from
@@ -78,10 +78,10 @@ While *nasapower* does not redistribute the data or provide it in any way, we en
 
   - License: MIT
 
-  - To cite *nasapower*, please use the output from `citation(package = "nasapower")`.
+  - To cite _nasapower_, please use the output from `citation(package = "nasapower")`.
 
-  - Please note that the *nasapower* project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
-    By participating in the *nasapower* project you agree to abide by its terms.
+  - Please note that the _nasapower_ project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
+    By participating in the _nasapower_ project you agree to abide by its terms.
 
   - The U.S. Earth System Research Laboratory, Physical Science Division of the National Atmospheric & Oceanic Administration (NOAA) maintains a list of gridded climate data sets that provide different data and different resolutions <https://psl.noaa.gov/data/gridded/>.
 
