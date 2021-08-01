@@ -1,5 +1,4 @@
 
-
 #' Add %notin% function
 #'
 #' Negates `%in%` for easier matching.
