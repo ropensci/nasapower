@@ -129,21 +129,21 @@
 #'
 #' @noRd
 .check_pars <-
-  function(pars, community, temporal_api, lonlat) {
-
-
-
-
-    # check pars to make sure that they are valid for both the par and
-    # temporal_api
-    if (any(pars %notin% pars_vec)) {
-      stop(call. = FALSE,,
-           "\n", pars[which(pars %notin% names(pars_vec))],
-                  " is not valid in 'pars'.\n")
-    }
+  function(pars, community, temporal_api) {
 
     # make sure that there are no duplicates in the query
     pars <- unique(pars)
+
+    p <- parameters[[paste(temporal_api, community, sep = "_")]]
+
+    # check pars to make sure that they are valid for both the par and
+    # temporal_api
+    if (any(pars %notin% p)) {
+      stop(call. = FALSE,
+           "\n", pars[which(pars %notin% p)],
+                  " is not valid in 'pars'.\n",
+           "Check that the 'pars', 'community' and 'temporal_average' align.")
+    }
 
     # check pars to make sure < allowed
     if (length(pars) > 3 & temporal_api == "CLIMATOLOGY") {
@@ -161,8 +161,6 @@
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
-    pars <- list(pars, temporal_api)
-    names(pars) <- c("pars", "temporal_api")
     return(pars)
   }
 
