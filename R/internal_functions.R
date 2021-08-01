@@ -294,14 +294,12 @@
   if (lonlat_identifier$identifier == "point") {
     if (!is.null(dates)) {
       query_list <- list(
-        request = "execute",
-        identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
-        startDate = dates[[1]],
-        endDate = dates[[2]],
-        userCommunity = community,
+        community = community,
+        identifier = lonlat_identifier$identifier,
+        start = dates[[1]],
+        end = dates[[2]],
         siteElev = site_elevation,
-
         format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
@@ -311,10 +309,9 @@
 
     if (is.null(dates)) {
       query_list <- list(
-        request = "execute",
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
-        userCommunity = community,
+        community = community,
         format = "CSV",
         siteElev = site_elevation,
         lon = lonlat_identifier$lon,
@@ -329,12 +326,11 @@
       is.null(site_elevation)) {
     if (!is.null(dates)) {
       query_list <- list(
-        request = "execute",
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
+        community = community,
         startDate = dates[[1]],
         endDate = dates[[2]],
-        userCommunity = community,
         format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
@@ -344,10 +340,9 @@
 
     if (is.null(dates)) {
       query_list <- list(
-        request = "execute",
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
-        userCommunity = community,
+        community = community,
         format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
@@ -359,12 +354,11 @@
   if (lonlat_identifier$identifier == "regional" &
       !is.null(dates)) {
     query_list <- list(
-      request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
+      community = community,
       startDate = dates[[1]],
       endDate = dates[[2]],
-      userCommunity = community,
       bbox = I(lonlat_identifier$bbox),
       format = "CSV",
       user = user_agent
@@ -373,10 +367,9 @@
 
   if (lonlat_identifier$identifier == "regional" & is.null(dates)) {
     query_list <- list(
-      request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
-      userCommunity = community,
+      community = community,
       bbox = I(lonlat_identifier$bbox),
       format = "CSV",
       user = user_agent
@@ -385,10 +378,9 @@
 
   if (lonlat_identifier$identifier == "global") {
     query_list <- list(
-      request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
-      userCommunity = community,
+      community = community,
       format = "CSV",
       user = user_agent
     )
