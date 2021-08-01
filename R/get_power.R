@@ -226,36 +226,24 @@ get_power <- function(community,
       "\nYou have entered an invalid value for `site_elevation`.\n"
     )
   }
-  if (temporal_average %notin% c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")) {
-    stop(
-      call. = FALSE,
-      "\nYou have entered an invalid value for `temporal_average`.\n"
-    )
-  }
   if (is.character(lonlat)) {
     lonlat <- tolower(lonlat)
-    if (lonlat == "global" & temporal_average != "CLIMATOLOGY") {
+    if (lonlat == "global" & temporal_api != "climatology") {
       stop(call. = FALSE,
            "\nYou have asked for 'global' data. However, this is only",
-           "available for 'CLIMATOLOGY'.\n")
+           "available for 'climatology'.\n")
     } else if (lonlat != "global") {
       stop(call. = FALSE,
            "\nYou have entered an invalid value for `lonlat`. Valid values are",
-           "`global` with `CLIMATOLOGY` or a string of lon and lat values.\n")
+           "`global` with `climatology` or a string of lon and lat values.\n")
     }
   }
 
-    # see internal_functions.R for these functions
-    .check_community(community, pars)
-    dates <- .check_dates(
-      dates,
-      lonlat,
-      temporal_average
-    )
+    # see internal_functions.R for these functions prefixed with "."
     pars <- .check_pars(
       pars,
-      temporal_average,
-      lonlat
+      community,
+      temporal_api,
     )
     lonlat_identifier <- .check_lonlat(
       lonlat,
@@ -263,14 +251,14 @@ get_power <- function(community,
     )
 
     # submit query -------------------------------------------------------------
-    # see internal_functions.R for this function
-    query_list <- .build_query(community,
-                         lonlat_identifier,
-                         pars,
-                         dates,
-                         site_elevation,
-                         wind_elevation,
-                         wind_surface
+    query_list <- .build_query(
+      community,
+      lonlat_identifier,
+      pars,
+      dates,
+      site_elevation,
+      wind_elevation,
+      wind_surface
     )
     out <-
       .send_query(.query_list = query_list,
