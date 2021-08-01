@@ -14,8 +14,8 @@ Client for 'NASA' 'POWER' global meteorology, surface solar
     energy climatology data for download with a resolution of 1/2 by 1/2 arc
     degree longitude and latitude and are funded through the 'NASA' Earth
     Science Directorate Applied Science Program.  For more on the data
-    themselves, a web-based data viewer and web access, please see
-    <https://power.larc.nasa.gov/>.
+    themselves, the methodologies used in creating, a web-based data viewer and
+    web access, please see <https://power.larc.nasa.gov/>.
 }
 \seealso{
 Useful links:
