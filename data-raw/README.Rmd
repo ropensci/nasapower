@@ -1,5 +1,5 @@
 ---
-title: "Fetch NASA-POWER Parameters"
+title: "Fetch NASA-POWER Parameters and Include Them as an Internal List"
 author: "Adam H Sparks"
 date: "`r format(Sys.Date())`"
 output: github_document
@@ -9,44 +9,92 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Create parameters list for internal checks before sending queries to POWER server
+# Create parameters nested list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested from the POWER dataset are valid.
 The POWER list of parameters that can be queried is available as an API query from the POWER server.
 
+The list structure will be
+
+- `parameters`
+  - `HOURLY_AG`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `DAILY_AG`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `MONTHLY_AG`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `CLIMATOLOGY_AG`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `HOURLY_RE`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `DAILY_RE`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `MONTHLY_RE`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `CLIMATOLOGY_RE`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `HOURLY_SB`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `DAILY_SB`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `MONTHLY_SB`
+    - `parameter_1` ...
+    - `parameter_n`
+  - `CLIMATOLOGY_SB`
+    - `parameter_1` ...
+    - `parameter_n`
+
 ## POWER JSON file
 
-Using `jsonlite::fromJSON()` read the JSON file into R creating a list.
+Using `purrr::map2` and jsonlite::fromJSON()` read the JSON file into R creating a single, nested list and reorder it alphabetically by parameter name.
 
 ```{r fetch-JSON}
-parameters <-
-  jsonlite::fromJSON("https://power.larc.nasa.gov/beta/api/system/manager/system/parameters")
+library("purrr")
+library("jsonlite")
 
-parameters <- parameters[order(names(parameters))]
-```
+temporal_api <- c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")
+community <- c("AG", "RE", "SB")
 
-## View list of parameters and units
+# create all combinations
+vals <- expand.grid(temporal_api, community, stringsAsFactors = FALSE)
 
-The following printout of `parameters` displays the list of `r length(parameters)` valid POWER parameters and the `longname`.
+# create equal length vectors for purrr::map2
+temporal_api <- vals[, 1]
+community <- vals[, 2]
 
-```
-## $PARAMETER_NAME
-## [1] "longname"
-```
+base_url <- "https://power.larc.nasa.gov/beta/api/system/manager/parameters?"
 
-Where `PARAMETER_NAME` is used in the internal `parameters` list and is used in checking against user requests for API queries.
-The `standard_name` is a longer, more descriptive name for the parameter that may be more instructive to users in finding the data that they wish to fetch from the POWER server.
+parameters <- map2(.x = temporal_api,
+                  .y = community,
+                  .f = ~ fromJSON(paste0(
+                    base_url,
+                    "temporal=",
+                    .x,
+                    "&community=",
+                    .y
+                  )))
 
-```{r view-list-names}
-purrr::map(parameters, "longname")
+names(parameters) <- paste(temporal_api, community, sep = "_")
 ```
 
 ## Save list for use in `nasapower` package
 
-Using `usethis()` save the list as an R data object for use in the _nasapower_ package.
+Using `usethis::use_data()` save the list as an R data object for use in the _nasapower_ package.
+These values will not be exposed to the user and so will not be documented as previously.
+Users will be be pointed to functions to interact directly with the POWER APIs to query information for the temporal API/community combinations or for the parameters themselves.
 
 ```{r save-list, message=FALSE}
-usethis::use_data(parameters, overwrite = TRUE)
+usethis::use_data(parameters, overwrite = TRUE, internal = TRUE)
 ```
 
 ## Session Info
