@@ -273,8 +273,7 @@
 #' Constructs and sends a query to the 'POWER' 'API' using validated values from
 #' previous functions in this file.
 #'
-#' @param community A validated value for community from
-#'  [check_community()].
+#' @param community A validated value for community from [check_community()].
 #' @param lonlat_identifier A list of values, a result of [check_lonlat()]
 #' @param pars A validated value from [check_pars()].
 #' @param dates A list of values, a result of [check_dates()].
