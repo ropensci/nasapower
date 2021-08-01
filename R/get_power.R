@@ -188,19 +188,33 @@ get_power <- function(community,
                       wind_surface = NULL) {
 
   # user input checks and formatting -------------------------------------------
+
+    # I've kept "temporal_average" for backwards compatibility in user inputs.
+  # However, POWER uses the term "temporal API", for internal purposes, I do the
+  # same starting here for referring to API calls in the same fashion.
+
   if (is.character(temporal_average)) {
-    temporal_average <- toupper(temporal_average)
-    if (temporal_average == "CLIMATOLOGY") {
+    temporal_api <- tolower(temporal_average)
+    if (temporal_api == "climatology") {
       dates <- NULL
     }
+  }
+  if (temporal_api %notin% c("hourly", "daily", "monthly", "climatology")) {
+    stop(
+      call. = FALSE,
+      "\nYou have entered an invalid value for `temporal_average`.\n"
+    )
   }
   if (is.character(community)) {
     community <- toupper(community)
   }
+  if (community %notin% c("AG", "SB", "RE")) {
+    stop(call. = FALSE,
+         "\nYou have provided an invalid `community` value.\n")
+  }
    if (is.character(pars)) {
     pars <- toupper(pars)
   }
-
   if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
     message("\nYou have provided `site_elevation` for a region or `global`.",
             "\nThe `site_elevation` value will be ignored.")
