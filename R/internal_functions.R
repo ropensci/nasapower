@@ -393,13 +393,17 @@
 #' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
-.send_query <- function(.query_list, .pars, .temporal_api) {
-  climatology_url <- # nocov start
-    "https://power.larc.nasa.gov/beta/api/temporal"
-  client <- crul::HttpClient$new(url = power_url)
+.send_query <- function(.query_list, .pars, temporal_api) {
+  # constructs url from url defined in zzz.R and the temporal_api and community
+  power_url <- paste0(
+    getOption("nasapower_base_url"),
+    temporal_api,
+    "&",
+    community,
+    .query_list$lonlat_identifier$identifier
+  )
 
-  path <- paste0(.temporal_api, "/",
-                 .query_list$lonlat_identifier$identifier)
+  client <- crul::HttpClient$new(url = power_url)
 
   # check status
   status <- client$get()
