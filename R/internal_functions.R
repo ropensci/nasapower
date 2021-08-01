@@ -1,6 +1,8 @@
+
+
 #' Add %notin% function
 #'
-#' Negates `%in%`` for easier matching.
+#' Negates `%in%` for easier matching.
 #'
 #' @param x A character string to match.
 #' @param table A table containing values to match `x` against.
