@@ -393,10 +393,11 @@
 #' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
-.send_query <- function(.query_list, .pars, temporal_api) {
+.send_query <- function(.query_list, .pars, temporal_api, community) {
   # constructs url from url defined in zzz.R and the temporal_api and community
   power_url <- paste0(
     getOption("nasapower_base_url"),
+    "temporal/",
     temporal_api,
     "&",
     community,
