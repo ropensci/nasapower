@@ -288,7 +288,7 @@
                          site_elevation,
                          wind_elevation,
                          wind_surface) {
-  user_agent <- "nasapower"
+  user_agent <- paste0("nasapower_v", getNamespaceVersion("nasapower"))
 
   # If user has given a site_elevation value, use it
   if (lonlat_identifier$identifier == "point") {
