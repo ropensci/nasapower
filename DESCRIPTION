@@ -58,8 +58,6 @@ Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
 Repository: CRAN
-LazyData: TRUE
-ByteCompile: TRUE
 Suggests:
     knitr,
     rmarkdown,
