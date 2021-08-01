@@ -202,8 +202,7 @@ get_power <- function(community,
   if (temporal_api %notin% c("hourly", "daily", "monthly", "climatology")) {
     stop(
       call. = FALSE,
-      "\nYou have entered an invalid value for `temporal_average`.\n"
-    )
+      "\nYou have entered an invalid value for `temporal_average`.\n")
   }
   if (is.character(community)) {
     community <- toupper(community)
@@ -223,8 +222,7 @@ get_power <- function(community,
   if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
     stop(
       call. = FALSE,
-      "\nYou have entered an invalid value for `site_elevation`.\n"
-    )
+      "\nYou have entered an invalid value for `site_elevation`.\n")
   }
   if (is.character(lonlat)) {
     lonlat <- tolower(lonlat)
