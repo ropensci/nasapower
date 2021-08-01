@@ -151,10 +151,8 @@
 .check_pars <-
   function(pars, community, temporal_api, lonlat) {
 
-    # creates a vector from an internally-stored pairlist for easier checking
-    pars_vec <- unlist(
-      lapply(X = parameters[paste0(temporal_api, "_", community)],
-             FUN = names))
+
+
 
     # check pars to make sure that they are valid for both the par and
     # temporal_api
