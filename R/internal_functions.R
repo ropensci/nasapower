@@ -17,8 +17,7 @@
 
 #' Check dates for validity when querying API
 #'
-#' Validates user entered date values against `lonlat` and
-#' `temporal_api` values
+#' Validates user entered date values against `lonlat` and `temporal_api` values
 #'
 #' @param dates User entered `dates` value.
 #' @param lonlat User entered `lonlat` value.
@@ -141,15 +140,16 @@
 #' Validates user entered date values against `lonlat` and
 #' `temporal_api` values
 #'
-#' @param dates User entered `dates` value.
-#' @param lonlat User entered `lonlat` value.
+#' @param pars User entered `pars` value.
+#' @param community User entered `community` value.
 #' @param temporal_api User entered `temporal_api` value.
+#' @param lonlat User entered `lonlat` value.
 #'
 #' @return Validated pars for use in [.build_query()]
 #'
 #' @noRd
 .check_pars <-
-  function(pars, temporal_api, community, lonlat) {
+  function(pars, community, temporal_api, lonlat) {
 
     # creates a vector from an internally-stored pairlist for easier checking
     pars_vec <- unlist(
