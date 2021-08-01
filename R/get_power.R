@@ -191,8 +191,8 @@ get_power <- function(community,
 
   # user input checks and formatting -------------------------------------------
   if (is.character(temporal_average)) {
-    temporal_average <- tolower(temporal_average)
-    if (temporal_average == "climatology") {
+    temporal_average <- toupper(temporal_average)
+    if (temporal_average == "CLIMATOLOGY") {
       dates <- NULL
     }
   }
@@ -214,7 +214,7 @@ get_power <- function(community,
       "\nYou have entered an invalid value for `site_elevation`.\n"
     )
   }
-  if (temporal_average %notin% c("hourly", "daily", "monthly", "climatology")) {
+  if (temporal_average %notin% c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")) {
     stop(
       call. = FALSE,
       "\nYou have entered an invalid value for `temporal_average`.\n"
@@ -222,14 +222,14 @@ get_power <- function(community,
   }
   if (is.character(lonlat)) {
     lonlat <- tolower(lonlat)
-    if (lonlat == "global" & temporal_average != "climatology") {
+    if (lonlat == "global" & temporal_average != "CLIMATOLOGY") {
       stop(call. = FALSE,
            "\nYou have asked for 'global' data. However, this is only",
-           "available for 'climatology'.\n")
+           "available for 'CLIMATOLOGY'.\n")
     } else if (lonlat != "global") {
       stop(call. = FALSE,
            "\nYou have entered an invalid value for `lonlat`. Valid values are",
-           "`global` with `climatology` or a string of lon and lat values.\n")
+           "`global` with `CLIMATOLOGY` or a string of lon and lat values.\n")
     }
   }
 
