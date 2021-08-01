@@ -2,4 +2,4 @@
 # one spot makes it easy to update when the API changes rather than spread
 # across the package in several spots
 options("nasapower_base_url" =
-          "https://power.larc.nasa.gov/beta/api/system/manager/")
+          "https://power.larc.nasa.gov/beta/api/")
