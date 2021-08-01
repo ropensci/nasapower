@@ -80,7 +80,7 @@ community <- vals[, 2]
 
 base_url <- "https://power.larc.nasa.gov/beta/api/system/manager/parameters?"
 
-parameters <- map2(.x = temporal_api,
+power_pars <- map2(.x = temporal_api,
                   .y = community,
                   .f = ~ fromJSON(paste0(
                     base_url,
@@ -90,7 +90,14 @@ parameters <- map2(.x = temporal_api,
                     .y
                   )))
 
-names(parameters) <- paste(temporal_api, community, sep = "_")
+names(power_pars) <- paste(temporal_api, community, sep = "_")
+
+# create a list of vectors for each temporal API/par combination for easier
+# checking and validation
+parameters <- vector(mode = "list", length = length(power_pars))
+for (i in names(power_pars)) {
+  parameters[[i]] <- names(power_pars[[i]])
+}
 ```
 
 ## Save list for use in `nasapower` package
@@ -161,7 +168,7 @@ sessioninfo::session_info()
     ##  P yaml          2.2.1   2020-02-01 [?] CRAN (R 4.1.0)
     ## 
     ## [1] /Users/adamsparks/Development/GitHub/rOpenSci/nasapower/renv/library/R-4.1/aarch64-apple-darwin20
-    ## [2] /private/var/folders/tr/fwv720l96bz2btcr0jr_gs840000gn/T/Rtmp3Gp65Z/renv-system-library
+    ## [2] /private/var/folders/tr/fwv720l96bz2btcr0jr_gs840000gn/T/RtmpYOm6kQ/renv-system-library
     ## [3] /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library
     ## 
     ##  P ── Loaded and on-disk path mismatch.
