@@ -149,26 +149,19 @@
 #'
 #' @noRd
 .check_pars <-
-  function(pars, temporal_api, lonlat) {
-    # check pars to make sure that they are valid
-    if (any(pars %notin% names(parameters))) {
-      stop(call. = FALSE,
-           "\n", pars[which(pars %notin% names(parameters))],
-                  " is not valid in 'pars'.\n")
-    }
+  function(pars, temporal_api, community, lonlat) {
 
-    # check to make sure temporal_api is appropriate for given pars
-    for (i in pars) {
-      if (toupper(temporal_api) %notin% parameters[[i]]$include) {
-        stop(
-          call. = FALSE,
-          "\nYou have entered an invalid value for `temporal_api` for ",
-          "the supplied `pars`. One or more `pars` are not, available for ",
-          "`",
-          temporal_api,
-          "`, please check.\n"
-        )
-      }
+    # creates a vector from an internally-stored pairlist for easier checking
+    pars_vec <- unlist(
+      lapply(X = parameters[paste0(temporal_api, "_", community)],
+             FUN = names))
+
+    # check pars to make sure that they are valid for both the par and
+    # temporal_api
+    if (any(pars %notin% pars_vec)) {
+      stop(call. = FALSE,,
+           "\n", pars[which(pars %notin% names(pars_vec))],
+                  " is not valid in 'pars'.\n")
     }
 
     # make sure that there are no duplicates in the query
