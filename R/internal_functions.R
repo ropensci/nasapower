@@ -116,25 +116,6 @@
   }
 }
 
-#' Check community for validity when querying API
-#'
-#' Validates user entered `community` values against
-#' `pars` for availability.
-#'
-#' @param community User entered `community` value.
-#' @param pars User entered `pars` value.
-#'
-#' @return Validated community and pars for use in [.build_query()]
-#'
-#' @noRd
-.check_community <-
-  function(community, pars) {
-    if (community %notin% c("AG", "SB", "RE")) {
-      stop(call. = FALSE,
-           "\nYou have provided an invalid `community` value.\n")
-    }
-  }
-
 #' Check pars for validity when querying API
 #'
 #' Validates user entered date values against `lonlat` and
