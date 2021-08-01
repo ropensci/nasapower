@@ -168,7 +168,7 @@
     pars <- unique(pars)
 
     # check pars to make sure < allowed
-    if (length(pars) > 3 & temporal_api == "climatology") {
+    if (length(pars) > 3 & temporal_api == "CLIMATOLOGY") {
       stop(
         call. = FALSE,
         "\nYou can only specify three (3) parameters for download when ",
@@ -176,7 +176,7 @@
       )
     }
 
-    if (length(pars) > 20 & temporal_api != "climatology") {
+    if (length(pars) > 20 & temporal_api != "CLIMATOLOGY") {
       stop(call. = FALSE,
            "\nYou can only specify 20 parameters for download at a time.\n")
     }
