@@ -10,7 +10,9 @@ get_power(
   temporal_average,
   lonlat,
   dates = NULL,
-  site_elevation = NULL
+  site_elevation = NULL,
+  wind_elevation = NULL,
+  wind_surface = NULL
 )
 }
 \arguments{
@@ -18,11 +20,9 @@ get_power(
 \dQuote{sb} or \dQuote{re}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
-parameters to download.  See \code{\link{parameters}} for a full list of
-valid values and definitions.  If downloading \dQuote{climatology} a
-maximum of three \code{pars} can be specified at one time, for
-\dQuote{daily} and \dQuote{monthly} a maximum of 20 can be specified at
-one time.}
+parameters to download.  If downloading \dQuote{climatology} a maximum of
+three \code{pars} can be specified at one time, for \dQuote{daily} and
+\dQuote{monthly} a maximum of 20 can be specified at one time.}
 
 \item{temporal_average}{Temporal average for data being queried, supported
 values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
@@ -39,99 +39,175 @@ See argument details for more.}
 
 \item{site_elevation}{A user-supplied value for elevation at a single point
 in metres.  If provided this will return a corrected atmospheric pressure
-value adjusted to the elevation provided.  Only used with `lonlat` as a
+value adjusted to the elevation provided.  Only used with \code{lonlat} as a
 single point of x, y coordinates, not for use with \dQuote{global} or with
 a regional request.}
+
+\item{wind_elevation}{A user-supplied value for elevation at a single point
+in metres.  Wind Elevation values in Meters are required to be between 10m
+and 300m.  Only used with \code{lonlat} as a single point of x, y coordinates,
+not for use with \dQuote{global} or with a regional request.  If this
+parameter is provided, the \code{wind-surface} parameter is required with the
+request, see \url{https://power.larc.nasa.gov/beta/docs/methodology/meteorology/wind/}}
+
+\item{wind_surface}{A user-supplied wind surface for which the corrected
+wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 }
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
-\code{\link[tibble]{tibble}}, object of \acronym{POWER} data including
-location, dates (not including \dQuote{climatology}) and requested
-parameters.  A header of metadata is included in this object.
+\link[tibble:tibble]{tibble::tibble}, object of \acronym{POWER} data including location, dates
+(not including \dQuote{climatology}) and requested parameters.  A decorative
+header of metadata is included in this object.
 }
 \description{
 Get \acronym{POWER} global meteorology and surface solar energy
-  climatology data and return a tidy data frame \code{\link[tibble]{tibble}}
-  object. All options offered by the official \acronym{POWER} \acronym{API}
-  are supported.
+climatology data and return a tidy data frame \code{\link[tibble:tibble]{tibble::tibble()}}
+object. All options offered by the official \acronym{POWER} \acronym{API}
+are supported.
 }
 \note{
-The associated metadata are not saved if the data are exported to a
-  file format other than a native \R data format, \emph{e.g.}, .Rdata, .rda
-  or .rds.
+The associated metadata shown in the decorative header are not saved if
+the data are exported to a file format other than a native \R data format,
+\emph{e.g.}, .Rdata, .rda or .rds.
 }
 \section{Argument details for \dQuote{community}}{
  there are three valid
-  values, one must be supplied.  This  will affect the units of the parameter
-  and the temporal display of time series data.
+values, one must be supplied.  This  will affect the units of the parameter
+and the temporal display of time series data.
 
 \describe{
-  \item{ag}{Provides access to the Agroclimatology Archive, which
- contains industry-friendly parameters formatted for input to crop models.}
+\item{ag}{Provides access to the Agroclimatology Archive, which
+contains industry-friendly parameters formatted for input to crop models.}
 
- \item{sb}{Provides access to the Sustainable Buildings Archive, which
- contains industry-friendly parameters for the buildings community to include
- parameters in multi-year monthly averages.}
+\item{sb}{Provides access to the Sustainable Buildings Archive, which
+contains industry-friendly parameters for the buildings community to include
+parameters in multi-year monthly averages.}
 
- \item{re}{Provides access to the Renewable Energy Archive, which contains
- parameters specifically tailored to assist in the design of solar and wind
- powered renewable energy systems.}
- }
+\item{re}{Provides access to the Renewable Energy Archive, which contains
+parameters specifically tailored to assist in the design of solar and wind
+powered renewable energy systems.}
+}
 }
 
 \section{Argument details for \code{temporal_average}}{
  There are four valid
- values.
- \describe{
-  \item{hourly}{The hourly average of \code{pars} by hour, day, month and
-   year.}
-  \item{daily}{The daily average of \code{pars} by day, month and year.}
-  \item{monthly}{The monthly average of \code{pars} by month and year.}
-  \item{climatology}{Provide parameters as 22-year climatologies (solar)
-   and 30-year climatologies (meteorology); the period climatology and
-   monthly average, maximum, and/or minimum values.}
- }
+values.
+\describe{
+\item{hourly}{The hourly average of \code{pars} by hour, day, month and
+year.}
+\item{daily}{The daily average of \code{pars} by day, month and year.}
+\item{monthly}{The monthly average of \code{pars} by month and year.}
+\item{climatology}{Provide parameters as 22-year climatologies (solar)
+and 30-year climatologies (meteorology); the period climatology and
+monthly average, maximum, and/or minimum values.}
+}
 }
 
 \section{Argument details for \code{lonlat}}{
 
 \describe{
- \item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
- length-two numeric vector giving the decimal degree longitude and latitude
- in that order for data to download,\cr
- \emph{e.g.}, \code{lonlat = c(-89.5, -179.5)}.}
+\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
+length-two numeric vector giving the decimal degree longitude and latitude
+in that order for data to download,\cr
+\emph{e.g.}, \code{lonlat = c(-179.5, -89.5)}.}
 
- \item{For regional coverage}{To get a region, supply a length-four numeric
- vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
- \emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a
- given region, \emph{e.g.}, a bounding box for the south western corner of
- Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.  *Maximum area
- processed is 4.5 x 4.5 degrees (100 points).}
+\item{For regional coverage}{To get a region, supply a length-four numeric
+vector as lower left (lon, lat) and upper right (lon, lat) coordinates,
+\emph{e.g.}, \code{lonlat = c(xmin, ymin, xmax, ymax)} in that order for a
+given region, \emph{e.g.}, a bounding box for the south western corner of
+Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.  *Maximum area
+processed is 4.5 x 4.5 degrees (100 points).}
 
- \item{For global coverage}{To get global coverage for \dQuote{climatology},
- supply \dQuote{global} while also specifying \dQuote{climatology} for the
- \code{temporal_average}.}
+\item{For global coverage}{To get global coverage for \dQuote{climatology},
+supply \dQuote{global} while also specifying \dQuote{climatology} for the
+\code{temporal_average}.}
 }
 }
 
 \section{Argument details for \code{dates}}{
  if one date only is provided, it
-  will be treated as both the start date and the end date and only a single
-  day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
-  When \code{temporal_average} is set to \dQuote{monthly}, use only two
-  year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
-  argument should not be used when \code{temporal_average} is set to
-  \dQuote{climatology}.
-
-  The weather values from \acronym{POWER} for temperature are 2 metre max and
-  min temperatures, \dQuote{T2M_MAX} and \dQuote{T2M_MIN}; radiation,
-  \dQuote{ALLSKY_SFC_SW_DWN}; rain, \dQuote{PRECTOT}; relative humidity at 2
-  metres, \dQuote{RH2M}; and wind at 2 metres \dQuote{WS2M} from the
-  \acronym{POWER} \sQuote{ag} community on a daily time-step.
-
-  If further parameters are desired, the user may pass them along.
+will be treated as both the start date and the end date and only a single
+day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
+When \code{temporal_average} is set to \dQuote{monthly}, use only two
+year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
+argument should not be used when \code{temporal_average} is set to
+\dQuote{climatology}.
 }
 
+\section{wind-surface}{
+ There are 17 surfaces that may be used for corrected
+wind-speed values using the following equation:
+\deqn{WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha}
+Valid surface types are described here.
+
+\describe{
+\item{vegtype_1}{35-m broadleaf-evergreen trees (70\% coverage)}
+\item{vegtype_2}{20-m broadleaf-deciduous trees (75\% coverage)}
+\item{vegtype_3}{20-m broadleaf and needleleaf trees (75\% coverage)}
+\item{vegtype_4}{17-m needleleaf-evergreen trees (75\% coverage)}
+\item{vegtype_5}{14-m needleleaf-deciduous trees (50\% coverage)}
+\item{vegtype_6}{Savanna:18-m broadleaf trees (30\%) & groundcover}
+\item{vegtype_7}{0.6-m perennial groundcover (100\%)}
+\item{vegtype_8}{0.5-m broadleaf shrubs (variable \%) & groundcover}
+\item{vegtype_9}{0.5-m broadleaf shrubs (10\%) with bare soil}
+\item{vegtype_10}{Tundra: 0.6-m trees/shrubs (variable \%) & groundcover}
+\item{vegtype_11}{Rough bare soil}
+\item{vegtype_12}{Crop: 20-m broadleaf-deciduous trees (10\%) & wheat}
+\item{vegtype_20}{Rough glacial snow/ice}
+\item{seaice}{Smooth sea ice}
+\item{openwater}{Open water}
+\item{airportice}{Airport: flat ice/snow}
+\item{airportgrass}{Airport: flat rough grass}
+}
+}
+
+\examples{
+\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+
+# Fetch daily "ag" community temperature, relative humidity and precipitation
+# for January 1 1985 at Kingsthorpe, Queensland, Australia
+ag_d <- get_power(
+  community = "ag",
+  lonlat = c(151.81, -27.48),
+  pars = c("RH2M", "T2M", "PRECTOTCORR"),
+  dates = "1985-01-01",
+  temporal_average = "daily"
+)
+
+ag_d
+
+# Fetch single point climatology for air temperature
+ag_c_point <- get_power(
+  community = "ag",
+  pars = "T2M",
+  c(151.81, -27.48),
+  temporal_average = "climatology"
+)
+
+ag_c_point
+
+# Fetch global ag climatology for air temperature
+ag_c_global <- get_power(
+  community = "ag",
+  pars = "T2M",
+  lonlat = "global",
+  temporal_average = "climatology"
+)
+
+ag_c_global
+
+# Fetch interannual solar cooking parameters for a given region
+sse_i <- get_power(
+  community = "re",
+  lonlat = c(112.5, -55.5, 115.5, -50.5),
+  dates = c("1984", "1985"),
+  temporal_average = "monthly",
+  pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
+)
+
+sse_i
+\dontshow{\}) # examplesIf}
+}
 \references{
 \url{https://power.larc.nasa.gov/docs/methodology/}
 \url{https://power.larc.nasa.gov}

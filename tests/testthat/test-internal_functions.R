@@ -186,7 +186,7 @@ test_that(".check_lonlat() handles single point properly", {
                         pars)
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
-  expect_equal(test$identifier, "SinglePoint")
+  expect_equal(test$identifier, "Point")
 })
 
 test_that(".check_lonlat() checks validity of single lon values", {
@@ -356,7 +356,7 @@ test_that("Only 20 pars are allowed when `temporal_average` != climatology", {
               "HDD18_3",
               "KT",
               "WSC",
-              "PRECTOT",
+              "PRECTOTCORR",
               "PS",
               "QV2M",
               "RH2M",

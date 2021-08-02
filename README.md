@@ -11,16 +11,16 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![CRAN](http://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 <!-- badges: end -->
 
-# *nasapower*: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
+# _nasapower_: NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client <img align="right" src="man/figures/logo.png">
 
-*nasapower* aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
+_nasapower_ aims to make it quick and easy to automate downloading [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
 POWER (Prediction Of Worldwide Energy Resource) data are freely available for download with a  spatial resolution of 1/2 arc degree longitude by 1/2 arc degree latitude and various temporal resolutions depending on the POWER parameter.
 
-Please see <https://power.larc.nasa.gov/> for more on the data and other ways to access it and other forms of data available, *e.g.*, your web browser or an ESRI REST API.
+Please see <https://power.larc.nasa.gov/> for more on the data and other ways to access it and other forms of data available, _e.g._, your web browser or an ESRI REST API.
 
 ### Quick start
 
-*nasapower* can easily be installed using the following code.
+_nasapower_ can easily be installed using the following code.
 
 #### From CRAN
 
@@ -52,28 +52,10 @@ Fetch daily “AG” community temperature, relative humidity and precipitation 
 library(nasapower)
 daily_ag <- get_power(community = "AG",
                       lonlat = c(151.81, -27.48),
-                      pars = c("RH2M", "T2M", "PRECTOT"),
+                      pars = c("RH2M", "T2M", "PRECTOTCORR"),
                       dates = "1985-01-01",
                       temporal_average = "daily"
                       )
-                    
-daily_ag
-#> NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  
-#>  Dates (month/day/year): 01/01/1985 through 01/01/1985  
-#>  Location: Latitude  -27.48   Longitude 151.81  
-#>  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  
-#>  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  
-#>  Value for missing model data cannot be computed or out of model availability range: -99  
-#>  
-#>  Parameters: 
-#>  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;
-#>  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;
-#>  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  
-#>  
-#> # A tibble: 1 x 10
-#>     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOT
-#>   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>   <dbl>
-#> 1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1    1.07
 ```
 
 ## Documentation
@@ -82,7 +64,7 @@ More documentation is available in the vignette in your R session, `vignette("na
 
 ## Use of POWER Data
 
-While *nasapower* does not redistribute the data or provide it in any way, we encourage users to follow the requests of the POWER Project Team.
+While _nasapower_ does not redistribute the data or provide it in any way, we encourage users to follow the requests of the POWER Project Team.
 
 > When POWER data products are used in a publication, we request the
   following acknowledgement be included: “These data were obtained from
@@ -96,10 +78,10 @@ While *nasapower* does not redistribute the data or provide it in any way, we en
 
   - License: MIT
 
-  - To cite *nasapower*, please use the output from `citation(package = "nasapower")`.
+  - To cite _nasapower_, please use the output from `citation(package = "nasapower")`.
 
-  - Please note that the *nasapower* project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
-    By participating in the *nasapower* project you agree to abide by its terms.
+  - Please note that the _nasapower_ project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
+    By participating in the _nasapower_ project you agree to abide by its terms.
 
   - The U.S. Earth System Research Laboratory, Physical Science Division of the National Atmospheric & Oceanic Administration (NOAA) maintains a list of gridded climate data sets that provide different data and different resolutions <https://psl.noaa.gov/data/gridded/>.
 

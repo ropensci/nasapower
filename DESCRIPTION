@@ -41,8 +41,8 @@ Description: Client for 'NASA' 'POWER' global meteorology, surface solar
     energy climatology data for download with a resolution of 1/2 by 1/2 arc
     degree longitude and latitude and are funded through the 'NASA' Earth
     Science Directorate Applied Science Program.  For more on the data
-    themselves, a web-based data viewer and web access, please see
-    <https://power.larc.nasa.gov/>.
+    themselves, the methodologies used in creating, a web-based data viewer and
+    web access, please see <https://power.larc.nasa.gov/>.
 Depends:
     R (>= 3.5.0)
 License: MIT + file LICENSE
@@ -58,8 +58,6 @@ Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
 Repository: CRAN
-LazyData: TRUE
-ByteCompile: TRUE
 Suggests:
     knitr,
     rmarkdown,
@@ -71,3 +69,4 @@ X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
     weather-data, meteorology, NASA-POWER, agroclimatology, earth-science,
     data-access, climate-data
 X-schema.org-isPartOf: https://ropensci.org
+Roxygen: list(markdown = TRUE)

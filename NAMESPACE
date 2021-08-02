@@ -2,3 +2,5 @@
 
 S3method(print,POWER.Info)
 export(get_power)
+export(query_par)
+export(query_parameters)

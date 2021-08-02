@@ -1,5 +1,21 @@
 # nasapower (development version)
 
+## Major changes
+
+* Adds support for new NASA POWER 2.0, which includes new `hourly` data.
+
+* Removes `SSE` community, replaces with `RE`.
+
+* Adds new parameters to `get_power()`, 
+  - `site_elevation` and
+  - `wind_elevation.
+
+## Minor changes
+
+* Better documentation.
+
+* Removes internal references to ICASA format files that are no longer supported in this client.
+
 # nasapower 3.0.1
 
 ## Bug fixes

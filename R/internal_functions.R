@@ -1,6 +1,7 @@
+
 #' Add %notin% function
 #'
-#' Negates `%in%`` for easier matching.
+#' Negates `%in%` for easier matching.
 #'
 #' @param x A character string to match.
 #' @param table A table containing values to match `x` against.
@@ -15,27 +16,26 @@
 
 #' Check dates for validity when querying API
 #'
-#' Validates user entered date values against \code{lonlat} and
-#' \code{temporal_average} values
+#' Validates user entered date values against `lonlat` and `temporal_api` values
 #'
-#' @param dates User entered \code{dates} value.
-#' @param lonlat User entered \code{lonlat} value.
-#' @param temporal_average User entered \code{temporal_average} value.
+#' @param dates User entered `dates` value.
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_api User entered `temporal_api` value.
 #'
-#' @return Validated dates in a list for use in \code{.build_query}
+#' @return Validated dates in a list for use in `.build_query`
 #'
 #' @noRd
-.check_dates <- function(dates, lonlat, temporal_average) {
-  if (is.null(dates) & temporal_average != "climatology") {
+.check_dates <- function(dates, lonlat, temporal_api) {
+  if (is.null(dates) & temporal_api != "climatology") {
     stop(call. = FALSE,
          "\nYou have not entered dates for the query.\n")
   }
 
-  if (temporal_average == "monthly") {
+  if (temporal_api == "monthly") {
     if (length(unique(dates)) < 2) {
       stop(
         call. = FALSE,
-        "\nFor `temporal_average = monthly`, at least two (2) years ",
+        "\nFor `temporal_api = monthly`, at least two (2) years ",
         "are required to be provided.\n"
       )
     }
@@ -50,7 +50,7 @@
     return(dates)
   }
 
-  if (temporal_average == "daily") {
+  if (temporal_api == "daily") {
     if (is.numeric(lonlat)) {
       if (length(dates) == 1) {
         dates <- c(dates, dates)
@@ -115,65 +115,38 @@
   }
 }
 
-#' Check community for validity when querying API
-#'
-#' Validates user entered \code{community} values against
-#' \code{pars} for availability.
-#'
-#' @param community User entered \code{community} value.
-#' @param pars User entered \code{pars} value.
-#'
-#' @return Validated community and pars for use in .build_query()
-#'
-#' @noRd
-.check_community <-
-  function(community, pars) {
-    if (community %notin% c("AG", "SB", "SSE")) {
-      stop(call. = FALSE,
-           "\nYou have provided an invalid `community` value.\n")
-    }
-  }
-
 #' Check pars for validity when querying API
 #'
-#' Validates user entered date values against \code{lonlat} and
-#' \code{temporal_average} values
+#' Validates user entered date values against `lonlat` and
+#' `temporal_api` values
 #'
-#' @param dates User entered \code{dates} value.
-#' @param lonlat User entered \code{lonlat} value.
-#' @param temporal_average User entered \code{temporal_average} value.
+#' @param pars User entered `pars` value.
+#' @param community User entered `community` value.
+#' @param temporal_api User entered `temporal_api` value.
+#' @param lonlat User entered `lonlat` value.
 #'
-#' @return Validated pars for use in .build_query()
+#' @return Validated pars for use in [.build_query()]
 #'
 #' @noRd
 .check_pars <-
-  function(pars, temporal_average, lonlat) {
-    # check pars to make sure that they are valid
-    if (any(pars %notin% names(parameters))) {
-      stop(call. = FALSE,
-           paste0("\n", pars[which(pars %notin% names(parameters))],
-                  " is/are not valid in 'pars'.\n"))
-    }
-
-    # check to make sure temporal_average is appropriate for given pars
-    for (i in pars) {
-      if (temporal_average %notin% parameters[[i]]$include) {
-        stop(
-          call. = FALSE,
-          "\nYou have entered an invalid value for `temporal_average` for ",
-          "the supplied `pars`. One or more `pars` are not, available for ",
-          "`",
-          temporal_average,
-          "`, please check.\n"
-        )
-      }
-    }
+  function(pars, community, temporal_api) {
 
     # make sure that there are no duplicates in the query
     pars <- unique(pars)
 
+    p <- parameters[[paste(temporal_api, community, sep = "_")]]
+
+    # check pars to make sure that they are valid for both the par and
+    # temporal_api
+    if (any(pars %notin% p)) {
+      stop(call. = FALSE,
+           "\n", pars[which(pars %notin% p)],
+                  " is not valid in 'pars'.\n",
+           "Check that the 'pars', 'community' and 'temporal_average' align.")
+    }
+
     # check pars to make sure < allowed
-    if (length(pars) > 3 & temporal_average == "climatology") {
+    if (length(pars) > 3 & temporal_api == "CLIMATOLOGY") {
       stop(
         call. = FALSE,
         "\nYou can only specify three (3) parameters for download when ",
@@ -181,27 +154,25 @@
       )
     }
 
-    if (length(pars) > 20 & temporal_average != "climatology") {
+    if (length(pars) > 20 & temporal_api != "CLIMATOLOGY") {
       stop(call. = FALSE,
            "\nYou can only specify 20 parameters for download at a time.\n")
     }
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
-    pars <- list(pars, temporal_average)
-    names(pars) <- c("pars", "temporal_average")
     return(pars)
   }
 
 #' Check lonlat for validity when querying API
 #'
-#' Validates user entered \code{lonlat} values and checks against \code{pars}
+#' Validates user entered `lonlat` values and checks against `pars`
 #' values.
 #'
-#' @param lonlat User entered \code{lonlat} value.
-#' @param pars User entered \code{pars} value.
+#' @param lonlat User entered `lonlat` value.
+#' @param pars User entered `pars` value.
 #'
-#' @return A list called lonlat_identifier for use in \code{.build_query}
+#' @return A list called `lonlat_identifier` for use in [.build_query()]
 #'
 #' @noRd
 .check_lonlat <-
@@ -209,7 +180,7 @@
     bbox <- NULL
     if (is.character(lonlat) & length(lonlat) == 1) {
       if (lonlat == "global") {
-        identifier <- "Global"
+        identifier <- "global"
       } else if (is.character(lonlat)) {
         stop(call. = FALSE,
              "\nYou have entered an invalid request for `lonlat`.\n")
@@ -231,7 +202,7 @@
           "`, value to be sure it is valid.\n"
         )
       }
-      identifier <- "SinglePoint"
+      identifier <- "point"
       lon <- lonlat[1]
       lat <- lonlat[2]
     } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
@@ -273,7 +244,7 @@
         stop(call. = FALSE,
              "\nThe first `lon` value must be the minimum value.\n")
       }
-      identifier <- "Regional"
+      identifier <- "regional"
       bbox <- paste(lonlat[2],
                     lonlat[1],
                     lonlat[4],
@@ -287,8 +258,8 @@
     if (!is.null(bbox)) {
       lonlat_identifier <- list(bbox, identifier)
       names(lonlat_identifier) <- c("bbox", "identifier")
-    } else if (identifier == "Global") {
-      lonlat_identifier <- list("Global")
+    } else if (identifier == "global") {
+      lonlat_identifier <- list("global")
       names(lonlat_identifier) <- "identifier"
     } else {
       lonlat_identifier <- list(lon, lat, identifier)
@@ -299,18 +270,15 @@
 
 #' Query the POWER API
 #'
-#' Constructs and sends a query to the POWER API using validated values from
+#' Constructs and sends a query to the 'POWER' 'API' using validated values from
 #' previous functions in this file.
 #'
-#' @param community A validated value for community from
-#'  \code{check_community()}.
-#' @param lonlat_identifier A list of values, a result of \code{check_lonlat()}
-#' @param pars A validated value from \code{check_pars()}.
-#' @param dates A list of valuse, a result of \code{check_dates()}.
-#' @param outputList A value of either \sQuote{CSV} or \sQuote{ICASA} that
-#' tells the \sQuote{API} the desired format in which to return the data.
+#' @param community A validated value for community from [check_community()].
+#' @param lonlat_identifier A list of values, a result of [check_lonlat()]
+#' @param pars A validated value from [check_pars()].
+#' @param dates A list of values, a result of [check_dates()].
 #'
-#' @return A tidy tibble() of requested 'POWER' data
+#' @return A [tibble::tibble()] of requested 'POWER' data
 #'
 #' @noRd
 .build_query <- function(community,
@@ -318,23 +286,21 @@
                          pars,
                          dates,
                          site_elevation,
-                         outputList) {
-  user_agent <- "nasapower"
+                         wind_elevation,
+                         wind_surface) {
+  user_agent <- paste0("nasapower_v", getNamespaceVersion("nasapower"))
 
   # If user has given a site_elevation value, use it
-  if (lonlat_identifier$identifier == "SinglePoint" &
-      !is.null(site_elevation)) {
+  if (lonlat_identifier$identifier == "point") {
     if (!is.null(dates)) {
       query_list <- list(
-        request = "execute",
-        identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
-        startDate = dates[[1]],
-        endDate = dates[[2]],
-        userCommunity = community,
-        tempAverage = pars$temporal_average,
+        community = community,
+        identifier = lonlat_identifier$identifier,
+        start = dates[[1]],
+        end = dates[[2]],
         siteElev = site_elevation,
-        outputList = outputList,
+        format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -343,12 +309,10 @@
 
     if (is.null(dates)) {
       query_list <- list(
-        request = "execute",
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
-        userCommunity = community,
-        tempAverage = pars$temporal_average,
-        outputList = outputList,
+        community = community,
+        format = "CSV",
         siteElev = site_elevation,
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
@@ -358,18 +322,16 @@
   }
 
   # if no site elevation value provided, send request without
-  if (lonlat_identifier$identifier == "SinglePoint" &
+  if (lonlat_identifier$identifier == "point" &
       is.null(site_elevation)) {
     if (!is.null(dates)) {
       query_list <- list(
-        request = "execute",
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
+        community = community,
         startDate = dates[[1]],
         endDate = dates[[2]],
-        userCommunity = community,
-        tempAverage = pars$temporal_average,
-        outputList = outputList,
+        format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -378,12 +340,10 @@
 
     if (is.null(dates)) {
       query_list <- list(
-        request = "execute",
         identifier = lonlat_identifier$identifier,
         parameters = I(pars$pars),
-        userCommunity = community,
-        tempAverage = pars$temporal_average,
-        outputList = outputList,
+        community = community,
+        format = "CSV",
         lon = lonlat_identifier$lon,
         lat = lonlat_identifier$lat,
         user = user_agent
@@ -391,43 +351,37 @@
     }
   }
 
-  if (lonlat_identifier$identifier == "Regional" &
+  if (lonlat_identifier$identifier == "regional" &
       !is.null(dates)) {
     query_list <- list(
-      request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
+      community = community,
       startDate = dates[[1]],
       endDate = dates[[2]],
-      userCommunity = community,
-      tempAverage = pars$temporal_average,
       bbox = I(lonlat_identifier$bbox),
-      outputList = outputList,
+      format = "CSV",
       user = user_agent
     )
   }
 
-  if (lonlat_identifier$identifier == "Regional" & is.null(dates)) {
+  if (lonlat_identifier$identifier == "regional" & is.null(dates)) {
     query_list <- list(
-      request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
-      userCommunity = community,
-      tempAverage = pars$temporal_average,
+      community = community,
       bbox = I(lonlat_identifier$bbox),
-      outputList = outputList,
+      format = "CSV",
       user = user_agent
     )
   }
 
-  if (lonlat_identifier$identifier == "Global") {
+  if (lonlat_identifier$identifier == "global") {
     query_list <- list(
-      request = "execute",
       identifier = lonlat_identifier$identifier,
       parameters = I(pars$pars),
-      userCommunity = community,
-      tempAverage = pars$temporal_average,
-      outputList = "CSV",
+      community = community,
+      format = "CSV",
       user = user_agent
     )
   }
@@ -436,12 +390,20 @@
 
 #' Sends the query to the API
 #'
-#' @param .query_list A query list created by `.build_query`
+#' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
-.send_query <- function(.query_list, .pars) {
-  power_url <- # nocov start
-    "https://power.larc.nasa.gov/beta/api/temporal"
+.send_query <- function(.query_list, .pars, temporal_api, community) {
+  # constructs url from url defined in zzz.R and the temporal_api and community
+  power_url <- paste0(
+    getOption("nasapower_base_url"),
+    "temporal/",
+    temporal_api,
+    "&",
+    community,
+    .query_list$lonlat_identifier$identifier
+  )
+
   client <- crul::HttpClient$new(url = power_url)
 
   # check status
@@ -468,7 +430,7 @@
 
 #' Imports data after download
 #'
-#' @param .query_list A query list created by `.build_query`
+#' @param .query_list A query list created by [.build_query()]
 #' @noRd
 #'
 
@@ -483,7 +445,7 @@
   }
 
   if ("csv" %in% names(.txt$output)) {
-    if (.query_list$outputList == "CSV") {
+    if (.query_list$format == "CSV") {
       curl::curl_download(
         .txt$output$csv,
         destfile = raw_power_data,
@@ -520,12 +482,12 @@
       power_data <- power_data[, c(2, 1, 3:ncol(power_data))]
 
       # if the temporal average is anything but climatology, add date fields
-      if (.pars$temporal_average == "daily" &
+      if (.pars$temporal_api == "daily" &
           .query_list$userCommunity == "SSE" |
           .query_list$userCommunity == "SB") {
         power_data <- .format_dates_SSE_SB(power_data)
       }
-      if (.pars$temporal_average == "daily" &
+      if (.pars$temporal_api == "daily" &
           .query_list$userCommunity == "AG") {
         power_data <- .format_dates_AG(power_data)
       }
@@ -597,9 +559,9 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from \code{.build_query}.
+#' @param NASA A tidy data.frame resulting from [build_query()].
 #'
-#' @return A tidy data frame of power data with additional date information
+#' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #'
 #' @noRd
@@ -632,9 +594,9 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from \code{.build_query}.
+#' @param NASA A tidy data.frame resulting from [.build_query()].
 #'
-#' @return A tidy data frame of power data with additional date information
+#' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #'
 #' @noRd
