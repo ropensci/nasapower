@@ -206,8 +206,8 @@
         )
       }
       identifier <- "point"
-      lon <- lonlat[1]
-      lat <- lonlat[2]
+      longitude <- lonlat[1]
+      latitude <- lonlat[2]
     } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
       if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
         stop(
@@ -265,8 +265,8 @@
       lonlat_identifier <- list("global")
       names(lonlat_identifier) <- "identifier"
     } else {
-      lonlat_identifier <- list(lon, lat, identifier)
-      names(lonlat_identifier) <- c("lon", "lat", "identifier")
+      lonlat_identifier <- list(longitude, latitude, identifier)
+      names(lonlat_identifier) <- c("longitude", "latitude", "identifier")
     }
     return(lonlat_identifier)
   }
@@ -303,9 +303,10 @@
         start = dates[[1]],
         end = dates[[2]],
         siteElev = site_elevation,
-        format = "CSV",
-        lon = lonlat_identifier$lon,
-        lat = lonlat_identifier$lat,
+        longitude = lonlat_identifier$longitude,
+        latitude = lonlat_identifier$latitude,
+        format = "csv",
+        time_standard = "utc",
         user = user_agent
       )
     }
@@ -315,10 +316,11 @@
         identifier = lonlat_identifier$identifier,
         parameters = pars,
         community = community,
-        format = "CSV",
         siteElev = site_elevation,
-        lon = lonlat_identifier$lon,
-        lat = lonlat_identifier$lat,
+        longitude = lonlat_identifier$longitude,
+        latitude = lonlat_identifier$latitude,
+        format = "csv",
+        time_standard = "utc",
         user = user_agent
       )
     }
@@ -334,9 +336,10 @@
         community = community,
         startDate = dates[[1]],
         endDate = dates[[2]],
-        format = "CSV",
-        lon = lonlat_identifier$lon,
-        lat = lonlat_identifier$lat,
+        longitude = lonlat_identifier$longitude,
+        latitude = lonlat_identifier$latitude,
+        format = "csv",
+        time_standard = "utc",
         user = user_agent
       )
     }
@@ -346,9 +349,10 @@
         identifier = lonlat_identifier$identifier,
         parameters = pars,
         community = community,
-        format = "CSV",
-        lon = lonlat_identifier$lon,
-        lat = lonlat_identifier$lat,
+        longitude = lonlat_identifier$longitude,
+        latitude = lonlat_identifier$latitude,
+        format = "csv",
+        time_standard = "utc",
         user = user_agent
       )
     }
@@ -363,7 +367,8 @@
       startDate = dates[[1]],
       endDate = dates[[2]],
       bbox = I(lonlat_identifier$bbox),
-      format = "CSV",
+      format = "csv",
+      time_standard = "utc",
       user = user_agent
     )
   }
@@ -374,7 +379,8 @@
       parameters = pars,
       community = community,
       bbox = I(lonlat_identifier$bbox),
-      format = "CSV",
+      format = "csv",
+      time_standard = "utc",
       user = user_agent
     )
   }
@@ -384,7 +390,8 @@
       identifier = lonlat_identifier$identifier,
       parameters = pars,
       community = community,
-      format = "CSV",
+      format = "csv",
+      time_standard = "utc",
       user = user_agent
     )
   }
