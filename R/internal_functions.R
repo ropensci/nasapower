@@ -134,7 +134,7 @@
     # make sure that there are no duplicates in the query
     pars <- unique(pars)
 
-    p <- parameters[[paste(temporal_api, community, sep = "_")]]
+    p <- parameters[paste(temporal_api, community, sep = "_")]
 
     # check pars to make sure that they are valid for both the par and
     # temporal_api
