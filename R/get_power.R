@@ -203,19 +203,6 @@ get_power <- function(community,
     stop(call. = FALSE,
          "\nYou have entered an invalid value for `temporal_average`.\n")
   }
-  if (is.character(wind_surface) && is.null(wind_elevation)) {
-    stop(
-      call. = FALSE,
-      "\nbIf you provide a correct wind surface alias `wind_surface` please",
-      "include a surface elevation `wind_elevation` with the request.\n"
-    )
-  }
-  if (is.numeric(wind_elevation) &&
-      wind_elevation < 10 || wind_elevation > 300) {
-    stop(call. = FALSE,
-         "\nWind Elevation values in metres are required to be between",
-         "10m and 300m.\n")
-  }
   if (is.character(community)) {
     community <- toupper(community)
   }
@@ -235,6 +222,19 @@ get_power <- function(community,
     stop(
       call. = FALSE,
       "\nYou have entered an invalid value for `site_elevation`.\n")
+  }
+  if (is.character(wind_surface) && is.null(wind_elevation)) {
+    stop(
+      call. = FALSE,
+      "\nbIf you provide a correct wind surface alias `wind_surface` please",
+      "include a surface elevation `wind_elevation` with the request.\n"
+    )
+  }
+  if (is.numeric(wind_elevation) &&
+      wind_elevation < 10 || wind_elevation > 300) {
+    stop(call. = FALSE,
+         "\nWind Elevation values in metres are required to be between",
+         "10m and 300m.\n")
   }
   if (is.character(lonlat)) {
     lonlat <- tolower(lonlat)
