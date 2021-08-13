@@ -241,7 +241,7 @@ get_power <- function(community,
     pars <- .check_pars(
       pars,
       community,
-      temporal_api,
+      temporal_api
     )
     lonlat_identifier <- .check_lonlat(
       lonlat,
