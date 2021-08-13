@@ -200,9 +200,21 @@ get_power <- function(community,
     }
   }
   if (temporal_api %notin% c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")) {
+    stop(call. = FALSE,
+         "\nYou have entered an invalid value for `temporal_average`.\n")
+  }
+  if (is.character(wind_surface) && is.null(wind_elevation)) {
     stop(
       call. = FALSE,
-      "\nYou have entered an invalid value for `temporal_average`.\n")
+      "\nbIf you provide a correct wind surface alias `wind_surface` please",
+      "include a surface elevation `wind_elevation` with the request.\n"
+    )
+  }
+  if (is.numeric(wind_elevation) &&
+      wind_elevation < 10 || wind_elevation > 300) {
+    stop(call. = FALSE,
+         "\nWind Elevation values in metres are required to be between",
+         "10m and 300m.\n")
   }
   if (is.character(community)) {
     community <- toupper(community)
@@ -216,7 +228,7 @@ get_power <- function(community,
   }
   if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
     message("\nYou have provided `site_elevation` for a region or `global`.",
-            "\nThe `site_elevation` value will be ignored.")
+            "\nThe `site_elevation` value will be ignored.\n")
     site_elevation <- NULL
   }
   if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
