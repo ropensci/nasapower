@@ -194,12 +194,12 @@ get_power <- function(community,
   # same starting here for referring to API calls in the same fashion.
 
   if (is.character(temporal_average)) {
-    temporal_api <- tolower(temporal_average)
+    temporal_api <- toupper(temporal_average)
     if (temporal_api == "climatology") {
       dates <- NULL
     }
   }
-  if (temporal_api %notin% c("hourly", "daily", "monthly", "climatology")) {
+  if (temporal_api %notin% c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")) {
     stop(
       call. = FALSE,
       "\nYou have entered an invalid value for `temporal_average`.\n")
