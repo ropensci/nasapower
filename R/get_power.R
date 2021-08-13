@@ -247,6 +247,11 @@ get_power <- function(community,
       lonlat,
       pars
     )
+    dates <- .check_dates(
+      dates,
+      lonlat,
+      temporal_api
+    )
 
     # submit query -------------------------------------------------------------
     query_list <- .build_query(
