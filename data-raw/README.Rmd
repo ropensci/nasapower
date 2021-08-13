@@ -72,7 +72,7 @@ vals <- expand.grid(temporal_api, community, stringsAsFactors = FALSE)
 temporal_api <- vals[, 1]
 community <- vals[, 2]
 
-base_url <- "https://power.larc.nasa.gov/beta/api/system/manager/parameters?"
+base_url <- "https://power.larc.nasa.gov/api/system/manager/parameters?"
 
 power_pars <- map2(.x = temporal_api,
                   .y = community,
