@@ -31,7 +31,7 @@
          "\nYou have not entered dates for the query.\n")
   }
 
-  if (temporal_api == "monthly") {
+  if (temporal_api == "MONTHLY") {
     if (length(unique(dates)) < 2) {
       stop(
         call. = FALSE,
@@ -50,7 +50,7 @@
     return(dates)
   }
 
-  if (temporal_api == "daily") {
+  if (temporal_api == "DAILY" || temporal_api == "HOURLY") {
     if (is.numeric(lonlat)) {
       if (length(dates) == 1) {
         dates <- c(dates, dates)
@@ -98,11 +98,14 @@
       }
 
       # check date to be sure it's not before POWER data start
-      if (dates[[1]] < "1981-01-01") {
+      if (temporal_api != "HOURLY" &&
+          dates[[1]] < "1981-01-01") {
         stop(call. = FALSE,
              "\n1981-01-01 is the earliest available data from POWER.\n")
-      }
-
+      } else if (temporal_api == "HOURLY" &
+                 dates[[1]] < "2001-01-01")
+        stop(call. = FALSE,
+             "\n2001-01-01 is the earliest available hourly data from POWER.\n")
       # check end date to be sure it's not _after_
       if (dates[[2]] > Sys.Date()) {
         stop(call. = FALSE,
