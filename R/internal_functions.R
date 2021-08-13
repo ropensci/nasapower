@@ -109,7 +109,7 @@
       # check end date to be sure it's not _after_
       if (dates[[2]] > Sys.Date()) {
         stop(call. = FALSE,
-             "\nThe data cannot possibly extend beyond this moment.\n")
+             "\nThe weather data cannot possibly extend beyond this day.\n")
       }
 
       dates <- lapply(dates, as.character)
