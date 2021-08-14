@@ -402,16 +402,27 @@
 #' Sends the query to the API
 #'
 #' @param .query_list A query list created by [.build_query()]
+#' @param .pars A character string of validated pars provided by the user
+#' @param .temporal_api A character string of the validated `temporal_api`
+#'  provided by the user as `temporal_average`
+#' @param .community A character string of the validated community provided by
+#'  the user
+#' @param .identifer A character string of the validated identifier values as
+#'  created by [.check_lonlat()]
 #' @noRd
 #'
-.send_query <- function(.query_list, .pars, .temporal_api, .community) {
-  # constructs url from url defined in zzz.R and the temporal_api and community
+.send_query <- function(.query_list,
+                        .pars,
+                        .temporal_api,
+                        .community,
+                        .identifier) {
+  # constructs URL from url defined in zzz.R and the temporal_api and community
   power_url <- paste0(
     getOption("nasapower_base_url"),
     "temporal/",
     .temporal_api,
     "/",
-    .query_list$identifier
+    .identifier
   )
 
   client <- crul::HttpClient$new(url = power_url)
