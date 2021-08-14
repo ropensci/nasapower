@@ -291,7 +291,12 @@
                          site_elevation,
                          wind_elevation,
                          wind_surface) {
-  user_agent <- paste0("nasapower_v", getNamespaceVersion("nasapower"))
+  user_agent <- paste0("nasapower",
+                       gsub(
+                         pattern = "\\.",
+                         replacement = "",
+                         x = getNamespaceVersion("nasapower")
+                       ))
 
   # If user has given a site_elevation value, use it
   if (lonlat_identifier$identifier == "point") {
@@ -299,7 +304,6 @@
       query_list <- list(
         parameters = pars,
         community = community,
-        identifier = lonlat_identifier$identifier,
         start = dates[[1]],
         end = dates[[2]],
         siteElev = site_elevation,
