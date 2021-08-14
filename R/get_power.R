@@ -280,7 +280,8 @@ get_power <- function(community,
         .query_list = query_list,
         .pars = pars,
         .temporal_api = temporal_api,
-        .community = community
+        .community = community,
+        .identifier = lonlat_identifier$identifier
       )
     out <-
       .import_power(
