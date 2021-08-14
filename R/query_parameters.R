@@ -23,7 +23,7 @@ query_par <- function(par) {
   par <- toupper(par)
   par_def <-
     jsonlite::fromJSON(paste0(getOption("nasapower_base_url"),
-                              "system/manager/parameters/",
+                              "system/manager/parameters?",
                               par))
   return(par_def)
 }
@@ -94,9 +94,8 @@ query_parameters <- function(temporal_api, community) {
 
   parameters <-
     jsonlite::fromJSON(
-      paste0(
-        getOption("mypkg-myval"),
-        "parameters?temporal=",
+        paste0(getOption("nasapower_base_url"),
+               "system/manager/parameters?",
         temporal_api,
         "&community=",
         community
