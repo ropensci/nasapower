@@ -275,14 +275,17 @@ get_power <- function(community,
       wind_elevation,
       wind_surface
     )
+    response <-
+      .send_query(
+        .query_list = query_list,
+        .pars = pars,
+        .temporal_api = temporal_api,
+        .community = community
+      )
     out <-
-      .send_query(.query_list = query_list,
-                  .pars = pars,
-                  .temporal_api = temporal_api,
-                  .community = community)
-    out <-
-      .import_power(.txt = out,
-                    .pars = pars,
-                    .query_list = query_list)
+      .import_power(
+        .txt = response,
+        .pars = pars,
+        .query_list = query_list)
     return(out)
   }
