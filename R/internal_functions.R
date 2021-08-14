@@ -453,7 +453,7 @@
   }
 
   if ("csv" %in% names(.txt$output)) {
-    if (.query_list$format == "CSV") {
+    if (.query_list$format == "csv") {
       curl::curl_download(
         .txt$output$csv,
         destfile = raw_power_data,
