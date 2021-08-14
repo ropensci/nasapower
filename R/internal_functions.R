@@ -427,13 +427,9 @@
 
   client <- crul::HttpClient$new(url = power_url)
 
-  # check status
-  status <- client$get()
-  status$raise_for_status() # nocov end
-
-  tryCatch({
+  tryCatch({ # nocov begin
     response <- client$get(query = .query_list, retry = 6)
-    jsonlite::fromJSON(response$parse("UTF-8"))
+    response$success()
   }, # nocov start
   error = function(e) {
     e$message <-
