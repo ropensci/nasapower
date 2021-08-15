@@ -283,9 +283,10 @@ get_power <- function(community,
         .identifier = lonlat_identifier$identifier
       )
     out <-
-      .import_power(
-        .txt = response,
+      .return_power(
+        .response = response,
         .pars = pars,
-        .query_list = query_list)
+        .query_list = query_list,
+        .temporal_api = temporal_api)
     return(out)
   }
