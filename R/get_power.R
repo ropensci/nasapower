@@ -12,15 +12,15 @@
 #'   parameters to download.  If downloading \dQuote{climatology} a maximum of
 #'   three `pars` can be specified at one time, for \dQuote{daily} and
 #'   \dQuote{monthly} a maximum of 20 can be specified at one time.
-#' @param temporal_average Temporal average for data being queried, supported
-#'   values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
+#' @param temporal_api Temporal \acronym{API} end-point for data being queried,
+#'   supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 #'   \dQuote{climatology}.  See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y coordinates or \dQuote{global} for global coverage (only
 #'   used for \dQuote{climatology}).  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   _e.g._, `dates = c("1983-01-01", "2017-12-31")`.
-#'   Not used when\cr `temporal_average` is set to \dQuote{climatology}.
+#'   Not used when\cr `temporal_api` is set to \dQuote{climatology}.
 #'   See argument details for more.
 #' @param site_elevation A user-supplied value for elevation at a single point
 #'   in metres.  If provided this will return a corrected atmospheric pressure
@@ -53,7 +53,7 @@
 #'  powered renewable energy systems.}
 #'  }
 #'
-#' @section Argument details for `temporal_average`: There are four valid
+#' @section Argument details for `temporal_api`: There are four valid
 #'  values.
 #'  \describe{
 #'   \item{hourly}{The hourly average of `pars` by hour, day, month and
@@ -81,15 +81,15 @@
 #'
 #'  \item{For global coverage}{To get global coverage for \dQuote{climatology},
 #'  supply \dQuote{global} while also specifying \dQuote{climatology} for the
-#'  `temporal_average`.}
+#'  `temporal_api`.}
 #' }
 #'
 #' @section Argument details for `dates`: if one date only is provided, it
 #'   will be treated as both the start date and the end date and only a single
 #'   day's values will be returned, _e.g._, `dates = "1983-01-01"`.
-#'   When `temporal_average` is set to \dQuote{monthly}, use only two
+#'   When `temporal_api` is set to \dQuote{monthly}, use only two
 #'   year values (YYYY), _e.g._ `dates = c(1983, 2010)`.  This
-#'   argument should not be used when `temporal_average` is set to
+#'   argument should not be used when `temporal_api` is set to
 #'   \dQuote{climatology}.
 #'
 #' @section wind-surface: There are 17 surfaces that may be used for corrected
@@ -139,7 +139,7 @@
 #'   lonlat = c(151.81, -27.48),
 #'   pars = c("RH2M", "T2M", "PRECTOTCORR"),
 #'   dates = "1985-01-01",
-#'   temporal_average = "daily"
+#'   temporal_api = "daily"
 #' )
 #'
 #' ag_d
@@ -149,7 +149,7 @@
 #'   community = "ag",
 #'   pars = "T2M",
 #'   c(151.81, -27.48),
-#'   temporal_average = "climatology"
+#'   temporal_api = "climatology"
 #' )
 #'
 #' ag_c_point
@@ -159,7 +159,7 @@
 #'   community = "ag",
 #'   pars = "T2M",
 #'   lonlat = "global",
-#'   temporal_average = "climatology"
+#'   temporal_api = "climatology"
 #' )
 #'
 #' ag_c_global
@@ -169,7 +169,7 @@
 #'   community = "re",
 #'   lonlat = c(112.5, -55.5, 115.5, -50.5),
 #'   dates = c("1984", "1985"),
-#'   temporal_average = "monthly",
+#'   temporal_api = "monthly",
 #'   pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
 #' )
 #'
@@ -180,7 +180,7 @@
 #' @export
 get_power <- function(community,
                       pars,
-                      temporal_average,
+                      temporal_api,
                       lonlat,
                       dates = NULL,
                       site_elevation = NULL,
@@ -189,19 +189,15 @@ get_power <- function(community,
 
   # user input checks and formatting -------------------------------------------
 
-    # I've kept "temporal_average" for backwards compatibility in user inputs.
-  # However, POWER uses the term "temporal API", for internal purposes, I do the
-  # same starting here for referring to API calls in the same fashion.
-
-  if (is.character(temporal_average)) {
-    temporal_api <- tolower(temporal_average)
+  if (is.character(temporal_api)) {
+    temporal_api <- tolower(temporal_api)
     if (temporal_api == "climatology") {
       dates <- NULL
     }
   }
   if (temporal_api %notin% c("hourly", "daily", "monthly", "climatology")) {
     stop(call. = FALSE,
-         "\nYou have entered an invalid value for `temporal_average`.\n")
+         "\nYou have entered an invalid value for `temporal_api`.\n")
   }
   if (is.character(community)) {
     community <- tolower(community)
