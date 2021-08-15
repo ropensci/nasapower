@@ -206,7 +206,7 @@ get_power <- function(community,
     stop(call. = FALSE,
          "\nYou have provided an invalid `community` value.\n")
   }
-   if (is.character(pars)) {
+  if (is.character(pars)) {
     pars <- toupper(pars)
   }
   if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
