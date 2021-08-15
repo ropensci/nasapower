@@ -496,8 +496,8 @@
 
   # add lon and lat values from user's request
   power_data <- tibble::add_column(
-    lon = .query_list$longitude,
-    lat = .query_list$latitude,
+    LON = .query_list$longitude,
+    LAT = .query_list$latitude,
     power_data,
     .before = 1
   )
