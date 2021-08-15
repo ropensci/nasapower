@@ -282,11 +282,5 @@ get_power <- function(community,
         .community = community,
         .identifier = lonlat_identifier$identifier
       )
-    out <-
-      .return_power(
-        .response = response,
-        .pars = pars,
-        .query_list = query_list,
-        .temporal_api = temporal_api)
-    return(out)
+    return(response)
   }
