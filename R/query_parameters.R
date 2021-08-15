@@ -22,7 +22,7 @@
 query_par <- function(par) {
   par <- toupper(par)
   par_def <-
-    jsonlite::fromJSON(paste0(getOption("nasapower_base_url"),
+    jsonlite::fromJSON(paste0("https://power.larc.nasa.gov/api/",
                               "system/manager/parameters?",
                               par))
   return(par_def)

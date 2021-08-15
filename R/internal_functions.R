@@ -419,8 +419,7 @@
                         .identifier) {
   # constructs URL from url defined in zzz.R and the temporal_api and community
   power_url <- paste0(
-    getOption("nasapower_base_url"),
-    "temporal/",
+    "https://power.larc.nasa.gov/api/temporal/",
     .temporal_api,
     "/",
     .identifier
