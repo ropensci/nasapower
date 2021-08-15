@@ -58,7 +58,7 @@ query_par <- function(par) {
 #'  powered renewable energy systems.}
 #'  }
 #'
-#' @section Argument details for `temporal_average`: There are four valid
+#' @section Argument details for `temporal_api`: There are four valid
 #'  values.
 #'  \describe{
 #'   \item{hourly}{The hourly average of `pars` by hour, day, month and
