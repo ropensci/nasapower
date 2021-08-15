@@ -564,7 +564,7 @@ print.POWER.Info <- function(x, ...) {
   invisible(x)
 }
 
-#' Format date columns in POWER data frame for the AG community
+#' Format date columns in POWER data frame for the ag community
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
@@ -575,7 +575,7 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' @noRd
 #'
-.format_dates_AG <- function(NASA) {
+.format_dates_ag <- function(NASA) {
   # convert DOY to integer
   NASA$DOY <- as.integer(NASA$DOY)
 
@@ -599,7 +599,7 @@ print.POWER.Info <- function(x, ...) {
                              .after = "MM")
 }
 
-#' Format date columns in POWER data frame for the SSE community
+#' Format date columns in POWER data frame for the re community
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
@@ -610,7 +610,7 @@ print.POWER.Info <- function(x, ...) {
 #'
 #' @noRd
 #'
-.format_dates_SSE_SB <- function(NASA) {
+.format_dates_re_sb <- function(NASA) {
   names(NASA)[names(NASA) == "DY"] <- "DD"
   names(NASA)[names(NASA) == "MO"] <- "MM"
 
