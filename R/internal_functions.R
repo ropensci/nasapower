@@ -444,8 +444,7 @@
       )
     # Otherwise refers to open.connection
     e$call <- NULL
-    stop(call. = FALSE,
-         e)
+    stop(e)
   }) # nocov end
 
   if (response$status_code != 200) {
