@@ -7,7 +7,7 @@
 get_power(
   community,
   pars,
-  temporal_average,
+  temporal_api,
   lonlat,
   dates = NULL,
   site_elevation = NULL,
@@ -24,8 +24,8 @@ parameters to download.  If downloading \dQuote{climatology} a maximum of
 three \code{pars} can be specified at one time, for \dQuote{daily} and
 \dQuote{monthly} a maximum of 20 can be specified at one time.}
 
-\item{temporal_average}{Temporal average for data being queried, supported
-values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
+\item{temporal_api}{Temporal \acronym{API} end-point for data being queried,
+supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 \dQuote{climatology}.  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -34,7 +34,7 @@ used for \dQuote{climatology}).  See argument details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
-Not used when\cr \code{temporal_average} is set to \dQuote{climatology}.
+Not used when\cr \code{temporal_api} is set to \dQuote{climatology}.
 See argument details for more.}
 
 \item{site_elevation}{A user-supplied value for elevation at a single point
@@ -89,7 +89,7 @@ powered renewable energy systems.}
 }
 }
 
-\section{Argument details for \code{temporal_average}}{
+\section{Argument details for \code{temporal_api}}{
  There are four valid
 values.
 \describe{
@@ -120,7 +120,7 @@ processed is 4.5 x 4.5 degrees (100 points).}
 
 \item{For global coverage}{To get global coverage for \dQuote{climatology},
 supply \dQuote{global} while also specifying \dQuote{climatology} for the
-\code{temporal_average}.}
+\code{temporal_api}.}
 }
 }
 
@@ -128,9 +128,9 @@ supply \dQuote{global} while also specifying \dQuote{climatology} for the
  if one date only is provided, it
 will be treated as both the start date and the end date and only a single
 day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
-When \code{temporal_average} is set to \dQuote{monthly}, use only two
+When \code{temporal_api} is set to \dQuote{monthly}, use only two
 year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
-argument should not be used when \code{temporal_average} is set to
+argument should not be used when \code{temporal_api} is set to
 \dQuote{climatology}.
 }
 
@@ -171,7 +171,7 @@ ag_d <- get_power(
   lonlat = c(151.81, -27.48),
   pars = c("RH2M", "T2M", "PRECTOTCORR"),
   dates = "1985-01-01",
-  temporal_average = "daily"
+  temporal_api = "daily"
 )
 
 ag_d
@@ -181,7 +181,7 @@ ag_c_point <- get_power(
   community = "ag",
   pars = "T2M",
   c(151.81, -27.48),
-  temporal_average = "climatology"
+  temporal_api = "climatology"
 )
 
 ag_c_point
@@ -191,7 +191,7 @@ ag_c_global <- get_power(
   community = "ag",
   pars = "T2M",
   lonlat = "global",
-  temporal_average = "climatology"
+  temporal_api = "climatology"
 )
 
 ag_c_global
@@ -201,7 +201,7 @@ sse_i <- get_power(
   community = "re",
   lonlat = c(112.5, -55.5, 115.5, -50.5),
   dates = c("1984", "1985"),
-  temporal_average = "monthly",
+  temporal_api = "monthly",
   pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
 )
 

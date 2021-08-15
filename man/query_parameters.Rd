@@ -43,7 +43,7 @@ powered renewable energy systems.}
 }
 }
 
-\section{Argument details for \code{temporal_average}}{
+\section{Argument details for \code{temporal_api}}{
  There are four valid
 values.
 \describe{
