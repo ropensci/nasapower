@@ -14,7 +14,7 @@ test_that("get_power returns daily point AG data", {
              "WS10M",
              "PS"),
     dates = c("1983-01-01"),
-    temporal_average = "Daily"
+    temporal_api = "Daily"
   )
 
   expect_is(power_query, "data.frame")
@@ -65,7 +65,7 @@ test_that("get_power() returns daily point AG data with adjusted atmospheric
                        "WS10M",
                        "PS"),
               dates = c("1983-01-01"),
-              temporal_average = "Daily",
+              temporal_api = "Daily",
               site_elevation = 0
             )
 
@@ -118,7 +118,7 @@ test_that("get_power returns daily point SB data", {
              "RH2M",
              "WS10M"),
     dates = c("1983-01-01"),
-    temporal_average = "Daily"
+    temporal_api = "Daily"
   )
 
   expect_is(power_query, "data.frame")
@@ -144,7 +144,7 @@ test_that("get_power() returns daily regional AG data", {
     lonlat = c(112.5, -55.5, 115.5, -50.5),
     pars = "T2M",
     dates = c("1983-01-01"),
-    temporal_average = "Daily"
+    temporal_api = "Daily"
   )
 
   expect_equal(nrow(power_query), 77)
@@ -181,7 +181,7 @@ test_that("get_power() returns global AG data for climatology", {
   power_query <- get_power(
     community = "AG",
     pars = "T2M",
-    temporal_average = "climatology",
+    temporal_api = "climatology",
     lonlat = "global"
   )
 
@@ -215,20 +215,20 @@ test_that("get_power() returns global AG data for climatology", {
   rm(power_query)
 })
 
-test_that("get_power() stops if `temporal_average` not valid", {
+test_that("get_power() stops if `temporal_api` not valid", {
   expect_error(
     power_query <- get_power(
       community = "AG",
       lonlat = c(-179.5, -89.5),
       pars = "T2M",
       dates = "1983-01-01",
-      temporal_average = 1
+      temporal_api = 1
     ),
-    regexp = "\nYou have entered an invalid value for `temporal_average`.\n"
+    regexp = "\nYou have entered an invalid value for `temporal_api`.\n"
   )
 })
 
-test_that("get_power() stops if `temporal_average` != climatology
+test_that("get_power() stops if `temporal_api` != climatology
           when lonlat == global", {
             expect_error(
               power_query <- get_power(
@@ -236,7 +236,7 @@ test_that("get_power() stops if `temporal_average` != climatology
                 lonlat = "global",
                 pars = "T2M",
                 dates = "1983-01-01",
-                temporal_average = "daily"
+                temporal_api = "daily"
               ),
               regexp = "\nYou have asked for 'global' data. However, this"
             )
@@ -249,7 +249,7 @@ test_that("get_power() stops if lonlat is char and != global", {
       lonlat = "test",
       pars = "T2M",
       dates = "1983-01-01",
-      temporal_average = "climatology"
+      temporal_api = "climatology"
     ),
     regexp = "\nYou have entered an invalid value for `lonlat`. Valid values"
   )
