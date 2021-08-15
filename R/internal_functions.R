@@ -487,12 +487,12 @@
   )
 
   # if the temporal average is anything but climatology, add date fields
-  if (temporal_api == "daily" &
+  if (.temporal_api == "daily" &
       .query_list$community == "re" |
       .query_list$community == "sb") {
     power_data <- .format_dates_re_sb(power_data)
   }
-  if (temporal_api == "daily" &
+  if (.temporal_api == "daily" &
       .query_list$community == "ag") {
     power_data <- .format_dates_ag(power_data)
   }
