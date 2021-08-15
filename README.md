@@ -53,7 +53,7 @@ if (!require(remotes)) {
   install.packages("remotes")
 }
 
-devtools::install_github("ropensci/nasapower",
+remotes::install_github("ropensci/nasapower",
                          ref = "API_V2"
 )
 ```
