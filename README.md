@@ -49,7 +49,7 @@ A development version that is in beta testing currently has
 functionality to work with the POWER API V2 is available through GitHub.
 
 ``` r
-if (!require(remotes)) {
+if (!require("remotes")) {
   install.packages("remotes")
 }
 

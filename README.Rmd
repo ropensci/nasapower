@@ -39,7 +39,7 @@ install.packages("nasapower")
 A development version that is in beta testing currently has functionality to work with the POWER API V2 is available through GitHub.
 
 ```{r install-dev, eval=FALSE}
-if (!require(remotes)) {
+if (!require("remotes")) {
   install.packages("remotes")
 }
 
