@@ -62,7 +62,7 @@ query_parameters <- function(community = NULL,
     paste0("https://power.larc.nasa.gov/api/system/manager/parameters")
 
   # if only a `par` is provided, then create URL w/o using crul and parse w/
-  # jsonlite
+  # jsonlite, otherwise use crul to fetch from the API
   if (is.null(community) && is.null(temporal_api)) {
     return(jsonlite::fromJSON(paste0(
       power_url, "/", par, "?user=nasapowerdev"
@@ -72,6 +72,7 @@ query_parameters <- function(community = NULL,
       stop(call. = FALSE,
            "`commmunity` and `temporal_api` strings must be supplied.")
     }
+
     query_list <-
       list(
         "community" = community,
@@ -80,29 +81,12 @@ query_parameters <- function(community = NULL,
         user = "nasapowerdev"
       )
 
-    # if a `par` isn't supplied, remove this from the query list
+    # if a `par` isn't supplied, remove this from the query list or leave as-is
     query_list <- query_list[lengths(query_list) != 0]
 
-    client <- crul::HttpClient$new(url = power_url)
-
-    tryCatch({
-      # nocov begin
-      response <- client$get(query = query_list, retry = 6)
-      if (!response$success()) {
-        stop(call. = FALSE)
-      }
-    },
-    error = function(e) {
-      e$message <-
-        paste(
-          "Something went wrong with the query, the requested information was
-        not returned. Please see <https://power.larc.nasa.gov> for potential
-        server issues.\n"
-        )
-      # Otherwise refers to open.connection
-      e$call <- NULL
-      stop(e)
-    }) # nocov end
+    response <- .send_query(.query_list = query_list,
+                            .temporal_api = temporal_api,
+                            .url = power_url)
 
     return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
   }

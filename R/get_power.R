@@ -271,13 +271,177 @@ get_power <- function(community,
       wind_elevation,
       wind_surface
     )
+
+    # constructs URL from url defined in zzz.R and the temporal_api and community
+    power_url <- paste0(
+      "https://power.larc.nasa.gov/api/temporal/",
+      temporal_api,
+      "/",
+      lonlat_identifier$identifier
+    )
+
     response <-
       .send_query(
         .query_list = query_list,
-        .pars = pars,
         .temporal_api = temporal_api,
-        .community = community,
-        .identifier = lonlat_identifier$identifier
+        .url = power_url
       )
-    return(response)
+
+    # create meta object
+    power_data <- readr::read_lines(response$parse("UTF8"))
+
+    meta <- power_data[c(grep("-BEGIN HEADER-",
+                              power_data):grep("-END HEADER-",
+                                               power_data))]
+    # strip BEGIN/END HEADER lines
+    meta <- meta[-c(1, max(length(meta)))]
+
+    # replace missing values with NA in metadata header
+    for (i in c("-999", "-99", "-99.00")) {
+      meta <- gsub(pattern = i,
+                   replacement = "NA",
+                   x = meta)
+    }
+
+    # create tibble object
+    power_data <- readr::read_csv(
+      response$parse("UTF8"),
+      col_types = readr::cols(),
+      na = c("-999", "-99", "-99.00"),
+      skip = length(meta) + 2
+    )
+
+    # add lon and lat values from user's request
+    power_data <- tibble::add_column(
+      LON = .query_list$longitude,
+      LAT = .query_list$latitude,
+      power_data,
+      .before = 1
+    )
+
+    # if the temporal average is anything but climatology, add date fields
+    if (.temporal_api == "daily" &
+        .query_list$community == "re" |
+        .query_list$community == "sb") {
+      power_data <- .format_dates_re_sb(power_data)
+    }
+    if (.temporal_api == "daily" &
+        .query_list$community == "ag") {
+      power_data <- .format_dates_ag(power_data)
+    }
+
+    # add new class
+    power_data <- tibble::new_tibble(power_data,
+                                     class = "POWER.Info",
+                                     nrow = nrow(power_data))
+
+    # add attributes for printing df
+    attr(power_data, "POWER.Info") <- meta[1]
+    attr(power_data, "POWER.Dates") <- meta[2]
+    attr(power_data, "POWER.Location") <- meta[3]
+    attr(power_data, "POWER.Elevation") <- meta[4]
+    attr(power_data, "POWER.Climate_zone") <- meta[5]
+    attr(power_data, "POWER.Missing_value") <- meta[6]
+    attr(power_data, "POWER.Parameters") <-
+      paste(meta[7:length(meta)],
+            collapse = ";\n ")
+    return(power_data)
+}
+
+#' Prints Power.Info object
+#'
+#' @param x POWER.Info object
+#' @param ... ignored
+#' @export
+#' @noRd
+print.POWER.Info <- function(x, ...) {
+  if (!is.null(attr(x, "POWER.Info"))) {
+    cat(
+      attr(x, "POWER.Info"),
+      "\n",
+      attr(x, "POWER.Dates"),
+      "\n",
+      attr(x, "POWER.Location"),
+      "\n",
+      attr(x, "POWER.Elevation"),
+      "\n",
+      attr(x, "POWER.Climate_zone"),
+      "\n",
+      attr(x, "POWER.Missing_value"),
+      "\n",
+      "\n",
+      "Parameters: \n",
+      attr(x, "POWER.Parameters"),
+      "\n",
+      "\n"
+    )
+    format(x)
   }
+  NextMethod(x)
+  invisible(x)
+}
+
+#' Format date columns in POWER data frame for the ag community
+#'
+#' Formats columns as integers for DOY and adds columns for year, month and day.
+#'
+#' @param NASA A tidy data.frame resulting from [build_query()].
+#'
+#' @return A tidy data frame of 'POWER' data with additional date information
+#'   columns.
+#'
+#' @noRd
+#'
+.format_dates_ag <- function(NASA) {
+  # convert DOY to integer
+  NASA$DOY <- as.integer(NASA$DOY)
+
+  # Calculate the full date from YEAR and DOY
+  NASA <- tibble::add_column(NASA,
+                             YYYYMMDD = as.Date(NASA$DOY - 1,
+                                                origin = as.Date(paste(
+                                                  NASA$YEAR, "-01-01",
+                                                  sep = ""
+                                                ))),
+                             .after = "DOY")
+
+  # Extract month as integer
+  NASA <- tibble::add_column(NASA,
+                             MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
+                             .after = "YEAR")
+
+  # Extract day as integer
+  NASA <- tibble::add_column(NASA,
+                             DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
+                             .after = "MM")
+}
+
+#' Format date columns in POWER data frame for the re community
+#'
+#' Formats columns as integers for DOY and adds columns for year, month and day.
+#'
+#' @param NASA A tidy data.frame resulting from [.build_query()].
+#'
+#' @return A tidy data frame of 'POWER' data with additional date information
+#'   columns.
+#'
+#' @noRd
+#'
+.format_dates_re_sb <- function(NASA) {
+  names(NASA)[names(NASA) == "DY"] <- "DD"
+  names(NASA)[names(NASA) == "MO"] <- "MM"
+
+  # create YYYYMMDD col
+  NASA$YYYYMMDD <- paste0(NASA$YEAR, NASA$MM, NASA$DD)
+
+  # add day of year col
+  NASA$DOY <- lubridate::yday(lubridate::as_date(NASA$YYYYMMDD))
+
+  # set integer cols
+  NASA$YYYYMMDD <- lubridate::as_date(NASA$YYYYMMDD)
+  NASA$MM <- as.integer(NASA$MM)
+  NASA$DD <- as.integer(NASA$DD)
+
+  refcols <- c("LON", "LAT", "YEAR", "MM", "DD", "DOY", "YYYYMMDD")
+  NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
+}
