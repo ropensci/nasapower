@@ -4,6 +4,8 @@
 
 * Adds support for new NASA POWER 2.0, which includes new `hourly` data.
 
+* Adds new function, `query_parameters()` to fetch information from the API on indvidual and all available community/temporal API combination parameters.
+
 * Removes `SSE` community, replaces with `RE`.
 
 * Adds new parameters to `get_power()`, 
