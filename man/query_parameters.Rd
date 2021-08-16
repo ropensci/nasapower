@@ -2,50 +2,43 @@
 % Please edit documentation in R/query_parameters.R
 \name{query_parameters}
 \alias{query_parameters}
-\title{Query the POWER API for parameter descriptions}
+\title{Query the POWER API for detailed information on parameters}
 \usage{
-query_parameters(temporal_api, community)
+query_parameters(community = NULL, par = NULL, temporal_api = NULL)
 }
 \arguments{
-\item{temporal_api}{Temporal average for data being queried, supported
-values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
-\dQuote{climatology}.  See argument details for more.}
+\item{community}{An optional character vector providing community name:
+\dQuote{ag}, \dQuote{sb} or \dQuote{re}.}
 
-\item{community}{A character vector providing community name: \dQuote{ag},
-\dQuote{sb} or \dQuote{re}.  See argument details for more.}
+\item{par}{An optional character vector of a single solar, meteorological or
+climatology parameter to query.  If unsure, omit this argument for for a
+full list of all the parameters available for each temporal \acronym{API}
+and community.}
+
+\item{temporal_api}{An optional character vector indicating the temporal
+\acronym{API} end-point for data being queried, supported values are
+\dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.}
 }
 \value{
-A \link{list} of definitions providing valid parameters and their
-definitions for each of the three \acronym{API} endpoints and three
-communities
+A \link{list} object of information for the requested parameter(s) (if
+requested), community and temporal \acronym{API}.
 }
 \description{
-Queries the \acronym{POWER} \acronym{API} for detailed information for all
-parameters provided by the user-provided community and temporal \acronym{API}
-endpoints.
+Queries the \acronym{POWER} \acronym{API} returning detailed information on
+available parameters.
 }
-\section{Argument details for \dQuote{community}}{
- there are three valid
-values, one must be supplied.  This  will affect the units of the parameter
-and the temporal display of time series data.
-
-\describe{
-\item{ag}{Provides access to the Agroclimatology Archive, which
-contains industry-friendly parameters formatted for input to crop models.}
-
-\item{sb}{Provides access to the Sustainable Buildings Archive, which
-contains industry-friendly parameters for the buildings community to include
-parameters in multi-year monthly averages.}
-
-\item{re}{Provides access to the Renewable Energy Archive, which contains
-parameters specifically tailored to assist in the design of solar and wind
-powered renewable energy systems.}
+\details{
+If \code{par} is not provided all possible parameters for the provided
+community, \code{community} and temporal \acronym{API}, \code{temporal_api} will be
+returned.  If only a single parameter is supplied with no \code{community} or
+\code{temporal_api} then the complete attribute information for that parameter
+will be returned for all possible communities and temporal \acronym{API}s
+combinations.  If all three values are provided, only the information for
+that specific combination of parameter, temporal \acronym{API} and community
+will be returned.
 }
-}
-
 \section{Argument details for \code{temporal_api}}{
- There are four valid
-values.
+ There are four valid values.
 \describe{
 \item{hourly}{The hourly average of \code{pars} by hour, day, month and
 year.}
@@ -59,13 +52,21 @@ monthly average, maximum, and/or minimum values.}
 
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-# Get a full list of all valid parameters for the 'DAILY' API for the 'AG'
-# community
-query_parameters(temporal_api = "DAILY", community = "AG")
+
+# fetch the complete set of attribute information for "T2M".
+query_parameters(par = "T2M")
+
+# fetch complete temporal and community specific attribute information
+# for "T2M" in the "ag" community for the "hourly" temporal API.
+query_parameters(par = "T2M",
+                 community = "ag",
+                 temporal_api = "hourly")
+
+# fetch complete temporal and community specific attribute information
+# for all parameters in the "ag" community for the "hourly" temporal API.
+query_parameters(community = "ag",
+                 temporal_api = "hourly")
 \dontshow{\}) # examplesIf}
-}
-\seealso{
-query_par
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com}
