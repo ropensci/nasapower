@@ -1,11 +1,10 @@
 
-
 # test queries -----------------------------------------------------------------
-context("get_power() AG Community")
-test_that("get_power returns daily point AG data", {
+context("get_power() ag Community")
+test_that("get_power returns daily point ag data", {
   skip_on_cran()
   power_query <- get_power(
-    community = "AG",
+    community = "ag",
     lonlat = c(-179.5, -89.5),
     pars = c("T2M",
              "T2M_MIN",
@@ -52,11 +51,11 @@ test_that("get_power returns daily point AG data", {
   rm(power_query)
 })
 
-test_that("get_power() returns daily point AG data with adjusted atmospheric
+test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure", {
             skip_on_cran()
             power_query <- get_power(
-              community = "AG",
+              community = "ag",
               lonlat = c(-179.5, -89.5),
               pars = c("T2M",
                        "T2M_MIN",
@@ -137,10 +136,10 @@ test_that("get_power returns daily point SB data", {
   rm(power_query)
 })
 
-test_that("get_power() returns daily regional AG data", {
+test_that("get_power() returns daily regional ag data", {
   skip_on_cran()
   power_query <- get_power(
-    community = "AG",
+    community = "ag",
     lonlat = c(112.5, -55.5, 115.5, -50.5),
     pars = "T2M",
     dates = c("1983-01-01"),
@@ -176,10 +175,10 @@ test_that("get_power() returns daily regional AG data", {
   rm(power_query)
 })
 
-test_that("get_power() returns global AG data for climatology", {
+test_that("get_power() returns global ag data for climatology", {
   skip_on_cran()
   power_query <- get_power(
-    community = "AG",
+    community = "ag",
     pars = "T2M",
     temporal_api = "climatology",
     lonlat = "global"
@@ -218,7 +217,7 @@ test_that("get_power() returns global AG data for climatology", {
 test_that("get_power() stops if `temporal_api` not valid", {
   expect_error(
     power_query <- get_power(
-      community = "AG",
+      community = "ag",
       lonlat = c(-179.5, -89.5),
       pars = "T2M",
       dates = "1983-01-01",
@@ -232,7 +231,7 @@ test_that("get_power() stops if `temporal_api` != climatology
           when lonlat == global", {
             expect_error(
               power_query <- get_power(
-                community = "AG",
+                community = "ag",
                 lonlat = "global",
                 pars = "T2M",
                 dates = "1983-01-01",
@@ -245,7 +244,7 @@ test_that("get_power() stops if `temporal_api` != climatology
 test_that("get_power() stops if lonlat is char and != global", {
   expect_error(
     power_query <- get_power(
-      community = "AG",
+      community = "ag",
       lonlat = "test",
       pars = "T2M",
       dates = "1983-01-01",

@@ -511,7 +511,9 @@ test_that(".build_query assembles a proper query for regional and != NULL
                                        pars = pars,
                                        site_elevation = site_elevation,
                                        dates = dates,
-                                       outputList = outputList)
+                                       outputList = outputList,
+                                       wind_elevation = NULL,
+                                       wind_surface = NULL)
 
             expect_named(
               query_list,
