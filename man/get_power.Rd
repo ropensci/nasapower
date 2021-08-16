@@ -90,11 +90,9 @@ powered renewable energy systems.}
 }
 
 \section{Argument details for \code{temporal_api}}{
- There are four valid
-values.
+ There are four valid values.
 \describe{
-\item{hourly}{The hourly average of \code{pars} by hour, day, month and
-year.}
+\item{hourly}{The hourly average of \code{pars} by hour, day, month and year.}
 \item{daily}{The daily average of \code{pars} by day, month and year.}
 \item{monthly}{The monthly average of \code{pars} by month and year.}
 \item{climatology}{Provide parameters as 22-year climatologies (solar)
@@ -127,11 +125,10 @@ supply \dQuote{global} while also specifying \dQuote{climatology} for the
 \section{Argument details for \code{dates}}{
  if one date only is provided, it
 will be treated as both the start date and the end date and only a single
-day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.
-When \code{temporal_api} is set to \dQuote{monthly}, use only two
-year values (YYYY), \emph{e.g.} \code{dates = c(1983, 2010)}.  This
-argument should not be used when \code{temporal_api} is set to
-\dQuote{climatology}.
+day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
+\code{temporal_api} is set to \dQuote{monthly}, use only two year values (YYYY),
+\emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used when
+\code{temporal_api} is set to \dQuote{climatology} and will be ignored if set.
 }
 
 \section{wind-surface}{
