@@ -300,6 +300,9 @@
   #                        x = getNamespaceVersion("nasapower")
   #                      ))
 
+  # useful code remove NULL values from list before sending query
+  #query_list <- query_list[lengths(query_list) != 0]
+
   user_agent <- "nasapowerdev"
 
   # If user has given a site_elevation value, use it
