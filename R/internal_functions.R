@@ -448,11 +448,6 @@
     stop(e)
   }) # nocov end
 
-  if (response$status_code != 200) {
-    stop(call. = FALSE,
-         unlist(response$status_http()))
-  }
-
   # create meta object
   power_data <- readr::read_lines(response$parse("UTF8"))
 
