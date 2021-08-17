@@ -47,11 +47,11 @@ daily_single_ag
 
 ### Example fetching daily data for an area
 
-Fetch daily "AG" community relative humidity and temperature for south east Queensland region.
+Fetch daily "ag" community relative humidity and temperature for south east Queensland region.
 
 ```{r daily-region}
 daily_region_ag <- get_power(
-  community = "AG",
+  community = "ag",
   lonlat = c(150.5, -28.5 , 153.5, -25.5),
   pars = c("RH2M", "T2M"),
   dates = c("1985-01-01", "1985-01-02"),
@@ -66,7 +66,7 @@ daily_region_ag
 Fetch interannual solar cooking parameters for south east Queensland region.
 
 ```{r interannual}
-interannual_sse <- get_power(
+interannual_re <- get_power(
   community = "re",
   lonlat = c(150.5, -28.5 , 153.5, -25.5),
   dates = c("1984", "1985"),
@@ -82,11 +82,11 @@ interannual_sse
 
 Global data are only available for the climatology `temporal_api`, setting this argument as such will fetch global data.
 
-Fetch global "AG" climatology for temperature and relative humidity.
+Fetch global "ag" climatology for temperature and relative humidity.
 
 ```{r get-climatology}
 climatology_ag <- get_power(
-  community = "AG",
+  community = "ag",
   pars = c("T2M", "RH2M"),
   lonlat = "global",
   temporal_api = "climatology"
