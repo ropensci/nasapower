@@ -26,7 +26,7 @@ test_that("`dates` > 2 cause an error", {
   site_elevation <- NULL
   expect_error(.check_dates(dates, lonlat, temporal_api),
                regexp =
-                 "\nYou have supplied more than two dates for start and end*")
+                 "You have supplied more than two dates for start and end*")
 })
 
 test_that("`dates` entered in incorrect formats are corrected", {
@@ -69,7 +69,7 @@ test_that("`dates` before the start of POWER data cause error", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(dates, lonlat, temporal_api),
-               regexp = "*\n1981-01-01 is the earliest available data from*")
+               regexp = "*1981-01-01 is the earliest available data from*")
 })
 
 test_that("`dates` after today POWER cause error", {
@@ -78,7 +78,7 @@ test_that("`dates` after today POWER cause error", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(tomorrow, lonlat, temporal_api),
-               regexp = "*The data cannot possibly extend beyond this moment.*")
+               regexp = "The weather data cannot possibly extend beyond*")
 })
 
 test_that("Invalid `dates` are handled", {
@@ -117,12 +117,11 @@ test_that("If temporal_api == monthly and <2 dates provided, error", {
             lonlat <- c(-179.5, -89.5)
             site_elevation <- NULL
             expect_error(.check_dates(dates, lonlat, temporal_api),
-                         regexp = "*\nFor `temporal_api = monthly`, *")
+                         regexp = "*For `temporal_api = monthly`, *")
           })
 
 
 # community checks -------------------------------------------------------------
-context("Test that .check_community() handles community checks correctly")
 test_that(".check_community() properly reports errors", {
   community <- "R"
   pars <- c(
@@ -135,7 +134,6 @@ test_that(".check_community() properly reports errors", {
 })
 
 # lonlat checks ----------------------------------------------------------------
-context("Test that .check_lonlat() handles lat lon strings correctly")
 test_that(".check_lonlat() properly reports errors", {
   # set up pars argument for testing
   pars <- "T2M"
@@ -186,14 +184,14 @@ test_that(".check_lonlat() handles single point properly", {
                         pars)
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
-  expect_equal(test$identifier, "Point")
+  expect_equal(test$identifier, "point")
 })
 
 test_that(".check_lonlat() checks validity of single lon values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(179.5, 91),
                              pars),
-               regexp = "\nPlease check your latitude, `91`,*")
+               regexp = "Please check your latitude, `91`,*")
 })
 
 test_that(".check_lonlat() checks validity of single lat values", {
@@ -204,7 +202,6 @@ test_that(".check_lonlat() checks validity of single lat values", {
 })
 
 # bbox checks ------------------------------------------------------------------
-
 test_that(".check_lonlat() handles bboxes that are too large", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5),
@@ -216,42 +213,42 @@ test_that(".check_lonlat() checks order of the latitude values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 179.5, -89.5),
                              pars),
-               regexp = "\nThe first `lat` value must be the minimum value.\n")
+               regexp = "The first `lat` value must be the minimum value.\n")
 })
 
 test_that(".check_lonlat() checks order of the longitude values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(179.5, -89.5, -179.5, 89.5),
                              pars),
-               regexp = "\nThe first `lon` value must be the minimum value.\n")
+               regexp = "The first `lon` value must be the minimum value.\n")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmin values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 91, -179.5, 90),
                              pars),
-               regexp = "\nPlease check your latitude, `91`, `90`*")
+               regexp = "Please check your latitude, `91`, `90`*")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmax values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 90, -179.5, 93),
                              pars),
-               regexp = "\nPlease check your latitude, `90`, `93`,*")
+               regexp = "Please check your latitude, `90`, `93`,*")
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmin values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-181.5, 89.5, -179.5, 89.5),
                              pars),
-               regexp = "\nPlease check your longitude, `-181.5`, `-179.5`*")
+               regexp = "Please check your longitude, `-181.5`, `-179.5`*")
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmax values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 181, 89.5),
                              pars),
-               regexp = "\nPlease check your longitude, `-179.5`, `181`,*")
+               regexp = "Please check your longitude, `-179.5`, `181`,*")
 })
 
 test_that(
@@ -263,14 +260,13 @@ test_that(
                                      -179.5,
                                      89.5),
                           pars)
-    expect_equal(test$bbox, "88.5,-179.5,89.5,-179.5")
-    expect_equal(test$identifier, "Regional")
+    expect_named(test$bbox, c("xmin", "ymin", "xmax", "ymax"))
+    expect_equal(test$identifier, "regional")
   }
 )
 
 
 # parameter checks -------------------------------------------------------------
-context("Test that check_pars handles pars strings correctly")
 test_that(".check_pars() stops if no `pars` provided", {
   temporal_api <- "daily"
   lonlat <- c(-179.5, -89.5)
@@ -311,8 +307,7 @@ test_that(".check_pars()  stops if `pars` not valid for given
           })
 
 test_that("pars are returned as a comma separated string with no spaces", {
-  pars <- c("ALLSKY_SFC_SW_DWN_03_GMT",
-            "ALLSKY_SFC_LW_DWN")
+  pars <- c("RH2M", "T2M")
   temporal_api <- "climatology"
   lonlat <- c(-179.5, -89.5)
 
@@ -338,7 +333,7 @@ test_that("Only 3 pars are allowed when `temporal_api` = climatology", {
   expect_error(
     pars <-
       .check_pars(pars, temporal_api, lonlat),
-    regexp <- "\nYou can only specify three*"
+    regexp <- "You can only specify three*"
   )
 })
 
@@ -372,7 +367,7 @@ test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
             lonlat <- c(-179.5, -89.5)
             expect_error(
               pars <- .check_pars(pars, temporal_api, lonlat),
-              regexp <- "\nYou can only specify 20 parameters for download*"
+              regexp <- "You can only specify 20 parameters for download*"
             )
           })
 
