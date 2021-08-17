@@ -83,7 +83,7 @@ interannual_re
 
 ### Example fetching climatology data
 
-Climatology data can be retreived for point or regional areas as demonstrated previously.
+Climatology data can be retrieved for point or regional areas as demonstrated previously.
 Change the `temporal_api` value to "climatology" to get these data.
 
 Fetch "ag" climatology for temperature and relative humidity for Kingsthorpe, Queensland, Australia.

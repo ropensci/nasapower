@@ -115,25 +115,25 @@ interannual_re
 #>  CLRSKY_SFC_SW_DWN     CERES SYN1deg Clear Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day)  
 #>  
 #> # A tibble: 144 × 17
-#>    PARAMETER       YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN   JUL
-#>    <chr>          <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 ALLSKY_SFC_SW…  1984 -25.8  151.  6.01  6.49  5.79  4.67  4.12  3.77  2.46
-#>  2 ALLSKY_SFC_SW…  1984 -25.8  151.  5.92  5.97  5.64  4.37  4.01  3.61  2.6 
-#>  3 ALLSKY_SFC_SW…  1984 -25.8  152.  5.92  5.97  5.64  4.37  4.01  3.61  2.6 
-#>  4 ALLSKY_SFC_SW…  1984 -25.8  152.  5.96  5.85  5.56  4.26  3.92  3.52  2.66
-#>  5 ALLSKY_SFC_SW…  1984 -25.8  153.  5.96  5.85  5.56  4.26  3.92  3.52  2.66
-#>  6 ALLSKY_SFC_SW…  1984 -25.8  153.  6.23  6.05  5.88  4.26  3.81  3.3   2.96
-#>  7 ALLSKY_SFC_SW…  1984 -26.2  151.  5.97  6.65  6     4.66  4.02  3.72  2.28
-#>  8 ALLSKY_SFC_SW…  1984 -26.2  151.  6     6.38  5.71  4.38  4.01  3.66  2.17
-#>  9 ALLSKY_SFC_SW…  1984 -26.2  152.  6     6.38  5.71  4.38  4.01  3.66  2.17
-#> 10 ALLSKY_SFC_SW…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8   3.44  2.38
-#> # … with 134 more rows, and 6 more variables: AUG <dbl>, SEP <dbl>,
-#> #   OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
+#>    PARAMETER    YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN
+#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 ALLSKY_SFC…  1984 -25.8  151.  6.01  6.49  5.79  4.67  4.12  3.77
+#>  2 ALLSKY_SFC…  1984 -25.8  151.  5.92  5.97  5.64  4.37  4.01  3.61
+#>  3 ALLSKY_SFC…  1984 -25.8  152.  5.92  5.97  5.64  4.37  4.01  3.61
+#>  4 ALLSKY_SFC…  1984 -25.8  152.  5.96  5.85  5.56  4.26  3.92  3.52
+#>  5 ALLSKY_SFC…  1984 -25.8  153.  5.96  5.85  5.56  4.26  3.92  3.52
+#>  6 ALLSKY_SFC…  1984 -25.8  153.  6.23  6.05  5.88  4.26  3.81  3.3 
+#>  7 ALLSKY_SFC…  1984 -26.2  151.  5.97  6.65  6     4.66  4.02  3.72
+#>  8 ALLSKY_SFC…  1984 -26.2  151.  6     6.38  5.71  4.38  4.01  3.66
+#>  9 ALLSKY_SFC…  1984 -26.2  152.  6     6.38  5.71  4.38  4.01  3.66
+#> 10 ALLSKY_SFC…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8   3.44
+#> # … with 134 more rows, and 7 more variables: JUL <dbl>, AUG <dbl>,
+#> #   SEP <dbl>, OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
 ```
 
 ### Example fetching climatology data
 
-Climatology data can be retreived for point or regional areas as demonstrated previously.
+Climatology data can be retrieved for point or regional areas as demonstrated previously.
 Change the `temporal_api` value to "climatology" to get these data.
 
 Fetch "ag" climatology for temperature and relative humidity for Kingsthorpe, Queensland, Australia.
@@ -160,11 +160,12 @@ climatology_ag
 #>  RH2M     MERRA-2 Relative Humidity at 2 Meters (%)  
 #>  
 #> # A tibble: 2 × 16
-#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP
-#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1  152. -27.5 T2M        24.3  23.5  21.8  18.7  15.1  12.2  11.5  12.9  16.6
-#> 2  152. -27.5 RH2M       65.5  70.1  70.4  70.1  71.8  75.5  71.5  64.3  59.7
-#> # … with 4 more variables: OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
+#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL
+#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1  152. -27.5 T2M        24.3  23.5  21.8  18.7  15.1  12.2  11.5
+#> 2  152. -27.5 RH2M       65.5  70.1  70.4  70.1  71.8  75.5  71.5
+#> # … with 6 more variables: AUG <dbl>, SEP <dbl>, OCT <dbl>,
+#> #   NOV <dbl>, DEC <dbl>, ANN <dbl>
 ```
 
 _Note_ the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
