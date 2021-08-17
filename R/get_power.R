@@ -32,7 +32,7 @@
 #'   and 300m.  Only used with `lonlat` as a single point of x, y coordinates,
 #'   not for use with \dQuote{global} or with a regional request.  If this
 #'   parameter is provided, the `wind-surface` parameter is required with the
-#'   request, see \url{https://power.larc.nasa.gov/beta/docs/methodology/meteorology/wind/}
+#'   request, see \url{https://power.larc.nasa.gov/beta/docs/methodology/meteorology/wind/}.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
 #'
@@ -355,7 +355,7 @@ get_power <- function(community,
 #' @param temporal_api User entered `temporal_api` value.
 #'
 #' @return Validated dates in a list for use in `.build_query`
-#'
+#' @keywords internal
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_api) {
   if (is.null(dates) & temporal_api != "climatology") {
@@ -459,7 +459,7 @@ get_power <- function(community,
 #' @param pars User entered `pars` value.
 #'
 #' @return A list called `lonlat_identifier` for use in [.build_query()]
-#'
+#' @keywords internal
 #' @noRd
 .check_lonlat <-
   function(lonlat, pars) {
@@ -561,12 +561,12 @@ get_power <- function(community,
 #' @param lonlat_identifier A list of values, a result of [check_lonlat()]
 #' @param pars A validated value from [check_pars()].
 #' @param dates A list of values, a result of [check_dates()].
-#' @param site_elevation
-#' @param wind_elevation
-#' @param wind_surface
+#' @param site_elevation A validated value from
+#' @param wind_elevation A validate value from
+#' @param wind_surface A validated value from
 #' @return A `list` object of values to be passed to a [crul] object to query
 #'  the 'POWER' 'API'
-#'
+#' @keywords internal
 #' @noRd
 .build_query <- function(community,
                          lonlat_identifier,
@@ -635,9 +635,9 @@ get_power <- function(community,
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
-#'
+#' @keywords internal
 #' @noRd
-#'
+
 .format_dates_ag <- function(NASA) {
   # convert DOY to integer
   NASA$DOY <- as.integer(NASA$DOY)
@@ -670,9 +670,9 @@ get_power <- function(community,
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
-#'
+#' @keywords internal
 #' @noRd
-#'
+
 .format_dates_re_sb <- function(NASA) {
   names(NASA)[names(NASA) == "DY"] <- "DD"
   names(NASA)[names(NASA) == "MO"] <- "MM"

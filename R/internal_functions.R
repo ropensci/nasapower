@@ -8,7 +8,7 @@
 #'
 #' @return A logical vector, indicating if a mismatch was located for any
 #'  element of x: thus the values are TRUE or FALSE and never NA.
-#'
+#' @keywords internal
 #' @noRd
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
@@ -23,7 +23,7 @@
 #' @param temporal_api User entered `temporal_api` value.
 #'
 #' @return Validated pars for use in [.build_query()]
-#'
+#' @keywords internal
 #' @noRd
 .check_pars <-
   function(pars, community, temporal_api) {
@@ -69,6 +69,7 @@
 #'  provided by the user as `temporal_api`
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
+#' @keywords internal
 #' @noRd
 #'
 .send_query <- function(.query_list,

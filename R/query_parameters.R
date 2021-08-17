@@ -55,6 +55,7 @@
 #'  requested), community and temporal \acronym{API}.
 #'
 #' @export
+
 query_parameters <- function(community = NULL,
                              par = NULL,
                              temporal_api = NULL) {
