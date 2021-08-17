@@ -229,29 +229,143 @@ test_that("get_power() stops if `temporal_api` not valid", {
   )
 })
 
-test_that("get_power() stops if `temporal_api` != climatology
-          when lonlat == global", {
+# test_that("get_power() stops if `temporal_api` != climatology
+#           when lonlat == global", {
+#             expect_error(
+#               power_query <- get_power(
+#                 community = "ag",
+#                 lonlat = "global",
+#                 pars = "T2M",
+#                 dates = "1983-01-01",
+#                 temporal_api = "daily"
+#               ),
+#               regexp = "You have asked for 'global' data. However, this"
+#             )
+#           })
+
+test_that("get_power() stops if hourly data are requested < 2001-01-01", {
             expect_error(
               power_query <- get_power(
                 community = "ag",
+                lonlat = c(-179.5, -89.5),
+                pars = "T2M",
+                dates = "1983-01-01",
+                temporal_api = "hourly"
+              ),
+              regexp = "2001-01-01 is the earliest available hourly data*"
+            )
+          })
+
+test_that("get_power() stops if an invalid community supplied", {
+            expect_error(
+              power_query <- get_power(
+                community = "rOpenSci",
                 lonlat = "global",
                 pars = "T2M",
                 dates = "1983-01-01",
                 temporal_api = "daily"
               ),
-              regexp = "You have asked for 'global' data. However, this"
+              regexp = "You have provided an invalid `community` value.\n"
             )
           })
 
-test_that("get_power() stops if lonlat is char and != global", {
+test_that("get_power() stops if site elevation is supplied not for point", {
+            expect_message(
+              power_query <- get_power(
+                community = "ag",
+                lonlat = c(112.5, -55.5, 115.5, -50.5),
+                pars = "T2M",
+                dates = "1983-01-01",
+                temporal_api = "daily",
+                site_elevation = 35
+              ),
+              regexp = "You have provided `site_elevation` for a region*."
+            )
+          })
+
+test_that("get_power() stops if site_elevation is invalid", {
   expect_error(
     power_query <- get_power(
       community = "ag",
-      lonlat = "test",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      site_elevation = "cartograph"
+    ),
+    regexp = "You have entered an invalid value for `site_elevation`*"
+  )
+})
+
+test_that("get_power() stops wind_surface is supplied with no wind_elevation", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_surface = "vegtype_6"
+    ),
+    regexp = "If you provide a correct wind surface alias, `wind_surface`*"
+  )
+})
+
+test_that("get_power() stops wind_elevation is invalid", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_elevation = 5
+    ),
+    regexp = "`wind_elevation` values in metres are required to be between*"
+  )
+})
+
+test_that("get_power() stops if `global` coverage is requested", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = "global",
       pars = "T2M",
       dates = "1983-01-01",
       temporal_api = "climatology"
     ),
-    regexp = "You have entered an invalid value for `lonlat`. Valid values"
+    regexp = "The POWER team have not enabled `global` data queries with this*"
+  )
+})
+
+
+test_that("get_power() stops if temporal_api is hourly and pars > 15", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = c(
+        "T2M",
+        "DIRECT_ILLUMINANCE",
+        "CLRSKY_SRF_ALB",
+        "RH2M",
+        "WS10M",
+        "PS",
+        "PRECTOTCORR",
+        "CLRSKY_SFC_SW_DNI",
+        "CLRSKY_SFC_SW_DIRH",
+        "CLRSKY_SFC_PAR_TOT",
+        "ALLSKY_SFC_UVB",
+        "ALLSKY_SFC_UVA",
+        "ZENITH_LUMINANCE",
+        "TOA_SW_DWN",
+        "SZA",
+        "PW",
+        "DIRECT_ILLUMINANCE"
+      ),
+      dates = "1983-01-01",
+      temporal_api = "hourly"
+    ),
+    regexp = ""
   )
 })
