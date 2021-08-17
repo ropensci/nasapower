@@ -83,15 +83,16 @@ interannual_sse
 
 ### Example fetching climatology data
 
-Global data are only available for the climatology `temporal_api`, setting this argument as such will fetch global data.
+Climatology data can be retreived for point or regional areas as demonstrated previously.
+Change the `temporal_api` value to "climatology" to get these data.
 
-Fetch global "ag" climatology for temperature and relative humidity.
+Fetch "ag" climatology for temperature and relative humidity for Kingsthorpe, Queensland, Australia.
 
 ```{r get-climatology}
 climatology_ag <- get_power(
   community = "ag",
   pars = c("T2M", "RH2M"),
-  lonlat = "global",
+  lonlat = c(151.81, -27.48),
   temporal_api = "climatology"
 )
 
