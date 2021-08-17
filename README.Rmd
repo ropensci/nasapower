@@ -36,15 +36,14 @@ install.packages("nasapower")
 
 #### From GitHub for the version in-development
 
-A development version that is in beta testing currently has functionality to work with the POWER API V2 is available through GitHub.
+A development version is available through GitHub.
 
 ```{r install-dev, eval=FALSE}
 if (!require("remotes")) {
   install.packages("remotes")
 }
 
-remotes::install_github("ropensci/nasapower",
-                         ref = "API_V2"
+remotes::install_github("ropensci/nasapower"
 )
 ```
 
