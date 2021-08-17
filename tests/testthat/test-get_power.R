@@ -25,11 +25,11 @@ test_that("get_power returns daily point ag data", {
   expect_equal(power_query$DOY, 1)
   expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -25.24)
-  expect_equal(power_query$T2M_MIN, -25.55)
-  expect_equal(power_query$T2M_MAX, -24.9)
-  expect_equal(power_query$RH2M, 73.92)
-  expect_equal(power_query$WS10M, 2.14)
-  expect_equal(power_query$PS, 68.57)
+  expect_equal(power_query$T2M_MIN, -25.67)
+  expect_equal(power_query$T2M_MAX, -24.88)
+  expect_equal(power_query$RH2M, 94.25)
+  expect_equal(power_query$WS10M, 2.32)
+  expect_equal(power_query$PS, 69.06)
   expect_named(
     power_query,
     c(
@@ -77,12 +77,11 @@ test_that("get_power() returns daily point ag data with adjusted atmospheric
             expect_equal(power_query$DOY, 1)
             expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
             expect_equal(power_query$T2M, -25.24)
-            expect_equal(power_query$T2M_MIN, -25.55)
-            expect_equal(power_query$T2M_MAX, -24.9)
-            expect_equal(power_query$RH2M, 73.92)
-            expect_equal(power_query$WS10M, 2.14)
-            expect_equal(power_query$PS, 68.57)
-            expect_equal(power_query$PSC, 101.2, tolerance = 1e-1)
+            expect_equal(power_query$T2M_MIN, -25.67)
+            expect_equal(power_query$T2M_MAX, -24.88)
+            expect_equal(power_query$RH2M, 94.25)
+            expect_equal(power_query$WS10M, 2.32)
+            expect_equal(power_query$PS, 69.06)
             expect_named(
               power_query,
               c(
