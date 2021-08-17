@@ -183,7 +183,6 @@ get_power <- function(community,
                       site_elevation = NULL,
                       wind_elevation = NULL,
                       wind_surface = NULL) {
-
   # user input checks and formatting -------------------------------------------
 
   if (is.character(temporal_api)) {
@@ -194,32 +193,33 @@ get_power <- function(community,
   }
   if (temporal_api %notin% c("hourly", "daily", "monthly", "climatology")) {
     stop(call. = FALSE,
-         "\nYou have entered an invalid value for `temporal_api`.\n")
+         "You have entered an invalid value for `temporal_api`.\n")
   }
   if (is.character(community)) {
     community <- tolower(community)
   }
   if (community %notin% c("ag", "sb", "re")) {
     stop(call. = FALSE,
-         "\nYou have provided an invalid `community` value.\n")
+         "You have provided an invalid `community` value.\n")
   }
   if (is.character(pars)) {
     pars <- toupper(pars)
   }
   if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
-    message("\nYou have provided `site_elevation` for a region or `global`.",
-            "\nThe `site_elevation` value will be ignored.\n")
+    message(
+      "You have provided `site_elevation` for a region or `global`.",
+      "The `site_elevation` value will be ignored.\n"
+    )
     site_elevation <- NULL
   }
   if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
-    stop(
-      call. = FALSE,
-      "\nYou have entered an invalid value for `site_elevation`.\n")
+    stop(call. = FALSE,
+         "You have entered an invalid value for `site_elevation`.\n")
   }
   if (is.character(wind_surface) && is.null(wind_elevation)) {
     stop(
       call. = FALSE,
-      "\nbIf you provide a correct wind surface alias `wind_surface` please",
+      "bIf you provide a correct wind surface alias `wind_surface` please",
       "include a surface elevation `wind_elevation` with the request.\n"
     )
   }
@@ -227,7 +227,7 @@ get_power <- function(community,
     if (wind_elevation < 10 || wind_elevation > 300) {
       stop(
         call. = FALSE,
-        "\nWind Elevation values in metres are required to be between",
+        "Wind Elevation values in metres are required to be between",
         "10m and 300m.\n"
       )
     }
@@ -235,117 +235,113 @@ get_power <- function(community,
   if (is.character(lonlat)) {
     lonlat <- tolower(lonlat)
     if (lonlat == "global" & temporal_api != "climatology") {
-      stop(call. = FALSE,
-           "\nYou have asked for 'global' data. However, this is only",
-           "available for 'climatology'.\n")
+      stop(
+        call. = FALSE,
+        "You have asked for 'global' data. However, this is only",
+        "available for 'climatology'.\n"
+      )
     } else if (lonlat != "global") {
-      stop(call. = FALSE,
-           "\nYou have entered an invalid value for `lonlat`. Valid values are",
-           "`global` with `climatology` or a string of lon and lat values.\n")
+      stop(
+        call. = FALSE,
+        "You have entered an invalid value for `lonlat`. Valid values are",
+        "`global` with `climatology` or a string of lon and lat values.\n"
+      )
     }
   }
 
-    # see internal_functions.R for these functions prefixed with "."
-    pars <- .check_pars(
-      pars,
-      community,
-      temporal_api
-    )
-    lonlat_identifier <- .check_lonlat(
-      lonlat,
-      pars
-    )
-    dates <- .check_dates(
-      dates,
-      lonlat,
-      temporal_api
-    )
+  # see internal_functions.R for these functions prefixed with "."
+  pars <- .check_pars(pars,
+                      community,
+                      temporal_api)
+  lonlat_identifier <- .check_lonlat(lonlat,
+                                     pars)
+  dates <- .check_dates(dates,
+                        lonlat,
+                        temporal_api)
 
-    # submit query -------------------------------------------------------------
-    query_list <- .build_query(
-      community,
-      lonlat_identifier,
-      pars,
-      dates,
-      site_elevation,
-      wind_elevation,
-      wind_surface
-    )
+  # submit query -------------------------------------------------------------
+  query_list <- .build_query(
+    community,
+    lonlat_identifier,
+    pars,
+    dates,
+    site_elevation,
+    wind_elevation,
+    wind_surface
+  )
 
-    # constructs URL from url defined in zzz.R and the temporal_api and community
-    power_url <- paste0(
-      "https://power.larc.nasa.gov/api/temporal/",
-      temporal_api,
-      "/",
-      lonlat_identifier$identifier
-    )
+  # constructs URL from url defined in zzz.R and the temporal_api and community
+  power_url <- paste0(
+    "https://power.larc.nasa.gov/api/temporal/",
+    temporal_api,
+    "/",
+    lonlat_identifier$identifier
+  )
 
-    response <-
-      .send_query(
-        .query_list = query_list,
-        .temporal_api = temporal_api,
-        .url = power_url
-      )
+  response <-
+    .send_query(.query_list = query_list,
+                .temporal_api = temporal_api,
+                .url = power_url)
 
-    # create meta object
-    power_data <- readr::read_lines(response$parse("UTF8"))
+  # create meta object
+  power_data <- readr::read_lines(response$parse("UTF8"))
 
-    meta <- power_data[c(grep("-BEGIN HEADER-",
-                              power_data):grep("-END HEADER-",
-                                               power_data))]
-    # strip BEGIN/END HEADER lines
-    meta <- meta[-c(1, max(length(meta)))]
+  meta <- power_data[c(grep("-BEGIN HEADER-",
+                            power_data):grep("-END HEADER-",
+                                             power_data))]
+  # strip BEGIN/END HEADER lines
+  meta <- meta[-c(1, max(length(meta)))]
 
-    # replace missing values with NA in metadata header
-    for (i in c("-999", "-99", "-99.00")) {
-      meta <- gsub(pattern = i,
-                   replacement = "NA",
-                   x = meta)
-    }
+  # replace missing values with NA in metadata header
+  for (i in c("-999", "-99", "-99.00")) {
+    meta <- gsub(pattern = i,
+                 replacement = "NA",
+                 x = meta)
+  }
 
-    # create tibble object
-    power_data <- readr::read_csv(
-      response$parse("UTF8"),
-      col_types = readr::cols(),
-      na = c("-999", "-99", "-99.00"),
-      skip = length(meta) + 2
-    )
+  # create tibble object
+  power_data <- readr::read_csv(
+    response$parse("UTF8"),
+    col_types = readr::cols(),
+    na = c("-999", "-99", "-99.00"),
+    skip = length(meta) + 2
+  )
 
-    # add lon and lat values from user's request
-    power_data <- tibble::add_column(
-      LON = query_list$longitude,
-      LAT = query_list$latitude,
-      power_data,
-      .before = 1
-    )
+  # add lon and lat values from user's request
+  power_data <- tibble::add_column(
+    LON = query_list$longitude,
+    LAT = query_list$latitude,
+    power_data,
+    .before = 1
+  )
 
-    # if the temporal average is anything but climatology, add date fields
-    if (temporal_api == "daily" &
-        query_list$community == "re" |
-        query_list$community == "sb") {
-      power_data <- .format_dates_re_sb(power_data)
-    }
-    if (temporal_api == "daily" &
-        query_list$community == "ag") {
-      power_data <- .format_dates_ag(power_data)
-    }
+  # if the temporal average is anything but climatology, add date fields
+  if (temporal_api == "daily" &
+      query_list$community == "re" |
+      query_list$community == "sb") {
+    power_data <- .format_dates_re_sb(power_data)
+  }
+  if (temporal_api == "daily" &
+      query_list$community == "ag") {
+    power_data <- .format_dates_ag(power_data)
+  }
 
-    # add new class
-    power_data <- tibble::new_tibble(power_data,
-                                     class = "POWER.Info",
-                                     nrow = nrow(power_data))
+  # add new class
+  power_data <- tibble::new_tibble(power_data,
+                                   class = "POWER.Info",
+                                   nrow = nrow(power_data))
 
-    # add attributes for printing df
-    attr(power_data, "POWER.Info") <- meta[1]
-    attr(power_data, "POWER.Dates") <- meta[2]
-    attr(power_data, "POWER.Location") <- meta[3]
-    attr(power_data, "POWER.Elevation") <- meta[4]
-    attr(power_data, "POWER.Climate_zone") <- meta[5]
-    attr(power_data, "POWER.Missing_value") <- meta[6]
-    attr(power_data, "POWER.Parameters") <-
-      paste(meta[7:length(meta)],
-            collapse = ";\n ")
-    return(power_data)
+  # add attributes for printing df
+  attr(power_data, "POWER.Info") <- meta[1]
+  attr(power_data, "POWER.Dates") <- meta[2]
+  attr(power_data, "POWER.Location") <- meta[3]
+  attr(power_data, "POWER.Elevation") <- meta[4]
+  attr(power_data, "POWER.Climate_zone") <- meta[5]
+  attr(power_data, "POWER.Missing_value") <- meta[6]
+  attr(power_data, "POWER.Parameters") <-
+    paste(meta[7:length(meta)],
+          collapse = ";\n ")
+  return(power_data)
 }
 
 # functions internal to get_power() -----
@@ -553,13 +549,13 @@ get_power <- function(community,
       names(lonlat_identifier) <- "identifier"
     } else {
       lonlat_identifier <- list(longitude, latitude, identifier)
-      names(lonlat_identifier) <- c("longitude", "latitude", "identifier")
+      names(lonlat_identifier) <-
+        c("longitude", "latitude", "identifier")
     }
     return(lonlat_identifier)
   }
 
-
-#' Construct a list of commands to pass to the POWER API
+#' Construct a list of options to pass to the POWER API
 #'
 #' @param community A validated value for community from [check_community()].
 #' @param lonlat_identifier A list of values, a result of [check_lonlat()]
@@ -588,7 +584,6 @@ get_power <- function(community,
 
   user_agent <- "nasapowerdev"
 
-  # If user has given a site_elevation value, use it
   if (lonlat_identifier$identifier == "point") {
     query_list <- list(
       parameters = pars,
