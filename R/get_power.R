@@ -348,37 +348,288 @@ get_power <- function(community,
     return(power_data)
 }
 
-#' Prints Power.Info object
+# functions internal to get_power() -----
+
+#' Check dates for validity when querying API
 #'
-#' @param x POWER.Info object
-#' @param ... ignored
-#' @export
+#' Validates user entered date values against `lonlat` and `temporal_api` values
+#'
+#' @param dates User entered `dates` value.
+#' @param lonlat User entered `lonlat` value.
+#' @param temporal_api User entered `temporal_api` value.
+#'
+#' @return Validated dates in a list for use in `.build_query`
+#'
 #' @noRd
-print.POWER.Info <- function(x, ...) {
-  if (!is.null(attr(x, "POWER.Info"))) {
-    cat(
-      attr(x, "POWER.Info"),
-      "\n",
-      attr(x, "POWER.Dates"),
-      "\n",
-      attr(x, "POWER.Location"),
-      "\n",
-      attr(x, "POWER.Elevation"),
-      "\n",
-      attr(x, "POWER.Climate_zone"),
-      "\n",
-      attr(x, "POWER.Missing_value"),
-      "\n",
-      "\n",
-      "Parameters: \n",
-      attr(x, "POWER.Parameters"),
-      "\n",
-      "\n"
-    )
-    format(x)
+.check_dates <- function(dates, lonlat, temporal_api) {
+  if (is.null(dates) & temporal_api != "climatology") {
+    stop(call. = FALSE,
+         "You have not entered dates for the query.\n")
   }
-  NextMethod(x)
-  invisible(x)
+
+  if (temporal_api == "monthly") {
+    if (length(unique(dates)) < 2) {
+      stop(
+        call. = FALSE,
+        "For `temporal_api = monthly`, at least two (2) years ",
+        "are required to be provided.\n"
+      )
+    }
+    if (any(nchar(dates) > 4)) {
+      dates <- unique(substr(dates, 1, 4))
+    }
+    if (dates[[2]] < dates[[1]]) {
+      message("Your start and end dates were reversed. ",
+              "They have been reordered.\n")
+      dates <- c(dates[2], dates[1])
+    }
+    return(dates)
+  }
+
+  if (temporal_api == "daily" || temporal_api == "hourly") {
+    if (is.numeric(lonlat)) {
+      if (length(dates) == 1) {
+        dates <- c(dates, dates)
+      }
+      if (length(dates) > 2) {
+        stop(call. = FALSE,
+             "You have supplied more than two dates for start and end.\n")
+      }
+
+      # put dates in list to use lapply
+      dates <- as.list(dates)
+
+      # check dates as entered by user
+      date_format <- function(x) {
+        tryCatch(
+          # try to parse the date format using lubridate
+          x <- lubridate::parse_date_time(x,
+                                          c(
+                                            "Ymd",
+                                            "dmY",
+                                            "mdY",
+                                            "BdY",
+                                            "Bdy",
+                                            "bdY",
+                                            "bdy"
+                                          )),
+          warning = function(c) {
+            stop(call. = FALSE,
+                 "",
+                 x,
+                 " is not a valid entry for date. Enter as YYYY-MM-DD.\n")
+          }
+        )
+        as.Date(x)
+      }
+
+      # apply function to reformat/check dates
+      dates <- lapply(X = dates, FUN = date_format)
+
+      # if the stdate is > endate, flip order
+      if (dates[[2]] < dates[[1]]) {
+        message("Your start and end dates were reversed. ",
+                "They have been reordered.\n")
+        dates <- c(dates[2], dates[1])
+      }
+
+      # check date to be sure it's not before POWER data start
+      if (temporal_api != "hourly" &&
+          dates[[1]] < "1981-01-01") {
+        stop(call. = FALSE,
+             "1981-01-01 is the earliest available data from POWER.\n")
+      } else if (temporal_api == "hourly" &
+                 dates[[1]] < "2001-01-01")
+        stop(call. = FALSE,
+             "2001-01-01 is the earliest available hourly data from POWER.\n")
+      # check end date to be sure it's not _after_
+      if (dates[[2]] > Sys.Date()) {
+        stop(call. = FALSE,
+             "The weather data cannot possibly extend beyond this day.\n")
+      }
+
+      dates <- lapply(dates, as.character)
+      dates <- gsub("-", "", dates, ignore.case = TRUE)
+    }
+  }
+}
+
+#' Check user-supplied `lonlat` for validity when querying API
+#'
+#' Validates user entered `lonlat` values and checks against `pars`
+#' values.
+#'
+#' @param lonlat User entered `lonlat` value.
+#' @param pars User entered `pars` value.
+#'
+#' @return A list called `lonlat_identifier` for use in [.build_query()]
+#'
+#' @noRd
+.check_lonlat <-
+  function(lonlat, pars) {
+    bbox <- NULL
+    if (is.character(lonlat) & length(lonlat) == 1) {
+      if (lonlat == "global") {
+        identifier <- "global"
+      } else if (is.character(lonlat)) {
+        stop(call. = FALSE,
+             "You have entered an invalid request for `lonlat`.\n")
+      }
+    } else if (is.numeric(lonlat) & length(lonlat) == 2) {
+      if (lonlat[1] < -180 | lonlat[1] > 180) {
+        stop(
+          call. = FALSE,
+          "Please check your longitude, `",
+          paste0(lonlat[1]),
+          "`, to be sure it is valid.\n"
+        )
+      }
+      if (lonlat[2] < -90 | lonlat[2] > 90) {
+        stop(
+          call. = FALSE,
+          "Please check your latitude, `",
+          paste0(lonlat[2]),
+          "`, value to be sure it is valid.\n"
+        )
+      }
+      identifier <- "point"
+      longitude <- lonlat[1]
+      latitude <- lonlat[2]
+    } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
+      if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
+        stop(
+          call. = FALSE,
+          "Please provide correct bounding box values. The bounding box\n",
+          "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
+          "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n"
+        )
+      } else if (any(lonlat[1] < -180 |
+                     lonlat[3] < -180 |
+                     lonlat[1] > 180 |
+                     lonlat[3] > 180)) {
+        stop(
+          call. = FALSE,
+          "Please check your longitude, `",
+          lonlat[1],
+          "`, `",
+          lonlat[3],
+          "`, values to be sure they are valid.\n"
+        )
+      } else if (any(lonlat[2] < -90 |
+                     lonlat[4] < -90 |
+                     lonlat[2] > 90 |
+                     lonlat[4] > 90)) {
+        stop(
+          call. = FALSE,
+          "Please check your latitude, `",
+          lonlat[2],
+          "`, `",
+          lonlat[4],
+          "`, values to be sure they are valid.\n"
+        )
+      } else if (lonlat[2] > lonlat[4]) {
+        stop(call. = FALSE,
+             "The first `lat` value must be the minimum value.\n")
+      } else if (lonlat[1] > lonlat[3]) {
+        stop(call. = FALSE,
+             "The first `lon` value must be the minimum value.\n")
+      }
+      identifier <- "regional"
+      bbox <- paste(lonlat[2],
+                    lonlat[1],
+                    lonlat[4],
+                    lonlat[3],
+                    sep = ",")
+    } else {
+      stop(call. = FALSE,
+           "You have entered an invalid request for `lonlat`.\n")
+    }
+
+    if (!is.null(bbox)) {
+      lonlat_identifier <- list(bbox, identifier)
+      names(lonlat_identifier) <- c("bbox", "identifier")
+    } else if (identifier == "global") {
+      lonlat_identifier <- list("global")
+      names(lonlat_identifier) <- "identifier"
+    } else {
+      lonlat_identifier <- list(longitude, latitude, identifier)
+      names(lonlat_identifier) <- c("longitude", "latitude", "identifier")
+    }
+    return(lonlat_identifier)
+  }
+
+
+#' Construct a list of commands to pass to the POWER API
+#'
+#' @param community A validated value for community from [check_community()].
+#' @param lonlat_identifier A list of values, a result of [check_lonlat()]
+#' @param pars A validated value from [check_pars()].
+#' @param dates A list of values, a result of [check_dates()].
+#' @param site_elevation
+#' @param wind_elevation
+#' @param wind_surface
+#' @return A `list` object of values to be passed to a [crul] object to query
+#'  the 'POWER' 'API'
+#'
+#' @noRd
+.build_query <- function(community,
+                         lonlat_identifier,
+                         pars,
+                         dates,
+                         site_elevation,
+                         wind_elevation,
+                         wind_surface) {
+  # user_agent <- paste0("nasapower",
+  #                      gsub(
+  #                        pattern = "\\.",
+  #                        replacement = "",
+  #                        x = getNamespaceVersion("nasapower")
+  #                      ))
+
+  user_agent <- "nasapowerdev"
+
+  # If user has given a site_elevation value, use it
+  if (lonlat_identifier$identifier == "point") {
+    query_list <- list(
+      parameters = pars,
+      community = community,
+      start = dates[[1]],
+      end = dates[[2]],
+      siteElev = site_elevation,
+      longitude = lonlat_identifier$longitude,
+      latitude = lonlat_identifier$latitude,
+      format = "csv",
+      time_standard = "utc",
+      user = user_agent
+    )
+  }
+
+  if (lonlat_identifier$identifier == "regional") {
+    query_list <- list(
+      parameters = pars,
+      community = community,
+      start = dates[[1]],
+      end = dates[[2]],
+      "latitude-min" = lonlat_identifier$bbox[1],
+      "latitude-max" = lonlat_identifier$bbox[2],
+      "longitude-min" = lonlat_identifier$bbox[3],
+      "longitude-max" = lonlat_identifier$bbox[4],
+      format = "csv",
+      time_standard = "utc",
+      user = user_agent
+    )
+  }
+
+  if (lonlat_identifier$identifier == "global") {
+    query_list <- list(
+      parameters = pars,
+      community = community,
+      format = "csv",
+      time_standard = "utc",
+      user = user_agent
+    )
+  }
+  return(query_list[lengths(query_list) != 0])
 }
 
 #' Format date columns in POWER data frame for the ag community
