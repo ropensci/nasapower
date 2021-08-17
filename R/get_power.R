@@ -686,9 +686,9 @@ get_power <- function(community,
   names(NASA)[names(NASA) == "MO"] <- "MM"
 
   # add day of year col
-  NASA$YYYYMM <-
-    lubridate::ym(paste0(NASA$YEAR, NASA$MM),
-                   truncated = 1)
+  NASA$YYYYMMDD <-
+    as.Date(paste(NASA$DD, NASA$MM, NASA$YEAR, sep = "-"),
+            format = "%d-%m-%Y")
   NASA$DOY <- lubridate::yday(NASA$YYYYMMDD)
 
   # set integer cols
