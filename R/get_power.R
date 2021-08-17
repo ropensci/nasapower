@@ -313,20 +313,20 @@ get_power <- function(community,
 
     # add lon and lat values from user's request
     power_data <- tibble::add_column(
-      LON = .query_list$longitude,
-      LAT = .query_list$latitude,
+      LON = query_list$longitude,
+      LAT = query_list$latitude,
       power_data,
       .before = 1
     )
 
     # if the temporal average is anything but climatology, add date fields
-    if (.temporal_api == "daily" &
-        .query_list$community == "re" |
-        .query_list$community == "sb") {
+    if (temporal_api == "daily" &
+        query_list$community == "re" |
+        query_list$community == "sb") {
       power_data <- .format_dates_re_sb(power_data)
     }
-    if (.temporal_api == "daily" &
-        .query_list$community == "ag") {
+    if (temporal_api == "daily" &
+        query_list$community == "ag") {
       power_data <- .format_dates_ag(power_data)
     }
 
