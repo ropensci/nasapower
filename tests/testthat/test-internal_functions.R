@@ -269,30 +269,30 @@ test_that(
 # parameter checks -------------------------------------------------------------
 test_that(".check_pars() stops if no `pars` provided", {
   temporal_api <- "daily"
-  lonlat <- c(-179.5, -89.5)
+  community <- "ag"
 
   expect_error(.check_pars(temporal_api,
-                           lonlat,
+                           community,
                            pars))
 })
 
 test_that(".check_pars()  stops if no `temporal_api` provided", {
   pars <- "AG"
-  lonlat <- c(-179.5, -89.5)
+  community <- "ag"
 
   expect_error(.check_pars(temporal_api,
-                           lonlat,
+                           community,
                            pars))
 })
 
 test_that(".check_pars()  stops if `pars` not valid", {
   pars <- "asdflkuewr"
   temporal_api <- "daily"
-  lonlat <- c(-179.5, -89.5)
+  community <- "ag"
 
   expect_error(.check_pars(pars,
-                           temporal_api,
-                           lonlat))
+                           community,
+                           temporal_api))
 })
 
 test_that(".check_pars()  stops if `pars` not valid for given
@@ -300,56 +300,37 @@ test_that(".check_pars()  stops if `pars` not valid for given
             pars <- "ALLSKY_SFC_SW_DWN_03_GMT"
             temporal_api <- "monthly"
             lonlat <- c(-179.5, -89.5)
+            community <- "ag"
 
             expect_error(.check_pars(pars,
-                                     temporal_api,
-                                     lonlat))
+                                     community,
+                                     temporal_api))
           })
 
 test_that("pars are returned as a comma separated string with no spaces", {
   pars <- c("RH2M", "T2M")
   temporal_api <- "climatology"
-  lonlat <- c(-179.5, -89.5)
+  community <- "ag"
 
   pars <- .check_pars(pars,
-                      temporal_api,
-                      lonlat)
-  expect_named(pars, c("pars", "temporal_api"))
-  expect_equal(nchar(pars$pars), 42)
-  expect_equal(pars$pars, "ALLSKY_SFC_SW_DWN_03_GMT,ALLSKY_SFC_LW_DWN")
-  expect_equal(pars$temporal_api, "climatology")
-  expect_length(pars, 2)
-})
-
-test_that("Only 3 pars are allowed when `temporal_api` = climatology", {
-  pars <- c(
-    "ALLSKY_SFC_SW_DWN_03_GMT",
-    "ALLSKY_SFC_LW_DWN",
-    "ALLSKY_SFC_SW_DWN_06_GMT",
-    "RH2M"
-  )
-  temporal_api <- "climatology"
-  lonlat <- NULL
-  expect_error(
-    pars <-
-      .check_pars(pars, temporal_api, lonlat),
-    regexp <- "You can only specify three*"
-  )
+                      community,
+                      temporal_api)
+  expect_equal(nchar(pars), 8)
+  expect_equal(pars, "RH2M,T2M")
 })
 
 test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
             pars <- c(
-              "ALLSKY_SFC_LW_DWN",
-              "ALLSKY_TOA_SW_DWN",
+              "CLRSKY_SFC_SW_DIRH",
+              "CLRSKY_SFC_SW_DNI",
               "CDD0",
               "CDD10",
               "CDD18_3",
-              "CLRSKY_SFC_SW_DWN",
               "FROST_DAYS",
               "HDD0",
               "HDD10",
               "HDD18_3",
-              "KT",
+              "AIRMASS",
               "WSC",
               "PRECTOTCORR",
               "PS",
@@ -366,7 +347,7 @@ test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
             temporal_api <- "daily"
             lonlat <- c(-179.5, -89.5)
             expect_error(
-              pars <- .check_pars(pars, temporal_api, lonlat),
+              pars <- .check_pars(pars, community = "ag", temporal_api),
               regexp <- "You can only specify 20 parameters for download*"
             )
           })
@@ -376,8 +357,8 @@ test_that("Only unique `pars` are queried", {
             "RH2M",
             "RH2M")
   temporal_api <- "climatology"
-  lonlat <- NULL
-  pars <- .check_pars(pars, temporal_api, lonlat)
+  community <- "ag"
+  pars <- .check_pars(pars, community, temporal_api)
   expect_equal(pars[[1]], "RH2M")
   expect_equal(length(pars[[1]]), 1)
 })
@@ -386,8 +367,9 @@ test_that("If an invalid temporal average is given for `pars`,
           an error occurs", {
             pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
             temporal_api <- "daily"
-            lonlat <- c(-179.5, -89.5)
-            expect_error(.check_pars(pars, temporal_api, lonlat))
+            community <- "ag"
+
+            expect_error(.check_pars(pars, community, temporal_api))
           })
 
 # query constructs -------------------------------------------------------------
@@ -397,16 +379,18 @@ test_that(".build_query assembles a proper query for single point and != NULL
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(-179.5, -89.5)
             site_elevation <- 50
-            community <- "AG"
+            community <- "ag"
             pars <- "T2M"
-            outputList <- "CSV"
+            site_elevation <- NULL
+            wind_elevation <- NULL
+            wind_surface <- NULL
 
             dates <- .check_dates(dates,
                                   lonlat,
                                   temporal_api)
             pars <- .check_pars(pars,
-                                temporal_api,
-                                lonlat)
+                                community,
+                                temporal_api)
             lonlat_identifier <- .check_lonlat(lonlat,
                                                pars)
             user_agent <- "nasapower"
@@ -416,22 +400,20 @@ test_that(".build_query assembles a proper query for single point and != NULL
                                        pars,
                                        dates,
                                        site_elevation,
-                                       outputList)
+                                       wind_elevation,
+                                       wind_surface)
 
             expect_named(
               query_list,
               c(
-                "request",
-                "identifier",
                 "parameters",
-                "startDate",
-                "endDate",
                 "community",
-                "tempAverage",
-                "siteElev",
-                "outputList",
-                "lon",
-                "lat",
+                "start",
+                "end",
+                "longitude",
+                "latitude",
+                "format",
+                "time_standard",
                 "user"
               )
             )
@@ -444,16 +426,18 @@ test_that(".build_query assembles a proper query for single point and NULL
             dates <- NULL
             lonlat <- c(-179.5, -89.5)
             site_elevation <- NULL
-            community <- "AG"
+            community <- "ag"
             pars <- "T2M"
-            outputList <- "CSV"
+            site_elevation <- NULL
+            wind_elevation <- NULL
+            wind_surface <- NULL
 
             dates <- .check_dates(dates,
                                   lonlat,
                                   temporal_api)
             pars <- .check_pars(pars,
-                                temporal_api,
-                                lonlat)
+                                community,
+                                temporal_api)
             lonlat_identifier <- .check_lonlat(lonlat,
                                                pars)
             user_agent <- "nasapower"
@@ -463,19 +447,18 @@ test_that(".build_query assembles a proper query for single point and NULL
                                        pars,
                                        dates,
                                        site_elevation,
-                                       outputList)
+                                       wind_elevation,
+                                       wind_surface)
 
             expect_named(
               query_list,
               c(
-                "request",
-                "identifier",
                 "parameters",
                 "community",
-                "tempAverage",
-                "outputList",
-                "lon",
-                "lat",
+                "longitude",
+                "latitude",
+                "format",
+                "time_standard",
                 "user"
               )
             )
@@ -487,41 +470,41 @@ test_that(".build_query assembles a proper query for regional and != NULL
             dates <- c("1983-01-01", "1983-02-02")
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             site_elevation <- NULL
-            community <- "AG"
+            community <- "ag"
             pars <- "T2M"
-            outputList <- "CSV"
+            site_elevation <- NULL
+            wind_elevation <- NULL
+            wind_surface <- NULL
 
             dates <- .check_dates(dates,
-                                  lonlat,
+                                  community,
                                   temporal_api)
             pars <- .check_pars(pars,
-                                temporal_api,
-                                lonlat)
+                                community,
+                                temporal_api)
             lonlat_identifier <- .check_lonlat(lonlat,
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .build_query(community = community,
-                                       lonlat_identifier = lonlat_identifier,
-                                       pars = pars,
-                                       site_elevation = site_elevation,
-                                       dates = dates,
-                                       outputList = outputList,
-                                       wind_elevation = NULL,
-                                       wind_surface = NULL)
+            query_list <- .build_query(community,
+                                       lonlat_identifier,
+                                       pars,
+                                       dates,
+                                       site_elevation,
+                                       wind_elevation,
+                                       wind_surface)
 
             expect_named(
               query_list,
               c(
-                "request",
-                "identifier",
                 "parameters",
-                "startDate",
-                "endDate",
                 "community",
-                "tempAverage",
-                "bbox",
-                "outputList",
+                "latitude-min",
+                "latitude-max",
+                "longitude-min",
+                "longitude-max",
+                "format",
+                "time_standard",
                 "user"
               )
             )
@@ -532,78 +515,40 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
             dates <- NULL
             lonlat <- c(112.5, -55.5, 115.5, -50.5)
             site_elevation <- NULL
-            community <- "AG"
+            community <- "ag"
             pars <- "T2M"
-            outputList <- "CSV"
 
             dates <- .check_dates(dates,
                                   lonlat,
                                   temporal_api)
             pars <- .check_pars(pars,
-                                temporal_api,
-                                lonlat)
+                                community,
+                                temporal_api)
             lonlat_identifier <- .check_lonlat(lonlat,
                                                pars)
             user_agent <- "nasapower"
 
-            query_list <- .build_query(community = community,
-                                       lonlat_identifier = lonlat_identifier,
-                                       pars = pars,
-                                       dates = dates,
-                                       site_elevation = site_elevation,
-                                       outputList = outputList)
+            query_list <- .build_query(community,
+                                       lonlat_identifier,
+                                       pars,
+                                       dates,
+                                       site_elevation,
+                                       wind_elevation,
+                                       wind_surface)
 
             expect_named(
               query_list,
               c(
-                "request",
-                "identifier",
                 "parameters",
                 "community",
-                "tempAverage",
-                "bbox",
-                "outputList",
+                "latitude-min",
+                "latitude-max",
+                "longitude-min",
+                "longitude-max",
+                "format",
+                "time_standard",
                 "user"
               )
             )
           })
 
-test_that(".build_query assembles a proper query for global climatology", {
-  temporal_api <- "climatology"
-  dates <- NULL
-  lonlat <- "global"
-  community <- "AG"
-  pars <- "T2M"
-  site_elevation <- NULL
-  outputList <- "CSV"
-
-  dates <- .check_dates(dates,
-                        lonlat,
-                        temporal_api)
-  pars <- .check_pars(pars,
-                      temporal_api,
-                      lonlat)
-  lonlat_identifier <- .check_lonlat(lonlat,
-                                     pars)
-  user_agent <- "nasapower"
-
-  query_list <- .build_query(community,
-                             lonlat_identifier,
-                             pars,
-                             dates,
-                             site_elevation,
-                             outputList)
-
-  expect_named(
-    query_list,
-    c(
-      "request",
-      "identifier",
-      "parameters",
-      "community",
-      "tempAverage",
-      "outputList",
-      "user"
-    )
-  )
-})
