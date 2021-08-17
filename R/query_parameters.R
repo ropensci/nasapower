@@ -76,9 +76,9 @@ query_parameters <- function(community = NULL,
 
     query_list <-
       list(
-        "community" = community,
-        "parameters" = par,
-        "temporal" = temporal_api,
+        community = community,
+        parameters = par,
+        temporal = temporal_api,
         user = "nasapowerdev"
       )
 
