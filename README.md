@@ -21,8 +21,9 @@ solar energy and climatology data in your R session as a tidy data frame
 `tibble` object for analysis and use in modelling or other purposes.
 POWER (Prediction Of Worldwide Energy Resource) data are freely
 available for download with a spatial resolution of 0.5 x 0.625 degree
-latitude and longitude and various temporal resolutions depending on the
-POWER parameter and community.
+latitude and longitude for meteorology and 1 x 1 degree latitude and
+longitude for solar parameters with various temporal resolutions
+depending on the POWER parameter and community.
 
 Please see <https://power.larc.nasa.gov/> for more on the data and other
 ways to access it and other forms of data available, *e.g.*, your web
