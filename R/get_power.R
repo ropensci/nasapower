@@ -466,9 +466,11 @@ get_power <- function(community,
     if (is.character(lonlat) & length(lonlat) == 1) {
       if (lonlat == "global") {
         # remove this if POWER enables global queries for climatology again
-        stop(call. = FALSE,
-             "The POWER team have not enabled `global` data queries with this",
-             "version of the 'API'.")
+        stop(
+          call. = FALSE,
+          "The POWER team have not enabled `global` data queries with this",
+          "version of the 'API'."
+        )
         identifier <- "global"
       } else if (is.character(lonlat)) {
         stop(call. = FALSE,
@@ -534,10 +536,12 @@ get_power <- function(community,
              "The first `lon` value must be the minimum value.\n")
       }
       identifier <- "regional"
-      bbox <- c("xmin" = lonlat[1],
-                "ymin" = lonlat[2],
-                "xmax" = lonlat[3],
-                "ymax" = lonlat[4])
+      bbox <- c(
+        "xmin" = lonlat[1],
+        "ymin" = lonlat[2],
+        "xmax" = lonlat[3],
+        "ymax" = lonlat[4]
+      )
     } else {
       stop(call. = FALSE,
            "You have entered an invalid request for `lonlat`.\n")
@@ -659,9 +663,11 @@ get_power <- function(community,
                              .after = "YEAR")
 
   # Extract day as integer
-  NASA <- tibble::add_column(NASA,
-                             DD = as.integer(substr(NASA$YYYYMMDD, 9, 10)),
-                             .after = "MM")
+  return(tibble::add_column(NASA,
+                            DD = as.integer(substr(
+                              NASA$YYYYMMDD, 9, 10
+                            )),
+                            .after = "MM"))
 }
 
 #' Format date columns in POWER data frame for the re community
