@@ -1,6 +1,5 @@
 
 # Date handling and checking ---------------------------------------------------
-context("Check dates handles dates correctly")
 test_that("Missing `dates` are properly handled", {
   temporal_api <- "daily"
   dates <- NULL
