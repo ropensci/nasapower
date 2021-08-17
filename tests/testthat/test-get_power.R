@@ -220,7 +220,7 @@ test_that("get_power() stops if `temporal_api` not valid", {
       dates = "1983-01-01",
       temporal_api = 1
     ),
-    regexp = "\nYou have entered an invalid value for `temporal_api`.\n"
+    regexp = "You have entered an invalid value for `temporal_api`.\n"
   )
 })
 
@@ -234,7 +234,7 @@ test_that("get_power() stops if `temporal_api` != climatology
                 dates = "1983-01-01",
                 temporal_api = "daily"
               ),
-              regexp = "\nYou have asked for 'global' data. However, this"
+              regexp = "You have asked for 'global' data. However, this"
             )
           })
 
@@ -247,6 +247,6 @@ test_that("get_power() stops if lonlat is char and != global", {
       dates = "1983-01-01",
       temporal_api = "climatology"
     ),
-    regexp = "\nYou have entered an invalid value for `lonlat`. Valid values"
+    regexp = "You have entered an invalid value for `lonlat`. Valid values"
   )
 })
