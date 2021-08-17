@@ -78,7 +78,7 @@ interannual_re <- get_power(
            "ALLSKY_SFC_SW_DWN")
 )
 
-interannual_sse
+interannual_re
 ```
 
 ### Example fetching climatology data
@@ -103,6 +103,29 @@ _Note_ the associated metadata in the data frame header are not saved if the dat
 
 ## Interrogating the API for available parameters
 
+The POWER API offers functionality to get detailed information on any parameter offered or all parameters that are offered for a given community and temporal API.
+This can be used to find available parameter names and definitions for each community and temporal API.
+
+Fetch the complete available information for the temperature at 2 metres above the Earth's surface, T2M.
+
+```{r t2m-information}
+query_parameters(par = "T2M")
+```
+
+Fetch complete temporal and community specific attribute information for "T2M" in the "ag" community for the "hourly" temporal API.
+
+```{r t2m-ag-hourly}
+query_parameters(par = "T2M",
+                 community = "ag",
+                 temporal_api = "hourly")
+```
+
+Fetch complete temporal and community specific attribute information for all parameters in the "ag" community for the "hourly" temporal API.
+
+```{r complete-ag-hourly}
+query_parameters(community = "ag",
+                 temporal_api = "hourly")
+```
 ## References
 
 <https://power.larc.nasa.gov>
