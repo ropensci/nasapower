@@ -685,17 +685,16 @@ get_power <- function(community,
   names(NASA)[names(NASA) == "DY"] <- "DD"
   names(NASA)[names(NASA) == "MO"] <- "MM"
 
-  # create YYYYMMDD col
-  NASA$YYYYMMDD <- paste0(NASA$YEAR, NASA$MM, NASA$DD)
-
   # add day of year col
-  NASA$DOY <- lubridate::yday(lubridate::as_date(NASA$YYYYMMDD))
+  NASA$YYYYMM <-
+    lubridate::ym(paste0(NASA$YEAR, NASA$MM),
+                   truncated = 1)
+  NASA$DOY <- lubridate::yday(NASA$YYYYMMDD)
 
   # set integer cols
-  NASA$YYYYMMDD <- lubridate::as_date(NASA$YYYYMMDD)
   NASA$MM <- as.integer(NASA$MM)
   NASA$DD <- as.integer(NASA$DD)
 
   refcols <- c("LON", "LAT", "YEAR", "MM", "DD", "DOY", "YYYYMMDD")
-  NASA <- NASA[, c(refcols, setdiff(names(NASA), refcols))]
+  return(NASA[, c(refcols, setdiff(names(NASA), refcols))])
 }
