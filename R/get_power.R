@@ -203,30 +203,38 @@ get_power <- function(community,
   if (is.character(pars)) {
     pars <- toupper(pars)
   }
-  if (isFALSE(length(lonlat != 2)) & !is.null(site_elevation)) {
-    message(
-      "You have provided `site_elevation` for a region or `global`.",
-      "The `site_elevation` value will be ignored.\n"
+  if (any(lonlat == "global")) {
+    # remove this if POWER enables global queries for climatology again
+    stop(
+      call. = FALSE,
+      "The POWER team have not enabled `global` data queries with this ",
+      "version of the 'API'."
     )
-    site_elevation <- NULL
   }
   if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
     stop(call. = FALSE,
          "You have entered an invalid value for `site_elevation`.\n")
   }
-  if (is.character(wind_surface) && is.null(wind_elevation)) {
+  if (length(lonlat != 2) & !is.null(site_elevation)) {
+    message(
+      "You have provided `site_elevation` for a region or `global` request.\n",
+      "The `site_elevation` value will be ignored.\n"
+    )
+    site_elevation <- NULL
+  }
+  if (is.character(wind_surface) & is.null(wind_elevation)) {
     stop(
       call. = FALSE,
-      "bIf you provide a correct wind surface alias `wind_surface` please",
-      "include a surface elevation `wind_elevation` with the request.\n"
+      "If you provide a correct wind surface alias, `wind_surface`, please ",
+      "include a surface elevation, `wind_elevation`, with the request.\n"
     )
   }
   if (!is.null(wind_elevation)) {
-    if (wind_elevation < 10 || wind_elevation > 300) {
+    if (wind_elevation < 10 | wind_elevation > 300) {
       stop(
         call. = FALSE,
-        "Wind Elevation values in metres are required to be between",
-        "10m and 300m.\n"
+        "`wind_elevation` values in metres are required to be between",
+        " 10m and 300m.\n"
       )
     }
   }
@@ -235,13 +243,13 @@ get_power <- function(community,
     if (lonlat == "global" & temporal_api != "climatology") {
       stop(
         call. = FALSE,
-        "You have asked for 'global' data. However, this is only",
-        "available for 'climatology'.\n"
+        "You have asked for 'global' data. However, this is only available ",
+        "for 'climatology'.\n"
       )
     } else if (lonlat != "global") {
       stop(
         call. = FALSE,
-        "You have entered an invalid value for `lonlat`. Valid values are",
+        "You have entered an invalid value for `lonlat`. Valid values are ",
         "`global` with `climatology` or a string of lon and lat values.\n"
       )
     }
@@ -464,12 +472,6 @@ get_power <- function(community,
     bbox <- NULL
     if (is.character(lonlat) & length(lonlat) == 1) {
       if (lonlat == "global") {
-        # remove this if POWER enables global queries for climatology again
-        stop(
-          call. = FALSE,
-          "The POWER team have not enabled `global` data queries with this",
-          "version of the 'API'."
-        )
         identifier <- "global"
       } else if (is.character(lonlat)) {
         stop(call. = FALSE,
