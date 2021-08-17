@@ -97,18 +97,16 @@ test_that("get_power() returns daily point ag data with adjusted atmospheric
                 "T2M_MAX",
                 "RH2M",
                 "WS10M",
-                "PS",
-                "PSC"
+                "PS"
               )
             )
             rm(power_query)
           })
 
-context("get_power() SB Community")
 test_that("get_power returns daily point SB data", {
   skip_on_cran()
   power_query <- get_power(
-    community = "SB",
+    community = "sb",
     lonlat = c(-179.5, -89.5),
     pars = c("T2M",
              "T2M_MIN",
