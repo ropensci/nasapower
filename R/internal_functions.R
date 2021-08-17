@@ -39,8 +39,8 @@
     # temporal_api
     if (any(pars %notin% p)) {
       stop(call. = FALSE,
-           "", pars[which(pars %notin% p)],
-                  " is not valid in 'pars'.\n",
+           "", paste(pars[which(pars %notin% p)], collapse = ", "),
+                  " is/are not valid in 'pars'.\n",
            "Check that the 'pars', 'community' and 'temporal_api' align.")
     }
 
