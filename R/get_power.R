@@ -16,8 +16,7 @@
 #'   supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 #'   \dQuote{climatology}.  See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'   entered as x, y coordinates or \dQuote{global} for global coverage (only
-#'   used for \dQuote{climatology}).  See argument details for more.
+#'   entered as x, y coordinates.  See argument details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   _e.g._, `dates = c("1983-01-01", "2017-12-31")`.
 #'   Not used when\cr `temporal_api` is set to \dQuote{climatology}.
@@ -466,6 +465,10 @@ get_power <- function(community,
     bbox <- NULL
     if (is.character(lonlat) & length(lonlat) == 1) {
       if (lonlat == "global") {
+        # remove this if POWER enables global queries for climatology again
+        stop(call. = FALSE,
+             "The POWER team have not enabled `global` data queries with this",
+             "version of the 'API'.")
         identifier <- "global"
       } else if (is.character(lonlat)) {
         stop(call. = FALSE,
