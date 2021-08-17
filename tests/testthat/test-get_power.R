@@ -1,6 +1,5 @@
 
 # test queries -----------------------------------------------------------------
-context("get_power() ag Community")
 test_that("get_power returns daily point ag data", {
   skip_on_cran()
   power_query <- get_power(
