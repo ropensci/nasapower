@@ -501,7 +501,7 @@ get_power <- function(community,
           call. = FALSE,
           "Please provide correct bounding box values. The bounding box\n",
           "can only enclose a max of 10 x 10 region of 0.5 degree values\n",
-          "or a 5 x 5 region of 1 degree values, (i.e. 100 points total).\n"
+          "or a 5 x 5 region of 1 degree values, (i.e., 100 points total).\n"
         )
       } else if (any(lonlat[1] < -180 |
                      lonlat[3] < -180 |
