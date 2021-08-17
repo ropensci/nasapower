@@ -125,10 +125,10 @@ test_that("get_power returns daily point SB data", {
   expect_equal(power_query$DOY, 1)
   expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -25.24)
-  expect_equal(power_query$T2M_MIN, -25.55)
-  expect_equal(power_query$T2M_MAX, -24.9)
-  expect_equal(power_query$RH2M, 73.92)
-  expect_equal(power_query$WS10M, 2.14)
+  expect_equal(power_query$T2M_MIN, -25.67)
+  expect_equal(power_query$T2M_MAX, -24.88)
+  expect_equal(power_query$RH2M, 94.25)
+  expect_equal(power_query$WS10M, 2.32)
   rm(power_query)
 })
 
@@ -142,7 +142,7 @@ test_that("get_power() returns daily regional ag data", {
     temporal_api = "Daily"
   )
 
-  expect_equal(nrow(power_query), 77)
+  expect_equal(nrow(power_query), 60)
   expect_equal(
     unique(power_query$LAT),
     c(
@@ -155,12 +155,22 @@ test_that("get_power() returns daily regional ag data", {
       -52.25,
       -51.75,
       -51.25,
-      -50.75,
-      -50.25
-    )
+      -50.75
+    ),
+    tolerance = 0.1
   )
-  expect_equal(unique(power_query$LON),
-               c(112.75, 113.25, 113.75, 114.25, 114.75, 115.25, 115.75))
+  expect_equal(
+    unique(power_query$LON),
+    c(
+      112.8,
+      113.2,
+      113.8,
+      114.2,
+      114.8,
+      115.2
+      ),
+    tolerance = 0.1
+    )
   expect_equal(power_query$YEAR[1], 1983)
   expect_equal(power_query$MM[1], 1)
   expect_equal(power_query$DD[1], 1)
@@ -171,21 +181,17 @@ test_that("get_power() returns daily regional ag data", {
   rm(power_query)
 })
 
-test_that("get_power() returns global ag data for climatology", {
+test_that("get_power() returns point ag data for climatology", {
   skip_on_cran()
   power_query <- get_power(
     community = "ag",
     pars = "T2M",
     temporal_api = "climatology",
-    lonlat = "global"
+    lonlat = c(-179.5, -89.5),
   )
 
-  expect_equal(nrow(power_query), 259200)
+  expect_equal(nrow(power_query), 1)
   expect_equal(power_query$PARAMETER[1], "T2M")
-  expect_equal(power_query$LAT[259200], 89.75)
-  expect_equal(power_query$LAT[1], -89.75)
-  expect_equal(power_query$LON[259200], 179.75)
-  expect_equal(power_query$LON[1], -179.75)
   expect_named(
     power_query,
     c(
