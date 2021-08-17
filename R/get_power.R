@@ -531,11 +531,10 @@ get_power <- function(community,
              "The first `lon` value must be the minimum value.\n")
       }
       identifier <- "regional"
-      bbox <- paste(lonlat[2],
-                    lonlat[1],
-                    lonlat[4],
-                    lonlat[3],
-                    sep = ",")
+      bbox <- c("xmin" = lonlat[1],
+                "ymin" = lonlat[2],
+                "xmax" = lonlat[3],
+                "ymax" = lonlat[4])
     } else {
       stop(call. = FALSE,
            "You have entered an invalid request for `lonlat`.\n")
@@ -605,10 +604,10 @@ get_power <- function(community,
       community = community,
       start = dates[[1]],
       end = dates[[2]],
-      "latitude-min" = lonlat_identifier$bbox[1],
-      "latitude-max" = lonlat_identifier$bbox[2],
-      "longitude-min" = lonlat_identifier$bbox[3],
-      "longitude-max" = lonlat_identifier$bbox[4],
+      "latitude-min" = lonlat_identifier$bbox["ymin"],
+      "latitude-max" = lonlat_identifier$bbox["ymax"],
+      "longitude-min" = lonlat_identifier$bbox["xmin"],
+      "longitude-max" = lonlat_identifier$bbox["xmax"],
       format = "csv",
       time_standard = "utc",
       user = user_agent
