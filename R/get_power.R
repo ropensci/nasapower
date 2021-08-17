@@ -182,7 +182,6 @@ get_power <- function(community,
                       site_elevation = NULL,
                       wind_elevation = NULL,
                       wind_surface = NULL) {
-  # user input checks and formatting -------------------------------------------
 
   if (is.character(temporal_api)) {
     temporal_api <- tolower(temporal_api)
