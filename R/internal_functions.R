@@ -11,7 +11,6 @@
 #'
 #' @noRd
 `%notin%` <- function(x, table) {
-  # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
 }
 
