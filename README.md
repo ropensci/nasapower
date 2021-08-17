@@ -25,9 +25,9 @@ latitude and longitude for meteorology and 1 x 1 degree latitude and
 longitude for solar parameters with various temporal resolutions
 depending on the POWER parameter and community.
 
-Please see <https://power.larc.nasa.gov/> for more on the data and other
-ways to access it and other forms of data available, *e.g.*, your web
-browser or an ESRI REST API.
+**Note that the data are not static and may be replaced with improved
+data.** Please see <https://power.larc.nasa.gov/docs/services/> for
+detailed information in this regard.
 
 ### Quick start
 
