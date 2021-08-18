@@ -12,7 +12,8 @@ get_power(
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
-  wind_surface = NULL
+  wind_surface = NULL,
+  temporal_average = NULL
 )
 }
 \arguments{
@@ -55,6 +56,9 @@ request, see
 
 \item{wind_surface}{A user-supplied wind surface for which the corrected
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
+
+\item{temporal_average}{Deprecated. This argument has been superseded by
+\code{temporal_api} to align with the new POWER API terminology.}
 }
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the

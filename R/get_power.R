@@ -40,6 +40,8 @@
 #'    \url{https://power.larc.nasa.gov/docs/methodology/meteorology/wind/}.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
+#' @param temporal_average Deprecated. This argument has been superseded by
+#'   `temporal_api` to align with the new POWER API terminology.
 #'
 #' @section Argument details for \dQuote{community}: there are three valid
 #'   values, one must be supplied.  This  will affect the units of the parameter
@@ -187,8 +189,16 @@ get_power <- function(community,
                       dates = NULL,
                       site_elevation = NULL,
                       wind_elevation = NULL,
-                      wind_surface = NULL) {
+                      wind_surface = NULL,
+                      temporal_average = NULL) {
 
+  if (!is.null(temporal_average)) {
+    message(call. = FALSE,
+            "`temporal_average has been deprecated for `temporal_api`.\n",
+            "Your query has been modified to use the new terminology for ",
+            "`get_power`.  Please update your scripts to use the new argument.")
+    temporal_api <- temporal_average
+  }
   if (is.character(temporal_api)) {
     temporal_api <- tolower(temporal_api)
     if (temporal_api == "climatology") {
