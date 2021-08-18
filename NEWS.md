@@ -3,7 +3,7 @@
 ## Major changes
 
 * Adds support for new NASA POWER API v2.0, which includes new `hourly` data and other major changes.
-See <https://https://power.larc.nasa.gov> for fully detailed changes to the data.
+See <https://power.larc.nasa.gov> for fully detailed changes to the data.
 
 * Adds new function, `query_parameters()` to fetch information from the API on individual and all available community/temporal API combination parameters.
 
