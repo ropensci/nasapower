@@ -17,7 +17,8 @@ See <https://https://power.larc.nasa.gov> for fully detailed changes to the data
   * two new arguments are added,
     * `wind_elevation`, and
     * `wind_surface`,
-  * the `temporal_average` argument is changed to `temporal_api` to align with the terminology used in the POWER API.
+  * the `temporal_average` argument has been superseded by `temporal_api` to align with the terminology used in the POWER API.
+  The `temporal_average` argument will still work, however, a message will be given if a user still uses `temporal_average` to alert the user of the change and ask them to update their scripts.
 
 
 ## Minor changes
