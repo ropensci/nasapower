@@ -53,8 +53,7 @@ if (!require("remotes")) {
   install.packages("remotes")
 }
 
-remotes::install_github("ropensci/nasapower"
-)
+remotes::install_github("ropensci/nasapower")
 ```
 
 ### Example
