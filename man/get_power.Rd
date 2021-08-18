@@ -17,12 +17,15 @@ get_power(
 }
 \arguments{
 \item{community}{A character vector providing community name: \dQuote{ag},
-\dQuote{sb} or \dQuote{re}.  See argument details for more.}
+\dQuote{re} or \dQuote{sb}.  See argument details for more.}
 
 \item{pars}{A character vector of solar, meteorological or climatology
-parameters to download.  If downloading \dQuote{climatology} a maximum of
-three \code{pars} can be specified at one time, for \dQuote{daily} and
-\dQuote{monthly} a maximum of 20 can be specified at one time.}
+parameters to download.  When requesting a single point of x, y
+coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
+for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
+\code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
+only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
+more.}
 
 \item{temporal_api}{Temporal \acronym{API} end-point for data being queried,
 supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
@@ -61,8 +64,10 @@ header of metadata is included in this object.
 \description{
 Get \acronym{POWER} global meteorology and surface solar energy
 climatology data and return a tidy data frame \code{\link[tibble:tibble]{tibble::tibble()}}
-object. All options offered by the official \acronym{POWER} \acronym{API}
-are supported.
+object.  All options offered by the official \acronym{POWER} \acronym{API}
+are supported.  Requests are formed to submit one request per point.  There
+is no need to make synchronous requests for multiple parameters for a
+single point.
 }
 \note{
 The associated metadata shown in the decorative header are not saved if
