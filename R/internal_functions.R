@@ -61,7 +61,6 @@
     return(pars)
   }
 
-
 #' Sends the query to the POWER API
 #'
 #' @param .query_list A query list created by [.build_query()]
@@ -80,7 +79,9 @@
 
   tryCatch({
     # nocov begin
-    response <- client$get(query = .query_list, retry = 6)
+    response <- client$get(query = .query_list,
+                           retry = 6L,
+                           timeout = 30L)
     if (!response$success()) {
       stop(call. = FALSE)
     }
