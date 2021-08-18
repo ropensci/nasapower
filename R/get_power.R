@@ -3,15 +3,20 @@
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
 #'   climatology data and return a tidy data frame [tibble::tibble()]
-#'   object. All options offered by the official \acronym{POWER} \acronym{API}
-#'   are supported.
+#'   object.  All options offered by the official \acronym{POWER} \acronym{API}
+#'   are supported.  Requests are formed to submit one request per point.  There
+#'   is no need to make synchronous requests for multiple parameters for a
+#'   single point.
 #'
 #' @param community A character vector providing community name: \dQuote{ag},
-#'   \dQuote{sb} or \dQuote{re}.  See argument details for more.
+#'   \dQuote{re} or \dQuote{sb}.  See argument details for more.
 #' @param pars A character vector of solar, meteorological or climatology
-#'   parameters to download.  If downloading \dQuote{climatology} a maximum of
-#'   three `pars` can be specified at one time, for \dQuote{daily} and
-#'   \dQuote{monthly} a maximum of 20 can be specified at one time.
+#'   parameters to download.  When requesting a single point of x, y
+#'   coordinates, a maximum of twenty (20) `pars` can be specified at one time,
+#'   for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
+#'   `temporal_api`s.  If the `temporal_api` is specified as \dQuote{hourly}
+#'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
+#'   more.
 #' @param temporal_api Temporal \acronym{API} end-point for data being queried,
 #'   supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 #'   \dQuote{climatology}.  See argument details for more.
