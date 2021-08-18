@@ -50,7 +50,7 @@ in metres.  Wind Elevation values in Meters are required to be between 10m
 and 300m.  Only used with \code{lonlat} as a single point of x, y coordinates,
 not for use with \dQuote{global} or with a regional request.  If this
 parameter is provided, the \code{wind-surface} parameter is required with the
-request, see \url{https://power.larc.nasa.gov/beta/docs/methodology/meteorology/wind/}.}
+request, see \url{https://power.larc.nasa.gov/docs/methodology/meteorology/wind/}.}
 
 \item{wind_surface}{A user-supplied wind surface for which the corrected
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
