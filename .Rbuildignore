@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^CRAN-RELEASE$
 ^\.github$
 ^.*\.Rproj$
@@ -16,3 +18,4 @@
 ^Meta$
 ^\.ccache$
 ^tic\.R$
+^.covrignore$

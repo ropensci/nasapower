@@ -22,24 +22,27 @@ knitr::opts_chunk$set(collapse = TRUE,
 ## Introduction
 
 _nasapower_ aims to make it quick and easy to automate downloading NASA [POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data  data in your R session as a tidy data frame for analysis and use in modelling or other purposes using `get_power()`.
-POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude.
+POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface with a spatial resolution of 0.5 x 0.625 degree latitude and longitude for meteorology and  1 x 1 degree latitude and longitude for solar parameters with various temporal resolutions depending on the POWER parameter and community.
 
-## Using `get_power` to Fetch POWER Data
+## Using get_power() to fetch POWER data
 
-The `get_power()` function has five arguments as seen in this example and returns a data frame with a metadata header in the current R session.
+The `get_power()` function has eight possible arguments and returns a data frame with a metadata header in the current R session.
 
 ### Example fetching daily data for a single point
 
 Fetch daily "AG" community temperature, relative humidity and precipitation for January 1985 for Kingsthorpe, Queensland, Australia.
 
 ```{r get-ag}
-library(nasapower)
+library("nasapower")
 daily_single_ag <- get_power(
-  community = "AG",
+  community = "ag",
   lonlat = c(151.81, -27.48),
   pars = c("RH2M", "T2M", "PRECTOT"),
   dates = c("1985-01-01", "1985-01-31"),
-  temporal_average = "DAILY"
+  temporal_api = "daily",
+  site_elevation = NULL,
+  wind_elevation = NULL,
+  wind_surface = NULL
 )
 
 daily_single_ag
@@ -47,15 +50,15 @@ daily_single_ag
 
 ### Example fetching daily data for an area
 
-Fetch daily "AG" community relative humidity and temperature for south east Queensland region.
+Fetch daily "ag" community relative humidity and temperature for south east Queensland region.
 
 ```{r daily-region}
 daily_region_ag <- get_power(
-  community = "AG",
+  community = "ag",
   lonlat = c(150.5, -28.5 , 153.5, -25.5),
   pars = c("RH2M", "T2M"),
   dates = c("1985-01-01", "1985-01-02"),
-  temporal_average = "DAILY"
+  temporal_api = "daily"
 )
 
 daily_region_ag
@@ -66,30 +69,31 @@ daily_region_ag
 Fetch interannual solar cooking parameters for south east Queensland region.
 
 ```{r interannual}
-interannual_sse <- get_power(
-  community = "SSE",
+interannual_re <- get_power(
+  community = "re",
   lonlat = c(150.5, -28.5 , 153.5, -25.5),
   dates = c("1984", "1985"),
-  temporal_average = "INTERANNUAL",
+  temporal_api = "monthly",
   pars = c("CLRSKY_SFC_SW_DWN",
            "ALLSKY_SFC_SW_DWN")
 )
 
-interannual_sse
+interannual_re
 ```
 
 ### Example fetching climatology data
 
-Global data are only available for the climatology `temporal_average`, setting this argument as such will fetch global data.
+Climatology data can be retrieved for point or regional areas as demonstrated previously.
+Change the `temporal_api` value to "climatology" to get these data.
 
-Fetch global "AG"" climatology for temperature and relative humidity.
+Fetch "ag" climatology for temperature and relative humidity for Kingsthorpe, Queensland, Australia.
 
 ```{r get-climatology}
 climatology_ag <- get_power(
-  community = "AG",
+  community = "ag",
   pars = c("T2M", "RH2M"),
-  lonlat = "GLOBAL",
-  temporal_average = "CLIMATOLOGY"
+  lonlat = c(151.81, -27.48),
+  temporal_api = "climatology"
 )
 
 climatology_ag
@@ -97,143 +101,31 @@ climatology_ag
 
 _Note_ the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
 
-### Description of parameters for `get_power`
+## Interrogating the API for available parameters
 
-- `community`, a text string with valid values of: "AG" (Agroclimatology), "SSE" (Surface meteorology and Solar Energy) or "SB" (Sustainable Buildings).
-The selected user community will affect the units of the parameter and the temporal display of time series data (_e.g._, "AG" will use MJ/m^2^/day for radiation units, while SSE and SB use kW/m^2^/day as units).
+The POWER API offers functionality to get detailed information on any parameter offered or all parameters that are offered for a given community and temporal API.
+This can be used to find available parameter names and definitions for each community and temporal API.
 
-- `lonlat`, A numeric vector of geographic coordinates for a cell or region entered as x, y coordinates. Not used when `temporal_average` is set to "CLIMATOLOGY".
+Fetch the complete available information for the temperature at 2 metres above the Earth's surface, T2M.
 
-    - *For a single point* To get a specific cell, 1/2 x 1/2 degree, supply a length-two numeric vector giving the decimal degree longitude and latitude in that order for data to download,  *e.g.*, `lonlat = c(-89.5, -179.5)`.
-
-    - *For regional coverage* To get a region, supply a length-four numeric vector as lower left (lon, lat) and upper right (lon, lat) coordinates, *e.g.*, `lonlat = c(xmin, ymin, xmax, ymax)` in that order for a given region, *e.g.*, a bounding box for the south-western corner of Australia: `lonlat = c(112.5, -55.5, 115.5, -50.5)`.
-      *Max bounding box is 10 x 10 degrees* of 1/2 x 1/2 degree data, *i.e.*, 100 points maximum in total.
-
-- `pars`. A character vector of parameters to download.
-  See `help(parameters)` for a full list of valid values and definitions.
-  If downloading "CLIMATOLOGY" a maximum of 3 `pars` can be specified at one time, for "DAILY" and "INTERANNUAL" a maximum of 20 can be specified at one time.
-
-- `dates`, a vector of start and end dates for which to query the POWER API, *e.g.*, `dates = c("1983-01-01", "2017-12-31")`.
-
-- `temporal_average`, a character vector of the desired temporal average(s).
-  Valid values are "DAILY", "INTERANNUAL" and "CLIMATOLOGY".
-
-## Creating Spatial Objects from `get_power`
-
-If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from `get_power()` to a spatial object in R using `terra::rast(type = "xyz")`.
-
-### Converting Regional Data to a SpatRaster() Object
-
-Using `lapply` and `split` it is easy to create stacks of raster objects from a regional query.
-
-```{r terra-example}
-library("terra")
-# Use split to create a list of data frames split by YYYYMMDD
-daily_region_ag <- split(daily_region_ag, daily_region_ag$YYYYMMDD)
-
-# Remove date information from data frame, list names will carry YYYYMMDD
-daily_region_ag <-
-  lapply(
-    X = daily_region_ag,
-    FUN = function(x)
-      x[(!names(x) %in% c("YEAR", "MM", "DD", "DOY", "YYYYMMDD"))]
-  )
-
-# Convert the data into matrix() objects for terra to work with
-daily_region_ag <- lapply(X = daily_region_ag, FUN = as.matrix)
-
-# Create a list of raster bricks from each YYYYMMDD data frame
-RH2M_list <- lapply(
-  X = daily_region_ag,
-  FUN = function(x)
-    rast(x[, 1:3],
-         crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
-         type = "xyz")
-)
-
-T2M_list <- lapply(
-  X = daily_region_ag,
-  FUN = function(x)
-    rast(x[, c(1:2, 4)],
-         crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
-         type = "xyz")
-)
-
-raster_stack <- rast(c(RH2M_list, T2M_list))
-names(raster_stack) <-
-  paste0(names(raster_stack), "_", rep(names(daily_region_ag), times = 2))
+```{r t2m-information}
+query_parameters(par = "T2M")
 ```
 
-Plot all the items in the stack.
+Fetch complete temporal and community specific attribute information for "T2M" in the "ag" community for the "hourly" temporal API.
 
-```{r plot-fig1}
-plot(raster_stack)
+```{r t2m-ag-hourly}
+query_parameters(par = "T2M",
+                 community = "ag",
+                 temporal_api = "hourly")
 ```
 
-### Converting Global Climatology to a Gridded Spatial Object
+Fetch complete temporal and community specific attribute information for all parameters in the "ag" community for the "hourly" temporal API.
 
-Converting global climatology to a `terra` objects is as simple as querying and then converting the resulting `tibble` to a _terra_ object using `terra::rast(type = "xyz")`<sup>*</sup>.
-Illustrated here using the `climatology_ag` object previously created are two methods.
-
-<sub>*: You may experience issues if you have <16GB RAM available converting the entire object to a `terra::rast()`.</sub>
-
-#### For low-memory systems
-
-For low-memory systems, a computer with 8GB or less RAM, it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.
-
-Using indexing pick the month or annual value and create a raster object.
-In this case, column 15 is the annual average, `climatology_list$RH2M[, c(1:2, 15)]`.
-
-```{r create-single-raster}
-# split data frame into data frames for each parameter in a list
-climatology_list <- split(climatology_ag, climatology_ag$PARAMETER)
-
-# Remove PARAMETER information from data frame, list names supply this
-climatology_list <-
-  lapply(climatology_list, function(x) {
-    x["PARAMETER"] <- NULL
-    x
-  })
-
-# Convert the data into matrix() objects for terra to work with
-climatology_list <- lapply(X = climatology_list, FUN = as.matrix)
-
-RH2M_ann <- rast(climatology_list$RH2M[, c(1:2, 15)],
-                 crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
-                 type = "xyz")
-
-RH2M_ann
-
-plot(RH2M_ann)
+```{r complete-ag-hourly}
+query_parameters(community = "ag",
+                 temporal_api = "hourly")
 ```
-
-#### For systems with more available memory
-
-For systems with RAM of ~16GB or more, it is possible to create a `terra::rast()` of the resulting POWER query.
-To do so, subset the `tibble()` for the desired parameter and drop the `PARAMETER` column.
-
-```{r create-climatology-brick, eval=TRUE}
-
-# Remove the parameter column and conver to a matrix() object for terra
-T2M <- as.matrix(subset(climatology_ag, PARAMETER == "T2M")[, -3])
-
-# Preallocate a list and name it for filling with SpatRaster objects
-T2M_list <- vector(mode = "list", length = 13)
-names(T2M_list) <- colnames(T2M)[-c(1:2)]
-
-# in a loop, convert each month into a SpatRaster object
-for (i in colnames(T2M)[-c(1:2)]) {
-  T2M_list[[i]] <- rast(T2M[, c("LON", "LAT", i)],
-                        crs = "+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs",
-                        type = "xyz")
-}
-
-# create a stack of SpatRaster objects
-T2M <- c(rast(T2M_list))
-
-plot(T2M)
-```
-
 ## References
 
 <https://power.larc.nasa.gov>

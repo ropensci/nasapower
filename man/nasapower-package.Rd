@@ -9,13 +9,14 @@
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Client for 'NASA' 'POWER' global meteorology, surface solar
-    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
-    Resource) data are freely available global meteorology and surface solar
-    energy climatology data for download with a resolution of 1/2 by 1/2 arc
-    degree longitude and latitude and are funded through the 'NASA' Earth
-    Science Directorate Applied Science Program.  For more on the data
-    themselves, a web-based data viewer and web access, please see
-    <https://power.larc.nasa.gov/>.
+    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy 
+    Resource) data are freely available for download with a spatial resolution 
+    of 0.5 x 0.625 degree latitude and longitude for meteorology and  1 x 1
+    degree latitude and longitude for solar parameters with various temporal
+    resolutions depending on the POWER parameter and community.  This work is
+    funded through the 'NASA' Earth Science Directorate Applied Science Program.
+    For more on the data themselves, the methodologies used in creating, a web-
+    based data viewer and web access, please see <https://power.larc.nasa.gov/>.
 }
 \seealso{
 Useful links:

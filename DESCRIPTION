@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 3.0.1.9000
+Version: 3.0.1.9001
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
@@ -36,43 +36,37 @@ Authors@R:
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
-    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy
-    Resource) data are freely available global meteorology and surface solar
-    energy climatology data for download with a resolution of 1/2 by 1/2 arc
-    degree longitude and latitude and are funded through the 'NASA' Earth
-    Science Directorate Applied Science Program.  For more on the data
-    themselves, a web-based data viewer and web access, please see
-    <https://power.larc.nasa.gov/>.
+    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy 
+    Resource) data are freely available for download with a spatial resolution 
+    of 0.5 x 0.625 degree latitude and longitude for meteorology and  1 x 1
+    degree latitude and longitude for solar parameters with various temporal
+    resolutions depending on the POWER parameter and community.  This work is
+    funded through the 'NASA' Earth Science Directorate Applied Science Program.
+    For more on the data themselves, the methodologies used in creating, a web-
+    based data viewer and web access, please see <https://power.larc.nasa.gov/>.
 Depends:
     R (>= 3.5.0)
 License: MIT + file LICENSE
 Imports:
     crul,
-    curl,
     lubridate,
     jsonlite,
     readr,
     tibble
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.1.9001
 Encoding: UTF-8
-Language: en-AU
+Language: en-US
 NeedsCompilation: no
 Repository: CRAN
-LazyData: TRUE
-ByteCompile: TRUE
 Suggests:
-    apsimx,
-    ggplot2,
     knitr,
-    purrr,
-    terra,
     rmarkdown,
-    rnaturalearth,
-    sf,
-    testthat
+    testthat,
+    spelling
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
     weather-data, meteorology, NASA-POWER, agroclimatology, earth-science,
     data-access, climate-data
 X-schema.org-isPartOf: https://ropensci.org
+Roxygen: list(markdown = TRUE)

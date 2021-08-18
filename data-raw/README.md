@@ -1,602 +1,174 @@
-Fetch NASA-POWER Parameters
+Fetch NASA-POWER Parameters and Include Them as an Internal List
 ================
 Adam H Sparks
-2020-08-22
+2021-08-13
 
-Create `parameters` list for internal checks before sending queries to POWER server
-===================================================================================
+# Create parameters nested list for internal checks before sending queries to POWER server
 
 These data are used for internal checks to be sure that data requested
 from the POWER dataset are valid. The POWER list of parameters that can
-be queried is available as a JSON file. Thanks to
-[raymondben](https://github.com/raymondben) for pointing me to this
-file.
+be queried is available as an API query from the POWER server.
 
-POWER JSON file
----------------
+The list structure will be
 
-Using `jsonlite` read the JSON file into R creating a list.
+-   `parameters`
+    -   `HOURLY_AG`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `DAILY_AG`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `MONTHLY_AG`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `CLIMATOLOGY_AG`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `HOURLY_RE`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `DAILY_RE`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `MONTHLY_RE`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `CLIMATOLOGY_RE`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `HOURLY_SB`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `DAILY_SB`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `MONTHLY_SB`
+        -   `parameter_1` …
+        -   `parameter_n`
+    -   `CLIMATOLOGY_SB`
+        -   `parameter_1` …
+        -   `parameter_n`
 
-    parameters <-
-      jsonlite::fromJSON(
-        "https://power.larc.nasa.gov/system/parameters.json"
-      )
+## POWER JSON file
 
-Replace UTF-8 characters in the dataset since R doesn’t like this in
-packages.
+Using `purrr::map2` and jsonlite::fromJSON()\` read the JSON file into R
+creating a single, nested list and reorder it alphabetically by
+parameter name.
 
-    parameters$SG_DEC_AVG$climatology_definition <-
-      gsub("°",
-           " degrees",
-           parameters$SG_DEC_AVG$climatology_definition)
+``` r
+library("purrr")
+library("jsonlite")
+```
 
-    parameters$SG_HR_SET_ANG$climatology_definition <-
-      gsub("°",
-           " degrees",
-           parameters$SG_HR_SET_ANG$climatology_definition)
+    ## 
+    ## Attaching package: 'jsonlite'
 
-    parameters$SG_NOON$climatology_definition <-
-      gsub("°",
-           " degrees",
-           parameters$SG_NOON$climatology_definition)
+    ## The following object is masked from 'package:purrr':
+    ## 
+    ##     flatten
 
-View list of parameters and units
----------------------------------
+``` r
+temporal_api <- c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")
+community <- c("AG", "RE", "SB")
 
-The following list has the format:
+# create all combinations
+vals <- expand.grid(temporal_api, community, stringsAsFactors = FALSE)
 
-    ## $PARAMETER_NAME
-    ## [1] "standard_name"
+# create equal length vectors for purrr::map2
+temporal_api <- vals[, 1]
+community <- vals[, 2]
 
-Where `PARAMETER_NAME` is used in the internal `parameters` list. The
-`"standard_name"` is a longer, more descriptive name for the parameter
-that may be more instructive to users.
+base_url <- "https://power.larc.nasa.gov/api/system/manager/parameters?"
 
-    purrr::map(parameters, "standard_name")
+power_pars <- map2(.x = temporal_api,
+                  .y = community,
+                  .f = ~ fromJSON(paste0(
+                    base_url,
+                    "temporal=",
+                    .x,
+                    "&community=",
+                    .y
+                  )))
 
-    ## $ALLSKY_SFC_LW_DWN
-    ## [1] "Downward Thermal Infrared (Longwave) Radiative Flux"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN
-    ## [1] "All Sky Insolation Incident on a Horizontal Surface"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_00_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 00 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_03_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 03 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_06_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 06 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_09_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 09 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_12_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 12 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_15_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 15 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_18_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 18 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_21_GMT
-    ## [1] "All Sky Insolation Incident On A Horizontal Surface at 21 GMT"
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_MAX_DIFF
-    ## [1] "Maximum Monthly Difference From Monthly Averaged All Sky Insolation "
-    ## 
-    ## $ALLSKY_SFC_SW_DWN_MIN_DIFF
-    ## [1] "Minimum Monthly Difference From Monthly Averaged All Sky Insolation"
-    ## 
-    ## $ALLSKY_TOA_SW_DWN
-    ## [1] "Top-of-atmosphere Insolation"
-    ## 
-    ## $CDD0
-    ## [1] "Cooling Degree Days Above 0 C"
-    ## 
-    ## $CDD10
-    ## [1] "Cooling Degree Days Above 10 C"
-    ## 
-    ## $CDD18_3
-    ## [1] "Cooling Degree Days Above 18.3 C"
-    ## 
-    ## $CLD_AMT
-    ## [1] "Daylight Cloud Amount"
-    ## 
-    ## $CLD_AMT_00_GMT
-    ## [1] "Cloud Amount at 00 GMT"
-    ## 
-    ## $CLD_AMT_03_GMT
-    ## [1] "Cloud Amount at 03 GMT"
-    ## 
-    ## $CLD_AMT_06_GMT
-    ## [1] "Cloud Amount at 06 GMT"
-    ## 
-    ## $CLD_AMT_09_GMT
-    ## [1] "Cloud Amount at 09 GMT"
-    ## 
-    ## $CLD_AMT_12_GMT
-    ## [1] "Cloud Amount at 12 GMT"
-    ## 
-    ## $CLD_AMT_15_GMT
-    ## [1] "Cloud Amount at 15 GMT"
-    ## 
-    ## $CLD_AMT_18_GMT
-    ## [1] "Cloud Amount at 18 GMT"
-    ## 
-    ## $CLD_AMT_21_GMT
-    ## [1] "Cloud Amount at 21 GMT"
-    ## 
-    ## $CLRSKY_DIFF
-    ## [1] "Clear Sky Diffuse Radiation On A Horizontal Surface"
-    ## 
-    ## $CLRSKY_NKT
-    ## [1] "Normalized Clear Sky Insolation Clearness Index"
-    ## 
-    ## $CLRSKY_SFC_SW_DWN
-    ## [1] "Clear Sky Insolation Incident on a Horizontal Surface"
-    ## 
-    ## $DIFF
-    ## [1] "Diffuse Radiation On A Horizontal Surface"
-    ## 
-    ## $DIFF_MAX
-    ## [1] "Maximum Diffuse Radiation On A Horizontal Surface"
-    ## 
-    ## $DIFF_MIN
-    ## [1] "Minimum Diffuse Radiation On A Horizontal Surface"
-    ## 
-    ## $DNR
-    ## [1] "Direct Normal Radiation"
-    ## 
-    ## $DNR_MAX
-    ## [1] "Maximum Direct Normal Radiation"
-    ## 
-    ## $DNR_MAX_DIFF
-    ## [1] "Maximum Difference From Monthly Averaged Direct Normal Radiation"
-    ## 
-    ## $DNR_MIN
-    ## [1] "Minimum Direct Normal Radiation"
-    ## 
-    ## $DNR_MIN_DIFF
-    ## [1] "Minimum Difference From Monthly Averaged Direct Normal Radiation"
-    ## 
-    ## $EQVLNT_NO_SUN_BLACKDAYS_1
-    ## [1] "Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive 1-day Period"
-    ## 
-    ## $EQVLNT_NO_SUN_BLACKDAYS_14
-    ## [1] "Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive 14-day Period"
-    ## 
-    ## $EQVLNT_NO_SUN_BLACKDAYS_21
-    ## [1] "Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive 21-day Period"
-    ## 
-    ## $EQVLNT_NO_SUN_BLACKDAYS_3
-    ## [1] "Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive 3-day Period"
-    ## 
-    ## $EQVLNT_NO_SUN_BLACKDAYS_7
-    ## [1] "Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive 7-day Period"
-    ## 
-    ## $EQVLNT_NO_SUN_BLACKDAYS_MONTH
-    ## [1] "Equivalent Number Of NO-SUN Or BLACK Days Over A Consecutive Month Period"
-    ## 
-    ## $FROST_DAYS
-    ## [1] "Frost Days"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_00_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 00 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_03_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 03 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_06_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 06 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_09_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 09 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_12_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 12 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_15_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 15 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_18_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 18 GMT"
-    ## 
-    ## $FRQ_BRKNCLD_10_70_21_GMT
-    ## [1] "Frequency Of Broken-cloud Skies 10 - 70 % At 21 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_00_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 00 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_03_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 03 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_06_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 06 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_09_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 09 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_12_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 12 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_15_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 15 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_18_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 18 GMT"
-    ## 
-    ## $FRQ_CLRSKY_0_10_21_GMT
-    ## [1] "Frequency Of Clear Skies < 10% At 21 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_00_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 00 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_03_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 03 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_06_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 06 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_09_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 09 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_12_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 12 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_15_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 15 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_18_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 18 GMT"
-    ## 
-    ## $FRQ_NROVRCST_70_21_GMT
-    ## [1] "Frequency Of Near-overcast Skies >= 70% At 21 GMT"
-    ## 
-    ## $HDD0
-    ## [1] "Heating Degree Days Below 0 C"
-    ## 
-    ## $HDD10
-    ## [1] "Heating Degree Days Below 10 C"
-    ## 
-    ## $HDD18_3
-    ## [1] "Heating Degree Days Below 18.3 C"
-    ## 
-    ## $INSOL_MIN_CONSEC_1
-    ## [1] "Minimum Available Insolation Over A Consecutive 1-day Period"
-    ## 
-    ## $INSOL_MIN_CONSEC_14
-    ## [1] "Minimum Available Insolation Over A Consecutive 14-day Period"
-    ## 
-    ## $INSOL_MIN_CONSEC_21
-    ## [1] "Minimum Available Insolation Over A Consecutive 21-day Period"
-    ## 
-    ## $INSOL_MIN_CONSEC_3
-    ## [1] "Minimum Available Insolation Over A Consecutive 3-day Period"
-    ## 
-    ## $INSOL_MIN_CONSEC_7
-    ## [1] "Minimum Available Insolation Over A Consecutive 7-day Period"
-    ## 
-    ## $INSOL_MIN_CONSEC_MONTH
-    ## [1] "Minimum Available Insolation Over A Consecutive Month Period"
-    ## 
-    ## $KT
-    ## [1] "Insolation Clearness Index"
-    ## 
-    ## $KT_CLEAR
-    ## [1] "Clear Sky Insolation Clearness Index"
-    ## 
-    ## $MIDDAY_INSOL
-    ## [1] "Midday Insolation Incident On A Horizontal Surface"
-    ## 
-    ## $NKT
-    ## [1] "Normalized Insolation Clearness Index"
-    ## 
-    ## $NO_SUN_BLACKDAYS_MAX
-    ## [1] "Maximum NO-SUN Or BLACK Days"
-    ## 
-    ## $PHIS
-    ## [1] "Surface Geopotential"
-    ## 
-    ## $PRECTOT
-    ## [1] "Precipitation"
-    ## 
-    ## $PS
-    ## [1] "Surface Pressure"
-    ## 
-    ## $PSC
-    ## [1] "Corrected Atmospheric Pressure (Adjusted For Site Elevation)"
-    ## 
-    ## $QV2M
-    ## [1] "Specific Humidity at 2 Meters"
-    ## 
-    ## $RH2M
-    ## [1] "Relative Humidity at 2 Meters"
-    ## 
-    ## $SG_DAY_COZ_ZEN_AVG
-    ## [1] "Daylight Average Of Hourly Cosine Solar Zenith Angles"
-    ## 
-    ## $SG_DAY_HOUR_AVG
-    ## [1] "Daylight Hours"
-    ## 
-    ## $SG_DEC_AVG
-    ## [1] "Declination"
-    ## 
-    ## $SG_HR_AZM_ANG_AVG
-    ## [1] "Hourly Solar Azimuth Angles"
-    ## 
-    ## $SG_HR_HRZ_ANG_AVG
-    ## [1] "Hourly Solar Angles Relative To The Horizon"
-    ## 
-    ## $SG_HR_SET_ANG
-    ## [1] "Sunset Hour Angle"
-    ## 
-    ## $SG_MAX_HRZ_ANG
-    ## [1] "Maximum Solar Angle Relative To The Horizon"
-    ## 
-    ## $SG_MID_COZ_ZEN_ANG
-    ## [1] "Cosine Solar Zenith Angle At Mid-Time Between Sunrise And Solar Noon"
-    ## 
-    ## $SG_NOON
-    ## [1] "Solar Noon"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_HORIZONTAL
-    ## [1] "Solar Irradiance for Equator Facing Horizontal Surface"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_LAT_MINUS15
-    ## [1] "Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_LATITUDE
-    ## [1] "Solar Irradiance for Equator Facing Latitude Tilt"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_LAT_PLUS15
-    ## [1] "Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
-    ## 
-    ## $SI_EF_TILTED_SURFACE_VERTICAL
-    ## [1] "Solar Irradiance for Equator Facing Vertical Surface"
-    ## 
-    ## $SI_EF_OPTIMAL
-    ## [1] "Solar Irradiance Optimal"
-    ## 
-    ## $SI_EF_OPTIMAL_ANG
-    ## [1] "Solar Irradiance Optimal Angle"
-    ## 
-    ## $SI_EF_OPTIMAL_ANG_ORT
-    ## [1] "Solar Irradiance Tilted Surface Orientation"
-    ## 
-    ## $SI_EF_TRACKER
-    ## [1] "Solar Irradiance Irradiance Tracking the Sun"
-    ## 
-    ## $SI_EF_TILTED_SURFACE
-    ## [1] "Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_HORIZONTAL
-    ## [1] "Minimum Solar Irradiance for Equator Facing Horizontal Surface"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_LAT_MINUS15
-    ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_LATITUDE
-    ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Tilt"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_LAT_PLUS15
-    ## [1] "Minimum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE_VERTICAL
-    ## [1] "Minimum Solar Irradiance for Equator Facing Vertical Surface"
-    ## 
-    ## $SI_EF_MIN_OPTIMAL
-    ## [1] "Minimum Solar Irradiance Optimal"
-    ## 
-    ## $SI_EF_MIN_OPTIMAL_ANG
-    ## [1] "Minimum Solar Irradiance Optimal Angle"
-    ## 
-    ## $SI_EF_MIN_OPTIMAL_ANG_ORT
-    ## [1] "Minimum Solar Irradiance Tilted Surface Orientation"
-    ## 
-    ## $SI_EF_MIN_TRACKER
-    ## [1] "Minimum Solar Irradiance Irradiance Tracking the Sun"
-    ## 
-    ## $SI_EF_MIN_TILTED_SURFACE
-    ## [1] "Minimum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_HORIZONTAL
-    ## [1] "Maximum Solar Irradiance for Equator Facing Horizontal Surface"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_LAT_MINUS15
-    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Minus 15 Tilt"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_LATITUDE
-    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Tilt"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_LAT_PLUS15
-    ## [1] "Maximum Solar Irradiance for Equator Facing Latitude Plus 15 Tilt"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE_VERTICAL
-    ## [1] "Maximum Solar Irradiance for Equator Facing Vertical Surface"
-    ## 
-    ## $SI_EF_MAX_OPTIMAL
-    ## [1] "Maximum Solar Irradiance Optimal"
-    ## 
-    ## $SI_EF_MAX_OPTIMAL_ANG
-    ## [1] "Maximum Solar Irradiance Optimal Angle"
-    ## 
-    ## $SI_EF_MAX_OPTIMAL_ANG_ORT
-    ## [1] "Maximum Solar Irradiance Tilted Surface Orientation"
-    ## 
-    ## $SI_EF_MAX_TRACKER
-    ## [1] "Maximum Solar Irradiance Irradiance Tracking the Sun"
-    ## 
-    ## $SI_EF_MAX_TILTED_SURFACE
-    ## [1] "Maximum Solar Irradiance for Equator Facing Tilted Surfaces (Set of Surfaces)"
-    ## 
-    ## $SR
-    ## [1] "Surface Roughness"
-    ## 
-    ## $SRF_ALB
-    ## [1] "Surface Albedo"
-    ## 
-    ## $T10M
-    ## [1] "Temperature at 10 Meters"
-    ## 
-    ## $T10M_MAX
-    ## [1] "Maximum Temperature at 10 Meters"
-    ## 
-    ## $T10M_MIN
-    ## [1] "Minimum Temperature at 10 Meters"
-    ## 
-    ## $T10M_RANGE
-    ## [1] "Temperature Range at 10 Meters"
-    ## 
-    ## $T2M
-    ## [1] "Temperature at 2 Meters"
-    ## 
-    ## $T2MDEW
-    ## [1] "Dew/Frost Point at 2 Meters"
-    ## 
-    ## $T2MWET
-    ## [1] "Wet Bulb Temperature at 2 Meters"
-    ## 
-    ## $T2M_MAX
-    ## [1] "Maximum Temperature at 2 Meters"
-    ## 
-    ## $T2M_MIN
-    ## [1] "Minimum Temperature at 2 Meters"
-    ## 
-    ## $T2M_RANGE
-    ## [1] "Temperature Range at 2 Meters"
-    ## 
-    ## $TM_ZONES
-    ## [1] "Climate Thermal and Moisture Zones"
-    ## 
-    ## $TQV
-    ## [1] "Total Column Precipitable Water"
-    ## 
-    ## $TS
-    ## [1] "Earth Skin Temperature"
-    ## 
-    ## $TS_AMP
-    ## [1] "Earth Skin Temperature Amplitude"
-    ## 
-    ## $TS_MAX
-    ## [1] "Maximum Earth Skin Temperature"
-    ## 
-    ## $TS_MIN
-    ## [1] "Minimum Earth Skin Temperature"
-    ## 
-    ## $TS_RANGE
-    ## [1] "Earth Skin Temperature Range"
-    ## 
-    ## $T_ZONES
-    ## [1] "Climate Thermal Zones"
-    ## 
-    ## $U10M
-    ## [1] "Eastward Wind at 10 Meters "
-    ## 
-    ## $V10M
-    ## [1] "Northward Wind at 10 Meters "
-    ## 
-    ## $WS10M
-    ## [1] "Wind Speed at 10 Meters"
-    ## 
-    ## $WS10M_MAX
-    ## [1] "Maximum Wind Speed at 10 Meters"
-    ## 
-    ## $WS10M_MIN
-    ## [1] "Minimum Wind Speed at 10 Meters"
-    ## 
-    ## $WS10M_RANGE
-    ## [1] "Wind Speed Range at 10 Meters"
-    ## 
-    ## $WS2M
-    ## [1] "Wind Speed at 2 Meters"
-    ## 
-    ## $WS2M_MAX
-    ## [1] "Maximum Wind Speed at 2 Meters"
-    ## 
-    ## $WS2M_MIN
-    ## [1] "Minimum Wind Speed at 2 Meters"
-    ## 
-    ## $WS2M_RANGE
-    ## [1] "Wind Speed Range at 2 Meters"
-    ## 
-    ## $WS50M
-    ## [1] "Wind Speed at 50 Meters"
-    ## 
-    ## $WS50M_MAX
-    ## [1] "Maximum Wind Speed at 50 Meters"
-    ## 
-    ## $WS50M_MIN
-    ## [1] "Minimum Wind Speed at 50 Meters"
-    ## 
-    ## $WS50M_RANGE
-    ## [1] "Wind Speed Range at 50 Meters"
-    ## 
-    ## $WSC
-    ## [1] "Corrected Wind Speed (Adjusted For Elevation)"
+names(power_pars) <- paste(temporal_api, community, sep = "_")
 
-Save list for use in `nasapower` package
-----------------------------------------
+# create a list of vectors for each temporal API/par combination for easier
+# checking and validation
+parameters <- vector(mode = "list", length = length(power_pars))
+for (i in names(power_pars)) {
+  parameters[[i]] <- names(power_pars[[i]])
+}
+```
 
-Using `usethis` save the list as an R data object for use in the
-`nasapower` package.
+## Save list for use in `nasapower` package
 
-    usethis::use_data(parameters, overwrite = TRUE)
+Using `usethis::use_data()` save the list as an R data object for use in
+the *nasapower* package. These values will not be exposed to the user
+and so will not be documented as previously. Users will be be pointed to
+functions to interact directly with the POWER APIs to query information
+for the temporal API/community combinations or for the parameters
+themselves.
 
-Session Info
-------------
+``` r
+usethis::use_data(parameters, overwrite = TRUE, internal = TRUE)
+```
 
-    sessioninfo::session_info()
+## Session Info
+
+``` r
+sessioninfo::session_info()
+```
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 4.0.2 (2020-06-22)
-    ##  os       macOS Catalina 10.15.6      
-    ##  system   x86_64, darwin17.0          
+    ##  version  R version 4.1.0 (2021-05-18)
+    ##  os       macOS Big Sur 11.5.1        
+    ##  system   aarch64, darwin20           
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
-    ##  tz       Australia/Brisbane          
-    ##  date     2020-08-22                  
+    ##  tz       Australia/Perth             
+    ##  date     2021-08-13                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version date       lib source        
-    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)
-    ##  backports     1.1.8   2020-06-17 [1] CRAN (R 4.0.2)
-    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.2)
-    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.2)
-    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.1)
-    ##  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.2)
-    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.2)
-    ##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.2)
-    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.1)
-    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.2)
-    ##  fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.2)
-    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.2)
-    ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.2)
-    ##  jsonlite      1.7.0   2020-06-25 [1] CRAN (R 4.0.2)
-    ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.2)
-    ##  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.2)
-    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.2)
-    ##  pillar        1.4.6   2020-07-10 [1] CRAN (R 4.0.2)
-    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.2)
-    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.2)
-    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.2)
-    ##  rlang         0.4.7   2020-07-09 [1] CRAN (R 4.0.2)
-    ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.2)
-    ##  rprojroot     1.3-2   2018-01-03 [1] CRAN (R 4.0.2)
-    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)
-    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.2)
-    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)
-    ##  tibble        3.0.3   2020-07-10 [1] CRAN (R 4.0.2)
-    ##  usethis       1.6.1   2020-04-29 [1] CRAN (R 4.0.2)
-    ##  vctrs         0.3.2   2020-07-15 [1] CRAN (R 4.0.2)
-    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.2)
-    ##  xfun          0.16    2020-07-24 [1] CRAN (R 4.0.2)
-    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.2)
+    ##  ! package     * version date       lib source        
+    ##    cli           3.0.1   2021-07-17 [1] CRAN (R 4.1.0)
+    ##  P crayon        1.4.1   2021-02-08 [?] CRAN (R 4.1.0)
+    ##    curl          4.3.2   2021-06-23 [1] CRAN (R 4.1.0)
+    ##  P desc          1.3.0   2021-03-05 [?] CRAN (R 4.1.0)
+    ##  P digest        0.6.27  2020-10-24 [?] CRAN (R 4.1.0)
+    ##  P ellipsis      0.3.2   2021-04-29 [?] CRAN (R 4.1.0)
+    ##  P evaluate      0.14    2019-05-28 [?] CRAN (R 4.1.0)
+    ##  P fansi         0.5.0   2021-05-25 [?] CRAN (R 4.1.0)
+    ##  P fs            1.5.0   2020-07-31 [?] CRAN (R 4.1.0)
+    ##  P glue          1.4.2   2020-08-27 [?] CRAN (R 4.1.0)
+    ##  P htmltools     0.5.1.1 2021-01-22 [?] CRAN (R 4.1.0)
+    ##  P jsonlite    * 1.7.2   2020-12-09 [?] CRAN (R 4.1.0)
+    ##  P knitr         1.33    2021-04-24 [?] CRAN (R 4.1.0)
+    ##  P lifecycle     1.0.0   2021-02-15 [?] CRAN (R 4.1.0)
+    ##  P magrittr      2.0.1   2020-11-17 [?] CRAN (R 4.1.0)
+    ##    pillar        1.6.2   2021-07-29 [1] CRAN (R 4.1.0)
+    ##  P pkgconfig     2.0.3   2019-09-22 [?] CRAN (R 4.1.0)
+    ##  P purrr       * 0.3.4   2020-04-17 [?] CRAN (R 4.1.0)
+    ##  P R6            2.5.0   2020-10-28 [?] CRAN (R 4.1.0)
+    ##  P rlang         0.4.11  2021-04-30 [?] CRAN (R 4.1.0)
+    ##    rmarkdown     2.10    2021-08-06 [1] CRAN (R 4.1.0)
+    ##  P rprojroot     2.0.2   2020-11-15 [?] CRAN (R 4.1.0)
+    ##  P rstudioapi    0.13    2020-11-12 [?] CRAN (R 4.1.0)
+    ##  P sessioninfo   1.1.1   2018-11-05 [?] CRAN (R 4.1.0)
+    ##    stringi       1.7.3   2021-07-16 [1] CRAN (R 4.1.0)
+    ##  P stringr       1.4.0   2019-02-10 [?] CRAN (R 4.1.0)
+    ##    tibble        3.1.3   2021-07-23 [1] CRAN (R 4.1.0)
+    ##  P usethis       2.0.1   2021-02-10 [?] CRAN (R 4.1.0)
+    ##    utf8          1.2.2   2021-07-24 [1] CRAN (R 4.1.0)
+    ##  P vctrs         0.3.8   2021-04-29 [?] CRAN (R 4.1.0)
+    ##  P withr         2.4.2   2021-04-18 [?] CRAN (R 4.1.0)
+    ##    xfun          0.25    2021-08-06 [1] CRAN (R 4.1.0)
+    ##  P yaml          2.2.1   2020-02-01 [?] CRAN (R 4.1.0)
     ## 
-    ## [1] /Users/adamsparks/.R/library
-    ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+    ## [1] /Users/adamsparks/Development/GitHub/rOpenSci/nasapower/renv/library/R-4.1/aarch64-apple-darwin20
+    ## [2] /private/var/folders/tr/fwv720l96bz2btcr0jr_gs840000gn/T/RtmpAypaK5/renv-system-library
+    ## [3] /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library
+    ## 
+    ##  P ── Loaded and on-disk path mismatch.

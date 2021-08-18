@@ -1,11 +1,9 @@
 
-
 # test queries -----------------------------------------------------------------
-context("get_power() AG Community")
-test_that("get_power returns daily point AG data", {
+test_that("get_power returns daily point ag data", {
   skip_on_cran()
   power_query <- get_power(
-    community = "AG",
+    community = "ag",
     lonlat = c(-179.5, -89.5),
     pars = c("T2M",
              "T2M_MIN",
@@ -14,7 +12,7 @@ test_that("get_power returns daily point AG data", {
              "WS10M",
              "PS"),
     dates = c("1983-01-01"),
-    temporal_average = "Daily"
+    temporal_api = "Daily"
   )
 
   expect_is(power_query, "data.frame")
@@ -26,11 +24,11 @@ test_that("get_power returns daily point AG data", {
   expect_equal(power_query$DOY, 1)
   expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -25.24)
-  expect_equal(power_query$T2M_MIN, -25.55)
-  expect_equal(power_query$T2M_MAX, -24.9)
-  expect_equal(power_query$RH2M, 73.92)
-  expect_equal(power_query$WS10M, 2.14)
-  expect_equal(power_query$PS, 68.57)
+  expect_equal(power_query$T2M_MIN, -25.67)
+  expect_equal(power_query$T2M_MAX, -24.88)
+  expect_equal(power_query$RH2M, 94.25)
+  expect_equal(power_query$WS10M, 2.32)
+  expect_equal(power_query$PS, 69.06)
   expect_named(
     power_query,
     c(
@@ -52,11 +50,11 @@ test_that("get_power returns daily point AG data", {
   rm(power_query)
 })
 
-test_that("get_power() returns daily point AG data with adjusted atmospheric
+test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure", {
             skip_on_cran()
             power_query <- get_power(
-              community = "AG",
+              community = "ag",
               lonlat = c(-179.5, -89.5),
               pars = c("T2M",
                        "T2M_MIN",
@@ -65,7 +63,7 @@ test_that("get_power() returns daily point AG data with adjusted atmospheric
                        "WS10M",
                        "PS"),
               dates = c("1983-01-01"),
-              temporal_average = "Daily",
+              temporal_api = "Daily",
               site_elevation = 0
             )
 
@@ -78,12 +76,11 @@ test_that("get_power() returns daily point AG data with adjusted atmospheric
             expect_equal(power_query$DOY, 1)
             expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
             expect_equal(power_query$T2M, -25.24)
-            expect_equal(power_query$T2M_MIN, -25.55)
-            expect_equal(power_query$T2M_MAX, -24.9)
-            expect_equal(power_query$RH2M, 73.92)
-            expect_equal(power_query$WS10M, 2.14)
-            expect_equal(power_query$PS, 68.57)
-            expect_equal(power_query$PSC, 101.2, tolerance = 1e-1)
+            expect_equal(power_query$T2M_MIN, -25.67)
+            expect_equal(power_query$T2M_MAX, -24.88)
+            expect_equal(power_query$RH2M, 94.25)
+            expect_equal(power_query$WS10M, 2.32)
+            expect_equal(power_query$PS, 69.06)
             expect_named(
               power_query,
               c(
@@ -99,18 +96,16 @@ test_that("get_power() returns daily point AG data with adjusted atmospheric
                 "T2M_MAX",
                 "RH2M",
                 "WS10M",
-                "PS",
-                "PSC"
+                "PS"
               )
             )
             rm(power_query)
           })
 
-context("get_power() SB Community")
 test_that("get_power returns daily point SB data", {
   skip_on_cran()
   power_query <- get_power(
-    community = "SB",
+    community = "sb",
     lonlat = c(-179.5, -89.5),
     pars = c("T2M",
              "T2M_MIN",
@@ -118,7 +113,7 @@ test_that("get_power returns daily point SB data", {
              "RH2M",
              "WS10M"),
     dates = c("1983-01-01"),
-    temporal_average = "Daily"
+    temporal_api = "Daily"
   )
 
   expect_is(power_query, "data.frame")
@@ -130,24 +125,24 @@ test_that("get_power returns daily point SB data", {
   expect_equal(power_query$DOY, 1)
   expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -25.24)
-  expect_equal(power_query$T2M_MIN, -25.55)
-  expect_equal(power_query$T2M_MAX, -24.9)
-  expect_equal(power_query$RH2M, 73.92)
-  expect_equal(power_query$WS10M, 2.14)
+  expect_equal(power_query$T2M_MIN, -25.67)
+  expect_equal(power_query$T2M_MAX, -24.88)
+  expect_equal(power_query$RH2M, 94.25)
+  expect_equal(power_query$WS10M, 2.32)
   rm(power_query)
 })
 
-test_that("get_power() returns daily regional AG data", {
+test_that("get_power() returns daily regional ag data", {
   skip_on_cran()
   power_query <- get_power(
-    community = "AG",
+    community = "ag",
     lonlat = c(112.5, -55.5, 115.5, -50.5),
     pars = "T2M",
     dates = c("1983-01-01"),
-    temporal_average = "Daily"
+    temporal_api = "Daily"
   )
 
-  expect_equal(nrow(power_query), 77)
+  expect_equal(nrow(power_query), 60)
   expect_equal(
     unique(power_query$LAT),
     c(
@@ -160,12 +155,22 @@ test_that("get_power() returns daily regional AG data", {
       -52.25,
       -51.75,
       -51.25,
-      -50.75,
-      -50.25
-    )
+      -50.75
+    ),
+    tolerance = 0.1
   )
-  expect_equal(unique(power_query$LON),
-               c(112.75, 113.25, 113.75, 114.25, 114.75, 115.25, 115.75))
+  expect_equal(
+    unique(power_query$LON),
+    c(
+      112.8,
+      113.2,
+      113.8,
+      114.2,
+      114.8,
+      115.2
+      ),
+    tolerance = 0.1
+    )
   expect_equal(power_query$YEAR[1], 1983)
   expect_equal(power_query$MM[1], 1)
   expect_equal(power_query$DD[1], 1)
@@ -176,21 +181,17 @@ test_that("get_power() returns daily regional AG data", {
   rm(power_query)
 })
 
-test_that("get_power() returns global AG data for climatology", {
+test_that("get_power() returns point ag data for climatology", {
   skip_on_cran()
   power_query <- get_power(
-    community = "AG",
+    community = "ag",
     pars = "T2M",
-    temporal_average = "CLIMATOLOGY",
-    lonlat = "GLOBAL"
+    temporal_api = "climatology",
+    lonlat = c(-179.5, -89.5),
   )
 
-  expect_equal(nrow(power_query), 259200)
+  expect_equal(nrow(power_query), 1)
   expect_equal(power_query$PARAMETER[1], "T2M")
-  expect_equal(power_query$LAT[259200], 89.75)
-  expect_equal(power_query$LAT[1], -89.75)
-  expect_equal(power_query$LON[259200], 179.75)
-  expect_equal(power_query$LON[1], -179.75)
   expect_named(
     power_query,
     c(
@@ -215,42 +216,156 @@ test_that("get_power() returns global AG data for climatology", {
   rm(power_query)
 })
 
-test_that("get_power() stops if `temporal_average` not valid", {
+test_that("get_power() stops if `temporal_api` not valid", {
   expect_error(
     power_query <- get_power(
-      community = "AG",
+      community = "ag",
       lonlat = c(-179.5, -89.5),
       pars = "T2M",
       dates = "1983-01-01",
-      temporal_average = 1
+      temporal_api = 1
     ),
-    regexp = "\nYou have entered an invalid value for `temporal_average`.\n"
+    regexp = "You have entered an invalid value for `temporal_api`.\n"
   )
 })
 
-test_that("get_power() stops if `temporal_average` != CLIMATOLOGY
-          when lonlat == GLOBAL", {
+# test_that("get_power() stops if `temporal_api` != climatology
+#           when lonlat == global", {
+#             expect_error(
+#               power_query <- get_power(
+#                 community = "ag",
+#                 lonlat = "global",
+#                 pars = "T2M",
+#                 dates = "1983-01-01",
+#                 temporal_api = "daily"
+#               ),
+#               regexp = "You have asked for 'global' data. However, this"
+#             )
+#           })
+
+test_that("get_power() stops if hourly data are requested < 2001-01-01", {
             expect_error(
               power_query <- get_power(
-                community = "AG",
-                lonlat = "GLOBAL",
+                community = "ag",
+                lonlat = c(-179.5, -89.5),
                 pars = "T2M",
                 dates = "1983-01-01",
-                temporal_average = "DAILY"
+                temporal_api = "hourly"
               ),
-              regexp = "\nYou have asked for 'GLOBAL' data. However, this"
+              regexp = "2001-01-01 is the earliest available hourly data*"
             )
           })
 
-test_that("get_power() stops if lonlat is char and != GLOBAL", {
+test_that("get_power() stops if an invalid community supplied", {
+            expect_error(
+              power_query <- get_power(
+                community = "rOpenSci",
+                lonlat = "global",
+                pars = "T2M",
+                dates = "1983-01-01",
+                temporal_api = "daily"
+              ),
+              regexp = "You have provided an invalid `community` value.\n"
+            )
+          })
+
+test_that("get_power() stops if site elevation is supplied not for point", {
+            expect_message(
+              power_query <- get_power(
+                community = "ag",
+                lonlat = c(112.5, -55.5, 115.5, -50.5),
+                pars = "T2M",
+                dates = "1983-01-01",
+                temporal_api = "daily",
+                site_elevation = 35
+              ),
+              regexp = "You have provided `site_elevation` for a region*."
+            )
+          })
+
+test_that("get_power() stops if site_elevation is invalid", {
   expect_error(
     power_query <- get_power(
-      community = "AG",
-      lonlat = "test",
+      community = "ag",
+      lonlat = c(112.5, -55.5),
       pars = "T2M",
       dates = "1983-01-01",
-      temporal_average = "CLIMATOLOGY"
+      temporal_api = "daily",
+      site_elevation = "cartograph"
     ),
-    regexp = "\nYou have entered an invalid value for `lonlat`. Valid values"
+    regexp = "You have entered an invalid value for `site_elevation`*"
+  )
+})
+
+test_that("get_power() stops wind_surface is supplied with no wind_elevation", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_surface = "vegtype_6"
+    ),
+    regexp = "If you provide a correct wind surface alias, `wind_surface`*"
+  )
+})
+
+test_that("get_power() stops wind_elevation is invalid", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_elevation = 5
+    ),
+    regexp = "`wind_elevation` values in metres are required to be between*"
+  )
+})
+
+test_that("get_power() stops if `global` coverage is requested", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = "global",
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "climatology"
+    ),
+    regexp = "The POWER team have not enabled `global` data queries with this*"
+  )
+})
+
+
+test_that("get_power() stops if temporal_api is hourly and pars > 15", {
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = c(
+        "T2M",
+        "DIRECT_ILLUMINANCE",
+        "CLRSKY_SRF_ALB",
+        "RH2M",
+        "WS10M",
+        "PS",
+        "PRECTOTCORR",
+        "CLRSKY_SFC_SW_DNI",
+        "CLRSKY_SFC_SW_DIRH",
+        "CLRSKY_SFC_PAR_TOT",
+        "ALLSKY_SFC_UVB",
+        "ALLSKY_SFC_UVA",
+        "ZENITH_LUMINANCE",
+        "TOA_SW_DWN",
+        "SZA",
+        "PW",
+        "DIRECT_ILLUMINANCE"
+      ),
+      dates = "1983-01-01",
+      temporal_api = "hourly"
+    ),
+    regexp = ""
   )
 })

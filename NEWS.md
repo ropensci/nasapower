@@ -1,5 +1,31 @@
 # nasapower (development version)
 
+## Major changes
+
+* Adds support for new NASA POWER API v2.0, which includes new `hourly` data and other major changes.
+See <https://https://power.larc.nasa.gov> for fully detailed changes to the data.
+
+* Adds new function, `query_parameters()` to fetch information from the API on individual and all available community/temporal API combination parameters.
+
+* Removes `SSE` community, replaces with `RE`.
+
+* Removes `global` option for geographic coverage.
+
+* Directly parse data from API response rather than downloading data to disk and importing.
+
+* The `get_power()` arguments are changed:
+  * two new arguments are added,
+    * `wind_elevation`, and
+    * `wind_surface`,
+  * the `temporal_average` argument is changed to `temporal_api` to align with the terminology used in the POWER API.
+
+
+## Minor changes
+
+* Improved documentation.
+
+* Removes internal references to ICASA format files that are no longer supported in this client.
+
 # nasapower 3.0.1
 
 ## Bug fixes

@@ -12,3 +12,5 @@ revdep/data.sqlite
 doc
 Meta
 docs/
+/doc/
+/Meta/
