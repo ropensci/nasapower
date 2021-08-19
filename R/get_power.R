@@ -184,7 +184,7 @@
 #' @export
 get_power <- function(community,
                       pars,
-                      temporal_api,
+                      temporal_api = NULL,
                       lonlat,
                       dates = NULL,
                       site_elevation = NULL,
@@ -192,7 +192,12 @@ get_power <- function(community,
                       wind_surface = NULL,
                       temporal_average = NULL) {
 
-  if (!is.null(temporal_average)) {
+  if (is.null(temporal_api)) {
+    stop(call. = FALSE,
+         "You must provide a `temporal_api` value.")
+  }
+
+  if (is.null(temporal_api) & !is.null(temporal_average)) {
     message(call. = FALSE,
             "`temporal_average has been deprecated for `temporal_api`.\n",
             "Your query has been modified to use the new terminology for ",
