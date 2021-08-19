@@ -198,7 +198,7 @@ get_power <- function(community,
   }
 
   if (is.null(temporal_api) & !is.null(temporal_average)) {
-    message(call. = FALSE,
+    warning(call. = FALSE,
             "`temporal_average has been deprecated for `temporal_api`.\n",
             "Your query has been modified to use the new terminology for ",
             "`get_power`.  Please update your scripts to use the new argument.")
