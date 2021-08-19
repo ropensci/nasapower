@@ -7,7 +7,7 @@
 get_power(
   community,
   pars,
-  temporal_api,
+  temporal_api = NULL,
   lonlat,
   dates = NULL,
   site_elevation = NULL,
