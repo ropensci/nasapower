@@ -35,10 +35,7 @@ detailed information in this regard.
 
 #### From CRAN
 
-~~The stable version is available through CRAN.~~
-
-**The current version on CRAN is out of date with the new POWER API
-V2.**
+The stable version is available through CRAN.
 
 ``` r
 install.packages("nasapower")
@@ -59,7 +56,8 @@ remotes::install_github("ropensci/nasapower")
 ### Example
 
 Fetch daily “ag” community temperature, relative humidity and
-precipitation for January 1 1985 for Kingsthorpe, Queensland, Australia.
+precipitation for January 1, 1985 for Kingsthorpe, Queensland,
+Australia.
 
 ``` r
 library("nasapower")
@@ -74,7 +72,7 @@ daily_ag
 
     ## NASA/POWER CERES/MERRA2 Native Resolution Daily Data  
     ##  Dates (month/day/year): 01/01/1985 through 01/01/1985  
-    ##  Location: Latitude  -27.48   Longitude 151.8  
+    ##  Location: Latitude  -27.48   Longitude 151.81  
     ##  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
     ##  Value for missing model data cannot be computed or out of model availability range: NA  
     ##  Parameter(s):  

@@ -26,9 +26,7 @@ _nasapower_ can easily be installed using the following code.
 
 #### From CRAN
 
-~~The stable version is available through CRAN.~~
-
-**The current version on CRAN is out of date with the new POWER API V2.**
+The stable version is available through CRAN.
 
 ```{r install-cran, eval=FALSE}
 install.packages("nasapower")
@@ -48,7 +46,7 @@ remotes::install_github("ropensci/nasapower")
 
 ### Example
 
-Fetch daily “ag” community temperature, relative humidity and precipitation for January 1 1985 for Kingsthorpe, Queensland, Australia.
+Fetch daily “ag” community temperature, relative humidity and precipitation for January 1, 1985 for Kingsthorpe, Queensland, Australia.
 
 ```{r kingsthorpe}
 library("nasapower")
