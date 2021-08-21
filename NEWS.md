@@ -1,15 +1,18 @@
-# nasapower (development version)
+# nasapower 4.0.0
 
 ## Major changes
 
-* Adds support for new NASA POWER API v2.0, which includes new `hourly` data and other major changes.
-See <https://power.larc.nasa.gov> for fully detailed changes to the data.
+* Adds support for new NASA POWER API v2.0, which includes new hourly data and other major changes to the API and available data.
+See <https://power.larc.nasa.gov/> for fully detailed changes to the data.
+
+* Drops support for the deprecated NASA POWER API V1.0.
+Previous versions of _nasapower_ are no longer functional.
 
 * Adds new function, `query_parameters()` to fetch information from the API on individual and all available community/temporal API combination parameters.
 
-* Removes `SSE` community, replaces with `RE`.
+* Removes `SSE` community, replaced with `RE`.
 
-* Removes `global` option for geographic coverage.
+* Removes `global` option for geographic coverage as passed along through the `latlon` argument of `get_power()`.
 
 * Directly parse data from API response rather than downloading data to disk and importing.
 
