@@ -661,35 +661,36 @@ get_power <- function(community,
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from [build_query()].
+#' @param power_response A tidy data.frame resulting from [build_query()].
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #' @keywords internal
 #' @noRd
 
-.format_dates_ag <- function(NASA) {
+.format_dates_ag <- function(power_response) {
   # convert DOY to integer
-  NASA$DOY <- as.integer(NASA$DOY)
+  power_response$DOY <- as.integer(power_response$DOY)
 
   # Calculate the full date from YEAR and DOY
-  NASA <- tibble::add_column(NASA,
-                             YYYYMMDD = as.Date(NASA$DOY - 1,
+  power_response <- tibble::add_column(power_response,
+                             YYYYMMDD = as.Date(power_response$DOY - 1,
                                                 origin = as.Date(paste(
-                                                  NASA$YEAR, "-01-01",
+                                                  power_response$YEAR, "-01-01",
                                                   sep = ""
                                                 ))),
                              .after = "DOY")
 
   # Extract month as integer
-  NASA <- tibble::add_column(NASA,
-                             MM = as.integer(substr(NASA$YYYYMMDD, 6, 7)),
-                             .after = "YEAR")
+  power_response <- tibble::add_column(power_response,
+                                       MM = as.integer(
+                                         substr(power_response$YYYYMMDD, 6, 7)),
+                                       .after = "YEAR")
 
   # Extract day as integer
-  return(tibble::add_column(NASA,
+  return(tibble::add_column(power_response,
                             DD = as.integer(substr(
-                              NASA$YYYYMMDD, 9, 10
+                              power_response$YYYYMMDD, 9, 10
                             )),
                             .after = "MM"))
 }
@@ -698,27 +699,31 @@ get_power <- function(community,
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param NASA A tidy data.frame resulting from [.build_query()].
+#' @param power_response A tidy data.frame resulting from [.build_query()].
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #' @keywords internal
 #' @noRd
 
-.format_dates_re_sb <- function(NASA) {
-  names(NASA)[names(NASA) == "DY"] <- "DD"
-  names(NASA)[names(NASA) == "MO"] <- "MM"
+.format_dates_re_sb <- function(power_response) {
+  names(power_response)[names(power_response) == "DY"] <- "DD"
+  names(power_response)[names(power_response) == "MO"] <- "MM"
 
   # add day of year col
-  NASA$YYYYMMDD <-
-    as.Date(paste(NASA$DD, NASA$MM, NASA$YEAR, sep = "-"),
+  power_response$YYYYMMDD <-
+    as.Date(
+      paste(power_response$DD,
+            power_response$MM,
+            power_response$YEAR,
+            sep = "-"),
             format = "%d-%m-%Y")
-  NASA$DOY <- lubridate::yday(NASA$YYYYMMDD)
+  power_response$DOY <- lubridate::yday(power_response$YYYYMMDD)
 
   # set integer cols
-  NASA$MM <- as.integer(NASA$MM)
-  NASA$DD <- as.integer(NASA$DD)
+  power_response$MM <- as.integer(power_response$MM)
+  power_response$DD <- as.integer(power_response$DD)
 
   refcols <- c("LON", "LAT", "YEAR", "MM", "DD", "DOY", "YYYYMMDD")
-  return(NASA[, c(refcols, setdiff(names(NASA), refcols))])
+  return(power_response[, c(refcols, setdiff(names(power_response), refcols))])
 }
