@@ -236,14 +236,14 @@ get_power <- function(community,
   }
   if (length(lonlat != 2) & !is.null(site_elevation)) {
     message(
-      "You have provided `site_elevation` for a region or `global` request.\n",
+      "You have provided `site_elevation` for a region request.\n",
       "The `site_elevation` value will be ignored.\n"
     )
     site_elevation <- NULL
   }
   if (length(lonlat != 2) & !is.null(wind_elevation)) {
     message(
-      "You have provided `wind_elevation` for a region or `global` request.\n",
+      "You have provided `wind_elevation` for a region request.\n",
       "The `wind_elevation` value will be ignored.\n"
     )
     site_elevation <- NULL
