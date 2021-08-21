@@ -6,7 +6,7 @@
 #'   object.  All options offered by the official \acronym{POWER} \acronym{API}
 #'   are supported.  Requests are formed to submit one request per point.  There
 #'   is no need to make synchronous requests for multiple parameters for a
-#'   single point.
+#'   single point or regional request.
 #'
 #' @param community A character vector providing community name: \dQuote{ag},
 #'   \dQuote{re} or \dQuote{sb}.  See argument details for more.
