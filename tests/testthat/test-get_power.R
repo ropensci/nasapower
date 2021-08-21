@@ -51,7 +51,8 @@ test_that("get_power returns daily point ag data", {
 })
 
 test_that("get_power() returns daily point ag data with adjusted atmospheric
-          air pressure", {
+          air pressure",
+          {
             skip_on_cran()
             power_query <- get_power(
               community = "ag",
@@ -159,18 +160,14 @@ test_that("get_power() returns daily regional ag data", {
     ),
     tolerance = 0.1
   )
-  expect_equal(
-    unique(power_query$LON),
-    c(
-      112.8,
-      113.2,
-      113.8,
-      114.2,
-      114.8,
-      115.2
-      ),
-    tolerance = 0.1
-    )
+  expect_equal(unique(power_query$LON),
+               c(112.8,
+                 113.2,
+                 113.8,
+                 114.2,
+                 114.8,
+                 115.2),
+               tolerance = 0.1)
   expect_equal(power_query$YEAR[1], 1983)
   expect_equal(power_query$MM[1], 1)
   expect_equal(power_query$DD[1], 1)
@@ -217,6 +214,7 @@ test_that("get_power() returns point ag data for climatology", {
 })
 
 test_that("get_power() stops if `temporal_api` not valid", {
+  skip_on_cran()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -229,61 +227,51 @@ test_that("get_power() stops if `temporal_api` not valid", {
   )
 })
 
-# test_that("get_power() stops if `temporal_api` != climatology
-#           when lonlat == global", {
-#             expect_error(
-#               power_query <- get_power(
-#                 community = "ag",
-#                 lonlat = "global",
-#                 pars = "T2M",
-#                 dates = "1983-01-01",
-#                 temporal_api = "daily"
-#               ),
-#               regexp = "You have asked for 'global' data. However, this"
-#             )
-#           })
-
 test_that("get_power() stops if hourly data are requested < 2001-01-01", {
-            expect_error(
-              power_query <- get_power(
-                community = "ag",
-                lonlat = c(-179.5, -89.5),
-                pars = "T2M",
-                dates = "1983-01-01",
-                temporal_api = "hourly"
-              ),
-              regexp = "2001-01-01 is the earliest available hourly data*"
-            )
-          })
+  skip_on_cran()
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(-179.5, -89.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "hourly"
+    ),
+    regexp = "2001-01-01 is the earliest available hourly data*"
+  )
+})
 
 test_that("get_power() stops if an invalid community supplied", {
-            expect_error(
-              power_query <- get_power(
-                community = "rOpenSci",
-                lonlat = "global",
-                pars = "T2M",
-                dates = "1983-01-01",
-                temporal_api = "daily"
-              ),
-              regexp = "You have provided an invalid `community` value.\n"
-            )
-          })
+  skip_on_cran()
+  expect_error(
+    power_query <- get_power(
+      community = "rOpenSci",
+      lonlat = "global",
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily"
+    ),
+    regexp = "You have provided an invalid `community` value.\n"
+  )
+})
 
 test_that("get_power() stops if site elevation is supplied not for point", {
-            expect_message(
-              power_query <- get_power(
-                community = "ag",
-                lonlat = c(112.5, -55.5, 115.5, -50.5),
-                pars = "T2M",
-                dates = "1983-01-01",
-                temporal_api = "daily",
-                site_elevation = 35
-              ),
-              regexp = "You have provided `site_elevation` for a region*."
-            )
-          })
+  skip_on_cran()
+  expect_message(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5, 115.5, -50.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      site_elevation = 35
+    ),
+    regexp = "You have provided `site_elevation` for a region*."
+  )
+})
 
 test_that("get_power() stops if site_elevation is invalid", {
+  skip_on_cran()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -297,21 +285,23 @@ test_that("get_power() stops if site_elevation is invalid", {
   )
 })
 
-test_that("get_power() stops wind_surface is supplied with no wind_elevation", {
-  expect_error(
-    power_query <- get_power(
-      community = "ag",
-      lonlat = c(112.5, -55.5),
-      pars = "T2M",
-      dates = "1983-01-01",
-      temporal_api = "daily",
-      wind_surface = "vegtype_6"
-    ),
-    regexp = "If you provide a correct wind surface alias, `wind_surface`*"
-  )
-})
+test_that("get_power() stops wind_surface is supplied w/ no wind_elevation", {
+            skip_on_cran()
+            expect_error(
+              power_query <- get_power(
+                community = "ag",
+                lonlat = c(112.5, -55.5),
+                pars = "T2M",
+                dates = "1983-01-01",
+                temporal_api = "daily",
+                wind_surface = "vegtype_6"
+              ),
+              regexp = "If you provide a correct wind surface alias*"
+            )
+          })
 
 test_that("get_power() stops wind_elevation is invalid", {
+  skip_on_cran()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -326,6 +316,7 @@ test_that("get_power() stops wind_elevation is invalid", {
 })
 
 test_that("get_power() stops if `global` coverage is requested", {
+  skip_on_cran()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -340,6 +331,7 @@ test_that("get_power() stops if `global` coverage is requested", {
 
 
 test_that("get_power() stops if temporal_api is hourly and pars > 15", {
+  skip_on_cran()
   expect_error(
     power_query <- get_power(
       community = "ag",

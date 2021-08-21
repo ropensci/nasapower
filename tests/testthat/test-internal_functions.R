@@ -550,4 +550,3 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
               )
             )
           })
-
