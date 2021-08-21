@@ -1,19 +1,15 @@
-# nasapower v3.0.1
+# nasapower v4.0.0
 
 ## Test environments
-* local macOS, R 4.0.3
-* win-builder, R Under development (unstable) (2020-10-23 r79366)
-* win-builder, R 4.0.3
+* local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.1.1
+* win-builder, R Under development (unstable) (2021-08-20 r80804)
+* win-builder, R 4.1.1
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-This is a new patch release
-
-## Bug fixes
-
-* Properly replace `-99.00` values with `NA` values
+This is a new major release
 
 ## Reverse dependencies
 
