@@ -394,7 +394,6 @@ get_power <- function(community,
     stop(call. = FALSE,
          "You have not entered dates for the query.\n")
   }
-
   if (temporal_api == "monthly") {
     if (length(unique(dates)) < 2) {
       stop(
@@ -413,7 +412,6 @@ get_power <- function(community,
     }
     return(dates)
   }
-
   if (temporal_api == "daily" || temporal_api == "hourly") {
     if (is.numeric(lonlat)) {
       if (length(dates) == 1) {
