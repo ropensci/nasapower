@@ -191,18 +191,16 @@ get_power <- function(community,
                       wind_elevation = NULL,
                       wind_surface = NULL,
                       temporal_average = NULL) {
-
-  if (is.null(temporal_api)) {
-    stop(call. = FALSE,
-         "You must provide a `temporal_api` value.")
-  }
-
   if (is.null(temporal_api) & !is.null(temporal_average)) {
     warning(call. = FALSE,
             "`temporal_average has been deprecated for `temporal_api`.\n",
             "Your query has been modified to use the new terminology for ",
             "`get_power`.  Please update your scripts to use the new argument.")
     temporal_api <- temporal_average
+  }
+  if (is.null(temporal_api)) {
+    stop(call. = FALSE,
+         "You must provide a `temporal_api` value.")
   }
   if (is.character(temporal_api)) {
     temporal_api <- tolower(temporal_api)
