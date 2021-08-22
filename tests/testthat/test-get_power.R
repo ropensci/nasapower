@@ -256,6 +256,7 @@ test_that("get_power() stops if an invalid community supplied", {
 })
 
 test_that("get_power() stops if site elevation is supplied not for point", {
+  Sys.sleep(10)
   skip_on_cran()
   expect_message(
     power_query <- get_power(
