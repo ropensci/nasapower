@@ -1,5 +1,3 @@
-# nasapower (development version)
-
 # nasapower 4.0.0
 
 ## Major changes
