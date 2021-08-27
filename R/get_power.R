@@ -335,9 +335,11 @@ get_power <- function(community,
   power_data <- readr::read_csv(
     response$parse("UTF8"),
     col_types = readr::cols(),
-    na = c("-999", "-99", "-99.00"),
     skip = length(meta) + 2
   )
+
+  power_data[power_data == -999] <- NA
+  power_data[power_data == -99] <- NA
 
   # add lon and lat values from user's request
   power_data <- tibble::add_column(
