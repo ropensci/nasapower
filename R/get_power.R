@@ -332,7 +332,6 @@ get_power <- function(community,
   }
 
   # create tibble object
-  print(response$parse("UTF8"))
   power_data <- readr::read_csv(
     response$parse("UTF8"),
     col_types = readr::cols(),
