@@ -1,3 +1,15 @@
+# nasapower 4.0.0.9000
+
+## Bug fixes
+
+* Fixes a bug in where `NA` values were improperly handled.
+Thanks to [@femiguez](https://github.com/femiguez) for the [Pull Request with the fix](https://github.com/ropensci/nasapower/pull/56).
+
+## Minor changes
+
+* Enforces API limits client-side where the API limits unique queries to 30 per 60 seconds as found and reported by [@camwur](https://github.com/camwur) in [Issue 57](https://github.com/ropensci/nasapower/issues/57).
+This can be adjusted in the future of the POWER API changes as has been indicated is possible.
+
 # nasapower 4.0.0
 
 ## Major changes
