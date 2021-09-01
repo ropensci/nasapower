@@ -51,6 +51,7 @@ Imports:
     crul,
     lubridate,
     jsonlite,
+    ratelimitr,
     readr,
     tibble
 RoxygenNote: 7.1.1.9001
@@ -62,7 +63,8 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
-    spelling
+    spelling,
+    vcr
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,

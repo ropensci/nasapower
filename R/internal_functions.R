@@ -99,3 +99,8 @@
   }) # nocov end
   return(response)
 }
+
+# create a rate-limited query function that respects the POWER API limits
+.rate_limited_query <-
+  ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 30,
+                                                       period = 60))

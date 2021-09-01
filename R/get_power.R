@@ -6,7 +6,9 @@
 #'   object.  All options offered by the official \acronym{POWER} \acronym{API}
 #'   are supported.  Requests are formed to submit one request per point.  There
 #'   is no need to make synchronous requests for multiple parameters for a
-#'   single point or regional request.
+#'   single point or regional request.  Requests are limited to 30 unique
+#'   requests per 60 seconds.  \CRANpkg{nasapower} attempts to enforce this
+#'   client-side.
 #'
 #' @param community A character vector providing community name: \dQuote{ag},
 #'   \dQuote{re} or \dQuote{sb}.  See argument details for more.
@@ -311,9 +313,11 @@ get_power <- function(community,
   )
 
   response <-
-    .send_query(.query_list = query_list,
-                .temporal_api = temporal_api,
-                .url = power_url)
+    .rate_limited_query(.query_list = query_list,
+                        .temporal_api = temporal_api,
+                        .url = power_url)
+
+  response$raise_for_status()
 
   # create meta object
   power_data <- readr::read_lines(response$parse("UTF8"))
