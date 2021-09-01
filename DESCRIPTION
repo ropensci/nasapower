@@ -61,9 +61,10 @@ NeedsCompilation: no
 Repository: CRAN
 Suggests:
     knitr,
+    purrr,
     rmarkdown,
-    testthat,
     spelling,
+    testthat,
     vcr
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools

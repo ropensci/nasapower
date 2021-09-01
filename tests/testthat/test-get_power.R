@@ -362,3 +362,26 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
     regexp = ""
   )
 })
+
+
+test_that("get_power() limits requests to 30/minute", {
+  # this code comes from @camwur,
+  # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
+  # the issue and the limits, thanks!
+  skip_on_cran()
+  x <- function(lon, lat) {
+    get_power(
+      community = "ag",
+      lonlat = c(lon, lat),
+      site_elevation = NULL,
+      wind_elevation = NULL,
+      wind_surface = NULL,
+      pars = c("RH2M", "T2M"),
+      temporal_api = "climatology"
+    )
+  }
+  lon <- c(1:32)
+  lat <- c(1:32)
+  y <- purrr::map2(lon, lat, x)
+  expect_length(y, 32)
+})
