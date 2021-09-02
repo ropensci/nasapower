@@ -65,7 +65,8 @@ Suggests:
     rmarkdown,
     spelling,
     testthat,
-    vcr
+    vcr (>= 0.6.0),
+    webmockr
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
