@@ -304,7 +304,6 @@ get_power <- function(community,
     wind_surface
   )
 
-  # constructs URL from url defined in zzz.R and the temporal_api and community
   power_url <- paste0(
     "https://power.larc.nasa.gov/api/temporal/",
     temporal_api,
