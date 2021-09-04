@@ -1,5 +1,5 @@
 
-# test queries -----------------------------------------------------------------
+# test queries using vcr -------------------------------------------------------
 vcr::use_cassette("daily_ag_point", {
   test_that("get_power returns daily point ag data", {
     power_query <- get_power(
@@ -215,6 +215,49 @@ test_that("get_power() returns point ag data for climatology", {
   })
 })
 
+# test rate limiting -----
+
+test_that("get_power() limits requests to 30/minute", {
+  # this code comes from @camwur,
+  # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
+  # the issue and the limits, thanks!
+  skip_on_cran()
+  x <- function(lon, lat) {
+    get_power(
+      community = "ag",
+      lonlat = c(lon, lat),
+      site_elevation = NULL,
+      wind_elevation = NULL,
+      wind_surface = NULL,
+      pars = c("RH2M", "T2M"),
+      temporal_api = "climatology"
+    )
+  }
+  lon <- c(1:32)
+  lat <- c(1:32)
+  y <- purrr::map2(lon, lat, x)
+  expect_length(y, 32)
+})
+
+# check for failure status
+vcr::use_cassette("API_failure", {
+  test_that("get_power() errors when the API doesn't behave", {
+    skip_on_cran()
+    vcr::skip_if_vcr_off()
+    expect_error(
+      get_power(
+        community = "ag",
+        lonlat = c(-179.5, -89.5),
+        pars = c("T2M"),
+        dates = c("1983-01-01"),
+        temporal_api = "Daily"
+      ),
+      "Something went wrong with the query, no data were returned *"
+    )
+  })
+})
+
+# test user input check response messages -----
 test_that("get_power() stops if `temporal_api` not valid", {
   skip_on_cran()
   expect_error(
@@ -365,43 +408,59 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
   )
 })
 
-
-test_that("get_power() limits requests to 30/minute", {
-  # this code comes from @camwur,
-  # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
-  # the issue and the limits, thanks!
-  skip_on_cran()
-  x <- function(lon, lat) {
-    get_power(
-      community = "ag",
-      lonlat = c(lon, lat),
-      site_elevation = NULL,
-      wind_elevation = NULL,
-      wind_surface = NULL,
-      pars = c("RH2M", "T2M"),
-      temporal_api = "climatology"
-    )
-  }
-  lon <- c(1:32)
-  lat <- c(1:32)
-  y <- purrr::map2(lon, lat, x)
-  expect_length(y, 32)
-})
-
-# check for failure status
-vcr::use_cassette("API_failure", {
-  test_that("get_power() errors when the API doesn't behave", {
+vcr::use_cassette("temporal_api-warning", {
+  test_that("get_power() gives warning if `temporal_average` is used", {
     skip_on_cran()
-    vcr::skip_if_vcr_off()
-    expect_error(
-      get_power(
+    expect_warning(
+      power_query <- get_power(
         community = "ag",
         lonlat = c(-179.5, -89.5),
-        pars = c("T2M"),
-        dates = c("1983-01-01"),
-        temporal_api = "Daily"
+        pars = "T2M",
+        dates = "1983-01-01",
+        temporal_average = "daily"
       ),
-      "Something went wrong with the query, no data were returned *"
+      regexp = "`temporal_average has been deprecated for `temporal_api`*"
     )
   })
+})
+
+test_that("get_power() stops if there is no temporal_api()", {
+  skip_on_cran()
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(-179.5, -89.5),
+      pars = "T2M",
+      dates = "1983-01-01"
+    ),
+    regexp = "You must provide a `temporal_api` value."
+  )
+})
+
+test_that("get_power() stops if global lonlat is set", {
+  skip_on_cran()
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = "global",
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily"
+    ),
+    regexp = "The POWER team have not enabled `global` data queries with *"
+  )
+})
+
+test_that("get_power() stops if lonlat = is invalid", {
+  skip_on_cran()
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = "x",
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily"
+    ),
+    regexp = "You have entered an invalid value for `lonlat`. *"
+  )
 })

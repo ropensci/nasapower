@@ -8,7 +8,11 @@ Thanks to [@femiguez](https://github.com/femiguez) for the [Pull Request with th
 ## Minor changes
 
 * Enforces API limits client-side where the API limits unique queries to 30 per 60 seconds as found and reported by [@camwur](https://github.com/camwur) in [Issue 57](https://github.com/ropensci/nasapower/issues/57).
-This can be adjusted in the future of the POWER API changes as has been indicated is possible.
+This can be adjusted in future releases of _nasapower_ if the POWER API changes as has been indicated is possible.
+
+* (Re)enables _vcr_ for better unit testing.
+
+* More comprehensive unit tests.
 
 # nasapower 4.0.0
 
