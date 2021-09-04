@@ -19,11 +19,10 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface
 solar energy and climatology data in your R session as a tidy data frame
 `tibble` object for analysis and use in modelling or other purposes.
-POWER (Prediction Of Worldwide Energy Resource) data are freely
-available for download with a spatial resolution of 0.5 x 0.625 degree
-latitude and longitude for meteorology and 1 x 1 degree latitude and
-longitude for solar parameters with various temporal resolutions
-depending on the POWER parameter and community.
+POWER (Prediction Of Worldwide Energy Resource) data aare freely
+available for download with varying spatial resolutions dependent on the
+original dat and with several temporal resolutions depending on the
+POWER parameter and community.
 
 **Note that the data are not static and may be replaced with improved
 data.** Please see <https://power.larc.nasa.gov/docs/services/> for
@@ -72,7 +71,7 @@ daily_ag
 
     ## NASA/POWER CERES/MERRA2 Native Resolution Daily Data  
     ##  Dates (month/day/year): 01/01/1985 through 01/01/1985  
-    ##  Location: Latitude  -27.48   Longitude 151.81  
+    ##  Location: Latitude  -27.48   Longitude 151.8  
     ##  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
     ##  Value for missing model data cannot be computed or out of model availability range: NA  
     ##  Parameter(s):  
@@ -84,8 +83,8 @@ daily_ag
     ##  
     ## # A tibble: 1 × 10
     ##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
-    ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
-    ## 1  152. -27.5  1985     1     1     1 1985-01-01  54.7  24.9           0
+    ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl> <lgl>      
+    ## 1  152. -27.5  1985     1     1     1 1985-01-01  54.7  24.9 NA
 
 ## Documentation
 
