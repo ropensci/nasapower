@@ -19,7 +19,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface
 solar energy and climatology data in your R session as a tidy data frame
 `tibble` object for analysis and use in modelling or other purposes.
-POWER (Prediction Of Worldwide Energy Resource) data aare freely
+POWER (Prediction Of Worldwide Energy Resource) data are freely
 available for download with varying spatial resolutions dependent on the
 original dat and with several temporal resolutions depending on the
 POWER parameter and community.
