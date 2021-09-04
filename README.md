@@ -4,7 +4,7 @@
 
 <!-- badges: start -->
 
-[![tic](https://github.com/ropensci/nasapower/workflows/tic/badge.svg?branch=master)](https://github.com/ropensci/nasapower/actions)
+[![tic](https://github.com/ropensci/nasapower/workflows/tic/badge.svg?branch=main)](https://github.com/ropensci/nasapower/actions)
 [![codecov](https://codecov.io/gh/ropensci/nasapower/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
