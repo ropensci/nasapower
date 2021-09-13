@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 4.0.0.9000
+Version: 4.0.0.9001
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
@@ -37,9 +37,8 @@ URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
     energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy 
-    Resource) data are freely available for download with a spatial resolution 
-    of 0.5 x 0.625 degree latitude and longitude for meteorology and  1 x 1
-    degree latitude and longitude for solar parameters with various temporal
+    Resource) data are freely available for download with varying spatial
+    resolutions dependent on the original data and with several temporal
     resolutions depending on the POWER parameter and community.  This work is
     funded through the 'NASA' Earth Science Directorate Applied Science Program.
     For more on the data themselves, the methodologies used in creating, a web-
@@ -54,7 +53,7 @@ Imports:
     ratelimitr,
     readr,
     tibble
-RoxygenNote: 7.1.1.9001
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
@@ -65,7 +64,7 @@ Suggests:
     rmarkdown,
     spelling,
     testthat,
-    vcr
+    vcr (>= 0.6.0)
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
