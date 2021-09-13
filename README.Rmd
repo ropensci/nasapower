@@ -72,14 +72,13 @@ While _nasapower_ does not redistribute the data or provide it in any way, we en
 
 ## Meta
 
-  - Please [report any issues or
-    bugs](https://github.com/ropensci/nasapower/issues).
+  - Please [report any issues or bugs](https://github.com/ropensci/nasapower/issues).
 
   - License: MIT
 
   - To cite _nasapower_, please use the output from `citation(package = "nasapower")`.
 
-  - Please note that the _nasapower_ project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
+  - Please note that the _nasapower_ project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
     By participating in the _nasapower_ project you agree to abide by its terms.
 
   - The U.S. Earth System Research Laboratory, Physical Science Division of the National Atmospheric & Oceanic Administration (NOAA) maintains a list of gridded climate data sets that provide different data and different resolutions <https://psl.noaa.gov/data/gridded/>.
