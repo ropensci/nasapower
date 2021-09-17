@@ -83,8 +83,8 @@ daily_ag
     ##  
     ## # A tibble: 1 × 10
     ##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
-    ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl> <lgl>      
-    ## 1  152. -27.5  1985     1     1     1 1985-01-01  54.7  24.9 NA
+    ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
+    ## 1  152. -27.5  1985     1     1     1 1985-01-01  54.7  24.9         0.9
 
 ## Documentation
 
