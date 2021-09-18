@@ -6,7 +6,6 @@
 ^\.Rproj\.user$
 ^appveyor\.yml$
 ^\.travis\.yml$
-^CONDUCT\.md$
 ^codecov\.yml$
 ^README\.Rmd$
 ^docs$
@@ -19,3 +18,4 @@
 ^\.ccache$
 ^tic\.R$
 ^.covrignore$
+^CODE_OF_CONDUCT\.md$
