@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapowerdev
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower401
     body:
       encoding: ''
       string: ''
@@ -18,18 +18,18 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '790'
-      x-ratelimit-remaining-minute: '29'
-      x-ratelimit-limit-minute: '30'
-      ratelimit-reset: '1'
-      ratelimit-remaining: '29'
       ratelimit-limit: '30'
-      date: Thu, 02 Sep 2021 12:16:02 GMT
+      ratelimit-remaining: '28'
+      ratelimit-reset: '6'
+      x-ratelimit-remaining-minute: '28'
+      x-ratelimit-limit-minute: '30'
+      date: Sat, 18 Sep 2021 02:20:54 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-process-time: '0:00:04.498771'
+      x-process-time: '0:00:02.296417'
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=e32fd5e754872d8de6e9a05a723dd6cc;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=de1e01212cd463b3f9c83d6bb38e54ba;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -45,5 +45,5 @@ http_interactions:
         (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters (%) \r\nWS10M       MERRA-2
         Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2 Surface Pressure (kPa)
         \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06\n"
-  recorded_at: 2021-09-02 12:16:07 GMT
+  recorded_at: 2021-09-18 02:20:57 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
