@@ -71,7 +71,7 @@ daily_ag
 
     ## NASA/POWER CERES/MERRA2 Native Resolution Daily Data  
     ##  Dates (month/day/year): 01/01/1985 through 01/01/1985  
-    ##  Location: Latitude  -27.48   Longitude 151.8  
+    ##  Location: Latitude  -27.48   Longitude 151.81  
     ##  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
     ##  Value for missing model data cannot be computed or out of model availability range: NA  
     ##  Parameter(s):  
@@ -113,11 +113,10 @@ Team.
 -   To cite *nasapower*, please use the output from
     `citation(package = "nasapower")`.
 
--   Please note that the *nasapower* project is released with a
+-   Please note that the nasapower project is released with a
     [Contributor Code of
-    Conduct](https://github.com/ropensci/nasapower/blob/master/CONDUCT.md).
-    By participating in the *nasapower* project you agree to abide by
-    its terms.
+    Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+    By contributing to this project, you agree to abide by its terms.
 
 -   The U.S. Earth System Research Laboratory, Physical Science Division
     of the National Atmospheric & Oceanic Administration (NOAA)
