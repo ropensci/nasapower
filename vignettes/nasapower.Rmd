@@ -1,6 +1,6 @@
 ---
 title: "nasapower"
-author: "Adam H Sparks"
+author: "Adam H. Sparks"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -39,7 +39,7 @@ daily_single_ag <- get_power(
 daily_single_ag
 #> NASA/POWER CERES/MERRA2 Native Resolution Daily Data  
 #>  Dates (month/day/year): 01/01/1985 through 01/31/1985  
-#>  Location: Latitude  -27.48   Longitude 151.8  
+#>  Location: Latitude  -27.48   Longitude 151.81  
 #>  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  Parameter(s):  
@@ -170,7 +170,7 @@ climatology_ag <- get_power(
 climatology_ag
 #> NASA/POWER CERES/MERRA2 Native Resolution Climatology Climatologies  
 #>  30-year Meteorological and Solar Monthly & Annual Climatologies (January 1990 - December 2019)  
-#>  Location: Latitude  -27.48   Longitude 151.8  
+#>  Location: Latitude  -27.48   Longitude 151.81  
 #>  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
 #>  Value for missing model data cannot be computed or out of model availability range: NA  
 #>  Parameter(s):  

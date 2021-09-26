@@ -1,6 +1,6 @@
 ---
 title: "nasapower"
-author: "Adam H Sparks"
+author: "Adam H. Sparks"
 output:
   rmarkdown::html_vignette:
     toc: true
