@@ -8,14 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Client for 'NASA' 'POWER' global meteorology, surface solar
-    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy 
-    Resource) data are freely available for download with varying spatial
-    resolutions dependent on the original data and with several temporal
-    resolutions depending on the POWER parameter and community.  This work is
-    funded through the 'NASA' Earth Science Directorate Applied Science Program.
-    For more on the data themselves, the methodologies used in creating, a web-
-    based data viewer and web access, please see <https://power.larc.nasa.gov/>.
+Client for 'NASA' 'POWER' global meteorology, surface solar energy and climatology data 'API'. 'POWER' (Prediction Of Worldwide Energy Resource) data are freely available for download with varying spatial resolutions dependent on the original data and with several temporal resolutions depending on the POWER parameter and community. This work is funded through the 'NASA' Earth Science Directorate Applied Science Program. For more on the data themselves, the methodologies used in creating, a web- based data viewer and web access, please see <https://power.larc.nasa.gov/>.
 }
 \seealso{
 Useful links:
@@ -30,15 +23,10 @@ Useful links:
 
 Other contributors:
 \itemize{
-  \item Scott Chamberlain \email{myrmecocystus@gmail.com} (\href{https://orcid.org/0000-0003-1444-9135}{ORCID}) (Scott Chamberlain reviewed nasapower for rOpenSci, see
-                        https://github.com/ropensci/software-review/issues/155) [reviewer]
-  \item Hazel Kavili (Hazel Kavili reviewed nasapower for rOpenSci, see
-            https://github.com/ropensci/software-review/issues/155) [reviewer]
-  \item Alison Boyer (Alison Boyer reviewed nasapower for rOpenSci, see
-            https://github.com/ropensci/software-review/issues/155) [reviewer]
-  \item Fernando Miguez (\href{https://orcid.org/0000-0002-4627-8329}{ORCID}) (Fernando Miguez provided assistance in identifying
-                        improper missing value handling in the POWER data, see 
-                        <https://github.com/femiguez/apsimx/pull/26>) [contributor]
+  \item Scott Chamberlain \email{myrmecocystus@gmail.com} (\href{https://orcid.org/0000-0003-1444-9135}{ORCID}) (Scott Chamberlain reviewed nasapower for rOpenSci, see https://github.com/ropensci/software-review/issues/155) [reviewer]
+  \item Hazel Kavili (Hazel Kavili reviewed nasapower for rOpenSci, see https://github.com/ropensci/software-review/issues/155) [reviewer]
+  \item Alison Boyer (Alison Boyer reviewed nasapower for rOpenSci, see https://github.com/ropensci/software-review/issues/155) [reviewer]
+  \item Fernando Miguez (\href{https://orcid.org/0000-0002-4627-8329}{ORCID}) (Fernando Miguez provided assistance in identifying improper missing value handling in the POWER data, see <https://github.com/femiguez/apsimx/pull/26>) [contributor]
 }
 
 }
