@@ -1,6 +1,5 @@
-*nasapower*: NASA POWER API Client
-<img align='right' src='man/figures/logo.png'>
-================
+
+# *nasapower*: NASA POWER API Client <img align='right' src='man/figures/logo.png'>
 
 <!-- badges: start -->
 
