@@ -114,8 +114,9 @@ Team.
 
 -   Please note that the nasapower project is released with a
     [Contributor Code of
-    Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-    By contributing to this project, you agree to abide by its terms.
+    Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
+    By participating in the *nasapower* project you agree to abide by
+    its terms.
 
 -   The U.S. Earth System Research Laboratory, Physical Science Division
     of the National Atmospheric & Oceanic Administration (NOAA)
