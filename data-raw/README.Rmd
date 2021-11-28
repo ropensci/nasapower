@@ -1,6 +1,6 @@
 ---
 title: "Fetch NASA-POWER Parameters and Include Them as an Internal List"
-author: "Adam H Sparks"
+author: "Adam H. Sparks"
 date: "`r format(Sys.Date())`"
 output: github_document
 ---
@@ -59,8 +59,8 @@ The list structure will be
 Using `purrr::map2` and jsonlite::fromJSON()` read the JSON file into R creating a single, nested list and reorder it alphabetically by parameter name.
 
 ```{r fetch-JSON}
-library("purrr")
-library("jsonlite")
+library(purrr)
+library(jsonlite)
 
 temporal_api <- c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")
 community <- c("AG", "RE", "SB")
@@ -89,9 +89,12 @@ names(power_pars) <- paste(temporal_api, community, sep = "_")
 # create a list of vectors for each temporal API/par combination for easier
 # checking and validation
 parameters <- vector(mode = "list", length = length(power_pars))
+names(parameters) <- names(power_pars)
 for (i in names(power_pars)) {
   parameters[[i]] <- names(power_pars[[i]])
 }
+
+parameters <- map(.x = parameters, .f = sort)
 ```
 
 ## Save list for use in `nasapower` package
