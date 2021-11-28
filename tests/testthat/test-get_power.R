@@ -1,5 +1,6 @@
 
 # test queries using vcr -------------------------------------------------------
+Sys.sleep(60)
 vcr::use_cassette("daily_ag_point", {
   test_that("get_power returns daily point ag data", {
     power_query <- get_power(
@@ -50,7 +51,7 @@ vcr::use_cassette("daily_ag_point", {
   })
 })
 
-
+Sys.sleep(60)
 vcr::use_cassette("adjusted_air_pressure", {
   test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure",
@@ -105,6 +106,7 @@ vcr::use_cassette("adjusted_air_pressure", {
           })
 })
 
+Sys.sleep(60)
 vcr::use_cassette("daily_sb_point", {
   test_that("get_power returns daily point SB data", {
     power_query <- get_power(
@@ -179,6 +181,7 @@ test_that("get_power() returns daily regional ag data", {
   expect_equal(power_query$T2M[1], 3.28)
 })
 
+Sys.sleep(60)
 test_that("get_power() returns point ag data for climatology", {
   vcr::use_cassette("climatology_ag_point", {
     skip_on_cran()
@@ -217,7 +220,7 @@ test_that("get_power() returns point ag data for climatology", {
 
 # test rate limiting -----
 
-test_that("get_power() limits requests to 30/minute", {
+test_that("get_power() limits requests to 60/minute", {
   # this code comes from @camwur,
   # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
   # the issue and the limits, thanks!
@@ -231,6 +234,28 @@ test_that("get_power() limits requests to 30/minute", {
       wind_surface = NULL,
       pars = c("RH2M", "T2M"),
       temporal_api = "climatology"
+    )
+  }
+  lon <- c(1:32)
+  lat <- c(1:32)
+  y <- purrr::map2(lon, lat, x)
+  expect_length(y, 32)
+})
+
+test_that("get_power() limits requests to 30/minute", {
+  # this code comes from @camwur,
+  # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
+  # the issue and the limits, thanks!
+  skip_on_cran()
+  x <- function(lon, lat) {
+    get_power(
+      community = "ag",
+      lonlat = c(lon, lat),
+      site_elevation = NULL,
+      wind_elevation = NULL,
+      wind_surface = NULL,
+      pars = c("RH2M", "T2M"),
+      temporal_api = "hourly"
     )
   }
   lon <- c(1:32)
