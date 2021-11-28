@@ -1,4 +1,5 @@
 
+
 #' Get NASA POWER data from the POWER web API
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
@@ -194,10 +195,12 @@ get_power <- function(community,
                       wind_surface = NULL,
                       temporal_average = NULL) {
   if (is.null(temporal_api) & !is.null(temporal_average)) {
-    warning(call. = FALSE,
-            "`temporal_average has been deprecated for `temporal_api`.\n",
-            "Your query has been modified to use the new terminology for ",
-            "`get_power`.  Please update your scripts to use the new argument.")
+    warning(
+      call. = FALSE,
+      "`temporal_average has been deprecated for `temporal_api`.\n",
+      "Your query has been modified to use the new terminology for ",
+      "`get_power`.  Please update your scripts to use the new argument."
+    )
     temporal_api <- temporal_average
   }
   if (is.null(temporal_api)) {
@@ -311,10 +314,17 @@ get_power <- function(community,
     lonlat_identifier$identifier
   )
 
-  response <-
-    .rate_limited_query(.query_list = query_list,
-                        .temporal_api = temporal_api,
-                        .url = power_url)
+  if (temporal_api != "HOURLY") {
+    response <-
+      .rate_limited_query(.query_list = query_list,
+                          .temporal_api = temporal_api,
+                          .url = power_url)
+  } else {
+    response <-
+      .hourly_rate_limited_query(.query_list = query_list,
+                                 .temporal_api = temporal_api,
+                                 .url = power_url)
+  }
 
   response$raise_for_status()
 
@@ -609,7 +619,6 @@ get_power <- function(community,
                          site_elevation,
                          wind_elevation,
                          wind_surface) {
-
   user_agent <- paste0("nasapower",
                        gsub(
                          pattern = "\\.",
@@ -676,18 +685,19 @@ get_power <- function(community,
   power_response$DOY <- as.integer(power_response$DOY)
 
   # Calculate the full date from YEAR and DOY
-  power_response <- tibble::add_column(power_response,
-                             YYYYMMDD = as.Date(power_response$DOY - 1,
-                                                origin = as.Date(paste(
-                                                  power_response$YEAR, "-01-01",
-                                                  sep = ""
-                                                ))),
-                             .after = "DOY")
+  power_response <- tibble::add_column(
+    power_response,
+    YYYYMMDD = as.Date(power_response$DOY - 1,
+                       origin = as.Date(
+                         paste(power_response$YEAR, "-01-01",
+                               sep = "")
+                       )),
+    .after = "DOY"
+  )
 
   # Extract month as integer
   power_response <- tibble::add_column(power_response,
-                                       MM = as.integer(
-                                         substr(power_response$YYYYMMDD, 6, 7)),
+                                       MM = as.integer(substr(power_response$YYYYMMDD, 6, 7)),
                                        .after = "YEAR")
 
   # Extract day as integer
@@ -716,11 +726,14 @@ get_power <- function(community,
   # add day of year col
   power_response$YYYYMMDD <-
     as.Date(
-      paste(power_response$DD,
-            power_response$MM,
-            power_response$YEAR,
-            sep = "-"),
-            format = "%d-%m-%Y")
+      paste(
+        power_response$DD,
+        power_response$MM,
+        power_response$YEAR,
+        sep = "-"
+      ),
+      format = "%d-%m-%Y"
+    )
   power_response$DOY <- lubridate::yday(power_response$YYYYMMDD)
 
   # set integer cols
