@@ -65,7 +65,8 @@
 #'
 #' @section Argument details for `temporal_api`: There are four valid values.
 #'  \describe{
-#'   \item{hourly}{The hourly average of `pars` by hour, day, month and year.}
+#'   \item{hourly}{The hourly average of `pars` by hour, day, month and year,
+#'   the time zone is UTC.d}
 #'   \item{daily}{The daily average of `pars` by day, month and year.}
 #'   \item{monthly}{The monthly average of `pars` by month and year.}
 #'   \item{climatology}{Provide parameters as 22-year climatologies (solar)
