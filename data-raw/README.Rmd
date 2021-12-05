@@ -56,7 +56,7 @@ The list structure will be
 
 ## POWER JSON file
 
-Using `purrr::map2` and jsonlite::fromJSON()` read the JSON file into R creating a single, nested list and reorder it alphabetically by parameter name.
+Using `purrr::map2` and `jsonlite::fromJSON()` read the JSON file into R creating a single, nested list and reorder it alphabetically by parameter name.
 
 ```{r fetch-JSON}
 library(purrr)

@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters and Include Them as an Internal List
 ================
 Adam H. Sparks
-2021-11-28
+2021-12-05
 
 # Create parameters nested list for internal checks before sending queries to POWER server
 
@@ -51,7 +51,7 @@ The list structure will be
 
 ## POWER JSON file
 
-Using `purrr::map2` and jsonlite::fromJSON()\` read the JSON file into R
+Using `purrr::map2` and `jsonlite::fromJSON()` read the JSON file into R
 creating a single, nested list and reorder it alphabetically by
 parameter name.
 
@@ -122,8 +122,8 @@ usethis::use_data(parameters, overwrite = TRUE, internal = TRUE)
 sessioninfo::session_info()
 ```
 
-    ## ─ Session info  🛌🏽  🙏  😅   ─────────────────────────────────────────────────
-    ##  hash: person in bed: medium skin tone, folded hands, grinning face with sweat
+    ## ─ Session info  😂  🧾  🤚🏿   ─────────────────────────────────────────────────
+    ##  hash: face with tears of joy, receipt, raised back of hand: dark skin tone
     ## 
     ##  setting  value
     ##  version  R version 4.1.2 (2021-11-01)
@@ -134,7 +134,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8
     ##  ctype    en_AU.UTF-8
     ##  tz       Australia/Perth
-    ##  date     2021-11-28
+    ##  date     2021-12-05
     ##  pandoc   2.14.0.3 @ /Applications/RStudio.app/Contents/MacOS/pandoc/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
@@ -143,13 +143,13 @@ sessioninfo::session_info()
     ##  crayon        1.4.2   2021-10-29 [1] CRAN (R 4.1.1)
     ##  curl          4.3.2   2021-06-23 [1] CRAN (R 4.1.0)
     ##  desc          1.4.0   2021-09-28 [1] CRAN (R 4.1.1)
-    ##  digest        0.6.28  2021-09-23 [1] CRAN (R 4.1.1)
+    ##  digest        0.6.29  2021-12-01 [1] CRAN (R 4.1.2)
     ##  ellipsis      0.3.2   2021-04-29 [1] CRAN (R 4.1.0)
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.1.0)
     ##  fansi         0.5.0   2021-05-25 [1] CRAN (R 4.1.0)
     ##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.1.0)
-    ##  fs            1.5.0   2020-07-31 [1] CRAN (R 4.1.0)
-    ##  glue          1.5.0   2021-11-07 [1] CRAN (R 4.1.2)
+    ##  fs            1.5.1   2021-11-30 [1] CRAN (R 4.1.2)
+    ##  glue          1.5.1   2021-11-30 [1] CRAN (R 4.1.2)
     ##  htmltools     0.5.2   2021-08-25 [1] CRAN (R 4.1.1)
     ##  jsonlite    * 1.7.2   2020-12-09 [1] CRAN (R 4.1.0)
     ##  knitr         1.36    2021-09-29 [1] CRAN (R 4.1.1)
@@ -164,7 +164,7 @@ sessioninfo::session_info()
     ##  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.1.0)
     ##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.1.0)
     ##  sessioninfo   1.2.1   2021-11-02 [1] CRAN (R 4.1.2)
-    ##  stringi       1.7.5   2021-10-04 [1] CRAN (R 4.1.1)
+    ##  stringi       1.7.6   2021-11-29 [1] CRAN (R 4.1.2)
     ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.1.1)
     ##  tibble        3.1.6   2021-11-07 [1] CRAN (R 4.1.1)
     ##  usethis       2.1.3   2021-10-27 [1] CRAN (R 4.1.1)
