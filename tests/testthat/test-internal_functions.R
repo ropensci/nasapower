@@ -347,7 +347,7 @@ test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
             lonlat <- c(-179.5, -89.5)
             expect_error(
               pars <- .check_pars(pars, community = "ag", temporal_api),
-              regexp <- "You can only specify 20 parameters for download*"
+              regexp <- "A maximum of 20 parameters can currently be requested*"
             )
           })
 
