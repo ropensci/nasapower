@@ -105,9 +105,11 @@
 # create rate-limited query functions that respects the POWER API limits ----
 # these are here because this is where .send_quer() is found.
 .rate_limited_query <-
-  ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 1,
-                                                       period = 30))
+  ratelimitr::limit_rate(f = .send_query,
+                         rate = ratelimitr::rate(n = 1,
+                                                 period = 30))
 
 .hourly_rate_limited_query <-
-  ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 1,
-                                                       period = 60))
+  ratelimitr::limit_rate(f = .send_query,
+                         rate = ratelimitr::rate(n = 1,
+                                                 period = 60))
