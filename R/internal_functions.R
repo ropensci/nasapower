@@ -77,27 +77,24 @@
 
   client <- crul::HttpClient$new(url = .url)
 
-  tryCatch({
     # nocov begin
     response <- client$get(query = .query_list,
                            retry = 6L,
                            timeout = 30L)
-    if (!response$success()) {
-      stop(call. = FALSE)
-    }
-  },
-  error = function(e) {
-    e$message <-
-      paste(
-        "Something went wrong with the query, no data were returned.",
-        "Please see <https://power.larc.nasa.gov> for potential",
-        "server issues.\n"
+
+    # check to see if request failed or succeeded
+    # - a custom approach this time combining status code,
+    #   explanation of the code, and message from the server
+    if (response$status_code > 201) {
+      mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
+      x <- response$status_http()
+      stop(
+        sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg),
+        call. = FALSE
       )
-    # Otherwise refers to open.connection
-    e$call <- NULL
-    stop(e)
-  }) # nocov end
-  return(response)
+    }
+    # parse response
+    return(response)
 }
 
 # create a rate-limited query function that respects the POWER API limits
