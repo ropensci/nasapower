@@ -50,7 +50,6 @@ vcr::use_cassette("daily_ag_point", {
   })
 })
 
-Sys.sleep(65)
 vcr::use_cassette("adjusted_air_pressure", {
   test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure",
@@ -105,7 +104,6 @@ vcr::use_cassette("adjusted_air_pressure", {
           })
 })
 
-Sys.sleep(65)
 vcr::use_cassette("daily_sb_point", {
   test_that("get_power returns daily point SB data", {
     power_query <- get_power(
@@ -180,7 +178,6 @@ test_that("get_power() returns daily regional ag data", {
   expect_equal(power_query$T2M[1], 3.28)
 })
 
-Sys.sleep(65)
 test_that("get_power() returns point ag data for climatology", {
   vcr::use_cassette("climatology_ag_point", {
     skip_on_cran()
@@ -218,7 +215,6 @@ test_that("get_power() returns point ag data for climatology", {
 })
 
 # test rate limiting -----
-Sys.sleep(65)
 test_that("get_power() limits requests to 65/minute", {
   # this code comes from @camwur,
   # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
@@ -241,7 +237,6 @@ test_that("get_power() limits requests to 65/minute", {
   expect_length(y, 32)
 })
 
-Sys.sleep(65)
 test_that("get_power() limits requests to 30/minute", {
   # this code comes from @camwur,
   # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
@@ -326,7 +321,6 @@ test_that("get_power() stops if an invalid community supplied", {
 })
 
 test_that("get_power() stops if site elevation is supplied not for point", {
-  Sys.sleep(10)
   skip_on_cran()
   expect_message(
     power_query <- get_power(
