@@ -255,7 +255,7 @@ test_that("get_power() limits requests to 30/minute", {
       wind_elevation = NULL,
       wind_surface = NULL,
       pars = c("RH2M", "T2M"),
-      dates = c("1983-01-01"),
+      dates = c("2015-06-01"),
       temporal_api = "hourly"
     )
   }
