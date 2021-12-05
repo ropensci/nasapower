@@ -53,11 +53,11 @@
 
     if (length(pars) > 15 & temporal_api == "hourly") {
       stop(call. = FALSE,
-           "A maximum of 15 parameters can currently be requested",
+           "A maximum of 15 parameters can currently be requested ",
            "in one submission for hourly data.\n")
     } else if (length(pars) > 20) {
       stop(call. = FALSE,
-           "A maximum of 20 parameters can currently be requested",
+           "A maximum of 20 parameters can currently be requested ",
            "in one submission.\n")
     }
 
