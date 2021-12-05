@@ -1,4 +1,13 @@
-# nasapower (development version)
+# nasapower 4.0.2
+
+* Update automatic rate limiting to API requests.
+Hourly is limited to 15 requests every 60 seconds, Daily, Monthly and Climatology are limited to 20 requests every 30 seconds.
+
+* Update checks for number of parameters requested by user, maximum of 15 for hourly and 20 for all other temporal APIs.
+
+* Return API messages to user to assist with troubleshooting when an error occurs server-side, see https://github.com/ropensci/nasapower/issues/55.
+
+* 
 
 # nasapower 4.0.1
 
