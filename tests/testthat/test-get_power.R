@@ -215,7 +215,7 @@ test_that("get_power() returns point ag data for climatology", {
 })
 
 # test rate limiting -----
-test_that("get_power() limits requests to 65/minute", {
+test_that("get_power() limits requests to 60/minute", {
   # this code comes from @camwur,
   # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
   # the issue and the limits, thanks!
@@ -254,10 +254,10 @@ test_that("get_power() limits requests to 30/minute", {
       temporal_api = "hourly"
     )
   }
-  lon <- c(1:32)
-  lat <- c(1:32)
+  lon <- c(90:91)
+  lat <- c(0:1)
   y <- purrr::map2(lon, lat, x)
-  expect_length(y, 32)
+   expect_length(y, 32)
 })
 
 # check for failure status
