@@ -102,11 +102,12 @@
     return(response)
 }
 
-# create a rate-limited query function that respects the POWER API limits
-  .rate_limited_query <-
-    ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 60,
-                                                         period = 60))
+# create rate-limited query functions that respects the POWER API limits ----
+# these are here because this is where .send_quer() is found.
+.rate_limited_query <-
+  ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 1,
+                                                       period = 30))
 
-  .hourly_rate_limited_query <-
-    ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 20,
-                                                         period = 60))
+.hourly_rate_limited_query <-
+  ratelimitr::limit_rate(.send_query, ratelimitr::rate(n = 1,
+                                                       period = 60))
