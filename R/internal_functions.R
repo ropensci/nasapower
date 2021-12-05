@@ -51,9 +51,14 @@
            )
     }
 
-    if (length(pars) > 20 & temporal_api != "climatology") {
+    if (length(pars) > 15 & temporal_api == "hourly") {
       stop(call. = FALSE,
-           "You can only specify 20 parameters for download at a time.\n")
+           "A maximum of 15 parameters can currently be requested",
+           "in one submission for hourly data.\n")
+    } else if (length(pars) > 20) {
+      stop(call. = FALSE,
+           "A maximum of 20 parameters can currently be requested",
+           "in one submission.\n")
     }
 
     # all good? great. now we format it for the API
