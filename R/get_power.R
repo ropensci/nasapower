@@ -317,12 +317,12 @@ get_power <- function(community,
 
   if (temporal_api != "HOURLY") {
     response <-
-      .rate_limited_query(.query_list = query_list,
+      .send_query_limited(.query_list = query_list,
                           .temporal_api = temporal_api,
                           .url = power_url)
   } else {
     response <-
-      .hourly_rate_limited_query(.query_list = query_list,
+      .send_query_limited_hourly(.query_list = query_list,
                                  .temporal_api = temporal_api,
                                  .url = power_url)
   }

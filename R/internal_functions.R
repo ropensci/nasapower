@@ -27,7 +27,6 @@
 #' @noRd
 .check_pars <-
   function(pars, community, temporal_api) {
-
     # make sure that there are no duplicates in the query
     pars <- unique(pars)
 
@@ -38,27 +37,35 @@
     # check pars to make sure that they are valid for both the par and
     # temporal_api
     if (any(pars %notin% p)) {
-      stop(call. = FALSE,
-           "", paste(pars[which(pars %notin% p)], collapse = ", "),
-                  " is/are not valid in 'pars'.\n",
-           "Check that the 'pars', 'community' and 'temporal_api' align.")
+      stop(
+        call. = FALSE,
+        "",
+        paste(pars[which(pars %notin% p)], collapse = ", "),
+        " is/are not valid in 'pars'.\n",
+        "Check that the 'pars', 'community' and 'temporal_api' align."
+      )
     }
 
     if (temporal_api == "hourly" && length(pars) > 15) {
-      stop(call. = FALSE,
-           "You can only specify maximum of 15 parameters for download at a
+      stop(
+        call. = FALSE,
+        "You can only specify maximum of 15 parameters for download at a
            time for the hourly temporal API."
-           )
+      )
     }
 
     if (length(pars) > 15 & temporal_api == "hourly") {
-      stop(call. = FALSE,
-           "A maximum of 15 parameters can currently be requested ",
-           "in one submission for hourly data.\n")
+      stop(
+        call. = FALSE,
+        "A maximum of 15 parameters can currently be requested ",
+        "in one submission for hourly data.\n"
+      )
     } else if (length(pars) > 20) {
-      stop(call. = FALSE,
-           "A maximum of 20 parameters can currently be requested ",
-           "in one submission.\n")
+      stop(
+        call. = FALSE,
+        "A maximum of 20 parameters can currently be requested ",
+        "in one submission.\n"
+      )
     }
 
     # all good? great. now we format it for the API
@@ -79,37 +86,22 @@
 .send_query <- function(.query_list,
                         .temporal_api,
                         .url) {
-
   client <- crul::HttpClient$new(url = .url)
 
-    # nocov begin
-    response <- client$get(query = .query_list,
-                           retry = 6L,
-                           timeout = 30L)
+  # nocov begin
+  response <- client$get(query = .query_list,
+                         retry = 6L,
+                         timeout = 30L)
 
-    # check to see if request failed or succeeded
-    # - a custom approach this time combining status code,
-    #   explanation of the code, and message from the server
-    if (response$status_code > 201) {
-      mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
-      x <- response$status_http()
-      stop(
-        sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg),
-        call. = FALSE
-      )
-    }
-    # parse response
-    return(response)
+  # check to see if request failed or succeeded
+  # - a custom approach this time combining status code,
+  #   explanation of the code, and message from the server
+  if (response$status_code > 201) {
+    mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
+    x <- response$status_http()
+    stop(sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg),
+         call. = FALSE)
+  }
+  # parse response
+  return(response)
 }
-
-# create rate-limited query functions that respects the POWER API limits ----
-# these are here because this is where .send_quer() is found.
-.rate_limited_query <-
-  ratelimitr::limit_rate(f = .send_query,
-                         rate = ratelimitr::rate(n = 1,
-                                                 period = 30))
-
-.hourly_rate_limited_query <-
-  ratelimitr::limit_rate(f = .send_query,
-                         rate = ratelimitr::rate(n = 1,
-                                                 period = 60))
