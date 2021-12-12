@@ -1,5 +1,4 @@
 
-
 #' Get NASA POWER data from the POWER web API
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
