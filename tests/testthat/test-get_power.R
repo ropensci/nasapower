@@ -231,10 +231,10 @@ test_that("get_power() limits requests to 60/minute", {
       temporal_api = "climatology"
     )
   }
-  lon <- c(1:32)
-  lat <- c(1:32)
+  lon <- c(1:2)
+  lat <- c(1:2)
   y <- purrr::map2(lon, lat, x)
-  expect_length(y, 32)
+  expect_length(y, 2)
 })
 
 test_that("get_power() limits requests to 30/minute", {
@@ -257,7 +257,7 @@ test_that("get_power() limits requests to 30/minute", {
   lon <- c(90:91)
   lat <- c(0:1)
   y <- purrr::map2(lon, lat, x)
-   expect_length(y, 32)
+  expect_length(y, 2)
 })
 
 # check for failure status
