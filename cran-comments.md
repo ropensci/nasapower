@@ -1,15 +1,15 @@
-# nasapower v4.0.0
+# nasapower v4.0.2
 
 ## Test environments
-* local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.1.1
+* local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.1.2
 * win-builder, R Under development (unstable) (2021-09-17 r80929)
-* win-builder, R 4.1.1
+* win-builder, R 4.1.2
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-This is a new minor release
+This is a new patch release
 
 ## Reverse dependencies
 
