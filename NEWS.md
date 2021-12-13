@@ -9,6 +9,8 @@ Hourly is limited to 15 requests every 60 seconds, Daily, Monthly and Climatolog
 
 * Return API messages to user to assist with troubleshooting when an error occurs server-side, see [Issue 55](https://github.com/ropensci/nasapower/issues/55).
 
+* The list of POWER parameters that can be queried from the API, `parameters` is now in alphabetical order.
+
 # nasapower 4.0.1 (unreleased on CRAN)
 
 ## Bug fixes
