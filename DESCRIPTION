@@ -63,7 +63,8 @@ Suggests:
     purrr,
     rmarkdown,
     spelling,
-    testthat
+    testthat,
+    vcr
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
