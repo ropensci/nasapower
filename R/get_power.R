@@ -43,10 +43,11 @@
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
 #' @param temporal_average Deprecated. This argument has been superseded by
-#'   `temporal_api` to align with the new POWER API terminology.
+#'   `temporal_api` to align with the new \acronym{POWER} \acronym{API}
+#'   terminology.
 #'
 #' @section Argument details for \dQuote{community}: there are three valid
-#'   values, one must be supplied.  This  will affect the units of the parameter
+#'   values, one must be supplied. This  will affect the units of the parameter
 #'   and the temporal display of time series data.
 #'
 #' \describe{
