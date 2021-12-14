@@ -78,7 +78,7 @@ daily_ag
     ##  Parameters: 
     ##  RH2M            MERRA-2 Relative Humidity at 2 Meters (%) ;
     ##  T2M             MERRA-2 Temperature at 2 Meters (C) ;
-    ##  PRECTOTCORR     MERRA-2 Precipitation Corrected (mm)  
+    ##  PRECTOTCORR     MERRA-2 Precipitation Corrected (mm/day)  
     ##  
     ## # A tibble: 1 × 10
     ##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
@@ -112,7 +112,7 @@ Team.
 -   To cite *nasapower*, please use the output from
     `citation(package = "nasapower")`.
 
--   Please note that the nasapower project is released with a
+-   Please note that the *nasapower* project is released with a
     [Contributor Code of
     Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
     By participating in the *nasapower* project you agree to abide by
