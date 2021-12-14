@@ -58,7 +58,8 @@ request, see
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 
 \item{temporal_average}{Deprecated. This argument has been superseded by
-\code{temporal_api} to align with the new POWER API terminology.}
+\code{temporal_api} to align with the new \acronym{POWER} \acronym{API}
+terminology.}
 }
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
@@ -83,7 +84,7 @@ the data are exported to a file format other than a native \R data format,
 }
 \section{Argument details for \dQuote{community}}{
  there are three valid
-values, one must be supplied.  This  will affect the units of the parameter
+values, one must be supplied. This  will affect the units of the parameter
 and the temporal display of time series data.
 
 \describe{
