@@ -315,17 +315,10 @@ get_power <- function(community,
     lonlat_identifier$identifier
   )
 
-  if (temporal_api != "HOURLY") {
-    response <-
-      .send_query_limited(.query_list = query_list,
-                          .temporal_api = temporal_api,
-                          .url = power_url)
-  } else {
-    response <-
-      .send_query_limited_hourly(.query_list = query_list,
-                                 .temporal_api = temporal_api,
-                                 .url = power_url)
-  }
+  response <-
+    .send_query(.query_list = query_list,
+                .temporal_api = temporal_api,
+                .url = power_url)
 
   response$raise_for_status()
 
