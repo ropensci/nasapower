@@ -38,6 +38,12 @@
       "givenName": "Fernando",
       "familyName": "Miguez",
       "@id": "https://orcid.org/0000-0002-4627-8329"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Maëlle",
+      "familyName": "Salmon",
+      "@id": "https://orcid.org/0000-0002-2815-0399"
     }
   ],
   "copyrightHolder": {},
@@ -255,7 +261,7 @@
     }
   ],
   "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
-  "fileSize": "364.863KB",
+  "fileSize": "365.1KB",
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/main/README.md",
   "review": {

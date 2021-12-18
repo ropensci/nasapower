@@ -32,7 +32,11 @@ Authors@R:
             comment = c(ORCID = "0000-0002-4627-8329",
                         "Fernando Miguez provided assistance in identifying
                         improper missing value handling in the POWER data, see 
-                        <https://github.com/femiguez/apsimx/pull/26>")))
+                        <https://github.com/femiguez/apsimx/pull/26>")),
+     person(given = "Maëlle",
+            family = "Salmon",
+            role = "ctb",
+            comment = c(ORCID = "0000-0002-2815-0399")))
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
