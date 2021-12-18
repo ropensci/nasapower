@@ -27,7 +27,7 @@ Other contributors:
   \item Hazel Kavili (Hazel Kavili reviewed nasapower for rOpenSci, see https://github.com/ropensci/software-review/issues/155) [reviewer]
   \item Alison Boyer (Alison Boyer reviewed nasapower for rOpenSci, see https://github.com/ropensci/software-review/issues/155) [reviewer]
   \item Fernando Miguez (\href{https://orcid.org/0000-0002-4627-8329}{ORCID}) (Fernando Miguez provided assistance in identifying improper missing value handling in the POWER data, see <https://github.com/femiguez/apsimx/pull/26>) [contributor]
-  \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) [contributor]
+  \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) (Maëlle Salmon contributed a patch to fix issues with using the R package, 'vcr', for testing the 'API' queries, see https://github.com/ropensci/nasapower/pull/64.) [contributor]
 }
 
 }

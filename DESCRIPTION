@@ -36,7 +36,11 @@ Authors@R:
      person(given = "Maëlle",
             family = "Salmon",
             role = "ctb",
-            comment = c(ORCID = "0000-0002-2815-0399")))
+            comment = c(ORCID = "0000-0002-2815-0399",
+                        "Maëlle Salmon contributed a patch to fix issues with
+                        using the R package, 'vcr', for testing the 'API'
+                        queries, see
+                        https://github.com/ropensci/nasapower/pull/64.")))
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
