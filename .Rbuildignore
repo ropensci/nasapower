@@ -19,3 +19,4 @@
 ^tic\.R$
 ^.covrignore$
 ^CODE_OF_CONDUCT\.md$
+^CRAN-SUBMISSION$
