@@ -8,6 +8,7 @@ vignette: >
   %\VignetteIndexEntry{nasapower}
   %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{ratelimitr}
 ---
 
 
@@ -47,7 +48,7 @@ daily_single_ag
 #>  Parameters: 
 #>  RH2M            MERRA-2 Relative Humidity at 2 Meters (%) ;
 #>  T2M             MERRA-2 Temperature at 2 Meters (C) ;
-#>  PRECTOTCORR     MERRA-2 Precipitation Corrected (mm)  
+#>  PRECTOTCORR     MERRA-2 Precipitation Corrected (mm/day)  
 #>  
 #> # A tibble: 31 × 10
 #>      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M
@@ -135,20 +136,21 @@ interannual_re
 #>  CLRSKY_SFC_SW_DWN     CERES SYN1deg Clear Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day)  
 #>  
 #> # A tibble: 144 × 17
-#>    PARAMETER    YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN
-#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 ALLSKY_SFC…  1984 -25.8  151.  6.01  6.49  5.79  4.67  4.12  3.77
-#>  2 ALLSKY_SFC…  1984 -25.8  151.  5.92  5.97  5.64  4.37  4.01  3.61
-#>  3 ALLSKY_SFC…  1984 -25.8  152.  5.92  5.97  5.64  4.37  4.01  3.61
-#>  4 ALLSKY_SFC…  1984 -25.8  152.  5.96  5.85  5.56  4.26  3.92  3.52
-#>  5 ALLSKY_SFC…  1984 -25.8  153.  5.96  5.85  5.56  4.26  3.92  3.52
-#>  6 ALLSKY_SFC…  1984 -25.8  153.  6.23  6.05  5.88  4.26  3.81  3.3 
-#>  7 ALLSKY_SFC…  1984 -26.2  151.  5.97  6.65  6     4.66  4.02  3.72
-#>  8 ALLSKY_SFC…  1984 -26.2  151.  6     6.38  5.71  4.38  4.01  3.66
-#>  9 ALLSKY_SFC…  1984 -26.2  152.  6     6.38  5.71  4.38  4.01  3.66
-#> 10 ALLSKY_SFC…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8   3.44
-#> # … with 134 more rows, and 7 more variables: JUL <dbl>, AUG <dbl>,
-#> #   SEP <dbl>, OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
+#>    PARAMETER    YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY
+#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 ALLSKY_SFC…  1984 -25.8  151.  6.01  6.49  5.79  4.67  4.12
+#>  2 ALLSKY_SFC…  1984 -25.8  151.  5.92  5.97  5.64  4.37  4.01
+#>  3 ALLSKY_SFC…  1984 -25.8  152.  5.92  5.97  5.64  4.37  4.01
+#>  4 ALLSKY_SFC…  1984 -25.8  152.  5.96  5.85  5.56  4.26  3.92
+#>  5 ALLSKY_SFC…  1984 -25.8  153.  5.96  5.85  5.56  4.26  3.92
+#>  6 ALLSKY_SFC…  1984 -25.8  153.  6.23  6.05  5.88  4.26  3.81
+#>  7 ALLSKY_SFC…  1984 -26.2  151.  5.97  6.65  6     4.66  4.02
+#>  8 ALLSKY_SFC…  1984 -26.2  151.  6     6.38  5.71  4.38  4.01
+#>  9 ALLSKY_SFC…  1984 -26.2  152.  6     6.38  5.71  4.38  4.01
+#> 10 ALLSKY_SFC…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8 
+#> # … with 134 more rows, and 8 more variables: JUN <dbl>,
+#> #   JUL <dbl>, AUG <dbl>, SEP <dbl>, OCT <dbl>, NOV <dbl>,
+#> #   DEC <dbl>, ANN <dbl>
 ```
 
 ### Example fetching climatology data
@@ -180,12 +182,12 @@ climatology_ag
 #>  RH2M     MERRA-2 Relative Humidity at 2 Meters (%)  
 #>  
 #> # A tibble: 2 × 16
-#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL
-#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1  152. -27.5 T2M        24.3  23.5  21.8  18.7  15.1  12.2  11.5
-#> 2  152. -27.5 RH2M       65.5  70.1  70.4  70.1  71.8  75.5  71.5
-#> # … with 6 more variables: AUG <dbl>, SEP <dbl>, OCT <dbl>,
-#> #   NOV <dbl>, DEC <dbl>, ANN <dbl>
+#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN
+#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1  152. -27.5 T2M        24.3  23.5  21.8  18.7  15.1  12.2
+#> 2  152. -27.5 RH2M       65.5  70.1  70.4  70.1  71.8  75.5
+#> # … with 7 more variables: JUL <dbl>, AUG <dbl>, SEP <dbl>,
+#> #   OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
 ```
 
 _Note_ the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
@@ -210,7 +212,7 @@ query_parameters(par = "T2M")
 #> [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."
 #> 
 #> $T2M$temporal$HOURLY$communities
-#> [1] "AG" "SB" "RE"
+#> [1] "AG" "RE" "SB"
 #> 
 #> $T2M$temporal$HOURLY$calculated
 #> [1] FALSE
@@ -224,7 +226,7 @@ query_parameters(par = "T2M")
 #> [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."
 #> 
 #> $T2M$temporal$DAILY$communities
-#> [1] "AG" "SB" "RE"
+#> [1] "AG" "RE" "SB"
 #> 
 #> $T2M$temporal$DAILY$calculated
 #> [1] FALSE
@@ -238,7 +240,7 @@ query_parameters(par = "T2M")
 #> [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."
 #> 
 #> $T2M$temporal$MONTHLY$communities
-#> [1] "AG" "SB" "RE"
+#> [1] "AG" "RE" "SB"
 #> 
 #> $T2M$temporal$MONTHLY$calculated
 #> [1] FALSE
@@ -287,7 +289,7 @@ query_parameters(par = "T2M",
 #> [1] FALSE
 #> 
 #> $T2M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $T2M$units
 #> [1] "C"
@@ -322,7 +324,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $PRECSNOLAND$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $PRECSNOLAND$units
 #> [1] "mm/hour"
@@ -351,7 +353,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $PRECTOTCORR$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $PRECTOTCORR$units
 #> [1] "mm/hour"
@@ -380,7 +382,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $PS$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $PS$units
 #> [1] "kPa"
@@ -390,64 +392,6 @@ query_parameters(community = "ag",
 #> 
 #> $PS$definition
 #> [1] "The average of surface pressure at the surface of the earth."
-#> 
-#> 
-#> $PSC
-#> $PSC$type
-#> [1] "METEOROLOGY"
-#> 
-#> $PSC$temporal
-#> [1] "HOURLY"
-#> 
-#> $PSC$source
-#> [1] "POWER"
-#> 
-#> $PSC$community
-#> [1] "AG"
-#> 
-#> $PSC$calculated
-#> [1] TRUE
-#> 
-#> $PSC$inputs
-#> [1] "PS,T2M"
-#> 
-#> $PSC$units
-#> [1] "kPa"
-#> 
-#> $PSC$name
-#> [1] "Corrected Atmospheric Pressure (Adjusted For Site Elevation)"
-#> 
-#> $PSC$definition
-#> [1] "Atmospheric pressure associated with the MERRA-2 grid has been adjusted based upon the difference between the elevation of an underlying surface site and the average elevation of the MERRA-2 grid cell."
-#> 
-#> 
-#> $QV2M
-#> $QV2M$type
-#> [1] "METEOROLOGY"
-#> 
-#> $QV2M$temporal
-#> [1] "HOURLY"
-#> 
-#> $QV2M$source
-#> [1] "MERRA2"
-#> 
-#> $QV2M$community
-#> [1] "AG"
-#> 
-#> $QV2M$calculated
-#> [1] FALSE
-#> 
-#> $QV2M$inputs
-#> [1] ""
-#> 
-#> $QV2M$units
-#> [1] "g/kg"
-#> 
-#> $QV2M$name
-#> [1] "Specific Humidity at 2 Meters"
-#> 
-#> $QV2M$definition
-#> [1] "The ratio of the mass of water vapor to the total mass of air at 2 meters (kg water/kg total air)."
 #> 
 #> 
 #> $QV10M
@@ -467,7 +411,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $QV10M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $QV10M$units
 #> [1] "g/kg"
@@ -477,6 +421,35 @@ query_parameters(community = "ag",
 #> 
 #> $QV10M$definition
 #> [1] "The ratio of the mass of water vapor to the total mass of air at 10 meters (kg water/kg total air)."
+#> 
+#> 
+#> $QV2M
+#> $QV2M$type
+#> [1] "METEOROLOGY"
+#> 
+#> $QV2M$temporal
+#> [1] "HOURLY"
+#> 
+#> $QV2M$source
+#> [1] "MERRA2"
+#> 
+#> $QV2M$community
+#> [1] "AG"
+#> 
+#> $QV2M$calculated
+#> [1] FALSE
+#> 
+#> $QV2M$inputs
+#> NULL
+#> 
+#> $QV2M$units
+#> [1] "g/kg"
+#> 
+#> $QV2M$name
+#> [1] "Specific Humidity at 2 Meters"
+#> 
+#> $QV2M$definition
+#> [1] "The ratio of the mass of water vapor to the total mass of air at 2 meters (kg water/kg total air)."
 #> 
 #> 
 #> $RH2M
@@ -496,7 +469,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $RH2M$inputs
-#> [1] "T2M,PS,QV2M"
+#> [1] "T2M"  "PS"   "QV2M"
 #> 
 #> $RH2M$units
 #> [1] "%"
@@ -525,7 +498,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $SNODP$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $SNODP$units
 #> [1] "cm"
@@ -554,7 +527,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $T2M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $T2M$units
 #> [1] "C"
@@ -564,64 +537,6 @@ query_parameters(community = "ag",
 #> 
 #> $T2M$definition
 #> [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."
-#> 
-#> 
-#> $T2MDEW
-#> $T2MDEW$type
-#> [1] "METEOROLOGY"
-#> 
-#> $T2MDEW$temporal
-#> [1] "HOURLY"
-#> 
-#> $T2MDEW$source
-#> [1] "POWER"
-#> 
-#> $T2MDEW$community
-#> [1] "AG"
-#> 
-#> $T2MDEW$calculated
-#> [1] FALSE
-#> 
-#> $T2MDEW$inputs
-#> [1] "T2M,RH2M"
-#> 
-#> $T2MDEW$units
-#> [1] "C"
-#> 
-#> $T2MDEW$name
-#> [1] "Dew/Frost Point at 2 Meters"
-#> 
-#> $T2MDEW$definition
-#> [1] "The dew/frost point temperature at 2 meters above the surface of the earth."
-#> 
-#> 
-#> $T2MWET
-#> $T2MWET$type
-#> [1] "METEOROLOGY"
-#> 
-#> $T2MWET$temporal
-#> [1] "HOURLY"
-#> 
-#> $T2MWET$source
-#> [1] "POWER"
-#> 
-#> $T2MWET$community
-#> [1] "AG"
-#> 
-#> $T2MWET$calculated
-#> [1] FALSE
-#> 
-#> $T2MWET$inputs
-#> [1] "PS,T2M,T2MDEW"
-#> 
-#> $T2MWET$units
-#> [1] "C"
-#> 
-#> $T2MWET$name
-#> [1] "Wet Bulb Temperature at 2 Meters"
-#> 
-#> $T2MWET$definition
-#> [1] "The adiabatic saturation temperature which can be measured by a thermometer covered in a water-soaked cloth over which air is passed at 2 meters above the surface of the earth."
 #> 
 #> 
 #> $TS
@@ -641,7 +556,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $TS$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $TS$units
 #> [1] "C"
@@ -670,7 +585,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $U10M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $U10M$units
 #> [1] "m/s"
@@ -699,7 +614,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $U2M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $U2M$units
 #> [1] "m/s"
@@ -728,7 +643,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $U50M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $U50M$units
 #> [1] "m/s"
@@ -757,7 +672,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $V10M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $V10M$units
 #> [1] "m/s"
@@ -786,7 +701,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $V2M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $V2M$units
 #> [1] "m/s"
@@ -815,7 +730,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $V50M$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $V50M$units
 #> [1] "m/s"
@@ -825,6 +740,93 @@ query_parameters(community = "ag",
 #> 
 #> $V50M$definition
 #> [1] "The estimate of the northward wind average speed for winds blowing 50 meters above the surface of the earth."
+#> 
+#> 
+#> $PSC
+#> $PSC$type
+#> [1] "METEOROLOGY"
+#> 
+#> $PSC$temporal
+#> [1] "HOURLY"
+#> 
+#> $PSC$source
+#> [1] "POWER"
+#> 
+#> $PSC$community
+#> [1] "AG"
+#> 
+#> $PSC$calculated
+#> [1] TRUE
+#> 
+#> $PSC$inputs
+#> [1] "PS"  "T2M"
+#> 
+#> $PSC$units
+#> [1] "kPa"
+#> 
+#> $PSC$name
+#> [1] "Corrected Atmospheric Pressure (Adjusted For Site Elevation)"
+#> 
+#> $PSC$definition
+#> [1] "Atmospheric pressure associated with the MERRA-2 grid has been adjusted based upon the difference between the elevation of an underlying surface site and the average elevation of the MERRA-2 grid cell."
+#> 
+#> 
+#> $T2MDEW
+#> $T2MDEW$type
+#> [1] "METEOROLOGY"
+#> 
+#> $T2MDEW$temporal
+#> [1] "HOURLY"
+#> 
+#> $T2MDEW$source
+#> [1] "POWER"
+#> 
+#> $T2MDEW$community
+#> [1] "AG"
+#> 
+#> $T2MDEW$calculated
+#> [1] FALSE
+#> 
+#> $T2MDEW$inputs
+#> [1] "T2M"  "RH2M"
+#> 
+#> $T2MDEW$units
+#> [1] "C"
+#> 
+#> $T2MDEW$name
+#> [1] "Dew/Frost Point at 2 Meters"
+#> 
+#> $T2MDEW$definition
+#> [1] "The dew/frost point temperature at 2 meters above the surface of the earth."
+#> 
+#> 
+#> $T2MWET
+#> $T2MWET$type
+#> [1] "METEOROLOGY"
+#> 
+#> $T2MWET$temporal
+#> [1] "HOURLY"
+#> 
+#> $T2MWET$source
+#> [1] "POWER"
+#> 
+#> $T2MWET$community
+#> [1] "AG"
+#> 
+#> $T2MWET$calculated
+#> [1] FALSE
+#> 
+#> $T2MWET$inputs
+#> [1] "PS"     "T2M"    "T2MDEW"
+#> 
+#> $T2MWET$units
+#> [1] "C"
+#> 
+#> $T2MWET$name
+#> [1] "Wet Bulb Temperature at 2 Meters"
+#> 
+#> $T2MWET$definition
+#> [1] "The adiabatic saturation temperature which can be measured by a thermometer covered in a water-soaked cloth over which air is passed at 2 meters above the surface of the earth."
 #> 
 #> 
 #> $WD10M
@@ -844,7 +846,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WD10M$inputs
-#> [1] "U10M,V10M"
+#> [1] "U10M" "V10M"
 #> 
 #> $WD10M$units
 #> [1] "Degrees"
@@ -873,7 +875,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WD2M$inputs
-#> [1] "U2M,V2M"
+#> [1] "U2M" "V2M"
 #> 
 #> $WD2M$units
 #> [1] "Degrees"
@@ -902,7 +904,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WD50M$inputs
-#> [1] "U50M,V50M"
+#> [1] "U50M" "V50M"
 #> 
 #> $WD50M$units
 #> [1] "Degrees"
@@ -931,7 +933,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WS10M$inputs
-#> [1] "U10M,V10M"
+#> [1] "U10M" "V10M"
 #> 
 #> $WS10M$units
 #> [1] "m/s"
@@ -960,7 +962,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WS2M$inputs
-#> [1] "U2M,V2M"
+#> [1] "U2M" "V2M"
 #> 
 #> $WS2M$units
 #> [1] "m/s"
@@ -989,7 +991,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WS50M$inputs
-#> [1] "U50M,V50M"
+#> [1] "U50M" "V50M"
 #> 
 #> $WS50M$units
 #> [1] "m/s"
@@ -1018,7 +1020,7 @@ query_parameters(community = "ag",
 #> [1] TRUE
 #> 
 #> $WSC$inputs
-#> [1] "WS10M,WS50M"
+#> [1] "WS10M" "WS50M"
 #> 
 #> $WSC$units
 #> [1] "m/s"
@@ -1028,64 +1030,6 @@ query_parameters(community = "ag",
 #> 
 #> $WSC$definition
 #> [1] "Wind speed associated with the MERRA-2 grid adjusted using the Gipe Power Law and the elevation difference between the average elevation of the grid cell and the elevation of the underlying surface."
-#> 
-#> 
-#> $ALLSKY_KT
-#> $ALLSKY_KT$type
-#> [1] "RADIATION"
-#> 
-#> $ALLSKY_KT$temporal
-#> [1] "HOURLY"
-#> 
-#> $ALLSKY_KT$source
-#> [1] "POWER"
-#> 
-#> $ALLSKY_KT$community
-#> [1] "AG"
-#> 
-#> $ALLSKY_KT$calculated
-#> [1] FALSE
-#> 
-#> $ALLSKY_KT$inputs
-#> [1] ""
-#> 
-#> $ALLSKY_KT$units
-#> [1] "dimensionless"
-#> 
-#> $ALLSKY_KT$name
-#> [1] "All Sky Insolation Clearness Index"
-#> 
-#> $ALLSKY_KT$definition
-#> [1] "A fraction representing clearness of the atmosphere; the all sky insolation that is transmitted through the atmosphere to strike the surface of the earth divided by the average of top of the atmosphere total solar irradiance incident."
-#> 
-#> 
-#> $ALLSKY_NKT
-#> $ALLSKY_NKT$type
-#> [1] "RADIATION"
-#> 
-#> $ALLSKY_NKT$temporal
-#> [1] "HOURLY"
-#> 
-#> $ALLSKY_NKT$source
-#> [1] "POWER"
-#> 
-#> $ALLSKY_NKT$community
-#> [1] "AG"
-#> 
-#> $ALLSKY_NKT$calculated
-#> [1] FALSE
-#> 
-#> $ALLSKY_NKT$inputs
-#> [1] ""
-#> 
-#> $ALLSKY_NKT$units
-#> [1] "dimensionless"
-#> 
-#> $ALLSKY_NKT$name
-#> [1] "All Sky Normalized Insolation Clearness Index"
-#> 
-#> $ALLSKY_NKT$definition
-#> [1] "The average zenith angle-independent expression of the all sky insolation clearness index."
 #> 
 #> 
 #> $ALLSKY_SFC_LW_DWN
@@ -1105,7 +1049,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $ALLSKY_SFC_LW_DWN$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $ALLSKY_SFC_LW_DWN$units
 #> [1] "W/m^2"
@@ -1134,7 +1078,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $ALLSKY_SFC_SW_DIFF$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $ALLSKY_SFC_SW_DIFF$units
 #> [1] "MJ/hr"
@@ -1144,35 +1088,6 @@ query_parameters(community = "ag",
 #> 
 #> $ALLSKY_SFC_SW_DIFF$definition
 #> [1] "The diffuse (light energy scattered out of the direction of the sun) solar irradiance incident on a horizontal plane at the surface of the earth under all sky conditions."
-#> 
-#> 
-#> $ALLSKY_SFC_SW_DNI
-#> $ALLSKY_SFC_SW_DNI$type
-#> [1] "RADIATION"
-#> 
-#> $ALLSKY_SFC_SW_DNI$temporal
-#> [1] "HOURLY"
-#> 
-#> $ALLSKY_SFC_SW_DNI$source
-#> [1] "POWER"
-#> 
-#> $ALLSKY_SFC_SW_DNI$community
-#> [1] "AG"
-#> 
-#> $ALLSKY_SFC_SW_DNI$calculated
-#> [1] FALSE
-#> 
-#> $ALLSKY_SFC_SW_DNI$inputs
-#> [1] ""
-#> 
-#> $ALLSKY_SFC_SW_DNI$units
-#> [1] "MJ/hr"
-#> 
-#> $ALLSKY_SFC_SW_DNI$name
-#> [1] "All Sky Surface Shortwave Downward Direct Normal Irradiance"
-#> 
-#> $ALLSKY_SFC_SW_DNI$definition
-#> [1] "The direct solar irradiance incident to a horizontal plane normal (perpendicular) to the direction of the sun's position under all sky conditions."
 #> 
 #> 
 #> $ALLSKY_SFC_SW_DWN
@@ -1192,7 +1107,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $ALLSKY_SFC_SW_DWN$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $ALLSKY_SFC_SW_DWN$units
 #> [1] "MJ/hr"
@@ -1204,526 +1119,33 @@ query_parameters(community = "ag",
 #> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the surface of the earth under all sky conditions. An alternative term for the total solar irradiance is the \"Global Horizontal Irradiance\" or GHI."
 #> 
 #> 
-#> $ALLSKY_SRF_ALB
-#> $ALLSKY_SRF_ALB$type
+#> $ALLSKY_SFC_UV_INDEX
+#> $ALLSKY_SFC_UV_INDEX$type
 #> [1] "RADIATION"
 #> 
-#> $ALLSKY_SRF_ALB$temporal
+#> $ALLSKY_SFC_UV_INDEX$temporal
 #> [1] "HOURLY"
 #> 
-#> $ALLSKY_SRF_ALB$source
-#> [1] "POWER"
+#> $ALLSKY_SFC_UV_INDEX$source
+#> [1] "CERES"
 #> 
-#> $ALLSKY_SRF_ALB$community
+#> $ALLSKY_SFC_UV_INDEX$community
 #> [1] "AG"
 #> 
-#> $ALLSKY_SRF_ALB$calculated
+#> $ALLSKY_SFC_UV_INDEX$calculated
 #> [1] FALSE
 #> 
-#> $ALLSKY_SRF_ALB$inputs
-#> [1] ""
+#> $ALLSKY_SFC_UV_INDEX$inputs
+#> NULL
 #> 
-#> $ALLSKY_SRF_ALB$units
+#> $ALLSKY_SFC_UV_INDEX$units
 #> [1] "dimensionless"
 #> 
-#> $ALLSKY_SRF_ALB$name
-#> [1] "All Sky Surface Albedo"
-#> 
-#> $ALLSKY_SRF_ALB$definition
-#> [1] "The all sky rate of reflectivity of the earth's surface; the ratio of the solar energy reflected by the surface of the earth compared to the total solar energy incident reaching the surface of the earth."
-#> 
-#> 
-#> $AOD_55
-#> $AOD_55$type
-#> [1] "RADIATION"
-#> 
-#> $AOD_55$temporal
-#> [1] "HOURLY"
-#> 
-#> $AOD_55$source
-#> [1] "CERES"
-#> 
-#> $AOD_55$community
-#> [1] "AG"
-#> 
-#> $AOD_55$calculated
-#> [1] FALSE
-#> 
-#> $AOD_55$inputs
-#> [1] ""
-#> 
-#> $AOD_55$units
-#> [1] "dimensionless"
-#> 
-#> $AOD_55$name
-#> [1] "Aerosol Optical Depth 55"
-#> 
-#> $AOD_55$definition
-#> [1] "The optical thickness at 0.55 um measured vertically; the component of the atmosphere to quantify the removal of radiant energy from an incident beam."
-#> 
-#> 
-#> $AOD_84
-#> $AOD_84$type
-#> [1] "RADIATION"
-#> 
-#> $AOD_84$temporal
-#> [1] "HOURLY"
-#> 
-#> $AOD_84$source
-#> [1] "CERES"
-#> 
-#> $AOD_84$community
-#> [1] "AG"
-#> 
-#> $AOD_84$calculated
-#> [1] FALSE
-#> 
-#> $AOD_84$inputs
-#> [1] ""
-#> 
-#> $AOD_84$units
-#> [1] "dimensionless"
-#> 
-#> $AOD_84$name
-#> [1] "Aerosol Optical Depth 84"
-#> 
-#> $AOD_84$definition
-#> [1] "The optical thickness at 0.84 um measured vertically; the component of the atmosphere to quantify the removal of radiant energy from an incident beam."
-#> 
-#> 
-#> $CLOUD_AMT
-#> $CLOUD_AMT$type
-#> [1] "RADIATION"
-#> 
-#> $CLOUD_AMT$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLOUD_AMT$source
-#> [1] "CERES"
-#> 
-#> $CLOUD_AMT$community
-#> [1] "AG"
-#> 
-#> $CLOUD_AMT$calculated
-#> [1] FALSE
-#> 
-#> $CLOUD_AMT$inputs
-#> [1] ""
-#> 
-#> $CLOUD_AMT$units
-#> [1] "%"
-#> 
-#> $CLOUD_AMT$name
-#> [1] "Cloud Amount"
-#> 
-#> $CLOUD_AMT$definition
-#> [1] "The average percent of cloud amount during the temporal period."
-#> 
-#> 
-#> $CLOUD_OD
-#> $CLOUD_OD$type
-#> [1] "RADIATION"
-#> 
-#> $CLOUD_OD$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLOUD_OD$source
-#> [1] "CERES"
-#> 
-#> $CLOUD_OD$community
-#> [1] "AG"
-#> 
-#> $CLOUD_OD$calculated
-#> [1] FALSE
-#> 
-#> $CLOUD_OD$inputs
-#> [1] ""
-#> 
-#> $CLOUD_OD$units
-#> [1] "dimensionless"
-#> 
-#> $CLOUD_OD$name
-#> [1] "Cloud Optical Visible Depth"
-#> 
-#> $CLOUD_OD$definition
-#> [1] "The vertical optical thickness between the top and bottom of a cloud."
-#> 
-#> 
-#> $CLRSKY_KT
-#> $CLRSKY_KT$type
-#> [1] "RADIATION"
-#> 
-#> $CLRSKY_KT$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLRSKY_KT$source
-#> [1] "POWER"
-#> 
-#> $CLRSKY_KT$community
-#> [1] "AG"
-#> 
-#> $CLRSKY_KT$calculated
-#> [1] FALSE
-#> 
-#> $CLRSKY_KT$inputs
-#> [1] ""
-#> 
-#> $CLRSKY_KT$units
-#> [1] "dimensionless"
-#> 
-#> $CLRSKY_KT$name
-#> [1] "Clear Sky Insolation Clearness Index"
-#> 
-#> $CLRSKY_KT$definition
-#> [1] "A fraction representing clearness of the atmosphere; the clear sky insolation that is transmitted through the atmosphere to strike the surface of the earth divided by the average of top of the atmosphere total solar irradiance incident."
-#> 
-#> 
-#> $CLRSKY_NKT
-#> $CLRSKY_NKT$type
-#> [1] "RADIATION"
-#> 
-#> $CLRSKY_NKT$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLRSKY_NKT$source
-#> [1] "POWER"
-#> 
-#> $CLRSKY_NKT$community
-#> [1] "AG"
-#> 
-#> $CLRSKY_NKT$calculated
-#> [1] FALSE
-#> 
-#> $CLRSKY_NKT$inputs
-#> [1] ""
-#> 
-#> $CLRSKY_NKT$units
-#> [1] "dimensionless"
-#> 
-#> $CLRSKY_NKT$name
-#> [1] "Clear Sky Normalized Insolation Clearness Index"
-#> 
-#> $CLRSKY_NKT$definition
-#> [1] "The average zenith angle-independent expression of the clear sky insolation clearness index."
-#> 
-#> 
-#> $CLRSKY_SFC_LW_DWN
-#> $CLRSKY_SFC_LW_DWN$type
-#> [1] "RADIATION"
-#> 
-#> $CLRSKY_SFC_LW_DWN$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLRSKY_SFC_LW_DWN$source
-#> [1] "CERES"
-#> 
-#> $CLRSKY_SFC_LW_DWN$community
-#> [1] "AG"
-#> 
-#> $CLRSKY_SFC_LW_DWN$calculated
-#> [1] FALSE
-#> 
-#> $CLRSKY_SFC_LW_DWN$inputs
-#> [1] ""
-#> 
-#> $CLRSKY_SFC_LW_DWN$units
-#> [1] "W/m^2"
-#> 
-#> $CLRSKY_SFC_LW_DWN$name
-#> [1] "Clear Sky Surface Longwave Downward Irradiance"
-#> 
-#> $CLRSKY_SFC_LW_DWN$definition
-#> [1] "The downward thermal infrared irradiance under clear sky conditions reaching a horizontal plane the surface of the earth. Also known as Horizontal Infrared Radiation Intensity from Sky."
-#> 
-#> 
-#> $CLRSKY_SFC_SW_DWN
-#> $CLRSKY_SFC_SW_DWN$type
-#> [1] "RADIATION"
-#> 
-#> $CLRSKY_SFC_SW_DWN$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLRSKY_SFC_SW_DWN$source
-#> [1] "CERES"
-#> 
-#> $CLRSKY_SFC_SW_DWN$community
-#> [1] "AG"
-#> 
-#> $CLRSKY_SFC_SW_DWN$calculated
-#> [1] FALSE
-#> 
-#> $CLRSKY_SFC_SW_DWN$inputs
-#> [1] ""
-#> 
-#> $CLRSKY_SFC_SW_DWN$units
-#> [1] "MJ/hr"
-#> 
-#> $CLRSKY_SFC_SW_DWN$name
-#> [1] "Clear Sky Surface Shortwave Downward Irradiance"
-#> 
-#> $CLRSKY_SFC_SW_DWN$definition
-#> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the surface of the earth under clear sky conditions. An alternative term for the total solar irradiance is the \"Global Horizontal Irradiance\" or GHI."
-#> 
-#> 
-#> $CLRSKY_SRF_ALB
-#> $CLRSKY_SRF_ALB$type
-#> [1] "RADIATION"
-#> 
-#> $CLRSKY_SRF_ALB$temporal
-#> [1] "HOURLY"
-#> 
-#> $CLRSKY_SRF_ALB$source
-#> [1] "POWER"
-#> 
-#> $CLRSKY_SRF_ALB$community
-#> [1] "AG"
-#> 
-#> $CLRSKY_SRF_ALB$calculated
-#> [1] FALSE
-#> 
-#> $CLRSKY_SRF_ALB$inputs
-#> [1] ""
-#> 
-#> $CLRSKY_SRF_ALB$units
-#> [1] "dimensionless"
-#> 
-#> $CLRSKY_SRF_ALB$name
-#> [1] "Clear Sky Surface Albedo"
-#> 
-#> $CLRSKY_SRF_ALB$definition
-#> [1] "The clear sky rate of reflectivity of the earth's surface; the ratio of the solar energy reflected by the surface of the earth compared to the total solar energy incident reaching the surface of the earth."
-#> 
-#> 
-#> $DIFFUSE_ILLUMINANCE
-#> $DIFFUSE_ILLUMINANCE$type
-#> [1] "RADIATION"
-#> 
-#> $DIFFUSE_ILLUMINANCE$temporal
-#> [1] "HOURLY"
-#> 
-#> $DIFFUSE_ILLUMINANCE$source
-#> [1] "POWER"
-#> 
-#> $DIFFUSE_ILLUMINANCE$community
-#> [1] "AG"
-#> 
-#> $DIFFUSE_ILLUMINANCE$calculated
-#> [1] FALSE
-#> 
-#> $DIFFUSE_ILLUMINANCE$inputs
-#> [1] ""
-#> 
-#> $DIFFUSE_ILLUMINANCE$units
-#> [1] "lux"
-#> 
-#> $DIFFUSE_ILLUMINANCE$name
-#> [1] "Diffuse Illuminance"
-#> 
-#> $DIFFUSE_ILLUMINANCE$definition
-#> [1] "The average amount of illuminance received directly from the solar disk on a surface perpendicular to the suns rays."
-#> 
-#> 
-#> $DIRECT_ILLUMINANCE
-#> $DIRECT_ILLUMINANCE$type
-#> [1] "RADIATION"
-#> 
-#> $DIRECT_ILLUMINANCE$temporal
-#> [1] "HOURLY"
-#> 
-#> $DIRECT_ILLUMINANCE$source
-#> [1] "POWER"
-#> 
-#> $DIRECT_ILLUMINANCE$community
-#> [1] "AG"
-#> 
-#> $DIRECT_ILLUMINANCE$calculated
-#> [1] FALSE
-#> 
-#> $DIRECT_ILLUMINANCE$inputs
-#> [1] ""
-#> 
-#> $DIRECT_ILLUMINANCE$units
-#> [1] "lux"
-#> 
-#> $DIRECT_ILLUMINANCE$name
-#> [1] "Direct Illuminance"
-#> 
-#> $DIRECT_ILLUMINANCE$definition
-#> [1] "The average amount of illuminance received from the sky (excluding the solar disk) on a horizontal plane."
-#> 
-#> 
-#> $GLOBAL_ILLUMINANCE
-#> $GLOBAL_ILLUMINANCE$type
-#> [1] "RADIATION"
-#> 
-#> $GLOBAL_ILLUMINANCE$temporal
-#> [1] "HOURLY"
-#> 
-#> $GLOBAL_ILLUMINANCE$source
-#> [1] "POWER"
-#> 
-#> $GLOBAL_ILLUMINANCE$community
-#> [1] "AG"
-#> 
-#> $GLOBAL_ILLUMINANCE$calculated
-#> [1] FALSE
-#> 
-#> $GLOBAL_ILLUMINANCE$inputs
-#> [1] ""
-#> 
-#> $GLOBAL_ILLUMINANCE$units
-#> [1] "lux"
-#> 
-#> $GLOBAL_ILLUMINANCE$name
-#> [1] "Global Illuminance"
-#> 
-#> $GLOBAL_ILLUMINANCE$definition
-#> [1] "The average total amount of direct and diffuse illuminance on a horizontal plane."
-#> 
-#> 
-#> $PW
-#> $PW$type
-#> [1] "RADIATION"
-#> 
-#> $PW$temporal
-#> [1] "HOURLY"
-#> 
-#> $PW$source
-#> [1] "CERES"
-#> 
-#> $PW$community
-#> [1] "AG"
-#> 
-#> $PW$calculated
-#> [1] FALSE
-#> 
-#> $PW$inputs
-#> [1] ""
-#> 
-#> $PW$units
-#> [1] "cm"
-#> 
-#> $PW$name
-#> [1] "Precipitable Water"
-#> 
-#> $PW$definition
-#> [1] "The total atmospheric water vapor contained in a vertical column of the atmosphere."
-#> 
-#> 
-#> $SZA
-#> $SZA$type
-#> [1] "RADIATION"
-#> 
-#> $SZA$temporal
-#> [1] "HOURLY"
-#> 
-#> $SZA$source
-#> [1] "CERES"
-#> 
-#> $SZA$community
-#> [1] "AG"
-#> 
-#> $SZA$calculated
-#> [1] FALSE
-#> 
-#> $SZA$inputs
-#> [1] ""
-#> 
-#> $SZA$units
-#> [1] "Degrees"
-#> 
-#> $SZA$name
-#> [1] "Solar Zenith Angle"
-#> 
-#> $SZA$definition
-#> [1] "The angle between the geodetic zenith vector and a vector from the earth point to the sun integrated over the period."
-#> 
-#> 
-#> $TOA_SW_DNI
-#> $TOA_SW_DNI$type
-#> [1] "RADIATION"
-#> 
-#> $TOA_SW_DNI$temporal
-#> [1] "HOURLY"
-#> 
-#> $TOA_SW_DNI$source
-#> [1] "POWER"
-#> 
-#> $TOA_SW_DNI$community
-#> [1] "AG"
-#> 
-#> $TOA_SW_DNI$calculated
-#> [1] FALSE
-#> 
-#> $TOA_SW_DNI$inputs
-#> [1] ""
-#> 
-#> $TOA_SW_DNI$units
-#> [1] "MJ/hr"
-#> 
-#> $TOA_SW_DNI$name
-#> [1] "Top-Of-Atmosphere Shortwave Direct Normal Radiation"
-#> 
-#> $TOA_SW_DNI$definition
-#> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane where oriented to the sun's position at the top of the atmosphere (extraterrestrial radiation)."
-#> 
-#> 
-#> $TOA_SW_DWN
-#> $TOA_SW_DWN$type
-#> [1] "RADIATION"
-#> 
-#> $TOA_SW_DWN$temporal
-#> [1] "HOURLY"
-#> 
-#> $TOA_SW_DWN$source
-#> [1] "CERES"
-#> 
-#> $TOA_SW_DWN$community
-#> [1] "AG"
-#> 
-#> $TOA_SW_DWN$calculated
-#> [1] FALSE
-#> 
-#> $TOA_SW_DWN$inputs
-#> [1] ""
-#> 
-#> $TOA_SW_DWN$units
-#> [1] "MJ/hr"
-#> 
-#> $TOA_SW_DWN$name
-#> [1] "Top-Of-Atmosphere Shortwave Downward Irradiance"
-#> 
-#> $TOA_SW_DWN$definition
-#> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the top of the atmosphere (extraterrestrial radiation)."
-#> 
-#> 
-#> $ZENITH_LUMINANCE
-#> $ZENITH_LUMINANCE$type
-#> [1] "RADIATION"
-#> 
-#> $ZENITH_LUMINANCE$temporal
-#> [1] "HOURLY"
-#> 
-#> $ZENITH_LUMINANCE$source
-#> [1] "POWER"
-#> 
-#> $ZENITH_LUMINANCE$community
-#> [1] "AG"
-#> 
-#> $ZENITH_LUMINANCE$calculated
-#> [1] FALSE
-#> 
-#> $ZENITH_LUMINANCE$inputs
-#> [1] ""
-#> 
-#> $ZENITH_LUMINANCE$units
-#> [1] "cd/m^2"
-#> 
-#> $ZENITH_LUMINANCE$name
-#> [1] "Zenith luminance"
-#> 
-#> $ZENITH_LUMINANCE$definition
-#> [1] "The average amount of luminance at the skys zenith."
+#> $ALLSKY_SFC_UV_INDEX$name
+#> [1] "All Sky Surface UV Index"
+#> 
+#> $ALLSKY_SFC_UV_INDEX$definition
+#> [1] "The ultraviolet radiation exposure index."
 #> 
 #> 
 #> $ALLSKY_SFC_UVA
@@ -1743,7 +1165,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $ALLSKY_SFC_UVA$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $ALLSKY_SFC_UVA$units
 #> [1] "W/m^2"
@@ -1772,7 +1194,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $ALLSKY_SFC_UVB$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $ALLSKY_SFC_UVB$units
 #> [1] "W/m^2"
@@ -1784,91 +1206,149 @@ query_parameters(community = "ag",
 #> [1] "The ultraviolet B (UVB 280nm-315nm) irradiance under all sky conditions."
 #> 
 #> 
-#> $ALLSKY_SFC_UV_INDEX
-#> $ALLSKY_SFC_UV_INDEX$type
+#> $AOD_55
+#> $AOD_55$type
 #> [1] "RADIATION"
 #> 
-#> $ALLSKY_SFC_UV_INDEX$temporal
+#> $AOD_55$temporal
 #> [1] "HOURLY"
 #> 
-#> $ALLSKY_SFC_UV_INDEX$source
+#> $AOD_55$source
 #> [1] "CERES"
 #> 
-#> $ALLSKY_SFC_UV_INDEX$community
+#> $AOD_55$community
 #> [1] "AG"
 #> 
-#> $ALLSKY_SFC_UV_INDEX$calculated
+#> $AOD_55$calculated
 #> [1] FALSE
 #> 
-#> $ALLSKY_SFC_UV_INDEX$inputs
-#> [1] ""
+#> $AOD_55$inputs
+#> NULL
 #> 
-#> $ALLSKY_SFC_UV_INDEX$units
+#> $AOD_55$units
 #> [1] "dimensionless"
 #> 
-#> $ALLSKY_SFC_UV_INDEX$name
-#> [1] "All Sky Surface UV Index"
+#> $AOD_55$name
+#> [1] "Aerosol Optical Depth 55"
 #> 
-#> $ALLSKY_SFC_UV_INDEX$definition
-#> [1] "The ultraviolet radiation exposure index."
+#> $AOD_55$definition
+#> [1] "The optical thickness at 0.55 um measured vertically; the component of the atmosphere to quantify the removal of radiant energy from an incident beam."
 #> 
 #> 
-#> $ALLSKY_SFC_PAR_TOT
-#> $ALLSKY_SFC_PAR_TOT$type
+#> $AOD_84
+#> $AOD_84$type
 #> [1] "RADIATION"
 #> 
-#> $ALLSKY_SFC_PAR_TOT$temporal
+#> $AOD_84$temporal
 #> [1] "HOURLY"
 #> 
-#> $ALLSKY_SFC_PAR_TOT$source
-#> [1] "POWER"
+#> $AOD_84$source
+#> [1] "CERES"
 #> 
-#> $ALLSKY_SFC_PAR_TOT$community
+#> $AOD_84$community
 #> [1] "AG"
 #> 
-#> $ALLSKY_SFC_PAR_TOT$calculated
+#> $AOD_84$calculated
 #> [1] FALSE
 #> 
-#> $ALLSKY_SFC_PAR_TOT$inputs
-#> [1] ""
+#> $AOD_84$inputs
+#> NULL
 #> 
-#> $ALLSKY_SFC_PAR_TOT$units
-#> [1] "W/m^2"
+#> $AOD_84$units
+#> [1] "dimensionless"
 #> 
-#> $ALLSKY_SFC_PAR_TOT$name
-#> [1] "All Sky Surface PAR Total"
+#> $AOD_84$name
+#> [1] "Aerosol Optical Depth 84"
 #> 
-#> $ALLSKY_SFC_PAR_TOT$definition
-#> [1] "The total Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under all sky conditions."
+#> $AOD_84$definition
+#> [1] "The optical thickness at 0.84 um measured vertically; the component of the atmosphere to quantify the removal of radiant energy from an incident beam."
 #> 
 #> 
-#> $CLRSKY_SFC_PAR_TOT
-#> $CLRSKY_SFC_PAR_TOT$type
+#> $CLOUD_AMT
+#> $CLOUD_AMT$type
 #> [1] "RADIATION"
 #> 
-#> $CLRSKY_SFC_PAR_TOT$temporal
+#> $CLOUD_AMT$temporal
 #> [1] "HOURLY"
 #> 
-#> $CLRSKY_SFC_PAR_TOT$source
-#> [1] "POWER"
+#> $CLOUD_AMT$source
+#> [1] "CERES"
 #> 
-#> $CLRSKY_SFC_PAR_TOT$community
+#> $CLOUD_AMT$community
 #> [1] "AG"
 #> 
-#> $CLRSKY_SFC_PAR_TOT$calculated
+#> $CLOUD_AMT$calculated
 #> [1] FALSE
 #> 
-#> $CLRSKY_SFC_PAR_TOT$inputs
-#> [1] ""
+#> $CLOUD_AMT$inputs
+#> NULL
 #> 
-#> $CLRSKY_SFC_PAR_TOT$units
+#> $CLOUD_AMT$units
+#> [1] "%"
+#> 
+#> $CLOUD_AMT$name
+#> [1] "Cloud Amount"
+#> 
+#> $CLOUD_AMT$definition
+#> [1] "The average percent of cloud amount during the temporal period."
+#> 
+#> 
+#> $CLOUD_OD
+#> $CLOUD_OD$type
+#> [1] "RADIATION"
+#> 
+#> $CLOUD_OD$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLOUD_OD$source
+#> [1] "CERES"
+#> 
+#> $CLOUD_OD$community
+#> [1] "AG"
+#> 
+#> $CLOUD_OD$calculated
+#> [1] FALSE
+#> 
+#> $CLOUD_OD$inputs
+#> NULL
+#> 
+#> $CLOUD_OD$units
+#> [1] "dimensionless"
+#> 
+#> $CLOUD_OD$name
+#> [1] "Cloud Optical Visible Depth"
+#> 
+#> $CLOUD_OD$definition
+#> [1] "The vertical optical thickness between the top and bottom of a cloud."
+#> 
+#> 
+#> $CLRSKY_SFC_LW_DWN
+#> $CLRSKY_SFC_LW_DWN$type
+#> [1] "RADIATION"
+#> 
+#> $CLRSKY_SFC_LW_DWN$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLRSKY_SFC_LW_DWN$source
+#> [1] "CERES"
+#> 
+#> $CLRSKY_SFC_LW_DWN$community
+#> [1] "AG"
+#> 
+#> $CLRSKY_SFC_LW_DWN$calculated
+#> [1] FALSE
+#> 
+#> $CLRSKY_SFC_LW_DWN$inputs
+#> NULL
+#> 
+#> $CLRSKY_SFC_LW_DWN$units
 #> [1] "W/m^2"
 #> 
-#> $CLRSKY_SFC_PAR_TOT$name
-#> [1] "Clear Sky Surface PAR Total"
+#> $CLRSKY_SFC_LW_DWN$name
+#> [1] "Clear Sky Surface Longwave Downward Irradiance"
 #> 
-#> $CLRSKY_SFC_PAR_TOT$definition
-#> [1] "The total Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under clear sky conditions."
+#> $CLRSKY_SFC_LW_DWN$definition
+#> [1] "The downward thermal infrared irradiance under clear sky conditions reaching a horizontal plane the surface of the earth. Also known as Horizontal Infrared Radiation Intensity from Sky."
 #> 
 #> 
 #> $CLRSKY_SFC_SW_DIFF
@@ -1888,7 +1368,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $CLRSKY_SFC_SW_DIFF$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $CLRSKY_SFC_SW_DIFF$units
 #> [1] "MJ/hr"
@@ -1917,7 +1397,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $CLRSKY_SFC_SW_DIRH$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $CLRSKY_SFC_SW_DIRH$units
 #> [1] "MJ/m^2/day"
@@ -1927,6 +1407,354 @@ query_parameters(community = "ag",
 #> 
 #> $CLRSKY_SFC_SW_DIRH$definition
 #> [1] "The direct solar irradiance incident on a horizontal plane at the surface of the earth under clear sky conditions."
+#> 
+#> 
+#> $CLRSKY_SFC_SW_DWN
+#> $CLRSKY_SFC_SW_DWN$type
+#> [1] "RADIATION"
+#> 
+#> $CLRSKY_SFC_SW_DWN$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLRSKY_SFC_SW_DWN$source
+#> [1] "CERES"
+#> 
+#> $CLRSKY_SFC_SW_DWN$community
+#> [1] "AG"
+#> 
+#> $CLRSKY_SFC_SW_DWN$calculated
+#> [1] FALSE
+#> 
+#> $CLRSKY_SFC_SW_DWN$inputs
+#> NULL
+#> 
+#> $CLRSKY_SFC_SW_DWN$units
+#> [1] "MJ/hr"
+#> 
+#> $CLRSKY_SFC_SW_DWN$name
+#> [1] "Clear Sky Surface Shortwave Downward Irradiance"
+#> 
+#> $CLRSKY_SFC_SW_DWN$definition
+#> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the surface of the earth under clear sky conditions. An alternative term for the total solar irradiance is the \"Global Horizontal Irradiance\" or GHI."
+#> 
+#> 
+#> $PW
+#> $PW$type
+#> [1] "RADIATION"
+#> 
+#> $PW$temporal
+#> [1] "HOURLY"
+#> 
+#> $PW$source
+#> [1] "CERES"
+#> 
+#> $PW$community
+#> [1] "AG"
+#> 
+#> $PW$calculated
+#> [1] FALSE
+#> 
+#> $PW$inputs
+#> NULL
+#> 
+#> $PW$units
+#> [1] "cm"
+#> 
+#> $PW$name
+#> [1] "Precipitable Water"
+#> 
+#> $PW$definition
+#> [1] "The total atmospheric water vapor contained in a vertical column of the atmosphere."
+#> 
+#> 
+#> $SZA
+#> $SZA$type
+#> [1] "RADIATION"
+#> 
+#> $SZA$temporal
+#> [1] "HOURLY"
+#> 
+#> $SZA$source
+#> [1] "CERES"
+#> 
+#> $SZA$community
+#> [1] "AG"
+#> 
+#> $SZA$calculated
+#> [1] FALSE
+#> 
+#> $SZA$inputs
+#> NULL
+#> 
+#> $SZA$units
+#> [1] "Degrees"
+#> 
+#> $SZA$name
+#> [1] "Solar Zenith Angle"
+#> 
+#> $SZA$definition
+#> [1] "The angle between the geodetic zenith vector and a vector from the earth point to the sun integrated over the period."
+#> 
+#> 
+#> $TOA_SW_DWN
+#> $TOA_SW_DWN$type
+#> [1] "RADIATION"
+#> 
+#> $TOA_SW_DWN$temporal
+#> [1] "HOURLY"
+#> 
+#> $TOA_SW_DWN$source
+#> [1] "CERES"
+#> 
+#> $TOA_SW_DWN$community
+#> [1] "AG"
+#> 
+#> $TOA_SW_DWN$calculated
+#> [1] FALSE
+#> 
+#> $TOA_SW_DWN$inputs
+#> NULL
+#> 
+#> $TOA_SW_DWN$units
+#> [1] "MJ/hr"
+#> 
+#> $TOA_SW_DWN$name
+#> [1] "Top-Of-Atmosphere Shortwave Downward Irradiance"
+#> 
+#> $TOA_SW_DWN$definition
+#> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the top of the atmosphere (extraterrestrial radiation)."
+#> 
+#> 
+#> $ALLSKY_KT
+#> $ALLSKY_KT$type
+#> [1] "RADIATION"
+#> 
+#> $ALLSKY_KT$temporal
+#> [1] "HOURLY"
+#> 
+#> $ALLSKY_KT$source
+#> [1] "POWER"
+#> 
+#> $ALLSKY_KT$community
+#> [1] "AG"
+#> 
+#> $ALLSKY_KT$calculated
+#> [1] FALSE
+#> 
+#> $ALLSKY_KT$inputs
+#> NULL
+#> 
+#> $ALLSKY_KT$units
+#> [1] "dimensionless"
+#> 
+#> $ALLSKY_KT$name
+#> [1] "All Sky Insolation Clearness Index"
+#> 
+#> $ALLSKY_KT$definition
+#> [1] "A fraction representing clearness of the atmosphere; the all sky insolation that is transmitted through the atmosphere to strike the surface of the earth divided by the average of top of the atmosphere total solar irradiance incident."
+#> 
+#> 
+#> $ALLSKY_NKT
+#> $ALLSKY_NKT$type
+#> [1] "RADIATION"
+#> 
+#> $ALLSKY_NKT$temporal
+#> [1] "HOURLY"
+#> 
+#> $ALLSKY_NKT$source
+#> [1] "POWER"
+#> 
+#> $ALLSKY_NKT$community
+#> [1] "AG"
+#> 
+#> $ALLSKY_NKT$calculated
+#> [1] FALSE
+#> 
+#> $ALLSKY_NKT$inputs
+#> NULL
+#> 
+#> $ALLSKY_NKT$units
+#> [1] "dimensionless"
+#> 
+#> $ALLSKY_NKT$name
+#> [1] "All Sky Normalized Insolation Clearness Index"
+#> 
+#> $ALLSKY_NKT$definition
+#> [1] "The average zenith angle-independent expression of the all sky insolation clearness index."
+#> 
+#> 
+#> $ALLSKY_SFC_PAR_TOT
+#> $ALLSKY_SFC_PAR_TOT$type
+#> [1] "RADIATION"
+#> 
+#> $ALLSKY_SFC_PAR_TOT$temporal
+#> [1] "HOURLY"
+#> 
+#> $ALLSKY_SFC_PAR_TOT$source
+#> [1] "POWER"
+#> 
+#> $ALLSKY_SFC_PAR_TOT$community
+#> [1] "AG"
+#> 
+#> $ALLSKY_SFC_PAR_TOT$calculated
+#> [1] FALSE
+#> 
+#> $ALLSKY_SFC_PAR_TOT$inputs
+#> NULL
+#> 
+#> $ALLSKY_SFC_PAR_TOT$units
+#> [1] "W/m^2"
+#> 
+#> $ALLSKY_SFC_PAR_TOT$name
+#> [1] "All Sky Surface PAR Total"
+#> 
+#> $ALLSKY_SFC_PAR_TOT$definition
+#> [1] "The total Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under all sky conditions."
+#> 
+#> 
+#> $ALLSKY_SFC_SW_DNI
+#> $ALLSKY_SFC_SW_DNI$type
+#> [1] "RADIATION"
+#> 
+#> $ALLSKY_SFC_SW_DNI$temporal
+#> [1] "HOURLY"
+#> 
+#> $ALLSKY_SFC_SW_DNI$source
+#> [1] "POWER"
+#> 
+#> $ALLSKY_SFC_SW_DNI$community
+#> [1] "AG"
+#> 
+#> $ALLSKY_SFC_SW_DNI$calculated
+#> [1] FALSE
+#> 
+#> $ALLSKY_SFC_SW_DNI$inputs
+#> NULL
+#> 
+#> $ALLSKY_SFC_SW_DNI$units
+#> [1] "MJ/hr"
+#> 
+#> $ALLSKY_SFC_SW_DNI$name
+#> [1] "All Sky Surface Shortwave Downward Direct Normal Irradiance"
+#> 
+#> $ALLSKY_SFC_SW_DNI$definition
+#> [1] "The direct solar irradiance incident to a horizontal plane normal (perpendicular) to the direction of the sun's position under all sky conditions."
+#> 
+#> 
+#> $ALLSKY_SRF_ALB
+#> $ALLSKY_SRF_ALB$type
+#> [1] "RADIATION"
+#> 
+#> $ALLSKY_SRF_ALB$temporal
+#> [1] "HOURLY"
+#> 
+#> $ALLSKY_SRF_ALB$source
+#> [1] "POWER"
+#> 
+#> $ALLSKY_SRF_ALB$community
+#> [1] "AG"
+#> 
+#> $ALLSKY_SRF_ALB$calculated
+#> [1] FALSE
+#> 
+#> $ALLSKY_SRF_ALB$inputs
+#> NULL
+#> 
+#> $ALLSKY_SRF_ALB$units
+#> [1] "dimensionless"
+#> 
+#> $ALLSKY_SRF_ALB$name
+#> [1] "All Sky Surface Albedo"
+#> 
+#> $ALLSKY_SRF_ALB$definition
+#> [1] "The all sky rate of reflectivity of the earth's surface; the ratio of the solar energy reflected by the surface of the earth compared to the total solar energy incident reaching the surface of the earth."
+#> 
+#> 
+#> $CLRSKY_KT
+#> $CLRSKY_KT$type
+#> [1] "RADIATION"
+#> 
+#> $CLRSKY_KT$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLRSKY_KT$source
+#> [1] "POWER"
+#> 
+#> $CLRSKY_KT$community
+#> [1] "AG"
+#> 
+#> $CLRSKY_KT$calculated
+#> [1] FALSE
+#> 
+#> $CLRSKY_KT$inputs
+#> NULL
+#> 
+#> $CLRSKY_KT$units
+#> [1] "dimensionless"
+#> 
+#> $CLRSKY_KT$name
+#> [1] "Clear Sky Insolation Clearness Index"
+#> 
+#> $CLRSKY_KT$definition
+#> [1] "A fraction representing clearness of the atmosphere; the clear sky insolation that is transmitted through the atmosphere to strike the surface of the earth divided by the average of top of the atmosphere total solar irradiance incident."
+#> 
+#> 
+#> $CLRSKY_NKT
+#> $CLRSKY_NKT$type
+#> [1] "RADIATION"
+#> 
+#> $CLRSKY_NKT$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLRSKY_NKT$source
+#> [1] "POWER"
+#> 
+#> $CLRSKY_NKT$community
+#> [1] "AG"
+#> 
+#> $CLRSKY_NKT$calculated
+#> [1] FALSE
+#> 
+#> $CLRSKY_NKT$inputs
+#> NULL
+#> 
+#> $CLRSKY_NKT$units
+#> [1] "dimensionless"
+#> 
+#> $CLRSKY_NKT$name
+#> [1] "Clear Sky Normalized Insolation Clearness Index"
+#> 
+#> $CLRSKY_NKT$definition
+#> [1] "The average zenith angle-independent expression of the clear sky insolation clearness index."
+#> 
+#> 
+#> $CLRSKY_SFC_PAR_TOT
+#> $CLRSKY_SFC_PAR_TOT$type
+#> [1] "RADIATION"
+#> 
+#> $CLRSKY_SFC_PAR_TOT$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLRSKY_SFC_PAR_TOT$source
+#> [1] "POWER"
+#> 
+#> $CLRSKY_SFC_PAR_TOT$community
+#> [1] "AG"
+#> 
+#> $CLRSKY_SFC_PAR_TOT$calculated
+#> [1] FALSE
+#> 
+#> $CLRSKY_SFC_PAR_TOT$inputs
+#> NULL
+#> 
+#> $CLRSKY_SFC_PAR_TOT$units
+#> [1] "W/m^2"
+#> 
+#> $CLRSKY_SFC_PAR_TOT$name
+#> [1] "Clear Sky Surface PAR Total"
+#> 
+#> $CLRSKY_SFC_PAR_TOT$definition
+#> [1] "The total Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under clear sky conditions."
 #> 
 #> 
 #> $CLRSKY_SFC_SW_DNI
@@ -1946,7 +1774,7 @@ query_parameters(community = "ag",
 #> [1] FALSE
 #> 
 #> $CLRSKY_SFC_SW_DNI$inputs
-#> [1] ""
+#> NULL
 #> 
 #> $CLRSKY_SFC_SW_DNI$units
 #> [1] "MJ/hr"
@@ -1956,7 +1784,188 @@ query_parameters(community = "ag",
 #> 
 #> $CLRSKY_SFC_SW_DNI$definition
 #> [1] "The direct solar irradiance incident to a horizontal plane normal (perpendicular) to the direction of the sun's position under clear sky conditions."
+#> 
+#> 
+#> $CLRSKY_SRF_ALB
+#> $CLRSKY_SRF_ALB$type
+#> [1] "RADIATION"
+#> 
+#> $CLRSKY_SRF_ALB$temporal
+#> [1] "HOURLY"
+#> 
+#> $CLRSKY_SRF_ALB$source
+#> [1] "POWER"
+#> 
+#> $CLRSKY_SRF_ALB$community
+#> [1] "AG"
+#> 
+#> $CLRSKY_SRF_ALB$calculated
+#> [1] FALSE
+#> 
+#> $CLRSKY_SRF_ALB$inputs
+#> NULL
+#> 
+#> $CLRSKY_SRF_ALB$units
+#> [1] "dimensionless"
+#> 
+#> $CLRSKY_SRF_ALB$name
+#> [1] "Clear Sky Surface Albedo"
+#> 
+#> $CLRSKY_SRF_ALB$definition
+#> [1] "The clear sky rate of reflectivity of the earth's surface; the ratio of the solar energy reflected by the surface of the earth compared to the total solar energy incident reaching the surface of the earth."
+#> 
+#> 
+#> $DIFFUSE_ILLUMINANCE
+#> $DIFFUSE_ILLUMINANCE$type
+#> [1] "RADIATION"
+#> 
+#> $DIFFUSE_ILLUMINANCE$temporal
+#> [1] "HOURLY"
+#> 
+#> $DIFFUSE_ILLUMINANCE$source
+#> [1] "POWER"
+#> 
+#> $DIFFUSE_ILLUMINANCE$community
+#> [1] "AG"
+#> 
+#> $DIFFUSE_ILLUMINANCE$calculated
+#> [1] FALSE
+#> 
+#> $DIFFUSE_ILLUMINANCE$inputs
+#> NULL
+#> 
+#> $DIFFUSE_ILLUMINANCE$units
+#> [1] "lux"
+#> 
+#> $DIFFUSE_ILLUMINANCE$name
+#> [1] "Diffuse Illuminance"
+#> 
+#> $DIFFUSE_ILLUMINANCE$definition
+#> [1] "The average amount of illuminance received directly from the solar disk on a surface perpendicular to the suns rays."
+#> 
+#> 
+#> $DIRECT_ILLUMINANCE
+#> $DIRECT_ILLUMINANCE$type
+#> [1] "RADIATION"
+#> 
+#> $DIRECT_ILLUMINANCE$temporal
+#> [1] "HOURLY"
+#> 
+#> $DIRECT_ILLUMINANCE$source
+#> [1] "POWER"
+#> 
+#> $DIRECT_ILLUMINANCE$community
+#> [1] "AG"
+#> 
+#> $DIRECT_ILLUMINANCE$calculated
+#> [1] FALSE
+#> 
+#> $DIRECT_ILLUMINANCE$inputs
+#> NULL
+#> 
+#> $DIRECT_ILLUMINANCE$units
+#> [1] "lux"
+#> 
+#> $DIRECT_ILLUMINANCE$name
+#> [1] "Direct Illuminance"
+#> 
+#> $DIRECT_ILLUMINANCE$definition
+#> [1] "The average amount of illuminance received from the sky (excluding the solar disk) on a horizontal plane."
+#> 
+#> 
+#> $GLOBAL_ILLUMINANCE
+#> $GLOBAL_ILLUMINANCE$type
+#> [1] "RADIATION"
+#> 
+#> $GLOBAL_ILLUMINANCE$temporal
+#> [1] "HOURLY"
+#> 
+#> $GLOBAL_ILLUMINANCE$source
+#> [1] "POWER"
+#> 
+#> $GLOBAL_ILLUMINANCE$community
+#> [1] "AG"
+#> 
+#> $GLOBAL_ILLUMINANCE$calculated
+#> [1] FALSE
+#> 
+#> $GLOBAL_ILLUMINANCE$inputs
+#> NULL
+#> 
+#> $GLOBAL_ILLUMINANCE$units
+#> [1] "lux"
+#> 
+#> $GLOBAL_ILLUMINANCE$name
+#> [1] "Global Illuminance"
+#> 
+#> $GLOBAL_ILLUMINANCE$definition
+#> [1] "The average total amount of direct and diffuse illuminance on a horizontal plane."
+#> 
+#> 
+#> $TOA_SW_DNI
+#> $TOA_SW_DNI$type
+#> [1] "RADIATION"
+#> 
+#> $TOA_SW_DNI$temporal
+#> [1] "HOURLY"
+#> 
+#> $TOA_SW_DNI$source
+#> [1] "POWER"
+#> 
+#> $TOA_SW_DNI$community
+#> [1] "AG"
+#> 
+#> $TOA_SW_DNI$calculated
+#> [1] FALSE
+#> 
+#> $TOA_SW_DNI$inputs
+#> NULL
+#> 
+#> $TOA_SW_DNI$units
+#> [1] "MJ/hr"
+#> 
+#> $TOA_SW_DNI$name
+#> [1] "Top-Of-Atmosphere Shortwave Direct Normal Radiation"
+#> 
+#> $TOA_SW_DNI$definition
+#> [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane where oriented to the sun's position at the top of the atmosphere (extraterrestrial radiation)."
+#> 
+#> 
+#> $ZENITH_LUMINANCE
+#> $ZENITH_LUMINANCE$type
+#> [1] "RADIATION"
+#> 
+#> $ZENITH_LUMINANCE$temporal
+#> [1] "HOURLY"
+#> 
+#> $ZENITH_LUMINANCE$source
+#> [1] "POWER"
+#> 
+#> $ZENITH_LUMINANCE$community
+#> [1] "AG"
+#> 
+#> $ZENITH_LUMINANCE$calculated
+#> [1] FALSE
+#> 
+#> $ZENITH_LUMINANCE$inputs
+#> NULL
+#> 
+#> $ZENITH_LUMINANCE$units
+#> [1] "cd/m^2"
+#> 
+#> $ZENITH_LUMINANCE$name
+#> [1] "Zenith luminance"
+#> 
+#> $ZENITH_LUMINANCE$definition
+#> [1] "The average amount of luminance at the skys zenith."
 ```
+
+## A Note on API Throttling
+
+The POWER API endpoints limit queries to prevent overloads due to repetitive and rapid requests.
+If you find that the API is throttling your queries, I suggest that you investigate the use of `limit_rate()` from [_ratelimitr_](https://cran.r-project.org/package=ratelimitr) to create self-limiting functions that will respect the rate limits that the API has in place.
+It is best to check the [POWER website](https://power.larc.nasa.gov/docs/services/api/#rate-limiting) for the latest rate limits as they differ between temporal APIs and may change over time as the project matures.
+
 ## References
 
 <https://power.larc.nasa.gov>
