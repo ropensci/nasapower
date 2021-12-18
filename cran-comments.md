@@ -2,7 +2,7 @@
 
 ## Test environments
 * local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.1.2
-* win-builder, R Under development (unstable) (2021-12-10 r81314)
+* win-builder, R Under development (unstable) (2021-12-17 r81389 ucrt)
 * win-builder, R 4.1.2
 
 ## R CMD check results
