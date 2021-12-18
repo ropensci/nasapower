@@ -9,7 +9,7 @@
 * The list of POWER parameters that can be queried from the API, `parameters`, is now in alphabetical order.
 
 * Add paragraph to vignette describing how to work with possible rate limiting by API endpoints using _ratelimitr_.
-This is in place of interally rate-limiting due to the way _ratelimitr_ handles function creation and the fact that the rate limits are extremely generous and may change as the project matures.
+This is in place of internally rate-limiting due to the way _ratelimitr_ handles function creation and the fact that the rate limits are extremely generous and may change as the project matures.
 
 # nasapower 4.0.1 (unreleased on CRAN)
 
