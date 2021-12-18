@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M&community=ag&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower402
+    uri: https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M&community=ag&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower403
     body:
       encoding: ''
       string: ''
@@ -18,24 +18,24 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '464'
+      ratelimit-reset: '1'
+      x-ratelimit-limit-minute: '60'
       x-ratelimit-remaining-minute: '59'
       ratelimit-limit: '60'
       ratelimit-remaining: '59'
-      ratelimit-reset: '20'
-      x-ratelimit-limit-minute: '60'
-      date: Sun, 05 Dec 2021 06:35:39 GMT
+      date: Sat, 18 Dec 2021 13:21:58 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Climatology_Climatology_1990_2019_89d50S_179d50W_UTC.csv
-      x-archive-time: '0.487'
-      x-process-time: '0.06'
-      x-objects-time: '0.017'
+      x-archive-time: '0.515'
+      x-process-time: '0.05'
+      x-objects-time: '0.012'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '0.566'
-      x-app-version: v2.2.12
+      x-service-time: '0.579'
+      x-app-version: v2.2.13
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=e081f5c86dcf9a87ecff8b14682645ee;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=2a84e6c92ede46445e54caadd5ecbc41;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -48,5 +48,5 @@ http_interactions:
         = 2885.03 meters\r\nValue for missing model data cannot be computed or out
         of model availability range: -999 \r\nParameter(s): \r\nT2M     MERRA-2 Temperature
         at 2 Meters (C) \r\n-END HEADER-\r\nPARAMETER,JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC,ANN\nT2M,-29.34,-40.68,-53.23,-57.95,-58.83,-59.85,-62.06,-61.9,-61.04,-52.55,-38.79,-28.93,-50.46\n"
-  recorded_at: 2021-12-05 06:35:41 GMT
+  recorded_at: 2021-12-18 13:22:00 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

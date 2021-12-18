@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower402
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower403
     body:
       encoding: ''
       string: ''
@@ -18,24 +18,24 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '473'
-      x-ratelimit-remaining-minute: '59'
-      ratelimit-limit: '60'
-      ratelimit-remaining: '59'
-      ratelimit-reset: '5'
+      ratelimit-reset: '9'
       x-ratelimit-limit-minute: '60'
-      date: Sun, 05 Dec 2021 06:32:55 GMT
+      x-ratelimit-remaining-minute: '54'
+      ratelimit-limit: '60'
+      ratelimit-remaining: '54'
+      date: Sat, 18 Dec 2021 13:21:47 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '2.314'
-      x-process-time: '0.02'
-      x-objects-time: '0.015'
+      x-archive-time: '2.003'
+      x-process-time: '0.03'
+      x-objects-time: '0.007'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '2.351'
-      x-app-version: v2.2.14
+      x-service-time: '2.042'
+      x-app-version: v2.2.15
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=e081f5c86dcf9a87ecff8b14682645ee;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=2a84e6c92ede46445e54caadd5ecbc41;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -51,5 +51,5 @@ http_interactions:
         (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters (%) \r\nWS10M       MERRA-2
         Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2 Surface Pressure (kPa)
         \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06\n"
-  recorded_at: 2021-12-05 06:32:58 GMT
+  recorded_at: 2021-12-18 13:21:53 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
