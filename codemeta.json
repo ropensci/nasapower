@@ -255,7 +255,7 @@
     }
   ],
   "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
-  "fileSize": "364.73KB",
+  "fileSize": "364.863KB",
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/main/README.md",
   "review": {
