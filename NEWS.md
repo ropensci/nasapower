@@ -2,14 +2,14 @@
 
 ## Minor changes
 
-* Update automatic rate limiting to API requests.
-Hourly is limited to 15 requests every 60 seconds, Daily, Monthly and Climatology are limited to 20 requests every 30 seconds.
-
 * Update checks for number of parameters requested by user, maximum of 15 for hourly and 20 for all other temporal APIs.
 
 * Return API messages to user to assist with troubleshooting when an error occurs server-side, see [Issue 55](https://github.com/ropensci/nasapower/issues/55).
 
 * The list of POWER parameters that can be queried from the API, `parameters`, is now in alphabetical order.
+
+* Add paragraph to vignette describing how to work with possible rate limiting by API endpoints using _ratelimitr_.
+This is in place of interally rate-limiting due to the way _ratelimitr_ handles function creation and the fact that the rate limits are extremely generous and may change as the project matures.
 
 # nasapower 4.0.1 (unreleased on CRAN)
 
