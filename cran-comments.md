@@ -1,4 +1,8 @@
-# nasapower v4.0.2
+# nasapower v4.0.3
+
+This submission supersedes v4.0.2, which should not be released to CRAN due to issues in the tests.
+This submission skips all tests requiring API connectivity on CRAN fixing this issue introduced with 4.0.2.
+Sorry for the inconvenience, but I thought this was better to submit a new(er) version rather than causing failures on CRAN servers.
 
 ## Test environments
 * local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.1.2
