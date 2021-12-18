@@ -1,55 +1,59 @@
 
-# test queries ----
-
-test_that("get_power returns daily point ag data", {
-  power_query <- get_power(
-    community = "ag",
-    lonlat = c(-179.5, -89.5),
-    pars = c("T2M",
-             "T2M_MIN",
-             "T2M_MAX",
-             "RH2M",
-             "WS10M",
-             "PS"),
-    dates = c("1983-01-01"),
-    temporal_api = "Daily"
-  )
-
-  expect_is(power_query, "data.frame")
-  expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
-  expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-  expect_equal(power_query$YEAR, 1983)
-  expect_equal(power_query$MM, 1)
-  expect_equal(power_query$DD, 1)
-  expect_equal(power_query$DOY, 1)
-  expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-  expect_equal(power_query$T2M, -25.24)
-  expect_equal(power_query$T2M_MIN, -25.67)
-  expect_equal(power_query$T2M_MAX, -24.88)
-  expect_equal(power_query$RH2M, 94.25)
-  expect_equal(power_query$WS10M, 2.32)
-  expect_equal(power_query$PS, 69.06)
-  expect_named(
-    power_query,
-    c(
-      "LON",
-      "LAT",
-      "YEAR",
-      "MM",
-      "DD",
-      "DOY",
-      "YYYYMMDD",
-      "T2M",
-      "T2M_MIN",
-      "T2M_MAX",
-      "RH2M",
-      "WS10M",
-      "PS"
+# test queries using vcr -------------------------------------------------------
+vcr::use_cassette("daily_ag_point", {
+  test_that("get_power returns daily point ag data", {
+    skip_on_cran()
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(-179.5, -89.5),
+      pars = c("T2M",
+               "T2M_MIN",
+               "T2M_MAX",
+               "RH2M",
+               "WS10M",
+               "PS"),
+      dates = c("1983-01-01"),
+      temporal_api = "Daily"
     )
-  )
+
+    expect_is(power_query, "data.frame")
+    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+    expect_equal(power_query$YEAR, 1983)
+    expect_equal(power_query$MM, 1)
+    expect_equal(power_query$DD, 1)
+    expect_equal(power_query$DOY, 1)
+    expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+    expect_equal(power_query$T2M, -25.24)
+    expect_equal(power_query$T2M_MIN, -25.67)
+    expect_equal(power_query$T2M_MAX, -24.88)
+    expect_equal(power_query$RH2M, 94.25)
+    expect_equal(power_query$WS10M, 2.32)
+    expect_equal(power_query$PS, 69.06)
+    expect_named(
+      power_query,
+      c(
+        "LON",
+        "LAT",
+        "YEAR",
+        "MM",
+        "DD",
+        "DOY",
+        "YYYYMMDD",
+        "T2M",
+        "T2M_MIN",
+        "T2M_MAX",
+        "RH2M",
+        "WS10M",
+        "PS"
+      )
+    )
+  })
 })
 
-test_that("get_power() returns daily point ag data with adjusted atmospheric
+
+vcr::use_cassette("adjusted_air_pressure", {
+  test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure",
           {
             skip_on_cran()
@@ -100,33 +104,37 @@ test_that("get_power() returns daily point ag data with adjusted atmospheric
               )
             )
           })
+})
 
-test_that("get_power returns daily point SB data", {
-  power_query <- get_power(
-    community = "sb",
-    lonlat = c(-179.5, -89.5),
-    pars = c("T2M",
-             "T2M_MIN",
-             "T2M_MAX",
-             "RH2M",
-             "WS10M"),
-    dates = c("1983-01-01"),
-    temporal_api = "Daily"
-  )
+vcr::use_cassette("daily_sb_point", {
+  test_that("get_power returns daily point SB data", {
+    skip_on_cran()
+    power_query <- get_power(
+      community = "sb",
+      lonlat = c(-179.5, -89.5),
+      pars = c("T2M",
+               "T2M_MIN",
+               "T2M_MAX",
+               "RH2M",
+               "WS10M"),
+      dates = c("1983-01-01"),
+      temporal_api = "Daily"
+    )
 
-  expect_is(power_query, "data.frame")
-  expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
-  expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-  expect_equal(power_query$YEAR, 1983)
-  expect_equal(power_query$MM, 1)
-  expect_equal(power_query$DD, 1)
-  expect_equal(power_query$DOY, 1)
-  expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-  expect_equal(power_query$T2M, -25.24)
-  expect_equal(power_query$T2M_MIN, -25.67)
-  expect_equal(power_query$T2M_MAX, -24.88)
-  expect_equal(power_query$RH2M, 94.25)
-  expect_equal(power_query$WS10M, 2.32)
+    expect_is(power_query, "data.frame")
+    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+    expect_equal(power_query$YEAR, 1983)
+    expect_equal(power_query$MM, 1)
+    expect_equal(power_query$DD, 1)
+    expect_equal(power_query$DOY, 1)
+    expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+    expect_equal(power_query$T2M, -25.24)
+    expect_equal(power_query$T2M_MIN, -25.67)
+    expect_equal(power_query$T2M_MAX, -24.88)
+    expect_equal(power_query$RH2M, 94.25)
+    expect_equal(power_query$WS10M, 2.32)
+  })
 })
 
 test_that("get_power() returns daily regional ag data", {
@@ -174,83 +182,56 @@ test_that("get_power() returns daily regional ag data", {
 })
 
 test_that("get_power() returns point ag data for climatology", {
-  skip_on_cran()
-  power_query <- get_power(
-    community = "ag",
-    pars = "T2M",
-    temporal_api = "climatology",
-    lonlat = c(-179.5, -89.5),
-  )
-
-  expect_equal(nrow(power_query), 1)
-  expect_equal(power_query$PARAMETER[1], "T2M")
-  expect_named(
-    power_query,
-    c(
-      "LON",
-      "LAT",
-      "PARAMETER",
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-      "ANN"
+  vcr::use_cassette("climatology_ag_point", {
+    skip_on_cran()
+    power_query <- get_power(
+      community = "ag",
+      pars = "T2M",
+      temporal_api = "climatology",
+      lonlat = c(-179.5, -89.5),
     )
-  )
+
+    expect_equal(nrow(power_query), 1)
+    expect_equal(power_query$PARAMETER[1], "T2M")
+    expect_named(
+      power_query,
+      c(
+        "LON",
+        "LAT",
+        "PARAMETER",
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC",
+        "ANN"
+      )
+    )
+  })
 })
 
-# test rate limiting -----
-test_that("get_power() limits requests to 60/minute", {
-  # this code comes from @camwur,
-  # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
-  # the issue and the limits, thanks!
-  skip_on_cran()
-  x <- function(lon, lat) {
-    get_power(
-      community = "ag",
-      lonlat = c(lon, lat),
-      site_elevation = NULL,
-      wind_elevation = NULL,
-      wind_surface = NULL,
-      pars = c("RH2M", "T2M"),
-      temporal_api = "climatology"
+# check for failure status
+vcr::use_cassette("API_failure", {
+  test_that("get_power() errors when the API doesn't behave", {
+    skip_on_cran()
+    vcr::skip_if_vcr_off()
+    expect_error(
+      get_power(
+        community = "ag",
+        lonlat = c(-179.5, -89.5),
+        pars = c("T2M"),
+        dates = c("1983-01-01"),
+        temporal_api = "Daily"
+      )
     )
-  }
-  lon <- c(1:2)
-  lat <- c(1:2)
-  y <- purrr::map2(lon, lat, x)
-  expect_length(y, 2)
-})
-
-test_that("get_power() limits requests to 30/minute", {
-  # this code comes from @camwur,
-  # https://github.com/ropensci/nasapower/issues/57, which is how I learned of
-  # the issue and the limits, thanks!
-  skip_on_cran()
-  x <- function(lon, lat) {
-    get_power(
-      community = "ag",
-      lonlat = c(lon, lat),
-      site_elevation = NULL,
-      wind_elevation = NULL,
-      wind_surface = NULL,
-      pars = c("RH2M", "T2M"),
-      dates = c("2015-06-01"),
-      temporal_api = "hourly"
-    )
-  }
-  lon <- c(90:91)
-  lat <- c(0:1)
-  y <- purrr::map2(lon, lat, x)
-  expect_length(y, 2)
+  })
 })
 
 # test user input check response messages -----
@@ -297,6 +278,7 @@ test_that("get_power() stops if an invalid community supplied", {
 })
 
 test_that("get_power() stops if site elevation is supplied not for point", {
+  Sys.sleep(10)
   skip_on_cran()
   expect_message(
     power_query <- get_power(
@@ -403,18 +385,20 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
   )
 })
 
-test_that("get_power() gives warning if `temporal_average` is used", {
-  skip_on_cran()
-  expect_warning(
-    power_query <- get_power(
-      community = "ag",
-      lonlat = c(-179.5, -89.5),
-      pars = "T2M",
-      dates = "1983-01-01",
-      temporal_average = "daily"
-    ),
-    regexp = "`temporal_average has been deprecated for `temporal_api`*"
-  )
+vcr::use_cassette("temporal_api-warning", {
+  test_that("get_power() gives warning if `temporal_average` is used", {
+    skip_on_cran()
+    expect_warning(
+      power_query <- get_power(
+        community = "ag",
+        lonlat = c(-179.5, -89.5),
+        pars = "T2M",
+        dates = "1983-01-01",
+        temporal_average = "daily"
+      ),
+      regexp = "`temporal_average has been deprecated for `temporal_api`*"
+    )
+  })
 })
 
 test_that("get_power() stops if there is no temporal_api()", {
