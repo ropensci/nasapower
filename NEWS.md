@@ -1,3 +1,9 @@
+# nasapower 4.0.3
+
+## Minor changes
+
+* Fixes tests that should use _vcr_ or be skipped on CRAN.
+
 # nasapower 4.0.2
 
 ## Minor changes
