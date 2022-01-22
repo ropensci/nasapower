@@ -59,7 +59,7 @@ Imports:
     lubridate,
     jsonlite,
     readr,
-    tibble
+    tibble (>= 3.0.2)
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Language: en-US
