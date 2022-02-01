@@ -53,8 +53,8 @@ Authors@R:
                          https://github.com/ropensci/nasapower/pull/67.")),
       person(given = "Western Australia Agriculture Authority (WAAA)",
              role = "cph",
-             comment = c("Supported the development of ascotraceR through Adam
-             H. Sparks' time.")))
+             comment = c("Supported the development of nasapower through Adam H.
+             Sparks' time.")))
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: Client for 'NASA' 'POWER' global meteorology, surface solar
