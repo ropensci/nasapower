@@ -2,7 +2,7 @@
 
 ## Bug fixes
 
-* Fixes message when importing data using vroom >= 1.5.0, `The `file` argument of `vroom()` must use `I()` for literal data as of vroom 1.5.0.`. Thanks to @palderman for the fix in [Pull Request 67](https://github.com/ropensci/nasapower/pull/67).
+* Fixes message when importing data using _vroom_ >= 1.5.0, `The `file` argument of `vroom()` must use `I()` for literal data as of vroom 1.5.0.`. Thanks to @palderman for the fix in [Pull Request 67](https://github.com/ropensci/nasapower/pull/67).
 
 ## Minor changes
 
