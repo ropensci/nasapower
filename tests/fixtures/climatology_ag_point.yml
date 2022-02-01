@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M&community=ag&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower4031
+    uri: https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M&community=ag&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower404
     body:
       encoding: ''
       string: ''
@@ -22,16 +22,16 @@ http_interactions:
       x-ratelimit-limit-minute: '60'
       ratelimit-remaining: '59'
       ratelimit-limit: '60'
-      ratelimit-reset: '50'
-      date: Tue, 01 Feb 2022 01:14:10 GMT
+      ratelimit-reset: '51'
+      date: Tue, 01 Feb 2022 08:03:09 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Climatology_Climatology_2001_2020_89d50S_179d50W_UTC.csv
-      x-archive-time: '0.518'
-      x-process-time: '0.06'
-      x-objects-time: '0.008'
+      x-archive-time: '0.484'
+      x-process-time: '0.05'
+      x-objects-time: '0.011'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '0.588'
+      x-service-time: '0.546'
       x-app-version: v2.2.15
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
@@ -48,5 +48,5 @@ http_interactions:
         = 2885.03 meters\r\nValue for missing model data cannot be computed or out
         of model availability range: -999 \r\nParameter(s): \r\nT2M     MERRA-2 Temperature
         at 2 Meters (C) \r\n-END HEADER-\r\nPARAMETER,JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC,ANN\nT2M,-29.16,-40.68,-52.56,-57.06,-57.9,-59.46,-62.02,-61.4,-60.25,-52.29,-38.76,-28.66,-50.04\n"
-  recorded_at: 2022-02-01 01:14:11 GMT
+  recorded_at: 2022-02-01 08:03:10 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
