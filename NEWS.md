@@ -1,4 +1,6 @@
-# nasapower 4.0.3.9000
+# nasapower 4.0.3.1
+
+* Uses new version numbering for development version. The POWER server won't accept the useragent string if it's too long.
 
 * Sets minimum version of _tibble_ necessary for use with _nasapower_.
 
