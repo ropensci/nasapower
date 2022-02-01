@@ -15,6 +15,7 @@ ROxygen
 Rdata
 SFC
 Standardise
+WAAA
 WS
 YYYY
 acknowledgement
@@ -53,6 +54,6 @@ ropensci
 sb
 terra
 tibble
-useragent
 vcr
+vroom
 zzz

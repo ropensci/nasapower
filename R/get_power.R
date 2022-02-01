@@ -323,7 +323,7 @@ get_power <- function(community,
   response$raise_for_status()
 
   # create meta object
-  power_data <- readr::read_lines(response$parse("UTF8"))
+  power_data <- readr::read_lines(I(response$parse("UTF8")))
 
   meta <- power_data[c(grep("-BEGIN HEADER-",
                             power_data):grep("-END HEADER-",
@@ -340,7 +340,7 @@ get_power <- function(community,
 
   # create tibble object
   power_data <- readr::read_csv(
-    response$parse("UTF8"),
+    I(response$parse("UTF8")),
     col_types = readr::cols(),
     na = c("-999", "-999.00", "-999.0", "-99", "-99.00", "-99.0"),
     skip = length(meta) + 2
