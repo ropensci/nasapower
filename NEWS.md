@@ -1,3 +1,7 @@
+# nasapower 4.0.3.9000
+
+* Sets minimum version of _tibble_ necessary for use with _nasapower_.
+
 # nasapower 4.0.3
 
 ## Minor changes

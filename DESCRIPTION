@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 4.0.3
+Version: 4.0.3.9000
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
@@ -59,7 +59,7 @@ Imports:
     lubridate,
     jsonlite,
     readr,
-    tibble
+    tibble (>= 3.0.2)
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Language: en-US
