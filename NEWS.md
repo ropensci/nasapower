@@ -1,6 +1,10 @@
-# nasapower 4.0.3.1
+# nasapower 4.0.4
 
-* Uses new version numbering for development version. The POWER server won't accept the useragent string if it's too long.
+## Bug fixes
+
+* Fixes message when importing data using vroom >= 1.5.0, `The `file` argument of `vroom()` must use `I()` for literal data as of vroom 1.5.0.`. Thanks to @palderman for the fix in [Pull Request 67](https://github.com/ropensci/nasapower/pull/67).
+
+## Minor changes
 
 * Sets minimum version of _tibble_ necessary for use with _nasapower_.
 
