@@ -240,7 +240,7 @@ get_power <- function(community,
     stop(call. = FALSE,
          "You have entered an invalid value for `site_elevation`.\n")
   }
-  if (length(lonlat != 2) & !is.null(site_elevation)) {
+  if (length(lonlat) > 2 && !is.null(site_elevation)) {
     message(
       "You have provided `site_elevation` for a region request.\n",
       "The `site_elevation` value will be ignored.\n"
