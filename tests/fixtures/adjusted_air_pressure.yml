@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower404
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&siteElev=0&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower405
     body:
       encoding: ''
       string: ''
@@ -17,26 +17,25 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       content-type: text/csv
-      content-length: '473'
-      connection: close
-      x-ratelimit-remaining-minute: '56'
+      content-length: '487'
+      ratelimit-remaining: '58'
+      ratelimit-reset: '15'
       x-ratelimit-limit-minute: '60'
-      ratelimit-remaining: '56'
+      x-ratelimit-remaining-minute: '58'
       ratelimit-limit: '60'
-      ratelimit-reset: '1'
-      date: Tue, 01 Feb 2022 08:02:55 GMT
+      date: Fri, 25 Feb 2022 12:55:17 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '2.54'
+      x-archive-time: '2.214'
       x-process-time: '0.03'
-      x-objects-time: '0.006'
+      x-objects-time: '0.014'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '2.578'
-      x-app-version: v2.2.17
+      x-service-time: '2.26'
+      x-app-version: v2.2.19
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=5af95dd9aa4b0e697ee2e65c717d5cd7;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=a7d38b96a0bae08a6274913a8f5eed52;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -45,12 +44,12 @@ http_interactions:
       string: "-BEGIN HEADER-\r\nNASA/POWER CERES/MERRA2 Native Resolution Daily Data
         \r\nDates (month/day/year): 01/01/1983 through 01/01/1983 \r\nLocation: Latitude
         \ -89.5   Longitude -179.5 \r\nElevation from MERRA-2: Average for 0.5 x 0.625
-        degree lat/lon region = 2885.03 meters\r\nValue for missing model data cannot
-        be computed or out of model availability range: -999 \r\nParameter(s): \r\nT2M
-        \        MERRA-2 Temperature at 2 Meters (C) \r\nT2M_MIN     MERRA-2 Temperature
-        at 2 Meters Minimum (C) \r\nT2M_MAX     MERRA-2 Temperature at 2 Meters Maximum
-        (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters (%) \r\nWS10M       MERRA-2
-        Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2 Surface Pressure (kPa)
-        \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06\n"
-  recorded_at: 2022-02-01 08:03:02 GMT
+        degree lat/lon region = 2885.03 meters\r\nThe value for missing source data
+        that cannot be computed or is outside of the sources availability range: -999
+        \r\nParameter(s): \r\nT2M         MERRA-2 Temperature at 2 Meters (C) \r\nT2M_MIN
+        \    MERRA-2 Temperature at 2 Meters Minimum (C) \r\nT2M_MAX     MERRA-2 Temperature
+        at 2 Meters Maximum (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters
+        (%) \r\nWS10M       MERRA-2 Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2
+        Surface Pressure (kPa) \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06\n"
+  recorded_at: 2022-02-25 12:55:47 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
