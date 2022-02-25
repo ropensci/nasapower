@@ -1,3 +1,10 @@
+# nasapower 4.0.5
+
+## Bug fixes
+
+* Fixes bug when requesting `site_elevation` corrected data.
+Thanks to @daniel_althoff for reporting this bug [Issue 69](https://github.com/ropensci/nasapower/issues/69).
+
 # nasapower 4.0.4
 
 ## Bug fixes
