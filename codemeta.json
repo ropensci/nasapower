@@ -224,8 +224,8 @@
   },
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "366.733KB",
+  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data"],
+  "fileSize": "366.889KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -272,8 +272,7 @@
   ],
   "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
-  "readme": "https://github.com/ropensci/nasapower/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/nasapower/actions", "https://codecov.io/gh/ropensci/nasapower"],
+  "contIntegration": ["https://github.com/ropensci/nasapower/actions", "https://app.codecov.io/gh/ropensci/nasapower"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
