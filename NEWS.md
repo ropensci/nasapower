@@ -2,6 +2,17 @@
 
 ## Bug fixes
 
+* Fixes bugs when requesting `site_elevation`, `wind_elevation` and `wind_surface` due to changes in the POWER API.
+Thanks to @daniel_althoff for reporting this bug [Issue 69](https://github.com/ropensci/nasapower/issues/69).
+
+## Minor changes
+
+* Fixes redundant and broken tests by removing or updating new tests.
+
+# nasapower 4.0.5
+
+## Bug fixes
+
 * Fixes bug when requesting `site_elevation` corrected data.
 Thanks to @daniel_althoff for reporting this bug [Issue 69](https://github.com/ropensci/nasapower/issues/69).
 
