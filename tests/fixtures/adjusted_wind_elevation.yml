@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&site-elevation=0&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower405
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&wind-elevation=300&wind-surface=vegtype_1&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower405
     body:
       encoding: ''
       string: ''
@@ -17,21 +17,21 @@ http_interactions:
     headers:
       status: HTTP/1.1 200 OK
       content-type: text/csv
-      content-length: '533'
-      ratelimit-remaining: '58'
-      ratelimit-reset: '6'
+      content-length: '589'
+      ratelimit-remaining: '59'
+      ratelimit-reset: '59'
       x-ratelimit-limit-minute: '60'
-      x-ratelimit-remaining-minute: '58'
+      x-ratelimit-remaining-minute: '59'
       ratelimit-limit: '60'
-      date: Sun, 27 Feb 2022 00:00:50 GMT
+      date: Sun, 27 Feb 2022 00:14:01 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '2.229'
+      x-archive-time: '2.232'
       x-process-time: '0.03'
-      x-objects-time: '0.006'
+      x-objects-time: '0.009'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '2.267'
+      x-service-time: '2.273'
       x-app-version: v2.2.19
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
@@ -50,7 +50,9 @@ http_interactions:
         \    MERRA-2 Temperature at 2 Meters Minimum (C) \r\nT2M_MAX     MERRA-2 Temperature
         at 2 Meters Maximum (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters
         (%) \r\nWS10M       MERRA-2 Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2
-        Surface Pressure (kPa) \r\nPSC         MERRA-2 Corrected Atmospheric Pressure
-        (Adjusted For Site Elevation) (kPa) \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS,PSC\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06,101.28\n"
-  recorded_at: 2022-02-27 00:00:56 GMT
+        Surface Pressure (kPa) \r\nWSC         MERRA-2 Corrected Wind Speed (Adjusted
+        For Elevation) (m/s) \r\nMessage(s): \r\nCorrected Wind Speed has a custom
+        surface implemented: 35-m broadleaf-evergreen trees (70% coverage) (vegtype_1)
+        \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS,WSC\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06,19.44\n"
+  recorded_at: 2022-02-27 00:14:04 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
