@@ -85,6 +85,7 @@ vcr::use_cassette("adjusted_air_pressure", {
             expect_equal(power_query$RH2M, 94.25)
             expect_equal(power_query$WS10M, 2.32)
             expect_equal(power_query$PS, 69.06)
+            expect_equal(power_query$PSC, 101.28)
             expect_named(
               power_query,
               c(
@@ -100,7 +101,66 @@ vcr::use_cassette("adjusted_air_pressure", {
                 "T2M_MAX",
                 "RH2M",
                 "WS10M",
-                "PS"
+                "PS",
+                "PSC"
+              )
+            )
+          })
+})
+
+
+vcr::use_cassette("adjusted_wind_elevation", {
+  test_that("get_power() returns daily point ag data with adjusted wind
+          elevation",
+          {
+            skip_on_cran()
+            power_query <- get_power(
+              community = "ag",
+              lonlat = c(-179.5, -89.5),
+              pars = c("T2M",
+                       "T2M_MIN",
+                       "T2M_MAX",
+                       "RH2M",
+                       "WS10M",
+                       "PS"),
+              dates = c("1983-01-01"),
+              temporal_api = "Daily",
+              wind_elevation = 300,
+              wind_surface = "vegtype_1"
+            )
+
+            expect_is(power_query, "data.frame")
+            expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+            expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+            expect_equal(power_query$YEAR, 1983)
+            expect_equal(power_query$MM, 1)
+            expect_equal(power_query$DD, 1)
+            expect_equal(power_query$DOY, 1)
+            expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+            expect_equal(power_query$T2M, -25.24)
+            expect_equal(power_query$T2M_MIN, -25.67)
+            expect_equal(power_query$T2M_MAX, -24.88)
+            expect_equal(power_query$RH2M, 94.25)
+            expect_equal(power_query$WS10M, 2.32)
+            expect_equal(power_query$PS, 69.06)
+            expect_equal(power_query$WSC, 19.44)
+            expect_named(
+              power_query,
+              c(
+                "LON",
+                "LAT",
+                "YEAR",
+                "MM",
+                "DD",
+                "DOY",
+                "YYYYMMDD",
+                "T2M",
+                "T2M_MIN",
+                "T2M_MAX",
+                "RH2M",
+                "WS10M",
+                "PS",
+                "WSC"
               )
             )
           })
@@ -339,6 +399,21 @@ test_that("get_power() stops wind_elevation is invalid", {
   )
 })
 
+test_that("get_power() ignores wind_elevation for regional requests", {
+  skip_on_cran()
+  expect_message(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5, 115.5, -50.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_elevation = 15
+    ),
+    regexp = "You have provided `wind_elevation` for a region request.*"
+  )
+})
+
 test_that("get_power() stops if `global` coverage is requested", {
   skip_on_cran()
   expect_error(
@@ -381,7 +456,7 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
       dates = "1983-01-01",
       temporal_api = "hourly"
     ),
-    regexp = ""
+    regexp = "A maximum of 15 parameters can currently be requested*"
   )
 })
 
@@ -439,5 +514,19 @@ test_that("get_power() stops if lonlat = is invalid", {
       temporal_api = "daily"
     ),
     regexp = "You have entered an invalid value for `lonlat`. *"
+  )
+})
+
+test_that("get_power() stops if lonlat = is invalid for climatology", {
+  skip_on_cran()
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = "global",
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "climatology"
+    ),
+    regexp = "The POWER team have not enabled `global`*"
   )
 })
