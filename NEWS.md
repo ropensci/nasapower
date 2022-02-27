@@ -2,8 +2,11 @@
 
 ## Bug fixes
 
-* Fixes bugs when requesting `site_elevation`, `wind_elevation` and `wind_surface` due to changes in the POWER API.
+* Fixes bug when requesting `site_elevation`.
 Thanks to @daniel_althoff for reporting this bug [Issue 69](https://github.com/ropensci/nasapower/issues/69).
+
+* Fixes bug where `wind_elevation` and `wind_surface` were not properly passed along to the API.
+
 
 ## Minor changes
 
