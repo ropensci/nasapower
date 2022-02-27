@@ -46,14 +46,6 @@
       )
     }
 
-    if (temporal_api == "hourly" && length(pars) > 15) {
-      stop(
-        call. = FALSE,
-        "You can only specify maximum of 15 parameters for download at a
-           time for the hourly temporal API."
-      )
-    }
-
     if (length(pars) > 15 & temporal_api == "hourly") {
       stop(
         call. = FALSE,
