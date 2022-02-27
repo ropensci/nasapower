@@ -100,7 +100,7 @@
 #'   _e.g._ `dates = c(1983, 2010)`.  This argument should not be used when
 #'   `temporal_api` is set to \dQuote{climatology} and will be ignored if set.
 #'
-#' @section wind-surface: There are 17 surfaces that may be used for corrected
+#' @section `wind_surface`: There are 17 surfaces that may be used for corrected
 #'   wind-speed values using the following equation:
 #'   \deqn{WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha}
 #'   Valid surface types are described here.

@@ -144,7 +144,7 @@ day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
 \code{temporal_api} is set to \dQuote{climatology} and will be ignored if set.
 }
 
-\section{wind-surface}{
+\section{\code{wind_surface}}{
  There are 17 surfaces that may be used for corrected
 wind-speed values using the following equation:
 \deqn{WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha}
