@@ -273,13 +273,7 @@ get_power <- function(community,
   }
   if (is.character(lonlat)) {
     lonlat <- tolower(lonlat)
-    if (lonlat == "global" & temporal_api != "climatology") {
-      stop(
-        call. = FALSE,
-        "You have asked for 'global' data. However, this is only available ",
-        "for 'climatology'.\n"
-      )
-    } else if (lonlat != "global") {
+    if (lonlat != "global") {
       stop(
         call. = FALSE,
         "You have entered an invalid value for `lonlat`. Valid values are ",
