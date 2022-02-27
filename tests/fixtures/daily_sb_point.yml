@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M&community=sb&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower405
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M&community=sb&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower406
     body:
       encoding: ''
       string: ''
@@ -18,20 +18,20 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '460'
-      ratelimit-remaining: '57'
-      ratelimit-reset: '13'
+      ratelimit-remaining: '56'
+      ratelimit-reset: '31'
       x-ratelimit-limit-minute: '60'
-      x-ratelimit-remaining-minute: '57'
+      x-ratelimit-remaining-minute: '56'
       ratelimit-limit: '60'
-      date: Fri, 25 Feb 2022 12:55:17 GMT
+      date: Sun, 27 Feb 2022 01:39:48 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '2.271'
-      x-process-time: '0.02'
-      x-objects-time: '0.012'
+      x-archive-time: '2.094'
+      x-process-time: '0.03'
+      x-objects-time: '0.008'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '2.304'
+      x-service-time: '2.134'
       x-app-version: v2.2.19
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
@@ -50,5 +50,5 @@ http_interactions:
         \    MERRA-2 Temperature at 2 Meters Minimum (C) \r\nT2M_MAX     MERRA-2 Temperature
         at 2 Meters Maximum (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters
         (%) \r\nWS10M       MERRA-2 Wind Speed at 10 Meters (m/s) \r\n-END HEADER-\r\nYEAR,MO,DY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M\n1983,1,1,-25.24,-25.67,-24.88,94.25,2.32\n"
-  recorded_at: 2022-02-25 12:55:50 GMT
+  recorded_at: 2022-02-27 01:40:31 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

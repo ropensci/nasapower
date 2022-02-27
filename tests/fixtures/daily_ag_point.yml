@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower405
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower406
     body:
       encoding: ''
       string: ''
@@ -19,19 +19,19 @@ http_interactions:
       content-type: text/csv
       content-length: '487'
       ratelimit-remaining: '59'
-      ratelimit-reset: '18'
+      ratelimit-reset: '40'
       x-ratelimit-limit-minute: '60'
       x-ratelimit-remaining-minute: '59'
       ratelimit-limit: '60'
-      date: Fri, 25 Feb 2022 12:55:42 GMT
+      date: Sun, 27 Feb 2022 01:39:17 GMT
       server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '1.966'
-      x-process-time: '0.02'
+      x-archive-time: '2.335'
+      x-process-time: '0.03'
       x-objects-time: '0.009'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '1.996'
+      x-service-time: '2.376'
       x-app-version: v2.2.19
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
@@ -51,5 +51,5 @@ http_interactions:
         at 2 Meters Maximum (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters
         (%) \r\nWS10M       MERRA-2 Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2
         Surface Pressure (kPa) \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06\n"
-  recorded_at: 2022-02-25 12:55:44 GMT
+  recorded_at: 2022-02-27 01:40:23 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
