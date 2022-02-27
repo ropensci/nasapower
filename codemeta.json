@@ -225,7 +225,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data"],
-  "fileSize": "372.738KB",
+  "fileSize": "372.535KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
