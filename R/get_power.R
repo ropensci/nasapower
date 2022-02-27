@@ -247,12 +247,13 @@ get_power <- function(community,
     )
     site_elevation <- NULL
   }
-  if (length(lonlat != 2) & !is.null(wind_elevation)) {
+
+  if (length(lonlat) > 2 && !is.null(wind_elevation)) {
     message(
       "You have provided `wind_elevation` for a region request.\n",
       "The `wind_elevation` value will be ignored.\n"
     )
-    site_elevation <- NULL
+    wind_elevation <- NULL
   }
   if (is.character(wind_surface) & is.null(wind_elevation)) {
     stop(
