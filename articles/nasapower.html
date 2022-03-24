@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,35 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nasapower</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.6</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/nasapower.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/nasapower_states_example.html">Using nasapower with large geographic areas</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -74,7 +58,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropensci/nasapower/">
+  <a href="https://github.com/ropensci/nasapower/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,340 +73,1927 @@
 
       
 
-      </header><script src="nasapower_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>nasapower</h1>
-                        <h4 class="author">Adam H Sparks</h4>
+                        <h4 data-toc-skip class="author">Adam H. Sparks</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ropensci/nasapower/blob/master/vignettes/nasapower.Rmd"><code>vignettes/nasapower.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropensci/nasapower/blob/HEAD/vignettes/nasapower.Rmd" class="external-link"><code>vignettes/nasapower.Rmd</code></a></small>
       <div class="hidden name"><code>nasapower.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>nasapower</em> aims to make it quick and easy to automate downloading NASA <a href="https://power.larc.nasa.gov">POWER</a> global meteorology, surface solar energy and climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes using <code><a href="../reference/get_power.html">get_power()</a></code>. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface at a resolution of 1/2 arc degree longitude by 1/2 arc degree latitude.</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p><em>nasapower</em> aims to make it quick and easy to automate downloading NASA <a href="https://power.larc.nasa.gov" class="external-link">POWER</a> global meteorology, surface solar energy and climatology data data in your R session as a tidy data frame for analysis and use in modelling or other purposes using <code><a href="../reference/get_power.html">get_power()</a></code>. POWER (Prediction Of Worldwide Energy Resource) data are freely available for download through a web interface with a spatial resolution of 0.5 x 0.625 degree latitude and longitude for meteorology and 1 x 1 degree latitude and longitude for solar parameters with various temporal resolutions depending on the POWER parameter and community.</p>
 </div>
-<div id="using-get_power-to-fetch-power-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_power-to-fetch-power-data" class="anchor"></a>Using <code>get_power</code> to Fetch POWER Data</h2>
-<p>The <code><a href="../reference/get_power.html">get_power()</a></code> function has five arguments as seen in this example and returns a data frame with a metadata header in the current R session.</p>
-<div id="example-fetching-daily-data-for-a-single-point" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-fetching-daily-data-for-a-single-point" class="anchor"></a>Example fetching daily data for a single point</h3>
+<div class="section level2">
+<h2 id="using-get_power-to-fetch-power-data">Using get_power() to fetch POWER data<a class="anchor" aria-label="anchor" href="#using-get_power-to-fetch-power-data"></a>
+</h2>
+<p>The <code><a href="../reference/get_power.html">get_power()</a></code> function has eight possible arguments and returns a data frame with a metadata header in the current R session.</p>
+<div class="section level3">
+<h3 id="example-fetching-daily-data-for-a-single-point">Example fetching daily data for a single point<a class="anchor" aria-label="anchor" href="#example-fetching-daily-data-for-a-single-point"></a>
+</h3>
 <p>Fetch daily “AG” community temperature, relative humidity and precipitation for January 1985 for Kingsthorpe, Queensland, Australia.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/nasapower/">nasapower</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/nasapower/" class="external-link">"nasapower"</a></span><span class="op">)</span>
 <span class="va">daily_single_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_power.html">get_power</a></span><span class="op">(</span>
-  community <span class="op">=</span> <span class="st">"AG"</span>,
-  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span><span class="op">)</span>,
-  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOT"</span><span class="op">)</span>,
-  dates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1985-01-01"</span>, <span class="st">"1985-01-31"</span><span class="op">)</span>,
-  temporal_average <span class="op">=</span> <span class="st">"DAILY"</span>
+  community <span class="op">=</span> <span class="st">"ag"</span>,
+  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span><span class="op">)</span>,
+  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOTCORR"</span><span class="op">)</span>,
+  dates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1985-01-01"</span>, <span class="st">"1985-01-31"</span><span class="op">)</span>,
+  temporal_api <span class="op">=</span> <span class="st">"daily"</span>
 <span class="op">)</span>
 
 <span class="va">daily_single_ag</span>
-<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
+<span class="co">#&gt; NASA/POWER CERES/MERRA2 Native Resolution Daily Data  </span>
 <span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/31/1985  </span>
 <span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span>
-<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = 434.55 meters   Site = na  </span>
-<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
-<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters </span>
+<span class="co">#&gt;  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  </span>
+<span class="co">#&gt;  Parameter(s):  </span>
 <span class="co">#&gt;  </span>
 <span class="co">#&gt;  Parameters: </span>
-<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C) ;</span>
-<span class="co">#&gt;  PRECTOT MERRA2 1/2x1/2 Precipitation (mm day-1) ;</span>
-<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  </span>
+<span class="co">#&gt;  RH2M            MERRA-2 Relative Humidity at 2 Meters (%) ;</span>
+<span class="co">#&gt;  T2M             MERRA-2 Temperature at 2 Meters (C) ;</span>
+<span class="co">#&gt;  PRECTOTCORR     MERRA-2 Precipitation Corrected (mm/day)  </span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; # A tibble: 31 x 10</span>
-<span class="co">#&gt;      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  152. -27.5  1985     1     1     1 1985-01-01  48.9  25.1</span>
-<span class="co">#&gt;  2  152. -27.5  1985     1     2     2 1985-01-02  41.8  28.4</span>
-<span class="co">#&gt;  3  152. -27.5  1985     1     3     3 1985-01-03  40.4  27.5</span>
-<span class="co">#&gt;  4  152. -27.5  1985     1     4     4 1985-01-04  46.4  24.6</span>
-<span class="co">#&gt;  5  152. -27.5  1985     1     5     5 1985-01-05  50.8  26.5</span>
-<span class="co">#&gt;  6  152. -27.5  1985     1     6     6 1985-01-06  58.6  26.8</span>
-<span class="co">#&gt;  7  152. -27.5  1985     1     7     7 1985-01-07  61.1  27.0</span>
-<span class="co">#&gt;  8  152. -27.5  1985     1     8     8 1985-01-08  66.5  25.1</span>
-<span class="co">#&gt;  9  152. -27.5  1985     1     9     9 1985-01-09  55.8  26.1</span>
-<span class="co">#&gt; 10  152. -27.5  1985     1    10    10 1985-01-10  41.2  27.0</span>
-<span class="co">#&gt; # … with 21 more rows, and 1 more variable: PRECTOT &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 31 × 10</span>
+<span class="co">#&gt;      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  152. -27.5  1985     1     1     1 1985-01-01  54.7</span>
+<span class="co">#&gt;  2  152. -27.5  1985     1     2     2 1985-01-02  42.1</span>
+<span class="co">#&gt;  3  152. -27.5  1985     1     3     3 1985-01-03  43.4</span>
+<span class="co">#&gt;  4  152. -27.5  1985     1     4     4 1985-01-04  48.9</span>
+<span class="co">#&gt;  5  152. -27.5  1985     1     5     5 1985-01-05  55.3</span>
+<span class="co">#&gt;  6  152. -27.5  1985     1     6     6 1985-01-06  60.2</span>
+<span class="co">#&gt;  7  152. -27.5  1985     1     7     7 1985-01-07  63.1</span>
+<span class="co">#&gt;  8  152. -27.5  1985     1     8     8 1985-01-08  70.6</span>
+<span class="co">#&gt;  9  152. -27.5  1985     1     9     9 1985-01-09  60  </span>
+<span class="co">#&gt; 10  152. -27.5  1985     1    10    10 1985-01-10  45.2</span>
+<span class="co">#&gt; # … with 21 more rows, and 2 more variables: T2M &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   PRECTOTCORR &lt;dbl&gt;</span></code></pre></div>
 </div>
-<div id="example-fetching-daily-data-for-an-area" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-fetching-daily-data-for-an-area" class="anchor"></a>Example fetching daily data for an area</h3>
-<p>Fetch daily “AG” community relative humidity and temperature for south east Queensland region.</p>
+<div class="section level3">
+<h3 id="example-fetching-daily-data-for-an-area">Example fetching daily data for an area<a class="anchor" aria-label="anchor" href="#example-fetching-daily-data-for-an-area"></a>
+</h3>
+<p>Fetch daily “ag” community relative humidity and temperature for south east Queensland region.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">daily_region_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_power.html">get_power</a></span><span class="op">(</span>
-  community <span class="op">=</span> <span class="st">"AG"</span>,
-  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">150.5</span>, <span class="op">-</span><span class="fl">28.5</span> , <span class="fl">153.5</span>, <span class="op">-</span><span class="fl">25.5</span><span class="op">)</span>,
-  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"RH2M"</span>, <span class="st">"T2M"</span><span class="op">)</span>,
-  dates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span><span class="op">)</span>,
-  temporal_average <span class="op">=</span> <span class="st">"DAILY"</span>
+  community <span class="op">=</span> <span class="st">"ag"</span>,
+  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">150.5</span>, <span class="op">-</span><span class="fl">28.5</span> , <span class="fl">153.5</span>, <span class="op">-</span><span class="fl">25.5</span><span class="op">)</span>,
+  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RH2M"</span>, <span class="st">"T2M"</span><span class="op">)</span>,
+  dates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1985-01-01"</span>, <span class="st">"1985-01-02"</span><span class="op">)</span>,
+  temporal_api <span class="op">=</span> <span class="st">"daily"</span>
 <span class="op">)</span>
 
 <span class="va">daily_region_ag</span>
-<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Daily Averaged Data  </span>
+<span class="co">#&gt; NASA/POWER CERES/MERRA2 Native Resolution Daily Data  </span>
 <span class="co">#&gt;  Dates (month/day/year): 01/01/1985 through 01/02/1985  </span>
 <span class="co">#&gt;  Location: Regional  </span>
-<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = na meters   Site = na  </span>
-<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
-<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na meters </span>
+<span class="co">#&gt;  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  </span>
+<span class="co">#&gt;  Parameter(s):  </span>
 <span class="co">#&gt;  </span>
 <span class="co">#&gt;  Parameters: </span>
-<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%) ;</span>
-<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
+<span class="co">#&gt;  RH2M     MERRA-2 Relative Humidity at 2 Meters (%) ;</span>
+<span class="co">#&gt;  T2M      MERRA-2 Temperature at 2 Meters (C)  </span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; # A tibble: 98 x 9</span>
-<span class="co">#&gt;      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  151. -28.2  1985     1     1     1 1985-01-01  39.7  26.5</span>
-<span class="co">#&gt;  2  151. -28.2  1985     1     1     1 1985-01-01  40.4  25.8</span>
-<span class="co">#&gt;  3  152. -28.2  1985     1     1     1 1985-01-01  47.0  24.0</span>
-<span class="co">#&gt;  4  152. -28.2  1985     1     1     1 1985-01-01  51.8  23.9</span>
-<span class="co">#&gt;  5  153. -28.2  1985     1     1     1 1985-01-01  56.2  24.9</span>
-<span class="co">#&gt;  6  153. -28.2  1985     1     1     1 1985-01-01  62.5  26.0</span>
-<span class="co">#&gt;  7  154. -28.2  1985     1     1     1 1985-01-01  74.7  26.1</span>
-<span class="co">#&gt;  8  151. -27.8  1985     1     1     1 1985-01-01  41.3  26.5</span>
-<span class="co">#&gt;  9  151. -27.8  1985     1     1     1 1985-01-01  43.4  26.0</span>
-<span class="co">#&gt; 10  152. -27.8  1985     1     1     1 1985-01-01  47.6  24.8</span>
-<span class="co">#&gt; # … with 88 more rows</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 72 × 9</span>
+<span class="co">#&gt;      LAT   LON  YEAR    MM    DD   DOY YYYYMMDD    RH2M</span>
+<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;date&gt;     &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 -28.2  151.  1985     1     1     1 1985-01-01  43.6</span>
+<span class="co">#&gt;  2 -28.2  151.  1985     1     1     1 1985-01-01  44.4</span>
+<span class="co">#&gt;  3 -28.2  152.  1985     1     1     1 1985-01-01  52.6</span>
+<span class="co">#&gt;  4 -28.2  152.  1985     1     1     1 1985-01-01  57.7</span>
+<span class="co">#&gt;  5 -28.2  153.  1985     1     1     1 1985-01-01  61.4</span>
+<span class="co">#&gt;  6 -28.2  153.  1985     1     1     1 1985-01-01  66.1</span>
+<span class="co">#&gt;  7 -27.8  151.  1985     1     1     1 1985-01-01  45.8</span>
+<span class="co">#&gt;  8 -27.8  151.  1985     1     1     1 1985-01-01  47.9</span>
+<span class="co">#&gt;  9 -27.8  152.  1985     1     1     1 1985-01-01  53.4</span>
+<span class="co">#&gt; 10 -27.8  152.  1985     1     1     1 1985-01-01  56.7</span>
+<span class="co">#&gt; # … with 62 more rows, and 1 more variable: T2M &lt;dbl&gt;</span></code></pre></div>
 </div>
-<div id="example-fetching-interannual-data-for-an-area" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-fetching-interannual-data-for-an-area" class="anchor"></a>Example fetching interannual data for an area</h3>
+<div class="section level3">
+<h3 id="example-fetching-interannual-data-for-an-area">Example fetching interannual data for an area<a class="anchor" aria-label="anchor" href="#example-fetching-interannual-data-for-an-area"></a>
+</h3>
 <p>Fetch interannual solar cooking parameters for south east Queensland region.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">interannual_sse</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_power.html">get_power</a></span><span class="op">(</span>
-  community <span class="op">=</span> <span class="st">"SSE"</span>,
-  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">150.5</span>, <span class="op">-</span><span class="fl">28.5</span> , <span class="fl">153.5</span>, <span class="op">-</span><span class="fl">25.5</span><span class="op">)</span>,
-  dates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1984"</span>, <span class="st">"1985"</span><span class="op">)</span>,
-  temporal_average <span class="op">=</span> <span class="st">"INTERANNUAL"</span>,
-  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CLRSKY_SFC_SW_DWN"</span>,
+<code class="sourceCode R"><span class="va">interannual_re</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_power.html">get_power</a></span><span class="op">(</span>
+  community <span class="op">=</span> <span class="st">"re"</span>,
+  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">150.5</span>, <span class="op">-</span><span class="fl">28.5</span> , <span class="fl">153.5</span>, <span class="op">-</span><span class="fl">25.5</span><span class="op">)</span>,
+  dates <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1984"</span>, <span class="st">"1985"</span><span class="op">)</span>,
+  temporal_api <span class="op">=</span> <span class="st">"monthly"</span>,
+  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"CLRSKY_SFC_SW_DWN"</span>,
            <span class="st">"ALLSKY_SFC_SW_DWN"</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="va">interannual_sse</span>
-<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Interannual Averages/Sums  </span>
+<span class="va">interannual_re</span>
+<span class="co">#&gt; NASA/POWER CERES/MERRA2 Native Resolution Monthly and Annual  </span>
 <span class="co">#&gt;  Dates (month/day/year): 01/01/1984 through 12/31/1985  </span>
 <span class="co">#&gt;  Location: Regional  </span>
-<span class="co">#&gt;  Elevation from MERRA-2: Average for 1/2x1/2 degree lat/lon region = na meters   Site = na  </span>
-<span class="co">#&gt;  Climate zone: na (reference Briggs et al: http://www.energycodes.gov)  </span>
-<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na meters </span>
+<span class="co">#&gt;  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  </span>
+<span class="co">#&gt;  Parameter(s):  </span>
 <span class="co">#&gt;  </span>
 <span class="co">#&gt;  Parameters: </span>
-<span class="co">#&gt;  CLRSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 Clear Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day) ;</span>
-<span class="co">#&gt;  ALLSKY_SFC_SW_DWN SRB/FLASHFlux 1/2x1/2 All Sky Insolation Incident on a Horizontal Surface (kW-hr/m^2/day)  </span>
+<span class="co">#&gt;  ALLSKY_SFC_SW_DWN     CERES SYN1deg All Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day) ;</span>
+<span class="co">#&gt;  CLRSKY_SFC_SW_DWN     CERES SYN1deg Clear Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day)  </span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; # A tibble: 196 x 17</span>
-<span class="co">#&gt;      LON   LAT PARAMETER  YEAR   JAN   FEB   MAR   APR   MAY   JUN</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  151. -28.2 CLRSKY_S…  1984  8.5   7.96  6.92  5.54  4.49  3.89</span>
-<span class="co">#&gt;  2  151. -28.2 CLRSKY_S…  1985  8.87  8.1   6.94  5.6   4.44  4.03</span>
-<span class="co">#&gt;  3  151. -28.2 ALLSKY_S…  1984  6.11  6.83  6.28  4.6   4.02  3.46</span>
-<span class="co">#&gt;  4  151. -28.2 ALLSKY_S…  1985  8.2   7.15  6.02  4.79  3.89  3.44</span>
-<span class="co">#&gt;  5  151. -28.2 CLRSKY_S…  1984  8.45  8.09  6.77  5.5   4.41  3.95</span>
-<span class="co">#&gt;  6  151. -28.2 CLRSKY_S…  1985  8.76  8.03  6.93  5.57  4.39  3.93</span>
-<span class="co">#&gt;  7  151. -28.2 ALLSKY_S…  1984  5.82  6.43  5.95  4.41  3.89  3.54</span>
-<span class="co">#&gt;  8  151. -28.2 ALLSKY_S…  1985  7.98  6.86  5.74  4.46  3.67  3.34</span>
-<span class="co">#&gt;  9  152. -28.2 CLRSKY_S…  1984  8.45  8.09  6.77  5.5   4.41  3.95</span>
-<span class="co">#&gt; 10  152. -28.2 CLRSKY_S…  1985  8.76  8.03  6.93  5.57  4.39  3.93</span>
-<span class="co">#&gt; # … with 186 more rows, and 7 more variables: JUL &lt;dbl&gt;, AUG &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   SEP &lt;dbl&gt;, OCT &lt;dbl&gt;, NOV &lt;dbl&gt;, DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 144 × 17</span>
+<span class="co">#&gt;    PARAMETER       YEAR   LAT   LON   JAN   FEB   MAR   APR</span>
+<span class="co">#&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ALLSKY_SFC_SW…  1984 -25.8  151.  6.01  6.49  5.79  4.67</span>
+<span class="co">#&gt;  2 ALLSKY_SFC_SW…  1984 -25.8  151.  5.92  5.97  5.64  4.37</span>
+<span class="co">#&gt;  3 ALLSKY_SFC_SW…  1984 -25.8  152.  5.92  5.97  5.64  4.37</span>
+<span class="co">#&gt;  4 ALLSKY_SFC_SW…  1984 -25.8  152.  5.96  5.85  5.56  4.26</span>
+<span class="co">#&gt;  5 ALLSKY_SFC_SW…  1984 -25.8  153.  5.96  5.85  5.56  4.26</span>
+<span class="co">#&gt;  6 ALLSKY_SFC_SW…  1984 -25.8  153.  6.23  6.05  5.88  4.26</span>
+<span class="co">#&gt;  7 ALLSKY_SFC_SW…  1984 -26.2  151.  5.97  6.65  6     4.66</span>
+<span class="co">#&gt;  8 ALLSKY_SFC_SW…  1984 -26.2  151.  6     6.38  5.71  4.38</span>
+<span class="co">#&gt;  9 ALLSKY_SFC_SW…  1984 -26.2  152.  6     6.38  5.71  4.38</span>
+<span class="co">#&gt; 10 ALLSKY_SFC_SW…  1984 -26.2  152.  5.75  5.96  5.37  4.13</span>
+<span class="co">#&gt; # … with 134 more rows, and 9 more variables: MAY &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   JUN &lt;dbl&gt;, JUL &lt;dbl&gt;, AUG &lt;dbl&gt;, SEP &lt;dbl&gt;, OCT &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   NOV &lt;dbl&gt;, DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</span></code></pre></div>
 </div>
-<div id="example-fetching-climatology-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-fetching-climatology-data" class="anchor"></a>Example fetching climatology data</h3>
-<p>Global data are only available for the climatology <code>temporal_average</code>, setting this argument as such will fetch global data.</p>
-<p>Fetch global “AG”" climatology for temperature and relative humidity.</p>
+<div class="section level3">
+<h3 id="example-fetching-climatology-data">Example fetching climatology data<a class="anchor" aria-label="anchor" href="#example-fetching-climatology-data"></a>
+</h3>
+<p>Climatology data can be retrieved for point or regional areas as demonstrated previously. Change the <code>temporal_api</code> value to “climatology” to get these data.</p>
+<p>Fetch “ag” climatology for temperature and relative humidity for Kingsthorpe, Queensland, Australia.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">climatology_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_power.html">get_power</a></span><span class="op">(</span>
-  community <span class="op">=</span> <span class="st">"AG"</span>,
-  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"T2M"</span>, <span class="st">"RH2M"</span><span class="op">)</span>,
-  lonlat <span class="op">=</span> <span class="st">"GLOBAL"</span>,
-  temporal_average <span class="op">=</span> <span class="st">"CLIMATOLOGY"</span>
+  community <span class="op">=</span> <span class="st">"ag"</span>,
+  pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"T2M"</span>, <span class="st">"RH2M"</span><span class="op">)</span>,
+  lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span><span class="op">)</span>,
+  temporal_api <span class="op">=</span> <span class="st">"climatology"</span>
 <span class="op">)</span>
 
 <span class="va">climatology_ag</span>
-<span class="co">#&gt; NASA/POWER SRB/FLASHFlux/MERRA2/GEOS 5.12.4 (FP-IT) 0.5 x 0.5 Degree Climatologies  </span>
-<span class="co">#&gt;  22-year Additional Solar Parameter Monthly &amp; Annual Climatologies (July 1983 - June 2005), 30-year Meteorological and Solar Monthly &amp; Annual Climatologies (January 1984 - December 2013)  </span>
-<span class="co">#&gt;  Location: Global  </span>
-<span class="co">#&gt;  Value for missing model data cannot be computed or out of model availability range: NA  </span>
+<span class="co">#&gt; NASA/POWER CERES/MERRA2 Native Resolution Climatology Climatologies  </span>
+<span class="co">#&gt;  20-year Meteorological and Solar Monthly &amp; Annual Climatologies (January 2001 - December 2020)  </span>
+<span class="co">#&gt;  Location: Latitude  -27.48   Longitude 151.81  </span>
+<span class="co">#&gt;  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters </span>
+<span class="co">#&gt;  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  </span>
 <span class="co">#&gt;  Parameter(s):  </span>
-<span class="co">#&gt;  RH2M MERRA2 1/2x1/2 Relative Humidity at 2 Meters (%)  </span>
 <span class="co">#&gt;  </span>
 <span class="co">#&gt;  Parameters: </span>
-<span class="co">#&gt;  NA;</span>
-<span class="co">#&gt;  T2M MERRA2 1/2x1/2 Temperature at 2 Meters (C)  </span>
+<span class="co">#&gt;  T2M      MERRA-2 Temperature at 2 Meters (C) ;</span>
+<span class="co">#&gt;  RH2M     MERRA-2 Relative Humidity at 2 Meters (%)  </span>
 <span class="co">#&gt;  </span>
-<span class="co">#&gt; # A tibble: 518,400 x 16</span>
-<span class="co">#&gt;      LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL</span>
-<span class="co">#&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 -180. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3</span>
-<span class="co">#&gt;  2 -180. -89.8 RH2M       70.3  64.3  63.5  63.2  63.9  64.2  63.9</span>
-<span class="co">#&gt;  3 -179. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3</span>
-<span class="co">#&gt;  4 -179. -89.8 RH2M       70.3  64.3  63.4  63.2  63.9  64.2  63.9</span>
-<span class="co">#&gt;  5 -179. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3</span>
-<span class="co">#&gt;  6 -179. -89.8 RH2M       70.3  64.3  63.4  63.2  63.9  64.2  63.9</span>
-<span class="co">#&gt;  7 -178. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3</span>
-<span class="co">#&gt;  8 -178. -89.8 RH2M       70.3  64.3  63.4  63.2  63.9  64.2  63.9</span>
-<span class="co">#&gt;  9 -178. -89.8 T2M       -29.0 -40.7 -52.9 -57.8 -59.1 -59.6 -61.3</span>
-<span class="co">#&gt; 10 -178. -89.8 RH2M       70.3  64.3  63.4  63.2  63.9  64.2  63.8</span>
-<span class="co">#&gt; # … with 518,390 more rows, and 6 more variables: AUG &lt;dbl&gt;,</span>
+<span class="co">#&gt; # A tibble: 2 × 16</span>
+<span class="co">#&gt;     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  152. -27.5 T2M        24.7  23.7  22.0  19.0  15.1  12.6</span>
+<span class="co">#&gt; 2  152. -27.5 RH2M       64.7  69.6  71.1  70.5  69.1  75.1</span>
+<span class="co">#&gt; # … with 7 more variables: JUL &lt;dbl&gt;, AUG &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   SEP &lt;dbl&gt;, OCT &lt;dbl&gt;, NOV &lt;dbl&gt;, DEC &lt;dbl&gt;, ANN &lt;dbl&gt;</span></code></pre></div>
 <p><em>Note</em> the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, <em>e.g.</em>, .Rdata, .rda or .rds.</p>
 </div>
-<div id="description-of-parameters-for-get_power" class="section level3">
-<h3 class="hasAnchor">
-<a href="#description-of-parameters-for-get_power" class="anchor"></a>Description of parameters for <code>get_power</code>
-</h3>
-<ul>
-<li><p><code>community</code>, a text string with valid values of: “AG” (Agroclimatology), “SSE” (Surface meteorology and Solar Energy) or “SB” (Sustainable Buildings). The selected user community will affect the units of the parameter and the temporal display of time series data (<em>e.g.</em>, “AG” will use MJ/m<sup>2</sup>/day for radiation units, while SSE and SB use kW/m<sup>2</sup>/day as units).</p></li>
-<li>
-<p><code>lonlat</code>, A numeric vector of geographic coordinates for a cell or region entered as x, y coordinates. Not used when <code>temporal_average</code> is set to “CLIMATOLOGY”.</p>
-<ul>
-<li><p><em>For a single point</em> To get a specific cell, 1/2 x 1/2 degree, supply a length-two numeric vector giving the decimal degree longitude and latitude in that order for data to download, <em>e.g.</em>, <code>lonlat = c(-89.5, -179.5)</code>.</p></li>
-<li><p><em>For regional coverage</em> To get a region, supply a length-four numeric vector as lower left (lon, lat) and upper right (lon, lat) coordinates, <em>e.g.</em>, <code>lonlat = c(xmin, ymin, xmax, ymax)</code> in that order for a given region, <em>e.g.</em>, a bounding box for the south-western corner of Australia: <code>lonlat = c(112.5, -55.5, 115.5, -50.5)</code>. <em>Max bounding box is 10 x 10 degrees</em> of 1/2 x 1/2 degree data, <em>i.e.</em>, 100 points maximum in total.</p></li>
-</ul>
-</li>
-<li><p><code>pars</code>. A character vector of parameters to download. See <code><a href="../reference/parameters.html">help(parameters)</a></code> for a full list of valid values and definitions. If downloading “CLIMATOLOGY” a maximum of 3 <code>pars</code> can be specified at one time, for “DAILY” and “INTERANNUAL” a maximum of 20 can be specified at one time.</p></li>
-<li><p><code>dates</code>, a vector of start and end dates for which to query the POWER API, <em>e.g.</em>, <code>dates = c("1983-01-01", "2017-12-31")</code>.</p></li>
-<li><p><code>temporal_average</code>, a character vector of the desired temporal average(s). Valid values are “DAILY”, “INTERANNUAL” and “CLIMATOLOGY”.</p></li>
-</ul>
 </div>
-</div>
-<div id="creating-spatial-objects-from-get_power" class="section level2">
-<h2 class="hasAnchor">
-<a href="#creating-spatial-objects-from-get_power" class="anchor"></a>Creating Spatial Objects from <code>get_power</code>
+<div class="section level2">
+<h2 id="interrogating-the-api-for-available-parameters">Interrogating the API for available parameters<a class="anchor" aria-label="anchor" href="#interrogating-the-api-for-available-parameters"></a>
 </h2>
-<p>If you require spatial objects to work with, it is rather simple to convert the resulting tidy data frame from <code><a href="../reference/get_power.html">get_power()</a></code> to a spatial object in R using <code>terra::rast(type = "xyz")</code>.</p>
-<div id="converting-regional-data-to-a-spatraster-object" class="section level3">
-<h3 class="hasAnchor">
-<a href="#converting-regional-data-to-a-spatraster-object" class="anchor"></a>Converting Regional Data to a SpatRaster() Object</h3>
-<p>Using <code>lapply</code> and <code>split</code> it is easy to create stacks of raster objects from a regional query.</p>
+<p>The POWER API offers functionality to get detailed information on any parameter offered or all parameters that are offered for a given community and temporal API. This can be used to find available parameter names and definitions for each community and temporal API.</p>
+<p>Fetch the complete available information for the temperature at 2 metres above the Earth’s surface, T2M.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"terra"</span><span class="op">)</span>
-<span class="co">#&gt; terra version 0.8.6 (beta-release)</span>
-<span class="co"># Use split to create a list of data frames split by YYYYMMDD</span>
-<span class="va">daily_region_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">daily_region_ag</span>, <span class="va">daily_region_ag</span><span class="op">$</span><span class="va">YYYYMMDD</span><span class="op">)</span>
-
-<span class="co"># Remove date information from data frame, list names will carry YYYYMMDD</span>
-<span class="va">daily_region_ag</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>
-    X <span class="op">=</span> <span class="va">daily_region_ag</span>,
-    FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-      <span class="va">x</span><span class="op">[</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"YEAR"</span>, <span class="st">"MM"</span>, <span class="st">"DD"</span>, <span class="st">"DOY"</span>, <span class="st">"YYYYMMDD"</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
-  <span class="op">)</span>
-
-<span class="co"># Convert the data into matrix() objects for terra to work with</span>
-<span class="va">daily_region_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">daily_region_ag</span>, FUN <span class="op">=</span> <span class="va">as.matrix</span><span class="op">)</span>
-
-<span class="co"># Create a list of raster bricks from each YYYYMMDD data frame</span>
-<span class="va">RH2M_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>
-  X <span class="op">=</span> <span class="va">daily_region_ag</span>,
-  FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-    <span class="fu">rast</span><span class="op">(</span><span class="va">x</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>,
-         crs <span class="op">=</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span>,
-         type <span class="op">=</span> <span class="st">"xyz"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">T2M_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>
-  X <span class="op">=</span> <span class="va">daily_region_ag</span>,
-  FUN <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-    <span class="fu">rast</span><span class="op">(</span><span class="va">x</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span>,
-         crs <span class="op">=</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span>,
-         type <span class="op">=</span> <span class="st">"xyz"</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="va">raster_stack</span> <span class="op">&lt;-</span> <span class="fu">rast</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">RH2M_list</span>, <span class="va">T2M_list</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">raster_stack</span><span class="op">)</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">raster_stack</span><span class="op">)</span>, <span class="st">"_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">daily_region_ag</span><span class="op">)</span>, times <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>Plot all the items in the stack.</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/query_parameters.html">query_parameters</a></span><span class="op">(</span>par <span class="op">=</span> <span class="st">"T2M"</span><span class="op">)</span>
+<span class="co">#&gt; $T2M</span>
+<span class="co">#&gt; $T2M$temporal</span>
+<span class="co">#&gt; $T2M$temporal$HOURLY</span>
+<span class="co">#&gt; $T2M$temporal$HOURLY$name</span>
+<span class="co">#&gt; [1] "Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$HOURLY$definition</span>
+<span class="co">#&gt; [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$HOURLY$communities</span>
+<span class="co">#&gt; [1] "AG" "RE" "SB"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$HOURLY$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$DAILY</span>
+<span class="co">#&gt; $T2M$temporal$DAILY$name</span>
+<span class="co">#&gt; [1] "Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$DAILY$definition</span>
+<span class="co">#&gt; [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$DAILY$communities</span>
+<span class="co">#&gt; [1] "AG" "RE" "SB"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$DAILY$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$MONTHLY</span>
+<span class="co">#&gt; $T2M$temporal$MONTHLY$name</span>
+<span class="co">#&gt; [1] "Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$MONTHLY$definition</span>
+<span class="co">#&gt; [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$MONTHLY$communities</span>
+<span class="co">#&gt; [1] "AG" "RE" "SB"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$MONTHLY$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$CLIMATOLOGY</span>
+<span class="co">#&gt; $T2M$temporal$CLIMATOLOGY$name</span>
+<span class="co">#&gt; [1] "Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$CLIMATOLOGY$definition</span>
+<span class="co">#&gt; [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$CLIMATOLOGY$communities</span>
+<span class="co">#&gt; [1] "AG" "RE" "SB"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal$CLIMATOLOGY$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span></code></pre></div>
+<p>Fetch complete temporal and community specific attribute information for “T2M” in the “ag” community for the “hourly” temporal API.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">raster_stack</span><span class="op">)</span></code></pre></div>
-<p><img src="plot-fig1-1.png" title="plot of chunk plot-fig1" alt="plot of chunk plot-fig1" style="display: block; margin: auto;"></p>
-</div>
-<div id="converting-global-climatology-to-a-gridded-spatial-object" class="section level3">
-<h3 class="hasAnchor">
-<a href="#converting-global-climatology-to-a-gridded-spatial-object" class="anchor"></a>Converting Global Climatology to a Gridded Spatial Object</h3>
-<p>Converting global climatology to a <code>terra</code> objects is as simple as querying and then converting the resulting <code>tibble</code> to a <em>terra</em> object using <code>terra::rast(type = "xyz")</code><sup>*</sup>. Illustrated here using the <code>climatology_ag</code> object previously created are two methods.</p>
-<p><sub>*: You may experience issues if you have &lt;16GB RAM available converting the entire object to a <code>terra::rast()</code>.</sub></p>
-<div id="for-low-memory-systems" class="section level4">
-<h4 class="hasAnchor">
-<a href="#for-low-memory-systems" class="anchor"></a>For low-memory systems</h4>
-<p>For low-memory systems, a computer with 8GB or less RAM, it is useful to have as much of your R global environment free from objects that take much memory and make sure other processes are not using system memory.</p>
-<p>Using indexing pick the month or annual value and create a raster object. In this case, column 15 is the annual average, <code>climatology_list$RH2M[, c(1:2, 15)]</code>.</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/query_parameters.html">query_parameters</a></span><span class="op">(</span>par <span class="op">=</span> <span class="st">"T2M"</span>,
+                 community <span class="op">=</span> <span class="st">"ag"</span>,
+                 temporal_api <span class="op">=</span> <span class="st">"hourly"</span><span class="op">)</span>
+<span class="co">#&gt; $T2M</span>
+<span class="co">#&gt; $T2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$units</span>
+<span class="co">#&gt; [1] "C"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$name</span>
+<span class="co">#&gt; [1] "Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$definition</span>
+<span class="co">#&gt; [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."</span></code></pre></div>
+<p>Fetch complete temporal and community specific attribute information for all parameters in the “ag” community for the “hourly” temporal API.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># split data frame into data frames for each parameter in a list</span>
-<span class="va">climatology_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/split.html">split</a></span><span class="op">(</span><span class="va">climatology_ag</span>, <span class="va">climatology_ag</span><span class="op">$</span><span class="va">PARAMETER</span><span class="op">)</span>
-
-<span class="co"># Remove PARAMETER information from data frame, list names supply this</span>
-<span class="va">climatology_list</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">climatology_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">x</span><span class="op">[</span><span class="st">"PARAMETER"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NULL</span>
-    <span class="va">x</span>
-  <span class="op">}</span><span class="op">)</span>
-
-<span class="co"># Convert the data into matrix() objects for terra to work with</span>
-<span class="va">climatology_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span>X <span class="op">=</span> <span class="va">climatology_list</span>, FUN <span class="op">=</span> <span class="va">as.matrix</span><span class="op">)</span>
-
-<span class="va">RH2M_ann</span> <span class="op">&lt;-</span> <span class="fu">rast</span><span class="op">(</span><span class="va">climatology_list</span><span class="op">$</span><span class="va">RH2M</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="fl">15</span><span class="op">)</span><span class="op">]</span>,
-                 crs <span class="op">=</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span>,
-                 type <span class="op">=</span> <span class="st">"xyz"</span><span class="op">)</span>
-
-<span class="va">RH2M_ann</span>
-<span class="co">#&gt; class       : SpatRaster </span>
-<span class="co">#&gt; dimensions  : 360, 720, 1  (nrow, ncol, nlyr)</span>
-<span class="co">#&gt; resolution  : 0.5, 0.5  (x, y)</span>
-<span class="co">#&gt; extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)</span>
-<span class="co">#&gt; coord. ref. :  </span>
-<span class="co">#&gt; data source : memory </span>
-<span class="co">#&gt; names       :   ANN </span>
-<span class="co">#&gt; min values  : 15.88 </span>
-<span class="co">#&gt; max values  : 93.92</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">RH2M_ann</span><span class="op">)</span></code></pre></div>
-<p><img src="create-single-raster-1.png" title="plot of chunk create-single-raster" alt="plot of chunk create-single-raster" style="display: block; margin: auto;"></p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/query_parameters.html">query_parameters</a></span><span class="op">(</span>community <span class="op">=</span> <span class="st">"ag"</span>,
+                 temporal_api <span class="op">=</span> <span class="st">"hourly"</span><span class="op">)</span>
+<span class="co">#&gt; $PRECSNOLAND</span>
+<span class="co">#&gt; $PRECSNOLAND$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$units</span>
+<span class="co">#&gt; [1] "mm/hour"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$name</span>
+<span class="co">#&gt; [1] "Snow Precipitation Land"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECSNOLAND$definition</span>
+<span class="co">#&gt; [1] "The snow precipitation only over land at the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR</span>
+<span class="co">#&gt; $PRECTOTCORR$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$units</span>
+<span class="co">#&gt; [1] "mm/hour"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$name</span>
+<span class="co">#&gt; [1] "Precipitation Corrected"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PRECTOTCORR$definition</span>
+<span class="co">#&gt; [1] "The bias corrected average of total precipitation at the surface of the earth in water mass (includes water content in snow)."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS</span>
+<span class="co">#&gt; $PS$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$units</span>
+<span class="co">#&gt; [1] "kPa"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$name</span>
+<span class="co">#&gt; [1] "Surface Pressure"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PS$definition</span>
+<span class="co">#&gt; [1] "The average of surface pressure at the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M</span>
+<span class="co">#&gt; $QV10M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$units</span>
+<span class="co">#&gt; [1] "g/kg"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$name</span>
+<span class="co">#&gt; [1] "Specific Humidity at 10 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV10M$definition</span>
+<span class="co">#&gt; [1] "The ratio of the mass of water vapor to the total mass of air at 10 meters (kg water/kg total air)."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M</span>
+<span class="co">#&gt; $QV2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$units</span>
+<span class="co">#&gt; [1] "g/kg"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$name</span>
+<span class="co">#&gt; [1] "Specific Humidity at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $QV2M$definition</span>
+<span class="co">#&gt; [1] "The ratio of the mass of water vapor to the total mass of air at 2 meters (kg water/kg total air)."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M</span>
+<span class="co">#&gt; $RH2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$inputs</span>
+<span class="co">#&gt; [1] "T2M"  "PS"   "QV2M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$units</span>
+<span class="co">#&gt; [1] "%"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$name</span>
+<span class="co">#&gt; [1] "Relative Humidity at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $RH2M$definition</span>
+<span class="co">#&gt; [1] "The ratio of actual partial pressure of water vapor to the partial pressure at saturation, expressed in percent."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP</span>
+<span class="co">#&gt; $SNODP$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$units</span>
+<span class="co">#&gt; [1] "cm"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$name</span>
+<span class="co">#&gt; [1] "Snow Depth"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SNODP$definition</span>
+<span class="co">#&gt; [1] "The snow depth on land at surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M</span>
+<span class="co">#&gt; $T2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$units</span>
+<span class="co">#&gt; [1] "C"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$name</span>
+<span class="co">#&gt; [1] "Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2M$definition</span>
+<span class="co">#&gt; [1] "The average air (dry bulb) temperature at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS</span>
+<span class="co">#&gt; $TS$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$units</span>
+<span class="co">#&gt; [1] "C"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$name</span>
+<span class="co">#&gt; [1] "Earth Skin Temperature"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TS$definition</span>
+<span class="co">#&gt; [1] "The average temperature at the earth's surface."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M</span>
+<span class="co">#&gt; $U10M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$name</span>
+<span class="co">#&gt; [1] "Eastward Wind at 10 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U10M$definition</span>
+<span class="co">#&gt; [1] "The estimate of the eastward wind average speed for winds blowing 10 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M</span>
+<span class="co">#&gt; $U2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$name</span>
+<span class="co">#&gt; [1] "Eastward Wind at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U2M$definition</span>
+<span class="co">#&gt; [1] "The estimate of the eastward wind average speed for winds blowing 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M</span>
+<span class="co">#&gt; $U50M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$name</span>
+<span class="co">#&gt; [1] "Eastward Wind at 50 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $U50M$definition</span>
+<span class="co">#&gt; [1] "The estimate of the eastward wind average speed for winds blowing 50 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M</span>
+<span class="co">#&gt; $V10M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$name</span>
+<span class="co">#&gt; [1] "Northward Wind at 10 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V10M$definition</span>
+<span class="co">#&gt; [1] "The estimate of the northward wind average speed for winds blowing 10 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M</span>
+<span class="co">#&gt; $V2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$name</span>
+<span class="co">#&gt; [1] "Northward Wind at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V2M$definition</span>
+<span class="co">#&gt; [1] "The estimate of the northward wind average speed for winds blowing 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M</span>
+<span class="co">#&gt; $V50M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$source</span>
+<span class="co">#&gt; [1] "MERRA2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$name</span>
+<span class="co">#&gt; [1] "Northward Wind at 50 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $V50M$definition</span>
+<span class="co">#&gt; [1] "The estimate of the northward wind average speed for winds blowing 50 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC</span>
+<span class="co">#&gt; $PSC$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$inputs</span>
+<span class="co">#&gt; [1] "PS"  "T2M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$units</span>
+<span class="co">#&gt; [1] "kPa"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$name</span>
+<span class="co">#&gt; [1] "Corrected Atmospheric Pressure (Adjusted For Site Elevation)"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PSC$definition</span>
+<span class="co">#&gt; [1] "Atmospheric pressure associated with the MERRA-2 grid has been adjusted based upon the difference between the elevation of an underlying surface site and the average elevation of the MERRA-2 grid cell."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW</span>
+<span class="co">#&gt; $T2MDEW$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$inputs</span>
+<span class="co">#&gt; [1] "T2M"  "RH2M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$units</span>
+<span class="co">#&gt; [1] "C"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$name</span>
+<span class="co">#&gt; [1] "Dew/Frost Point at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MDEW$definition</span>
+<span class="co">#&gt; [1] "The dew/frost point temperature at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET</span>
+<span class="co">#&gt; $T2MWET$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$inputs</span>
+<span class="co">#&gt; [1] "PS"     "T2M"    "T2MDEW"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$units</span>
+<span class="co">#&gt; [1] "C"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$name</span>
+<span class="co">#&gt; [1] "Wet Bulb Temperature at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $T2MWET$definition</span>
+<span class="co">#&gt; [1] "The adiabatic saturation temperature which can be measured by a thermometer covered in a water-soaked cloth over which air is passed at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M</span>
+<span class="co">#&gt; $WD10M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$inputs</span>
+<span class="co">#&gt; [1] "U10M" "V10M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$units</span>
+<span class="co">#&gt; [1] "Degrees"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$name</span>
+<span class="co">#&gt; [1] "Wind Direction at 10 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD10M$definition</span>
+<span class="co">#&gt; [1] "The average of the wind direction at 10 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M</span>
+<span class="co">#&gt; $WD2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$inputs</span>
+<span class="co">#&gt; [1] "U2M" "V2M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$units</span>
+<span class="co">#&gt; [1] "Degrees"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$name</span>
+<span class="co">#&gt; [1] "Wind Direction at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD2M$definition</span>
+<span class="co">#&gt; [1] "The average of the wind direction at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M</span>
+<span class="co">#&gt; $WD50M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$inputs</span>
+<span class="co">#&gt; [1] "U50M" "V50M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$units</span>
+<span class="co">#&gt; [1] "Degrees"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$name</span>
+<span class="co">#&gt; [1] "Wind Direction at 50 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WD50M$definition</span>
+<span class="co">#&gt; [1] "The average of the wind direction at 50 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M</span>
+<span class="co">#&gt; $WS10M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$inputs</span>
+<span class="co">#&gt; [1] "U10M" "V10M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$name</span>
+<span class="co">#&gt; [1] "Wind Speed at 10 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS10M$definition</span>
+<span class="co">#&gt; [1] "The average of wind speed at 10 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M</span>
+<span class="co">#&gt; $WS2M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$inputs</span>
+<span class="co">#&gt; [1] "U2M" "V2M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$name</span>
+<span class="co">#&gt; [1] "Wind Speed at 2 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS2M$definition</span>
+<span class="co">#&gt; [1] "The average of wind speed at 2 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M</span>
+<span class="co">#&gt; $WS50M$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$inputs</span>
+<span class="co">#&gt; [1] "U50M" "V50M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$name</span>
+<span class="co">#&gt; [1] "Wind Speed at 50 Meters"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WS50M$definition</span>
+<span class="co">#&gt; [1] "The average of wind speed at 50 meters above the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC</span>
+<span class="co">#&gt; $WSC$type</span>
+<span class="co">#&gt; [1] "METEOROLOGY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$calculated</span>
+<span class="co">#&gt; [1] TRUE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$inputs</span>
+<span class="co">#&gt; [1] "WS10M" "WS50M"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$units</span>
+<span class="co">#&gt; [1] "m/s"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$name</span>
+<span class="co">#&gt; [1] "Corrected Wind Speed (Adjusted For Elevation)"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $WSC$definition</span>
+<span class="co">#&gt; [1] "Wind speed associated with the MERRA-2 grid adjusted using the Gipe Power Law and the elevation difference between the average elevation of the grid cell and the elevation of the underlying surface."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN</span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$units</span>
+<span class="co">#&gt; [1] "W/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$name</span>
+<span class="co">#&gt; [1] "All Sky Surface Longwave Downward Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_LW_DWN$definition</span>
+<span class="co">#&gt; [1] "The downward thermal infrared irradiance under all sky conditions reaching a horizontal plane the surface of the earth. Also known as Horizontal Infrared Radiation Intensity from Sky."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF</span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$name</span>
+<span class="co">#&gt; [1] "All Sky Surface Shortwave Diffuse Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DIFF$definition</span>
+<span class="co">#&gt; [1] "The diffuse (light energy scattered out of the direction of the sun) solar irradiance incident on a horizontal plane at the surface of the earth under all sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN</span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$name</span>
+<span class="co">#&gt; [1] "All Sky Surface Shortwave Downward Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DWN$definition</span>
+<span class="co">#&gt; [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the surface of the earth under all sky conditions. An alternative term for the total solar irradiance is the \"Global Horizontal Irradiance\" or GHI."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX</span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$name</span>
+<span class="co">#&gt; [1] "All Sky Surface UV Index"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UV_INDEX$definition</span>
+<span class="co">#&gt; [1] "The ultraviolet radiation exposure index."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA</span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$units</span>
+<span class="co">#&gt; [1] "W/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$name</span>
+<span class="co">#&gt; [1] "All Sky Surface UVA Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVA$definition</span>
+<span class="co">#&gt; [1] "The ultraviolet A (UVA 315nm-400nm) irradiance under all sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB</span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$units</span>
+<span class="co">#&gt; [1] "W/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$name</span>
+<span class="co">#&gt; [1] "All Sky Surface UVB Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_UVB$definition</span>
+<span class="co">#&gt; [1] "The ultraviolet B (UVB 280nm-315nm) irradiance under all sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55</span>
+<span class="co">#&gt; $AOD_55$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$name</span>
+<span class="co">#&gt; [1] "Aerosol Optical Depth 55"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_55$definition</span>
+<span class="co">#&gt; [1] "The optical thickness at 0.55 um measured vertically; the component of the atmosphere to quantify the removal of radiant energy from an incident beam."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84</span>
+<span class="co">#&gt; $AOD_84$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$name</span>
+<span class="co">#&gt; [1] "Aerosol Optical Depth 84"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $AOD_84$definition</span>
+<span class="co">#&gt; [1] "The optical thickness at 0.84 um measured vertically; the component of the atmosphere to quantify the removal of radiant energy from an incident beam."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT</span>
+<span class="co">#&gt; $CLOUD_AMT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$units</span>
+<span class="co">#&gt; [1] "%"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$name</span>
+<span class="co">#&gt; [1] "Cloud Amount"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_AMT$definition</span>
+<span class="co">#&gt; [1] "The average percent of cloud amount during the temporal period."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD</span>
+<span class="co">#&gt; $CLOUD_OD$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$name</span>
+<span class="co">#&gt; [1] "Cloud Optical Visible Depth"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLOUD_OD$definition</span>
+<span class="co">#&gt; [1] "The vertical optical thickness between the top and bottom of a cloud."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN</span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$units</span>
+<span class="co">#&gt; [1] "W/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$name</span>
+<span class="co">#&gt; [1] "Clear Sky Surface Longwave Downward Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_LW_DWN$definition</span>
+<span class="co">#&gt; [1] "The downward thermal infrared irradiance under clear sky conditions reaching a horizontal plane the surface of the earth. Also known as Horizontal Infrared Radiation Intensity from Sky."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF</span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$name</span>
+<span class="co">#&gt; [1] "Clear Sky Surface Shortwave Downward Diffuse Horizontal Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DIFF$definition</span>
+<span class="co">#&gt; [1] "The diffuse (light energy scattered out of the direction of the sun) solar irradiance incident on a horizontal plane at the surface of the earth under clear sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN</span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$name</span>
+<span class="co">#&gt; [1] "Clear Sky Surface Shortwave Downward Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DWN$definition</span>
+<span class="co">#&gt; [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the surface of the earth under clear sky conditions. An alternative term for the total solar irradiance is the \"Global Horizontal Irradiance\" or GHI."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW</span>
+<span class="co">#&gt; $PW$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$units</span>
+<span class="co">#&gt; [1] "cm"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$name</span>
+<span class="co">#&gt; [1] "Precipitable Water"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $PW$definition</span>
+<span class="co">#&gt; [1] "The total atmospheric water vapor contained in a vertical column of the atmosphere."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA</span>
+<span class="co">#&gt; $SZA$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$units</span>
+<span class="co">#&gt; [1] "Degrees"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$name</span>
+<span class="co">#&gt; [1] "Solar Zenith Angle"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $SZA$definition</span>
+<span class="co">#&gt; [1] "The angle between the geodetic zenith vector and a vector from the earth point to the sun integrated over the period."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN</span>
+<span class="co">#&gt; $TOA_SW_DWN$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$source</span>
+<span class="co">#&gt; [1] "CERES"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$name</span>
+<span class="co">#&gt; [1] "Top-Of-Atmosphere Shortwave Downward Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DWN$definition</span>
+<span class="co">#&gt; [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the top of the atmosphere (extraterrestrial radiation)."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT</span>
+<span class="co">#&gt; $ALLSKY_KT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$name</span>
+<span class="co">#&gt; [1] "All Sky Insolation Clearness Index"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_KT$definition</span>
+<span class="co">#&gt; [1] "A fraction representing clearness of the atmosphere; the all sky insolation that is transmitted through the atmosphere to strike the surface of the earth divided by the average of top of the atmosphere total solar irradiance incident."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT</span>
+<span class="co">#&gt; $ALLSKY_NKT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$name</span>
+<span class="co">#&gt; [1] "All Sky Normalized Insolation Clearness Index"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_NKT$definition</span>
+<span class="co">#&gt; [1] "The average zenith angle-independent expression of the all sky insolation clearness index."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT</span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$units</span>
+<span class="co">#&gt; [1] "W/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$name</span>
+<span class="co">#&gt; [1] "All Sky Surface PAR Total"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_PAR_TOT$definition</span>
+<span class="co">#&gt; [1] "The total Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under all sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI</span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$name</span>
+<span class="co">#&gt; [1] "All Sky Surface Shortwave Downward Direct Normal Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SFC_SW_DNI$definition</span>
+<span class="co">#&gt; [1] "The direct solar irradiance incident to a horizontal plane normal (perpendicular) to the direction of the sun's position under all sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB</span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$name</span>
+<span class="co">#&gt; [1] "All Sky Surface Albedo"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ALLSKY_SRF_ALB$definition</span>
+<span class="co">#&gt; [1] "The all sky rate of reflectivity of the earth's surface; the ratio of the solar energy reflected by the surface of the earth compared to the total solar energy incident reaching the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT</span>
+<span class="co">#&gt; $CLRSKY_KT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$name</span>
+<span class="co">#&gt; [1] "Clear Sky Insolation Clearness Index"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_KT$definition</span>
+<span class="co">#&gt; [1] "A fraction representing clearness of the atmosphere; the clear sky insolation that is transmitted through the atmosphere to strike the surface of the earth divided by the average of top of the atmosphere total solar irradiance incident."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT</span>
+<span class="co">#&gt; $CLRSKY_NKT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$name</span>
+<span class="co">#&gt; [1] "Clear Sky Normalized Insolation Clearness Index"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_NKT$definition</span>
+<span class="co">#&gt; [1] "The average zenith angle-independent expression of the clear sky insolation clearness index."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT</span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$units</span>
+<span class="co">#&gt; [1] "W/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$name</span>
+<span class="co">#&gt; [1] "Clear Sky Surface PAR Total"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_PAR_TOT$definition</span>
+<span class="co">#&gt; [1] "The total Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under clear sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI</span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$name</span>
+<span class="co">#&gt; [1] "Clear Sky Surface Shortwave Downward Direct Normal Irradiance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SFC_SW_DNI$definition</span>
+<span class="co">#&gt; [1] "The direct solar irradiance incident to a horizontal plane normal (perpendicular) to the direction of the sun's position under clear sky conditions."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB</span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$units</span>
+<span class="co">#&gt; [1] "dimensionless"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$name</span>
+<span class="co">#&gt; [1] "Clear Sky Surface Albedo"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $CLRSKY_SRF_ALB$definition</span>
+<span class="co">#&gt; [1] "The clear sky rate of reflectivity of the earth's surface; the ratio of the solar energy reflected by the surface of the earth compared to the total solar energy incident reaching the surface of the earth."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE</span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$units</span>
+<span class="co">#&gt; [1] "lux"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$name</span>
+<span class="co">#&gt; [1] "Diffuse Illuminance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIFFUSE_ILLUMINANCE$definition</span>
+<span class="co">#&gt; [1] "The average amount of illuminance received directly from the solar disk on a surface perpendicular to the suns rays."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE</span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$units</span>
+<span class="co">#&gt; [1] "lux"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$name</span>
+<span class="co">#&gt; [1] "Direct Illuminance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $DIRECT_ILLUMINANCE$definition</span>
+<span class="co">#&gt; [1] "The average amount of illuminance received from the sky (excluding the solar disk) on a horizontal plane."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE</span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$units</span>
+<span class="co">#&gt; [1] "lux"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$name</span>
+<span class="co">#&gt; [1] "Global Illuminance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $GLOBAL_ILLUMINANCE$definition</span>
+<span class="co">#&gt; [1] "The average total amount of direct and diffuse illuminance on a horizontal plane."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI</span>
+<span class="co">#&gt; $TOA_SW_DNI$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$units</span>
+<span class="co">#&gt; [1] "MJ/hr"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$name</span>
+<span class="co">#&gt; [1] "Top-Of-Atmosphere Shortwave Direct Normal Radiation"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $TOA_SW_DNI$definition</span>
+<span class="co">#&gt; [1] "The total solar irradiance incident (direct plus diffuse) on a horizontal plane where oriented to the sun's position at the top of the atmosphere (extraterrestrial radiation)."</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE</span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$type</span>
+<span class="co">#&gt; [1] "RADIATION"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$temporal</span>
+<span class="co">#&gt; [1] "HOURLY"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$source</span>
+<span class="co">#&gt; [1] "POWER"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$community</span>
+<span class="co">#&gt; [1] "AG"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$calculated</span>
+<span class="co">#&gt; [1] FALSE</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$inputs</span>
+<span class="co">#&gt; NULL</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$units</span>
+<span class="co">#&gt; [1] "cd/m^2"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$name</span>
+<span class="co">#&gt; [1] "Zenith luminance"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $ZENITH_LUMINANCE$definition</span>
+<span class="co">#&gt; [1] "The average amount of luminance at the skys zenith."</span></code></pre></div>
 </div>
-<div id="for-systems-with-more-available-memory" class="section level4">
-<h4 class="hasAnchor">
-<a href="#for-systems-with-more-available-memory" class="anchor"></a>For systems with more available memory</h4>
-<p>For systems with RAM of ~16GB or more, it is possible to create a <code>terra::rast()</code> of the resulting POWER query. To do so, subset the <code>tibble()</code> for the desired parameter and drop the <code>PARAMETER</code> column.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Remove the parameter column and conver to a matrix() object for terra</span>
-<span class="va">T2M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">climatology_ag</span>, <span class="va">PARAMETER</span> <span class="op">==</span> <span class="st">"T2M"</span><span class="op">)</span><span class="op">[</span>, <span class="op">-</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>
-
-<span class="co"># Preallocate a list and name it for filling with SpatRaster objects</span>
-<span class="va">T2M_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span>mode <span class="op">=</span> <span class="st">"list"</span>, length <span class="op">=</span> <span class="fl">13</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">T2M_list</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">T2M</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span>
-
-<span class="co"># in a loop, convert each month into a SpatRaster object</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">T2M</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">T2M_list</span><span class="op">[[</span><span class="va">i</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">rast</span><span class="op">(</span><span class="va">T2M</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LON"</span>, <span class="st">"LAT"</span>, <span class="va">i</span><span class="op">)</span><span class="op">]</span>,
-                        crs <span class="op">=</span> <span class="st">"+proj=eqc +lat_ts=0 +lat_0=0 +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"</span>,
-                        type <span class="op">=</span> <span class="st">"xyz"</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="co"># create a stack of SpatRaster objects</span>
-<span class="va">T2M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu">rast</span><span class="op">(</span><span class="va">T2M_list</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">T2M</span><span class="op">)</span></code></pre></div>
-<p><img src="create-climatology-brick-1.png" title="plot of chunk create-climatology-brick" alt="plot of chunk create-climatology-brick" style="display: block; margin: auto;"></p>
+<div class="section level2">
+<h2 id="a-note-on-api-throttling">A Note on API Throttling<a class="anchor" aria-label="anchor" href="#a-note-on-api-throttling"></a>
+</h2>
+<p>The POWER API endpoints limit queries to prevent overloads due to repetitive and rapid requests. If you find that the API is throttling your queries, I suggest that you investigate the use of <code>limit_rate()</code> from <a href="https://cran.r-project.org/package=ratelimitr" class="external-link"><em>ratelimitr</em></a> to create self-limiting functions that will respect the rate limits that the API has in place. It is best to check the <a href="https://power.larc.nasa.gov/docs/services/api/#rate-limiting" class="external-link">POWER website</a> for the latest rate limits as they differ between temporal APIs and may change over time as the project matures.</p>
 </div>
-</div>
-</div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<p><a href="https://power.larc.nasa.gov" class="uri">https://power.larc.nasa.gov</a></p>
-<p><a href="https://power.larc.nasa.gov/docs/methodology/" class="uri">https://power.larc.nasa.gov/docs/methodology/</a></p>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<p><a href="https://power.larc.nasa.gov" class="external-link uri">https://power.larc.nasa.gov</a></p>
+<p><a href="https://power.larc.nasa.gov/docs/methodology/" class="external-link uri">https://power.larc.nasa.gov/docs/methodology/</a></p>
 </div>
   </div>
 
@@ -437,11 +2008,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Adam H. Sparks.</p>
+  <p></p>
+<p>Developed by Adam H. Sparks.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -449,6 +2022,8 @@
 
   
 
+
+  
 
   </body>
 </html>
