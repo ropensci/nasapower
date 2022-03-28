@@ -13,7 +13,8 @@ vcr::use_cassette("daily_ag_point", {
                "WS10M",
                "PS"),
       dates = c("1983-01-01"),
-      temporal_api = "Daily"
+      temporal_api = "Daily",
+      time_standard = "UTC"
     )
 
     expect_is(power_query, "data.frame")
@@ -24,12 +25,12 @@ vcr::use_cassette("daily_ag_point", {
     expect_equal(power_query$DD, 1)
     expect_equal(power_query$DOY, 1)
     expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-    expect_equal(power_query$T2M, -25.24)
-    expect_equal(power_query$T2M_MIN, -25.67)
-    expect_equal(power_query$T2M_MAX, -24.88)
-    expect_equal(power_query$RH2M, 94.25)
-    expect_equal(power_query$WS10M, 2.32)
-    expect_equal(power_query$PS, 69.06)
+    expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+    expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+    expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
+    expect_equal(power_query$PS, 69.2, tolerance = 1e-2)
     expect_named(
       power_query,
       c(
@@ -68,7 +69,8 @@ vcr::use_cassette("adjusted_air_pressure", {
                        "PS"),
               dates = c("1983-01-01"),
               temporal_api = "Daily",
-              site_elevation = 0
+              site_elevation = 0,
+              time_standard = "UTC"
             )
 
             expect_is(power_query, "data.frame")
@@ -79,13 +81,13 @@ vcr::use_cassette("adjusted_air_pressure", {
             expect_equal(power_query$DD, 1)
             expect_equal(power_query$DOY, 1)
             expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-            expect_equal(power_query$T2M, -25.24)
-            expect_equal(power_query$T2M_MIN, -25.67)
-            expect_equal(power_query$T2M_MAX, -24.88)
-            expect_equal(power_query$RH2M, 94.25)
-            expect_equal(power_query$WS10M, 2.32)
-            expect_equal(power_query$PS, 69.06)
-            expect_equal(power_query$PSC, 101.28)
+            expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+            expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+            expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+            expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+            expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
+            expect_equal(power_query$PS, 69.2, tolerance = 1e-2)
+            expect_equal(power_query$PSC, 101, tolerance = 1e-2)
             expect_named(
               power_query,
               c(
@@ -126,7 +128,8 @@ vcr::use_cassette("adjusted_wind_elevation", {
               dates = c("1983-01-01"),
               temporal_api = "Daily",
               wind_elevation = 300,
-              wind_surface = "vegtype_1"
+              wind_surface = "vegtype_1",
+              time_standard = "UTC"
             )
 
             expect_is(power_query, "data.frame")
@@ -137,13 +140,13 @@ vcr::use_cassette("adjusted_wind_elevation", {
             expect_equal(power_query$DD, 1)
             expect_equal(power_query$DOY, 1)
             expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-            expect_equal(power_query$T2M, -25.24)
-            expect_equal(power_query$T2M_MIN, -25.67)
-            expect_equal(power_query$T2M_MAX, -24.88)
-            expect_equal(power_query$RH2M, 94.25)
-            expect_equal(power_query$WS10M, 2.32)
-            expect_equal(power_query$PS, 69.06)
-            expect_equal(power_query$WSC, 19.44)
+            expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+            expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+            expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+            expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+            expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
+            expect_equal(power_query$PS, 69.06, tolerance = 1e-2)
+            expect_equal(power_query$WSC, 17.4, tolerance = 1e-2)
             expect_named(
               power_query,
               c(
@@ -166,7 +169,7 @@ vcr::use_cassette("adjusted_wind_elevation", {
           })
 })
 
-vcr::use_cassette("daily_sb_point", {
+vcr::use_cassette("daily_sb_point_UTC", {
   test_that("get_power returns daily point SB data", {
     skip_on_cran()
     power_query <- get_power(
@@ -178,7 +181,8 @@ vcr::use_cassette("daily_sb_point", {
                "RH2M",
                "WS10M"),
       dates = c("1983-01-01"),
-      temporal_api = "Daily"
+      temporal_api = "Daily",
+      time_standard = "UTC"
     )
 
     expect_is(power_query, "data.frame")
@@ -189,11 +193,43 @@ vcr::use_cassette("daily_sb_point", {
     expect_equal(power_query$DD, 1)
     expect_equal(power_query$DOY, 1)
     expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-    expect_equal(power_query$T2M, -25.24)
-    expect_equal(power_query$T2M_MIN, -25.67)
-    expect_equal(power_query$T2M_MAX, -24.88)
-    expect_equal(power_query$RH2M, 94.25)
-    expect_equal(power_query$WS10M, 2.32)
+    expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+    expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+    expect_equal(power_query$WS10M, 1.93,  tolerance = 1e-2)
+  })
+})
+
+vcr::use_cassette("daily_sb_point_LST", {
+  test_that("get_power returns daily point SB data for LST", {
+    skip_on_cran()
+    power_query <- get_power(
+      community = "sb",
+      lonlat = c(-179.5, -89.5),
+      pars = c("T2M",
+               "T2M_MIN",
+               "T2M_MAX",
+               "RH2M",
+               "WS10M"),
+      dates = c("1983-01-01"),
+      temporal_api = "Daily",
+      time_standard = "LST"
+    )
+
+    expect_is(power_query, "data.frame")
+    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+    expect_equal(power_query$YEAR, 1983)
+    expect_equal(power_query$MM, 1)
+    expect_equal(power_query$DD, 1)
+    expect_equal(power_query$DOY, 1)
+    expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+    expect_equal(power_query$T2M, -25.2, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MIN, -25.7, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MAX, -24.9, tolerance = 1e-2)
+    expect_equal(power_query$RH2M, 94.2, tolerance = 1e-2)
+    expect_equal(power_query$WS10M, 2.32,  tolerance = 1e-2)
   })
 })
 

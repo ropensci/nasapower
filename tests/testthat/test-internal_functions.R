@@ -383,6 +383,7 @@ test_that(".build_query assembles a proper query for single point and != NULL
             site_elevation <- NULL
             wind_elevation <- NULL
             wind_surface <- NULL
+            time_standard = "UTC"
 
             dates <- .check_dates(dates,
                                   lonlat,
@@ -400,7 +401,8 @@ test_that(".build_query assembles a proper query for single point and != NULL
                                        dates,
                                        site_elevation,
                                        wind_elevation,
-                                       wind_surface)
+                                       wind_surface,
+                                       time_standard)
 
             expect_named(
               query_list,
@@ -412,7 +414,7 @@ test_that(".build_query assembles a proper query for single point and != NULL
                 "longitude",
                 "latitude",
                 "format",
-                "time_standard",
+                "time-standard",
                 "user"
               )
             )
@@ -430,6 +432,7 @@ test_that(".build_query assembles a proper query for single point and NULL
             site_elevation <- NULL
             wind_elevation <- NULL
             wind_surface <- NULL
+            time_standard = "UTC"
 
             dates <- .check_dates(dates,
                                   lonlat,
@@ -447,7 +450,8 @@ test_that(".build_query assembles a proper query for single point and NULL
                                        dates,
                                        site_elevation,
                                        wind_elevation,
-                                       wind_surface)
+                                       wind_surface,
+                                       time_standard)
 
             expect_named(
               query_list,
@@ -457,7 +461,7 @@ test_that(".build_query assembles a proper query for single point and NULL
                 "longitude",
                 "latitude",
                 "format",
-                "time_standard",
+                "time-standard",
                 "user"
               )
             )
@@ -474,6 +478,7 @@ test_that(".build_query assembles a proper query for regional and != NULL
             site_elevation <- NULL
             wind_elevation <- NULL
             wind_surface <- NULL
+            time_standard = "UTC"
 
             dates <- .check_dates(dates,
                                   community,
@@ -491,7 +496,8 @@ test_that(".build_query assembles a proper query for regional and != NULL
                                        dates,
                                        site_elevation,
                                        wind_elevation,
-                                       wind_surface)
+                                       wind_surface,
+                                       time_standard)
 
             expect_named(
               query_list,
@@ -503,7 +509,7 @@ test_that(".build_query assembles a proper query for regional and != NULL
                 "longitude-min",
                 "longitude-max",
                 "format",
-                "time_standard",
+                "time-standard",
                 "user"
               )
             )
@@ -526,6 +532,7 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
             lonlat_identifier <- .check_lonlat(lonlat,
                                                pars)
             user_agent <- "nasapower"
+            time_standard = "UTC"
 
             query_list <- .build_query(community,
                                        lonlat_identifier,
@@ -533,7 +540,8 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
                                        dates,
                                        site_elevation,
                                        wind_elevation,
-                                       wind_surface)
+                                       wind_surface,
+                                       time_standard)
 
             expect_named(
               query_list,
@@ -545,7 +553,7 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
                 "longitude-min",
                 "longitude-max",
                 "format",
-                "time_standard",
+                "time-standard",
                 "user"
               )
             )

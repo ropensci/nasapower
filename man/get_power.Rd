@@ -14,7 +14,7 @@ get_power(
   wind_elevation = NULL,
   wind_surface = NULL,
   temporal_average = NULL,
-  time_standard = "UTC"
+  time_standard = "LST"
 )
 }
 \arguments{
@@ -68,6 +68,7 @@ terminology.}
 that used by the world.
 \item Local Solar Time (\acronym{LST}): A 15 Degrees swath that represents
 solar noon at the middle longitude of the swath.
+Defaults to \code{LST}.
 }}
 }
 \value{
@@ -114,7 +115,7 @@ powered renewable energy systems.}
  There are four valid values.
 \describe{
 \item{hourly}{The hourly average of \code{pars} by hour, day, month and year,
-the time zone is UTC.d by default.}
+the time zone is LST by default.}
 \item{daily}{The daily average of \code{pars} by day, month and year.}
 \item{monthly}{The monthly average of \code{pars} by month and year.}
 \item{climatology}{Provide parameters as 22-year climatologies (solar)

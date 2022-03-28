@@ -1,12 +1,12 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&site-elevation=0&longitude=-179.5&latitude=-89.5&format=csv&time_standard=utc&user=nasapower406
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&site-elevation=0&longitude=-179.5&latitude=-89.5&format=csv&time-standard=UTC&user=nasapower406
     body:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.77.0 r-curl/4.3.2 crul/1.2.0
+      User-Agent: libcurl/7.79.1 r-curl/4.3.2 crul/1.2.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -18,24 +18,24 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '533'
-      ratelimit-remaining: '58'
-      ratelimit-reset: '37'
-      x-ratelimit-limit-minute: '60'
-      x-ratelimit-remaining-minute: '58'
       ratelimit-limit: '60'
-      date: Sun, 27 Feb 2022 01:40:20 GMT
+      ratelimit-remaining: '58'
+      ratelimit-reset: '49'
+      x-ratelimit-remaining-minute: '58'
+      x-ratelimit-limit-minute: '60'
+      date: Mon, 28 Mar 2022 10:14:10 GMT
       server: uvicorn
-      content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '2.322'
+      content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_UTC.csv
+      x-archive-time: '0.369'
       x-process-time: '0.03'
-      x-objects-time: '0.008'
+      x-objects-time: '0.01'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '2.361'
-      x-app-version: v2.2.19
+      x-service-time: '0.411'
+      x-app-version: v2.2.21
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=a7d38b96a0bae08a6274913a8f5eed52;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=fc05d147d1d62212b91e11f0cb0a7e99;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -51,6 +51,6 @@ http_interactions:
         at 2 Meters Maximum (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters
         (%) \r\nWS10M       MERRA-2 Wind Speed at 10 Meters (m/s) \r\nPS          MERRA-2
         Surface Pressure (kPa) \r\nPSC         MERRA-2 Corrected Atmospheric Pressure
-        (Adjusted For Site Elevation) (kPa) \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS,PSC\n1983,1,-25.24,-25.67,-24.88,94.25,2.32,69.06,101.28\n"
-  recorded_at: 2022-02-27 01:40:26 GMT
+        (Adjusted For Site Elevation) (kPa) \r\n-END HEADER-\r\nYEAR,DOY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M,PS,PSC\n1983,1,-24.36,-25.37,-22.7,92.44,1.93,69.23,101.38\n"
+  recorded_at: 2022-03-28 10:14:11 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
