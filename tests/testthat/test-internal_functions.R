@@ -320,7 +320,7 @@ test_that("pars are returned as a comma separated string with no spaces", {
 
 test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
             pars <- c(
-              "CLRSKY_SFC_SW_DIRH",
+              "Z0M",
               "CLRSKY_SFC_SW_DNI",
               "CDD0",
               "CDD10",

@@ -479,7 +479,7 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
         "PS",
         "PRECTOTCORR",
         "CLRSKY_SFC_SW_DNI",
-        "CLRSKY_SFC_SW_DIRH",
+        "WSC",
         "CLRSKY_SFC_PAR_TOT",
         "ALLSKY_SFC_UVB",
         "ALLSKY_SFC_UVA",
