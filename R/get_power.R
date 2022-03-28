@@ -45,7 +45,11 @@
 #' @param temporal_average Deprecated. This argument has been superseded by
 #'   `temporal_api` to align with the new \acronym{POWER} \acronym{API}
 #'   terminology.
-#' @param time-standard ...
+#' @param time_standard POWER provides two different time standards:
+#'    * Universal Time Coordinated (\acronym{UTC}): is the standard time measure
+#'     that used by the world.
+#'    * Local Solar Time (\acronym{LST}): A 15 Degrees swath that represents
+#'     solar noon at the middle longitude of the swath.
 #'
 #' @section Argument details for \dQuote{community}: there are three valid
 #'   values, one must be supplied. This  will affect the units of the parameter

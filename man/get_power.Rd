@@ -13,7 +13,8 @@ get_power(
   site_elevation = NULL,
   wind_elevation = NULL,
   wind_surface = NULL,
-  temporal_average = NULL
+  temporal_average = NULL,
+  time_standard = "UTC"
 )
 }
 \arguments{
@@ -60,6 +61,14 @@ wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 \item{temporal_average}{Deprecated. This argument has been superseded by
 \code{temporal_api} to align with the new \acronym{POWER} \acronym{API}
 terminology.}
+
+\item{time_standard}{POWER provides two different time standards:
+\itemize{
+\item Universal Time Coordinated (\acronym{UTC}): is the standard time measure
+that used by the world.
+\item Local Solar Time (\acronym{LST}): A 15 Degrees swath that represents
+solar noon at the middle longitude of the swath.
+}}
 }
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
@@ -105,7 +114,7 @@ powered renewable energy systems.}
  There are four valid values.
 \describe{
 \item{hourly}{The hourly average of \code{pars} by hour, day, month and year,
-the time zone is UTC.d}
+the time zone is UTC.d by default.}
 \item{daily}{The daily average of \code{pars} by day, month and year.}
 \item{monthly}{The monthly average of \code{pars} by month and year.}
 \item{climatology}{Provide parameters as 22-year climatologies (solar)
