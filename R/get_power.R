@@ -45,6 +45,7 @@
 #' @param temporal_average Deprecated. This argument has been superseded by
 #'   `temporal_api` to align with the new \acronym{POWER} \acronym{API}
 #'   terminology.
+#' @param time-standard ...
 #'
 #' @section Argument details for \dQuote{community}: there are three valid
 #'   values, one must be supplied. This  will affect the units of the parameter
@@ -66,7 +67,7 @@
 #' @section Argument details for `temporal_api`: There are four valid values.
 #'  \describe{
 #'   \item{hourly}{The hourly average of `pars` by hour, day, month and year,
-#'   the time zone is UTC.d}
+#'   the time zone is UTC.d by default.}
 #'   \item{daily}{The daily average of `pars` by day, month and year.}
 #'   \item{monthly}{The monthly average of `pars` by month and year.}
 #'   \item{climatology}{Provide parameters as 22-year climatologies (solar)
@@ -194,7 +195,8 @@ get_power <- function(community,
                       site_elevation = NULL,
                       wind_elevation = NULL,
                       wind_surface = NULL,
-                      temporal_average = NULL) {
+                      temporal_average = NULL,
+                      time_standard = "UTC") {
   if (is.null(temporal_api) & !is.null(temporal_average)) {
     warning(
       call. = FALSE,
@@ -300,7 +302,8 @@ get_power <- function(community,
     dates,
     site_elevation,
     wind_elevation,
-    wind_surface
+    wind_surface,
+    time_standard
   )
 
   power_url <- paste0(
@@ -607,7 +610,8 @@ get_power <- function(community,
                          dates,
                          site_elevation,
                          wind_elevation,
-                         wind_surface) {
+                         wind_surface,
+                         time_standard) {
   user_agent <- paste0("nasapower",
                        gsub(
                          pattern = "\\.",
@@ -627,7 +631,7 @@ get_power <- function(community,
       longitude = lonlat_identifier$longitude,
       latitude = lonlat_identifier$latitude,
       format = "csv",
-      time_standard = "utc",
+      "time-standard" = time_standard,
       user = user_agent
     )
   }
@@ -643,7 +647,7 @@ get_power <- function(community,
       "longitude-min" = lonlat_identifier$bbox["xmin"],
       "longitude-max" = lonlat_identifier$bbox["xmax"],
       format = "csv",
-      time_standard = "utc",
+      "time-standard" = time_standard,
       user = user_agent
     )
   }
@@ -653,7 +657,7 @@ get_power <- function(community,
       parameters = pars,
       community = community,
       format = "csv",
-      time_standard = "utc",
+      "time-standard" = time_standard,
       user = user_agent
     )
   }
