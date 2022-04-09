@@ -1,4 +1,4 @@
-# nasapower 4.0.6-1
+# nasapower 4.0.7
 
 ## Minor changes
 
