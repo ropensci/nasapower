@@ -16,43 +16,43 @@ The POWER list of parameters that can be queried is available as an API query fr
 
 The list structure will be
 
-- `parameters`
-  - `HOURLY_AG`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `DAILY_AG`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `MONTHLY_AG`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `CLIMATOLOGY_AG`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `HOURLY_RE`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `DAILY_RE`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `MONTHLY_RE`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `CLIMATOLOGY_RE`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `HOURLY_SB`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `DAILY_SB`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `MONTHLY_SB`
-    - `parameter_1` ...
-    - `parameter_n`
-  - `CLIMATOLOGY_SB`
-    - `parameter_1` ...
-    - `parameter_n`
+-   `parameters`
+    -   `HOURLY_AG`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `DAILY_AG`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `MONTHLY_AG`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `CLIMATOLOGY_AG`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `HOURLY_RE`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `DAILY_RE`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `MONTHLY_RE`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `CLIMATOLOGY_RE`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `HOURLY_SB`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `DAILY_SB`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `MONTHLY_SB`
+        -   `parameter_1` ...
+        -   `parameter_n`
+    -   `CLIMATOLOGY_SB`
+        -   `parameter_1` ...
+        -   `parameter_n`
 
 ## POWER JSON file
 
@@ -99,7 +99,7 @@ parameters <- map(.x = parameters, .f = sort)
 
 ## Save list for use in `nasapower` package
 
-Using `usethis::use_data()` save the list as an R data object for use in the _nasapower_ package.
+Using `usethis::use_data()` save the list as an R data object for use in the *nasapower* package.
 These values will not be exposed to the user and so will not be documented as previously.
 Users will be be pointed to functions to interact directly with the POWER APIs to query information for the temporal API/community combinations or for the parameters themselves.
 
