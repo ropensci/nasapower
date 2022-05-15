@@ -1,5 +1,5 @@
 
-# *nasapower*: NASA POWER API Client <img align='right' src='man/figures/logo.png'>
+# *nasapower*: NASA POWER API Client <img src="man/figures/logo.png" align="right"/>
 
 <!-- badges: start -->
 
@@ -73,7 +73,7 @@ daily_ag
     ##  Dates (month/day/year): 01/01/1985 through 01/01/1985  
     ##  Location: Latitude  -27.48   Longitude 151.81  
     ##  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
-    ##  Value for missing model data cannot be computed or out of model availability range: NA  
+    ##  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  
     ##  Parameter(s):  
     ##  
     ##  Parameters: 
