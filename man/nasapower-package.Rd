@@ -6,9 +6,9 @@
 \alias{nasapower-package}
 \title{nasapower: NASA POWER API Client}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Client for 'NASA' 'POWER' global meteorology, surface solar energy and climatology data 'API'. 'POWER' (Prediction Of Worldwide Energy Resource) data are freely available for download with varying spatial resolutions dependent on the original data and with several temporal resolutions depending on the POWER parameter and community. This work is funded through the 'NASA' Earth Science Directorate Applied Science Program. For more on the data themselves, the methodologies used in creating, a web- based data viewer and web access, please see <https://power.larc.nasa.gov/>.
+Client for 'NASA' 'POWER' global meteorology, surface solar energy and climatology data 'API'. 'POWER' (Prediction Of Worldwide Energy Resource) data are freely available for download with varying spatial resolutions dependent on the original data and with several temporal resolutions depending on the POWER parameter and community. This work is funded through the 'NASA' Earth Science Directorate Applied Science Program. For more on the data themselves, the methodologies used in creating, a web- based data viewer and web access, please see \url{https://power.larc.nasa.gov/}.
 }
 \seealso{
 Useful links:
