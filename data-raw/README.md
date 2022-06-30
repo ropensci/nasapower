@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters and Include Them as an Internal List
 ================
 Adam H. Sparks
-2022-05-15
+2022-06-30
 
 # Create parameters nested list for internal checks before sending queries to POWER server
 
@@ -124,16 +124,16 @@ sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value
-    ##  version  R version 4.2.0 (2022-04-22)
-    ##  os       macOS Monterey 12.3.1
+    ##  version  R version 4.2.1 (2022-06-23)
+    ##  os       macOS Monterey 12.4
     ##  system   aarch64, darwin20
     ##  ui       X11
     ##  language (EN)
     ##  collate  en_AU.UTF-8
     ##  ctype    en_AU.UTF-8
     ##  tz       Australia/Perth
-    ##  date     2022-05-15
-    ##  pandoc   2.17.1.1 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/ (via rmarkdown)
+    ##  date     2022-06-30
+    ##  pandoc   2.18 @ /Applications/RStudio.app/Contents/MacOS/quarto/bin/tools/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date (UTC) lib source
@@ -155,12 +155,12 @@ sessioninfo::session_info()
     ##  knitr         1.39    2022-04-26 [1] CRAN (R 4.2.0)
     ##  lifecycle     1.0.1   2021-09-24 [1] CRAN (R 4.2.0)
     ##  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.0)
-    ##  openssl       2.0.0   2022-03-02 [1] CRAN (R 4.2.0)
+    ##  openssl       2.0.2   2022-05-24 [1] CRAN (R 4.2.0)
     ##  pillar        1.7.0   2022-02-01 [1] CRAN (R 4.2.0)
     ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.2.0)
     ##  purrr       * 0.3.4   2020-04-17 [1] CRAN (R 4.2.0)
     ##  R6            2.5.1   2021-08-19 [1] CRAN (R 4.2.0)
-    ##  rlang         1.0.2   2022-03-04 [1] CRAN (R 4.2.0)
+    ##  rlang         1.0.3   2022-06-27 [1] CRAN (R 4.2.1)
     ##  rmarkdown     2.14    2022-04-25 [1] CRAN (R 4.2.0)
     ##  rprojroot     2.0.3   2022-04-02 [1] CRAN (R 4.2.0)
     ##  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.2.0)
@@ -169,7 +169,7 @@ sessioninfo::session_info()
     ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.2.0)
     ##  sys           3.4     2020-07-23 [1] CRAN (R 4.2.0)
     ##  tibble        3.1.7   2022-05-03 [1] CRAN (R 4.2.0)
-    ##  usethis       2.1.5   2021-12-09 [1] CRAN (R 4.2.0)
+    ##  usethis       2.1.6   2022-05-25 [1] CRAN (R 4.2.0)
     ##  utf8          1.2.2   2021-07-24 [1] CRAN (R 4.2.0)
     ##  vctrs         0.4.1   2022-04-13 [1] CRAN (R 4.2.0)
     ##  xfun          0.31    2022-05-10 [1] CRAN (R 4.2.0)
