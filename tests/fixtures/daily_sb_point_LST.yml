@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M&community=sb&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time-standard=LST&user=nasapower407
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M&community=sb&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time-standard=LST&user=nasapower408
     body:
       encoding: ''
       string: ''
@@ -18,24 +18,25 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '460'
+      x-ratelimit-remaining-minute: '55'
+      ratelimit-reset: '21'
+      x-ratelimit-limit-minute: '60'
       ratelimit-limit: '60'
       ratelimit-remaining: '55'
-      ratelimit-reset: '36'
-      x-ratelimit-remaining-minute: '55'
-      x-ratelimit-limit-minute: '60'
-      date: Sat, 09 Apr 2022 00:38:17 GMT
+      date: Sat, 02 Jul 2022 08:49:38 GMT
       server: uvicorn
-      content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '0.413'
+      content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_089d50S_0179d50W_LST.csv
+      x-data-sources: power,merra2
+      x-archive-time: '0.407'
       x-process-time: '0.02'
       x-objects-time: '0.011'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '0.446'
-      x-app-version: v2.2.22
+      x-service-time: '0.44'
+      x-app-version: v2.2.25
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=fc05d147d1d62212b91e11f0cb0a7e99;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=e9788f91f5b934221045fffb542172c0;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -50,5 +51,5 @@ http_interactions:
         \    MERRA-2 Temperature at 2 Meters Minimum (C) \r\nT2M_MAX     MERRA-2 Temperature
         at 2 Meters Maximum (C) \r\nRH2M        MERRA-2 Relative Humidity at 2 Meters
         (%) \r\nWS10M       MERRA-2 Wind Speed at 10 Meters (m/s) \r\n-END HEADER-\r\nYEAR,MO,DY,T2M,T2M_MIN,T2M_MAX,RH2M,WS10M\n1983,1,1,-25.24,-25.67,-24.88,94.25,2.32\n"
-  recorded_at: 2022-04-09 00:38:25 GMT
+  recorded_at: 2022-07-02 08:49:39 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0

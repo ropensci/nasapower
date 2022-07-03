@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time-standard=LST&user=nasapower407
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M&community=ag&start=19830101&end=19830101&longitude=-179.5&latitude=-89.5&format=csv&time-standard=LST&user=nasapower408
     body:
       encoding: ''
       string: ''
@@ -18,24 +18,25 @@ http_interactions:
       status: HTTP/1.1 200 OK
       content-type: text/csv
       content-length: '357'
-      ratelimit-limit: '60'
-      ratelimit-remaining: '50'
-      ratelimit-reset: '21'
-      x-ratelimit-remaining-minute: '50'
+      x-ratelimit-remaining-minute: '51'
+      ratelimit-reset: '8'
       x-ratelimit-limit-minute: '60'
-      date: Sat, 09 Apr 2022 00:38:33 GMT
+      ratelimit-limit: '60'
+      ratelimit-remaining: '51'
+      date: Sat, 02 Jul 2022 08:49:51 GMT
       server: uvicorn
-      content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_89d50S_179d50W_LST.csv
-      x-archive-time: '0.314'
+      content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_089d50S_0179d50W_LST.csv
+      x-data-sources: merra2
+      x-archive-time: '0.231'
       x-process-time: '0.02'
-      x-objects-time: '0.006'
+      x-objects-time: '0.005'
       content-encoding: gzip
       vary: Accept-Encoding
-      x-service-time: '0.342'
-      x-app-version: v2.2.22
+      x-service-time: '0.258'
+      x-app-version: v2.2.25
       content-language: en-US
       strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=fc05d147d1d62212b91e11f0cb0a7e99;
+      set-cookie: 72433e29e5a9aabda23011a87312c9f6=e9788f91f5b934221045fffb542172c0;
         path=/; HttpOnly; Secure
       cache-control: private
     body:
@@ -48,5 +49,5 @@ http_interactions:
         that cannot be computed or is outside of the sources availability range: -999
         \r\nParameter(s): \r\nT2M     MERRA-2 Temperature at 2 Meters (C) \r\n-END
         HEADER-\r\nYEAR,DOY,T2M\n1983,1,-25.24\n"
-  recorded_at: 2022-04-09 00:38:39 GMT
+  recorded_at: 2022-07-02 08:49:53 GMT
   recorded_with: vcr/1.0.2, webmockr/0.8.0
