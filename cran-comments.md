@@ -1,11 +1,11 @@
 # nasapower v4.0.7
 
-This is a patch release to fix a bug and introduce new features related to the bug.
+This is a new patch release to address documentation issues.
 
 ## Test environments
-* local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.1.3
-* win-builder, R Under development 4.2.0 beta (2022-04-08 r82134 ucrt)
-* win-builder, R 4.1.3
+* local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.2.1
+* local macOS, Platform: aarch64-apple-darwin20 (64-bit), (R 4.3.0)
+* win-builder, R 4.2.1
 
 ## R CMD check results
 
@@ -13,6 +13,9 @@ This is a patch release to fix a bug and introduce new features related to the b
 
 This is a new patch release
 
-## Reverse dependencies
+## Reverse dependecies check results
 
-No ERRORs or WARNINGs were found
+We checked 3 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
