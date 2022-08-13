@@ -1,5 +1,5 @@
 
-# *nasapower*: NASA POWER API Client <img src="man/figures/logo.png" align="right"/>
+# *nasapower*: NASA POWER API Client <img src="man/figures/logo.png" style="float:right;" alt="logo" width="120" />
 
 <!-- badges: start -->
 
@@ -105,24 +105,24 @@ Team.
 
 ## Meta
 
--   Please [report any issues or
-    bugs](https://github.com/ropensci/nasapower/issues).
+- Please [report any issues or
+  bugs](https://github.com/ropensci/nasapower/issues).
 
--   License: MIT
+- License: MIT
 
--   To cite *nasapower*, please use the output from
-    `citation(package = "nasapower")`.
+- To cite *nasapower*, please use the output from
+  `citation(package = "nasapower")`.
 
--   Please note that the *nasapower* project is released with a
-    [Contributor Code of
-    Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
-    By participating in the *nasapower* project you agree to abide by
-    its terms.
+- Please note that the *nasapower* project is released with a
+  [Contributor Code of
+  Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
+  By participating in the *nasapower* project you agree to abide by its
+  terms.
 
--   The U.S. Earth System Research Laboratory, Physical Science Division
-    of the National Atmospheric & Oceanic Administration (NOAA)
-    maintains a list of gridded climate data sets that provide different
-    data and different resolutions <https://psl.noaa.gov/data/gridded/>.
+- The U.S. Earth System Research Laboratory, Physical Science Division
+  of the National Atmospheric & Oceanic Administration (NOAA) maintains
+  a list of gridded climate data sets that provide different data and
+  different resolutions <https://psl.noaa.gov/data/gridded/>.
 
 ## References
 

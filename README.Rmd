@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-# *nasapower*: NASA POWER API Client <img src="man/figures/logo.png" align="right"/>
+# *nasapower*: NASA POWER API Client <img src="man/figures/logo.png" style="float:right;" alt="logo" width="120" />
 
 <!-- badges: start -->
 
