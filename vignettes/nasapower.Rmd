@@ -64,6 +64,7 @@ daily_single_ag
 #>  9  152. -27.5  1985     1     9     9 1985-01-09  60    26.1        2.45
 #> 10  152. -27.5  1985     1    10    10 1985-01-10  45.2  27.0        0.48
 #> # … with 21 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Example fetching daily data for an area
@@ -106,6 +107,7 @@ daily_region_ag
 #>  9 -27.8  152.  1985     1     1     1 1985-01-01  53.4  24.8
 #> 10 -27.8  152.  1985     1     1     1 1985-01-01  56.7  25.1
 #> # … with 62 more rows
+#> # ℹ Use `print(n = ...)` to see more rows
 ```
 
 ### Example fetching interannual data for an area
@@ -150,6 +152,7 @@ interannual_re
 #> 10 ALLSKY_SFC_…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8   3.44  2.38
 #> # … with 134 more rows, and 6 more variables: AUG <dbl>, SEP <dbl>,
 #> #   OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
+#> # ℹ Use `print(n = ...)` to see more rows, and `colnames()` to see all variable names
 ```
 
 ### Example fetching climatology data
@@ -181,12 +184,13 @@ climatology_ag
 #>  RH2M     MERRA-2 Relative Humidity at 2 Meters (%)  
 #>  
 #> # A tibble: 2 × 16
-#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG
-#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1  152. -27.5 T2M        24.7  23.7  22.0  19.0  15.1  12.6  11.6  13.1
-#> 2  152. -27.5 RH2M       64.7  69.6  71.1  70.5  69.1  75.1  70.4  63.1
-#> # … with 5 more variables: SEP <dbl>, OCT <dbl>, NOV <dbl>, DEC <dbl>,
-#> #   ANN <dbl>
+#>     LON   LAT PARAM…¹   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP
+#>   <dbl> <dbl> <chr>   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1  152. -27.5 T2M      24.7  23.7  22.0  19.0  15.1  12.6  11.6  13.1  16.9
+#> 2  152. -27.5 RH2M     64.7  69.6  71.1  70.5  69.1  75.1  70.4  63.1  59.8
+#> # … with 4 more variables: OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>, and
+#> #   abbreviated variable name ¹​PARAMETER
+#> # ℹ Use `colnames()` to see all variable names
 ```
 
 _Note_ the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
