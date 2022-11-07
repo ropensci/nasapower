@@ -52,12 +52,11 @@ vcr::use_cassette("daily_ag_point", {
   })
 })
 
-
-vcr::use_cassette("adjusted_air_pressure", {
-  test_that("get_power() returns daily point ag data with adjusted atmospheric
+test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure",
-    {
-      skip_on_cran()
+  {
+    skip_on_cran()
+    vcr::use_cassette("adjusted_air_pressure", {
       power_query <- get_power(
         community = "ag",
         lonlat = c(-179.5, -89.5),
@@ -72,43 +71,43 @@ vcr::use_cassette("adjusted_air_pressure", {
         site_elevation = 0,
         time_standard = "UTC"
       )
-
-      expect_is(power_query, "data.frame")
-      expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
-      expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-      expect_equal(power_query$YEAR, 1983)
-      expect_equal(power_query$MM, 1)
-      expect_equal(power_query$DD, 1)
-      expect_equal(power_query$DOY, 1)
-      expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-      expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
-      expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
-      expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
-      expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
-      expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
-      expect_equal(power_query$PS, 69.2, tolerance = 1e-2)
-      expect_equal(power_query$PSC, 101, tolerance = 1e-2)
-      expect_named(
-        power_query,
-        c(
-          "LON",
-          "LAT",
-          "YEAR",
-          "MM",
-          "DD",
-          "DOY",
-          "YYYYMMDD",
-          "T2M",
-          "T2M_MIN",
-          "T2M_MAX",
-          "RH2M",
-          "WS10M",
-          "PS",
-          "PSC"
-        )
-      )
     })
-})
+
+    expect_is(power_query, "data.frame")
+    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+    expect_equal(power_query$YEAR, 1983)
+    expect_equal(power_query$MM, 1)
+    expect_equal(power_query$DD, 1)
+    expect_equal(power_query$DOY, 1)
+    expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+    expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+    expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+    expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+    expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
+    expect_equal(power_query$PS, 69.2, tolerance = 1e-2)
+    expect_equal(power_query$PSC, 101, tolerance = 1e-2)
+    expect_named(
+      power_query,
+      c(
+        "LON",
+        "LAT",
+        "YEAR",
+        "MM",
+        "DD",
+        "DOY",
+        "YYYYMMDD",
+        "T2M",
+        "T2M_MIN",
+        "T2M_MAX",
+        "RH2M",
+        "WS10M",
+        "PS",
+        "PSC"
+      )
+    )
+  })
 
 
 vcr::use_cassette("adjusted_wind_elevation", {
