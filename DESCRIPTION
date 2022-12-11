@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 4.0.8
+Version: 4.0.9
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
