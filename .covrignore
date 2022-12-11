@@ -1,2 +1,3 @@
-^R/print_POWER\_Info\.R$
+# exclude print function file
+R/print_POWER_Info.R
 
