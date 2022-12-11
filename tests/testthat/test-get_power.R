@@ -1,7 +1,7 @@
 
 # test queries using vcr -------------------------------------------------------
-test_that("get_power returns daily point ag data", {
-  skip_on_cran()
+test_that("get_power() returns daily point ag data", {
+  skip_if_offline()
   vcr::use_cassette("daily_ag_point", {
     power_query <- get_power(
       community = "ag",
@@ -55,7 +55,7 @@ test_that("get_power returns daily point ag data", {
 test_that("get_power() returns daily point ag data with adjusted atmospheric
           air pressure",
   {
-    skip_on_cran()
+    skip_if_offline()
     vcr::use_cassette("adjusted_air_pressure", {
       power_query <- get_power(
         community = "ag",
@@ -112,7 +112,7 @@ test_that("get_power() returns daily point ag data with adjusted atmospheric
 test_that("get_power() returns daily point ag data with adjusted wind
           elevation",
   {
-    skip_on_cran()
+    skip_if_offline()
     vcr::use_cassette("adjusted_wind_elevation", {
       power_query <- get_power(
         community = "ag",
@@ -168,8 +168,8 @@ test_that("get_power() returns daily point ag data with adjusted wind
   })
 
 
-test_that("get_power returns daily point SB data", {
-  skip_on_cran()
+test_that("get_power() returns daily point SB data", {
+  skip_if_offline()
   vcr::use_cassette("daily_sb_point_UTC", {
     power_query <- get_power(
       community = "sb",
@@ -200,8 +200,8 @@ test_that("get_power returns daily point SB data", {
   expect_equal(power_query$WS10M, 1.93,  tolerance = 1e-2)
 })
 
-test_that("get_power returns daily point SB data for LST", {
-  skip_on_cran()
+test_that("get_power() returns daily point SB data for LST", {
+  skip_if_offline()
   vcr::use_cassette("daily_sb_point_LST", {
     power_query <- get_power(
       community = "sb",
@@ -233,7 +233,7 @@ test_that("get_power returns daily point SB data for LST", {
 })
 
 test_that("get_power() returns daily regional ag data", {
-  skip_on_cran()
+  skip_if_offline()
   power_query <- get_power(
     community = "ag",
     lonlat = c(112.5, -55.5, 115.5, -50.5),
@@ -277,7 +277,7 @@ test_that("get_power() returns daily regional ag data", {
 })
 
 test_that("get_power() returns point ag data for climatology", {
-  skip_on_cran()
+  skip_if_offline()
   vcr::use_cassette("climatology_ag_point", {
     power_query <- get_power(
       community = "ag",
@@ -314,7 +314,7 @@ test_that("get_power() returns point ag data for climatology", {
 
 # check for failure status
 test_that("get_power() errors when the API doesn't behave", {
-  skip_on_cran()
+  skip_if_offline()
   vcr::skip_if_vcr_off()
   vcr::use_cassette("API_failure", {
     expect_error(
@@ -331,7 +331,7 @@ test_that("get_power() errors when the API doesn't behave", {
 
 # test user input check response messages -----
 test_that("get_power() stops if `temporal_api` not valid", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -345,7 +345,7 @@ test_that("get_power() stops if `temporal_api` not valid", {
 })
 
 test_that("get_power() stops if hourly data are requested < 2001-01-01", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -359,7 +359,7 @@ test_that("get_power() stops if hourly data are requested < 2001-01-01", {
 })
 
 test_that("get_power() stops if an invalid community supplied", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "rOpenSci",
@@ -374,7 +374,7 @@ test_that("get_power() stops if an invalid community supplied", {
 
 test_that("get_power() stops if site elevation is supplied not for point", {
   Sys.sleep(10)
-  skip_on_cran()
+  skip_if_offline()
   expect_message(
     power_query <- get_power(
       community = "ag",
@@ -389,7 +389,7 @@ test_that("get_power() stops if site elevation is supplied not for point", {
 })
 
 test_that("get_power() stops if site_elevation is invalid", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -405,7 +405,7 @@ test_that("get_power() stops if site_elevation is invalid", {
 
 test_that("get_power() stops wind_surface is supplied w/ no wind_elevation",
   {
-    skip_on_cran()
+    skip_if_offline()
     expect_error(
       power_query <- get_power(
         community = "ag",
@@ -420,7 +420,7 @@ test_that("get_power() stops wind_surface is supplied w/ no wind_elevation",
   })
 
 test_that("get_power() stops wind_elevation is invalid", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -435,7 +435,7 @@ test_that("get_power() stops wind_elevation is invalid", {
 })
 
 test_that("get_power() ignores wind_elevation for regional requests", {
-  skip_on_cran()
+  skip_if_offline()
   expect_message(
     power_query <- get_power(
       community = "ag",
@@ -450,7 +450,7 @@ test_that("get_power() ignores wind_elevation for regional requests", {
 })
 
 test_that("get_power() stops if `global` coverage is requested", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -464,7 +464,7 @@ test_that("get_power() stops if `global` coverage is requested", {
 })
 
 test_that("get_power() stops if temporal_api is hourly and pars > 15", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -497,7 +497,7 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
 
 
 test_that("get_power() gives warning if `temporal_average` is used", {
-  skip_on_cran()
+  skip_if_offline()
   vcr::use_cassette("temporal_api-warning", {
     expect_warning(
       power_query <- get_power(
@@ -513,7 +513,7 @@ test_that("get_power() gives warning if `temporal_average` is used", {
 })
 
 test_that("get_power() stops if there is no temporal_api()", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -526,7 +526,7 @@ test_that("get_power() stops if there is no temporal_api()", {
 })
 
 test_that("get_power() stops if global lonlat is set", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -540,7 +540,7 @@ test_that("get_power() stops if global lonlat is set", {
 })
 
 test_that("get_power() stops if lonlat = is invalid", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
@@ -554,7 +554,7 @@ test_that("get_power() stops if lonlat = is invalid", {
 })
 
 test_that("get_power() stops if lonlat = is invalid for climatology", {
-  skip_on_cran()
+  skip_if_offline()
   expect_error(
     power_query <- get_power(
       community = "ag",
