@@ -82,7 +82,6 @@ Repository: CRAN
 Suggests:
     knitr,
     purrr,
-    ratelimitr,
     rmarkdown,
     spelling,
     testthat,
