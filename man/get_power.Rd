@@ -83,9 +83,15 @@ climatology data and return a tidy data frame \code{\link[tibble:tibble]{tibble:
 object.  All options offered by the official \acronym{POWER} \acronym{API}
 are supported.  Requests are formed to submit one request per point.  There
 is no need to make synchronous requests for multiple parameters for a
-single point or regional request.  Requests are limited to 30 unique
-requests per 60 seconds.  \CRANpkg{nasapower} attempts to enforce this
-client-side.
+single point or regional request.  The POWER API endpoints limit queries to
+prevent overloads due to repetitive and rapid requests.  If you find that
+the API is throttling your queries, I suggest that you investigate the use
+of \code{limit_rate()} from \CRANpkg{ratelimitr} to create self-limiting
+functions that will respect the rate limits that the API has in place. It
+considered best practice to check the
+\href{https://power.larc.nasa.gov/docs/services/api/#rate-limiting}{POWER website}
+for the latest rate limits as they differ between temporal \acronym{API}s
+and may change over time as the project matures.
 }
 \note{
 The associated metadata shown in the decorative header are not saved if

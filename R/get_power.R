@@ -6,9 +6,15 @@
 #'   object.  All options offered by the official \acronym{POWER} \acronym{API}
 #'   are supported.  Requests are formed to submit one request per point.  There
 #'   is no need to make synchronous requests for multiple parameters for a
-#'   single point or regional request.  Requests are limited to 30 unique
-#'   requests per 60 seconds.  \CRANpkg{nasapower} attempts to enforce this
-#'   client-side.
+#'   single point or regional request.  The POWER API endpoints limit queries to
+#'   prevent overloads due to repetitive and rapid requests.  If you find that
+#'   the API is throttling your queries, I suggest that you investigate the use
+#'   of `limit_rate()` from \CRANpkg{ratelimitr} to create self-limiting
+#'   functions that will respect the rate limits that the API has in place. It
+#'   considered best practice to check the
+#'   [POWER website](https://power.larc.nasa.gov/docs/services/api/#rate-limiting)
+#'   for the latest rate limits as they differ between temporal \acronym{API}s
+#'   and may change over time as the project matures.
 #'
 #' @param community A character vector providing community name: \dQuote{ag},
 #'   \dQuote{re} or \dQuote{sb}.  See argument details for more.
@@ -697,12 +703,15 @@ get_power <- function(community,
 
   # Extract month as integer
   power_response <- tibble::add_column(power_response,
-                                       MM = as.integer(substr(power_response$YYYYMMDD, 6, 7)),
+                                       MM = as.integer(
+                                         substr(
+                                           power_response$YYYYMMDD, 6, 7)),
                                        .after = "YEAR")
 
   # Extract day as integer
   return(tibble::add_column(power_response,
-                            DD = as.integer(substr(
+                            DD = as.integer(
+                              substr(
                               power_response$YYYYMMDD, 9, 10
                             )),
                             .after = "MM"))
