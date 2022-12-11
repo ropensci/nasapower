@@ -7,8 +7,7 @@
 #'   are supported.  Requests are formed to submit one request per point.  There
 #'   is no need to make synchronous requests for multiple parameters for a
 #'   single point or regional request.  Requests are limited to 30 unique
-#'   requests per 60 seconds.  \CRANpkg{nasapower} attempts to enforce this
-#'   client-side.
+#'   requests per 60 seconds.
 #'
 #' @param community A character vector providing community name: \dQuote{ag},
 #'   \dQuote{re} or \dQuote{sb}.  See argument details for more.
