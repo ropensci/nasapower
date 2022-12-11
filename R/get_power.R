@@ -696,12 +696,15 @@ get_power <- function(community,
 
   # Extract month as integer
   power_response <- tibble::add_column(power_response,
-                                       MM = as.integer(substr(power_response$YYYYMMDD, 6, 7)),
+                                       MM = as.integer(
+                                         substr(
+                                           power_response$YYYYMMDD, 6, 7)),
                                        .after = "YEAR")
 
   # Extract day as integer
   return(tibble::add_column(power_response,
-                            DD = as.integer(substr(
+                            DD = as.integer(
+                              substr(
                               power_response$YYYYMMDD, 9, 10
                             )),
                             .after = "MM"))
