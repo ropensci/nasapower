@@ -84,8 +84,7 @@ object.  All options offered by the official \acronym{POWER} \acronym{API}
 are supported.  Requests are formed to submit one request per point.  There
 is no need to make synchronous requests for multiple parameters for a
 single point or regional request.  Requests are limited to 30 unique
-requests per 60 seconds.  \CRANpkg{nasapower} attempts to enforce this
-client-side.
+requests per 60 seconds.
 }
 \note{
 The associated metadata shown in the decorative header are not saved if
