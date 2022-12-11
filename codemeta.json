@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "4.0.8",
+  "version": "4.0.9",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.2.1 (2022-06-23)",
+  "runtimePlatform": "R version 4.2.2 (2022-10-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -90,18 +90,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=purrr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "ratelimitr",
-      "name": "ratelimitr",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ratelimitr"
     },
     {
       "@type": "SoftwareApplication",
@@ -225,7 +213,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "379.274KB",
+  "fileSize": "377.988KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -265,7 +253,7 @@
       "name": "{nasapower}: NASA-POWER Data from R",
       "identifier": "10.5281/zenodo.1040727",
       "url": "https://CRAN.R-project.org/package=nasapower",
-      "description": "R package version 4.0.8",
+      "description": "R package version 4.0.9",
       "@id": "https://doi.org/10.5281/zenodo.1040727",
       "sameAs": "https://doi.org/10.5281/zenodo.1040727"
     }
