@@ -47,7 +47,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">nasapower</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.9</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
   <div class="contents col-md-9">
 <div class="section level1">
 <div class="page-header"><h1 id="nasapower-nasa-power-api-client-">
-<em>nasapower</em>: NASA POWER API Client <img align="right" src="reference/figures/logo.png"><a class="anchor" aria-label="anchor" href="#nasapower-nasa-power-api-client-"></a>
+<em>nasapower</em>: NASA POWER API Client <img src="reference/figures/logo.png" style="float:right;" alt="logo" width="120"><a class="anchor" aria-label="anchor" href="#nasapower-nasa-power-api-client-"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -100,18 +100,18 @@
 </h4>
 <p>The stable version is available through CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nasapower"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nasapower"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="from-github-for-the-version-in-development">From GitHub for the version in-development<a class="anchor" aria-label="anchor" href="#from-github-for-the-version-in-development"></a>
 </h4>
 <p>A development version is available through GitHub.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropensci/nasapower"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropensci/nasapower"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -119,19 +119,19 @@
 </h3>
 <p>Fetch daily “ag” community temperature, relative humidity and precipitation for January 1, 1985 for Kingsthorpe, Queensland, Australia.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/nasapower/" class="external-link">"nasapower"</a></span><span class="op">)</span>
-<span class="va">daily_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_power.html">get_power</a></span><span class="op">(</span>community <span class="op">=</span> <span class="st">"ag"</span>,
-                      lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span><span class="op">)</span>,
-                      pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOTCORR"</span><span class="op">)</span>,
-                      dates <span class="op">=</span> <span class="st">"1985-01-01"</span>,
-                      temporal_api <span class="op">=</span> <span class="st">"daily"</span>
-                      <span class="op">)</span>
-<span class="va">daily_ag</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://docs.ropensci.org/nasapower/" class="external-link">"nasapower"</a></span><span class="op">)</span></span>
+<span><span class="va">daily_ag</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_power.html">get_power</a></span><span class="op">(</span>community <span class="op">=</span> <span class="st">"ag"</span>,</span>
+<span>                      lonlat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">151.81</span>, <span class="op">-</span><span class="fl">27.48</span><span class="op">)</span>,</span>
+<span>                      pars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"RH2M"</span>, <span class="st">"T2M"</span>, <span class="st">"PRECTOTCORR"</span><span class="op">)</span>,</span>
+<span>                      dates <span class="op">=</span> <span class="st">"1985-01-01"</span>,</span>
+<span>                      temporal_api <span class="op">=</span> <span class="st">"daily"</span></span>
+<span>                      <span class="op">)</span></span>
+<span><span class="va">daily_ag</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## NASA/POWER CERES/MERRA2 Native Resolution Daily Data  </span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">##  Dates (month/day/year): 01/01/1985 through 01/01/1985  </span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Location: Latitude  -27.48   Longitude 151.81  </span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  Value for missing model data cannot be computed or out of model availability range: NA  </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  </span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  Parameter(s):  </span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  </span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  Parameters: </span></span>
@@ -243,7 +243,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
