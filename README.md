@@ -15,14 +15,14 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 <!-- badges: end -->
 
-*nasapower* aims to make it quick and easy to automate downloading
-[NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface
-solar energy and climatology data in your R session as a tidy data frame
-`tibble` object for analysis and use in modelling or other purposes.
-POWER (Prediction Of Worldwide Energy Resource) data are freely
-available for download with varying spatial resolutions dependent on the
-original data and with several temporal resolutions depending on the
-POWER parameter and community.
+*nasapower* aims to make it quick and easy to automate *downloading* of
+the [NASA-POWER](https://power.larc.nasa.gov) global meteorology,
+surface solar energy and climatology data in your R session as a tidy
+data frame `tibble` object for analysis and use in modelling or other
+purposes. POWER (Prediction Of Worldwide Energy Resource) data are
+freely available for download with varying spatial resolutions dependent
+on the original data and with several temporal resolutions depending on
+the POWER parameter and community.
 
 **Note that the data are not static and may be replaced with improved
 data.** Please see <https://power.larc.nasa.gov/docs/services/> for
@@ -94,9 +94,13 @@ More documentation is available in the vignette in your R session,
 
 ## Use of POWER Data
 
-While *nasapower* does not redistribute the data or provide it in any
-way, we encourage users to follow the requests of the POWER Project
-Team.
+Please note that *nasapower* is **NOT** the source of NASA POWER data.
+It is only an API client that allows easy access to the data.
+*nasapower* does not redistribute the data or provide it in any way, we
+encourage users to follow the requests of the POWER Project Team and
+properly acknowledge them for the data rather than citing this package
+(unless you have actually used it in your work), see below for details
+on how to properly cite this package.
 
 > When POWER data products are used in a publication, we request the
 > following acknowledgement be included: “These data were obtained from
