@@ -383,7 +383,7 @@ test_that(".build_query assembles a proper query for single point and != NULL
             site_elevation <- NULL
             wind_elevation <- NULL
             wind_surface <- NULL
-            time_standard = "UTC"
+            time_standard <- "UTC"
 
             dates <- .check_dates(dates,
                                   lonlat,
@@ -432,7 +432,7 @@ test_that(".build_query assembles a proper query for single point and NULL
             site_elevation <- NULL
             wind_elevation <- NULL
             wind_surface <- NULL
-            time_standard = "UTC"
+            time_standard <- "UTC"
 
             dates <- .check_dates(dates,
                                   lonlat,
@@ -478,7 +478,7 @@ test_that(".build_query assembles a proper query for regional and != NULL
             site_elevation <- NULL
             wind_elevation <- NULL
             wind_surface <- NULL
-            time_standard = "UTC"
+            time_standard <- "UTC"
 
             dates <- .check_dates(dates,
                                   community,
@@ -532,7 +532,7 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
             lonlat_identifier <- .check_lonlat(lonlat,
                                                pars)
             user_agent <- "nasapower"
-            time_standard = "UTC"
+            time_standard <- "UTC"
 
             query_list <- .build_query(community,
                                        lonlat_identifier,
