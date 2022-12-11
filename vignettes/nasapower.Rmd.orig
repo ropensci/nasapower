@@ -8,7 +8,6 @@ vignette: >
   %\VignetteIndexEntry{nasapower}
   %\VignetteEngine{knitr::rmarkdown_notangle}
   %\VignetteEncoding{UTF-8}
-  %\VignetteDepends{ratelimitr}
 ---
 
 ```{r setup, include=FALSE}
