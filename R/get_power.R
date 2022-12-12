@@ -174,16 +174,6 @@
 #'
 #' ag_c_point
 #'
-#' # Fetch global ag climatology for air temperature
-#' ag_c_global <- get_power(
-#'   community = "ag",
-#'   pars = "T2M",
-#'   lonlat = "global",
-#'   temporal_api = "climatology"
-#' )
-#'
-#' ag_c_global
-#'
 #' # Fetch interannual solar cooking parameters for a given region
 #' sse_i <- get_power(
 #'   community = "re",
