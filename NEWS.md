@@ -1,4 +1,12 @@
-# nasapower (development version)
+# nasapower 4.0.9
+
+* Remove an example that no longer works with the API.
+
+* Remove incorrect documentation about rate limiting and include details on how to use rate limiting.
+
+* Ensure tests are skipped on CRAN, thanks Maëlle!
+
+* Use `skip_if_offline()` rather than `skip_on_cran()` for tests.
 
 # nasapower 4.0.8
 
