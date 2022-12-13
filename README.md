@@ -90,43 +90,33 @@ daily_ag
 
 More documentation is available in the vignette in your R session,
 `vignette("nasapower")` or available online,
-<https://docs.ropensci.org/nasapower/>.
-
-## Use of POWER Data
-
-Please note that *nasapower* is **NOT** the source of NASA POWER data.
-It is only an API client that allows easy access to the data.
-*nasapower* does not redistribute the data or provide it in any way, we
-encourage users to follow the requests of the POWER Project Team and
-properly acknowledge them for the data rather than citing this package
-(unless you have actually used it in your work), see below for details
-on how to properly cite this package.
-
-> When POWER data products are used in a publication, we request the
-> following acknowledgement be included: “These data were obtained from
-> the NASA Langley Research Center POWER Project funded through the NASA
-> Earth Science Directorate Applied Science Program.”
+<https://docs.ropensci.org/nasapower/articles/nasapower.html>.
 
 ## Meta
 
 - Please [report any issues or
-  bugs](https://github.com/ropensci/nasapower/issues).
-
-- License: MIT
-
-- To cite *nasapower*, please use the output from
-  `citation(package = "nasapower")`.
-
-- Please note that the *nasapower* project is released with a
-  [Contributor Code of
+  bugs](https://github.com/ropensci/nasapower/issues). Please note that
+  the *nasapower* project is released with a [Contributor Code of
   Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
   By participating in the *nasapower* project you agree to abide by its
   terms.
 
-- The U.S. Earth System Research Laboratory, Physical Science Division
-  of the National Atmospheric & Oceanic Administration (NOAA) maintains
-  a list of gridded climate data sets that provide different data and
-  different resolutions <https://psl.noaa.gov/data/gridded/>.
+- License: MIT
+
+- To cite this R package, *nasapower*, please use the output from
+  `citation(package = "nasapower")`.
+
+- Please note that *nasapower* is **NOT** the source of NASA POWER data.
+  It is only an API client that allows easy access to the data.
+  *nasapower* does not redistribute the data or provide it in any way,
+  we encourage users to follow the requests of the POWER Project Team
+  and properly acknowledge them for the data rather than citing this
+  package (unless you have actually used it in your work).
+
+  > *When POWER data products are used in a publication, we request the
+  > following acknowledgement be included: “These data were obtained
+  > from the NASA Langley Research Center POWER Project funded through
+  > the NASA Earth Science Directorate Applied Science Program.”*
 
 ## References
 
