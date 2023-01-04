@@ -14,6 +14,7 @@ ORCID
 Optimise
 ROxygen
 Rdata
+Redoc
 SFC
 Standardise
 WAAA
@@ -25,6 +26,7 @@ apsimx
 broadleaf
 climatologies
 codecov
+covrignore
 crul
 csv
 favour
