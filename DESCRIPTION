@@ -74,7 +74,7 @@ Imports:
     jsonlite,
     readr,
     tibble (>= 3.0.2)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
