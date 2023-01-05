@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters and Include Them as an Internal List
 ================
 Adam H. Sparks
-2022-12-11
+2023-01-04
 
 # Create parameters nested list for internal checks before sending queries to POWER server
 
@@ -125,41 +125,42 @@ sessioninfo::session_info()
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value
     ##  version  R version 4.2.2 (2022-10-31)
-    ##  os       macOS Ventura 13.0.1
+    ##  os       macOS Ventura 13.1
     ##  system   aarch64, darwin20
     ##  ui       X11
     ##  language (EN)
     ##  collate  en_US.UTF-8
     ##  ctype    en_US.UTF-8
     ##  tz       Australia/Perth
-    ##  date     2022-12-11
+    ##  date     2023-01-04
     ##  pandoc   2.19.2 @ /opt/homebrew/bin/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date (UTC) lib source
-    ##  askpass       1.1     2019-01-13 [1] CRAN (R 4.2.2)
-    ##  cli           3.4.1   2022-09-23 [1] CRAN (R 4.2.2)
+    ##  askpass       1.1     2019-01-13 [1] CRAN (R 4.2.0)
+    ##  cli           3.5.0   2022-12-20 [1] CRAN (R 4.2.2)
+    ##  colorout    * 1.2-2   2023-01-03 [1] Github (jalvesaq/colorout@79931fd)
     ##  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.2.2)
-    ##  credentials   1.3.2   2021-11-29 [1] CRAN (R 4.2.2)
+    ##  credentials   1.3.2   2021-11-29 [1] CRAN (R 4.2.0)
     ##  desc          1.4.2   2022-09-08 [1] CRAN (R 4.2.2)
-    ##  digest        0.6.30  2022-10-18 [1] CRAN (R 4.2.2)
-    ##  evaluate      0.18    2022-11-07 [1] CRAN (R 4.2.2)
+    ##  digest        0.6.31  2022-12-11 [1] CRAN (R 4.2.2)
+    ##  evaluate      0.19    2022-12-13 [1] CRAN (R 4.2.2)
     ##  fansi         1.0.3   2022-03-24 [1] CRAN (R 4.2.2)
     ##  fastmap       1.1.0   2021-01-25 [1] CRAN (R 4.2.2)
     ##  fs            1.5.2   2021-12-08 [1] CRAN (R 4.2.2)
     ##  glue          1.6.2   2022-02-24 [1] CRAN (R 4.2.2)
-    ##  htmltools     0.5.4   2022-12-07 [1] CRAN (R 4.2.0)
+    ##  htmltools     0.5.4   2022-12-07 [1] CRAN (R 4.2.2)
     ##  jsonlite    * 1.8.4   2022-12-06 [1] CRAN (R 4.2.2)
     ##  knitr         1.41    2022-11-18 [1] CRAN (R 4.2.2)
     ##  lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.2.2)
     ##  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.2.2)
-    ##  openssl       2.0.5   2022-12-06 [1] CRAN (R 4.2.2)
+    ##  openssl       2.0.5   2022-12-06 [1] CRAN (R 4.2.0)
     ##  pillar        1.8.1   2022-08-19 [1] CRAN (R 4.2.2)
     ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.2.2)
-    ##  purrr       * 0.3.5   2022-10-06 [1] CRAN (R 4.2.2)
+    ##  purrr       * 1.0.0   2022-12-20 [1] CRAN (R 4.2.2)
     ##  R6            2.5.1   2021-08-19 [1] CRAN (R 4.2.2)
     ##  rlang         1.0.6   2022-09-24 [1] CRAN (R 4.2.2)
-    ##  rmarkdown     2.18    2022-11-09 [1] CRAN (R 4.2.2)
+    ##  rmarkdown     2.19    2022-12-15 [1] CRAN (R 4.2.2)
     ##  rprojroot     2.0.3   2022-04-02 [1] CRAN (R 4.2.2)
     ##  rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.2.2)
     ##  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.2.2)
@@ -167,10 +168,10 @@ sessioninfo::session_info()
     ##  stringr       1.5.0   2022-12-02 [1] CRAN (R 4.2.2)
     ##  sys           3.4.1   2022-10-18 [1] CRAN (R 4.2.2)
     ##  tibble        3.1.8   2022-07-22 [1] CRAN (R 4.2.2)
-    ##  usethis       2.1.6   2022-05-25 [1] CRAN (R 4.2.2)
+    ##  usethis       2.1.6   2022-05-25 [1] CRAN (R 4.2.0)
     ##  utf8          1.2.2   2021-07-24 [1] CRAN (R 4.2.2)
     ##  vctrs         0.5.1   2022-11-16 [1] CRAN (R 4.2.2)
-    ##  xfun          0.35    2022-11-16 [1] CRAN (R 4.2.2)
+    ##  xfun          0.36    2022-12-21 [1] CRAN (R 4.2.2)
     ##  yaml          2.3.6   2022-10-18 [1] CRAN (R 4.2.2)
     ## 
     ##  [1] /Users/adamsparks/Library/R/arm64/4.2/library

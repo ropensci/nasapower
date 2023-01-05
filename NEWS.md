@@ -14,7 +14,7 @@
 
 * Update list of allowed parameters for querying the API, ([18e4495e0ca2e9f14006260c019ac878a3023843](https://github.com/ropensci/nasapower/commit/9ed90e0708a32650992795b818e1681e7150a0d9)).
 
-* Updated test infrastructure
+* Updated test infrastructure.
 
 # nasapower 4.0.7
 
