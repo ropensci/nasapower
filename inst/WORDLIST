@@ -1,6 +1,7 @@
 ALLSKY
 APSIM
 Agroclimatology
+CRAN's
 DESCRIPTION's
 DOI
 DSSAT
@@ -9,7 +10,6 @@ ICASA
 JOSS
 Kingsthorpe
 LST
-NOAA
 ORCID
 Optimise
 ROxygen
@@ -26,13 +26,11 @@ apsimx
 broadleaf
 climatologies
 codecov
-covrignore
 crul
 csv
 favour
 femiguez
 github
-gridded
 groundcover
 https
 httr
@@ -45,9 +43,7 @@ metres
 modelling
 nasa
 needleleaf
-noaa
 pre
-psl
 rOpenSci
 radn
 ratelimitr

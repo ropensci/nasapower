@@ -1,5 +1,7 @@
 # nasapower 4.0.10 (development)
 
+* Update CITATION file to follow CRAN's ~ever-changing whims~ guidelines
+
 # nasapower 4.0.9
 
 * Remove an example that no longer works with the API.

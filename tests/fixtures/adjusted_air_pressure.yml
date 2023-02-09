@@ -1,7 +1,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&site-elevation=0&longitude=-179.5&latitude=-89.5&format=csv&time-standard=UTC&user=nasapower409
+    uri: https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M%2CT2M_MIN%2CT2M_MAX%2CRH2M%2CWS10M%2CPS&community=ag&start=19830101&end=19830101&site-elevation=0&longitude=-179.5&latitude=-89.5&format=csv&time-standard=UTC&user=nasapower4010
     body:
       encoding: ''
       string: ''
