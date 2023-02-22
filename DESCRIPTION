@@ -50,7 +50,7 @@ Authors@R:
                          "Phillip Alderman contributed a patch to fix an issue
                          with, 'The `file` argument of `vroom()` must use `I()`
                          for literal data as of vroom 1.5.0.', see
-                         https://github.com/ropensci/nasapower/pull/67.")),
+                         <https://github.com/ropensci/nasapower/pull/67>.")),
       person(given = "Western Australia Agriculture Authority (WAAA)",
              role = "cph",
              comment = c("Supported the development of nasapower through Adam H.
