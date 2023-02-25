@@ -1,11 +1,11 @@
-# nasapower v4.0.9
+# nasapower v4.0.10
 
-This is a new patch release to ensure tests are skipped on CRAN to avoid false flags.
+This is a new patch release to update the CITATION file to meet CRAN guidelines.
 
 ## Test environments
 * local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.2.2
-* win-builder, R 4.2.2
-* win-builder, R Under development (unstable) (2023-01-03 r83550 ucrt)
+* local macOS, Platform: aarch64-apple-darwin20 (64-bit), (R 4.3.0)
+* win-builder, R 4.2.1
 
 ## R CMD check results
 
@@ -13,7 +13,7 @@ This is a new patch release to ensure tests are skipped on CRAN to avoid false f
 
 This is a new patch release
 
-## Reverse dependecies check results
+## revdepcheck results
 
 We checked 2 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
