@@ -1,4 +1,4 @@
-# nasapower 4.0.10 (development)
+# nasapower 4.0.10
 
 * Update CITATION file to follow CRAN's ~ever-changing whims~ guidelines.
 
