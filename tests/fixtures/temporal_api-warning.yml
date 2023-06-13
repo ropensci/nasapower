@@ -6,7 +6,7 @@ http_interactions:
       encoding: ''
       string: ''
     headers:
-      User-Agent: libcurl/7.79.1 r-curl/4.3.2 crul/1.2.0
+      User-Agent: libcurl/7.88.1 r-curl/5.0.1 crul/1.4.0
       Accept-Encoding: gzip, deflate
       Accept: application/json, text/xml, application/xml, */*
   response:
@@ -15,32 +15,31 @@ http_interactions:
       message: OK
       explanation: Request fulfilled, document follows
     headers:
-      status: HTTP/1.1 200 OK
-      content-type: text/csv
-      content-length: '357'
-      x-ratelimit-remaining-minute: '51'
-      ratelimit-reset: '8'
-      x-ratelimit-limit-minute: '60'
-      ratelimit-limit: '60'
-      ratelimit-remaining: '51'
-      date: Sat, 02 Jul 2022 08:49:51 GMT
-      server: uvicorn
       content-disposition: attachment; filename=POWER_Point_Daily_19830101_19830101_089d50S_0179d50W_LST.csv
-      x-data-sources: merra2
-      x-archive-time: '0.231'
-      x-process-time: '0.02'
-      x-objects-time: '0.005'
-      content-encoding: gzip
-      vary: Accept-Encoding
-      x-service-time: '0.258'
-      x-app-version: v2.2.25
       content-language: en-US
-      strict-transport-security: max-age=31536000;includeSubDomains;preload
-      set-cookie: 72433e29e5a9aabda23011a87312c9f6=e9788f91f5b934221045fffb542172c0;
-        path=/; HttpOnly; Secure
-      cache-control: private
+      content-length: '479'
+      content-type: text/csv
+      date: Tue, 13 Jun 2023 10:36:57 GMT
+      status: 'HTTP/2 200 '
+      via: 1.1 92b397ae89acd886fa98814f5b975834.cloudfront.net (CloudFront), 1.1 3541ef1d4fc76d3d78c09aacdfce64a2.cloudfront.net
+        (CloudFront)
+      x-amz-apigw-id: Gc__TFJ1PHcFWLQ=
+      x-amz-cf-id: jjC_92sv6o3ZgP6Lcn6vY44mJuRxg6HSEVJk3OVR8HYHMEjTYBUd9Q==
+      x-amz-cf-pop:
+      - PER50-C1
+      - PER50-C1
+      x-amzn-remapped-content-length: '479'
+      x-amzn-requestid: 062a8662-4ba1-4a40-8311-629df07a1367
+      x-amzn-trace-id: Root=1-648846c8-7f886a883280e5374c909de5
+      x-app-version: v2.4.3
+      x-archive-time: '1.113'
+      x-cache: Miss from cloudfront
+      x-data-sources: merra2
+      x-objects-time: '0.025'
+      x-process-time: '0.15'
+      x-service-time: '1.289'
     body:
-      encoding: UTF-8
+      encoding: ''
       file: no
       string: "-BEGIN HEADER-\r\nNASA/POWER CERES/MERRA2 Native Resolution Daily Data
         \r\nDates (month/day/year): 01/01/1983 through 01/01/1983 \r\nLocation: Latitude
@@ -49,5 +48,5 @@ http_interactions:
         that cannot be computed or is outside of the sources availability range: -999
         \r\nParameter(s): \r\nT2M     MERRA-2 Temperature at 2 Meters (C) \r\n-END
         HEADER-\r\nYEAR,DOY,T2M\n1983,1,-25.24\n"
-  recorded_at: 2022-07-02 08:49:53 GMT
-  recorded_with: vcr/1.0.2, webmockr/0.8.0
+  recorded_at: 2023-06-13 10:36:57 GMT
+  recorded_with: vcr/1.2.0, webmockr/0.9.0

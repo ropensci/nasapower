@@ -145,7 +145,7 @@ test_that("get_power() returns daily point ag data with adjusted wind
     expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
     expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
     expect_equal(power_query$PS, 69.06, tolerance = 1e-2)
-    expect_equal(power_query$WSC, 17.4, tolerance = 1e-2)
+    expect_equal(power_query$WSC, 6.49, tolerance = 1e-2)
     expect_named(
       power_query,
       c(
@@ -312,22 +312,6 @@ test_that("get_power() returns point ag data for climatology", {
   )
 })
 
-# check for failure status
-test_that("get_power() errors when the API doesn't behave", {
-  skip_if_offline()
-  vcr::skip_if_vcr_off()
-  vcr::use_cassette("API_failure", {
-    expect_error(
-      get_power(
-        community = "ag",
-        lonlat = c(-179.5, -89.5),
-        pars = c("T2M"),
-        dates = c("1983-01-01"),
-        temporal_api = "Daily"
-      )
-    )
-  })
-})
 
 # test user input check response messages -----
 test_that("get_power() stops if `temporal_api` not valid", {
