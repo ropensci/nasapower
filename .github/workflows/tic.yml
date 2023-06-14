@@ -39,9 +39,6 @@ jobs:
       TIC_DEPLOY_KEY: ${{ secrets.TIC_DEPLOY_KEY }}
       # prevent rgl issues because no X11 display is available
       RGL_USE_NULL: true
-      # if you use bookdown or blogdown, replace "PKGDOWN" by the respective
-      # capitalized term. This also might need to be done in tic.R
-      BUILD_PKGDOWN: ${{ matrix.config.pkgdown }}
       # use GITHUB_TOKEN from GitHub to workaround rate limits in {remotes}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
