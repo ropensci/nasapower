@@ -11,9 +11,32 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![peer-review](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/software-review/issues/155)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
-[![CRAN](http://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 
 <!-- badges: end -->
+
+## POWER data vs {nasapower}
+
+Please note that {nasapower} is **NOT** the source of NASA POWER data.
+It is only an API client that allows easy access to the data.
+{nasapower} does not redistribute the data or provide it in any way, *we
+encourage users to follow the requests of the POWER Project Team and
+properly acknowledge them for the data rather than citing this package*
+(unless you have actually used it in your work).
+
+> *When POWER data products are used in a publication, we request the
+> following acknowledgement be included: “These data were obtained from
+> the NASA Langley Research Center POWER Project funded through the NASA
+> Earth Science Directorate Applied Science Program.”*
+
+The previous statement that properly cites the POWER data is different
+than the citation for {nasapower}. To cite this R package, {nasapower},
+please use the output from `citation(package = "nasapower")` and cite
+both the package manual, which includes the version you used and the
+paper which refers to the peer-review of the software package as the
+functionality of the package has changed and will likely change to match
+the API in the future as necessary.
+
+## About {nasapower}
 
 {nasapower} aims to make it quick and easy to automate *downloading* of
 the [NASA-POWER](https://power.larc.nasa.gov) global meteorology,
@@ -46,7 +69,7 @@ A development version is available through GitHub.
 
 ``` r
 if (!require("remotes")) {
-  install.packages("remotes")
+  install.packages("pak")
 }
 
 remotes::install_github("ropensci/nasapower")
@@ -102,23 +125,6 @@ More documentation is available in the vignette in your R session,
   terms.
 
 - License: MIT
-
-- To cite this R package, {nasapower}, please use the output from
-  `citation(package = "nasapower")` and cite both the package manual,
-  which includes the version you used and the paper which refers to the
-  peer-review of the software package.
-
-- Please note that {nasapower} is **NOT** the source of NASA POWER data.
-  It is only an API client that allows easy access to the data.
-  {nasapower} does not redistribute the data or provide it in any way,
-  we encourage users to follow the requests of the POWER Project Team
-  and properly acknowledge them for the data rather than citing this
-  package (unless you have actually used it in your work).
-
-  > *When POWER data products are used in a publication, we request the
-  > following acknowledgement be included: “These data were obtained
-  > from the NASA Langley Research Center POWER Project funded through
-  > the NASA Earth Science Directorate Applied Science Program.”*
 
 ## References
 
