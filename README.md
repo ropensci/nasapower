@@ -11,7 +11,8 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![peer-review](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/software-review/issues/155)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
-
+[![CRAN
+status](https://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 <!-- badges: end -->
 
 ## POWER data vs {nasapower}
@@ -69,7 +70,7 @@ A development version is available through GitHub.
 
 ``` r
 if (!require("remotes")) {
-  install.packages("pak")
+  install.packages("remotes")
 }
 
 remotes::install_github("ropensci/nasapower")
