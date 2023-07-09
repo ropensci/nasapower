@@ -75,14 +75,10 @@ community <- vals[, 2]
 base_url <- "https://power.larc.nasa.gov/api/system/manager/parameters?"
 
 power_pars <- map2(.x = temporal_api,
-                  .y = community,
-                  .f = ~ fromJSON(paste0(
-                    base_url,
-                    "temporal=",
-                    .x,
-                    "&community=",
-                    .y
-                  )))
+                    .y = community,
+                    .f = ~ fromJSON(sprintf(
+                    "%stemporal=%s&community=%s", base_url, .x, .y)
+                    ))
 
 names(power_pars) <- paste(temporal_api, community, sep = "_")
 
@@ -91,7 +87,7 @@ names(power_pars) <- paste(temporal_api, community, sep = "_")
 parameters <- vector(mode = "list", length = length(power_pars))
 names(parameters) <- names(power_pars)
 for (i in names(power_pars)) {
-  parameters[[i]] <- names(power_pars[[i]])
+    parameters[[i]] <- names(power_pars[[i]])
 }
 
 parameters <- map(.x = parameters, .f = sort)
