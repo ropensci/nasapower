@@ -1,4 +1,4 @@
-#' Prints Power.Info object
+#' Prints Power.Info Object
 #'
 #' @param x POWER.Info object
 #' @param ... ignored

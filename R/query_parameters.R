@@ -1,5 +1,5 @@
 
-#' Query the POWER API for detailed information on parameters
+#' Query the POWER API for Detailed Information on Available Parameters
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
 #'  available parameters.
