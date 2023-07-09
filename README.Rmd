@@ -17,7 +17,8 @@ It is only an API client that allows easy access to the data.
 {nasapower} aims to make it quick and easy to automate *downloading* of the [NASA-POWER](https://power.larc.nasa.gov) global meteorology, surface solar energy and climatology data in your R session as a tidy data frame `tibble` object for analysis and use in modelling or other purposes.
 POWER (Prediction Of Worldwide Energy Resource) data are freely available for download with varying spatial resolutions dependent on the original data and with several temporal resolutions depending on the POWER parameter and community.
 
-**Note that the data are not static and may be replaced with improved data.** Please see <https://power.larc.nasa.gov/docs/services/> for detailed information in this regard.
+**Note that the data are not static and may be replaced with improved data.**
+Please see <https://power.larc.nasa.gov/docs/services/> for detailed information in this regard.
 
 ### Quick start
 
