@@ -41,7 +41,7 @@ Authors@R:
             comment =
               c(ORCID = "0000-0002-2815-0399",
               "Maëlle Salmon contributed a patch to fix issues with using the R
-              package, 'vcr', for testing the 'API' queries, see
+              package, 'vcr', for testing the API queries, see
                         <https://github.com/ropensci/nasapower/pull/64>.")),
       person(given = "Phillip D.",
              family = "Alderman",
@@ -56,16 +56,17 @@ Authors@R:
       person(given = "Western Australia Agriculture Authority (WAAA)",
              role = "cph",
              comment =
-                c("Supported the development of nasapower through Adam H.
+                c("Supported the development of 'nasapower' through Adam H.
                 Sparks' time.")))
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
-Description: Client for 'NASA' 'POWER' global meteorology, surface solar
-    energy and climatology data 'API'.  'POWER' (Prediction Of Worldwide Energy 
-    Resource) data are freely available for download with varying spatial
+DOI: 10.5281/zenodo.1040727
+Description: An API client for NASA POWER global meteorology, surface solar
+    energy and climatology data API.  POWER (Prediction Of Worldwide Energy
+    Resource) data are freely available for download with varying spatial 
     resolutions dependent on the original data and with several temporal
     resolutions depending on the POWER parameter and community.  This work is
-    funded through the 'NASA' Earth Science Directorate Applied Science Program.
+    funded through the NASA Earth Science Directorate Applied Science Program.
     For more on the data themselves, the methodologies used in creating, a web-
     based data viewer and web access, please see <https://power.larc.nasa.gov/>.
 Depends:
