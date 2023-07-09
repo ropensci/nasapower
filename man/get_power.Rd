@@ -66,7 +66,7 @@ terminology.}
 \itemize{
 \item Universal Time Coordinated (\acronym{UTC}): is the standard time measure
 that used by the world.
-\item Local Solar Time (\acronym{LST}): A 15 Degrees swath that represents
+\item Local Solar Time (\acronym{LST}): A 15 degree swath that represents
 solar noon at the middle longitude of the swath.
 Defaults to \code{LST}.
 }}
