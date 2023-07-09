@@ -261,7 +261,7 @@ get_power <- function(community,
     )
     wind_elevation <- NULL
   }
-  if (is.character(wind_surface) & is.null(wind_elevation)) {
+  if (is.character(wind_surface) && is.null(wind_elevation)) {
     stop(
       call. = FALSE,
       "If you provide a correct wind surface alias, `wind_surface`, please ",
@@ -269,7 +269,7 @@ get_power <- function(community,
     )
   }
   if (!is.null(wind_elevation)) {
-    if (wind_elevation < 10 | wind_elevation > 300) {
+    if (wind_elevation < 10 || wind_elevation > 300) {
       stop(
         call. = FALSE,
         "`wind_elevation` values in metres are required to be between",
@@ -293,7 +293,7 @@ get_power <- function(community,
                       community,
                       temporal_api)
   lonlat_identifier <- .check_lonlat(lonlat,
-                                     pars)
+                                    pars)
   dates <- .check_dates(dates,
                         lonlat,
                         temporal_api)
@@ -329,15 +329,15 @@ get_power <- function(community,
 
   meta <- power_data[c(grep("-BEGIN HEADER-",
                             power_data):grep("-END HEADER-",
-                                             power_data))]
+                                            power_data))]
   # strip BEGIN/END HEADER lines
   meta <- meta[-c(1, max(length(meta)))]
 
   # replace missing values with NA in metadata header
   for (i in c("-999", "-99", "-99.00")) {
     meta <- gsub(pattern = i,
-                 replacement = "NA",
-                 x = meta)
+                replacement = "NA",
+                x = meta)
   }
 
   # create tibble object
@@ -357,20 +357,20 @@ get_power <- function(community,
   )
 
   # if the temporal average is anything but climatology, add date fields
-  if (temporal_api == "daily" &
-      query_list$community == "re" |
+  if (temporal_api == "daily" &&
+      query_list$community == "re" ||
       query_list$community == "sb") {
     power_data <- .format_dates_re_sb(power_data)
   }
-  if (temporal_api == "daily" &
+  if (temporal_api == "daily" &&
       query_list$community == "ag") {
     power_data <- .format_dates_ag(power_data)
   }
 
   # add new class
   power_data <- tibble::new_tibble(power_data,
-                                   class = "POWER.Info",
-                                   nrow = nrow(power_data))
+                                  class = "POWER.Info",
+                                  nrow = nrow(power_data))
 
   # add attributes for printing df
   attr(power_data, "POWER.Info") <- meta[1]
@@ -387,9 +387,9 @@ get_power <- function(community,
 
 # functions internal to get_power() -----
 
-#' Check dates for validity when querying API
+#' Check Dates for Validity When Querying API
 #'
-#' Validates user entered date values against `lonlat` and `temporal_api` values
+#' Validates user entered dates against `lonlat` and `temporal_api` values
 #'
 #' @param dates User entered `dates` value.
 #' @param lonlat User entered `lonlat` value.
