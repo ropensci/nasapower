@@ -57,21 +57,20 @@
 #' @export
 
 query_parameters <- function(community = NULL,
-                             par = NULL,
-                             temporal_api = NULL) {
-  power_url <-
-    paste0("https://power.larc.nasa.gov/api/system/manager/parameters")
+                            par = NULL,
+                            temporal_api = NULL) {
+  power_url <- "https://power.larc.nasa.gov/api/system/manager/parameters"
 
   # if only a `par` is provided, then create URL w/o using crul and parse w/
-  # jsonlite, otherwise use crul to fetch from the API
+  # jsonlite, otherwise use {crul} to fetch from the API
   if (is.null(community) && is.null(temporal_api)) {
-    return(jsonlite::fromJSON(paste0(
-      power_url, "/", par, "?user=nasapowerdev"
-    )))
+    return(jsonlite::fromJSON(
+      sprintf("%s/%s?user=nasapowerdev", power_url, par)
+    ))
   } else {
     if (is.null(community) || is.null(temporal_api)) {
       stop(call. = FALSE,
-           "`commmunity` and `temporal_api` strings must be supplied.")
+          "`commmunity` and `temporal_api` strings must be supplied.")
     }
 
     query_list <-
