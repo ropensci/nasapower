@@ -1,5 +1,5 @@
 
-#' Add %notin% function
+#' Adds a %notin% Function
 #'
 #' Negates `%in%` for easier (mis)matching.
 #'
@@ -14,7 +14,7 @@
   match(x, table, nomatch = 0L) == 0L
 }
 
-#' Check pars for validity when querying API
+#' Check Pars for Validity When Querying API
 #'
 #' Validates user entered `pars` values against `temporal_api` values.
 #'
@@ -31,8 +31,8 @@
     pars <- unique(pars)
 
     p <- unlist(parameters[paste(toupper(temporal_api),
-                                 toupper(community),
-                                 sep = "_")])
+                                toupper(community),
+                                sep = "_")])
 
     # check pars to make sure that they are valid for both the par and
     # temporal_api
@@ -65,7 +65,7 @@
     return(pars)
   }
 
-#' Sends the query to the POWER API
+#' Sends the Query to the POWER API
 #'
 #' @param .query_list A query list created by [.build_query()]
 #' @param .temporal_api A character string of the validated `temporal_api`
@@ -82,8 +82,8 @@
 
   # nocov begin
   response <- client$get(query = .query_list,
-                         retry = 6L,
-                         timeout = 30L)
+                        retry = 6L,
+                        timeout = 30L)
 
   # check to see if request failed or succeeded
   # - a custom approach this time combining status code,
@@ -92,7 +92,7 @@
     mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
     x <- response$status_http()
     stop(sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg),
-         call. = FALSE)
+        call. = FALSE)
   }
   # parse response
   return(response)
