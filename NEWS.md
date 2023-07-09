@@ -1,4 +1,22 @@
-# nasapower (development version)
+# nasapower 4.0.11
+
+## Bug fixes
+
+* Replaces `&` or `|` with the proper `&&` or `||`.
+
+* Corrects documentation titles for functions to be title case.
+
+* Fixes the CRAN badge in the README.
+
+## Minor changes
+
+* Reorder README to stress that this is not the data source and should not be cited as such.
+
+* Tidy up minor bits-n-pieces in documentation to make it nicer, *e.g.* grammar corrections, using `\dQuote{}` rather than """ in ROxygen.
+
+* Uses `sprintf` rather than `paste` where possible.
+
+* Update {vcr} configuration and infrastructure to use .json cassettes.
 
 # nasapower 4.0.10
 
