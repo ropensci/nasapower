@@ -8,6 +8,8 @@
 
 * Fixes the CRAN badge in the README.
 
+* Updates {vcr} configuration files for testing.
+
 ## Minor changes
 
 * Reorder README to stress that this is not the data source and should not be cited as such.
