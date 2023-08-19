@@ -2,8 +2,6 @@
 
 ## Bug fixes
 
-* Replaces `&` or `|` with the proper `&&` or `||`.
-
 * Corrects documentation titles for functions to be title case.
 
 * Fixes the CRAN badge in the README.
