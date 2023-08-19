@@ -46,7 +46,7 @@
       )
     }
 
-    if (length(pars) > 15 && temporal_api == "hourly") {
+    if (length(pars) > 15 & temporal_api == "hourly") {
       stop(
         call. = FALSE,
         "A maximum of 15 parameters can currently be requested ",
