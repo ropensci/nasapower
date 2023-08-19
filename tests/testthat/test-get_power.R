@@ -317,7 +317,7 @@ test_that("get_power() returns point ag data for climatology", {
 test_that("get_power() stops if `temporal_api` not valid", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(-179.5, -89.5),
       pars = "T2M",
@@ -331,7 +331,7 @@ test_that("get_power() stops if `temporal_api` not valid", {
 test_that("get_power() stops if hourly data are requested < 2001-01-01", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(-179.5, -89.5),
       pars = "T2M",
@@ -345,7 +345,7 @@ test_that("get_power() stops if hourly data are requested < 2001-01-01", {
 test_that("get_power() stops if an invalid community supplied", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "rOpenSci",
       lonlat = "global",
       pars = "T2M",
@@ -360,7 +360,7 @@ test_that("get_power() stops if site elevation is supplied not for point", {
   Sys.sleep(10)
   skip_if_offline()
   expect_message(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(112.5, -55.5, 115.5, -50.5),
       pars = "T2M",
@@ -375,7 +375,7 @@ test_that("get_power() stops if site elevation is supplied not for point", {
 test_that("get_power() stops if site_elevation is invalid", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(112.5, -55.5),
       pars = "T2M",
@@ -391,7 +391,7 @@ test_that("get_power() stops wind_surface is supplied w/ no wind_elevation",
   {
     skip_if_offline()
     expect_error(
-      power_query <- get_power(
+      get_power(
         community = "ag",
         lonlat = c(112.5, -55.5),
         pars = "T2M",
@@ -406,7 +406,7 @@ test_that("get_power() stops wind_surface is supplied w/ no wind_elevation",
 test_that("get_power() stops wind_elevation is invalid", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(112.5, -55.5),
       pars = "T2M",
@@ -421,7 +421,7 @@ test_that("get_power() stops wind_elevation is invalid", {
 test_that("get_power() ignores wind_elevation for regional requests", {
   skip_if_offline()
   expect_message(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(112.5, -55.5, 115.5, -50.5),
       pars = "T2M",
@@ -436,7 +436,7 @@ test_that("get_power() ignores wind_elevation for regional requests", {
 test_that("get_power() stops if `global` coverage is requested", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = "global",
       pars = "T2M",
@@ -450,7 +450,7 @@ test_that("get_power() stops if `global` coverage is requested", {
 test_that("get_power() stops if temporal_api is hourly and pars > 15", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(112.5, -55.5),
       pars = c(
@@ -484,7 +484,7 @@ test_that("get_power() gives warning if `temporal_average` is used", {
   skip_if_offline()
   vcr::use_cassette("temporal_api-warning", {
     expect_warning(
-      power_query <- get_power(
+      get_power(
         community = "ag",
         lonlat = c(-179.5, -89.5),
         pars = "T2M",
@@ -499,7 +499,7 @@ test_that("get_power() gives warning if `temporal_average` is used", {
 test_that("get_power() stops if there is no temporal_api()", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = c(-179.5, -89.5),
       pars = "T2M",
@@ -512,7 +512,7 @@ test_that("get_power() stops if there is no temporal_api()", {
 test_that("get_power() stops if global lonlat is set", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = "global",
       pars = "T2M",
@@ -526,7 +526,7 @@ test_that("get_power() stops if global lonlat is set", {
 test_that("get_power() stops if lonlat = is invalid", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = "x",
       pars = "T2M",
@@ -540,7 +540,7 @@ test_that("get_power() stops if lonlat = is invalid", {
 test_that("get_power() stops if lonlat = is invalid for climatology", {
   skip_if_offline()
   expect_error(
-    power_query <- get_power(
+    get_power(
       community = "ag",
       lonlat = "global",
       pars = "T2M",
