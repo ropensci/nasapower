@@ -1,21 +1,15 @@
-# nasapower v4.0.10
-
-This is a new patch release to update the CITATION file to meet CRAN guidelines.
-
-## Test environments
-* local macOS, Platform: aarch64-apple-darwin20 (64-bit), R 4.2.2
-* local macOS, Platform: aarch64-apple-darwin20 (64-bit), (R 4.3.0)
-* R Under development (unstable) (2023-02-24 r83902 ucrt)
+# nasapower 4.0.11
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-This is a new patch release
+* This is a new patch release.
 
 ## revdepcheck results
 
 We checked 2 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
- * We saw 0 new problems
- * We failed to check 0 packages
+    We saw 0 new problems
+    We failed to check 0 packages
+
