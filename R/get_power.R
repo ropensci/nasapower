@@ -107,7 +107,7 @@
 #'
 #' @section `wind_surface`: There are 17 surfaces that may be used for corrected
 #'   wind-speed values using the following equation:
-#'   \deqn{WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha}
+#'   \deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }.
 #'   Valid surface types are described here.
 #'
 #' \describe{
@@ -136,7 +136,7 @@
 #'  investigate the use of `limit_rate()` from \CRANpkg{ratelimitr} to create
 #'  self-limiting functions that will respect the rate limits that the
 #' \acronym{API} has in place.  It is considered best practice to check the
-#'  POWER website](https://power.larc.nasa.gov/docs/services/api/#rate-limiting)
+#'  [POWER website](https://power.larc.nasa.gov/docs/services/api/#rate-limiting)
 #'  for the latest rate limits as they differ between temporal \acronym{API}s
 #'  and may change over time as the project matures.
 #'
