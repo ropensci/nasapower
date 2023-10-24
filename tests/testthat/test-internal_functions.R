@@ -95,7 +95,7 @@ test_that("Dates are returned as a vector of characters", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   dates <- .check_dates(dates, lonlat, temporal_api)
-  expect_is(dates, "character")
+  expect_type(dates, "character")
 })
 
 test_that(

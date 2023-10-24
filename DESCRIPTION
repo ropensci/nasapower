@@ -87,7 +87,7 @@ Suggests:
     purrr,
     rmarkdown,
     spelling,
-    testthat,
+    testthat (>= 3.0.0),
     vcr (>= 0.6.0)
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
@@ -96,3 +96,5 @@ X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
     data-access, climate-data
 X-schema.org-isPartOf: https://ropensci.org
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3
+Config/testthat/parallel: true

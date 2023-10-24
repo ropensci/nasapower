@@ -18,7 +18,7 @@ test_that("get_power() returns daily point ag data", {
     )
   })
 
-  expect_is(power_query, "data.frame")
+  expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
   expect_equal(power_query$YEAR, 1983)
@@ -73,7 +73,7 @@ test_that("get_power() returns daily point ag data with adjusted atmospheric
       )
     })
 
-    expect_is(power_query, "data.frame")
+    expect_s3_class(power_query, "data.frame")
     expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
     expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
     expect_equal(power_query$YEAR, 1983)
@@ -131,7 +131,7 @@ test_that("get_power() returns daily point ag data with adjusted wind
       )
     })
 
-    expect_is(power_query, "data.frame")
+    expect_s3_class(power_query, "data.frame")
     expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
     expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
     expect_equal(power_query$YEAR, 1983)
@@ -185,7 +185,7 @@ test_that("get_power() returns daily point SB data", {
     )
   })
 
-  expect_is(power_query, "data.frame")
+  expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
   expect_equal(power_query$YEAR, 1983)
@@ -217,7 +217,7 @@ test_that("get_power() returns daily point SB data for LST", {
     )
   })
 
-  expect_is(power_query, "data.frame")
+  expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
   expect_equal(power_query$YEAR, 1983)
