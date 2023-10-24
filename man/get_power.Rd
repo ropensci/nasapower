@@ -187,9 +187,9 @@ the \acronym{API} is throttling your queries, I suggest that you
 investigate the use of \code{limit_rate()} from \CRANpkg{ratelimitr} to create
 self-limiting functions that will respect the rate limits that the
 \acronym{API} has in place.  It is considered best practice to check the
-\href{https://power.larc.nasa.gov/docs/services/api/#rate-limiting}{POWER website}
-for the latest rate limits as they differ between temporal \acronym{API}s
-and may change over time as the project matures.
+\href{https://power.larc.nasa.gov/docs/services/api/}{POWER website} for the
+latest rate limits as they differ between temporal \acronym{API}s and may
+change over time as the project matures.
 }
 
 \examples{
