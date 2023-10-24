@@ -1,5 +1,13 @@
 # nasapower (development version)
 
+## Bug fixes
+
+* Fix formula in documentation that didn't display properly in HTML.
+
+* Fix non-functional link in documentation.
+
+* Fix code coverage badging.
+
 # nasapower 4.0.11
 
 ## Bug fixes
@@ -16,7 +24,7 @@
 
 * Reorder README to stress that this is not the data source and should not be cited as such.
 
-* Tidy up minor bits-n-pieces in documentation to make it nicer, *e.g.* grammar corrections, using `\dQuote{}` rather than """ in ROxygen.
+* Tidy up minor bits-n-pieces in documentation to make it nicer, *e.g.*, grammar corrections, using `\dQuote{}` rather than """ in ROxygen.
 
 * Uses `sprintf` rather than `paste` where possible.
 
