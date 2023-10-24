@@ -181,11 +181,11 @@ Valid surface types are described here.
 }
 
 \section{Rate limiting}{
- The POWER API endpoints limit queries to prevent
-server overloads due to repetitive and rapid requests.  If you find that
-the \acronym{API} is throttling your queries, I suggest that you
-investigate the use of \code{limit_rate()} from \CRANpkg{ratelimitr} to create
-self-limiting functions that will respect the rate limits that the
+ The \acronym{POWER} \acronym{API} endpoints limit
+queries to prevent server overloads due to repetitive and rapid requests.
+If you find that the \acronym{API} is throttling your queries, I suggest
+that you investigate the use of \code{limit_rate()} from \CRANpkg{ratelimitr} to
+create self-limiting functions that will respect the rate limits that the
 \acronym{API} has in place.  It is considered best practice to check the
 \href{https://power.larc.nasa.gov/docs/services/api/}{POWER website} for the
 latest rate limits as they differ between temporal \acronym{API}s and may
