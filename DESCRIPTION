@@ -62,7 +62,7 @@ URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
 Description: An API client for NASA POWER global meteorology, surface solar
     energy and climatology data API.  POWER (Prediction Of Worldwide Energy
-    Resource) data are freely available for download with varying spatial 
+    Resources) data are freely available for download with varying spatial 
     resolutions dependent on the original data and with several temporal
     resolutions depending on the POWER parameter and community.  This work is
     funded through the NASA Earth Science Directorate Applied Science Program.
