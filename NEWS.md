@@ -8,6 +8,14 @@
 
 * Fix code coverage badging.
 
+## Minor changes
+
+* Use {cli} and {rlang} for clear messages for end users.
+
+* Use argument matching for function arguments where practical.
+
+* The `temporal_api` argument of `get_power()` now defaults to "daily", previously it had no default value.
+
 # nasapower 4.0.11
 
 ## Bug fixes
