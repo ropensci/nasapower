@@ -310,10 +310,9 @@ get_power <- function(community,
     time_standard
   )
 
-  power_url <- paste0(
-    "https://power.larc.nasa.gov/api/temporal/",
+  power_url <- sprintf(
+    "https://power.larc.nasa.gov/api/temporal/%s/%s",
     temporal_api,
-    "/",
     lonlat_identifier$identifier
   )
 
