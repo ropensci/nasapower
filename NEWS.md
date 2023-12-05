@@ -1,4 +1,4 @@
-# nasapower (development version)
+# nasapower 4.1.0
 
 ## Bug fixes
 
