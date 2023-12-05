@@ -5,16 +5,18 @@
 \title{Get NASA POWER Data From the POWER API}
 \usage{
 get_power(
-  community,
+  community = c("ag", "re", "sb"),
   pars,
-  temporal_api = NULL,
+  temporal_api = c("hourly", "daily", "monthly", "climatology"),
   lonlat,
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
-  wind_surface = NULL,
+  wind_surface = c("vegtype_1", "vegtype_2", "vegtype_3", "vegtype_4", "vegtype_5",
+    "vegtype_6", "vegtype_7", "vegtype_8", "vegtype_9", "vegtype_10", "vegtype_11",
+    "vegtype_12", "vegtype_20", "seaice", "openwater", "airportice", "airportgrass"),
   temporal_average = NULL,
-  time_standard = "LST"
+  time_standard = c("LST", "UTC")
 )
 }
 \arguments{
@@ -27,14 +29,16 @@ coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
 for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
 \code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
 only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
-more.}
+more.  These values are checked internally for validity before sending the
+query to the \acronym{POWER} \acronym{API}.}
 
 \item{temporal_api}{Temporal \acronym{API} end-point for data being queried,
 supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 \dQuote{climatology}.  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates.  See argument details for more.}
+entered as x, y (longitude, latitude) coordinates.  See argument details
+for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
@@ -57,10 +61,6 @@ request, see
 
 \item{wind_surface}{A user-supplied wind surface for which the corrected
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
-
-\item{temporal_average}{Deprecated. This argument has been superseded by
-\code{temporal_api} to align with the new \acronym{POWER} \acronym{API}
-terminology.}
 
 \item{time_standard}{\acronym{POWER} provides two different time standards:
 \itemize{

@@ -17,12 +17,14 @@
 #'   for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
 #'   `temporal_api`s.  If the `temporal_api` is specified as \dQuote{hourly}
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
-#'   more.
+#'   more.  These values are checked internally for validity before sending the
+#'   query to the \acronym{POWER} \acronym{API}.
 #' @param temporal_api Temporal \acronym{API} end-point for data being queried,
 #'   supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 #'   \dQuote{climatology}.  See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'   entered as x, y coordinates.  See argument details for more.
+#'   entered as x, y (longitude, latitude) coordinates.  See argument details
+#'   for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   _e.g._, `dates = c("1983-01-01", "2017-12-31")`.
 #'   Not used when\cr `temporal_api` is set to \dQuote{climatology}.
@@ -216,7 +218,7 @@ get_power <- function(community = c("ag", "re", "sb"),
                                        "airportice",
                                        "airportgrass"),
                       temporal_average = NULL,
-                      time_standard = c("LST", "UTC") {
+                      time_standard = c("LST", "UTC")) {
 
   community <- rlang::arg_match(community)
   temporal_api <- rlang::arg_match(temporal_api)
