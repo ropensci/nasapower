@@ -70,6 +70,8 @@
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
 #' @keywords internal
+#' @return A response from the POWER server containing either an error message
+#'   or the data requested.
 #' @noRd
 #'
 .send_query <- function(.query_list,
