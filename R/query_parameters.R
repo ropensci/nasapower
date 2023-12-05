@@ -69,7 +69,7 @@ query_parameters <- function(community = NULL,
     ))
   } else {
     if (is.null(community) || is.null(temporal_api)) {
-      stop(call. = FALSE,
+      cli::cli_abort(
           "`commmunity` and `temporal_api` strings must be supplied.")
     }
 
