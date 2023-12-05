@@ -41,9 +41,6 @@
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
-#' @param temporal_average Deprecated. This argument has been superseded by
-#'   `temporal_api` to align with the new \acronym{POWER} \acronym{API}
-#'   terminology.
 #' @param time_standard \acronym{POWER} provides two different time standards:
 #'    * Universal Time Coordinated (\acronym{UTC}): is the standard time measure
 #'     that used by the world.
