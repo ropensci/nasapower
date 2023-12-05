@@ -217,7 +217,6 @@ get_power <- function(community = c("ag", "re", "sb"),
                                        "openwater",
                                        "airportice",
                                        "airportgrass"),
-                      temporal_average = NULL,
                       time_standard = c("LST", "UTC")) {
 
   community <- rlang::arg_match(community)

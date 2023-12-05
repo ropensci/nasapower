@@ -15,7 +15,6 @@ get_power(
   wind_surface = c("vegtype_1", "vegtype_2", "vegtype_3", "vegtype_4", "vegtype_5",
     "vegtype_6", "vegtype_7", "vegtype_8", "vegtype_9", "vegtype_10", "vegtype_11",
     "vegtype_12", "vegtype_20", "seaice", "openwater", "airportice", "airportgrass"),
-  temporal_average = NULL,
   time_standard = c("LST", "UTC")
 )
 }
