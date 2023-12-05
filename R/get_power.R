@@ -188,46 +188,45 @@
 #' @author Adam H. Sparks \email{adamhsparks@@gmail.com}
 #'
 #' @export
-get_power <- function(community,
+get_power <- function(community = c("ag", "re", "sb"),
                       pars,
-                      temporal_api = NULL,
+                      temporal_api = c("hourly",
+                                       "daily",
+                                       "monthly",
+                                       "climatology"),
                       lonlat,
                       dates = NULL,
                       site_elevation = NULL,
                       wind_elevation = NULL,
-                      wind_surface = NULL,
+                      wind_surface = c("vegtype_1",
+                                       "vegtype_2",
+                                       "vegtype_3",
+                                       "vegtype_4",
+                                       "vegtype_5",
+                                       "vegtype_6",
+                                       "vegtype_7",
+                                       "vegtype_8",
+                                       "vegtype_9",
+                                       "vegtype_10",
+                                       "vegtype_11",
+                                       "vegtype_12",
+                                       "vegtype_20",
+                                       "seaice",
+                                       "openwater",
+                                       "airportice",
+                                       "airportgrass"),
                       temporal_average = NULL,
-                      time_standard = "LST") {
-  if (is.null(temporal_api) & !is.null(temporal_average)) {
-    warning(
-      call. = FALSE,
-      "`temporal_average has been deprecated for `temporal_api`.\n",
-      "Your query has been modified to use the new terminology for ",
-      "`get_power`.  Please update your scripts to use the new argument."
-    )
-    temporal_api <- temporal_average
-  }
-  if (is.null(temporal_api)) {
-    stop(call. = FALSE,
-         "You must provide a `temporal_api` value.")
-  }
-  if (is.character(temporal_api)) {
-    temporal_api <- tolower(temporal_api)
+                      time_standard = c("LST", "UTC") {
+
+  community <- rlang::arg_match(community)
+  temporal_api <- rlang::arg_match(temporal_api)
+  wind_surface <- rlang::arg_match(wind_surface)
+  time_standard <- rlang::arg_match(time_standard)
+
     if (temporal_api == "climatology") {
       dates <- NULL
     }
-  }
-  if (temporal_api %notin% c("hourly", "daily", "monthly", "climatology")) {
-    stop(call. = FALSE,
-         "You have entered an invalid value for `temporal_api`.\n")
-  }
-  if (is.character(community)) {
-    community <- tolower(community)
-  }
-  if (community %notin% c("ag", "sb", "re")) {
-    stop(call. = FALSE,
-         "You have provided an invalid `community` value.\n")
-  }
+
   if (is.character(pars)) {
     pars <- toupper(pars)
   }
