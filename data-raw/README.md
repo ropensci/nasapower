@@ -1,7 +1,7 @@
 Fetch NASA-POWER Parameters and Include Them as an Internal List
 ================
 Adam H. Sparks
-2023-07-09
+2023-12-05
 
 # Create parameters nested list for internal checks before sending queries to POWER server
 
@@ -120,51 +120,52 @@ sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value
-    ##  version  R version 4.3.1 (2023-06-16)
-    ##  os       macOS Ventura 13.4.1
+    ##  version  R version 4.3.2 (2023-10-31)
+    ##  os       macOS Sonoma 14.1.2
     ##  system   aarch64, darwin20
     ##  ui       X11
     ##  language (EN)
     ##  collate  en_US.UTF-8
     ##  ctype    en_US.UTF-8
     ##  tz       Australia/Perth
-    ##  date     2023-07-09
-    ##  pandoc   3.1.4 @ /opt/homebrew/bin/ (via rmarkdown)
+    ##  date     2023-12-05
+    ##  pandoc   3.1.9 @ /opt/homebrew/bin/ (via rmarkdown)
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date (UTC) lib source
-    ##  askpass       1.1     2019-01-13 [1] CRAN (R 4.3.0)
+    ##  askpass       1.2.0   2023-09-03 [1] CRAN (R 4.3.0)
     ##  cli           3.6.1   2023-03-23 [1] CRAN (R 4.3.0)
+    ##  colorout      1.2-2   2023-09-24 [1] local
     ##  crayon        1.5.2   2022-09-29 [1] CRAN (R 4.3.0)
-    ##  credentials   1.3.2   2021-11-29 [1] CRAN (R 4.3.0)
+    ##  credentials   2.0.1   2023-09-06 [1] CRAN (R 4.3.0)
     ##  desc          1.4.2   2022-09-08 [1] CRAN (R 4.3.0)
     ##  digest        0.6.33  2023-07-07 [1] CRAN (R 4.3.0)
-    ##  evaluate      0.21    2023-05-05 [1] CRAN (R 4.3.0)
-    ##  fansi         1.0.4   2023-01-22 [1] CRAN (R 4.3.0)
+    ##  evaluate      0.23    2023-11-01 [1] CRAN (R 4.3.1)
+    ##  fansi         1.0.5   2023-10-08 [1] CRAN (R 4.3.1)
     ##  fastmap       1.1.1   2023-02-24 [1] CRAN (R 4.3.0)
-    ##  fs            1.6.2   2023-04-25 [1] CRAN (R 4.3.0)
+    ##  fs            1.6.3   2023-07-20 [1] CRAN (R 4.3.0)
     ##  glue          1.6.2   2022-02-24 [1] CRAN (R 4.3.0)
-    ##  htmltools     0.5.5   2023-03-23 [1] CRAN (R 4.3.0)
+    ##  htmltools     0.5.7   2023-11-03 [1] CRAN (R 4.3.1)
     ##  jsonlite    * 1.8.7   2023-06-29 [1] CRAN (R 4.3.0)
-    ##  knitr         1.43    2023-05-25 [1] CRAN (R 4.3.0)
-    ##  lifecycle     1.0.3   2022-10-07 [1] CRAN (R 4.3.0)
+    ##  knitr         1.45    2023-10-30 [1] CRAN (R 4.3.1)
+    ##  lifecycle     1.0.4   2023-11-07 [1] CRAN (R 4.3.1)
     ##  magrittr      2.0.3   2022-03-30 [1] CRAN (R 4.3.0)
-    ##  openssl       2.0.6   2023-03-09 [1] CRAN (R 4.3.0)
+    ##  openssl       2.1.1   2023-09-25 [1] CRAN (R 4.3.1)
     ##  pillar        1.9.0   2023-03-22 [1] CRAN (R 4.3.0)
     ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.3.0)
-    ##  purrr       * 1.0.1   2023-01-10 [1] CRAN (R 4.3.0)
+    ##  purrr       * 1.0.2   2023-08-10 [1] CRAN (R 4.3.0)
     ##  R6            2.5.1   2021-08-19 [1] CRAN (R 4.3.0)
-    ##  rlang         1.1.1   2023-04-28 [1] CRAN (R 4.3.0)
-    ##  rmarkdown     2.23    2023-07-01 [1] CRAN (R 4.3.0)
-    ##  rprojroot     2.0.3   2022-04-02 [1] CRAN (R 4.3.0)
-    ##  rstudioapi    0.14    2022-08-22 [1] CRAN (R 4.3.0)
+    ##  rlang         1.1.2   2023-11-04 [1] CRAN (R 4.3.1)
+    ##  rmarkdown     2.25    2023-09-18 [1] CRAN (R 4.3.1)
+    ##  rprojroot     2.0.4   2023-11-05 [1] CRAN (R 4.3.1)
+    ##  rstudioapi    0.15.0  2023-07-07 [1] CRAN (R 4.3.0)
     ##  sessioninfo   1.2.2   2021-12-06 [1] CRAN (R 4.3.0)
     ##  sys           3.4.2   2023-05-23 [1] CRAN (R 4.3.0)
     ##  tibble        3.2.1   2023-03-20 [1] CRAN (R 4.3.0)
     ##  usethis       2.2.2   2023-07-06 [1] CRAN (R 4.3.0)
-    ##  utf8          1.2.3   2023-01-31 [1] CRAN (R 4.3.0)
-    ##  vctrs         0.6.3   2023-06-14 [1] CRAN (R 4.3.0)
-    ##  xfun          0.39    2023-04-20 [1] CRAN (R 4.3.0)
+    ##  utf8          1.2.4   2023-10-22 [1] CRAN (R 4.3.1)
+    ##  vctrs         0.6.5   2023-12-01 [1] CRAN (R 4.3.1)
+    ##  xfun          0.41    2023-11-01 [1] CRAN (R 4.3.1)
     ##  yaml          2.3.7   2023-01-23 [1] CRAN (R 4.3.0)
     ## 
     ##  [1] /Users/adamsparks/Library/R/arm64/4.3/library
