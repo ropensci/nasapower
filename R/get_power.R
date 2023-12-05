@@ -254,17 +254,15 @@ get_power <- function(community = c("ag", "re", "sb"),
          "You have entered an invalid value for `site_elevation`.\n")
   }
   if (length(lonlat) > 2 && !is.null(site_elevation)) {
-    message(
-      "You have provided `site_elevation` for a region request.\n",
-      "The `site_elevation` value will be ignored.\n"
+    cli::cli_inform(
+      "You have provided `site_elevation`, {.var {site_elevation}} for a region request. The `site_elevation` value will be ignored.\n"
     )
     site_elevation <- NULL
   }
 
   if (length(lonlat) > 2 && !is.null(wind_elevation)) {
-    message(
-      "You have provided `wind_elevation` for a region request.\n",
-      "The `wind_elevation` value will be ignored.\n"
+    cli::cli_inform(
+      "You have provided `wind_elevation`, {.var {wind_elevation}}, for a region request. The `wind_elevation` value will be ignored.\n"
     )
     wind_elevation <- NULL
   }

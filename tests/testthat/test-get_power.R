@@ -338,7 +338,7 @@ test_that("get_power() stops if site elevation is supplied not for point", {
       temporal_api = "daily",
       site_elevation = 35
     ),
-    regexp = "You have provided `site_elevation` for a region*."
+    regexp = "You have provided `site_elevation`, `35` for a region request.*"
   )
 })
 
@@ -399,7 +399,7 @@ test_that("get_power() ignores wind_elevation for regional requests", {
       temporal_api = "daily",
       wind_elevation = 15
     ),
-    regexp = "You have provided `wind_elevation` for a region request.*"
+    regexp = "You have provided `wind_elevation`, `15`, for a region request.*"
   )
 })
 
