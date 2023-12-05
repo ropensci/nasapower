@@ -7,14 +7,12 @@
 get_power(
   community = c("ag", "re", "sb"),
   pars,
-  temporal_api = c("hourly", "daily", "monthly", "climatology"),
+  temporal_api = c("daily", "monthly", "hourly", "climatology"),
   lonlat,
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
-  wind_surface = c("vegtype_1", "vegtype_2", "vegtype_3", "vegtype_4", "vegtype_5",
-    "vegtype_6", "vegtype_7", "vegtype_8", "vegtype_9", "vegtype_10", "vegtype_11",
-    "vegtype_12", "vegtype_20", "seaice", "openwater", "airportice", "airportgrass"),
+  wind_surface = NULL,
   time_standard = c("LST", "UTC")
 )
 }
@@ -33,7 +31,8 @@ query to the \acronym{POWER} \acronym{API}.}
 
 \item{temporal_api}{Temporal \acronym{API} end-point for data being queried,
 supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
-\dQuote{climatology}.  See argument details for more.}
+\dQuote{climatology}.  Defaults to \dQuote{daily}.  See argument details
+for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y (longitude, latitude) coordinates.  See argument details
