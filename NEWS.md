@@ -16,6 +16,8 @@
 
 * The `temporal_api` argument of `get_power()` now defaults to "daily", previously it had no default value.
 
+* The `temporal_average` argument for `get_power()` has now been removed after being deprecated and issuing a message to users to use `temporal_api` instead since release 4.0.0.
+
 # nasapower 4.0.11
 
 ## Bug fixes
