@@ -23,9 +23,10 @@ WS
 YYYY
 acknowledgement
 ag
-api
 apsimx
+badging
 broadleaf
+cli
 climatologies
 codecov
 crul
@@ -39,12 +40,10 @@ httr
 icasa
 interannual
 json
-larc
 lon
 metFile
 metres
 modelling
-nasa
 needleleaf
 pre
 rOpenSci
@@ -52,6 +51,7 @@ radn
 ratelimitr
 rda
 rds
+rlang
 ropensci
 sb
 terra
