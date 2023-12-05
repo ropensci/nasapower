@@ -28,7 +28,7 @@
 .check_pars <-
   function(pars, community, temporal_api) {
     # make sure that there are no duplicates in the query
-    pars <- unique(pars)
+    pars <- unique(toupper(pars))
 
     p <- unlist(parameters[paste(toupper(temporal_api),
                                 toupper(community),
@@ -37,8 +37,7 @@
     # check pars to make sure that they are valid for both the par and
     # temporal_api
     if (any(pars %notin% p)) {
-      stop(
-        call. = FALSE,
+      cli::cli_abort(
         "",
         paste(pars[which(pars %notin% p)], collapse = ", "),
         " is/are not valid in 'pars'.\n",
@@ -47,14 +46,12 @@
     }
 
     if (length(pars) > 15 && temporal_api == "hourly") {
-      stop(
-        call. = FALSE,
+        cli::cli_abort(
         "A maximum of 15 parameters can currently be requested ",
         "in one submission for hourly data.\n"
       )
     } else if (length(pars) > 20) {
-      stop(
-        call. = FALSE,
+      cli::cli_abort(
         "A maximum of 20 parameters can currently be requested ",
         "in one submission.\n"
       )
@@ -73,6 +70,8 @@
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
 #' @keywords internal
+#' @return A response from the POWER server containing either an error message
+#'   or the data requested.
 #' @noRd
 #'
 .send_query <- function(.query_list,
@@ -91,8 +90,8 @@
   if (response$status_code > 201) {
     mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
     x <- response$status_http()
-    stop(sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg),
-        call. = FALSE)
+    cli::cli_abort(
+      sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg))
   }
   # parse response
   return(response)

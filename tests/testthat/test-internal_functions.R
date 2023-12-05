@@ -86,7 +86,7 @@ test_that("Invalid `dates` are handled", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(dates, lonlat, temporal_api),
-               regexp = "*1983-02-31 is not a valid entry for date.*")
+               regexp = "`1983-02-31` is not a valid entry for a date value.*")
 })
 
 test_that("Dates are returned as a vector of characters", {
@@ -95,7 +95,7 @@ test_that("Dates are returned as a vector of characters", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   dates <- .check_dates(dates, lonlat, temporal_api)
-  expect_is(dates, "character")
+  expect_type(dates, "character")
 })
 
 test_that(
@@ -212,42 +212,42 @@ test_that(".check_lonlat() checks order of the latitude values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 179.5, -89.5),
                              pars),
-               regexp = "The first `lat` value must be the minimum value.\n")
+               regexp = "The first `lat` value must be the minimum value.")
 })
 
 test_that(".check_lonlat() checks order of the longitude values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(179.5, -89.5, -179.5, 89.5),
                              pars),
-               regexp = "The first `lon` value must be the minimum value.\n")
+               regexp = "The first `lon` value must be the minimum value.")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmin values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 91, -179.5, 90),
                              pars),
-               regexp = "Please check your latitude, `91`, `90`*")
+               regexp = "Please check your latitude values*")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmax values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 90, -179.5, 93),
                              pars),
-               regexp = "Please check your latitude, `90`, `93`,*")
+               regexp = "Please check your latitude values*")
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmin values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-181.5, 89.5, -179.5, 89.5),
                              pars),
-               regexp = "Please check your longitude, `-181.5`, `-179.5`*")
+               regexp = "Please check your longitude*")
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmax values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 181, 89.5),
                              pars),
-               regexp = "Please check your longitude, `-179.5`, `181`,*")
+               regexp = "Please check your longitude*")
 })
 
 test_that(

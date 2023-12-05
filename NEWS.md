@@ -1,4 +1,22 @@
-# nasapower (development version)
+# nasapower 4.1.0
+
+## Bug fixes
+
+* Fix formula in documentation that didn't display properly in HTML.
+
+* Fix non-functional link in documentation.
+
+* Fix code coverage badging.
+
+## Minor changes
+
+* Use {cli} and {rlang} for clear messages for end users.
+
+* Use argument matching for function arguments where practical.
+
+* The `temporal_api` argument of `get_power()` now defaults to "daily", previously it had no default value.
+
+* The `temporal_average` argument for `get_power()` has now been removed after being deprecated and issuing a message to users to use `temporal_api` instead since release 4.0.0.
 
 # nasapower 4.0.11
 
@@ -16,9 +34,9 @@
 
 * Reorder README to stress that this is not the data source and should not be cited as such.
 
-* Tidy up minor bits-n-pieces in documentation to make it nicer, *e.g.* grammar corrections, using `\dQuote{}` rather than """ in ROxygen.
+* Tidy up minor bits-n-pieces in documentation to make it nicer, *e.g.*, grammar corrections, using `\dQuote{}` rather than """ in ROxygen.
 
-* Uses `sprintf` rather than `paste` where possible.
+* Uses `sprintf()` rather than `paste()` where possible.
 
 * Update {vcr} configuration and infrastructure to use .json cassettes.
 

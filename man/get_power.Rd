@@ -5,16 +5,15 @@
 \title{Get NASA POWER Data From the POWER API}
 \usage{
 get_power(
-  community,
+  community = c("ag", "re", "sb"),
   pars,
-  temporal_api = NULL,
+  temporal_api = c("daily", "monthly", "hourly", "climatology"),
   lonlat,
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
   wind_surface = NULL,
-  temporal_average = NULL,
-  time_standard = "LST"
+  time_standard = c("LST", "UTC")
 )
 }
 \arguments{
@@ -27,14 +26,17 @@ coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
 for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
 \code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
 only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
-more.}
+more.  These values are checked internally for validity before sending the
+query to the \acronym{POWER} \acronym{API}.}
 
 \item{temporal_api}{Temporal \acronym{API} end-point for data being queried,
 supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
-\dQuote{climatology}.  See argument details for more.}
+\dQuote{climatology}.  Defaults to \dQuote{daily}.  See argument details
+for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y coordinates.  See argument details for more.}
+entered as x, y (longitude, latitude) coordinates.  See argument details
+for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
@@ -57,10 +59,6 @@ request, see
 
 \item{wind_surface}{A user-supplied wind surface for which the corrected
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
-
-\item{temporal_average}{Deprecated. This argument has been superseded by
-\code{temporal_api} to align with the new \acronym{POWER} \acronym{API}
-terminology.}
 
 \item{time_standard}{\acronym{POWER} provides two different time standards:
 \itemize{
@@ -181,15 +179,15 @@ Valid surface types are described here.
 }
 
 \section{Rate limiting}{
- The POWER API endpoints limit queries to prevent
-server overloads due to repetitive and rapid requests.  If you find that
-the \acronym{API} is throttling your queries, I suggest that you
-investigate the use of \code{limit_rate()} from \CRANpkg{ratelimitr} to create
-self-limiting functions that will respect the rate limits that the
+ The \acronym{POWER} \acronym{API} endpoints limit
+queries to prevent server overloads due to repetitive and rapid requests.
+If you find that the \acronym{API} is throttling your queries, I suggest
+that you investigate the use of \code{limit_rate()} from \CRANpkg{ratelimitr} to
+create self-limiting functions that will respect the rate limits that the
 \acronym{API} has in place.  It is considered best practice to check the
-\href{https://power.larc.nasa.gov/docs/services/api/#rate-limiting}{POWER website}
-for the latest rate limits as they differ between temporal \acronym{API}s
-and may change over time as the project matures.
+\href{https://power.larc.nasa.gov/docs/services/api/}{POWER website} for the
+latest rate limits as they differ between temporal \acronym{API}s and may
+change over time as the project matures.
 }
 
 \examples{

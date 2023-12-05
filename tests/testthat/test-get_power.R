@@ -18,7 +18,7 @@ test_that("get_power() returns daily point ag data", {
     )
   })
 
-  expect_is(power_query, "data.frame")
+  expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
   expect_equal(power_query$YEAR, 1983)
@@ -73,7 +73,7 @@ test_that("get_power() returns daily point ag data with adjusted atmospheric
       )
     })
 
-    expect_is(power_query, "data.frame")
+    expect_s3_class(power_query, "data.frame")
     expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
     expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
     expect_equal(power_query$YEAR, 1983)
@@ -131,7 +131,7 @@ test_that("get_power() returns daily point ag data with adjusted wind
       )
     })
 
-    expect_is(power_query, "data.frame")
+    expect_s3_class(power_query, "data.frame")
     expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
     expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
     expect_equal(power_query$YEAR, 1983)
@@ -185,7 +185,7 @@ test_that("get_power() returns daily point SB data", {
     )
   })
 
-  expect_is(power_query, "data.frame")
+  expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
   expect_equal(power_query$YEAR, 1983)
@@ -217,7 +217,7 @@ test_that("get_power() returns daily point SB data for LST", {
     )
   })
 
-  expect_is(power_query, "data.frame")
+  expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
   expect_equal(power_query$YEAR, 1983)
@@ -312,22 +312,6 @@ test_that("get_power() returns point ag data for climatology", {
   )
 })
 
-
-# test user input check response messages -----
-test_that("get_power() stops if `temporal_api` not valid", {
-  skip_if_offline()
-  expect_error(
-    get_power(
-      community = "ag",
-      lonlat = c(-179.5, -89.5),
-      pars = "T2M",
-      dates = "1983-01-01",
-      temporal_api = 1
-    ),
-    regexp = "You have entered an invalid value for `temporal_api`.\n"
-  )
-})
-
 test_that("get_power() stops if hourly data are requested < 2001-01-01", {
   skip_if_offline()
   expect_error(
@@ -339,20 +323,6 @@ test_that("get_power() stops if hourly data are requested < 2001-01-01", {
       temporal_api = "hourly"
     ),
     regexp = "2001-01-01 is the earliest available hourly data*"
-  )
-})
-
-test_that("get_power() stops if an invalid community supplied", {
-  skip_if_offline()
-  expect_error(
-    get_power(
-      community = "rOpenSci",
-      lonlat = "global",
-      pars = "T2M",
-      dates = "1983-01-01",
-      temporal_api = "daily"
-    ),
-    regexp = "You have provided an invalid `community` value.\n"
   )
 })
 
@@ -368,7 +338,7 @@ test_that("get_power() stops if site elevation is supplied not for point", {
       temporal_api = "daily",
       site_elevation = 35
     ),
-    regexp = "You have provided `site_elevation` for a region*."
+    regexp = "You have provided `site_elevation`, `35` for a region request.*"
   )
 })
 
@@ -429,7 +399,7 @@ test_that("get_power() ignores wind_elevation for regional requests", {
       temporal_api = "daily",
       wind_elevation = 15
     ),
-    regexp = "You have provided `wind_elevation` for a region request.*"
+    regexp = "You have provided `wind_elevation`, `15`, for a region request.*"
   )
 })
 
@@ -476,36 +446,6 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
       temporal_api = "hourly"
     ),
     regexp = "A maximum of 15 parameters can currently be requested*"
-  )
-})
-
-
-test_that("get_power() gives warning if `temporal_average` is used", {
-  skip_if_offline()
-  vcr::use_cassette("temporal_api-warning", {
-    expect_warning(
-      get_power(
-        community = "ag",
-        lonlat = c(-179.5, -89.5),
-        pars = "T2M",
-        dates = "1983-01-01",
-        temporal_average = "daily"
-      ),
-      regexp = "`temporal_average has been deprecated for `temporal_api`*"
-    )
-  })
-})
-
-test_that("get_power() stops if there is no temporal_api()", {
-  skip_if_offline()
-  expect_error(
-    get_power(
-      community = "ag",
-      lonlat = c(-179.5, -89.5),
-      pars = "T2M",
-      dates = "1983-01-01"
-    ),
-    regexp = "You must provide a `temporal_api` value."
   )
 })
 
