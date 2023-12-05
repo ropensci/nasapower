@@ -34,7 +34,7 @@
 
 * Tidy up minor bits-n-pieces in documentation to make it nicer, *e.g.*, grammar corrections, using `\dQuote{}` rather than """ in ROxygen.
 
-* Uses `sprintf` rather than `paste` where possible.
+* Uses `sprintf()` rather than `paste()` where possible.
 
 * Update {vcr} configuration and infrastructure to use .json cassettes.
 
