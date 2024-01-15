@@ -79,7 +79,7 @@ Imports:
     readr,
     rlang,
     tibble (>= 3.0.2)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
