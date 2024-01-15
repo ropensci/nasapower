@@ -69,11 +69,7 @@ install.packages("nasapower")
 A development version is available through GitHub.
 
 ``` r
-if (!require("remotes")) {
-  install.packages("remotes")
-}
-
-remotes::install_github("ropensci/nasapower")
+install.packages("nasapower", repos = "https://ropensci.r-universe.dev")
 ```
 
 ### Example
