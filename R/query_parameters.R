@@ -57,20 +57,26 @@
 #' @export
 
 query_parameters <- function(community = NULL,
-                            par = NULL,
-                            temporal_api = NULL) {
-  power_url <- "https://power.larc.nasa.gov/api/system/manager/parameters"
+                             par = NULL,
+                             temporal_api = NULL) {
 
-  # if only a `par` is provided, then create URL w/o using crul and parse w/
-  # jsonlite, otherwise use {crul} to fetch from the API
+  .check_pars(pars = par, community = community, temporal_api = temporal_api)
+
+  power_url <-
+    "https://power.larc.nasa.gov/api/system/manager/parameters"
+  user_agent <- .create_ua_string()
+
+  # if only a `par` is provided, then create URL w/o using {crul} and parse w/
+  # {jsonlite}, otherwise use {crul} to fetch from the API
   if (is.null(community) && is.null(temporal_api)) {
-    return(jsonlite::fromJSON(
-      sprintf("%s/%s?user=nasapowerdev", power_url, par)
-    ))
+    return(jsonlite::fromJSON(sprintf(
+      "%s/%s?user=%s", power_url, par, user_agent
+    )))
   } else {
     if (is.null(community) || is.null(temporal_api)) {
       cli::cli_abort(
-          "`commmunity` and `temporal_api` strings must be supplied.")
+        "`commmunity` and `temporal_api` strings must be supplied."
+        )
     }
 
     query_list <-
@@ -78,7 +84,7 @@ query_parameters <- function(community = NULL,
         community = community,
         parameters = par,
         temporal = temporal_api,
-        user = "nasapowerdev"
+        user = user_agent
       )
 
     # if a `par` isn't supplied, remove this from the query list or leave as-is

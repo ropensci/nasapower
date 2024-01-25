@@ -30,6 +30,7 @@ Other contributors:
   \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) (Maëlle Salmon contributed a patch to fix issues with using the R package, 'vcr', for testing the API queries, see <https://github.com/ropensci/nasapower/pull/64>.) [contributor]
   \item Phillip D. Alderman \email{phillip.alderman@okstate.edu} (\href{https://orcid.org/0000-0003-1467-2337}{ORCID}) (Phillip Alderman contributed a patch to fix an issue with, 'The `file` argument of `vroom()` must use `I()` for literal data as of vroom 1.5.0.', see <https://github.com/ropensci/nasapower/pull/67>.) [contributor]
   \item Western Australia Agriculture Authority (WAAA) (Supported the development of 'nasapower' through Adam H. Sparks' time.) [copyright holder]
+  \item Curtin University (Supported the development of 'nasapower' through Adam H. Sparks' time.) [copyright holder]
 }
 
 }

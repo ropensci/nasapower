@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 4.1.0
+Version: 4.1.1
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
@@ -57,6 +57,11 @@ Authors@R:
              role = "cph",
              comment =
                 c("Supported the development of 'nasapower' through Adam H.
+                Sparks' time.")),
+      person(given = "Curtin University",
+             role = "cph",
+             comment =
+                c("Supported the development of 'nasapower' through Adam H.
                 Sparks' time.")))
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
@@ -79,11 +84,6 @@ Imports:
     readr,
     rlang,
     tibble (>= 3.0.2)
-RoxygenNote: 7.3.0
-Encoding: UTF-8
-Language: en-US
-NeedsCompilation: no
-Repository: CRAN
 Suggests:
     knitr,
     purrr,
@@ -91,6 +91,11 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
+RoxygenNote: 7.3.1
+Encoding: UTF-8
+Language: en-US
+NeedsCompilation: no
+Repository: CRAN
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,

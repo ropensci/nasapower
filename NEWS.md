@@ -1,3 +1,16 @@
+# nasapower 4.1.1
+
+## Bug fixes
+
+* Fixes bug in user agent string that may have incorrectly reported the version number to the POWER team at NASA.
+
+* Fixes a bug that allowed users to send requests to the API for hourly data over a region.
+The API does not support this and this client now provides a user-friendly error when it is attempted.
+
+## Minor changes
+
+* Better implementation of {cli} for error messages to end users.
+
 # nasapower 4.1.0
 
 ## Bug fixes

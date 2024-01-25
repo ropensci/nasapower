@@ -591,12 +591,7 @@ get_power <- function(community = c("ag", "re", "sb"),
                          wind_elevation,
                          wind_surface,
                          time_standard) {
-  user_agent <- paste0("nasapower",
-                       gsub(
-                         pattern = "\\.",
-                         replacement = "",
-                         x = getNamespaceVersion("nasapower")
-                       ))
+  user_agent <- .create_ua_string()
 
   if (lonlat_identifier$identifier == "point") {
     query_list <- list(

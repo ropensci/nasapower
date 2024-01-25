@@ -30,32 +30,40 @@
     # make sure that there are no duplicates in the query
     pars <- unique(toupper(pars))
 
-    p <- unlist(parameters[paste(toupper(temporal_api),
-                                toupper(community),
-                                sep = "_")])
-
-    # check pars to make sure that they are valid for both the par and
-    # temporal_api
-    if (any(pars %notin% p)) {
-      cli::cli_abort(
-        "",
-        paste(pars[which(pars %notin% p)], collapse = ", "),
-        " is/are not valid in 'pars'.\n",
-        "Check that the 'pars', 'community' and 'temporal_api' align."
-      )
+    # the `query_parameters()` may pass along `NULL` values, in that case we
+    # want to check against all possible values
+    if (is.null(community)) {
+      community <- c("AG", "SB", "RE")
     }
 
-    if (length(pars) > 15 && temporal_api == "hourly") {
+    if (is.null(temporal_api)) {
+      temporal_api <- c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")
+    }
+
+    community_temporal_api <-
+      paste(
+        rep(temporal_api, each = length(temporal_api)),
+            community, sep = "_")
+
+      p <- unlist(parameters[community_temporal_api])
+
+      # check pars to make sure that they are valid for both the par and
+      # temporal_api
+      if (any(pars %notin% p)) {
         cli::cli_abort(
-        "A maximum of 15 parameters can currently be requested ",
-        "in one submission for hourly data.\n"
-      )
-    } else if (length(pars) > 20) {
-      cli::cli_abort(
-        "A maximum of 20 parameters can currently be requested ",
-        "in one submission.\n"
-      )
-    }
+          c(
+            i = "{.arg {pars[which(pars %notin% p)]}} {?is/are} not valid in {.var pars}.",
+            x = "Check that the {.arg pars}, {.arg community} and {.arg temporal_api} all align."
+          )
+        )
+      }
+      if (length(pars) > 15 && temporal_api == "hourly") {
+        cli::cli_abort(
+          c(i = "A maximum of 15 parameters can currently be requested in one submission for hourly data.")
+        )
+      } else if (length(pars) > 20) {
+        cli::cli_abort(c(i = "A maximum of 20 parameters can currently be requested in one submission."))
+      }
 
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
@@ -95,4 +103,25 @@
   }
   # parse response
   return(response)
+}
+
+#' Create User Agent String
+#'
+#' Creates a user agent string to pass along to the API
+#'
+#' @example
+#' .create_ua_string()
+#'
+#' @return a string with a value of \dQuote{nasapower} and the package version
+#' number with no \dQuote{.} in it.
+#' @keywords Internal
+#' @noRd
+
+.create_ua_string <- function() {
+  sprintf("nasapower%s",
+          gsub(
+            pattern = "\\.",
+            replacement = "",
+            x = getNamespaceVersion("nasapower")
+          ))
 }
