@@ -442,7 +442,7 @@ test_that("get_power() stops if temporal_api is hourly and pars > 15", {
         "PW",
         "DIRECT_ILLUMINANCE"
       ),
-      dates = "1983-01-01",
+      dates = "2001-01-01",
       temporal_api = "hourly"
     ),
     regexp = "A maximum of 15 parameters can currently be requested*"

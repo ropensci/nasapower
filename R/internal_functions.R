@@ -22,13 +22,13 @@
 #' @param community User entered `community` value.
 #' @param temporal_api User entered `temporal_api` value.
 #'
-#' @return Validated pars for use in [.build_query()]
+#' @return Validated a collapsed string of  `pars` for use in [.build_query()]
 #' @keywords internal
 #' @noRd
 .check_pars <-
   function(pars, community, temporal_api) {
     # make sure that there are no duplicates in the query
-    pars <- unique(toupper(pars))
+    pars <- unique(pars)
 
     # the `query_parameters()` may pass along `NULL` values, in that case we
     # want to check against all possible values
@@ -50,19 +50,14 @@
       # check pars to make sure that they are valid for both the par and
       # temporal_api
       if (any(pars %notin% p)) {
+        nopar <- pars[which(pars %notin% p)]
+
         cli::cli_abort(
           c(
-            i = "{.arg {pars[which(pars %notin% p)]}} {?is/are} not valid in {.var pars}.",
+            i = "{.arg nopar} {?is/are} not valid in {.var pars}.",
             x = "Check that the {.arg pars}, {.arg community} and {.arg temporal_api} all align."
           )
         )
-      }
-      if (length(pars) > 15 && temporal_api == "hourly") {
-        cli::cli_abort(
-          c(i = "A maximum of 15 parameters can currently be requested in one submission for hourly data.")
-        )
-      } else if (length(pars) > 20) {
-        cli::cli_abort(c(i = "A maximum of 20 parameters can currently be requested in one submission."))
       }
 
     # all good? great. now we format it for the API
