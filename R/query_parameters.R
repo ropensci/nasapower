@@ -66,13 +66,14 @@ query_parameters <- function(community = NULL,
   }
   if (!is.null(pars)) {
     pars <- toupper(pars)
+    pars <-
+      .check_pars(pars = pars,
+                  community = community,
+                  temporal_api = temporal_api)
   }
   if (!is.null(temporal_api)) {
     temporal_api <- toupper(temporal_api)
   }
-
-  pars <-
-    .check_pars(pars = pars, community = community, temporal_api = temporal_api)
 
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/parameters"
@@ -80,7 +81,7 @@ query_parameters <- function(community = NULL,
 
   # if only a `par` is provided, then create URL w/o using {crul} and parse w/
   # {jsonlite}, otherwise use {crul} to fetch from the API
-  if (is.null(community) || is.null(temporal_api) || is.null(pars)) {
+  if (is.null(community) || is.null(temporal_api) && !is.null(pars)) {
     return(jsonlite::fromJSON(sprintf(
       "%s/%s?user=%s", power_url, pars, user_agent
     )))
