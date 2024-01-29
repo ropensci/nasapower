@@ -25,17 +25,15 @@ requested), community and temporal \acronym{API}.
 }
 \description{
 Queries the \acronym{POWER} \acronym{API} returning detailed information on
-available parameters.
-}
-\details{
-If \code{pars} is not provided all possible parameters for the provided
-community, \code{community} and temporal \acronym{API}, \code{temporal_api} will be
-returned.  If only a single parameter is supplied with no \code{community} or
-\code{temporal_api} then the complete attribute information for that parameter
-will be returned for all possible communities and temporal \acronym{API}s
-combinations.  If all three values are provided, only the information for
-that specific combination of parameter, temporal \acronym{API} and community
-will be returned. If none of the three are provided, all combinations are
+available parameters.  If none of the three arguments are provided, all
+combinations are returned.If \code{pars} is not provided, but \code{community} and
+\code{temporal_api} are, all possible parameters for the provided community,
+\code{community} and temporal \acronym{API}, \code{temporal_api} will be returned.  If
+only a single parameter is supplied with no \code{community} or \code{temporal_api}
+then the complete attribute information for that parameter will be returned
+for all possible communities and temporal \acronym{API}s combinations.  If
+all three values are provided, only the information for that specific
+combination of parameter, temporal \acronym{API} and community will be
 returned.
 }
 \section{Argument details for \code{temporal_api}}{
