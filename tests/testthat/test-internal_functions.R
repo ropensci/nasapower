@@ -315,36 +315,6 @@ test_that("pars are returned as a comma separated string with no spaces", {
   expect_equal(pars, "RH2M,T2M")
 })
 
-test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
-            pars <- c(
-              "Z0M",
-              "CLRSKY_SFC_SW_DNI",
-              "CDD0",
-              "CDD10",
-              "CDD18_3",
-              "FROST_DAYS",
-              "HDD0",
-              "HDD10",
-              "HDD18_3",
-              "AIRMASS",
-              "WSC",
-              "PRECTOTCORR",
-              "PS",
-              "QV2M",
-              "RH2M",
-              "T10M",
-              "T10M_MAX",
-              "T10M_MIN",
-              "T10M_RANGE",
-              "T2M_RANGE",
-              "T2M_MIN",
-              "T2M_MAX"
-            )
-            temporal_api <- "daily"
-            lonlat <- c(-179.5, -89.5)
-            expect_error(.check_pars(pars, community = "ag", temporal_api))
-          })
-
 test_that("Only unique `pars` are queried", {
   pars <- c("RH2M",
             "RH2M",
@@ -361,7 +331,6 @@ test_that("If an invalid temporal average is given for `pars`,
             pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
             temporal_api <- "daily"
             community <- "ag"
-
             expect_error(.check_pars(pars, community, temporal_api))
           })
 

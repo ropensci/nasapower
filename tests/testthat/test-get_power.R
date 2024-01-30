@@ -490,3 +490,34 @@ test_that("get_power() stops if lonlat = is invalid for climatology", {
     regexp = "The POWER team have not enabled `global`*"
   )
 })
+
+
+test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
+  pars <- c(
+    "Z0M",
+    "CLRSKY_SFC_SW_DNI",
+    "CDD0",
+    "CDD10",
+    "CDD18_3",
+    "FROST_DAYS",
+    "HDD0",
+    "HDD10",
+    "HDD18_3",
+    "AIRMASS",
+    "WSC",
+    "PRECTOTCORR",
+    "PS",
+    "QV2M",
+    "RH2M",
+    "T10M",
+    "T10M_MAX",
+    "T10M_MIN",
+    "T10M_RANGE",
+    "T2M_RANGE",
+    "T2M_MIN",
+    "T2M_MAX"
+  )
+  temporal_api <- "daily"
+  lonlat <- c(-179.5, -89.5)
+  expect_error(get_power(pars, community = "ag", temporal_api))
+})
