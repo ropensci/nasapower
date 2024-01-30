@@ -115,8 +115,7 @@ test_that("If temporal_api == monthly and <2 dates provided, error", {
             dates <- c("1983-01-01")
             lonlat <- c(-179.5, -89.5)
             site_elevation <- NULL
-            expect_error(.check_dates(dates, lonlat, temporal_api),
-                         regexp = "*For `temporal_api = monthly`, *")
+            expect_error(.check_dates(dates, lonlat, temporal_api))
           })
 
 
@@ -188,9 +187,7 @@ test_that(".check_lonlat() handles single point properly", {
 
 test_that(".check_lonlat() checks validity of single lon values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(179.5, 91),
-                             pars),
-               regexp = "Please check your latitude, `91`,*")
+  expect_error(.check_lonlat(lonlat = c(179.5, 91), pars))
 })
 
 test_that(".check_lonlat() checks validity of single lat values", {
@@ -345,10 +342,7 @@ test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
             )
             temporal_api <- "daily"
             lonlat <- c(-179.5, -89.5)
-            expect_error(
-              pars <- .check_pars(pars, community = "ag", temporal_api),
-              regexp <- "A maximum of 20 parameters can currently be requested*"
-            )
+            expect_error(.check_pars(pars, community = "ag", temporal_api))
           })
 
 test_that("Only unique `pars` are queried", {

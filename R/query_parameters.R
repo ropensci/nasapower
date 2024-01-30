@@ -52,26 +52,26 @@ query_parameters <- function(community = NULL,
                              pars,
                              temporal_api = NULL,
                              metadata = FALSE) {
-
-  community <- toupper(community)
-  temporal_api <- toupper(temporal_api)
-
   community_vals <- c("AG", "RE", "SB")
   temporal_api_vals <- c("DAILY",
                          "MONTHLY",
                          "HOURLY",
                          "CLIMATOLOGY")
 
+  # if the args for `community` and `temporal_api` are not empty, check and
+  # then reset `community_vals` and `temporal_api_vals` for use later
+
   if (!is.null(community)) {
+    community <- toupper(community)
+
     if (community %notin% community_vals) {
-      cli::cli_abort(
-        c(x = "{.arg community} does not match any valid values for {.var community}.")
-      )
+      cli::cli_abort(c(x = "{.arg community} does not match any valid values for {.var community}."))
     }
     community_vals <- community
   }
 
   if (!is.null(temporal_api)) {
+    temporal_api <- toupper(temporal_api)
     if (temporal_api %notin% temporal_api_vals) {
       cli::cli_abort(
         c(x = "{.arg temporal_api} does not match any valid values for {.var temporal_api}.")
@@ -79,9 +79,6 @@ query_parameters <- function(community = NULL,
     }
     temporal_api_vals <- temporal_api
   }
-
-  community <- rlang::arg_match(community)
-  temporal_api <- rlang::arg_match(temporal_api)
 
   pars <- toupper(pars)
   pars <-
@@ -97,19 +94,17 @@ query_parameters <- function(community = NULL,
     return(jsonlite::fromJSON(
       sprintf("%s/%s?user=%s", power_url, pars, .create_ua_string())
     ))
+  } else {
+    query_list <-
+      list(community = community,
+           parameters = pars,
+           temporal = temporal_api,
+           user = .create_ua_string())
+
+    query_list <- query_list[lengths(query_list) != 0]
+    response <- .send_query(.query_list = query_list,
+                            .url = power_url)
+
+    return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
   }
-
-  # otherwise we will use {crul} to query the API
-
-  query_list <-
-    list(community = community,
-         parameters = pars,
-         user = .create_ua_string())
-
-  query_list <- query_list[lengths(query_list) != 0]
-  response <- .send_query(.query_list = query_list,
-                          .temporal_api = temporal_api,
-                          .url = power_url)
-
-  return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
 }

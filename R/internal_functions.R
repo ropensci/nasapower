@@ -34,10 +34,14 @@
     # want to check against all possible values
     if (is.null(community)) {
       community <- c("AG", "SB", "RE")
+    } else {
+      community <- toupper(community)
     }
 
     if (is.null(temporal_api)) {
       temporal_api <- c("HOURLY", "DAILY", "MONTHLY", "CLIMATOLOGY")
+    } else {
+      temporal_api <- toupper(temporal_api)
     }
 
     community_temporal_api <-
@@ -53,6 +57,7 @@
         nopar <- pars[which(pars %notin% p)]
 
         cli::cli_abort(
+          call = rlang::caller_env(),
           c(
             i = "{.arg nopar} {?is/are} not valid in {.var pars}.",
             x = "Check that the {.arg pars}, {.arg community} and
@@ -61,6 +66,21 @@
         )
       }
 
+      if (length(pars) > 20 && temporal_api != "HOURLY") {
+        cli::cli_abort(
+          call = rlang::caller_env(),
+          c(
+            i = "A maximum of 20 parameters may be passed along to the API."
+          )
+        )
+      } else if (length(pars) > 15 && temporal_api == "HOURLY") {
+        cli::cli_abort(
+          call = rlang::caller_env(),
+          c(
+            i = "A maximum of 15 parameters may be passed along to the hourly API."
+          )
+        )
+      }
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
     return(pars)
@@ -69,8 +89,6 @@
 #' Sends the Query to the POWER API
 #'
 #' @param .query_list A query list created by [.build_query()]
-#' @param .temporal_api A character string of the validated `temporal_api`
-#'  provided by the user as `temporal_api`
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
 #' @keywords internal
@@ -79,7 +97,6 @@
 #' @noRd
 #'
 .send_query <- function(.query_list,
-                        .temporal_api,
                         .url) {
   client <- crul::HttpClient$new(url = .url)
 
