@@ -66,21 +66,6 @@
         )
       }
 
-      if (length(pars) > 20 && temporal_api != "HOURLY") {
-        cli::cli_abort(
-          call = rlang::caller_env(),
-          c(
-            i = "A maximum of 20 parameters may be passed along to the API."
-          )
-        )
-      } else if (length(pars) > 15 && temporal_api == "HOURLY") {
-        cli::cli_abort(
-          call = rlang::caller_env(),
-          c(
-            i = "A maximum of 15 parameters may be passed along to the hourly API."
-          )
-        )
-      }
     # all good? great. now we format it for the API
     pars <- paste0(pars, collapse = ",")
     return(pars)

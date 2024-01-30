@@ -14,26 +14,26 @@
 #' @param pars  case-intensive character vector of solar, meteorological or
 #'   climatology parameters to download.  When requesting a single point of x, y
 #'   coordinates, a maximum of twenty (20) `pars` can be specified at one time,
-#'   for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{CLIMATOLOGY}
-#'   `temporal_api`s.  If the `temporal_api` is specified as \dQuote{HOURLY}
+#'   for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{climatology}
+#'   `temporal_api`s.  If the `temporal_api` is specified as \dQuote{hourly}
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
 #'   more.  These values are checked internally for validity before sending the
 #'   query to the \acronym{POWER} \acronym{API}.
 #' @param temporal_api A case-intensive character vector providing the temporal
 #'   \acronym{API} end-point for data being queried, supported values are
-#'   \dQuote{HOURLY}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{CLIMATOLOGY}.
+#'   \dQuote{hourly}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{climatology}.
 #'   Defaults to \dQuote{DAILY}.  See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y (longitude, latitude) coordinates.  See argument details
 #'   for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   _e.g._, `dates = c("1983-01-01", "2017-12-31")`.
-#'   Not used when\cr `temporal_api` is set to \dQuote{CLIMATOLOGY}.
+#'   Not used when\cr `temporal_api` is set to \dQuote{climatology}.
 #'   See argument details for more.
 #' @param site_elevation A user-supplied value for elevation at a single point
 #'   in metres.  If provided this will return a corrected atmospheric pressure
 #'   value adjusted to the elevation provided.  Only used with `lonlat` as a
-#'   single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
+#'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
 #' @param wind_elevation A user-supplied value for elevation at a single point
 #'   in metres.  Wind Elevation values in Meters are required to be between 10m
@@ -93,8 +93,8 @@
 #'  Australia: `lonlat = c(112.5, -55.5, 115.5, -50.5)`.  *Maximum area
 #'  processed is 4.5 x 4.5 degrees (100 points).}
 #'
-#'  \item{For global coverage}{To get global coverage for \dQuote{CLIMATOLOGY},
-#'  supply \dQuote{global} while also specifying \dQuote{CLIMATOLOGY} for the
+#'  \item{For global coverage}{To get global coverage for \dQuote{climatology},
+#'  supply \dQuote{global} while also specifying \dQuote{climatology} for the
 #'  `temporal_api`.}
 #' }
 #'
@@ -103,7 +103,7 @@
 #'   day's values will be returned, _e.g._, `dates = "1983-01-01"`.  When
 #'   `temporal_api` is set to \dQuote{MONTHLY}, use only two year values (YYYY),
 #'   _e.g._ `dates = c(1983, 2010)`.  This argument should not be used when
-#'   `temporal_api` is set to \dQuote{CLIMATOLOGY} and will be ignored if set.
+#'   `temporal_api` is set to \dQuote{climatology} and will be ignored if set.
 #'
 #' @section `wind_surface`: There are 17 surfaces that may be used for corrected
 #'   wind-speed values using the following equation:
@@ -111,19 +111,19 @@
 #'   Valid surface types are described here.
 #'
 #' \describe{
-#'   \item{VEGTYPE_1}{35-m broadleaf-evergreen trees (70% coverage)}
-#'   \item{VEGTYPE_2}{20-m broadleaf-deciduous trees (75% coverage)}
-#'   \item{VEGTYPE_3}{20-m broadleaf and needleleaf trees (75% coverage)}
-#'   \item{VEGTYPE_4}{17-m needleleaf-evergreen trees (75% coverage)}
-#'   \item{VEGTYPE_5}{14-m needleleaf-deciduous trees (50% coverage)}
-#'   \item{VEGTYPE_6}{Savanna:18-m broadleaf trees (30%) & groundcover}
-#'   \item{VEGTYPE_7}{0.6-m perennial groundcover (100%)}
-#'   \item{VEGTYPE_8}{0.5-m broadleaf shrubs (variable %) & groundcover}
-#'   \item{VEGTYPE_9}{0.5-m broadleaf shrubs (10%) with bare soil}
-#'   \item{VEGTYPE_10}{Tundra: 0.6-m trees/shrubs (variable %) & groundcover}
-#'   \item{VEGTYPE_11}{Rough bare soil}
-#'   \item{VEGTYPE_12}{Crop: 20-m broadleaf-deciduous trees (10%) & wheat}
-#'   \item{VEGTYPE_20}{Rough glacial snow/ice}
+#'   \item{vegtype_1}{35-m broadleaf-evergreen trees (70% coverage)}
+#'   \item{vegtype_2}{20-m broadleaf-deciduous trees (75% coverage)}
+#'   \item{vegtype_3}{20-m broadleaf and needleleaf trees (75% coverage)}
+#'   \item{vegtype_4}{17-m needleleaf-evergreen trees (75% coverage)}
+#'   \item{vegtype_5}{14-m needleleaf-deciduous trees (50% coverage)}
+#'   \item{vegtype_6}{Savanna:18-m broadleaf trees (30%) & groundcover}
+#'   \item{vegtype_7}{0.6-m perennial groundcover (100%)}
+#'   \item{vegtype_8}{0.5-m broadleaf shrubs (variable %) & groundcover}
+#'   \item{vegtype_9}{0.5-m broadleaf shrubs (10%) with bare soil}
+#'   \item{vegtype_10}{Tundra: 0.6-m trees/shrubs (variable %) & groundcover}
+#'   \item{vegtype_11}{Rough bare soil}
+#'   \item{vegtype_12}{Crop: 20-m broadleaf-deciduous trees (10%) & wheat}
+#'   \item{vegtype_20}{Rough glacial snow/ice}
 #'   \item{seaice}{Smooth sea ice}
 #'   \item{openwater}{Open water}
 #'   \item{airportice}{Airport: flat ice/snow}
@@ -146,7 +146,7 @@
 #'
 #' @return A data frame as a `POWER.Info` class, an extension of the
 #' [tibble::tibble], object of \acronym{POWER} data including location, dates
-#' (not including \dQuote{CLIMATOLOGY}) and requested parameters.  A decorative
+#' (not including \dQuote{climatology}) and requested parameters.  A decorative
 #' header of metadata is included in this object.
 #'
 #' @references
@@ -172,7 +172,7 @@
 #'   community = "AG",
 #'   pars = "T2M",
 #'   c(151.81, -27.48),
-#'   temporal_api = "CLIMATOLOGY"
+#'   temporal_api = "climatology"
 #' )
 #'
 #' ag_c_point
@@ -191,73 +191,73 @@
 #' @author Adam H. Sparks \email{adamhsparks@@gmail.com}
 #'
 #' @export
-get_power <- function(community = c("AG", "RE", "SB"),
+get_power <- function(community = c("ag", "r", "sb"),
                       pars,
-                      temporal_api = c("DAILY",
-                                       "MONTHLY",
-                                       "HOURLY",
-                                       "CLIMATOLOGY"),
+                      temporal_api = c("daily",
+                                       "monthly",
+                                       "hourly",
+                                       "climatology"),
                       lonlat,
                       dates = NULL,
                       site_elevation = NULL,
                       wind_elevation = NULL,
                       wind_surface = NULL,
                       time_standard = c("LST", "UTC")) {
-  community <- toupper(community)
-  temporal_api <- toupper(temporal_api)
-  time_standard <- toupper(time_standard)
+  community <- tolower(community)
+  temporal_api <- tolower(temporal_api)
+  time_standard <- tolower(time_standard)
 
   community <- rlang::arg_match(community)
   temporal_api <- rlang::arg_match(temporal_api)
   time_standard <- rlang::arg_match(time_standard)
 
   if (!is.null(wind_surface)) {
-    wind_surface <- toupper(wind_surface)
+    wind_surface <- tolower(wind_surface)
     wind_surface <- rlang::arg_match(
       wind_surface,
       c(
-        "VEGTYPE_1",
-        "VEGTYPE_2",
-        "VEGTYPE_3",
-        "VEGTYPE_4",
-        "VEGTYPE_5",
-        "VEGTYPE_6",
-        "VEGTYPE_7",
-        "VEGTYPE_8",
-        "VEGTYPE_9",
-        "VEGTYPE_10",
-        "VEGTYPE_11",
-        "VEGTYPE_12",
-        "VEGTYPE_20",
-        "SEAICE",
-        "OPENWATER",
-        "AIRPORTICE",
-        "AIRPORTGRASS"
+        "vegtype_1",
+        "vegtype_2",
+        "vegtype_3",
+        "vegtype_4",
+        "vegtype_5",
+        "vegtype_6",
+        "vegtype_7",
+        "vegtype_8",
+        "vegtype_9",
+        "vegtype_10",
+        "vegtype_11",
+        "vegtype_12",
+        "vegtype_20",
+        "seaice",
+        "openwater",
+        "airportice",
+        "airportgrass"
       )
     )
   }
 
-  if (temporal_api == "CLIMATOLOGY") {
+  if (temporal_api == "climatology") {
     dates <- NULL
   }
 
-  if (any(lonlat == "GLOBAL")) {
+  if (any(tolower(lonlat) == "global")) {
     # remove this if POWER enables global queries for climatology again
     cli::cli_abort(
-      c(i = "The POWER team have not enabled {.var global} data queries with
+      c(x = "The POWER team have not enabled {.var global} data queries with
         this version of the 'API'.")
     )
   }
   if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
     cli::cli_abort(
-      c(i = "You have entered an invalid value for {.arg site_elevation},
+      c(x = "You have entered an invalid value for {.arg site_elevation},
          {.val site_elevation}.")
     )
   }
   if (length(lonlat) > 2 && !is.null(site_elevation)) {
     cli::cli_inform(
       c(
-        i = "You have provided {.arg site_elevation}, {.var {site_elevation}}
+        x = "You have provided {.arg site_elevation}, {.var {site_elevation}}
         for a region request. The {.arg site_elevation} value will be ignored."
       )
     )
@@ -267,16 +267,18 @@ get_power <- function(community = c("AG", "RE", "SB"),
   if (length(lonlat) > 2 && !is.null(wind_elevation)) {
     cli::cli_inform(
       c(
-        i = "You have provided {.arg wind_elevation}, {.var {wind_elevation}},
-      for a region request. The {.arg wind_elevation} value will be ignored."
+        x = "You have provided {.arg wind_elevation}, {.var {wind_elevation}},
+      for a region request.",
+      i = "The {.arg wind_elevation} value will be ignored."
       )
     )
     wind_elevation <- NULL
   }
+
   if (is.character(wind_surface) && is.null(wind_elevation)) {
     cli::cli_abort(
       c(
-        i = "If you provide a correct wind surface alias, {.arg wind_surface},
+        x = "If you provide a correct wind surface alias, {.arg wind_surface},
         please include a surface elevation, {.arg wind_elevation}, with the
         request."
       )
@@ -285,7 +287,7 @@ get_power <- function(community = c("AG", "RE", "SB"),
   if (!is.null(wind_elevation)) {
     if (wind_elevation < 10 || wind_elevation > 300) {
       cli::cli_abort(
-        c(i = "{.arg wind_elevation} values in metres are required to be between
+        c(x = "{.arg wind_elevation} values in metres are required to be between
           10m and 300m.")
       )
     }
@@ -303,22 +305,24 @@ get_power <- function(community = c("AG", "RE", "SB"),
     }
   }
 
-  if (temporal_api == "HOURLY" && length(lonlat) == 4L) {
+  if (temporal_api == "hourly" && length(lonlat) == 4L) {
     cli::cli_abort(c(x = "{.arg temporal_api} does not support hourly values for
                      regional queries."))
   }
 
-  if (length(pars) > 15 && temporal_api == "HOURLY") {
+  if (length(pars) > 15 && temporal_api == "hourly") {
     cli::cli_abort(
       call = rlang::caller_env(),
-      c(i = "A maximum of 15 parameters can currently be requested in one
-        submission for hourly data.")
+      c(x = "A maximum of 15 parameters can currently be requested in one
+        submission for hourly data.",
+        i = "You have submitted {.val {length(pars)}}")
     )
   } else if (length(pars) > 20) {
     cli::cli_abort(
       call = rlang::caller_env(),
       c(i = "A maximum of 20 parameters can currently be requested in one
-        submission.")
+        submission.",
+        i = "You have submitted {.val {length(pars)}}")
     )
   }
 
