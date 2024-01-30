@@ -205,7 +205,7 @@ get_power <- function(community = c("ag", "r", "sb"),
                       time_standard = c("LST", "UTC")) {
   community <- tolower(community)
   temporal_api <- tolower(temporal_api)
-  time_standard <- tolower(time_standard)
+  time_standard <- toupper(time_standard)
 
   community <- rlang::arg_match(community)
   temporal_api <- rlang::arg_match(temporal_api)
