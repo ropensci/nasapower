@@ -312,6 +312,8 @@ test_that("get_power() returns point ag data for climatology", {
   )
 })
 
+## non-vcr tests ---------------------------------------------------------------
+
 test_that("get_power() stops if hourly data are requested < 2001-01-01", {
   skip_if_offline()
   expect_error(
@@ -491,7 +493,6 @@ test_that("get_power() stops if lonlat = is invalid for climatology", {
   )
 })
 
-
 test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
   pars <- c(
     "Z0M",
@@ -519,5 +520,18 @@ test_that("Only 20 pars are allowed when `temporal_api` != climatology", {
   )
   temporal_api <- "daily"
   lonlat <- c(-179.5, -89.5)
-  expect_error(get_power(pars, community = "ag", temporal_api))
+  expect_error(get_power(pars, community = "ag", lonlat = lonlat, temporal_api))
+})
+
+test_that("get_power() stops if lonlat = regional for hourly", {
+  skip_if_offline()
+  expect_error(
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5, 115.5, -50.5),
+      pars = "T2M",
+      dates = c("1983-01-01"),
+      temporal_api = "hourly"
+    )
+  )
 })

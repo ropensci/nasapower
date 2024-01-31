@@ -31,7 +31,7 @@ test_that("query_surfaces() returns proper list of info", {
   })
 })
 
-test_that("query_surfaces() returns list of parameter information", {
+test_that("query_surfaces() returns list of surface information", {
   skip_if_offline()
   vcr::use_cassette("query_surfaces_seaice", {
     surface_query <- query_surfaces(surface_alias = "seaice")

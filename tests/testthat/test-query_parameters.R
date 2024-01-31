@@ -15,12 +15,10 @@ test_that("query_parameters() returns proper list of info", {
 test_that("query_parameters() returns list of parameter information",
           {
             skip_if_offline()
-            vcr::use_cassette("query_parameters_all", {
-              par_query <- query_parameters(pars = "T2M")
-              expect_type(par_query, "list")
-              expect_length(par_query, 1)
-              expect_named(par_query, "T2M")
-            })
+            par_query <- query_parameters(pars = "T2M")
+            expect_type(par_query, "list")
+            expect_length(par_query, 1)
+            expect_named(par_query, "T2M")
           })
 
 test_that("query_parameters() stops if par and community only supplied", {
@@ -43,6 +41,30 @@ test_that("query_parameters() stops if metadata is not Boolean", {
       community = "ag",
       temporal_api = "daily",
       metadata = "orange"
+    )
+  )
+})
+
+test_that("query_parameters() stops if community is invalid", {
+  skip_if_offline()
+  expect_error(
+    query_parameters(
+      pars = "T2M",
+      community = "res",
+      temporal_api = "daily",
+      metadata = TRUE
+    )
+  )
+})
+
+test_that("query_parameters() stops if temporal_api is invalid", {
+  skip_if_offline()
+  expect_error(
+    query_parameters(
+      pars = "T2M",
+      community = "ag",
+      temporal_api = "ag",
+      metadata = TRUE
     )
   )
 })

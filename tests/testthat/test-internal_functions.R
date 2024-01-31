@@ -521,3 +521,10 @@ test_that(".build_query assembles a proper query for regional and NULL dates", {
               )
             )
           })
+
+
+# Boolean checks ---------------------------------------------------------------
+test_that(".is_boolean works properly", {
+  expect_false(.is_boolean(x = "orange"))
+  expect_true(.is_boolean(x = TRUE))
+})
