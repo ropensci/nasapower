@@ -1,4 +1,14 @@
-# nasapower 4.1.1
+# nasapower 4.2.0
+
+## Minor Changes
+
+* New functions:
+  * `query_surfaces()`: Query the POWER API for Detailed Information on Wind Type Surfaces
+  * `query_groupings()`: Query the POWER API for Detailed Information on Available Parameter Groupings
+  
+* `query_parameters` now allows you to retrieve rich metadata for the parameters.
+
+* Error, warning and other informational messages are now all formatted with {r-lib/cli} for more attractive and informative messages.
 
 ## Bug fixes
 
@@ -6,10 +16,6 @@
 
 * Fixes a bug that allowed users to send requests to the API for hourly data over a region.
 The API does not support this and this client now provides a user-friendly error when it is attempted.
-
-## Minor changes
-
-* Better implementation of {cli} for error messages to end users.
 
 # nasapower 4.1.0
 
