@@ -29,3 +29,11 @@ test_that("query_parameters() stops if par and community only supplied", {
   expect_error(query_parameters(pars = "T2M",
                                 temporal_api = "daily"))
 })
+
+test_that("query_parameters() stops if metadata is not Boolean", {
+  skip_on_cran()
+  expect_error(query_parameters(pars = "T2M",
+                                community = "ag",
+                                temporal_api = "daily",
+                                metadata = "orange"))
+})

@@ -1,4 +1,5 @@
 
+
 #' Query the POWER API for Detailed Information on Available Parameters
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
@@ -86,20 +87,29 @@ query_parameters <- function(community = NULL,
                 community = community_vals,
                 temporal_api = temporal_api_vals)
 
+  if (!.is_boolean(metadata)) {
+    cli::cli_abort(
+      c(x = "{.arg metadata} should be a Boolean value only.",
+        i = "{Please provide either {.var TRUE} or {.var FALSE}.")
+    )
+  }
+
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/parameters"
 
-  # if only `pars` are provided, we can short-circuit and use a special URL
   if (is.null(community) && is.null(temporal_api)) {
-    return(jsonlite::fromJSON(
-      sprintf("%s/%s?user=%s", power_url, pars, .create_ua_string())
-    ))
+    return(jsonlite::fromJSON(sprintf(
+      "%s/%s?user=%s", power_url, pars, .create_ua_string()
+    )))
   } else {
     query_list <-
-      list(community = community,
-           parameters = pars,
-           temporal = temporal_api,
-           user = .create_ua_string())
+      list(
+        community = community,
+        parameters = pars,
+        temporal = temporal_api,
+        metadata = metadata,
+        user = .create_ua_string()
+      )
 
     query_list <- query_list[lengths(query_list) != 0]
     response <- .send_query(.query_list = query_list,
@@ -107,4 +117,23 @@ query_parameters <- function(community = NULL,
 
     return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
   }
+}
+
+#' Boolean
+#'
+#' Checks if provided object is a Boolean i.e. a length-one logical vector.
+#' @param x an object to check
+#' @return a logical value indicating whether provided object is a Boolean
+#' @examples
+#'     is_boolean(TRUE)                # [1] TRUE
+#'     # the following will work on most systems, unless you have tweaked global Rprofile
+#'     is_boolean(T)                   # [1] TRUE
+#'     is_boolean(1)                   # [1] FALSE
+#' @note Taken from
+#'  <https://github.com/Rapporter/rapportools/blob/master/R/utils.R>
+#'
+#' @noRd
+#' @keywords Internal
+.is_boolean <- function(x) {
+  is.logical(x) && length(x) == 1
 }

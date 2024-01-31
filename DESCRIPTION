@@ -53,6 +53,18 @@ Authors@R:
                `file` argument of `vroom()` must use `I()` for literal data as
                of vroom 1.5.0.', see
                <https://github.com/ropensci/nasapower/pull/67>.")),
+      person(given = "Aleksandar",
+             family = "Blagotić",
+             role = "ctb",
+             email = "alex@rapporter.net",
+             comment = c("Author of the CRAN package 'rapportools', from which
+             the '.is_boolean()' was taken."),
+      person(given = "Gergely",
+             family = "Daróczi",
+             role = "ctb",
+             email = "daroczig@rapporter.net",
+             comment = c("Author of the CRAN package 'rapportools', from which
+             the '.is_boolean()' was taken."),
       person(given = "Curtin University",
              role = "cph",
              comment =
