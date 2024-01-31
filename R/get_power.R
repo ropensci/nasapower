@@ -211,31 +211,7 @@ get_power <- function(community = c("ag", "r", "sb"),
   temporal_api <- rlang::arg_match(temporal_api)
   time_standard <- rlang::arg_match(time_standard)
 
-  if (!is.null(wind_surface)) {
-    wind_surface <- tolower(wind_surface)
-    wind_surface <- rlang::arg_match(
-      wind_surface,
-      c(
-        "vegtype_1",
-        "vegtype_2",
-        "vegtype_3",
-        "vegtype_4",
-        "vegtype_5",
-        "vegtype_6",
-        "vegtype_7",
-        "vegtype_8",
-        "vegtype_9",
-        "vegtype_10",
-        "vegtype_11",
-        "vegtype_12",
-        "vegtype_20",
-        "seaice",
-        "openwater",
-        "airportice",
-        "airportgrass"
-      )
-    )
-  }
+  wind_surface <- .match_surface_alias(wind_surface)
 
   if (temporal_api == "climatology") {
     dates <- NULL

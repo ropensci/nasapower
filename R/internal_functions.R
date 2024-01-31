@@ -90,6 +90,38 @@
   is.logical(x) && length(x) == 1
 }
 
+#' Match Wind Surface Aliases for Validity
+#'
+#' @noRd
+#' @keywords Internal
+.match_surface_alias <- function(x) {
+  if (!is.null(x)) {
+    wind_surface <- tolower(x)
+    wind_surface <- rlang::arg_match(
+      wind_surface,
+      c(
+        "vegtype_1",
+        "vegtype_2",
+        "vegtype_3",
+        "vegtype_4",
+        "vegtype_5",
+        "vegtype_6",
+        "vegtype_7",
+        "vegtype_8",
+        "vegtype_9",
+        "vegtype_10",
+        "vegtype_11",
+        "vegtype_12",
+        "vegtype_20",
+        "seaice",
+        "openwater",
+        "airportice",
+        "airportgrass"
+      )
+    )
+  }
+}
+
 #' Sends the Query to the POWER API
 #'
 #' @param .query_list A query list created by [.build_query()]
