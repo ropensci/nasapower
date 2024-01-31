@@ -24,15 +24,23 @@
 
 
 query_surfaces <- function(surface_alias = NULL) {
-
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/surface"
 
   if (is.null(surface_alias)) {
-    return(jsonlite::fromJSON(txt = power_url))
+    response <-
+      .send_mgmt_query(.url = power_url)
+
+    response$raise_for_status()
+    return(jsonlite::fromJSON(response$parse("UTF8")))
+
   } else {
     wind_surface <- .match_surface_alias(surface_alias)
-    return(jsonlite::fromJSON(
-      txt = sprintf("%s/%s", power_url, wind_surface)))
+    power_url <- sprintf("%s/%s", power_url, wind_surface)
+    response <-
+      .send_mgmt_query(.url = power_url)
+
+    response$raise_for_status()
+    return(jsonlite::fromJSON(response$parse("UTF8")))
   }
 }

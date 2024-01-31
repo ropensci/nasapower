@@ -122,7 +122,7 @@
   }
 }
 
-#' Sends the Query to the POWER API
+#' Sends the Query to the POWER Data API to Retrieve Data
 #'
 #' @param .query_list A query list created by [.build_query()]
 #' @param .url A character string of the URL to be used for the \acronym{API}
@@ -140,6 +140,38 @@
   response <- client$get(query = .query_list,
                         retry = 6L,
                         timeout = 30L)
+
+  # check to see if request failed or succeeded
+  # - a custom approach this time combining status code,
+  #   explanation of the code, and message from the server
+  if (response$status_code > 201) {
+    mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
+    x <- response$status_http()
+    cli::cli_abort(
+      sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg))
+  }
+  # parse response
+  return(response)
+}
+
+
+#' Sends the Query to the POWER Management API
+#'
+#' There are no parameters that these API end points accept.
+#'
+#' @param .url A character string of the URL to be used for the \acronym{API}
+#'  query
+#' @keywords internal
+#' @return A response from the POWER server containing either an error message
+#'   or the data requested.
+#' @noRd
+#'
+.send_mgmt_query <- function(.url) {
+  client <- crul::HttpClient$new(url = .url)
+
+  # nocov begin
+  response <- client$get(retry = 6L,
+                         timeout = 30L)
 
   # check to see if request failed or succeeded
   # - a custom approach this time combining status code,
