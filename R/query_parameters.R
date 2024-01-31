@@ -94,12 +94,12 @@ query_parameters <- function(community = NULL,
   if (is.null(community) && is.null(temporal_api)) {
     return(jsonlite::fromJSON(sprintf(
       "%s/%s?user=%s", power_url, pars, .create_ua_string()
-    )))
+    ), encoding = "UTF8"))
   } else {
 
     if (!.is_boolean(metadata)) {
       cli::cli_abort(
-        c(x = "{.arg metadata} should be a Boolean value only.",
+        c(x = "{.arg metadata} should be a Boolean value",
           i = "{Please provide either {.var TRUE} or {.var FALSE}.")
       )
     }
@@ -119,23 +119,4 @@ query_parameters <- function(community = NULL,
 
     return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
   }
-}
-
-#' Boolean
-#'
-#' Checks if provided object is a Boolean i.e. a length-one logical vector.
-#' @param x an object to check
-#' @return a logical value indicating whether provided object is a Boolean
-#' @examples
-#'     is_boolean(TRUE)                # [1] TRUE
-#'     # the following will work on most systems, unless you have tweaked global Rprofile
-#'     is_boolean(T)                   # [1] TRUE
-#'     is_boolean(1)                   # [1] FALSE
-#' @note Taken from
-#'  <https://github.com/Rapporter/rapportools/blob/master/R/utils.R>
-#'
-#' @noRd
-#' @keywords Internal
-.is_boolean <- function(x) {
-  is.logical(x) && length(x) == 1
 }

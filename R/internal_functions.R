@@ -71,6 +71,25 @@
     return(pars)
   }
 
+#' Boolean
+#'
+#' Checks if provided object is a Boolean i.e. a length-one logical vector.
+#' @param x an object to check
+#' @return a logical value indicating whether provided object is a Boolean
+#' @examples
+#'     is_boolean(TRUE)                # [1] TRUE
+#'     # the following will work on most systems, unless you have tweaked global Rprofile
+#'     is_boolean(T)                   # [1] TRUE
+#'     is_boolean(1)                   # [1] FALSE
+#' @note Taken from
+#'  <https://github.com/Rapporter/rapportools/blob/master/R/utils.R>
+#'
+#' @noRd
+#' @keywords Internal
+.is_boolean <- function(x) {
+  is.logical(x) && length(x) == 1
+}
+
 #' Sends the Query to the POWER API
 #'
 #' @param .query_list A query list created by [.build_query()]
