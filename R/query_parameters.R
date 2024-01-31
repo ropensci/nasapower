@@ -94,12 +94,12 @@ query_parameters <- function(community = NULL,
   if (is.null(community) && is.null(temporal_api)) {
     return(jsonlite::fromJSON(sprintf(
       "%s/%s?user=%s", power_url, pars, .create_ua_string()
-    ), encoding = "UTF8"))
+    )))
   } else {
 
     if (!.is_boolean(metadata)) {
       cli::cli_abort(
-        c(x = "{.arg metadata} should be a Boolean value",
+        c(x = "{.arg metadata} should be a Boolean value.",
           i = "{Please provide either {.var TRUE} or {.var FALSE}.")
       )
     }
