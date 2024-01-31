@@ -5,9 +5,9 @@
 \title{Get NASA POWER Data From the POWER API}
 \usage{
 get_power(
-  community = c("AG", "RE", "SB"),
+  community = c("ag", "r", "sb"),
   pars,
-  temporal_api = c("DAILY", "MONTHLY", "HOURLY", "CLIMATOLOGY"),
+  temporal_api = c("daily", "monthly", "hourly", "climatology"),
   lonlat,
   dates = NULL,
   site_elevation = NULL,
@@ -23,15 +23,15 @@ get_power(
 \item{pars}{case-intensive character vector of solar, meteorological or
 climatology parameters to download.  When requesting a single point of x, y
 coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
-for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{CLIMATOLOGY}
-\code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{HOURLY}
+for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{climatology}
+\code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
 only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
 more.  These values are checked internally for validity before sending the
 query to the \acronym{POWER} \acronym{API}.}
 
 \item{temporal_api}{A case-intensive character vector providing the temporal
 \acronym{API} end-point for data being queried, supported values are
-\dQuote{HOURLY}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{CLIMATOLOGY}.
+\dQuote{hourly}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{climatology}.
 Defaults to \dQuote{DAILY}.  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
@@ -40,13 +40,13 @@ for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
-Not used when\cr \code{temporal_api} is set to \dQuote{CLIMATOLOGY}.
+Not used when\cr \code{temporal_api} is set to \dQuote{climatology}.
 See argument details for more.}
 
 \item{site_elevation}{A user-supplied value for elevation at a single point
 in metres.  If provided this will return a corrected atmospheric pressure
 value adjusted to the elevation provided.  Only used with \code{lonlat} as a
-single point of x, y coordinates, not for use with \dQuote{GLOBAL} or with
+single point of x, y coordinates, not for use with \dQuote{global} or with
 a regional request.}
 
 \item{wind_elevation}{A user-supplied value for elevation at a single point
@@ -72,7 +72,7 @@ Defaults to \code{LST}.
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
 \link[tibble:tibble]{tibble::tibble}, object of \acronym{POWER} data including location, dates
-(not including \dQuote{CLIMATOLOGY}) and requested parameters.  A decorative
+(not including \dQuote{climatology}) and requested parameters.  A decorative
 header of metadata is included in this object.
 }
 \description{
@@ -136,8 +136,8 @@ given region, \emph{e.g.}, a bounding box for the south western corner of
 Australia: \code{lonlat = c(112.5, -55.5, 115.5, -50.5)}.  *Maximum area
 processed is 4.5 x 4.5 degrees (100 points).}
 
-\item{For global coverage}{To get global coverage for \dQuote{CLIMATOLOGY},
-supply \dQuote{global} while also specifying \dQuote{CLIMATOLOGY} for the
+\item{For global coverage}{To get global coverage for \dQuote{climatology},
+supply \dQuote{global} while also specifying \dQuote{climatology} for the
 \code{temporal_api}.}
 }
 }
@@ -148,7 +148,7 @@ will be treated as both the start date and the end date and only a single
 day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
 \code{temporal_api} is set to \dQuote{MONTHLY}, use only two year values (YYYY),
 \emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used when
-\code{temporal_api} is set to \dQuote{CLIMATOLOGY} and will be ignored if set.
+\code{temporal_api} is set to \dQuote{climatology} and will be ignored if set.
 }
 
 \section{\code{wind_surface}}{
@@ -158,19 +158,19 @@ wind-speed values using the following equation:
 Valid surface types are described here.
 
 \describe{
-\item{VEGTYPE_1}{35-m broadleaf-evergreen trees (70\% coverage)}
-\item{VEGTYPE_2}{20-m broadleaf-deciduous trees (75\% coverage)}
-\item{VEGTYPE_3}{20-m broadleaf and needleleaf trees (75\% coverage)}
-\item{VEGTYPE_4}{17-m needleleaf-evergreen trees (75\% coverage)}
-\item{VEGTYPE_5}{14-m needleleaf-deciduous trees (50\% coverage)}
-\item{VEGTYPE_6}{Savanna:18-m broadleaf trees (30\%) & groundcover}
-\item{VEGTYPE_7}{0.6-m perennial groundcover (100\%)}
-\item{VEGTYPE_8}{0.5-m broadleaf shrubs (variable \%) & groundcover}
-\item{VEGTYPE_9}{0.5-m broadleaf shrubs (10\%) with bare soil}
-\item{VEGTYPE_10}{Tundra: 0.6-m trees/shrubs (variable \%) & groundcover}
-\item{VEGTYPE_11}{Rough bare soil}
-\item{VEGTYPE_12}{Crop: 20-m broadleaf-deciduous trees (10\%) & wheat}
-\item{VEGTYPE_20}{Rough glacial snow/ice}
+\item{vegtype_1}{35-m broadleaf-evergreen trees (70\% coverage)}
+\item{vegtype_2}{20-m broadleaf-deciduous trees (75\% coverage)}
+\item{vegtype_3}{20-m broadleaf and needleleaf trees (75\% coverage)}
+\item{vegtype_4}{17-m needleleaf-evergreen trees (75\% coverage)}
+\item{vegtype_5}{14-m needleleaf-deciduous trees (50\% coverage)}
+\item{vegtype_6}{Savanna:18-m broadleaf trees (30\%) & groundcover}
+\item{vegtype_7}{0.6-m perennial groundcover (100\%)}
+\item{vegtype_8}{0.5-m broadleaf shrubs (variable \%) & groundcover}
+\item{vegtype_9}{0.5-m broadleaf shrubs (10\%) with bare soil}
+\item{vegtype_10}{Tundra: 0.6-m trees/shrubs (variable \%) & groundcover}
+\item{vegtype_11}{Rough bare soil}
+\item{vegtype_12}{Crop: 20-m broadleaf-deciduous trees (10\%) & wheat}
+\item{vegtype_20}{Rough glacial snow/ice}
 \item{seaice}{Smooth sea ice}
 \item{openwater}{Open water}
 \item{airportice}{Airport: flat ice/snow}
@@ -210,7 +210,7 @@ ag_c_point <- get_power(
   community = "AG",
   pars = "T2M",
   c(151.81, -27.48),
-  temporal_api = "CLIMATOLOGY"
+  temporal_api = "climatology"
 )
 
 ag_c_point

@@ -1,5 +1,4 @@
 
-
 #' Query the POWER API for Detailed Information on Available Parameters
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
@@ -13,7 +12,9 @@
 #' @param temporal_api An optional character vector indicating the temporal
 #'   \acronym{API} end-point for data being queried, supported values are
 #'   \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
-#' @param metadata `Boolean`; retrieve extra parameter metadata?  Defaults to
+#' @param metadata `Boolean`; retrieve extra parameter metadata?  This is only
+#'  applicable if you supply the `community` and `temporal_api`, if these values
+#'  are not provided it will be ignored.  Defaults to
 #'   `FALSE`.
 #'
 #' @section Argument details for `temporal_api`: There are four valid values.
@@ -87,13 +88,6 @@ query_parameters <- function(community = NULL,
                 community = community_vals,
                 temporal_api = temporal_api_vals)
 
-  if (!.is_boolean(metadata)) {
-    cli::cli_abort(
-      c(x = "{.arg metadata} should be a Boolean value only.",
-        i = "{Please provide either {.var TRUE} or {.var FALSE}.")
-    )
-  }
-
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/parameters"
 
@@ -102,6 +96,14 @@ query_parameters <- function(community = NULL,
       "%s/%s?user=%s", power_url, pars, .create_ua_string()
     )))
   } else {
+
+    if (!.is_boolean(metadata)) {
+      cli::cli_abort(
+        c(x = "{.arg metadata} should be a Boolean value only.",
+          i = "{Please provide either {.var TRUE} or {.var FALSE}.")
+      )
+    }
+
     query_list <-
       list(
         community = community,

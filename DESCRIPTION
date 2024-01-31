@@ -58,13 +58,13 @@ Authors@R:
              role = "ctb",
              email = "alex@rapporter.net",
              comment = c("Author of the CRAN package 'rapportools', from which
-             the '.is_boolean()' was taken."),
+             the '.is_boolean()' was taken.")),
       person(given = "Gergely",
              family = "Daróczi",
              role = "ctb",
              email = "daroczig@rapporter.net",
              comment = c("Author of the CRAN package 'rapportools', from which
-             the '.is_boolean()' was taken."),
+             the '.is_boolean()' was taken.")),
       person(given = "Curtin University",
              role = "cph",
              comment =
