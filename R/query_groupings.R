@@ -37,9 +37,18 @@ query_groupings <- function(global = FALSE) {
     "https://power.larc.nasa.gov/api/system/manager/system/groupings"
 
   if (isFALSE(global)) {
-    return(jsonlite::fromJSON(txt = power_url))
+    response <-
+      .send_mgmt_query(.url = power_url)
+
+    response$raise_for_status()
+    return(jsonlite::fromJSON(response$parse("UTF8")))
+
   } else {
-    return(jsonlite::fromJSON(
-      txt = sprintf("%s/global", power_url)))
+    power_url <- sprintf("%s/global", power_url)
+    response <-
+      .send_mgmt_query(.url = power_url)
+
+    response$raise_for_status()
+    return(jsonlite::fromJSON(response$parse("UTF8")))
   }
 }
