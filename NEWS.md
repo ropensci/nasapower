@@ -12,7 +12,7 @@
 * Error, warning and other informational messages are now all formatted with {cli} for more attractive and informative messages.
 
 * The username passed along to the POWER API is now "nasapower4r" to support other packages built on {nasapower} that could use {vcr} in tests.
-Previously the user agent string took the version of {nasapower} and appended it, _e.g._ "nasapower410" for v4.1.0.
+Previously the user agent string took the version of {nasapower} and appended it, _e.g._, "nasapower410" for v4.1.0.
 Doing so breaks tests in packages relying on {nasapower} due to incompatibilities in cassettes, while not affecting functionality.
 
 ## Bug fixes
