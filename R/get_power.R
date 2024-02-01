@@ -243,7 +243,7 @@ get_power <- function(community = c("ag", "re", "sb"),
   if (length(lonlat) > 2 && !is.null(wind_elevation)) {
     cli::cli_inform(
       c(
-        x = "You have provided {.arg wind_elevation}, {.var {wind_elevation}},
+      "You have provided {.arg wind_elevation}, {.var {wind_elevation}},
       for a region request.",
       i = "The {.arg wind_elevation} value will be ignored."
       )
