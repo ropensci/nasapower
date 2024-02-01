@@ -191,7 +191,7 @@
 #' @author Adam H. Sparks \email{adamhsparks@@gmail.com}
 #'
 #' @export
-get_power <- function(community = c("ag", "r", "sb"),
+get_power <- function(community = c("ag", "re", "sb"),
                       pars,
                       temporal_api = c("daily",
                                        "monthly",

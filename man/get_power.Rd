@@ -5,7 +5,7 @@
 \title{Get NASA POWER Data From the POWER API}
 \usage{
 get_power(
-  community = c("ag", "r", "sb"),
+  community = c("ag", "re", "sb"),
   pars,
   temporal_api = c("daily", "monthly", "hourly", "climatology"),
   lonlat,
