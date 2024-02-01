@@ -93,7 +93,7 @@ query_parameters <- function(community = NULL,
 
   if (is.null(community) && is.null(temporal_api)) {
     return(jsonlite::fromJSON(sprintf(
-      "%s/%s?user=%s", power_url, pars, .create_ua_string()
+      "%s/%s?user=nasapower4r", power_url, pars
     )))
   } else {
 
@@ -110,7 +110,7 @@ query_parameters <- function(community = NULL,
         parameters = pars,
         temporal = temporal_api,
         metadata = metadata,
-        user = .create_ua_string()
+        user = "nasapower4r"
       )
 
     query_list <- query_list[lengths(query_list) != 0]

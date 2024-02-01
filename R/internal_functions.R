@@ -185,24 +185,3 @@
   # parse response
   return(response)
 }
-
-#' Create User Agent String
-#'
-#' Creates a user agent string to pass along to the API
-#'
-#' @example
-#' .create_ua_string()
-#'
-#' @return a string with a value of \dQuote{nasapower} and the package version
-#' number with no \dQuote{.} in it.
-#' @keywords Internal
-#' @noRd
-
-.create_ua_string <- function() {
-  sprintf("nasapower%s",
-          gsub(
-            pattern = "\\.",
-            replacement = "",
-            x = getNamespaceVersion("nasapower")
-          ))
-}
