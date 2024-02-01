@@ -2,8 +2,9 @@
 
 ## Minor Changes
 
-* New functions:
+* Two new functions are added:
   * `query_surfaces()`: Query the POWER API for Detailed Information on Wind Type Surfaces
+  
   * `query_groupings()`: Query the POWER API for Detailed Information on Available Parameter Groupings
   
 * `query_parameters` now allows you to retrieve rich metadata for the parameters.
@@ -15,8 +16,6 @@ Previously the user agent string took the version of {nasapower} and appended it
 Doing so breaks tests in packages relying on {nasapower} due to incompatibilities in cassettes, while not affecting functionality.
 
 ## Bug fixes
-
-* Fixes bug in user agent string that may have incorrectly reported the version number to the POWER team at NASA.
 
 * Fixes a bug that allowed users to send requests to the API for hourly data over a region.
 The API does not support this and this client now provides a user-friendly error when it is attempted.
