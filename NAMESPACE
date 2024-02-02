@@ -2,4 +2,6 @@
 
 S3method(print,POWER.Info)
 export(get_power)
+export(query_groupings)
 export(query_parameters)
+export(query_surfaces)

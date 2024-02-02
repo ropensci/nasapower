@@ -29,7 +29,9 @@ Other contributors:
   \item Fernando Miguez \email{femiguez@iastate.edu} (\href{https://orcid.org/0000-0002-4627-8329}{ORCID}) (Fernando Miguez provided assistance in identifying improper missing value handling in the POWER data, see <https://github.com/femiguez/apsimx/pull/26>.) [contributor]
   \item Maëlle Salmon (\href{https://orcid.org/0000-0002-2815-0399}{ORCID}) (Maëlle Salmon contributed a patch to fix issues with using the R package, 'vcr', for testing the API queries, see <https://github.com/ropensci/nasapower/pull/64>.) [contributor]
   \item Phillip D. Alderman \email{phillip.alderman@okstate.edu} (\href{https://orcid.org/0000-0003-1467-2337}{ORCID}) (Phillip Alderman contributed a patch to fix an issue with, 'The `file` argument of `vroom()` must use `I()` for literal data as of vroom 1.5.0.', see <https://github.com/ropensci/nasapower/pull/67>.) [contributor]
-  \item Western Australia Agriculture Authority (WAAA) (Supported the development of 'nasapower' through Adam H. Sparks' time.) [copyright holder]
+  \item Aleksandar Blagotić \email{alex@rapporter.net} (Author of the CRAN package 'rapportools', from which the '.is_boolean()' was taken.) [contributor]
+  \item Gergely Daróczi \email{daroczig@rapporter.net} (Author of the CRAN package 'rapportools', from which the '.is_boolean()' was taken.) [contributor]
+  \item Curtin University (Supported the development of 'nasapower' through Adam H. Sparks' time.) [copyright holder]
 }
 
 }

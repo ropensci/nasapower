@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -49,12 +49,24 @@
       "familyName": "Alderman",
       "email": "phillip.alderman@okstate.edu",
       "@id": "https://orcid.org/0000-0003-1467-2337"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Aleksandar",
+      "familyName": "Blagotić",
+      "email": "alex@rapporter.net"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Gergely",
+      "familyName": "Daróczi",
+      "email": "daroczig@rapporter.net"
     }
   ],
   "copyrightHolder": [
     {
       "@type": "Organization",
-      "name": "Western Australia Agriculture Authority (WAAA)"
+      "name": "Curtin University"
     }
   ],
   "maintainer": [
@@ -239,7 +251,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "374.385KB",
+  "fileSize": "496.928KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -253,7 +265,7 @@
       "name": "{nasapower}: NASA-POWER Data from R",
       "identifier": "10.5281/zenodo.1040727",
       "url": "https://CRAN.R-project.org/package=nasapower",
-      "description": "R package version 4.1.0",
+      "description": "R package version 4.2.0",
       "@id": "https://doi.org/10.5281/zenodo.1040727",
       "sameAs": "https://doi.org/10.5281/zenodo.1040727"
     },

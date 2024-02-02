@@ -2,26 +2,20 @@
 #' Query the POWER API for Detailed Information on Available Parameters
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
-#'  available parameters.
-#'
-#' @details If `par` is not provided all possible parameters for the provided
-#'  community, `community` and temporal \acronym{API}, `temporal_api` will be
-#'  returned.  If only a single parameter is supplied with no `community` or
-#'  `temporal_api` then the complete attribute information for that parameter
-#'  will be returned for all possible communities and temporal \acronym{API}s
-#'  combinations.  If all three values are provided, only the information for
-#'  that specific combination of parameter, temporal \acronym{API} and community
-#'  will be returned.
+#'  available parameters.  For a list of all available parameters, use
+#'  `parameters`
 #'
 #' @param community An optional character vector providing community name:
 #'   \dQuote{ag}, \dQuote{sb} or \dQuote{re}.
-#' @param par An optional character vector of a single solar, meteorological or
-#'  climatology parameter to query.  If unsure, omit this argument for for a
-#'  full list of all the parameters available for each temporal \acronym{API}
-#'  and community.
+#' @param pars A required character string of a single solar, meteorological or
+#'  climatology parameter to query.
 #' @param temporal_api An optional character vector indicating the temporal
 #'   \acronym{API} end-point for data being queried, supported values are
 #'   \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
+#' @param metadata `Boolean`; retrieve extra parameter metadata?  This is only
+#'  applicable if you supply the `community` and `temporal_api`, if these values
+#'  are not provided it will be ignored.  Defaults to
+#'   `FALSE`.
 #'
 #' @section Argument details for `temporal_api`: There are four valid values.
 #'  \describe{
@@ -36,11 +30,11 @@
 #' @examplesIf interactive()
 #'
 #' # fetch the complete set of attribute information for "T2M".
-#' query_parameters(par = "T2M")
+#' query_parameters(pars = "T2M")
 #'
 #' # fetch complete temporal and community specific attribute information
 #' # for "T2M" in the "ag" community for the "hourly" temporal API.
-#' query_parameters(par = "T2M",
+#' query_parameters(pars = "T2M",
 #'                  community = "ag",
 #'                  temporal_api = "hourly")
 #'
@@ -52,40 +46,75 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
 #' @return A [list] object of information for the requested parameter(s) (if
-#'  requested), community and temporal \acronym{API}.
+#'  requested), community(ies) and temporal \acronym{API}(s).
 #'
 #' @export
 
 query_parameters <- function(community = NULL,
-                            par = NULL,
-                            temporal_api = NULL) {
-  power_url <- "https://power.larc.nasa.gov/api/system/manager/parameters"
+                             pars,
+                             temporal_api = NULL,
+                             metadata = FALSE) {
+  community_vals <- c("AG", "RE", "SB")
+  temporal_api_vals <- c("DAILY",
+                         "MONTHLY",
+                         "HOURLY",
+                         "CLIMATOLOGY")
 
-  # if only a `par` is provided, then create URL w/o using crul and parse w/
-  # jsonlite, otherwise use {crul} to fetch from the API
-  if (is.null(community) && is.null(temporal_api)) {
-    return(jsonlite::fromJSON(
-      sprintf("%s/%s?user=nasapowerdev", power_url, par)
-    ))
-  } else {
-    if (is.null(community) || is.null(temporal_api)) {
+  # if the args for `community` and `temporal_api` are not empty, check and
+  # then reset `community_vals` and `temporal_api_vals` for use later
+
+  if (!is.null(community)) {
+    community <- toupper(community)
+
+    if (community %notin% community_vals) {
+      cli::cli_abort(c(x = "{.arg community} does not match any valid values for {.var community}."))
+    }
+    community_vals <- community
+  }
+
+  if (!is.null(temporal_api)) {
+    temporal_api <- toupper(temporal_api)
+    if (temporal_api %notin% temporal_api_vals) {
       cli::cli_abort(
-          "`commmunity` and `temporal_api` strings must be supplied.")
+        c(x = "{.arg temporal_api} does not match any valid values for {.var temporal_api}.")
+      )
+    }
+    temporal_api_vals <- temporal_api
+  }
+
+  pars <- toupper(pars)
+  pars <-
+    .check_pars(pars = pars,
+                community = community_vals,
+                temporal_api = temporal_api_vals)
+
+  power_url <-
+    "https://power.larc.nasa.gov/api/system/manager/parameters"
+
+  if (is.null(community) && is.null(temporal_api)) {
+    return(jsonlite::fromJSON(sprintf(
+      "%s/%s?user=nasapower4r", power_url, pars
+    )))
+  } else {
+
+    if (!.is_boolean(metadata)) {
+      cli::cli_abort(
+        c(x = "{.arg metadata} should be a Boolean value.",
+          i = "{Please provide either {.var TRUE} or {.var FALSE}.")
+      )
     }
 
     query_list <-
       list(
         community = community,
-        parameters = par,
+        parameters = pars,
         temporal = temporal_api,
-        user = "nasapowerdev"
+        metadata = metadata,
+        user = "nasapower4r"
       )
 
-    # if a `par` isn't supplied, remove this from the query list or leave as-is
     query_list <- query_list[lengths(query_list) != 0]
-
     response <- .send_query(.query_list = query_list,
-                            .temporal_api = temporal_api,
                             .url = power_url)
 
     return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))

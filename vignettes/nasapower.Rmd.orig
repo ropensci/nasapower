@@ -106,21 +106,14 @@ This can be used to find available parameter names and definitions for each comm
 Fetch the complete available information for the temperature at 2 metres above the Earth's surface, T2M.
 
 ```{r t2m-information}
-query_parameters(par = "T2M")
+query_parameters(pars = "T2M")
 ```
 
 Fetch complete temporal and community specific attribute information for "T2M" in the "ag" community for the "hourly" temporal API.
 
 ```{r t2m-ag-hourly}
-query_parameters(par = "T2M",
+query_parameters(pars = "T2M",
                  community = "ag",
-                 temporal_api = "hourly")
-```
-
-Fetch complete temporal and community specific attribute information for all parameters in the "ag" community for the "hourly" temporal API.
-
-```{r complete-ag-hourly}
-query_parameters(community = "ag",
                  temporal_api = "hourly")
 ```
 

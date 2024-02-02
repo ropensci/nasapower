@@ -17,22 +17,22 @@ get_power(
 )
 }
 \arguments{
-\item{community}{A character vector providing community name: \dQuote{ag},
-\dQuote{re} or \dQuote{sb}.  See argument details for more.}
+\item{community}{A case-intensive character vector providing community name:
+\dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for more.}
 
-\item{pars}{A character vector of solar, meteorological or climatology
-parameters to download.  When requesting a single point of x, y
+\item{pars}{case-intensive character vector of solar, meteorological or
+climatology parameters to download.  When requesting a single point of x, y
 coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
-for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
+for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{climatology}
 \code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
 only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
 more.  These values are checked internally for validity before sending the
 query to the \acronym{POWER} \acronym{API}.}
 
-\item{temporal_api}{Temporal \acronym{API} end-point for data being queried,
-supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
-\dQuote{climatology}.  Defaults to \dQuote{daily}.  See argument details
-for more.}
+\item{temporal_api}{A case-intensive character vector providing the temporal
+\acronym{API} end-point for data being queried, supported values are
+\dQuote{hourly}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{climatology}.
+Defaults to \dQuote{DAILY}.  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y (longitude, latitude) coordinates.  See argument details
@@ -146,7 +146,7 @@ supply \dQuote{global} while also specifying \dQuote{climatology} for the
  if one date only is provided, it
 will be treated as both the start date and the end date and only a single
 day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
-\code{temporal_api} is set to \dQuote{monthly}, use only two year values (YYYY),
+\code{temporal_api} is set to \dQuote{MONTHLY}, use only two year values (YYYY),
 \emph{e.g.} \code{dates = c(1983, 2010)}.  This argument should not be used when
 \code{temporal_api} is set to \dQuote{climatology} and will be ignored if set.
 }
@@ -154,7 +154,7 @@ day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
 \section{\code{wind_surface}}{
  There are 17 surfaces that may be used for corrected
 wind-speed values using the following equation:
-\deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }.
+\deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }
 Valid surface types are described here.
 
 \describe{
@@ -193,21 +193,21 @@ change over time as the project matures.
 \examples{
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
-# Fetch daily "ag" community temperature, relative humidity and
+# Fetch daily "AG" community temperature, relative humidity and
 # precipitation for January 1 1985 at Kingsthorpe, Queensland, Australia
 ag_d <- get_power(
-  community = "ag",
+  community = "AG",
   lonlat = c(151.81, -27.48),
   pars = c("RH2M", "T2M", "PRECTOTCORR"),
   dates = "1985-01-01",
-  temporal_api = "daily"
+  temporal_api = "DAILY"
 )
 
 ag_d
 
 # Fetch single point climatology for air temperature
 ag_c_point <- get_power(
-  community = "ag",
+  community = "AG",
   pars = "T2M",
   c(151.81, -27.48),
   temporal_api = "climatology"
@@ -217,10 +217,10 @@ ag_c_point
 
 # Fetch interannual solar cooking parameters for a given region
 sse_i <- get_power(
-  community = "re",
+  community = "RE",
   lonlat = c(112.5, -55.5, 115.5, -50.5),
   dates = c("1984", "1985"),
-  temporal_api = "monthly",
+  temporal_api = "MOHTHLY",
   pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
 )
 

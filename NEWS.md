@@ -1,3 +1,25 @@
+# nasapower 4.2.0
+
+## Minor Changes
+
+* Two new functions are added:
+  * `query_surfaces()`: Query the POWER API for Detailed Information on Wind Type Surfaces
+  
+  * `query_groupings()`: Query the POWER API for Detailed Information on Available Parameter Groupings
+  
+* `query_parameters` now allows you to retrieve rich metadata for the parameters.
+
+* Error, warning and other informational messages are now all formatted with {cli} for more attractive and informative messages.
+
+* The username passed along to the POWER API is now "nasapower4r" to support other packages built on {nasapower} that could use {vcr} in tests.
+Previously the user agent string took the version of {nasapower} and appended it, _e.g._, "nasapower410" for v4.1.0.
+Doing so breaks tests in packages relying on {nasapower} due to incompatibilities in cassettes, while not affecting functionality.
+
+## Bug fixes
+
+* Fixes a bug that allowed users to send requests to the API for hourly data over a region.
+The API does not support this and this client now provides a user-friendly error when it is attempted.
+
 # nasapower 4.1.0
 
 ## Bug fixes

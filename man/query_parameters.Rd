@@ -4,38 +4,32 @@
 \alias{query_parameters}
 \title{Query the POWER API for Detailed Information on Available Parameters}
 \usage{
-query_parameters(community = NULL, par = NULL, temporal_api = NULL)
+query_parameters(community = NULL, pars, temporal_api = NULL, metadata = FALSE)
 }
 \arguments{
 \item{community}{An optional character vector providing community name:
 \dQuote{ag}, \dQuote{sb} or \dQuote{re}.}
 
-\item{par}{An optional character vector of a single solar, meteorological or
-climatology parameter to query.  If unsure, omit this argument for for a
-full list of all the parameters available for each temporal \acronym{API}
-and community.}
+\item{pars}{A required character string of a single solar, meteorological or
+climatology parameter to query.}
 
 \item{temporal_api}{An optional character vector indicating the temporal
 \acronym{API} end-point for data being queried, supported values are
 \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.}
+
+\item{metadata}{\code{Boolean}; retrieve extra parameter metadata?  This is only
+applicable if you supply the \code{community} and \code{temporal_api}, if these values
+are not provided it will be ignored.  Defaults to
+\code{FALSE}.}
 }
 \value{
 A \link{list} object of information for the requested parameter(s) (if
-requested), community and temporal \acronym{API}.
+requested), community(ies) and temporal \acronym{API}(s).
 }
 \description{
 Queries the \acronym{POWER} \acronym{API} returning detailed information on
-available parameters.
-}
-\details{
-If \code{par} is not provided all possible parameters for the provided
-community, \code{community} and temporal \acronym{API}, \code{temporal_api} will be
-returned.  If only a single parameter is supplied with no \code{community} or
-\code{temporal_api} then the complete attribute information for that parameter
-will be returned for all possible communities and temporal \acronym{API}s
-combinations.  If all three values are provided, only the information for
-that specific combination of parameter, temporal \acronym{API} and community
-will be returned.
+available parameters.  For a list of all available parameters, use
+\code{parameters}
 }
 \section{Argument details for \code{temporal_api}}{
  There are four valid values.
@@ -53,11 +47,11 @@ monthly average, maximum, and/or minimum values.}
 \dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 # fetch the complete set of attribute information for "T2M".
-query_parameters(par = "T2M")
+query_parameters(pars = "T2M")
 
 # fetch complete temporal and community specific attribute information
 # for "T2M" in the "ag" community for the "hourly" temporal API.
-query_parameters(par = "T2M",
+query_parameters(pars = "T2M",
                  community = "ag",
                  temporal_api = "hourly")
 

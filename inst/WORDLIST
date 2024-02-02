@@ -2,6 +2,7 @@ ALLSKY
 APSIM
 Agroclimatology
 CRAN's
+Curtin
 DESCRIPTION's
 DOI
 DSSAT
@@ -18,7 +19,6 @@ Rdata
 Redoc
 SFC
 Standardise
-WAAA
 WS
 YYYY
 acknowledgement
@@ -38,6 +38,7 @@ groundcover
 https
 httr
 icasa
+ies
 interannual
 json
 lon
@@ -48,6 +49,7 @@ needleleaf
 pre
 rOpenSci
 radn
+rapportools
 ratelimitr
 rda
 rds

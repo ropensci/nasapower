@@ -1,5 +1,4 @@
 
-
 #' Get NASA POWER Data From the POWER API
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
@@ -10,20 +9,20 @@
 #'   a single point or regional request.  See section on \dQuote{Rate Limiting}
 #'   for more.
 #'
-#' @param community A character vector providing community name: \dQuote{ag},
-#'   \dQuote{re} or \dQuote{sb}.  See argument details for more.
-#' @param pars A character vector of solar, meteorological or climatology
-#'   parameters to download.  When requesting a single point of x, y
+#' @param community A case-intensive character vector providing community name:
+#'   \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for more.
+#' @param pars  case-intensive character vector of solar, meteorological or
+#'   climatology parameters to download.  When requesting a single point of x, y
 #'   coordinates, a maximum of twenty (20) `pars` can be specified at one time,
-#'   for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
+#'   for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{climatology}
 #'   `temporal_api`s.  If the `temporal_api` is specified as \dQuote{hourly}
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
 #'   more.  These values are checked internally for validity before sending the
 #'   query to the \acronym{POWER} \acronym{API}.
-#' @param temporal_api Temporal \acronym{API} end-point for data being queried,
-#'   supported values are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
-#'   \dQuote{climatology}.  Defaults to \dQuote{daily}.  See argument details
-#'   for more.
+#' @param temporal_api A case-intensive character vector providing the temporal
+#'   \acronym{API} end-point for data being queried, supported values are
+#'   \dQuote{hourly}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{climatology}.
+#'   Defaults to \dQuote{DAILY}.  See argument details for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y (longitude, latitude) coordinates.  See argument details
 #'   for more.
@@ -102,13 +101,13 @@
 #' @section Argument details for `dates`: if one date only is provided, it
 #'   will be treated as both the start date and the end date and only a single
 #'   day's values will be returned, _e.g._, `dates = "1983-01-01"`.  When
-#'   `temporal_api` is set to \dQuote{monthly}, use only two year values (YYYY),
+#'   `temporal_api` is set to \dQuote{MONTHLY}, use only two year values (YYYY),
 #'   _e.g._ `dates = c(1983, 2010)`.  This argument should not be used when
 #'   `temporal_api` is set to \dQuote{climatology} and will be ignored if set.
 #'
 #' @section `wind_surface`: There are 17 surfaces that may be used for corrected
 #'   wind-speed values using the following equation:
-#'   \deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }.
+#'   \deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }
 #'   Valid surface types are described here.
 #'
 #' \describe{
@@ -156,21 +155,21 @@
 #'
 #' @examplesIf interactive()
 #'
-#' # Fetch daily "ag" community temperature, relative humidity and
+#' # Fetch daily "AG" community temperature, relative humidity and
 #' # precipitation for January 1 1985 at Kingsthorpe, Queensland, Australia
 #' ag_d <- get_power(
-#'   community = "ag",
+#'   community = "AG",
 #'   lonlat = c(151.81, -27.48),
 #'   pars = c("RH2M", "T2M", "PRECTOTCORR"),
 #'   dates = "1985-01-01",
-#'   temporal_api = "daily"
+#'   temporal_api = "DAILY"
 #' )
 #'
 #' ag_d
 #'
 #' # Fetch single point climatology for air temperature
 #' ag_c_point <- get_power(
-#'   community = "ag",
+#'   community = "AG",
 #'   pars = "T2M",
 #'   c(151.81, -27.48),
 #'   temporal_api = "climatology"
@@ -180,10 +179,10 @@
 #'
 #' # Fetch interannual solar cooking parameters for a given region
 #' sse_i <- get_power(
-#'   community = "re",
+#'   community = "RE",
 #'   lonlat = c(112.5, -55.5, 115.5, -50.5),
 #'   dates = c("1984", "1985"),
-#'   temporal_api = "monthly",
+#'   temporal_api = "MOHTHLY",
 #'   pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
 #' )
 #'
@@ -212,68 +211,60 @@ get_power <- function(community = c("ag", "re", "sb"),
   temporal_api <- rlang::arg_match(temporal_api)
   time_standard <- rlang::arg_match(time_standard)
 
-  if (!is.null(wind_surface)) {
-    wind_surface <- tolower(wind_surface)
-    wind_surface <- rlang::arg_match(
-      wind_surface,
-      c(
-        "vegtype_1",
-        "vegtype_2",
-        "vegtype_3",
-        "vegtype_4",
-        "vegtype_5",
-        "vegtype_6",
-        "vegtype_7",
-        "vegtype_8",
-        "vegtype_9",
-        "vegtype_10",
-        "vegtype_11",
-        "vegtype_12",
-        "vegtype_20",
-        "seaice",
-        "openwater",
-        "airportice",
-        "airportgrass"
-      )
-    )
-  }
+  wind_surface <- .match_surface_alias(wind_surface)
 
   if (temporal_api == "climatology") {
     dates <- NULL
   }
 
-  if (any(lonlat == "global")) {
+  if (any(tolower(lonlat) == "global")) {
     # remove this if POWER enables global queries for climatology again
     cli::cli_abort(
-      "The POWER team have not enabled `global` data queries with this version of the 'API'."
+      c(x = "The POWER team have not enabled {.var global} data queries with
+        this version of the 'API'.")
     )
   }
   if (!is.null(site_elevation) && !is.numeric(site_elevation)) {
     cli::cli_abort(
-         "You have entered an invalid value for `site_elevation`.\n")
+      c(x = "You have entered an invalid value for {.arg site_elevation},
+         {.val site_elevation}.")
+    )
   }
   if (length(lonlat) > 2 && !is.null(site_elevation)) {
     cli::cli_inform(
-      "You have provided `site_elevation`, {.var {site_elevation}} for a region request. The `site_elevation` value will be ignored.\n"
+      c(
+        x = "You have provided {.arg site_elevation}, {.var {site_elevation}}
+        for a region request. The {.arg site_elevation} value will be ignored."
+      )
     )
     site_elevation <- NULL
   }
 
   if (length(lonlat) > 2 && !is.null(wind_elevation)) {
     cli::cli_inform(
-      "You have provided `wind_elevation`, {.var {wind_elevation}}, for a region request. The `wind_elevation` value will be ignored.\n"
+      c(
+      "You have provided {.arg wind_elevation}, {.var {wind_elevation}},
+      for a region request.",
+      i = "The {.arg wind_elevation} value will be ignored."
+      )
     )
     wind_elevation <- NULL
   }
+
   if (is.character(wind_surface) && is.null(wind_elevation)) {
     cli::cli_abort(
-      "If you provide a correct wind surface alias, `wind_surface`, please include a surface elevation, `wind_elevation`, with the request.\n"
+      c(
+        x = "If you provide a correct wind surface alias, {.arg wind_surface},
+        please include a surface elevation, {.arg wind_elevation}, with the
+        request."
+      )
     )
   }
   if (!is.null(wind_elevation)) {
     if (wind_elevation < 10 || wind_elevation > 300) {
       cli::cli_abort(
-        "`wind_elevation` values in metres are required to be between 10m and 300m.\n"
+        c(x = "{.arg wind_elevation} values in metres are required to be between
+          10m and 300m.")
       )
     }
   }
@@ -281,15 +272,40 @@ get_power <- function(community = c("ag", "re", "sb"),
     lonlat <- tolower(lonlat)
     if (lonlat != "global") {
       cli::cli_abort(
-        "You have entered an invalid value for `lonlat`. Valid values are `global` with `climatology` or a string of lon and lat values.\n"
+        c(
+          x = "You have entered an invalid value for {.arg lonlat}.",
+          i = "Valid values are {.val global} with {.val climatology}",
+          "or a string of lon and lat values."
+        )
       )
     }
   }
 
+  if (temporal_api == "hourly" && length(lonlat) == 4L) {
+    cli::cli_abort(c(x = "{.arg temporal_api} does not support hourly values for
+                     regional queries."))
+  }
+
+  if (length(pars) > 15 && temporal_api == "hourly") {
+    cli::cli_abort(
+      call = rlang::caller_env(),
+      c(x = "A maximum of 15 parameters can currently be requested in one
+        submission for hourly data.",
+        i = "You have submitted {.val {length(pars)}}")
+    )
+  } else if (length(pars) > 20) {
+    cli::cli_abort(
+      call = rlang::caller_env(),
+      c(i = "A maximum of 20 parameters can currently be requested in one
+        submission.",
+        i = "You have submitted {.val {length(pars)}}")
+    )
+  }
+
   # see internal_functions.R for these functions prefixed with "."
-  pars <- .check_pars(pars,
-                      community,
-                      temporal_api)
+  pars <- .check_pars(pars = pars,
+                      community = community,
+                      temporal_api = temporal_api)
   lonlat_identifier <- .check_lonlat(lonlat,
                                      pars)
   dates <- .check_dates(dates,
@@ -316,7 +332,6 @@ get_power <- function(community = c("ag", "re", "sb"),
 
   response <-
     .send_query(.query_list = query_list,
-                .temporal_api = temporal_api,
                 .url = power_url)
 
   response$raise_for_status()
@@ -397,21 +412,25 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_api) {
   if (is.null(dates) & temporal_api != "climatology") {
-    cli::cli_abort(
-         "You have not entered dates for the query.")
+    cli::cli_abort(c(i = "You have not entered dates for the query."),
+                   call = rlang::caller_env())
   }
   if (temporal_api == "monthly") {
     if (length(unique(dates)) < 2) {
       cli::cli_abort(
-        "For `temporal_api = monthly`, at least two (2) years are required to be provided."
+        c(
+          i = "For {.par temporal_api} = {.arg monthly}, at least two (2)
+          years are required to be provided, {.emph e.g.}, 2016 and 2017."
+        ),
+        call = rlang::caller_env()
       )
     }
     if (any(nchar(dates) > 4)) {
       dates <- unique(substr(dates, 1, 4))
     }
     if (dates[[2]] < dates[[1]]) {
-      message("Your start and end dates were reversed. ",
-              "They have been reordered.\n")
+      cli::cli_alert_info(c(i = "Your start and end dates were reversed.
+                                They have been reordered."))
       dates <- c(dates[2], dates[1])
     }
     return(dates)
@@ -423,7 +442,13 @@ get_power <- function(community = c("ag", "re", "sb"),
       }
       if (length(dates) > 2) {
         cli::cli_abort(
-             "You have supplied more than two dates for start and end.")
+          c(
+            i = "You have supplied more than two dates for start and end.",
+            x = "Please supply only two (2) dates for {.arg dates} as
+            'YYYY-MM-DD' (ISO8601 format)."
+          ),
+          call = rlang::caller_env()
+        )
       }
 
       # put dates in list to use lapply
@@ -445,8 +470,11 @@ get_power <- function(community = c("ag", "re", "sb"),
                                           )),
           warning = function(c) {
             cli::cli_abort(
-              call = rlang::caller_env(n = 3),
-                 "{.var {x}} is not a valid entry for a date value. Enter as 'YYYY-MM-DD' (ISO8601 format) or check that it is a valid date.")
+              call = rlang::caller_env(),
+              c(i = "{.var {x}} is not a valid entry for a date value.",
+                x = "Enter as 'YYYY-MM-DD' (ISO8601 format) and check that it
+                is a valid date.")
+            )
           }
         )
         as.Date(x)
@@ -457,8 +485,8 @@ get_power <- function(community = c("ag", "re", "sb"),
 
       # if the stdate is > endate, flip order
       if (dates[[2]] < dates[[1]]) {
-        message("Your start and end dates were reversed. ",
-                "They have been reordered.\n")
+        cli::cli_alert_info(c(i = "Your start and end dates were reversed.
+                              They have been reordered."))
         dates <- c(dates[2], dates[1])
       }
 
@@ -466,15 +494,24 @@ get_power <- function(community = c("ag", "re", "sb"),
       if (temporal_api != "hourly" &&
           dates[[1]] < "1981-01-01") {
         cli::cli_abort(
-             "1981-01-01 is the earliest available data from POWER.\n")
+          call = rlang::caller_env(),
+          c(i = "{.arg dates} = {.val {dates[[1]]}} is an invalid value.",
+            x = "1981-01-01 is the earliest available data from POWER.")
+        )
       } else if (temporal_api == "hourly" &
                  dates[[1]] < "2001-01-01")
         cli::cli_abort(
-             "2001-01-01 is the earliest available hourly data from POWER.\n")
+          call = rlang::caller_env(),
+          c(i = "{.arg dates} = {.val {dates[[1]]}} is an invalid value.",
+            x = "2001-01-01 is the earliest available hourly data from POWER.")
+        )
       # check end date to be sure it's not _after_
       if (dates[[2]] > Sys.Date()) {
         cli::cli_abort(
-             "The weather data cannot possibly extend beyond this day.\n")
+          call = rlang::caller_env(),
+          c(i = "{.arg dates} = {.val {dates[[2]]}} is invalid.",
+            x = "The weather data cannot possibly extend beyond this day.")
+        )
       }
 
       dates <- lapply(dates, as.character)
@@ -501,18 +538,23 @@ get_power <- function(community = c("ag", "re", "sb"),
       if (lonlat == "global") {
         identifier <- "global"
       } else if (is.character(lonlat)) {
-        cli::cli_abort(
-             "You have entered an invalid request for `lonlat`.\n")
+        cli::cli_abort(call = rlang::caller_env(),
+                       c(i = "You have entered an invalid request for `lonlat`."))
       }
     } else if (is.numeric(lonlat) & length(lonlat) == 2) {
       if (lonlat[1] < -180 | lonlat[1] > 180) {
         cli::cli_abort(
-          "Please check your longitude, {.var {lonlat[1]}}, to be sure it is valid."
+          call = rlang::caller_env(),
+          c(i = "Please check your longitude, {.var {lonlat[1]}},
+                         to be sure it is valid.")
         )
       }
-      if (lonlat[2] < -90 | lonlat[2] > 90) {
+      if (lonlat[2] < -90 |
+          lonlat[2] > 90) {
         cli::cli_abort(
-          "Please check your latitude, {.var {lonlat[2]}}, value to be sure it is valid."
+          call = rlang::caller_env(),
+          c(i = "Please check your latitude, {.val {lonlat[2]}},
+          value to be sure it is valid.")
         )
       }
       identifier <- "point"
@@ -521,28 +563,43 @@ get_power <- function(community = c("ag", "re", "sb"),
     } else if (length(lonlat) == 4 & is.numeric(lonlat)) {
       if ((lonlat[[3]] - lonlat[[1]]) * (lonlat[[4]] - lonlat[[2]]) * 4 > 100) {
         cli::cli_abort(
-          "Please provide correct bounding box values. The bounding box can only enclose a max of 10 x 10 region of 0.5 degree values or a 5 x 5 region of 1 degree values, (i.e., 100 points total)."
+          call = rlang::caller_env(),
+          c(
+            i. = "Please provide correct bounding box values. The bounding box
+            can only enclose a max of 10 x 10 region of 0.5 degree values or a
+            5 x 5 region of 1 degree values, ({.emph i.e.}, 100 points total)."
+          )
         )
       } else if (any(lonlat[1] < -180 |
                      lonlat[3] < -180 |
                      lonlat[1] > 180 |
                      lonlat[3] > 180)) {
         cli::cli_abort(
-          "Please check your longitude values, {.var {lonlat[1]}} and {.var {lonlat[3]}}, to be sure they are valid.\n"
+          call = rlang::caller_env(),
+          c(i = "Please check your longitude values, {.var {lonlat[1]}} and
+            {.var {lonlat[3]}}, to be sure they are valid.")
         )
       } else if (any(lonlat[2] < -90 |
                      lonlat[4] < -90 |
                      lonlat[2] > 90 |
                      lonlat[4] > 90)) {
         cli::cli_abort(
-          "Please check your latitude values, {.var {lonlat[2]}} and {.var {lonlat[4]}}, to be sure they are valid.\n"
+          call = rlang::caller_env(),
+          c(i = "Please check your latitude values, {.var {lonlat[2]}} and
+          {.var {lonlat[4]}}, to be sure they are valid.")
         )
       } else if (lonlat[2] > lonlat[4]) {
         cli::cli_abort(
-             "The first `lat` value must be the minimum value.")
+          call = rlang::caller_env(),
+          c(
+            i = "The first {.arg lat} value must be the minimum value.")
+        )
       } else if (lonlat[1] > lonlat[3]) {
         cli::cli_abort(
-             "The first `lon` value must be the minimum value.")
+          call = rlang::caller_env(),
+          c(
+            i = "The first {.arg lon} value must be the minimum value.")
+        )
       }
       identifier <- "regional"
       bbox <- c(
@@ -553,7 +610,8 @@ get_power <- function(community = c("ag", "re", "sb"),
       )
     } else {
       cli::cli_abort(
-           "You have entered an invalid request for `lonlat`.\n")
+        call = rlang::caller_env(),
+        c(i = "You have entered an invalid request for {.arg {lonlat}}."))
     }
 
     if (!is.null(bbox)) {
@@ -591,12 +649,7 @@ get_power <- function(community = c("ag", "re", "sb"),
                          wind_elevation,
                          wind_surface,
                          time_standard) {
-  user_agent <- paste0("nasapower",
-                       gsub(
-                         pattern = "\\.",
-                         replacement = "",
-                         x = getNamespaceVersion("nasapower")
-                       ))
+  user_agent <- "nasapower4r"
 
   if (lonlat_identifier$identifier == "point") {
     query_list <- list(

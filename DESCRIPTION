@@ -1,7 +1,7 @@
 Package: nasapower
 Type: Package
 Title: NASA POWER API Client
-Version: 4.1.0
+Version: 4.2.0
 Authors@R: 
     c(person(given = "Adam H.",
             family = "Sparks",
@@ -53,7 +53,19 @@ Authors@R:
                `file` argument of `vroom()` must use `I()` for literal data as
                of vroom 1.5.0.', see
                <https://github.com/ropensci/nasapower/pull/67>.")),
-      person(given = "Western Australia Agriculture Authority (WAAA)",
+      person(given = "Aleksandar",
+             family = "Blagotić",
+             role = "ctb",
+             email = "alex@rapporter.net",
+             comment = c("Author of the CRAN package 'rapportools', from which
+             the '.is_boolean()' was taken.")),
+      person(given = "Gergely",
+             family = "Daróczi",
+             role = "ctb",
+             email = "daroczig@rapporter.net",
+             comment = c("Author of the CRAN package 'rapportools', from which
+             the '.is_boolean()' was taken.")),
+      person(given = "Curtin University",
              role = "cph",
              comment =
                 c("Supported the development of 'nasapower' through Adam H.
@@ -79,11 +91,6 @@ Imports:
     readr,
     rlang,
     tibble (>= 3.0.2)
-RoxygenNote: 7.3.0
-Encoding: UTF-8
-Language: en-US
-NeedsCompilation: no
-Repository: CRAN
 Suggests:
     knitr,
     purrr,
@@ -91,6 +98,11 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
+RoxygenNote: 7.3.1
+Encoding: UTF-8
+Language: en-US
+NeedsCompilation: no
+Repository: CRAN
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
 X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
