@@ -77,11 +77,12 @@ More documentation is available in the vignette in your R session, `vignette("na
 
 ## Meta
 
--   Please [report any issues or bugs](https://github.com/ropensci/nasapower/issues).
-Please note that the {nasapower} project is released with a [Contributor Code of Conduct](https://github.com/ropensci/nasapower/blob/main/CODE_OF_CONDUCT.md).
-By participating in the {nasapower} project you agree to abide by its terms.
+- Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). 
+By contributing to this project, you agree to abide by its terms.
 
--   License: MIT
+- Please [report any issues or bugs](https://github.com/ropensci/nasapower/issues).
+
+- License: MIT
 
 ## References
 
