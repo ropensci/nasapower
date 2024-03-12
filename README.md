@@ -11,6 +11,7 @@ output: github_document
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461) 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) 
 [![peer-review](https://badges.ropensci.org/155_status.svg)](https://github.com/ropensci/software-review/issues/155) 
+[![JOSS](https://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
 [![DOI](http://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
 [![CRAN status](https://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
 <!-- badges: end -->
@@ -65,12 +66,13 @@ Fetch daily “ag” community temperature, relative humidity and precipitation 
 
 ```r
 library("nasapower")
-daily_ag <- get_power(community = "ag",
-                      lonlat = c(151.81, -27.48),
-                      pars = c("RH2M", "T2M", "PRECTOTCORR"),
-                      dates = "1985-01-01",
-                      temporal_api = "daily"
-                      )
+daily_ag <- get_power(
+  community = "ag",
+  lonlat = c(151.81, -27.48),
+  pars = c("RH2M", "T2M", "PRECTOTCORR"),
+  dates = "1985-01-01",
+  temporal_api = "daily"
+)
 daily_ag
 ```
 
