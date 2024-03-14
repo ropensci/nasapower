@@ -209,14 +209,14 @@ test_that(".check_lonlat() checks order of the latitude values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 179.5, -89.5),
                              pars),
-               regexp = "The first `lat` value must be the minimum value.")
+               regexp = "The first `lonlat` `lat` value must be the minimum value.")
 })
 
 test_that(".check_lonlat() checks order of the longitude values", {
   temporal_api <- "daily"
   expect_error(.check_lonlat(lonlat = c(179.5, -89.5, -179.5, 89.5),
                              pars),
-               regexp = "The first `lon` value must be the minimum value.")
+               regexp = "The first `lonlat` `lon` value must be the minimum value.")
 })
 
 test_that(".check_lonlat() checks validity of bbox latmin values", {
