@@ -592,13 +592,13 @@ get_power <- function(community = c("ag", "re", "sb"),
         cli::cli_abort(
           call = rlang::caller_env(),
           c(
-            i = "The first {.arg lat} value must be the minimum value.")
+            i = "The first `lonlat` {.arg lat} value must be the minimum value.")
         )
       } else if (lonlat[1] > lonlat[3]) {
         cli::cli_abort(
           call = rlang::caller_env(),
           c(
-            i = "The first {.arg lon} value must be the minimum value.")
+            i = "The first `lonlat` {.arg lon} value must be the minimum value.")
         )
       }
       identifier <- "regional"
@@ -611,7 +611,8 @@ get_power <- function(community = c("ag", "re", "sb"),
     } else {
       cli::cli_abort(
         call = rlang::caller_env(),
-        c(i = "You have entered an invalid request for {.arg {lonlat}}."))
+        c(i = "You have entered an invalid request for `lonlat`
+          {.arg {lonlat}}."))
     }
 
     if (!is.null(bbox)) {
