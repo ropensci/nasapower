@@ -25,9 +25,10 @@ properly acknowledge them for the data rather than citing this package*
 (unless you have actually used it in your work).
 
 > *When POWER data products are used in a publication, we request the
-> following acknowledgement be included: “These data were obtained from
-> the NASA Langley Research Center POWER Project funded through the NASA
-> Earth Science Directorate Applied Science Program.”*
+> following acknowledgement be included: “The data was obtained from the
+> National Aeronautics and Space Administration (NASA) Langley Research
+> Center (LaRC) Prediction of Worldwide Energy Resource (POWER) Project
+> funded through the NASA Earth Science/Applied Science Program.”*
 
 The previous statement that properly cites the POWER data is different
 than the citation for {nasapower}. To cite this R package, {nasapower},
