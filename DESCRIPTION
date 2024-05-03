@@ -1,93 +1,48 @@
-Package: nasapower
 Type: Package
+Package: nasapower
 Title: NASA POWER API Client
 Version: 4.2.0
-Authors@R: 
-    c(person(given = "Adam H.",
-            family = "Sparks",
-            role = c("aut", "cre"),
-            email = "adamhsparks@gmail.com",
-            comment = c(ORCID = "0000-0002-0061-8359")),
-     person(given = "Scott",
-            family = "Chamberlain",
-            role = "rev", 
-            email = "myrmecocystus@gmail.com",
-            comment =
-              c(ORCID = "0000-0003-1444-9135",
-              "Scott Chamberlain reviewed nasapower for rOpenSci, see
-              <https://github.com/ropensci/software-review/issues/155>.")),
-     person(given = "Hazel",
-            family = "Kavili",
-            role = "rev",
-            comment = "Hazel Kavili reviewed nasapower for rOpenSci, see
-            <https://github.com/ropensci/software-review/issues/155>."),
-     person(given = "Alison",
-            family = "Boyer",
-            role = "rev",
-            comment = "Alison Boyer reviewed nasapower for rOpenSci, see
-            <https://github.com/ropensci/software-review/issues/155>."),
-    person(given = "Fernando",
-            family = "Miguez",
-            role = "ctb",
-            email = "femiguez@iastate.edu",
-            comment =
-              c(ORCID = "0000-0002-4627-8329",
-              "Fernando Miguez provided assistance in identifying
-              improper missing value handling in the POWER data, see 
-              <https://github.com/femiguez/apsimx/pull/26>.")),
-     person(given = "Maëlle",
-            family = "Salmon",
-            role = "ctb",
-            comment =
-              c(ORCID = "0000-0002-2815-0399",
-              "Maëlle Salmon contributed a patch to fix issues with using the R
-              package, 'vcr', for testing the API queries, see
-                        <https://github.com/ropensci/nasapower/pull/64>.")),
-      person(given = "Phillip D.",
-             family = "Alderman",
-             role = "ctb",
-             email = "phillip.alderman@okstate.edu",
-             comment =
-               c(ORCID = "0000-0003-1467-2337",
-               "Phillip Alderman contributed a patch to fix an issue with, 'The
-               `file` argument of `vroom()` must use `I()` for literal data as
-               of vroom 1.5.0.', see
-               <https://github.com/ropensci/nasapower/pull/67>.")),
-      person(given = "Aleksandar",
-             family = "Blagotić",
-             role = "ctb",
-             email = "alex@rapporter.net",
-             comment = c("Author of the CRAN package 'rapportools', from which
-             the '.is_boolean()' was taken.")),
-      person(given = "Gergely",
-             family = "Daróczi",
-             role = "ctb",
-             email = "daroczig@rapporter.net",
-             comment = c("Author of the CRAN package 'rapportools', from which
-             the '.is_boolean()' was taken.")),
-      person(given = "Curtin University",
-             role = "cph",
-             comment =
-                c("Supported the development of 'nasapower' through Adam H.
-                Sparks' time.")))
+Authors@R: c(
+    person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-0061-8359")),
+    person("Scott", "Chamberlain", , "myrmecocystus@gmail.com", role = "rev",
+           comment = c(ORCID = "0000-0003-1444-9135", "Scott Chamberlain reviewed nasapower for rOpenSci, see\n              <https://github.com/ropensci/software-review/issues/155>.")),
+    person("Hazel", "Kavili", role = "rev",
+           comment = "Hazel Kavili reviewed nasapower for rOpenSci, see\n            <https://github.com/ropensci/software-review/issues/155>."),
+    person("Alison", "Boyer", role = "rev",
+           comment = "Alison Boyer reviewed nasapower for rOpenSci, see\n            <https://github.com/ropensci/software-review/issues/155>."),
+    person("Fernando", "Miguez", , "femiguez@iastate.edu", role = "ctb",
+           comment = c(ORCID = "0000-0002-4627-8329", "Fernando Miguez provided assistance in identifying\n              improper missing value handling in the POWER data, see \n              <https://github.com/femiguez/apsimx/pull/26>.")),
+    person("Maëlle", "Salmon", role = "ctb",
+           comment = c(ORCID = "0000-0002-2815-0399", "Maëlle Salmon contributed a patch to fix issues with using the R\n              package, 'vcr', for testing the API queries, see\n                        <https://github.com/ropensci/nasapower/pull/64>.")),
+    person("Phillip D.", "Alderman", , "phillip.alderman@okstate.edu", role = "ctb",
+           comment = c(ORCID = "0000-0003-1467-2337", "Phillip Alderman contributed a patch to fix an issue with, 'The\n               `file` argument of `vroom()` must use `I()` for literal data as\n               of vroom 1.5.0.', see\n               <https://github.com/ropensci/nasapower/pull/67>.")),
+    person("Aleksandar", "Blagotić", , "alex@rapporter.net", role = "ctb",
+           comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
+    person("Gergely", "Daróczi", , "daroczig@rapporter.net", role = "ctb",
+           comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
+    person("Curtin University", role = "cph",
+           comment = "Supported the development of 'nasapower' through Adam H.\n                Sparks' time.")
+  )
+Description: An API client for NASA POWER global meteorology, surface
+    solar energy and climatology data API.  POWER (Prediction Of Worldwide
+    Energy Resources) data are freely available for download with varying
+    spatial resolutions dependent on the original data and with several
+    temporal resolutions depending on the POWER parameter and community.
+    This work is funded through the NASA Earth Science Directorate Applied
+    Science Program.  For more on the data themselves, the methodologies
+    used in creating, a web- based data viewer and web access, please see
+    <https://power.larc.nasa.gov/>.
+License: MIT + file LICENSE
 URL: https://docs.ropensci.org/nasapower/
 BugReports: https://github.com/ropensci/nasapower/issues
-Description: An API client for NASA POWER global meteorology, surface solar
-    energy and climatology data API.  POWER (Prediction Of Worldwide Energy
-    Resources) data are freely available for download with varying spatial 
-    resolutions dependent on the original data and with several temporal
-    resolutions depending on the POWER parameter and community.  This work is
-    funded through the NASA Earth Science Directorate Applied Science Program.
-    For more on the data themselves, the methodologies used in creating, a web-
-    based data viewer and web access, please see <https://power.larc.nasa.gov/>.
 Depends:
     R (>= 3.5.0)
-License: MIT + file LICENSE
 Imports:
     cli,
     crul,
-    lubridate,
     jsonlite,
+    lubridate,
     readr,
     rlang,
     tibble (>= 3.0.2)
@@ -98,17 +53,18 @@ Suggests:
     spelling,
     testthat (>= 3.0.0),
     vcr (>= 0.6.0)
-RoxygenNote: 7.3.1
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
 Repository: CRAN
-VignetteBuilder: knitr
-X-schema.org-applicationCategory: Tools
-X-schema.org-keywords: NASA, meteorological-data, weather, global, weather,
-    weather-data, meteorology, NASA-POWER, agroclimatology, earth-science,
-    data-access, climate-data
-X-schema.org-isPartOf: https://ropensci.org
 Roxygen: list(markdown = TRUE)
-Config/testthat/edition: 3
-Config/testthat/parallel: true
+RoxygenNote: 7.3.1
+X-schema.org-applicationCategory: Tools
+X-schema.org-isPartOf: https://ropensci.org
+X-schema.org-keywords: NASA, meteorological-data, weather, global,
+    weather, weather-data, meteorology, NASA-POWER, agroclimatology,
+    earth-science, data-access, climate-data
