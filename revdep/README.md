@@ -1,32 +1,32 @@
 # Platform
 
-|field    |value                               |
-|:--------|:-----------------------------------|
-|version  |R version 4.3.2 (2023-10-31)        |
-|os       |macOS Sonoma 14.3                   |
-|system   |aarch64, darwin20                   |
-|ui       |RStudio                             |
-|language |(EN)                                |
-|collate  |en_US.UTF-8                         |
-|ctype    |en_US.UTF-8                         |
-|tz       |Australia/Perth                     |
-|date     |2024-02-01                          |
-|rstudio  |2023.12.1+402 Ocean Storm (desktop) |
-|pandoc   |3.1.11.1 @ /opt/homebrew/bin/pandoc |
+|field    |value                                    |
+|:--------|:----------------------------------------|
+|version  |R version 4.4.0 (2024-04-24)             |
+|os       |macOS Sonoma 14.5                        |
+|system   |aarch64, darwin20                        |
+|ui       |RStudio                                  |
+|language |(EN)                                     |
+|collate  |en_US.UTF-8                              |
+|ctype    |en_US.UTF-8                              |
+|tz       |Australia/Perth                          |
+|date     |2024-05-18                               |
+|rstudio  |2024.04.1+748 Chocolate Cosmos (desktop) |
+|pandoc   |3.2 @ /opt/homebrew/bin/ (via rmarkdown) |
 
 # Dependencies
 
 |package     |old    |new    |Δ  |
 |:-----------|:------|:------|:--|
-|nasapower   |4.1.0  |4.2.0  |*  |
+|nasapower   |4.2.0  |4.2.1  |*  |
 |bit         |4.0.5  |4.0.5  |   |
 |bit64       |4.0.5  |4.0.5  |   |
 |cli         |3.6.2  |3.6.2  |   |
 |clipr       |0.8.0  |0.8.0  |   |
 |cpp11       |0.4.7  |0.4.7  |   |
 |crayon      |1.5.2  |1.5.2  |   |
-|crul        |1.4.0  |1.4.0  |   |
-|curl        |5.2.0  |5.2.0  |   |
+|crul        |1.4.2  |1.4.2  |   |
+|curl        |5.2.1  |5.2.1  |   |
 |fansi       |1.0.6  |1.0.6  |   |
 |generics    |0.1.3  |0.1.3  |   |
 |glue        |1.7.0  |1.7.0  |   |
@@ -46,7 +46,7 @@
 |readr       |2.1.5  |2.1.5  |   |
 |rlang       |1.1.3  |1.1.3  |   |
 |tibble      |3.2.1  |3.2.1  |   |
-|tidyselect  |1.2.0  |1.2.0  |   |
+|tidyselect  |1.2.1  |1.2.1  |   |
 |timechange  |0.3.0  |0.3.0  |   |
 |triebeard   |0.4.1  |0.4.1  |   |
 |tzdb        |0.4.0  |0.4.0  |   |
@@ -57,10 +57,4 @@
 |withr       |3.0.0  |3.0.0  |   |
 
 # Revdeps
-
-## New problems (1)
-
-|package  |version |error  |warning |note |
-|:--------|:-------|:------|:-------|:----|
-|[PowerSDI](problems.md#powersdi)|1.0.0   |__+1__ |        |     |
 
