@@ -1,5 +1,7 @@
 # nasapower 4.2.1
 
+## Bug Fixes
+
 * Fixes [Issue](https://github.com/ropensci/nasapower/issues/85) where querying all parameters failed.
 
 # nasapower 4.2.0
