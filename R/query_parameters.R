@@ -7,7 +7,7 @@
 #'
 #' @param community An optional character vector providing community name:
 #'   \dQuote{ag}, \dQuote{sb} or \dQuote{re}.
-#' @param pars A required character string of a single solar, meteorological or
+#' @param pars An optional character string of a single solar, meteorological or
 #'  climatology parameter to query.
 #' @param temporal_api An optional character vector indicating the temporal
 #'   \acronym{API} end-point for data being queried, supported values are
@@ -51,14 +51,11 @@
 #' @export
 
 query_parameters <- function(community = NULL,
-                             pars,
+                             pars = NULL,
                              temporal_api = NULL,
                              metadata = FALSE) {
   community_vals <- c("AG", "RE", "SB")
-  temporal_api_vals <- c("DAILY",
-                         "MONTHLY",
-                         "HOURLY",
-                         "CLIMATOLOGY")
+  temporal_api_vals <- c("DAILY", "MONTHLY", "HOURLY", "CLIMATOLOGY")
 
   # if the args for `community` and `temporal_api` are not empty, check and
   # then reset `community_vals` and `temporal_api_vals` for use later
@@ -82,12 +79,13 @@ query_parameters <- function(community = NULL,
     temporal_api_vals <- temporal_api
   }
 
-  pars <- toupper(pars)
-  pars <-
-    .check_pars(pars = pars,
-                community = community_vals,
-                temporal_api = temporal_api_vals)
-
+  if (!is.null(pars)) {
+    pars <- toupper(pars)
+    pars <-
+      .check_pars(pars = pars,
+                  community = community_vals,
+                  temporal_api = temporal_api_vals)
+  }
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/parameters"
 
@@ -96,11 +94,9 @@ query_parameters <- function(community = NULL,
       "%s/%s?user=nasapower4r", power_url, pars
     )))
   } else {
-
     if (!.is_boolean(metadata)) {
       cli::cli_abort(
-        c(x = "{.arg metadata} should be a Boolean value.",
-          i = "{Please provide either {.var TRUE} or {.var FALSE}.")
+        c(x = "{.arg metadata} should be a Boolean value.", i = "{Please provide either {.var TRUE} or {.var FALSE}.")
       )
     }
 
@@ -114,8 +110,7 @@ query_parameters <- function(community = NULL,
       )
 
     query_list <- query_list[lengths(query_list) != 0]
-    response <- .send_query(.query_list = query_list,
-                            .url = power_url)
+    response <- .send_query(.query_list = query_list, .url = power_url)
 
     return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
   }
