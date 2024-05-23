@@ -4,7 +4,6 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ropensci/nasapower/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/nasapower/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/ropensci/nasapower/branch/main/graph/badge.svg?token=Kq9aea0TQN)](https://app.codecov.io/gh/ropensci/nasapower)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -13,8 +12,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
-[![Codecov test
-coverage](https://codecov.io/gh/ropensci/nasapower/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/nasapower?branch=main)
+[![codecov](https://codecov.io/gh/ropensci/nasapower/graph/badge.svg?token=Kq9aea0TQN)](https://codecov.io/gh/ropensci/nasapower)
 <!-- badges: end -->
 
 ## POWER data vs {nasapower}
