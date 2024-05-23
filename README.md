@@ -13,6 +13,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
+[![Codecov test
+coverage](https://codecov.io/gh/ropensci/nasapower/branch/main/graph/badge.svg)](https://app.codecov.io/gh/ropensci/nasapower?branch=main)
 <!-- badges: end -->
 
 ## POWER data vs {nasapower}
