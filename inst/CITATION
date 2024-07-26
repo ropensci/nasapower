@@ -1,13 +1,4 @@
 bibentry(
-  bibtype = "Manual",
-  title = "{nasapower}: NASA-POWER Data from R",
-  author = c(person("Adam H.", "Sparks")),
-  year = sub("-.*", "", meta$Date),
-  note = sprintf("R package version %s", meta$Version),
-  doi = "10.5281/zenodo.1040727",
-  url = "https://CRAN.R-project.org/package=nasapower")
-
-bibentry(
   bibtype = "Article",
   author = c(person("Adam H.", "Sparks")),
   title = "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R",
