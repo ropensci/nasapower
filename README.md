@@ -125,6 +125,37 @@ More documentation is available in the vignette in your R session,
 
 - License: MIT
 
+### Citing {nasapower}
+
+When citing the use of this package, please use,
+
+``` r
+library("nasapower")
+citation("nasapower")
+```
+
+    ## To cite package 'nasapower' in publications use:
+    ## 
+    ##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface
+    ##   Solar Energy and Climatology Data Client for R." _The Journal of Open
+    ##   Source Software_, *3*(30), 1035. doi:10.21105/joss.01035
+    ##   <https://doi.org/10.21105/joss.01035>.
+    ## 
+    ## A BibTeX entry for LaTeX users is
+    ## 
+    ##   @Article{,
+    ##     author = {Adam H. Sparks},
+    ##     title = {nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R},
+    ##     doi = {10.21105/joss.01035},
+    ##     year = {2018},
+    ##     month = {oct},
+    ##     publisher = {The Open Journal},
+    ##     volume = {3},
+    ##     number = {30},
+    ##     pages = {1035},
+    ##     journal = {The Journal of Open Source Software},
+    ##   }
+
 ## References
 
 <https://power.larc.nasa.gov>

@@ -83,6 +83,15 @@ By contributing to this project, you agree to abide by its terms.
 
 - License: MIT
 
+### Citing {nasapower}
+
+When citing the use of this package, please use,
+
+```{r}
+library("nasapower")
+citation("nasapower")
+```
+
 ## References
 
 <https://power.larc.nasa.gov>
