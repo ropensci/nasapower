@@ -13,7 +13,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.0 (2024-04-24)",
+  "runtimePlatform": "R version 4.4.1 (2024-06-14)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -251,24 +251,8 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "496.551KB",
+  "fileSize": "496.073KB",
   "citation": [
-    {
-      "@type": "SoftwareSourceCode",
-      "author": [
-        {
-          "@type": "Person",
-          "givenName": "Adam H.",
-          "familyName": "Sparks"
-        }
-      ],
-      "name": "{nasapower}: NASA-POWER Data from R",
-      "identifier": "10.5281/zenodo.1040727",
-      "url": "https://CRAN.R-project.org/package=nasapower",
-      "description": "R package version 4.2.1",
-      "@id": "https://doi.org/10.5281/zenodo.1040727",
-      "sameAs": "https://doi.org/10.5281/zenodo.1040727"
-    },
     {
       "@type": "ScholarlyArticle",
       "datePublished": "2018",
@@ -299,7 +283,7 @@
   "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
   "releaseNotes": "https://github.com/ropensci/nasapower/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/nasapower/blob/main/README.md",
-  "contIntegration": ["https://github.com/ropensci/nasapower/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/ropensci/nasapower", "https://app.codecov.io/gh/ropensci/nasapower?branch=main"],
+  "contIntegration": ["https://github.com/ropensci/nasapower/actions/workflows/R-CMD-check.yaml", "https://codecov.io/gh/ropensci/nasapower"],
   "developmentStatus": "https://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
