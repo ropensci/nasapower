@@ -136,25 +136,19 @@ citation("nasapower")
 
     ## To cite package 'nasapower' in publications use:
     ## 
+    ##   Sparks A (2024). _nasapower: NASA-POWER Data from R_.
+    ##   doi:10.5281/zenodo.1040727 <https://doi.org/10.5281/zenodo.1040727>,
+    ##   R package version 4.2.1,
+    ##   <https://CRAN.R-project.org/package=nasapower>.
+    ## 
     ##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface
     ##   Solar Energy and Climatology Data Client for R." _The Journal of Open
     ##   Source Software_, *3*(30), 1035. doi:10.21105/joss.01035
     ##   <https://doi.org/10.21105/joss.01035>.
     ## 
-    ## A BibTeX entry for LaTeX users is
-    ## 
-    ##   @Article{,
-    ##     author = {Adam H. Sparks},
-    ##     title = {nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R},
-    ##     doi = {10.21105/joss.01035},
-    ##     year = {2018},
-    ##     month = {oct},
-    ##     publisher = {The Open Journal},
-    ##     volume = {3},
-    ##     number = {30},
-    ##     pages = {1035},
-    ##     journal = {The Journal of Open Source Software},
-    ##   }
+    ## To see these entries in BibTeX format, use 'print(<citation>,
+    ## bibtex=TRUE)', 'toBibtex(.)', or set
+    ## 'options(citation.bibtex.max=999)'.
 
 ## References
 

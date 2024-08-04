@@ -1,12 +1,11 @@
-# nasapower 4.2.0
+# nasapower 4.2.1
 
 ## R CMD check results
 
 ### Checked under
 
-* Windows - R Under development (unstable) (2024-01-29 r85841 ucrt) via Winbuilder
-* Windows - R version 4.3.2 (2023-10-31) -- "Eye Holes" aarch64-apple-darwin20 (64-bit) via Winbuilder
-* MacOS - R version 4.3.2 (2023-10-31) -- "Eye Holes" aarch64-apple-darwin20 (64-bit)
+* Windows - R Under development (unstable) (2024-05-17 r86565 ucrt) via Winbuilder
+* MacOS - R version 4.4.0 (2024-04-24) -- "Puppy Cup"
 
 0 errors | 0 warnings | 1 note
 
