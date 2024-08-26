@@ -23,7 +23,7 @@ get_power(
 \item{pars}{case-intensive character vector of solar, meteorological or
 climatology parameters to download.  When requesting a single point of x, y
 coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
-for \dQuote{DAILY}, \dQuote{MONTHLY} and \dQuote{climatology}
+for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
 \code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
 only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
 more.  These values are checked internally for validity before sending the
@@ -31,8 +31,8 @@ query to the \acronym{POWER} \acronym{API}.}
 
 \item{temporal_api}{A case-intensive character vector providing the temporal
 \acronym{API} end-point for data being queried, supported values are
-\dQuote{hourly}, \dQuote{DAILY}, \dQuote{MONTHLY} or \dQuote{climatology}.
-Defaults to \dQuote{DAILY}.  See argument details for more.}
+\dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
+Defaults to \dQuote{daily}.  See argument details for more.}
 
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y (longitude, latitude) coordinates.  See argument details
@@ -200,7 +200,7 @@ ag_d <- get_power(
   lonlat = c(151.81, -27.48),
   pars = c("RH2M", "T2M", "PRECTOTCORR"),
   dates = "1985-01-01",
-  temporal_api = "DAILY"
+  temporal_api = "daily"
 )
 
 ag_d
@@ -220,7 +220,7 @@ sse_i <- get_power(
   community = "RE",
   lonlat = c(112.5, -55.5, 115.5, -50.5),
   dates = c("1984", "1985"),
-  temporal_api = "MOHTHLY",
+  temporal_api = "monthly",
   pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
 )
 
