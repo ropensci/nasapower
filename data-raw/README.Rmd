@@ -53,6 +53,9 @@ The list structure will be
     -   `CLIMATOLOGY_SB`
         -   `parameter_1` ...
         -   `parameter_n`
+...
+
+and so on.
 
 ## POWER JSON file
 
