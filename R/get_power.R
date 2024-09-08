@@ -9,9 +9,9 @@
 #'   a single point or regional request.  See section on \dQuote{Rate Limiting}
 #'   for more.
 #'
-#' @param community A case-intensive character vector providing community name:
+#' @param community A case-insensitive character vector providing community name:
 #'   \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for more.
-#' @param pars  case-intensive character vector of solar, meteorological or
+#' @param pars  case-insensitive character vector of solar, meteorological or
 #'   climatology parameters to download.  When requesting a single point of x, y
 #'   coordinates, a maximum of twenty (20) `pars` can be specified at one time,
 #'   for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
@@ -19,7 +19,7 @@
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
 #'   more.  These values are checked internally for validity before sending the
 #'   query to the \acronym{POWER} \acronym{API}.
-#' @param temporal_api A case-intensive character vector providing the temporal
+#' @param temporal_api A case-insensitive character vector providing the temporal
 #'   \acronym{API} end-point for data being queried, supported values are
 #'   \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
 #'   Defaults to \dQuote{daily}.  See argument details for more.
