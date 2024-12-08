@@ -1,4 +1,3 @@
-
 # test queries using vcr -------------------------------------------------------
 test_that("get_power() returns daily point ag data", {
   skip_if_offline()
@@ -6,12 +5,14 @@ test_that("get_power() returns daily point ag data", {
     power_query <- get_power(
       community = "ag",
       lonlat = c(-179.5, -89.5),
-      pars = c("T2M",
+      pars = c(
+        "T2M",
         "T2M_MIN",
         "T2M_MAX",
         "RH2M",
         "WS10M",
-        "PS"),
+        "PS"
+      ),
       dates = c("1983-01-01"),
       temporal_api = "Daily",
       time_standard = "UTC"
@@ -21,11 +22,11 @@ test_that("get_power() returns daily point ag data", {
   expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-  expect_equal(power_query$YEAR, 1983)
-  expect_equal(power_query$MM, 1)
-  expect_equal(power_query$DD, 1)
-  expect_equal(power_query$DOY, 1)
-  expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+  expect_identical(power_query$YEAR, 1983)
+  expect_identical(power_query$MM, 1L)
+  expect_identical(power_query$DD, 1L)
+  expect_identical(power_query$DOY, 1L)
+  expect_identical(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
   expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
   expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
@@ -53,119 +54,121 @@ test_that("get_power() returns daily point ag data", {
 })
 
 test_that("get_power() returns daily point ag data with adjusted atmospheric
-          air pressure",
-  {
-    skip_if_offline()
-    vcr::use_cassette("adjusted_air_pressure", {
-      power_query <- get_power(
-        community = "ag",
-        lonlat = c(-179.5, -89.5),
-        pars = c("T2M",
-          "T2M_MIN",
-          "T2M_MAX",
-          "RH2M",
-          "WS10M",
-          "PS"),
-        dates = c("1983-01-01"),
-        temporal_api = "Daily",
-        site_elevation = 0,
-        time_standard = "UTC"
-      )
-    })
-
-    expect_s3_class(power_query, "data.frame")
-    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
-    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-    expect_equal(power_query$YEAR, 1983)
-    expect_equal(power_query$MM, 1)
-    expect_equal(power_query$DD, 1)
-    expect_equal(power_query$DOY, 1)
-    expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-    expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
-    expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
-    expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
-    expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
-    expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
-    expect_equal(power_query$PS, 69.2, tolerance = 1e-2)
-    expect_equal(power_query$PSC, 101, tolerance = 1e-2)
-    expect_named(
-      power_query,
-      c(
-        "LON",
-        "LAT",
-        "YEAR",
-        "MM",
-        "DD",
-        "DOY",
-        "YYYYMMDD",
+          air pressure", {
+  skip_if_offline()
+  vcr::use_cassette("adjusted_air_pressure", {
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(-179.5, -89.5),
+      pars = c(
         "T2M",
         "T2M_MIN",
         "T2M_MAX",
         "RH2M",
         "WS10M",
-        "PS",
-        "PSC"
-      )
+        "PS"
+      ),
+      dates = c("1983-01-01"),
+      temporal_api = "Daily",
+      site_elevation = 0,
+      time_standard = "UTC"
     )
   })
+
+  expect_s3_class(power_query, "data.frame")
+  expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+  expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+  expect_identical(power_query$YEAR, 1983)
+  expect_identical(power_query$MM, 1L)
+  expect_identical(power_query$DD, 1L)
+  expect_identical(power_query$DOY, 1L)
+  expect_identical(power_query$YYYYMMDD, as.Date("1983-01-01"))
+  expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+  expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+  expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+  expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+  expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
+  expect_equal(power_query$PS, 69.2, tolerance = 1e-2)
+  expect_equal(power_query$PSC, 101, tolerance = 1e-2)
+  expect_named(
+    power_query,
+    c(
+      "LON",
+      "LAT",
+      "YEAR",
+      "MM",
+      "DD",
+      "DOY",
+      "YYYYMMDD",
+      "T2M",
+      "T2M_MIN",
+      "T2M_MAX",
+      "RH2M",
+      "WS10M",
+      "PS",
+      "PSC"
+    )
+  )
+})
 
 test_that("get_power() returns daily point ag data with adjusted wind
-          elevation",
-  {
-    skip_if_offline()
-    vcr::use_cassette("adjusted_wind_elevation", {
-      power_query <- get_power(
-        community = "ag",
-        lonlat = c(-179.5, -89.5),
-        pars = c("T2M",
-          "T2M_MIN",
-          "T2M_MAX",
-          "RH2M",
-          "WS10M",
-          "PS"),
-        dates = c("1983-01-01"),
-        temporal_api = "Daily",
-        wind_elevation = 300,
-        wind_surface = "vegtype_1",
-        time_standard = "UTC"
-      )
-    })
-
-    expect_s3_class(power_query, "data.frame")
-    expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
-    expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-    expect_equal(power_query$YEAR, 1983)
-    expect_equal(power_query$MM, 1)
-    expect_equal(power_query$DD, 1)
-    expect_equal(power_query$DOY, 1)
-    expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
-    expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
-    expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
-    expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
-    expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
-    expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
-    expect_equal(power_query$PS, 69.06, tolerance = 1e-2)
-    expect_equal(power_query$WSC, 6.49, tolerance = 1e-2)
-    expect_named(
-      power_query,
-      c(
-        "LON",
-        "LAT",
-        "YEAR",
-        "MM",
-        "DD",
-        "DOY",
-        "YYYYMMDD",
+          elevation", {
+  skip_if_offline()
+  vcr::use_cassette("adjusted_wind_elevation", {
+    power_query <- get_power(
+      community = "ag",
+      lonlat = c(-179.5, -89.5),
+      pars = c(
         "T2M",
         "T2M_MIN",
         "T2M_MAX",
         "RH2M",
         "WS10M",
-        "PS",
-        "WSC"
-      )
+        "PS"
+      ),
+      dates = c("1983-01-01"),
+      temporal_api = "Daily",
+      wind_elevation = 300,
+      wind_surface = "vegtype_1",
+      time_standard = "UTC"
     )
   })
+
+  expect_s3_class(power_query, "data.frame")
+  expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
+  expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
+  expect_identical(power_query$YEAR, 1983)
+  expect_identical(power_query$MM, 1L)
+  expect_identical(power_query$DD, 1L)
+  expect_identical(power_query$DOY, 1L)
+  expect_identical(power_query$YYYYMMDD, as.Date("1983-01-01"))
+  expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
+  expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
+  expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
+  expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
+  expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
+  expect_equal(power_query$PS, 69.06, tolerance = 1e-2)
+  expect_equal(power_query$WSC, 6.49, tolerance = 1e-2)
+  expect_named(
+    power_query,
+    c(
+      "LON",
+      "LAT",
+      "YEAR",
+      "MM",
+      "DD",
+      "DOY",
+      "YYYYMMDD",
+      "T2M",
+      "T2M_MIN",
+      "T2M_MAX",
+      "RH2M",
+      "WS10M",
+      "PS",
+      "WSC"
+    )
+  )
+})
 
 
 test_that("get_power() returns daily point SB data", {
@@ -174,11 +177,13 @@ test_that("get_power() returns daily point SB data", {
     power_query <- get_power(
       community = "sb",
       lonlat = c(-179.5, -89.5),
-      pars = c("T2M",
+      pars = c(
+        "T2M",
         "T2M_MIN",
         "T2M_MAX",
         "RH2M",
-        "WS10M"),
+        "WS10M"
+      ),
       dates = c("1983-01-01"),
       temporal_api = "Daily",
       time_standard = "UTC"
@@ -188,16 +193,16 @@ test_that("get_power() returns daily point SB data", {
   expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-  expect_equal(power_query$YEAR, 1983)
-  expect_equal(power_query$MM, 1)
-  expect_equal(power_query$DD, 1)
-  expect_equal(power_query$DOY, 1)
-  expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+  expect_identical(power_query$YEAR, 1983)
+  expect_identical(power_query$MM, 1L)
+  expect_identical(power_query$DD, 1L)
+  expect_identical(power_query$DOY, 1)
+  expect_identical(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -24.4, tolerance = 1e-2)
   expect_equal(power_query$T2M_MIN, -25.4, tolerance = 1e-2)
   expect_equal(power_query$T2M_MAX, -22.7, tolerance = 1e-2)
   expect_equal(power_query$RH2M, 92.4, tolerance = 1e-2)
-  expect_equal(power_query$WS10M, 1.93,  tolerance = 1e-2)
+  expect_equal(power_query$WS10M, 1.93, tolerance = 1e-2)
 })
 
 test_that("get_power() returns daily point SB data for LST", {
@@ -206,11 +211,13 @@ test_that("get_power() returns daily point SB data for LST", {
     power_query <- get_power(
       community = "sb",
       lonlat = c(-179.5, -89.5),
-      pars = c("T2M",
+      pars = c(
+        "T2M",
         "T2M_MIN",
         "T2M_MAX",
         "RH2M",
-        "WS10M"),
+        "WS10M"
+      ),
       dates = c("1983-01-01"),
       temporal_api = "Daily",
       time_standard = "LST"
@@ -220,16 +227,16 @@ test_that("get_power() returns daily point SB data for LST", {
   expect_s3_class(power_query, "data.frame")
   expect_equal(power_query$LAT, -89.5, tolerance = 1e-3)
   expect_equal(power_query$LON, -179.5, tolerance = 1e-3)
-  expect_equal(power_query$YEAR, 1983)
-  expect_equal(power_query$MM, 1)
-  expect_equal(power_query$DD, 1)
-  expect_equal(power_query$DOY, 1)
-  expect_equal(power_query$YYYYMMDD, as.Date("1983-01-01"))
+  expect_identical(power_query$YEAR, 1983)
+  expect_identical(power_query$MM, 1L)
+  expect_identical(power_query$DD, 1L)
+  expect_identical(power_query$DOY, 1)
+  expect_identical(power_query$YYYYMMDD, as.Date("1983-01-01"))
   expect_equal(power_query$T2M, -25.2, tolerance = 1e-2)
   expect_equal(power_query$T2M_MIN, -25.7, tolerance = 1e-2)
   expect_equal(power_query$T2M_MAX, -24.9, tolerance = 1e-2)
   expect_equal(power_query$RH2M, 94.2, tolerance = 1e-2)
-  expect_equal(power_query$WS10M, 2.32,  tolerance = 1e-2)
+  expect_equal(power_query$WS10M, 2.32, tolerance = 1e-2)
 })
 
 test_that("get_power() returns daily regional ag data", {
@@ -242,7 +249,7 @@ test_that("get_power() returns daily regional ag data", {
     temporal_api = "Daily"
   )
 
-  expect_equal(nrow(power_query), 60)
+  expect_identical(nrow(power_query), 60L)
   expect_equal(
     unique(power_query$LAT),
     c(
@@ -260,20 +267,23 @@ test_that("get_power() returns daily regional ag data", {
     tolerance = 0.1
   )
   expect_equal(unique(power_query$LON),
-    c(112.8,
+    c(
+      112.8,
       113.2,
       113.8,
       114.2,
       114.8,
-      115.2),
-    tolerance = 0.1)
-  expect_equal(power_query$YEAR[1], 1983)
-  expect_equal(power_query$MM[1], 1)
-  expect_equal(power_query$DD[1], 1)
-  expect_equal(power_query$DOY[1], 1)
-  expect_equal(power_query$YYYYMMDD[1], as.Date("1983-01-01"))
-  expect_equal(power_query$DOY[1], 1)
-  expect_equal(power_query$T2M[1], 3.28)
+      115.2
+    ),
+    tolerance = 0.1
+  )
+  expect_identical(power_query$YEAR[1], 1983)
+  expect_identical(power_query$MM[1], 1L)
+  expect_identical(power_query$DD[1], 1L)
+  expect_identical(power_query$DOY[1], 1L)
+  expect_identical(power_query$YYYYMMDD[1], as.Date("1983-01-01"))
+  expect_identical(power_query$DOY[1], 1L)
+  expect_identical(power_query$T2M[1], 3.28)
 })
 
 test_that("get_power() returns point ag data for climatology", {
@@ -287,8 +297,8 @@ test_that("get_power() returns point ag data for climatology", {
     )
   })
 
-  expect_equal(nrow(power_query), 1)
-  expect_equal(power_query$PARAMETER[1], "T2M")
+  expect_identical(nrow(power_query), 1L)
+  expect_identical(power_query$PARAMETER[1], "T2M")
   expect_named(
     power_query,
     c(
@@ -359,21 +369,20 @@ test_that("get_power() stops if site_elevation is invalid", {
   )
 })
 
-test_that("get_power() stops wind_surface is supplied w/ no wind_elevation",
-  {
-    skip_if_offline()
-    expect_error(
-      get_power(
-        community = "ag",
-        lonlat = c(112.5, -55.5),
-        pars = "T2M",
-        dates = "1983-01-01",
-        temporal_api = "daily",
-        wind_surface = "vegtype_6"
-      ),
-      regexp = "If you provide a correct wind surface alias*"
-    )
-  })
+test_that("get_power() stops wind_surface is supplied w/ no wind_elevation", {
+  skip_if_offline()
+  expect_error(
+    get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_surface = "vegtype_6"
+    ),
+    regexp = "If you provide a correct wind surface alias*"
+  )
+})
 
 test_that("get_power() stops wind_elevation is invalid", {
   skip_if_offline()
@@ -473,7 +482,8 @@ test_that("get_power() stops if lonlat = is invalid", {
       lonlat = "x",
       pars = "T2M",
       dates = "1983-01-01",
-      temporal_api = "daily"
+      temporal_api = "daily",
+      wind_elevation = NULL
     ),
     regexp = "You have entered an invalid value for `lonlat`. *"
   )

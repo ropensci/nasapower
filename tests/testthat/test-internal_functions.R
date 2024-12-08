@@ -1,4 +1,3 @@
-
 # Date handling and checking ---------------------------------------------------
 test_that("Missing `dates` are properly handled", {
   temporal_api <- "daily"
@@ -14,8 +13,8 @@ test_that("`dates` with one value set one day query", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   dates <- .check_dates(dates, lonlat, temporal_api)
-  expect_equal(dates[1], "19830101")
-  expect_equal(dates[2], "19830101")
+  expect_identical(dates[1], "19830101")
+  expect_identical(dates[2], "19830101")
 })
 
 test_that("`dates` > 2 cause an error", {
@@ -24,8 +23,9 @@ test_that("`dates` > 2 cause an error", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(dates, lonlat, temporal_api),
-               regexp =
-                 "You have supplied more than two dates for start and end*")
+    regexp =
+      "You have supplied more than two dates for start and end*"
+  )
 })
 
 test_that("`dates` entered in incorrect formats are corrected", {
@@ -34,11 +34,11 @@ test_that("`dates` entered in incorrect formats are corrected", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   dates <- .check_dates(dates, lonlat, temporal_api)
-  expect_equal(dates[1], "19830101")
+  expect_identical(dates[1], "19830101")
 
   dates <- "Jan-01-1983"
   dates <- .check_dates(dates, lonlat, temporal_api)
-  expect_equal(dates[1], "19830101")
+  expect_identical(dates[1], "19830101")
 })
 
 test_that("daily `dates` entered in reverse order are corrected", {
@@ -48,7 +48,8 @@ test_that("daily `dates` entered in reverse order are corrected", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_message(.check_dates(dates, lonlat, temporal_api),
-                 regexp = "*Your start and end dates were reversed.*")
+    regexp = "*Your start and end dates were reversed.*"
+  )
 })
 
 test_that("monthly `dates` entered in reverse order are corrected", {
@@ -58,7 +59,8 @@ test_that("monthly `dates` entered in reverse order are corrected", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_message(.check_dates(dates, lonlat, temporal_api),
-                 regexp = "*Your start and end dates were reversed.*")
+    regexp = "*Your start and end dates were reversed.*"
+  )
 })
 
 test_that("`dates` before the start of POWER data cause error", {
@@ -68,7 +70,8 @@ test_that("`dates` before the start of POWER data cause error", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(dates, lonlat, temporal_api),
-               regexp = "*1981-01-01 is the earliest available data from*")
+    regexp = "*1981-01-01 is the earliest available data from*"
+  )
 })
 
 test_that("`dates` after today POWER cause error", {
@@ -77,7 +80,8 @@ test_that("`dates` after today POWER cause error", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(tomorrow, lonlat, temporal_api),
-               regexp = "The weather data cannot possibly extend beyond*")
+    regexp = "The weather data cannot possibly extend beyond*"
+  )
 })
 
 test_that("Invalid `dates` are handled", {
@@ -86,7 +90,8 @@ test_that("Invalid `dates` are handled", {
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
   expect_error(.check_dates(dates, lonlat, temporal_api),
-               regexp = "`1983-02-31` is not a valid entry for a date value.*")
+    regexp = "`1983-02-31` is not a valid entry for a date value.*"
+  )
 })
 
 test_that("Dates are returned as a vector of characters", {
@@ -100,23 +105,24 @@ test_that("Dates are returned as a vector of characters", {
 
 test_that(
   "If temporal_api == monthly and dates are specified, that only years
-  are returned", {
+  are returned",
+  {
     temporal_api <- "monthly"
     dates <- c("1983-01-01", "1984-01-01")
     lonlat <- c(-179.5, -89.5)
     site_elevation <- NULL
     dates <- .check_dates(dates, lonlat, temporal_api)
-    expect_equal(nchar(dates[1]), 4)
+    expect_identical(nchar(dates[1]), 4L)
   }
 )
 
 test_that("If temporal_api == monthly and <2 dates provided, error", {
-            temporal_api <- "monthly"
-            dates <- c("1983-01-01")
-            lonlat <- c(-179.5, -89.5)
-            site_elevation <- NULL
-            expect_error(.check_dates(dates, lonlat, temporal_api))
-          })
+  temporal_api <- "monthly"
+  dates <- c("1983-01-01")
+  lonlat <- c(-179.5, -89.5)
+  site_elevation <- NULL
+  expect_error(.check_dates(dates, lonlat, temporal_api))
+})
 
 
 # community checks -------------------------------------------------------------
@@ -178,11 +184,13 @@ test_that(".check_lonlat() properly reports errors", {
 
 test_that(".check_lonlat() handles single point properly", {
   temporal_api <- "daily"
-  test <- .check_lonlat(lonlat = c(-179.5, -89.5),
-                        pars)
+  test <- .check_lonlat(
+    lonlat = c(-179.5, -89.5),
+    pars
+  )
   expect_equal(test$lon, -179.5)
   expect_equal(test$lat, -89.5)
-  expect_equal(test$identifier, "point")
+  expect_identical(test$identifier, "point")
 })
 
 test_that(".check_lonlat() checks validity of single lon values", {
@@ -192,72 +200,109 @@ test_that(".check_lonlat() checks validity of single lon values", {
 
 test_that(".check_lonlat() checks validity of single lat values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(182, 90),
-                             pars),
-               regexp = "Please check your longitude, `182`,*")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(182, 90),
+      pars
+    ),
+    regexp = "Please check your longitude, `182`,*"
+  )
 })
 
 # bbox checks ------------------------------------------------------------------
 test_that(".check_lonlat() handles bboxes that are too large", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(-179.5, -89.5, 179.5, 89.5),
-                             pars),
-               regexp = "Please provide correct bounding box values*")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(-179.5, -89.5, 179.5, 89.5),
+      pars
+    ),
+    regexp = "Please provide correct bounding box values*"
+  )
 })
 
 test_that(".check_lonlat() checks order of the latitude values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 179.5, -89.5),
-                             pars),
-               regexp = "The first `lonlat` `lat` value must be the minimum value.")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(-179.5, 89.5, 179.5, -89.5),
+      pars
+    ),
+    regexp = "The first `lonlat` `lat` value must be the minimum value."
+  )
 })
 
 test_that(".check_lonlat() checks order of the longitude values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(179.5, -89.5, -179.5, 89.5),
-                             pars),
-               regexp = "The first `lonlat` `lon` value must be the minimum value.")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(179.5, -89.5, -179.5, 89.5),
+      pars
+    ),
+    regexp = "The first `lonlat` `lon` value must be the minimum value."
+  )
 })
 
 test_that(".check_lonlat() checks validity of bbox latmin values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(-179.5, 91, -179.5, 90),
-                             pars),
-               regexp = "Please check your latitude values*")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(-179.5, 91, -179.5, 90),
+      pars
+    ),
+    regexp = "Please check your latitude values*"
+  )
 })
 
 test_that(".check_lonlat() checks validity of bbox latmax values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(-179.5, 90, -179.5, 93),
-                             pars),
-               regexp = "Please check your latitude values*")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(-179.5, 90, -179.5, 93),
+      pars
+    ),
+    regexp = "Please check your latitude values*"
+  )
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmin values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(-181.5, 89.5, -179.5, 89.5),
-                             pars),
-               regexp = "Please check your longitude*")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(-181.5, 89.5, -179.5, 89.5),
+      pars
+    ),
+    regexp = "Please check your longitude*"
+  )
 })
 
 test_that(".check_lonlat() checks validity of bbox lonmax values", {
   temporal_api <- "daily"
-  expect_error(.check_lonlat(lonlat = c(-179.5, 89.5, 181, 89.5),
-                             pars),
-               regexp = "Please check your longitude*")
+  expect_error(
+    .check_lonlat(
+      lonlat = c(-179.5, 89.5, 181, 89.5),
+      pars
+    ),
+    regexp = "Please check your longitude*"
+  )
 })
 
 test_that(
   ".check_lonlat() returns message with proper identifier when valid
-          coordinates are given", {
+          coordinates are given",
+  {
     temporal_api <- "daily"
-    test <- .check_lonlat(lonlat = c(-179.5,
-                                     88.5,
-                                     -179.5,
-                                     89.5),
-                          pars)
+    test <- .check_lonlat(
+      lonlat = c(
+        -179.5,
+        88.5,
+        -179.5,
+        89.5
+      ),
+      pars
+    )
     expect_named(test$bbox, c("xmin", "ymin", "xmax", "ymax"))
-    expect_equal(test$identifier, "regional")
+    expect_identical(test$identifier, "regional")
   }
 )
 
@@ -267,18 +312,22 @@ test_that(".check_pars() stops if no `pars` provided", {
   temporal_api <- "daily"
   community <- "ag"
 
-  expect_error(.check_pars(temporal_api,
-                           community,
-                           pars))
+  expect_error(.check_pars(
+    temporal_api,
+    community,
+    pars
+  ))
 })
 
 test_that(".check_pars()  stops if no `temporal_api` provided", {
   pars <- "AG"
   community <- "ag"
 
-  expect_error(.check_pars(temporal_api,
-                           community,
-                           pars))
+  expect_error(.check_pars(
+    temporal_api,
+    community,
+    pars
+  ))
 })
 
 test_that(".check_pars()  stops if `pars` not valid", {
@@ -286,241 +335,283 @@ test_that(".check_pars()  stops if `pars` not valid", {
   temporal_api <- "daily"
   community <- "ag"
 
-  expect_error(.check_pars(pars,
-                           community,
-                           temporal_api))
+  expect_error(.check_pars(
+    pars,
+    community,
+    temporal_api
+  ))
 })
 
 test_that(".check_pars()  stops if `pars` not valid for given
           temporal_api", {
-            pars <- "ALLSKY_SFC_SW_DWN_03_GMT"
-            temporal_api <- "monthly"
-            lonlat <- c(-179.5, -89.5)
-            community <- "ag"
+  pars <- "ALLSKY_SFC_SW_DWN_03_GMT"
+  temporal_api <- "monthly"
+  lonlat <- c(-179.5, -89.5)
+  community <- "ag"
 
-            expect_error(.check_pars(pars,
-                                     community,
-                                     temporal_api))
-          })
+  expect_error(.check_pars(
+    pars,
+    community,
+    temporal_api
+  ))
+})
 
 test_that("pars are returned as a comma separated string with no spaces", {
   pars <- c("RH2M", "T2M")
   temporal_api <- "climatology"
   community <- "ag"
 
-  pars <- .check_pars(pars,
-                      community,
-                      temporal_api)
-  expect_equal(nchar(pars), 8)
-  expect_equal(pars, "RH2M,T2M")
+  pars <- .check_pars(
+    pars,
+    community,
+    temporal_api
+  )
+  expect_identical(nchar(pars), 8L)
+  expect_identical(pars, "RH2M,T2M")
 })
 
 test_that("Only unique `pars` are queried", {
-  pars <- c("RH2M",
-            "RH2M",
-            "RH2M")
+  pars <- c(
+    "RH2M",
+    "RH2M",
+    "RH2M"
+  )
   temporal_api <- "climatology"
   community <- "ag"
   pars <- .check_pars(pars, community, temporal_api)
-  expect_equal(pars[[1]], "RH2M")
-  expect_equal(length(pars[[1]]), 1)
+  expect_identical(pars[[1]], "RH2M")
+  expect_length(pars[[1]], 1)
 })
 
 test_that("If an invalid temporal average is given for `pars`,
           an error occurs", {
-            pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
-            temporal_api <- "daily"
-            community <- "ag"
-            expect_error(.check_pars(pars, community, temporal_api))
-          })
+  pars <- "ALLSKY_SFC_SW_DWN_00_GMT"
+  temporal_api <- "daily"
+  community <- "ag"
+  expect_error(.check_pars(pars, community, temporal_api))
+})
 
 # query constructs -------------------------------------------------------------
 test_that(".build_query assembles a proper query for single point and != NULL
           dates", {
-            temporal_api <- "daily"
-            dates <- c("1983-01-01", "1983-02-02")
-            lonlat <- c(-179.5, -89.5)
-            site_elevation <- 50
-            community <- "ag"
-            pars <- "T2M"
-            site_elevation <- NULL
-            wind_elevation <- NULL
-            wind_surface <- NULL
-            time_standard <- "UTC"
+  temporal_api <- "daily"
+  dates <- c("1983-01-01", "1983-02-02")
+  lonlat <- c(-179.5, -89.5)
+  site_elevation <- 50
+  community <- "ag"
+  pars <- "T2M"
+  site_elevation <- NULL
+  wind_elevation <- NULL
+  wind_surface <- NULL
+  time_standard <- "UTC"
 
-            dates <- .check_dates(dates,
-                                  lonlat,
-                                  temporal_api)
-            pars <- .check_pars(pars,
-                                community,
-                                temporal_api)
-            lonlat_identifier <- .check_lonlat(lonlat,
-                                               pars)
-            user_agent <- "nasapower"
+  dates <- .check_dates(
+    dates,
+    lonlat,
+    temporal_api
+  )
+  pars <- .check_pars(
+    pars,
+    community,
+    temporal_api
+  )
+  lonlat_identifier <- .check_lonlat(
+    lonlat,
+    pars
+  )
+  user_agent <- "nasapower"
 
-            query_list <- .build_query(community,
-                                       lonlat_identifier,
-                                       pars,
-                                       dates,
-                                       site_elevation,
-                                       wind_elevation,
-                                       wind_surface,
-                                       time_standard)
+  query_list <- .build_query(
+    community,
+    lonlat_identifier,
+    pars,
+    dates,
+    site_elevation,
+    wind_elevation,
+    wind_surface,
+    time_standard
+  )
 
-            expect_named(
-              query_list,
-              c(
-                "parameters",
-                "community",
-                "start",
-                "end",
-                "longitude",
-                "latitude",
-                "format",
-                "time-standard",
-                "user"
-              )
-            )
-          })
+  expect_named(
+    query_list,
+    c(
+      "parameters",
+      "community",
+      "start",
+      "end",
+      "longitude",
+      "latitude",
+      "format",
+      "time-standard",
+      "user"
+    )
+  )
+})
 
 
 test_that(".build_query assembles a proper query for single point and NULL
           dates", {
-            temporal_api <- "climatology"
-            dates <- NULL
-            lonlat <- c(-179.5, -89.5)
-            site_elevation <- NULL
-            community <- "ag"
-            pars <- "T2M"
-            site_elevation <- NULL
-            wind_elevation <- NULL
-            wind_surface <- NULL
-            time_standard <- "UTC"
+  temporal_api <- "climatology"
+  dates <- NULL
+  lonlat <- c(-179.5, -89.5)
+  site_elevation <- NULL
+  community <- "ag"
+  pars <- "T2M"
+  site_elevation <- NULL
+  wind_elevation <- NULL
+  wind_surface <- NULL
+  time_standard <- "UTC"
 
-            dates <- .check_dates(dates,
-                                  lonlat,
-                                  temporal_api)
-            pars <- .check_pars(pars,
-                                community,
-                                temporal_api)
-            lonlat_identifier <- .check_lonlat(lonlat,
-                                               pars)
-            user_agent <- "nasapower"
+  dates <- .check_dates(
+    dates,
+    lonlat,
+    temporal_api
+  )
+  pars <- .check_pars(
+    pars,
+    community,
+    temporal_api
+  )
+  lonlat_identifier <- .check_lonlat(
+    lonlat,
+    pars
+  )
+  user_agent <- "nasapower"
 
-            query_list <- .build_query(community,
-                                       lonlat_identifier,
-                                       pars,
-                                       dates,
-                                       site_elevation,
-                                       wind_elevation,
-                                       wind_surface,
-                                       time_standard)
+  query_list <- .build_query(
+    community,
+    lonlat_identifier,
+    pars,
+    dates,
+    site_elevation,
+    wind_elevation,
+    wind_surface,
+    time_standard
+  )
 
-            expect_named(
-              query_list,
-              c(
-                "parameters",
-                "community",
-                "longitude",
-                "latitude",
-                "format",
-                "time-standard",
-                "user"
-              )
-            )
-          })
+  expect_named(
+    query_list,
+    c(
+      "parameters",
+      "community",
+      "longitude",
+      "latitude",
+      "format",
+      "time-standard",
+      "user"
+    )
+  )
+})
 
 test_that(".build_query assembles a proper query for regional and != NULL
           dates", {
-            temporal_api <- "daily"
-            dates <- c("1983-01-01", "1983-02-02")
-            lonlat <- c(112.5, -55.5, 115.5, -50.5)
-            site_elevation <- NULL
-            community <- "ag"
-            pars <- "T2M"
-            site_elevation <- NULL
-            wind_elevation <- NULL
-            wind_surface <- NULL
-            time_standard <- "UTC"
+  temporal_api <- "daily"
+  dates <- c("1983-01-01", "1983-02-02")
+  lonlat <- c(112.5, -55.5, 115.5, -50.5)
+  site_elevation <- NULL
+  community <- "ag"
+  pars <- "T2M"
+  site_elevation <- NULL
+  wind_elevation <- NULL
+  wind_surface <- NULL
+  time_standard <- "UTC"
 
-            dates <- .check_dates(dates,
-                                  community,
-                                  temporal_api)
-            pars <- .check_pars(pars,
-                                community,
-                                temporal_api)
-            lonlat_identifier <- .check_lonlat(lonlat,
-                                               pars)
-            user_agent <- "nasapower"
+  dates <- .check_dates(
+    dates,
+    community,
+    temporal_api
+  )
+  pars <- .check_pars(
+    pars,
+    community,
+    temporal_api
+  )
+  lonlat_identifier <- .check_lonlat(
+    lonlat,
+    pars
+  )
+  user_agent <- "nasapower"
 
-            query_list <- .build_query(community,
-                                       lonlat_identifier,
-                                       pars,
-                                       dates,
-                                       site_elevation,
-                                       wind_elevation,
-                                       wind_surface,
-                                       time_standard)
+  query_list <- .build_query(
+    community,
+    lonlat_identifier,
+    pars,
+    dates,
+    site_elevation,
+    wind_elevation,
+    wind_surface,
+    time_standard
+  )
 
-            expect_named(
-              query_list,
-              c(
-                "parameters",
-                "community",
-                "latitude-min",
-                "latitude-max",
-                "longitude-min",
-                "longitude-max",
-                "format",
-                "time-standard",
-                "user"
-              )
-            )
-          })
+  expect_named(
+    query_list,
+    c(
+      "parameters",
+      "community",
+      "start",
+      "end",
+      "latitude-min",
+      "latitude-max",
+      "longitude-min",
+      "longitude-max",
+      "format",
+      "time-standard",
+      "user"
+    )
+  )
+})
 
 test_that(".build_query assembles a proper query for regional and NULL dates", {
-            temporal_api <- "climatology"
-            dates <- NULL
-            lonlat <- c(112.5, -55.5, 115.5, -50.5)
-            site_elevation <- NULL
-            community <- "ag"
-            pars <- "T2M"
+  temporal_api <- "climatology"
+  dates <- NULL
+  lonlat <- c(112.5, -55.5, 115.5, -50.5)
+  site_elevation <- NULL
+  community <- "ag"
+  pars <- "T2M"
 
-            dates <- .check_dates(dates,
-                                  lonlat,
-                                  temporal_api)
-            pars <- .check_pars(pars,
-                                community,
-                                temporal_api)
-            lonlat_identifier <- .check_lonlat(lonlat,
-                                               pars)
-            user_agent <- "nasapower"
-            time_standard <- "UTC"
+  dates <- .check_dates(
+    dates,
+    lonlat,
+    temporal_api
+  )
+  pars <- .check_pars(
+    pars,
+    community,
+    temporal_api
+  )
+  lonlat_identifier <- .check_lonlat(
+    lonlat,
+    pars
+  )
+  user_agent <- "nasapower"
+  time_standard <- "UTC"
 
-            query_list <- .build_query(community,
-                                       lonlat_identifier,
-                                       pars,
-                                       dates,
-                                       site_elevation,
-                                       wind_elevation,
-                                       wind_surface,
-                                       time_standard)
+  query_list <- .build_query(
+    community,
+    lonlat_identifier,
+    pars,
+    dates,
+    site_elevation,
+    wind_elevation,
+    wind_surface,
+    time_standard
+  )
 
-            expect_named(
-              query_list,
-              c(
-                "parameters",
-                "community",
-                "latitude-min",
-                "latitude-max",
-                "longitude-min",
-                "longitude-max",
-                "format",
-                "time-standard",
-                "user"
-              )
-            )
-          })
+  expect_named(
+    query_list,
+    c(
+      "parameters",
+      "community",
+      "latitude-min",
+      "latitude-max",
+      "longitude-min",
+      "longitude-max",
+      "format",
+      "time-standard",
+      "user"
+    )
+  )
+})
 
 
 # Boolean checks ---------------------------------------------------------------

@@ -1,4 +1,3 @@
-
 test_that("query_groupings() returns proper list of info", {
   skip_if_offline()
   vcr::use_cassette("query_groupings", {
@@ -6,8 +5,7 @@ test_that("query_groupings() returns proper list of info", {
 
     expect_type(grouping_query, "list")
     expect_length(grouping_query, 1)
-    expect_named(grouping_query, "groups"
-    )
+    expect_named(grouping_query, "groups")
   })
 })
 

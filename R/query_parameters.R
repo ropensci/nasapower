@@ -1,4 +1,3 @@
-
 #' Query the POWER API for Detailed Information on Available Parameters
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
@@ -34,14 +33,18 @@
 #'
 #' # fetch complete temporal and community specific attribute information
 #' # for "T2M" in the "ag" community for the "hourly" temporal API.
-#' query_parameters(pars = "T2M",
-#'                  community = "ag",
-#'                  temporal_api = "hourly")
+#' query_parameters(
+#'   pars = "T2M",
+#'   community = "ag",
+#'   temporal_api = "hourly"
+#' )
 #'
 #' # fetch complete temporal and community specific attribute information
 #' # for all parameters in the "ag" community for the "hourly" temporal API.
-#' query_parameters(community = "ag",
-#'                  temporal_api = "hourly")
+#' query_parameters(
+#'   community = "ag",
+#'   temporal_api = "hourly"
+#' )
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
@@ -82,9 +85,11 @@ query_parameters <- function(community = NULL,
   if (!is.null(pars)) {
     pars <- toupper(pars)
     pars <-
-      .check_pars(pars = pars,
-                  community = community_vals,
-                  temporal_api = temporal_api_vals)
+      .check_pars(
+        pars = pars,
+        community = community_vals,
+        temporal_api = temporal_api_vals
+      )
   }
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/parameters"

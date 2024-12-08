@@ -1,4 +1,3 @@
-
 test_that("query_surfaces() returns proper list of info", {
   skip_if_offline()
   vcr::use_cassette("query_surfaces_all", {
@@ -37,7 +36,9 @@ test_that("query_surfaces() returns list of surface information", {
     surface_query <- query_surfaces(surface_alias = "seaice")
     expect_type(surface_query, "list")
     expect_length(surface_query, 4)
-    expect_named(surface_query,
-                 c("Long_Name", "IGBP_Type", "Veg_Type", "Roughness"))
+    expect_named(
+      surface_query,
+      c("Long_Name", "IGBP_Type", "Veg_Type", "Roughness")
+    )
   })
 })

@@ -1,4 +1,3 @@
-
 #' Query the POWER API for Detailed Information on Wind Type Surfaces
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
@@ -33,7 +32,6 @@ query_surfaces <- function(surface_alias = NULL) {
 
     response$raise_for_status()
     return(jsonlite::fromJSON(response$parse("UTF8")))
-
   } else {
     wind_surface <- .match_surface_alias(surface_alias)
     power_url <- sprintf("%s/%s", power_url, wind_surface)
