@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ropensci/nasapower/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/nasapower/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/ropensci/nasapower/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/ropensci/nasapower/actions/workflows/check-standard.yaml)
 [![DOI](https://zenodo.org/badge/109224461.svg)](https://zenodo.org/badge/latestdoi/109224461)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
