@@ -310,7 +310,7 @@ get_power <- function(community = c("ag", "re", "sb"),
     cli::cli_abort(
       call = rlang::caller_env(),
       c(
-        i = "A maximum of 20 parameters can currently be requested in one
+        x = "A maximum of 20 parameters can currently be requested in one
         submission.",
         i = "You have submitted {.val {length(pars)}}"
       )
