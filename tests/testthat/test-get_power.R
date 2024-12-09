@@ -384,7 +384,7 @@ test_that("get_power() stops wind_surface is supplied w/ no wind_elevation", {
   )
 })
 
-test_that("get_power() stops wind_elevation is invalid", {
+test_that("get_power() stops wind_elevation is invalid numeric", {
   skip_if_offline()
   expect_error(
     get_power(
@@ -394,6 +394,21 @@ test_that("get_power() stops wind_elevation is invalid", {
       dates = "1983-01-01",
       temporal_api = "daily",
       wind_elevation = 5
+    ),
+    regexp = "`wind_elevation` values in metres are required to be between*"
+  )
+})
+
+test_that("get_power() stops wind_elevation is invalid char", {
+  skip_if_offline()
+  expect_error(
+    get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5),
+      pars = "T2M",
+      dates = "1983-01-01",
+      temporal_api = "daily",
+      wind_elevation = "X"
     ),
     regexp = "`wind_elevation` values in metres are required to be between*"
   )
