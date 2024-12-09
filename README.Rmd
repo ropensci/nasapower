@@ -97,3 +97,280 @@ citation("nasapower")
 <https://power.larc.nasa.gov>
 
 <https://power.larc.nasa.gov/docs/methodology/>
+
+## Contributors
+
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+All contributions to this project are gratefully acknowledged using the [`allcontributors` package](https://github.com/ropensci/allcontributors) following the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
+
+### Code
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/adamhsparks">
+<img src="https://avatars.githubusercontent.com/u/3195906?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/commits?author=adamhsparks">adamhsparks</a>
+</td>
+<td align="center">
+<a href="https://github.com/femiguez">
+<img src="https://avatars.githubusercontent.com/u/10869358?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/commits?author=femiguez">femiguez</a>
+</td>
+<td align="center">
+<a href="https://github.com/maelle">
+<img src="https://avatars.githubusercontent.com/u/8360597?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/commits?author=maelle">maelle</a>
+</td>
+<td align="center">
+<a href="https://github.com/kguidonimartins">
+<img src="https://avatars.githubusercontent.com/u/8163542?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/commits?author=kguidonimartins">kguidonimartins</a>
+</td>
+<td align="center">
+<a href="https://github.com/palderman">
+<img src="https://avatars.githubusercontent.com/u/2990672?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/commits?author=palderman">palderman</a>
+</td>
+</tr>
+
+</table>
+
+
+### Issue Authors
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/emdelponte">
+<img src="https://avatars.githubusercontent.com/u/16880798?u=a406d1d934266191c84bc6f67505c77edb131e26&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aemdelponte">emdelponte</a>
+</td>
+<td align="center">
+<a href="https://github.com/evanmusick">
+<img src="https://avatars.githubusercontent.com/u/4440210?u=34fdfe9ae76362b3e6e477579766ef4d8193760c&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aevanmusick">evanmusick</a>
+</td>
+<td align="center">
+<a href="https://github.com/danielreispereira">
+<img src="https://avatars.githubusercontent.com/u/4158858?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Adanielreispereira">danielreispereira</a>
+</td>
+<td align="center">
+<a href="https://github.com/olugovoy">
+<img src="https://avatars.githubusercontent.com/u/5607267?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aolugovoy">olugovoy</a>
+</td>
+<td align="center">
+<a href="https://github.com/mladencucak">
+<img src="https://avatars.githubusercontent.com/u/11738104?u=7cef0e4787598c43499c1a4e4c325392240a7139&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Amladencucak">mladencucak</a>
+</td>
+<td align="center">
+<a href="https://github.com/ymutua">
+<img src="https://avatars.githubusercontent.com/u/182165?u=892f60e453d746e68527a6a0f1d93875853d37f9&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aymutua">ymutua</a>
+</td>
+<td align="center">
+<a href="https://github.com/marcoslana1">
+<img src="https://avatars.githubusercontent.com/u/56367310?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Amarcoslana1">marcoslana1</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/AboodaA">
+<img src="https://avatars.githubusercontent.com/u/7856227?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3AAboodaA">AboodaA</a>
+</td>
+<td align="center">
+<a href="https://github.com/victofs">
+<img src="https://avatars.githubusercontent.com/u/45796840?u=5740271f2b2b1192b3fbe002ed0106def265fead&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Avictofs">victofs</a>
+</td>
+<td align="center">
+<a href="https://github.com/andvar95">
+<img src="https://avatars.githubusercontent.com/u/34283249?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aandvar95">andvar95</a>
+</td>
+<td align="center">
+<a href="https://github.com/Bradley-Macpherson-NASA">
+<img src="https://avatars.githubusercontent.com/u/64919787?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3ABradley-Macpherson-NASA">Bradley-Macpherson-NASA</a>
+</td>
+<td align="center">
+<a href="https://github.com/a4sberg">
+<img src="https://avatars.githubusercontent.com/u/62616339?u=503cb016033213be4c0f1e26323127ef8ae58759&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aa4sberg">a4sberg</a>
+</td>
+<td align="center">
+<a href="https://github.com/leichx">
+<img src="https://avatars.githubusercontent.com/u/10319655?u=9816bec5b8ff988150dea82f572b10fad99c45ab&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aleichx">leichx</a>
+</td>
+<td align="center">
+<a href="https://github.com/Yonaba">
+<img src="https://avatars.githubusercontent.com/u/884058?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3AYonaba">Yonaba</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/kauedesousa">
+<img src="https://avatars.githubusercontent.com/u/29840771?u=87ae78a7053c64125e0570d013755d4b16f103ca&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Akauedesousa">kauedesousa</a>
+</td>
+<td align="center">
+<a href="https://github.com/camwur">
+<img src="https://avatars.githubusercontent.com/u/89774766?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Acamwur">camwur</a>
+</td>
+<td align="center">
+<a href="https://github.com/agronomofiorentini">
+<img src="https://avatars.githubusercontent.com/u/66969646?u=88ac4cadcb9003d64d05a3dbd5abd3c39e13de81&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aagronomofiorentini">agronomofiorentini</a>
+</td>
+<td align="center">
+<a href="https://github.com/Varsha-Ujjinni-VijayKumar">
+<img src="https://avatars.githubusercontent.com/u/62937040?u=255cf0dd07a865b060596c6154aef84c006fc43a&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3AVarsha-Ujjinni-VijayKumar">Varsha-Ujjinni-VijayKumar</a>
+</td>
+<td align="center">
+<a href="https://github.com/agryji08">
+<img src="https://avatars.githubusercontent.com/u/49504482?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aagryji08">agryji08</a>
+</td>
+<td align="center">
+<a href="https://github.com/mps9506">
+<img src="https://avatars.githubusercontent.com/u/11282246?u=afe5bf9772b5b2d57307783e5f9b58a2b6f2017a&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Amps9506">mps9506</a>
+</td>
+<td align="center">
+<a href="https://github.com/daniel-althoff">
+<img src="https://avatars.githubusercontent.com/u/36540557?u=6f191e4a4d342242e330350c09f048e7e2912305&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Adaniel-althoff">daniel-althoff</a>
+</td>
+</tr>
+
+
+<tr>
+<td align="center">
+<a href="https://github.com/egbendito">
+<img src="https://avatars.githubusercontent.com/u/52239752?u=74a9056d89ee9eba4109fa6f8a9d06543af0b205&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aegbendito">egbendito</a>
+</td>
+<td align="center">
+<a href="https://github.com/makorb">
+<img src="https://avatars.githubusercontent.com/u/91082324?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Amakorb">makorb</a>
+</td>
+<td align="center">
+<a href="https://github.com/saulo1305">
+<img src="https://avatars.githubusercontent.com/u/41703024?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Asaulo1305">saulo1305</a>
+</td>
+<td align="center">
+<a href="https://github.com/emmalink1">
+<img src="https://avatars.githubusercontent.com/u/46287320?u=639e820366b81de7d058cb794c2a4404d7ea8190&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Aemmalink1">emmalink1</a>
+</td>
+<td align="center">
+<a href="https://github.com/Gonzalo1985">
+<img src="https://avatars.githubusercontent.com/u/7884005?u=d6918d5161f0143d9b2d2a5ec379520c10d82dd8&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3AGonzalo1985">Gonzalo1985</a>
+</td>
+</tr>
+
+</table>
+
+
+### Issue Contributors
+
+<table>
+
+<tr>
+<td align="center">
+<a href="https://github.com/andresouzaesilva">
+<img src="https://avatars.githubusercontent.com/u/32813659?u=177ac2a828f313055d02c3e01c4f9ee1a737cad1&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+commenter%3Aandresouzaesilva">andresouzaesilva</a>
+</td>
+<td align="center">
+<a href="https://github.com/xianranli">
+<img src="https://avatars.githubusercontent.com/u/33258053?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+commenter%3Axianranli">xianranli</a>
+</td>
+<td align="center">
+<a href="https://github.com/jizarten">
+<img src="https://avatars.githubusercontent.com/u/37815915?u=e9b8254bec4d6ce04e510d1302b21124070bfc70&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+commenter%3Ajizarten">jizarten</a>
+</td>
+<td align="center">
+<a href="https://github.com/fe-neculqueo">
+<img src="https://avatars.githubusercontent.com/u/49450859?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+commenter%3Afe-neculqueo">fe-neculqueo</a>
+</td>
+<td align="center">
+<a href="https://github.com/LucasJorgeAbdala">
+<img src="https://avatars.githubusercontent.com/u/67706494?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+commenter%3ALucasJorgeAbdala">LucasJorgeAbdala</a>
+</td>
+<td align="center">
+<a href="https://github.com/olicoste">
+<img src="https://avatars.githubusercontent.com/u/80519625?v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+commenter%3Aolicoste">olicoste</a>
+</td>
+</tr>
+
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
