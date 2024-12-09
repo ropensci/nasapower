@@ -458,6 +458,9 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
+#' @return Nothing, called for its side-effects of checking user inputs
+#' @keywords Internal
+#' @noRd
 
 .check_inputs <- function(community,
                           dates,
