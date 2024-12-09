@@ -38,7 +38,7 @@
 #'   in metres.  Wind Elevation values in Meters are required to be between 10m
 #'   and 300m.  Only used with `lonlat` as a single point of x, y coordinates,
 #'   not for use with \dQuote{global} or with a regional request.  If this
-#'   parameter is provided, the `wind-surface` parameter is required with the
+#'   parameter is provided, the `wind_surface` parameter is required with the
 #'   request, see
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected

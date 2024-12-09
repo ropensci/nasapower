@@ -53,7 +53,7 @@ a regional request.}
 in metres.  Wind Elevation values in Meters are required to be between 10m
 and 300m.  Only used with \code{lonlat} as a single point of x, y coordinates,
 not for use with \dQuote{global} or with a regional request.  If this
-parameter is provided, the \code{wind-surface} parameter is required with the
+parameter is provided, the \code{wind_surface} parameter is required with the
 request, see
 \url{https://power.larc.nasa.gov/docs/methodology/meteorology/wind/}.}
 
