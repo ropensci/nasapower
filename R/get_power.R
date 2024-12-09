@@ -213,6 +213,7 @@ get_power <- function(community = c("ag", "re", "sb"),
     dates <- NULL
   }
 
+  # check user inputs for validity ---------------------------------------------
   # see internal_functions.R for these functions prefixed with "."
   .check_inputs(
     lonlat = lonlat,
@@ -230,7 +231,8 @@ get_power <- function(community = c("ag", "re", "sb"),
   )
   lonlat_identifier <- .check_lonlat(lonlat, pars)
   dates <- .check_dates(dates, lonlat, temporal_api)
-  # submit query -------------------------------------------------------------
+
+  # submit query ---------------------------------------------------------------
   query_list <- .build_query(
     community,
     lonlat_identifier,
@@ -253,6 +255,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 
   response$raise_for_status()
 
+  # extract query results and return to user -----------------------------------
   # create meta object
   power_data <- readr::read_lines(I(response$parse("UTF8")))
 
@@ -311,7 +314,7 @@ get_power <- function(community = c("ag", "re", "sb"),
   return(power_data)
 }
 
-# functions internal to get_power() -----
+# subfunctions internal to get_power() -----------------------------------------
 
 #' Check Dates for Validity When Querying API
 #'
