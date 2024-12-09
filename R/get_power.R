@@ -267,7 +267,8 @@ get_power <- function(community = c("ag", "re", "sb"),
     )
   }
 
-  if (!is.null(wind_elevation) && wind_elevation %notin% 10:300) {
+  if (!is.null(wind_elevation) && !is.numeric(wind_elevation) &&
+    wind_elevation %notin% 10:300) {
     cli::cli_abort(
       c(x = "{.arg wind_elevation} values in metres are required to be between
           10m and 300m inclusive."),
