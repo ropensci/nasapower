@@ -37,20 +37,20 @@ daily_single_ag <- get_power(
 )
 
 daily_single_ag
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER CERES/MERRA2 Native Resolution Daily Data  ───────────────────────────────────────────
+#> ── NASA/POWER CERES/MERRA2 Native Resolution Daily Data  ─────────────────────────────────────────
 #> Dates (month/day/year): 01/01/1985 through 01/31/1985
 #> Location: Latitude -27.48 Longitude 151.81
 #> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters
-#> The value for missing source data that cannot be computed or is outside of the sources availability
-#> range: NA
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> Parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
 #> RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ;
 #> PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 31 × 10
 #>      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
 #>    <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
@@ -82,19 +82,19 @@ daily_region_ag <- get_power(
 )
 
 daily_region_ag
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER CERES/MERRA2 Native Resolution Daily Data  ───────────────────────────────────────────
+#> ── NASA/POWER CERES/MERRA2 Native Resolution Daily Data  ─────────────────────────────────────────
 #> Dates (month/day/year): 01/01/1985 through 01/02/1985
 #> Location: Regional
 #> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na meters
-#> The value for missing source data that cannot be computed or is outside of the sources availability
-#> range: NA
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> Parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
 #> RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C)
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 72 × 9
 #>      LAT   LON  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M
 #>    <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>
@@ -127,33 +127,33 @@ interannual_re <- get_power(
 )
 
 interannual_re
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER CERES/MERRA2 Native Resolution Monthly and Annual  ───────────────────────────────────
+#> ── NASA/POWER CERES/MERRA2 Native Resolution Monthly and Annual  ─────────────────────────────────
 #> Dates (month/day/year): 01/01/1984 through 12/31/1985
 #> Location: Regional
 #> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na meters
-#> The value for missing source data that cannot be computed or is outside of the sources availability
-#> range: NA
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> Parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
 #> ALLSKY_SFC_SW_DWN CERES SYN1deg All Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day) ;
 #> CLRSKY_SFC_SW_DWN CERES SYN1deg Clear Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day)
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 144 × 17
-#>    PARAMETER      YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV
-#>    <chr>         <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 ALLSKY_SFC_S…  1984 -25.8  151.  6.01  6.49  5.79  4.67  4.12  3.77  2.46  4.87  6.11  5.5   7.97
-#>  2 ALLSKY_SFC_S…  1984 -25.8  151.  5.92  5.97  5.64  4.37  4.01  3.61  2.6   4.8   5.84  5.24  7.6 
-#>  3 ALLSKY_SFC_S…  1984 -25.8  152.  5.92  5.97  5.64  4.37  4.01  3.61  2.6   4.8   5.84  5.24  7.6 
-#>  4 ALLSKY_SFC_S…  1984 -25.8  152.  5.96  5.85  5.56  4.26  3.92  3.52  2.66  4.59  5.58  4.94  7.23
-#>  5 ALLSKY_SFC_S…  1984 -25.8  153.  5.96  5.85  5.56  4.26  3.92  3.52  2.66  4.59  5.58  4.94  7.23
-#>  6 ALLSKY_SFC_S…  1984 -25.8  153.  6.23  6.05  5.88  4.26  3.81  3.3   2.96  4.73  5.66  5.25  7.6 
-#>  7 ALLSKY_SFC_S…  1984 -26.2  151.  5.97  6.65  6     4.66  4.02  3.72  2.28  4.86  6.08  5.74  7.74
-#>  8 ALLSKY_SFC_S…  1984 -26.2  151.  6     6.38  5.71  4.38  4.01  3.66  2.17  4.88  6.01  5.43  7.46
-#>  9 ALLSKY_SFC_S…  1984 -26.2  152.  6     6.38  5.71  4.38  4.01  3.66  2.17  4.88  6.01  5.43  7.46
-#> 10 ALLSKY_SFC_S…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8   3.44  2.38  4.81  5.75  4.99  6.94
+#>    PARAMETER    YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV
+#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 ALLSKY_SFC…  1984 -25.8  151.  6.01  6.49  5.79  4.67  4.12  3.77  2.46  4.87  6.11  5.5   7.97
+#>  2 ALLSKY_SFC…  1984 -25.8  151.  5.92  5.97  5.64  4.37  4.01  3.61  2.6   4.8   5.84  5.24  7.6 
+#>  3 ALLSKY_SFC…  1984 -25.8  152.  5.92  5.97  5.64  4.37  4.01  3.61  2.6   4.8   5.84  5.24  7.6 
+#>  4 ALLSKY_SFC…  1984 -25.8  152.  5.96  5.85  5.56  4.26  3.92  3.52  2.66  4.59  5.58  4.94  7.23
+#>  5 ALLSKY_SFC…  1984 -25.8  153.  5.96  5.85  5.56  4.26  3.92  3.52  2.66  4.59  5.58  4.94  7.23
+#>  6 ALLSKY_SFC…  1984 -25.8  153.  6.23  6.05  5.88  4.26  3.81  3.3   2.96  4.73  5.66  5.25  7.6 
+#>  7 ALLSKY_SFC…  1984 -26.2  151.  5.97  6.65  6     4.66  4.02  3.72  2.28  4.86  6.08  5.74  7.74
+#>  8 ALLSKY_SFC…  1984 -26.2  151.  6     6.38  5.71  4.38  4.01  3.66  2.17  4.88  6.01  5.43  7.46
+#>  9 ALLSKY_SFC…  1984 -26.2  152.  6     6.38  5.71  4.38  4.01  3.66  2.17  4.88  6.01  5.43  7.46
+#> 10 ALLSKY_SFC…  1984 -26.2  152.  5.75  5.96  5.37  4.13  3.8   3.44  2.38  4.81  5.75  4.99  6.94
 #> # ℹ 134 more rows
 #> # ℹ 2 more variables: DEC <dbl>, ANN <dbl>
 ```
@@ -175,19 +175,19 @@ climatology_ag <- get_power(
 )
 
 climatology_ag
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER CERES/MERRA2 Native Resolution Climatology Climatologies  ────────────────────────────
+#> ── NASA/POWER CERES/MERRA2 Native Resolution Climatology Climatologies  ──────────────────────────
 #> 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020)
 #> Location: Latitude -27.48 Longitude 151.81
 #> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters
-#> The value for missing source data that cannot be computed or is outside of the sources availability
-#> range: NA
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> Parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
 #> T2M MERRA-2 Temperature at 2 Meters (C) ; RH2M MERRA-2 Relative Humidity at 2 Meters (%)
-#> ────────────────────────────────────────────────────────────────────────────────────────────────────
+#> ──────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 2 × 16
 #>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV   DEC
 #>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
