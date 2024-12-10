@@ -463,7 +463,6 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @noRd
 
 .check_inputs <- function(community,
-                          dates,
                           lonlat,
                           pars,
                           site_elevation,
