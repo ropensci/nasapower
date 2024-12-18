@@ -50,8 +50,8 @@ single point of x, y coordinates, not for use with \dQuote{global} or with
 a regional request.}
 
 \item{wind_elevation}{A user-supplied value for elevation at a single point
-in metres.  Wind Elevation values in Meters are required to be between 10m
-and 300m.  Only used with \code{lonlat} as a single point of x, y coordinates,
+in metres.  Wind Elevation values in Meters are required to be between 10 m
+and 300 m.  Only used with \code{lonlat} as a single point of x, y coordinates,
 not for use with \dQuote{global} or with a regional request.  If this
 parameter is provided, the \code{wind_surface} parameter is required with the
 request, see
@@ -154,7 +154,7 @@ day's values will be returned, \emph{e.g.}, \code{dates = "1983-01-01"}.  When
 \section{\code{wind_surface}}{
  There are 17 surfaces that may be used for corrected
 wind-speed values using the following equation:
-\deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }
+\deqn{ WSC_hgt = WS_10 m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10 m*(hgt/WS_50m)^\alpha }
 Valid surface types are described here.
 
 \describe{

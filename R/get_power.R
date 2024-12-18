@@ -35,8 +35,8 @@
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
 #' @param wind_elevation A user-supplied value for elevation at a single point
-#'   in metres.  Wind Elevation values in Meters are required to be between 10m
-#'   and 300m.  Only used with `lonlat` as a single point of x, y coordinates,
+#'   in metres.  Wind Elevation values in Meters are required to be between 10 m
+#'   and 300 m.  Only used with `lonlat` as a single point of x, y coordinates,
 #'   not for use with \dQuote{global} or with a regional request.  If this
 #'   parameter is provided, the `wind_surface` parameter is required with the
 #'   request, see
@@ -106,7 +106,7 @@
 #'
 #' @section `wind_surface`: There are 17 surfaces that may be used for corrected
 #'   wind-speed values using the following equation:
-#'   \deqn{ WSC_hgt = WS_10m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10m*(hgt/WS_50m)^\alpha }
+#'   \deqn{ WSC_hgt = WS_10 m\times(\frac{hgt}{WS_50m})^\alpha}{WSC_hgt = WS_10 m*(hgt/WS_50m)^\alpha }
 #'   Valid surface types are described here.
 #'
 #' \describe{
@@ -450,8 +450,8 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
 #' @param wind_elevation A user-supplied value for elevation at a single point
-#'   in metres.  Wind Elevation values in Meters are required to be between 10m
-#'   and 300m.  Only used with `lonlat` as a single point of x, y coordinates,
+#'   in metres.  Wind Elevation values in Meters are required to be between 10 m
+#'   and 300 m.  Only used with `lonlat` as a single point of x, y coordinates,
 #'   not for use with \dQuote{global} or with a regional request.  If this
 #'   parameter is provided, the `wind_surface` parameter is required with the
 #'   request, see
@@ -522,7 +522,7 @@ get_power <- function(community = c("ag", "re", "sb"),
     (wind_elevation %notin% 10:300))) {
     cli::cli_abort(
       c(x = "{.arg wind_elevation} values in metres are required to be between
-          10m and 300m inclusive."),
+          10 and 300 metres inclusive."),
       call = rlang::caller_env()
     )
   }
