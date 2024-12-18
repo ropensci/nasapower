@@ -1,13 +1,4 @@
-# nasapower 4.2.1
-
-## R CMD check results
-
-### Checked under
-
-* Windows - R Under development (unstable) (2024-05-17 r86565 ucrt) via Winbuilder
-* MacOS - R version 4.4.0 (2024-04-24) -- "Puppy Cup"
-
-0 errors | 0 warnings | 1 note
+# nasapower 4.2.2
 
 * This is a new minor release.
 
