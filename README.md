@@ -12,7 +12,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![JOSS](https://joss.theoj.org/papers/10.21105/joss.01035/status.svg)](https://doi.org/10.21105/joss.01035)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/nasapower)](https://CRAN.R-project.org/package=nasapower)
-[![codecov](https://codecov.io/gh/ropensci/nasapower/graph/badge.svg?token=Kq9aea0TQN)](https://codecov.io/gh/ropensci/nasapower)
+[![codecov](https://app.codecov.io/gh/ropensci/nasapower/graph/badge.svg?token=Kq9aea0TQN)](https://app.codecov.io/gh/ropensci/nasapower)
 <!-- badges: end -->
 
 ## POWER data vs {nasapower}
@@ -91,32 +91,18 @@ daily_ag <- get_power(
 daily_ag
 ```
 
-    ## ────────────────────────────────────────────────────────────────────────────────
-
-    ## 
-
-    ## ── NASA/POWER CERES/MERRA2 Native Resolution Daily Data  ───────────────────────
-
-    ## Dates (month/day/year): 01/01/1985 through 01/01/1985
-
-    ## Location: Latitude -27.48 Longitude 151.81
-
-    ## Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77
-    ## meters
-
-    ## The value for missing source data that cannot be computed or is outside of the
-    ## sources availability range: NA
-
-    ## Parameter(s):
-
-    ## ────────────────────────────────────────────────────────────────────────────────
-
-    ## Parameters:
-
-    ## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2
-    ## Meters (C) ; PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
-
-    ## ────────────────────────────────────────────────────────────────────────────────
+    ## NASA/POWER CERES/MERRA2 Native Resolution Daily Data  
+    ##  Dates (month/day/year): 01/01/1985 through 01/01/1985  
+    ##  Location: Latitude  -27.48   Longitude 151.81  
+    ##  Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters 
+    ##  The value for missing source data that cannot be computed or is outside of the sources availability range: NA  
+    ##  Parameter(s):  
+    ##  
+    ##  Parameters: 
+    ##  RH2M            MERRA-2 Relative Humidity at 2 Meters (%) ;
+    ##  T2M             MERRA-2 Temperature at 2 Meters (C) ;
+    ##  PRECTOTCORR     MERRA-2 Precipitation Corrected (mm/day)  
+    ##  
     ## # A tibble: 1 × 10
     ##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
     ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
@@ -150,25 +136,19 @@ citation("nasapower")
 
     ## To cite package 'nasapower' in publications use:
     ## 
+    ##   Sparks A (2024). _nasapower: NASA-POWER Data from R_.
+    ##   doi:10.5281/zenodo.1040727 <https://doi.org/10.5281/zenodo.1040727>,
+    ##   R package version 4.2.1,
+    ##   <https://CRAN.R-project.org/package=nasapower>.
+    ## 
     ##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface
     ##   Solar Energy and Climatology Data Client for R." _The Journal of Open
     ##   Source Software_, *3*(30), 1035. doi:10.21105/joss.01035
     ##   <https://doi.org/10.21105/joss.01035>.
     ## 
-    ## A BibTeX entry for LaTeX users is
-    ## 
-    ##   @Article{,
-    ##     author = {Adam H. Sparks},
-    ##     title = {nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R},
-    ##     doi = {10.21105/joss.01035},
-    ##     year = {2018},
-    ##     month = {oct},
-    ##     publisher = {The Open Journal},
-    ##     volume = {3},
-    ##     number = {30},
-    ##     pages = {1035},
-    ##     journal = {The Journal of Open Source Software},
-    ##   }
+    ## To see these entries in BibTeX format, use 'print(<citation>,
+    ## bibtex=TRUE)', 'toBibtex(.)', or set
+    ## 'options(citation.bibtex.max=999)'.
 
 ## References
 
