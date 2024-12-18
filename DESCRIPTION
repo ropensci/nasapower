@@ -55,13 +55,16 @@ Suggests:
     vcr (>= 0.6.0)
 VignetteBuilder: 
     knitr
+Config/Needs/documentation: roxylint
+Config/roxylint: list(linters = roxylint::tidy)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
 Language: en-US
 NeedsCompilation: no
 Repository: CRAN
-Roxygen: list(markdown = TRUE)
+Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
+    "roxylint::roxylint"))
 RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org

@@ -6,7 +6,7 @@
 #' @param table A table containing values to match `x` against.
 #'
 #' @return A logical vector, indicating if a mismatch was located for any
-#'  element of x: thus the values are TRUE or FALSE and never NA.
+#'  element of x: thus the values are `TRUE` or `FALSE` and never `NA`.
 #' @keywords internal
 #' @noRd
 `%notin%` <- function(x, table) {
@@ -21,7 +21,7 @@
 #' @param community User entered `community` value.
 #' @param temporal_api User entered `temporal_api` value.
 #'
-#' @return Validated a collapsed string of  `pars` for use in [.build_query()]
+#' @return Validated a collapsed string of  `pars` for use in [.build_query].
 #' @keywords internal
 #' @noRd
 .check_pars <-
@@ -75,8 +75,8 @@
 #' Boolean
 #'
 #' Checks if provided object is a Boolean i.e. a length-one logical vector.
-#' @param x an object to check
-#' @return a logical value indicating whether provided object is a Boolean
+#' @param x an object to check.
+#' @return a logical value indicating whether provided object is a `Boolean`.
 #' @examples
 #' is_boolean(TRUE) # [1] TRUE
 #' # the following will work on most systems, unless you have tweaked global Rprofile
@@ -123,13 +123,13 @@
   }
 }
 
-#' Sends the Query to the POWER Data API to Retrieve Data
+#' Sends the query to the POWER data API to retrieve data
 #'
 #' @param .query_list A query list created by [.build_query()]
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
 #' @keywords internal
-#' @return A response from the POWER server containing either an error message
+#' @return A response from the POWER server containing either an error message.
 #'   or the data requested.
 #' @noRd
 #'
@@ -159,12 +159,12 @@
 }
 
 
-#' Sends the Query to the POWER Management API
+#' Sends the query to the POWER management API
 #'
 #' There are no parameters that these API end points accept.
 #'
 #' @param .url A character string of the URL to be used for the \acronym{API}
-#'  query
+#'  query.
 #' @keywords internal
 #' @return A response from the POWER server containing either an error message
 #'   or the data requested.

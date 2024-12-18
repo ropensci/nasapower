@@ -1,4 +1,4 @@
-#' Get NASA POWER Data From the POWER API
+#' Get NASA POWER data from the POWER API
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
 #'   climatology data and return a tidy data frame [tibble::tibble()]
@@ -43,7 +43,7 @@
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
-#' @param time_standard \acronym{POWER} provides two different time standards:
+#' @param time_standard \acronym{POWER} provides two different time standards.
 #'    * Universal Time Coordinated (\acronym{UTC}): is the standard time measure
 #'     that used by the world.
 #'    * Local Solar Time (\acronym{LST}): A 15 degree swath that represents
@@ -145,7 +145,7 @@
 #'
 #' @return A data frame as a `POWER.Info` class, an extension of the
 #' [tibble::tibble], object of \acronym{POWER} data including location, dates
-#' (not including \dQuote{climatology}) and requested parameters.  A decorative
+#' (not including \dQuote{climatology}) and requested parameters; a decorative
 #' header of metadata is included in this object.
 #'
 #' @references
@@ -316,7 +316,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 
 # subfunctions internal to get_power() -----------------------------------------
 
-#' Check Dates for Validity When Querying API
+#' Check dates for validity when querying the API
 #'
 #' Validates user entered dates against `lonlat` and `temporal_api` values
 #'
@@ -324,7 +324,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param lonlat User entered `lonlat` value.
 #' @param temporal_api User entered `temporal_api` value.
 #'
-#' @return Validated dates in a list for use in `.build_query`
+#' @return Validated dates in a list for use in `.build_query`.
 #' @keywords internal
 #' @noRd
 .check_dates <- function(dates, lonlat, temporal_api) {
@@ -458,7 +458,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
-#' @return Nothing, called for its side-effects of checking user inputs
+#' @return Nothing, called for its side-effects of checking user inputs.
 #' @keywords Internal
 #' @noRd
 
@@ -573,7 +573,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param lonlat User entered `lonlat` value.
 #' @param pars User entered `pars` value.
 #'
-#' @return A list called `lonlat_identifier` for use in [.build_query()]
+#' @return A list called `lonlat_identifier` for use in [.build_query()].
 #' @keywords internal
 #' @noRd
 .check_lonlat <-
@@ -678,14 +678,14 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' Construct a list of options to pass to the POWER API
 #'
 #' @param community A validated value for community from [check_community()].
-#' @param lonlat_identifier A list of values, a result of [check_lonlat()]
+#' @param lonlat_identifier A list of values, a result of [check_lonlat()].
 #' @param pars A validated value from [check_pars()].
-#' @param dates A list of values, a result of [check_dates()].
-#' @param site_elevation A validated value from
-#' @param wind_elevation A validate value from
-#' @param wind_surface A validated value from
+#' @param dates A list of values, a result of [check_dates()]..
+#' @param site_elevation A validated value passed by `check_inputs`.
+#' @param wind_elevation A validated value passed by `check_inputs`.
+#' @param wind_surface A validated value passed by `check_inputs`.
 #' @return A `list` object of values to be passed to a [crul] object to query
-#'  the 'POWER' 'API'
+#'  the 'POWER' 'API'.
 #' @keywords internal
 #' @noRd
 .build_query <- function(community,

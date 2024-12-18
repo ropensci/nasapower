@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_power.R
 \name{get_power}
 \alias{get_power}
-\title{Get NASA POWER Data From the POWER API}
+\title{Get NASA POWER data from the POWER API}
 \usage{
 get_power(
   community = c("ag", "re", "sb"),
@@ -60,7 +60,7 @@ request, see
 \item{wind_surface}{A user-supplied wind surface for which the corrected
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 
-\item{time_standard}{\acronym{POWER} provides two different time standards:
+\item{time_standard}{\acronym{POWER} provides two different time standards.
 \itemize{
 \item Universal Time Coordinated (\acronym{UTC}): is the standard time measure
 that used by the world.
@@ -72,7 +72,7 @@ Defaults to \code{LST}.
 \value{
 A data frame as a \code{POWER.Info} class, an extension of the
 \link[tibble:tibble]{tibble::tibble}, object of \acronym{POWER} data including location, dates
-(not including \dQuote{climatology}) and requested parameters.  A decorative
+(not including \dQuote{climatology}) and requested parameters; a decorative
 header of metadata is included in this object.
 }
 \description{

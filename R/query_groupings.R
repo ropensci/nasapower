@@ -1,4 +1,4 @@
-#' Query the POWER API for Detailed Information on Available Parameter Groupings
+#' Query the POWER API for detailed information on available parameter groupings
 #'
 #' Queries the \acronym{POWER} \acronym{API} returning detailed information on
 #'  available parameter groupings grouped by community followed by temporal

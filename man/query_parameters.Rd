@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_parameters.R
 \name{query_parameters}
 \alias{query_parameters}
-\title{Query the POWER API for Detailed Information on Available Parameters}
+\title{Query the POWER API for detailed information on available parameters}
 \usage{
 query_parameters(
   community = NULL,

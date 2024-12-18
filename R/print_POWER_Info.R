@@ -1,7 +1,7 @@
-#' Prints Power.Info Object
+#' Prints Power.Info object
 #'
-#' @param x POWER.Info object
-#' @param ... ignored
+#' @param x POWER.Info object.
+#' @param ... ignored.
 #' @export
 #' @noRd
 print.POWER.Info <- function(x, ...) {

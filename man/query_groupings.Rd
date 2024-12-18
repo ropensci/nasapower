@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_groupings.R
 \name{query_groupings}
 \alias{query_groupings}
-\title{Query the POWER API for Detailed Information on Available Parameter Groupings}
+\title{Query the POWER API for detailed information on available parameter groupings}
 \usage{
 query_groupings(global = FALSE)
 }
