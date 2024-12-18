@@ -35,11 +35,10 @@
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
 #' @param wind_elevation A user-supplied value for elevation at a single point
-#'   in metres.  Wind Elevation values in Meters are required to be between 10 m
-#'   and 300 m.  Only used with `lonlat` as a single point of x, y coordinates,
-#'   not for use with \dQuote{global} or with a regional request.  If this
-#'   parameter is provided, the `wind_surface` parameter is required with the
-#'   request, see
+#'   in metres.  Wind Elevation values are required to be between 10 and 300
+#'   metres.  Only used with `lonlat` as a single point of x, y coordinates, not
+#'   for use with \dQuote{global} or with a regional request.  If this parameter
+#'   is provided, the `wind_surface` parameter is required with the request, see
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
