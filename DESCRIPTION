@@ -1,7 +1,7 @@
 Type: Package
 Package: nasapower
 Title: NASA POWER API Client
-Version: 4.2.1.9000
+Version: 4.2.2
 Authors@R: c(
     person("Adam H.", "Sparks", , "adamhsparks@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0061-8359")),

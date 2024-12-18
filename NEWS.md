@@ -1,3 +1,21 @@
+# nasapower 4.2.2
+
+## Bug fixes
+
+* [Ensure that `wind_elevation` must be a numeric value](https://github.com/ropensci/nasapower/commit/bc61b8e7474e2513a2002d50911d26d69ac6c7ea).
+
+## Minor changes
+
+* [Fix typo](https://github.com/ropensci/nasapower/pull/92) thanks, @kguidonimartins!
+
+* [Fix another typo](https://github.com/ropensci/nasapower/commit/bfc53022b3b0acd89377e3bfaaf92dba4ba6ac6f) in documentation.
+
+* [Clarify error message](https://github.com/ropensci/nasapower/commit/8e91a612d4720a297948be4f1c302b221f6f1c2b).
+
+* [Add contributors to README](https://github.com/ropensci/nasapower/commit/293e030dc10d76dbbd3d8f43770225c41b2bf21f)
+
+* Code and Roxygen linting.
+
 # nasapower 4.2.1
 
 ## Bug Fixes
