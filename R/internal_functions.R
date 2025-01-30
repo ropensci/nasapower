@@ -1,6 +1,6 @@
 #' Adds a %notin% Function
 #'
-#' Negates `%in%` for easier (mis)matching.
+#' Negates `%in%` for easier (miss)matching.
 #'
 #' @param x A character string to match.
 #' @param table A table containing values to match `x` against.
@@ -148,7 +148,7 @@
   # - a custom approach this time combining status code,
   #   explanation of the code, and message from the server
   if (response$status_code > 201) {
-    mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
+    mssg <- yyjsonr::read_json_str(response$parse("UTF-8"))$message
     x <- response$status_http()
     cli::cli_abort(
       sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg)
@@ -183,7 +183,7 @@
   # - a custom approach this time combining status code,
   #   explanation of the code, and message from the server
   if (response$status_code > 201) {
-    mssg <- jsonlite::fromJSON(response$parse("UTF-8"))$message
+    mssg <- yyjsonr::read_json_str(response$parse("UTF-8"))$message
     x <- response$status_http()
     cli::cli_abort(
       sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg)

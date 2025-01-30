@@ -17,26 +17,28 @@ get_power(
 )
 }
 \arguments{
-\item{community}{A case-insensitive character vector providing community name:
-\dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for more.}
+\item{community}{A case-insensitive character vector providing community
+name: \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for
+more.}
 
 \item{pars}{case-insensitive character vector of solar, meteorological or
-climatology parameters to download.  When requesting a single point of x, y
-coordinates, a maximum of twenty (20) \code{pars} can be specified at one time,
-for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
+climatology parameters to download.  When requesting a single point of x,
+y coordinates, a maximum of twenty (20) \code{pars} can be specified at one
+time, for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
 \code{temporal_api}s.  If the \code{temporal_api} is specified as \dQuote{hourly}
 only 15 \code{pars} can be specified in a single query.  See \code{temporal_api} for
 more.  These values are checked internally for validity before sending the
 query to the \acronym{POWER} \acronym{API}.}
 
-\item{temporal_api}{A case-insensitive character vector providing the temporal
-\acronym{API} end-point for data being queried, supported values are
-\dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
-Defaults to \dQuote{daily}.  See argument details for more.}
-
-\item{lonlat}{A numeric vector of geographic coordinates for a cell or region
-entered as x, y (longitude, latitude) coordinates.  See argument details
+\item{temporal_api}{A case-insensitive character vector providing the
+temporal \acronym{API} end-point for data being queried, supported values
+are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
+\dQuote{climatology}. Defaults to \dQuote{daily}.  See argument details
 for more.}
+
+\item{lonlat}{A numeric vector of geographic coordinates for a cell or
+region entered as x, y (longitude, latitude) coordinates.  See argument
+details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.
@@ -51,9 +53,10 @@ a regional request.}
 
 \item{wind_elevation}{A user-supplied value for elevation at a single point
 in metres.  Wind Elevation values are required to be between 10 and 300
-metres.  Only used with \code{lonlat} as a single point of x, y coordinates, not
-for use with \dQuote{global} or with a regional request.  If this parameter
-is provided, the \code{wind_surface} parameter is required with the request, see
+metres.  Only used with \code{lonlat} as a single point of x, y coordinates,
+not for use with \dQuote{global} or with a regional request.  If this
+parameter is provided, the \code{wind_surface} parameter is required with the
+request, see
 \url{https://power.larc.nasa.gov/docs/methodology/meteorology/wind/}.}
 
 \item{wind_surface}{A user-supplied wind surface for which the corrected
@@ -61,8 +64,8 @@ wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 
 \item{time_standard}{\acronym{POWER} provides two different time standards.
 \itemize{
-\item Universal Time Coordinated (\acronym{UTC}): is the standard time measure
-that used by the world.
+\item Universal Time Coordinated (\acronym{UTC}): is the standard time-
+measure that used by the world.
 \item Local Solar Time (\acronym{LST}): A 15 degree swath that represents
 solar noon at the middle longitude of the swath.
 Defaults to \code{LST}.
@@ -98,8 +101,8 @@ and the temporal display of time series data.
 contains industry-friendly parameters formatted for input to crop models.}
 
 \item{sb}{Provides access to the Sustainable Buildings Archive, which
-contains industry-friendly parameters for the buildings community to include
-parameters in multi-year monthly averages.}
+contains industry-friendly parameters for the buildings community to
+include parameters in multi-year monthly averages.}
 
 \item{re}{Provides access to the Renewable Energy Archive, which contains
 parameters specifically tailored to assist in the design of solar and wind
@@ -123,9 +126,9 @@ monthly average, maximum, and/or minimum values.}
 \section{Argument details for \code{lonlat}}{
 
 \describe{
-\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply a
-length-two numeric vector giving the decimal degree longitude and latitude
-in that order for data to download,\cr
+\item{For a single point}{To get a specific cell, 1/2 x 1/2 degree, supply
+a length-two numeric vector giving the decimal degree longitude and
+latitude in that order for data to download,\cr
 \emph{e.g.}, \code{lonlat = c(-179.5, -89.5)}.}
 
 \item{For regional coverage}{To get a region, supply a length-four numeric

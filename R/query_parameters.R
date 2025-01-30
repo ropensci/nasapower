@@ -95,7 +95,7 @@ query_parameters <- function(community = NULL,
     "https://power.larc.nasa.gov/api/system/manager/parameters"
 
   if (is.null(community) && is.null(temporal_api)) {
-    return(jsonlite::fromJSON(sprintf(
+    return(yyjsonr::read_json_str(sprintf(
       "%s/%s?user=nasapower4r", power_url, pars
     )))
   } else {
@@ -117,6 +117,6 @@ query_parameters <- function(community = NULL,
     query_list <- query_list[lengths(query_list) != 0]
     response <- .send_query(.query_list = query_list, .url = power_url)
 
-    return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
+    return(yyjsonr::read_json_str(response$parse(encoding = "UTF8")))
   }
 }
