@@ -41,11 +41,11 @@ Depends:
 Imports:
     cli,
     crul,
-    jsonlite,
     lubridate,
     readr,
     rlang,
-    tibble (>= 3.0.2)
+    tibble (>= 3.0.2),
+    yyjsonr
 Suggests:
     knitr,
     purrr,

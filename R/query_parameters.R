@@ -12,9 +12,8 @@
 #'   \acronym{API} end-point for data being queried, supported values are
 #'   \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
 #' @param metadata `Boolean`; retrieve extra parameter metadata?  This is only
-#'  applicable if you supply the `community` and `temporal_api`, if these values
-#'  are not provided it will be ignored.  Defaults to
-#'   `FALSE`.
+#'  applicable if you supply the `community` and `temporal_api`, if these
+#'  values are not provided it will be ignored.  Defaults to `FALSE`.
 #'
 #' @section Argument details for `temporal_api`: There are four valid values.
 #'  \describe{
@@ -91,17 +90,21 @@ query_parameters <- function(community = NULL,
         temporal_api = temporal_api_vals
       )
   }
+
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/parameters"
 
   if (is.null(community) && is.null(temporal_api)) {
-    return(jsonlite::fromJSON(sprintf(
-      "%s/%s?user=nasapower4r", power_url, pars
-    )))
+    query_url <- sprintf("%s/%s?user=nasapower4r", power_url, pars)
+    response <- .send_mgmt_query(.url = query_url)
+    return(yyjsonr::read_json_str(response$parse(encoding = "UTF8")))
   } else {
     if (!.is_boolean(metadata)) {
       cli::cli_abort(
-        c(x = "{.arg metadata} should be a Boolean value.", i = "{Please provide either {.var TRUE} or {.var FALSE}.")
+        c(
+          x = "{.arg metadata} should be a Boolean value.",
+          i = "{Please provide either {.var TRUE} or {.var FALSE}."
+        )
       )
     }
 
@@ -117,6 +120,6 @@ query_parameters <- function(community = NULL,
     query_list <- query_list[lengths(query_list) != 0]
     response <- .send_query(.query_list = query_list, .url = power_url)
 
-    return(jsonlite::fromJSON(response$parse(encoding = "UTF8")))
+    return(yyjsonr::read_json_str(response$parse(encoding = "UTF8")))
   }
 }

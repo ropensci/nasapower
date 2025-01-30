@@ -31,7 +31,7 @@ query_surfaces <- function(surface_alias = NULL) {
       .send_mgmt_query(.url = power_url)
 
     response$raise_for_status()
-    return(jsonlite::fromJSON(response$parse("UTF8")))
+    return(yyjsonr::read_json_str(response$parse("UTF8")))
   } else {
     wind_surface <- .match_surface_alias(surface_alias)
     power_url <- sprintf("%s/%s", power_url, wind_surface)
@@ -39,6 +39,6 @@ query_surfaces <- function(surface_alias = NULL) {
       .send_mgmt_query(.url = power_url)
 
     response$raise_for_status()
-    return(jsonlite::fromJSON(response$parse("UTF8")))
+    return(yyjsonr::read_json_str(response$parse("UTF8")))
   }
 }
