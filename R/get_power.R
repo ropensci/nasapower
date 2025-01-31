@@ -259,7 +259,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 
   # extract query results and return to user -----------------------------------
   # create meta object
-  power_data <- readr::read_lines(I(response$parse("UTF8")))
+  power_data <- readr::read_lines(I(response$parse()))
 
   meta <- power_data[c(grep("-BEGIN HEADER-", power_data):grep("-END HEADER-", power_data))]
   # strip BEGIN/END HEADER lines
@@ -276,7 +276,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 
   # create tibble object
   power_data <- readr::read_csv(
-    I(response$parse("UTF8")),
+    I(response$parse()),
     col_types = readr::cols(),
     na = c("-999", "-999.00", "-999.0", "-99", "-99.00", "-99.0"),
     skip = length(meta) + 2
