@@ -42,13 +42,13 @@ query_groupings <- function(global = FALSE) {
       .send_mgmt_query(.url = power_url)
 
     response$raise_for_status()
-    return(yyjsonr::read_json_str(response$parse()))
+    return(yyjsonr::read_json_raw(response$content))
   } else {
     power_url <- sprintf("%s/global", power_url)
     response <-
       .send_mgmt_query(.url = power_url)
 
     response$raise_for_status()
-    return(yyjsonr::read_json_str(response$parse()))
+    return(yyjsonr::read_json_raw(response$content))
   }
 }

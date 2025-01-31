@@ -148,7 +148,7 @@
   # - a custom approach this time combining status code,
   #   explanation of the code, and message from the server
   if (response$status_code > 201) {
-    mssg <- yyjsonr::read_json_str(response$parse("UTF-8"))$message
+    mssg <- yyjsonr::read_json_raw(response$content)$message
     x <- response$status_http()
     cli::cli_abort(
       sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg)
@@ -183,7 +183,7 @@
   # - a custom approach this time combining status code,
   #   explanation of the code, and message from the server
   if (response$status_code > 201) {
-    mssg <- yyjsonr::read_json_str(response$parse("UTF-8"))$message
+    mssg <- yyjsonr::read_json_raw(response$content)$message
     x <- response$status_http()
     cli::cli_abort(
       sprintf("HTTP (%s) - %s\n  %s", x$status_code, x$explanation, mssg)
