@@ -7,8 +7,7 @@
 #'
 #' @return A logical vector, indicating if a mismatch was located for any
 #'  element of x: thus the values are `TRUE` or `FALSE` and never `NA`.
-#' @keywords internal
-#' @noRd
+#' @dev
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
 }
@@ -22,8 +21,7 @@
 #' @param temporal_api User entered `temporal_api` value.
 #'
 #' @return Validated a collapsed string of  `pars` for use in [.build_query].
-#' @keywords internal
-#' @noRd
+#' @dev
 .check_pars <-
   function(pars, community, temporal_api) {
     # make sure that there are no duplicates in the query
@@ -85,16 +83,14 @@
 #' @note Taken from
 #'  <https://github.com/Rapporter/rapportools/blob/master/R/utils.R>
 #'
-#' @noRd
-#' @keywords Internal
+#' @dev
 .is_boolean <- function(x) {
   is.logical(x) && length(x) == 1
 }
 
 #' Match Wind Surface Aliases for Validity
 #'
-#' @noRd
-#' @keywords Internal
+#' @dev
 .match_surface_alias <- function(x) {
   if (!is.null(x)) {
     wind_surface <- tolower(x)
@@ -128,11 +124,9 @@
 #' @param .query_list A query list created by [.build_query()]
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
-#' @keywords internal
 #' @return A response from the POWER server containing either an error message.
 #'   or the data requested.
-#' @noRd
-#'
+#' @dev
 .send_query <- function(.query_list,
                         .url) {
   client <- crul::HttpClient$new(url = .url)
@@ -165,10 +159,9 @@
 #'
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query.
-#' @keywords internal
 #' @return A response from the POWER server containing either an error message
 #'   or the data requested.
-#' @noRd
+#' @dev
 #'
 .send_mgmt_query <- function(.url) {
   client <- crul::HttpClient$new(url = .url)

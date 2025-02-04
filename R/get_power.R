@@ -327,8 +327,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param temporal_api User entered `temporal_api` value.
 #'
 #' @return Validated dates in a list for use in `.build_query`.
-#' @keywords internal
-#' @noRd
+#' @dev
 .check_dates <- function(dates, lonlat, temporal_api) {
   if (is.null(dates) & temporal_api != "climatology") {
     cli::cli_abort(c(i = "You have not entered dates for the query."),
@@ -429,20 +428,22 @@ get_power <- function(community = c("ag", "re", "sb"),
 }
 
 #' Check User Inputs for get_power for Validity
-#' @param community A case-insensitive character vector providing community name:
-#'   \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for more.
+#' @param community A case-insensitive character vector providing community
+#'   name: \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for
+#'   more.
 #' @param pars  case-insensitive character vector of solar, meteorological or
-#'   climatology parameters to download.  When requesting a single point of x, y
-#'   coordinates, a maximum of twenty (20) `pars` can be specified at one time,
-#'   for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
+#'   climatology parameters to download.  When requesting a single point of x,
+#'   y coordinates, a maximum of twenty (20) `pars` can be specified at one
+#'   time, for \dQuote{daily}, \dQuote{monthly} and \dQuote{climatology}
 #'   `temporal_api`s.  If the `temporal_api` is specified as \dQuote{hourly}
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
 #'   more.  These values are checked internally for validity before sending the
 #'   query to the \acronym{POWER} \acronym{API}.
-#' @param temporal_api A case-insensitive character vector providing the temporal
-#'   \acronym{API} end-point for data being queried, supported values are
-#'   \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.
-#'   Defaults to \dQuote{daily}.  See argument details for more.
+#' @param temporal_api A case-insensitive character vector providing the
+#'   temporal \acronym{API} end-point for data being queried, supported values
+#'   are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
+#'   \dQuote{climatology}. Defaults to \dQuote{daily}.  See argument details
+#'   for more.
 #' @param lonlat A numeric vector of geographic coordinates for a cell or region
 #'   entered as x, y (longitude, latitude) coordinates.  See argument details
 #'   for more.
@@ -452,17 +453,16 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
 #' @param wind_elevation A user-supplied value for elevation at a single point
-#'   in metres.  Wind Elevation values in Meters are required to be between 10 m
-#'   and 300 m.  Only used with `lonlat` as a single point of x, y coordinates,
-#'   not for use with \dQuote{global} or with a regional request.  If this
-#'   parameter is provided, the `wind_surface` parameter is required with the
-#'   request, see
+#'   in metres.  Wind Elevation values in Meters are required to be between
+#'   10 m and 300 m.  Only used with `lonlat` as a single point of x, y
+#'   coordinates, not for use with \dQuote{global} or with a regional request.
+#'   If this parameter is provided, the `wind_surface` parameter is required
+#'   with the request, see
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
 #' @return Nothing, called for its side-effects of checking user inputs.
-#' @keywords Internal
-#' @noRd
+#' @dev
 
 .check_inputs <- function(community,
                           lonlat,
@@ -576,8 +576,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param pars User entered `pars` value.
 #'
 #' @return A list called `lonlat_identifier` for use in [.build_query()].
-#' @keywords internal
-#' @noRd
+#' @dev
 .check_lonlat <-
   function(lonlat, pars) {
     bbox <- NULL
@@ -688,8 +687,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param wind_surface A validated value passed by `check_inputs`.
 #' @return A `list` object of values to be passed to a [crul] object to query
 #'  the 'POWER' 'API'.
-#' @keywords internal
-#' @noRd
+#' @dev
 .build_query <- function(community,
                          lonlat_identifier,
                          pars,
@@ -753,8 +751,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
-#' @keywords internal
-#' @noRd
+#' @dev
 
 .format_dates_ag <- function(power_response) {
   # convert DOY to integer
@@ -786,8 +783,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.
-#' @keywords internal
-#' @noRd
+#' @dev
 
 .format_dates_re_sb <- function(power_response) {
   names(power_response)[names(power_response) == "DY"] <- "DD"

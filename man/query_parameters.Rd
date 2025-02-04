@@ -23,9 +23,8 @@ climatology parameter to query.  If none is provided, all are returned.}
 \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.}
 
 \item{metadata}{\code{Boolean}; retrieve extra parameter metadata?  This is only
-applicable if you supply the \code{community} and \code{temporal_api}, if these values
-are not provided it will be ignored.  Defaults to
-\code{FALSE}.}
+applicable if you supply the \code{community} and \code{temporal_api}, if these
+values are not provided it will be ignored.  Defaults to \code{FALSE}.}
 }
 \value{
 A \link{list} object of information for the requested parameter(s) (if
