@@ -16,13 +16,13 @@
 )
 }
 \arguments{
-\item{community}{A validated value for community from \code{\link[=check_community]{check_community()}}.}
+\item{community}{A validated value for community from \link{.check_community}.}
 
-\item{lonlat_identifier}{A list of values, a result of \code{\link[=check_lonlat]{check_lonlat()}}.}
+\item{lonlat_identifier}{A list of values, a result of \link{.check_lonlat}.}
 
-\item{pars}{A validated value from \code{\link[=check_pars]{check_pars()}}.}
+\item{pars}{A validated value from \link{.check_pars}.}
 
-\item{dates}{A list of values, a result of \code{\link[=check_dates]{check_dates()}}..}
+\item{dates}{A list of values, a result of \link{.check_dates}..}
 
 \item{site_elevation}{A validated value passed by \code{check_inputs}.}
 
@@ -31,7 +31,8 @@
 \item{wind_surface}{A validated value passed by \code{check_inputs}.}
 }
 \value{
-A \code{list} object of values to be passed to a \link{crul} object to query
+A \code{list} object of values to be passed to a \CRANpkg{crul} object to
+query
 the 'POWER' 'API'.
 }
 \description{

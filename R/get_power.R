@@ -678,14 +678,15 @@ get_power <- function(community = c("ag", "re", "sb"),
 
 #' Construct a list of options to pass to the POWER API
 #'
-#' @param community A validated value for community from [check_community()].
-#' @param lonlat_identifier A list of values, a result of [check_lonlat()].
-#' @param pars A validated value from [check_pars()].
-#' @param dates A list of values, a result of [check_dates()]..
+#' @param community A validated value for community from [.check_community].
+#' @param lonlat_identifier A list of values, a result of [.check_lonlat].
+#' @param pars A validated value from [.check_pars].
+#' @param dates A list of values, a result of [.check_dates]..
 #' @param site_elevation A validated value passed by `check_inputs`.
 #' @param wind_elevation A validated value passed by `check_inputs`.
 #' @param wind_surface A validated value passed by `check_inputs`.
-#' @return A `list` object of values to be passed to a [crul] object to query
+#' @return A `list` object of values to be passed to a \CRANpkg{crul} object to
+#'  query
 #'  the 'POWER' 'API'.
 #' @dev
 .build_query <- function(community,
@@ -747,7 +748,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'
 #' Formats columns as integers for DOY and adds columns for year, month and day.
 #'
-#' @param power_response A tidy data.frame resulting from [build_query()].
+#' @param power_response A tidy data.frame resulting from [.build_query].
 #'
 #' @return A tidy data frame of 'POWER' data with additional date information
 #'   columns.

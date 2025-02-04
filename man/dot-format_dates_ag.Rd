@@ -7,7 +7,7 @@
 .format_dates_ag(power_response)
 }
 \arguments{
-\item{power_response}{A tidy data.frame resulting from \code{\link[=build_query]{build_query()}}.}
+\item{power_response}{A tidy data.frame resulting from \link{.build_query}.}
 }
 \value{
 A tidy data frame of 'POWER' data with additional date information
