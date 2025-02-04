@@ -55,6 +55,7 @@ Suggests:
     vcr (>= 0.6.0)
 VignetteBuilder: 
     knitr
+Config/Needs/build: moodymudskipper/devtag
 Config/Needs/documentation: roxylint
 Config/roxylint: list(linters = roxylint::tidy)
 Config/testthat/edition: 3
@@ -64,7 +65,7 @@ Language: en-US
 NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
-    "roxylint::roxylint"))
+    "roxylint::roxylint", "devtag::dev_roclet"))
 RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org

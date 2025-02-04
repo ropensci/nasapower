@@ -23,3 +23,15 @@
 
 # flint files
 ^flint$
+^man/dot-check_dates\.Rd$
+^man/dot-check_inputs\.Rd$
+^man/dot-check_lonlat\.Rd$
+^man/dot-build_query\.Rd$
+^man/dot-format_dates_ag\.Rd$
+^man/dot-format_dates_re_sb\.Rd$
+^man/grapes-notin-grapes\.Rd$
+^man/dot-check_pars\.Rd$
+^man/dot-is_boolean\.Rd$
+^man/dot-match_surface_alias\.Rd$
+^man/dot-send_query\.Rd$
+^man/dot-send_mgmt_query\.Rd$
