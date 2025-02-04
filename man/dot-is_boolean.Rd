@@ -22,7 +22,7 @@ Taken from
 \examples{
 is_boolean(TRUE) # [1] TRUE
 # the following will work on most systems, unless you have tweaked global Rprofile
-is_boolean(T) # [1] TRUE
-is_boolean(1) # [1] FALSE
+.is_boolean(T) # [1] TRUE
+.is_boolean(1) # [1] FALSE
 }
 \keyword{internal}
