@@ -5,7 +5,7 @@
 #' @param x A character string to match.
 #' @param table A table containing values to match `x` against.
 #'
-#' @return A logical vector, indicating if a mismatch was located for any
+#' @returns A logical vector, indicating if a mismatch was located for any
 #'  element of x: thus the values are `TRUE` or `FALSE` and never `NA`.
 #' @dev
 `%notin%` <- function(x, table) {
@@ -20,7 +20,7 @@
 #' @param community User entered `community` value.
 #' @param temporal_api User entered `temporal_api` value.
 #'
-#' @return Validated a collapsed string of  `pars` for use in [.build_query].
+#' @returns Validated a collapsed string of  `pars` for use in [.build_query].
 #' @dev
 .check_pars <-
   function(pars, community, temporal_api) {
@@ -74,7 +74,7 @@
 #'
 #' Checks if provided object is a Boolean i.e. a length-one logical vector.
 #' @param x an object to check.
-#' @return a logical value indicating whether provided object is a `Boolean`.
+#' @returns a logical value indicating whether provided object is a `Boolean`.
 #' @examples
 #' is_boolean(TRUE) # [1] TRUE
 #' # the following will work on most systems, unless you have tweaked global Rprofile
@@ -124,7 +124,7 @@
 #' @param .query_list A query list created by [.build_query()]
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query
-#' @return A response from the POWER server containing either an error message.
+#' @returns A response from the POWER server containing either an error message.
 #'   or the data requested.
 #' @dev
 .send_query <- function(.query_list,
@@ -159,7 +159,7 @@
 #'
 #' @param .url A character string of the URL to be used for the \acronym{API}
 #'  query.
-#' @return A response from the POWER server containing either an error message
+#' @returns A response from the POWER server containing either an error message
 #'   or the data requested.
 #' @dev
 #'

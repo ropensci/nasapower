@@ -47,7 +47,7 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-#' @return A [list] object of information for the requested parameter(s) (if
+#' @returns A [list] object of information for the requested parameter(s) (if
 #'  requested), community(ies) and temporal \acronym{API}(s).
 #'
 #' @export

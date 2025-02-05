@@ -19,7 +19,7 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-#' @return A [list] object of information on parameter groupings in the
+#' @returns A [list] object of information on parameter groupings in the
 #'   \acronym{POWER} \acronym{API}.
 #'
 #' @export

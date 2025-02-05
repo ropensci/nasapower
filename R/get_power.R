@@ -145,7 +145,7 @@
 #'   if the data are exported to a file format other than a native \R data
 #'   format, *e.g.*, .Rdata, .rda or .rds.
 #'
-#' @return A data frame as a `POWER.Info` class, an extension of the
+#' @returns A data frame as a `POWER.Info` class, an extension of the
 #' [tibble::tibble], object of \acronym{POWER} data including location, dates
 #' (not including \dQuote{climatology}) and requested parameters; a decorative
 #' header of metadata is included in this object.
@@ -326,7 +326,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param lonlat User entered `lonlat` value.
 #' @param temporal_api User entered `temporal_api` value.
 #'
-#' @return Validated dates in a list for use in `.build_query`.
+#' @returns Validated dates in a list for use in `.build_query`.
 #' @dev
 .check_dates <- function(dates, lonlat, temporal_api) {
   if (is.null(dates) & temporal_api != "climatology") {
@@ -461,7 +461,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
-#' @return Nothing, called for its side-effects of checking user inputs.
+#' @returns Nothing, called for its side-effects of checking user inputs.
 #' @dev
 
 .check_inputs <- function(community,
@@ -575,7 +575,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param lonlat User entered `lonlat` value.
 #' @param pars User entered `pars` value.
 #'
-#' @return A list called `lonlat_identifier` for use in [.build_query()].
+#' @returns A list called `lonlat_identifier` for use in [.build_query()].
 #' @dev
 .check_lonlat <-
   function(lonlat, pars) {
@@ -685,7 +685,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #' @param site_elevation A validated value passed by `check_inputs`.
 #' @param wind_elevation A validated value passed by `check_inputs`.
 #' @param wind_surface A validated value passed by `check_inputs`.
-#' @return A `list` object of values to be passed to a \CRANpkg{crul} object to
+#' @returns A `list` object of values to be passed to a \CRANpkg{crul} object to
 #'  query
 #'  the 'POWER' 'API'.
 #' @dev
@@ -750,7 +750,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'
 #' @param power_response A tidy data.frame resulting from [.build_query].
 #'
-#' @return A tidy data frame of 'POWER' data with additional date information
+#' @returns A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #' @dev
 
@@ -782,7 +782,7 @@ get_power <- function(community = c("ag", "re", "sb"),
 #'
 #' @param power_response A tidy data.frame resulting from [.build_query()].
 #'
-#' @return A tidy data frame of 'POWER' data with additional date information
+#' @returns A tidy data frame of 'POWER' data with additional date information
 #'   columns.
 #' @dev
 

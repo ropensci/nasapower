@@ -17,7 +17,7 @@
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #'
-#' @return A [list] object of information for the requested wind surface(s).
+#' @returns A [list] object of information for the requested wind surface(s).
 #'
 #' @export
 
