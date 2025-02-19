@@ -554,3 +554,16 @@ test_that("get_power() stops if lonlat = regional for hourly", {
     )
   )
 })
+
+test_that("get_power() stops if regional request and pars > 1", {
+  skip_if_offline()
+  expect_error(
+    get_power(
+      community = "ag",
+      lonlat = c(112.5, -55.5, 115.5, -50.5),
+      pars = c("T2M", "RH2M"),
+      dates = "1983-01-01",
+      temporal_api = "daily"
+    )
+  )
+})
