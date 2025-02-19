@@ -509,6 +509,17 @@ get_power <- function(community = c("ag", "re", "sb"),
     wind_elevation <- NULL
   }
 
+  if (length(lonlat) > 2 && length(pars) > 1) {
+    cli::cli_abort(
+      c(
+        x = "You have provided more than one parameter for a regional request.",
+        i = "The latest version of the API does not allow more than one parameter for regional requests.",
+        "Please provide only one parameter for a regional request."
+      ),
+      call = rlang::caller_env()
+    )
+  }
+
   if (is.character(wind_surface) && is.null(wind_elevation)) {
     cli::cli_abort(
       c(
