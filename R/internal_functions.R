@@ -127,8 +127,7 @@
 #' @returns A response from the POWER server containing either an error message.
 #'   or the data requested.
 #' @dev
-.send_query <- function(.query_list,
-                        .url) {
+.send_query <- function(.query_list, .url) {
   client <- crul::HttpClient$new(url = .url)
 
   # nocov begin
