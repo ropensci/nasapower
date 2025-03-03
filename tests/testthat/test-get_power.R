@@ -267,7 +267,8 @@ test_that("get_power() returns daily regional ag data", {
     ),
     tolerance = 0.1
   )
-  expect_equal(unique(power_query$LON),
+  expect_equal(
+    unique(power_query$LON),
     c(112.5, 113.125, 113.75, 114.375, 115),
     tolerance = 0.1
   )

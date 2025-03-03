@@ -21,7 +21,6 @@
 #'
 #' @export
 
-
 query_surfaces <- function(surface_alias = NULL) {
   power_url <-
     "https://power.larc.nasa.gov/api/system/manager/surface"

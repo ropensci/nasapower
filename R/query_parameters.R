@@ -52,10 +52,12 @@
 #'
 #' @export
 
-query_parameters <- function(community = NULL,
-                             pars = NULL,
-                             temporal_api = NULL,
-                             metadata = FALSE) {
+query_parameters <- function(
+  community = NULL,
+  pars = NULL,
+  temporal_api = NULL,
+  metadata = FALSE
+) {
   community_vals <- c("AG", "RE", "SB")
   temporal_api_vals <- c("DAILY", "MONTHLY", "HOURLY", "CLIMATOLOGY")
 
@@ -66,7 +68,9 @@ query_parameters <- function(community = NULL,
     community <- toupper(community)
 
     if (community %notin% community_vals) {
-      cli::cli_abort(c(x = "{.arg community} does not match any valid values for {.var community}."))
+      cli::cli_abort(c(
+        x = "{.arg community} does not match any valid values for {.var community}."
+      ))
     }
     community_vals <- community
   }
@@ -75,7 +79,9 @@ query_parameters <- function(community = NULL,
     temporal_api <- toupper(temporal_api)
     if (temporal_api %notin% temporal_api_vals) {
       cli::cli_abort(
-        c(x = "{.arg temporal_api} does not match any valid values for {.var temporal_api}.")
+        c(
+          x = "{.arg temporal_api} does not match any valid values for {.var temporal_api}."
+        )
       )
     }
     temporal_api_vals <- temporal_api

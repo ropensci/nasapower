@@ -22,9 +22,9 @@ test_that("`dates` > 2 cause an error", {
   dates <- c("1983-01-01", "1983-01-02", "1983-01-03")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
-  expect_error(.check_dates(dates, lonlat, temporal_api),
-    regexp =
-      "You have supplied more than two dates for start and end*"
+  expect_error(
+    .check_dates(dates, lonlat, temporal_api),
+    regexp = "You have supplied more than two dates for start and end*"
   )
 })
 
@@ -47,7 +47,8 @@ test_that("daily `dates` entered in reverse order are corrected", {
   dates <- c(today, "1983-01-01")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
-  expect_message(.check_dates(dates, lonlat, temporal_api),
+  expect_message(
+    .check_dates(dates, lonlat, temporal_api),
     regexp = "*Your start and end dates were reversed.*"
   )
 })
@@ -58,7 +59,8 @@ test_that("monthly `dates` entered in reverse order are corrected", {
   dates <- c(today, "1983-01-01")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
-  expect_message(.check_dates(dates, lonlat, temporal_api),
+  expect_message(
+    .check_dates(dates, lonlat, temporal_api),
     regexp = "*Your start and end dates were reversed.*"
   )
 })
@@ -69,7 +71,8 @@ test_that("`dates` before the start of POWER data cause error", {
   dates <- c("1979-12-31", today)
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
-  expect_error(.check_dates(dates, lonlat, temporal_api),
+  expect_error(
+    .check_dates(dates, lonlat, temporal_api),
     regexp = "*1981-01-01 is the earliest available data from*"
   )
 })
@@ -79,7 +82,8 @@ test_that("`dates` after today POWER cause error", {
   tomorrow <- as.character(Sys.Date() + 1)
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
-  expect_error(.check_dates(tomorrow, lonlat, temporal_api),
+  expect_error(
+    .check_dates(tomorrow, lonlat, temporal_api),
     regexp = "The weather data cannot possibly extend beyond*"
   )
 })
@@ -89,7 +93,8 @@ test_that("Invalid `dates` are handled", {
   dates <- c("1983-01-01", "1983-02-31")
   lonlat <- c(-179.5, -89.5)
   site_elevation <- NULL
-  expect_error(.check_dates(dates, lonlat, temporal_api),
+  expect_error(
+    .check_dates(dates, lonlat, temporal_api),
     regexp = "`1983-02-31` is not a valid entry for a date value.*"
   )
 })
@@ -103,18 +108,15 @@ test_that("Dates are returned as a vector of characters", {
   expect_type(dates, "character")
 })
 
-test_that(
-  "If temporal_api == monthly and dates are specified, that only years
-  are returned",
-  {
-    temporal_api <- "monthly"
-    dates <- c("1983-01-01", "1984-01-01")
-    lonlat <- c(-179.5, -89.5)
-    site_elevation <- NULL
-    dates <- .check_dates(dates, lonlat, temporal_api)
-    expect_identical(nchar(dates[1]), 4L)
-  }
-)
+test_that("If temporal_api == monthly and dates are specified, that only years
+  are returned", {
+  temporal_api <- "monthly"
+  dates <- c("1983-01-01", "1984-01-01")
+  lonlat <- c(-179.5, -89.5)
+  site_elevation <- NULL
+  dates <- .check_dates(dates, lonlat, temporal_api)
+  expect_identical(nchar(dates[1]), 4L)
+})
 
 test_that("If temporal_api == monthly and <2 dates provided, error", {
   temporal_api <- "monthly"
@@ -287,24 +289,21 @@ test_that(".check_lonlat() checks validity of bbox lonmax values", {
   )
 })
 
-test_that(
-  ".check_lonlat() returns message with proper identifier when valid
-          coordinates are given",
-  {
-    temporal_api <- "daily"
-    test <- .check_lonlat(
-      lonlat = c(
-        -179.5,
-        88.5,
-        -179.5,
-        89.5
-      ),
-      pars
-    )
-    expect_named(test$bbox, c("xmin", "ymin", "xmax", "ymax"))
-    expect_identical(test$identifier, "regional")
-  }
-)
+test_that(".check_lonlat() returns message with proper identifier when valid
+          coordinates are given", {
+  temporal_api <- "daily"
+  test <- .check_lonlat(
+    lonlat = c(
+      -179.5,
+      88.5,
+      -179.5,
+      89.5
+    ),
+    pars
+  )
+  expect_named(test$bbox, c("xmin", "ymin", "xmax", "ymax"))
+  expect_identical(test$identifier, "regional")
+})
 
 
 # parameter checks -------------------------------------------------------------
