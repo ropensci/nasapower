@@ -35,3 +35,7 @@
 ^man/dot-match_surface_alias\.Rd$
 ^man/dot-send_query\.Rd$
 ^man/dot-send_mgmt_query\.Rd$
+
+
+# flir files
+^flir$
