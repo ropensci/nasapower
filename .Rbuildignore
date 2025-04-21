@@ -20,13 +20,12 @@
 ^CODE_OF_CONDUCT\.md$
 ^CRAN-SUBMISSION$
 
-
-# flint files
-^flint$
-
-
 # flir files
 ^flir$
+
+# Air files
+^air\.toml$
+
 ^man/dot-check_dates\.Rd$
 ^man/dot-check_inputs\.Rd$
 ^man/dot-check_lonlat\.Rd$
