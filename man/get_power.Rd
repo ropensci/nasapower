@@ -52,7 +52,7 @@ single point of x, y coordinates, not for use with \dQuote{global} or with
 a regional request.}
 
 \item{wind_elevation}{A user-supplied value for elevation at a single point
-in metres.  Wind Elevation values are required to be between 10 and 300
+in metres.  Wind elevation values are required to be between 10 and 300
 metres.  Only used with \code{lonlat} as a single point of x, y coordinates,
 not for use with \dQuote{global} or with a regional request.  If this
 parameter is provided, the \code{wind_surface} parameter is required with the

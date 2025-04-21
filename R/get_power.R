@@ -37,7 +37,7 @@
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
 #' @param wind_elevation A user-supplied value for elevation at a single point
-#'   in metres.  Wind Elevation values are required to be between 10 and 300
+#'   in metres.  Wind elevation values are required to be between 10 and 300
 #'   metres.  Only used with `lonlat` as a single point of x, y coordinates,
 #'   not for use with \dQuote{global} or with a regional request.  If this
 #'   parameter is provided, the `wind_surface` parameter is required with the
@@ -193,16 +193,15 @@
 #'
 #' @export
 get_power <- function(
-  community = c("ag", "re", "sb"),
-  pars,
-  temporal_api = c("daily", "monthly", "hourly", "climatology"),
-  lonlat,
-  dates = NULL,
-  site_elevation = NULL,
-  wind_elevation = NULL,
-  wind_surface = NULL,
-  time_standard = c("LST", "UTC")
-) {
+    community = c("ag", "re", "sb"),
+    pars,
+    temporal_api = c("daily", "monthly", "hourly", "climatology"),
+    lonlat,
+    dates = NULL,
+    site_elevation = NULL,
+    wind_elevation = NULL,
+    wind_surface = NULL,
+    time_standard = c("LST", "UTC")) {
   community <- tolower(community)
   temporal_api <- tolower(temporal_api)
   time_standard <- toupper(time_standard)
@@ -507,14 +506,13 @@ get_power <- function(
 #' @dev
 
 .check_inputs <- function(
-  community,
-  lonlat,
-  pars,
-  site_elevation,
-  temporal_api,
-  wind_elevation,
-  wind_surface
-) {
+    community,
+    lonlat,
+    pars,
+    site_elevation,
+    temporal_api,
+    wind_elevation,
+    wind_surface) {
   if (any(tolower(lonlat) == "global")) {
     # remove this if POWER enables global queries for climatology again
     cli::cli_abort(
@@ -786,15 +784,14 @@ get_power <- function(
 #'  the 'POWER' 'API'.
 #' @dev
 .build_query <- function(
-  community,
-  lonlat_identifier,
-  pars,
-  dates,
-  site_elevation,
-  wind_elevation,
-  wind_surface,
-  time_standard
-) {
+    community,
+    lonlat_identifier,
+    pars,
+    dates,
+    site_elevation,
+    wind_elevation,
+    wind_surface,
+    time_standard) {
   user_agent <- "nasapower4r"
 
   if (lonlat_identifier$identifier == "point") {

@@ -23,6 +23,10 @@
 
 # flint files
 ^flint$
+
+
+# flir files
+^flir$
 ^man/dot-check_dates\.Rd$
 ^man/dot-check_inputs\.Rd$
 ^man/dot-check_lonlat\.Rd$
@@ -35,7 +39,3 @@
 ^man/dot-match_surface_alias\.Rd$
 ^man/dot-send_query\.Rd$
 ^man/dot-send_mgmt_query\.Rd$
-
-
-# flir files
-^flir$
