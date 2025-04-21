@@ -291,7 +291,7 @@
 
 ## Bug fixes
 
-- Fix issues reported at <https://cloud.r-project.org//web/checks/check_results_nasapower.html> with failing tests.
+- Fix issues reported in CRAN checks with failing tests.
   These tests should be skipped on CRAN but were not.
 
 - Fixes bug where missing values in POWER data were not properly replaced with `NA` in `tibble` and metFile outputs
@@ -360,7 +360,7 @@
 
 ## Minor changes
 
-- Adds citation information for JOSS paper, <http://joss.theoj.org/papers/10.21105/joss.01035>
+- Adds citation information for JOSS paper, <https://joss.theoj.org/papers/10.21105/joss.01035>
 
 ## Documentation changes
 
