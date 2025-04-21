@@ -58,9 +58,9 @@
       cli::cli_abort(
         call = rlang::caller_env(),
         c(
-          i = "{.arg nopar} {?is/are} not valid in {.var pars}.",
-          x = "Check that the {.arg pars}, {.arg community} and
-            {.arg temporal_api} all align."
+          i = "{nopar} {?is/are} not valid in {.var pars}.",
+          x = "Check that the {.arg pars}, {.arg {community}} and
+            {.arg {temporal_api}} all align."
         )
       )
     }
