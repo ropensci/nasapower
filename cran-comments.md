@@ -1,10 +1,10 @@
-# nasapower 4.2.2
+# nasapower 4.2.4
 
-* This is a new minor release.
+- This is a new minor release.
 
 ## revdepcheck results
 
-We checked 4 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+We checked 5 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
-    We saw 1 new problem, **which has been resolved**
+    We saw 0 new problems
     We failed to check 0 packages
