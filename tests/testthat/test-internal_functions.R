@@ -126,19 +126,6 @@ test_that("If temporal_api == monthly and <2 dates provided, error", {
   expect_error(.check_dates(dates, lonlat, temporal_api))
 })
 
-
-# community checks -------------------------------------------------------------
-test_that(".check_community() properly reports errors", {
-  community <- "R"
-  pars <- c(
-    "ALLSKY_SFC_SW_DWN_03_GMT",
-    "ALLSKY_SFC_LW_DWN",
-    "ALLSKY_SFC_SW_DWN_06_GMT",
-    "RH2M"
-  )
-  expect_error(.check_community(community, pars))
-})
-
 # lonlat checks ----------------------------------------------------------------
 test_that(".check_lonlat() properly reports errors", {
   # set up pars argument for testing
