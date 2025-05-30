@@ -261,9 +261,9 @@ get_power <- function(
 
   # extract query results and return to user -----------------------------------
   # create meta object
-  power_data <- suppressMessages(readr::read_lines(
-    file = I(response$parse())
-  ))
+  power_data <- readr::read_lines(
+    file = I(response$parse("UTF-8"))
+  )
 
   meta <- power_data[c(
     grep("-BEGIN HEADER-", power_data):grep("-END HEADER-", power_data)
@@ -281,12 +281,12 @@ get_power <- function(
   }
 
   # create tibble object
-  power_data <- suppressMessages(readr::read_csv(
-    file = I(response$parse()),
+  power_data <- readr::read_csv(
+    file = I(response$parse("UTF-8")),
     col_types = readr::cols(),
     na = c("-999", "-999.00", "-999.0", "-99", "-99.00", "-99.0"),
     skip = length(meta) + 2L
-  ))
+  )
 
   # add lon and lat values from user's request
   power_data <- tibble::add_column(
