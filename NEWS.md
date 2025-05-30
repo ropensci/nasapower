@@ -1,3 +1,9 @@
+# nasapower 4.2.5
+
+## Bug fixes
+
+- Fixes bug where `get_power()` printed encoding messages
+
 # nasapower 4.2.4
 
 ## Bug fixes
