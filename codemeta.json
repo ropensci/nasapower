@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://github.com/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "4.2.4",
+  "version": "4.2.5",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",

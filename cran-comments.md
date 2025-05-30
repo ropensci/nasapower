@@ -1,4 +1,4 @@
-# nasapower 4.2.4
+# nasapower 4.2.5
 
 - This is a new minor release.
 
