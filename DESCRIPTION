@@ -33,7 +33,7 @@ Description: An API client for NASA POWER global meteorology, surface
     temporal resolutions depending on the POWER parameter and community.
     This work is funded through the NASA Earth Science Directorate Applied
     Science Program.  For more on the data themselves, the methodologies
-    used in creating, a web- based data viewer and web access, please see
+    used in creating, a web-based data viewer and web access, please see
     <https://power.larc.nasa.gov/>.
 License: MIT + file LICENSE
 URL: https://docs.ropensci.org/nasapower/
