@@ -17,12 +17,14 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-2815-0399", "Maëlle Salmon contributed a patch to fix issues with using the R\n              package, 'vcr', for testing the API queries, see\n                        <https://github.com/ropensci/nasapower/pull/64>.")),
     person("Phillip D.", "Alderman", , "phillip.alderman@okstate.edu", role = "ctb",
            comment = c(ORCID = "0000-0003-1467-2337", "Phillip Alderman contributed a patch to fix an issue with, 'The\n               `file` argument of `vroom()` must use `I()` for literal data as\n               of vroom 1.5.0.', see\n               <https://github.com/ropensci/nasapower/pull/67>.")),
-    person("Aleksandar", "Blagotić", , "alex@rapporter.net", role = "ctb",
+    person("Aleksandar", "Blagotić", , "alex@rapporter.net", role = c("ctb", "cph"),
            comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
-    person("Gergely", "Daróczi", , "daroczig@rapporter.net", role = "ctb",
+    person("Gergely", "Daróczi", , "daroczig@rapporter.net", role = c("ctb", "cph"),
            comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
     person("Curtin University", role = "cph",
-           comment = "Supported the development of 'nasapower' through Adam H.\n                Sparks' time.")
+           comment = "Supported the development of 'nasapower' through Adam H.\n                Sparks' time."),
+    person("James J.", "Balamuta", role = c("ctb", "cph"),
+           comment = "Author of the GitHub package 'rops', from which the '%notin%' function was taken.")
   )
 Description: An API client for NASA POWER global meteorology, surface
     solar energy and climatology data API.  POWER (Prediction Of Worldwide
@@ -66,7 +68,7 @@ NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxylint::roxylint", "devtag::dev_roclet"))
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: NASA, meteorological-data, weather, global,
