@@ -140,7 +140,7 @@
   # check to see if request failed or succeeded
   # - a custom approach this time combining status code,
   #   explanation of the code, and message from the server
-  if (response$status_code > 201) {
+  if (response$status_code > 201L) {
     mssg <- yyjsonr::read_json_raw(response$content)$message
     x <- response$status_http()
     cli::cli_abort(
