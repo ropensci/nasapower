@@ -19,7 +19,7 @@ Queries the \acronym{POWER} \acronym{API} returning detailed information on
 all (or just one) wind elevation surface alias and attribute information.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 # fetch all wind surface information
 query_surfaces()

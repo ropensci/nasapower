@@ -16,7 +16,7 @@
 )
 }
 \arguments{
-\item{community}{A validated value for community from \link{.check_community}.}
+\item{community}{A validated value for \code{community}.}
 
 \item{lonlat_identifier}{A list of values, a result of \link{.check_lonlat}.}
 

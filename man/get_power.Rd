@@ -193,7 +193,7 @@ change over time as the project matures.
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 # Fetch daily "AG" community temperature, relative humidity and
 # precipitation for January 1 1985 at Kingsthorpe, Queensland, Australia

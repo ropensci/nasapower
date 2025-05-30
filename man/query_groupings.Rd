@@ -22,7 +22,7 @@ available parameter groupings grouped by community followed by temporal
 available types of parameters.
 }
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 # fetch groupings for parameters
 query_groupings()

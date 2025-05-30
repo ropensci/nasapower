@@ -40,11 +40,12 @@ Other contributors:
  of vroom 1.5.0.', see
  <https://github.com/ropensci/nasapower/pull/67>.) [contributor]
   \item Aleksandar Blagotić \email{alex@rapporter.net} (Author of the CRAN package 'rapportools', from which
- the '.is_boolean()' was taken.) [contributor]
+ the '.is_boolean()' was taken.) [contributor, copyright holder]
   \item Gergely Daróczi \email{daroczig@rapporter.net} (Author of the CRAN package 'rapportools', from which
- the '.is_boolean()' was taken.) [contributor]
+ the '.is_boolean()' was taken.) [contributor, copyright holder]
   \item Curtin University (Supported the development of 'nasapower' through Adam H.
  Sparks' time.) [copyright holder]
+  \item James J. Balamuta (Author of the GitHub package 'rops', from which the '%notin%' function was taken.) [contributor, copyright holder]
 }
 
 }

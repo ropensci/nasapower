@@ -48,7 +48,7 @@ monthly average, maximum, and/or minimum values.}
 }
 
 \examples{
-\dontshow{if (interactive()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
 
 # fetch the complete set of attribute information for "T2M".
 query_parameters(pars = "T2M")
