@@ -61,12 +61,34 @@
       "givenName": "Gergely",
       "familyName": "Daróczi",
       "email": "daroczig@rapporter.net"
+    },
+    {
+      "@type": "Person",
+      "givenName": "James J.",
+      "familyName": "Balamuta"
     }
   ],
   "copyrightHolder": [
     {
+      "@type": "Person",
+      "givenName": "Aleksandar",
+      "familyName": "Blagotić",
+      "email": "alex@rapporter.net"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Gergely",
+      "familyName": "Daróczi",
+      "email": "daroczig@rapporter.net"
+    },
+    {
       "@type": "Organization",
       "name": "Curtin University"
+    },
+    {
+      "@type": "Person",
+      "givenName": "James J.",
+      "familyName": "Balamuta"
     }
   ],
   "maintainer": [
@@ -251,7 +273,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "503.817KB",
+  "fileSize": "503.794KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
