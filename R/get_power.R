@@ -293,7 +293,7 @@ get_power <- function(
     LON = query_list$longitude,
     LAT = query_list$latitude,
     power_data,
-    .before = 1
+    .before = 1L
   )
 
   # if the temporal average is anything but climatology, add date fields
