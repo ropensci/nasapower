@@ -24,7 +24,7 @@ It is only an API client that allows easy access to the data.
    "The data was obtained from the National Aeronautics and Space Administration (NASA) Langley Research Center (LaRC) Prediction of Worldwide Energy Resource (POWER) Project funded through the NASA Earth Science/Applied Science Program."*
 
 The previous statement that properly cites the POWER data is different than the citation for {nasapower}.
-To cite this R package, {nasapower}, please use the output from `citation(package = "nasapower")` and cite both the package manual, which includes the version you used and the paper which refers to the peer-review of the software package as the functionality of the package has changed and will likely change to match the API in the future as necessary.
+To cite this R package, {nasapower}, please use the output from `citation(package = "nasapower")`.
 
 ## About {nasapower}
 
@@ -74,7 +74,7 @@ daily_ag
 ```
 
 ```
-## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -82,7 +82,7 @@ daily_ag
 ```
 
 ```
-## ── NASA/POWER Source Native Resolution Daily Data  ────────────────────────────────────────────────────────────────
+## ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────
 ```
 
 ```
@@ -94,11 +94,13 @@ daily_ag
 ```
 
 ```
-## elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters
+## elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77
+## meters
 ```
 
 ```
-## The value for missing source data that cannot be computed or is outside of the sources availability range: NA
+## The value for missing source data that cannot be computed or is outside of the
+## sources availability range: NA
 ```
 
 ```
@@ -106,7 +108,7 @@ daily_ag
 ```
 
 ```
-## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -114,12 +116,12 @@ daily_ag
 ```
 
 ```
-## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ; PRECTOTCORR MERRA-2
-## Precipitation Corrected (mm/day)
+## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2
+## Meters (C) ; PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
 ```
 
 ```
-## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ────────────────────────────────────────────────────────────────────────────────
 ## # A tibble: 1 × 10
 ##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
 ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
@@ -141,7 +143,7 @@ By contributing to this project, you agree to abide by its terms.
 
 ### Citing {nasapower}
 
-When citing the use of this package, please use,
+When citing the use of this package, please use the output from,
 
 
 ``` r
@@ -152,8 +154,9 @@ citation("nasapower")
 ```
 ## To cite package 'nasapower' in publications use:
 ## 
-##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology
-##   Data Client for R." _The Journal of Open Source Software_, *3*(30), 1035. doi:10.21105/joss.01035
+##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface
+##   Solar Energy and Climatology Data Client for R." _The Journal of Open
+##   Source Software_, *3*(30), 1035. doi:10.21105/joss.01035
 ##   <https://doi.org/10.21105/joss.01035>.
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -179,6 +182,7 @@ citation("nasapower")
 <https://power.larc.nasa.gov/docs/methodology/>
 
 ## Contributors
+
 
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -326,7 +330,7 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <tr>
 <td align="center">
 <a href="https://github.com/kauedesousa">
-<img src="https://avatars.githubusercontent.com/u/29840771?u=87ae78a7053c64125e0570d013755d4b16f103ca&v=4" width="100px;" alt=""/>
+<img src="https://avatars.githubusercontent.com/u/29840771?u=f1b1103953d33dcbe2f7271a9133e0730944df94&v=4" width="100px;" alt=""/>
 </a><br>
 <a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Akauedesousa">kauedesousa</a>
 </td>
@@ -400,6 +404,18 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 </a><br>
 <a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3AGonzalo1985">Gonzalo1985</a>
 </td>
+<td align="center">
+<a href="https://github.com/n8layman">
+<img src="https://avatars.githubusercontent.com/u/25353944?u=b685bb9c84abf5324323a6e467e07b11f6ccb5a2&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3An8layman">n8layman</a>
+</td>
+<td align="center">
+<a href="https://github.com/kevinwolz">
+<img src="https://avatars.githubusercontent.com/u/11711566?u=c380c7f3de15f7ad939f3d1a4d6a57225c1697c7&v=4" width="100px;" alt=""/>
+</a><br>
+<a href="https://github.com/ropensci/nasapower/issues?q=is%3Aissue+author%3Akevinwolz">kevinwolz</a>
+</td>
 </tr>
 
 </table>
@@ -453,4 +469,5 @@ All contributions to this project are gratefully acknowledged using the [`allcon
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 
