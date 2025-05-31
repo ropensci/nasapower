@@ -81,10 +81,9 @@ header of metadata is included in this object.
 Get \acronym{POWER} global meteorology and surface solar energy
 climatology data and return a tidy data frame \CRANpkg{tibble} object.  All
 options offered by the official \acronym{POWER} \acronym{API} are
-supported.  Requests are formed to submit one request per point.
-There is no need to make synchronous requests for multiple parameters for
-a single point or regional request.  See section on \dQuote{Rate Limiting}
-for more.
+supported.  Requests are formed to submit one request per point.  There is
+no need to make synchronous requests for multiple parameters for a single
+point or regional request.  See section on \dQuote{Rate Limiting} for more.
 }
 \note{
 The associated metadata shown in the decorative header are not saved

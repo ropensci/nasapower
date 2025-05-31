@@ -3,10 +3,9 @@
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
 #'   climatology data and return a tidy data frame \CRANpkg{tibble} object.  All
 #'   options offered by the official \acronym{POWER} \acronym{API} are
-#'   supported.  Requests are formed to submit one request per point.
-#'   There is no need to make synchronous requests for multiple parameters for
-#'   a single point or regional request.  See section on \dQuote{Rate Limiting}
-#'   for more.
+#'   supported.  Requests are formed to submit one request per point.  There is
+#'   no need to make synchronous requests for multiple parameters for a single
+#'   point or regional request.  See section on \dQuote{Rate Limiting} for more.
 #'
 #' @param community A case-insensitive character vector providing community
 #'   name: \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for
