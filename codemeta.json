@@ -273,7 +273,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "505.027KB",
+  "fileSize": "504.99KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
