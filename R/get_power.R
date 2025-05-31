@@ -1,9 +1,9 @@
 #' Get NASA POWER data from the POWER API
 #'
 #' @description Get \acronym{POWER} global meteorology and surface solar energy
-#'   climatology data and return a tidy data frame [tibble::tibble()]
-#'   object.  All options offered by the official \acronym{POWER} \acronym{API}
-#'   are supported.  Requests are formed to submit one request per point.
+#'   climatology data and return a tidy data frame \CRANpkg{tibble} object.  All
+#'   options offered by the official \acronym{POWER} \acronym{API} are
+#'   supported.  Requests are formed to submit one request per point.
 #'   There is no need to make synchronous requests for multiple parameters for
 #'   a single point or regional request.  See section on \dQuote{Rate Limiting}
 #'   for more.
@@ -146,7 +146,7 @@
 #'   format, *e.g.*, .Rdata, .rda or .rds.
 #'
 #' @returns A data frame as a `POWER.Info` class, an extension of the
-#' [tibble::tibble], object of \acronym{POWER} data including location, dates
+#' \CRANpkg{tibble}, object of \acronym{POWER} data including location, dates
 #' (not including \dQuote{climatology}) and requested parameters; a decorative
 #' header of metadata is included in this object.
 #'
