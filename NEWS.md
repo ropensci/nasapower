@@ -1,3 +1,10 @@
+# nasapower 4.2.5.9000
+
+## Bug fixes
+
+- Fixes outdated examples where fetching more than one parameter per region was illustrated.
+  The API changed without warning to disallow this and a change was made to the package to stop it, but I forgot to update the examples.
+
 # nasapower 4.2.5
 
 ## Bug fixes
