@@ -47,13 +47,13 @@ daily_single_ag
 
 ### Example fetching daily data for an area
 
-Fetch daily "ag" community relative humidity and temperature for south east Queensland region.
+Fetch daily "ag" community relative humidity for south east Queensland region.
 
 ```{r daily-region}
 daily_region_ag <- get_power(
   community = "ag",
-  lonlat = c(150.5, -28.5 , 153.5, -25.5),
-  pars = c("RH2M", "T2M"),
+  lonlat = c(150.5, -28.5, 153.5, -25.5),
+  pars = "RH2M",
   dates = c("1985-01-01", "1985-01-02"),
   temporal_api = "daily"
 )
@@ -63,17 +63,28 @@ daily_region_ag
 
 ### Example fetching interannual data for an area
 
-Fetch interannual solar cooking parameters for south east Queensland region.
+Fetch interannual solar cooking parameters for south east Queensland region and create a single data frame of the data.
 
 ```{r interannual}
-interannual_re <- get_power(
+interannual_clrsky <- get_power(
   community = "re",
-  lonlat = c(150.5, -28.5 , 153.5, -25.5),
+  lonlat = c(150.5, -28.5, 153.5, -25.5),
   dates = c("1984", "1985"),
   temporal_api = "monthly",
-  pars = c("CLRSKY_SFC_SW_DWN",
-           "ALLSKY_SFC_SW_DWN")
+  pars = "CLRSKY_SFC_SW_DWN"
 )
+
+interannual_allsky <- get_power(
+  community = "re",
+  lonlat = c(150.5, -28.5, 153.5, -25.5),
+  dates = c("1984", "1985"),
+  temporal_api = "monthly",
+  pars = "ALLSKY_SFC_SW_DWN"
+)
+
+interannual_list <- list(interannual_clrsky, interannual_allsky)
+
+interannual_re <- do.call("rbind", interannual_list)
 
 interannual_re
 ```
