@@ -217,15 +217,27 @@ ag_c_point <- get_power(
 ag_c_point
 
 # Fetch interannual solar cooking parameters for a given region
-sse_i <- get_power(
-  community = "RE",
-  lonlat = c(112.5, -55.5, 115.5, -50.5),
+interannual_clrsky <- get_power(
+  community = "re",
+  lonlat = c(150.5, -28.5, 153.5, -25.5),
   dates = c("1984", "1985"),
   temporal_api = "monthly",
-  pars = c("CLRSKY_SFC_SW_DWN", "ALLSKY_SFC_SW_DWN")
+  pars = "CLRSKY_SFC_SW_DWN"
 )
 
-sse_i
+interannual_allsky <- get_power(
+  community = "re",
+  lonlat = c(150.5, -28.5, 153.5, -25.5),
+  dates = c("1984", "1985"),
+  temporal_api = "monthly",
+  pars = "ALLSKY_SFC_SW_DWN"
+)
+
+interannual_list <- list(interannual_clrsky, interannual_allsky)
+
+interannual_re <- do.call("rbind", interannual_list)
+
+interannual_re
 \dontshow{\}) # examplesIf}
 }
 \references{
