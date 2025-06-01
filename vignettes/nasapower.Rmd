@@ -115,7 +115,7 @@ daily_region_ag
 
 ### Example fetching interannual data for an area
 
-Fetch interannual solar cooking parameters for south east Queensland region and create a single data frame of the data.
+Fetch interannual solar cooking parameters for south east Queensland region and create a single data.
 
 
 ``` r
