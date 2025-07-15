@@ -13,7 +13,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
+  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -273,7 +273,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "505.759KB",
+  "fileSize": "505.207KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

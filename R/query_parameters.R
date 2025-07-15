@@ -61,31 +61,14 @@ query_parameters <- function(
   community_vals <- c("AG", "RE", "SB")
   temporal_api_vals <- c("DAILY", "MONTHLY", "HOURLY", "CLIMATOLOGY")
 
-  # if the args for `community` and `temporal_api` are not empty, check and
-  # then reset `community_vals` and `temporal_api_vals` for use later
+  community <- tolower(community)
+  temporal_api <- tolower(temporal_api)
 
-  if (!is.null(community)) {
-    community <- toupper(community)
-
-    if (community %notin% community_vals) {
-      cli::cli_abort(c(
-        x = "{.arg community} does not match any valid values for {.var community}."
-      ))
-    }
-    community_vals <- community
-  }
-
-  if (!is.null(temporal_api)) {
-    temporal_api <- toupper(temporal_api)
-    if (temporal_api %notin% temporal_api_vals) {
-      cli::cli_abort(
-        c(
-          x = "{.arg temporal_api} does not match any valid values for {.var temporal_api}."
-        )
-      )
-    }
-    temporal_api_vals <- temporal_api
-  }
+  community <- rlang::arg_match(community, c("ag", "re", "sb"))
+  temporal_api <- rlang::arg_match(
+    temporal_api,
+    c("daily", "monthly", "hourly", "climatology")
+  )
 
   if (!is.null(pars)) {
     pars <- toupper(pars)
