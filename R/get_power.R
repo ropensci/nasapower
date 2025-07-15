@@ -204,23 +204,26 @@
 #'
 #' @export
 get_power <- function(
-  community = c("ag", "re", "sb"),
+  community,
   pars,
-  temporal_api = c("daily", "monthly", "hourly", "climatology"),
+  temporal_api,
   lonlat,
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
   wind_surface = NULL,
-  time_standard = c("LST", "UTC")
+  time_standard = "LST"
 ) {
   community <- tolower(community)
   temporal_api <- tolower(temporal_api)
   time_standard <- toupper(time_standard)
 
-  community <- rlang::arg_match(community)
-  temporal_api <- rlang::arg_match(temporal_api)
-  time_standard <- rlang::arg_match(time_standard)
+  community <- rlang::arg_match(community, c("ag", "re", "sb"))
+  temporal_api <- rlang::arg_match(
+    temporal_api,
+    c("daily", "monthly", "hourly", "climatology")
+  )
+  time_standard <- rlang::arg_match(time_standard, c("LST", "UTC"))
 
   wind_surface <- .match_surface_alias(wind_surface)
 

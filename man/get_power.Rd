@@ -5,15 +5,15 @@
 \title{Get NASA POWER data from the POWER API}
 \usage{
 get_power(
-  community = c("ag", "re", "sb"),
+  community,
   pars,
-  temporal_api = c("daily", "monthly", "hourly", "climatology"),
+  temporal_api,
   lonlat,
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
   wind_surface = NULL,
-  time_standard = c("LST", "UTC")
+  time_standard = "LST"
 )
 }
 \arguments{
