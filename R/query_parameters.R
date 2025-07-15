@@ -61,15 +61,17 @@ query_parameters <- function(
   community_vals <- c("AG", "RE", "SB")
   temporal_api_vals <- c("DAILY", "MONTHLY", "HOURLY", "CLIMATOLOGY")
 
-  community <- tolower(community)
-  temporal_api <- tolower(temporal_api)
-
-  community <- rlang::arg_match(community, c("ag", "re", "sb"))
-  temporal_api <- rlang::arg_match(
-    temporal_api,
-    c("daily", "monthly", "hourly", "climatology")
-  )
-
+  if (!is.null(community)) {
+    community <- toupper(community)
+    community_vals <- rlang::arg_match(community, community_vals)
+  }
+  if (!is.null(temporal_api)) {
+    temporal_api <- toupper(temporal_api)
+    temporal_api_vals <- rlang::arg_match(
+      temporal_api,
+      temporal_api_vals
+    )
+  }
   if (!is.null(pars)) {
     pars <- toupper(pars)
     pars <-
