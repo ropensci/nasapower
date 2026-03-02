@@ -1,6 +1,10 @@
 # vignette that depends on Internet access need to be pre-compiled and takes a
 # while to run
+library("devtools")
 library("knitr")
+
+install() # esure we're using the latest version of nasapower
+
 knit("vignettes/nasapower.Rmd.orig", "vignettes/nasapower.Rmd")
 
 # remove file path such that vignettes will build with figures
