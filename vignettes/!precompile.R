@@ -15,7 +15,6 @@ writeLines(replace, fileConn)
 close(fileConn)
 
 # build vignette
-library("devtools")
 build_vignettes()
 
 # move resource files to /docs
