@@ -37,21 +37,20 @@ daily_single_ag <- get_power(
 )
 
 daily_single_ag
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────
+#> ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────────────────────
 #> Dates (month/day/year): 01/01/1985 through 01/31/1985 in LST
 #> Location: latitude -27.48 longitude 151.81
-#> elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77
-#> meters
-#> The value for missing source data that cannot be computed or is outside of the
-#> sources availability range: NA
+#> elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
-#> RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2
-#> Meters (C) ; PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
-#> ────────────────────────────────────────────────────────────────────────────────
+#> RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ;
+#> PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 31 × 10
 #>      LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
 #>    <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
@@ -83,20 +82,19 @@ daily_region_ag <- get_power(
 )
 
 daily_region_ag
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────
+#> ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────────────────────
 #> Dates (month/day/year): 01/01/1985 through 01/02/1985 in LST
 #> Location: Regional
-#> elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na
-#> meters
-#> The value for missing source data that cannot be computed or is outside of the
-#> sources availability range: NA
+#> elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na meters
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
 #> RH2M MERRA-2 Relative Humidity at 2 Meters (%)
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 70 × 8
 #>      LAT   LON  YEAR    MM    DD   DOY YYYYMMDD    RH2M
 #>    <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl>
@@ -140,36 +138,34 @@ interannual_list <- list(interannual_clrsky, interannual_allsky)
 interannual_re <- do.call("rbind", interannual_list)
 
 interannual_re
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER Source Native Resolution Monthly and Annual  ─────────────────────
+#> ── NASA/POWER Source Native Resolution Monthly and Annual  ─────────────────────────────────────
 #> Dates (month/day/year): 01/01/1984 through 12/31/1985 in LST
 #> Location: Regional
-#> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na
-#> meters
-#> The value for missing source data that cannot be computed or is outside of the
-#> sources availability range: NA
+#> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = na meters
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> Parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
-#> CLRSKY_SFC_SW_DWN CERES SYN1deg Clear Sky Surface Shortwave Downward Irradiance
-#> (kW-hr/m^2/day)
-#> ────────────────────────────────────────────────────────────────────────────────
+#> CLRSKY_SFC_SW_DWN CERES SYN1deg Clear Sky Surface Shortwave Downward Irradiance (kW-hr/m^2/day)
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 64 × 17
-#>    PARAMETER    YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG
-#>    <chr>       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#>  1 CLRSKY_SFC…  1984 -25.5  150.  8.48  7.99  7.05  5.80  4.80  4.31  4.60  5.50
-#>  2 CLRSKY_SFC…  1984 -25.5  152.  8.43  7.92  7.00  5.71  4.74  4.24  4.56  5.46
-#>  3 CLRSKY_SFC…  1984 -25.5  152.  8.35  7.85  6.91  5.65  4.70  4.21  4.46  5.26
-#>  4 CLRSKY_SFC…  1984 -25.5  154.  8.26  7.76  6.79  5.56  4.56  4.13  4.28  5.23
-#>  5 CLRSKY_SFC…  1984 -26.5  150.  8.52  8.00  7.00  5.72  4.72  4.16  4.49  5.46
-#>  6 CLRSKY_SFC…  1984 -26.5  152.  8.56  7.98  6.95  5.65  4.68  4.16  4.47  5.44
-#>  7 CLRSKY_SFC…  1984 -26.5  152.  8.43  7.97  6.91  5.63  4.62  4.12  4.41  5.38
-#>  8 CLRSKY_SFC…  1984 -26.5  154.  8.33  7.81  6.77  5.48  4.45  4.00  4.18  5.17
-#>  9 CLRSKY_SFC…  1984 -27.5  150.  8.58  7.96  6.99  5.62  4.62  4.04  4.33  5.39
-#> 10 CLRSKY_SFC…  1984 -27.5  152.  8.55  7.97  6.92  5.59  4.55  4.03  4.32  5.33
+#>    PARAMETER  YEAR   LAT   LON   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV
+#>    <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#>  1 CLRSKY_S…  1984 -25.5  150.  8.48  7.99  7.05  5.80  4.80  4.31  4.60  5.50  6.83  7.72  8.61
+#>  2 CLRSKY_S…  1984 -25.5  152.  8.43  7.92  7.00  5.71  4.74  4.24  4.56  5.46  6.78  7.63  8.48
+#>  3 CLRSKY_S…  1984 -25.5  152.  8.35  7.85  6.91  5.65  4.70  4.21  4.46  5.26  6.62  7.51  8.40
+#>  4 CLRSKY_S…  1984 -25.5  154.  8.26  7.76  6.79  5.56  4.56  4.13  4.28  5.23  6.45  7.38  8.19
+#>  5 CLRSKY_S…  1984 -26.5  150.  8.52  8.00  7.00  5.72  4.72  4.16  4.49  5.46  6.83  7.83  8.63
+#>  6 CLRSKY_S…  1984 -26.5  152.  8.56  7.98  6.95  5.65  4.68  4.16  4.47  5.44  6.81  7.72  8.64
+#>  7 CLRSKY_S…  1984 -26.5  152.  8.43  7.97  6.91  5.63  4.62  4.12  4.41  5.38  6.72  7.61  8.49
+#>  8 CLRSKY_S…  1984 -26.5  154.  8.33  7.81  6.77  5.48  4.45  4.00  4.18  5.17  6.40  7.42  8.36
+#>  9 CLRSKY_S…  1984 -27.5  150.  8.58  7.96  6.99  5.62  4.62  4.04  4.33  5.39  6.79  7.81  8.83
+#> 10 CLRSKY_S…  1984 -27.5  152.  8.55  7.97  6.92  5.59  4.55  4.03  4.32  5.33  6.74  7.70  8.64
 #> # ℹ 54 more rows
-#> # ℹ 5 more variables: SEP <dbl>, OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
+#> # ℹ 2 more variables: DEC <dbl>, ANN <dbl>
 ```
 
 ### Example fetching climatology data
@@ -189,29 +185,27 @@ climatology_ag <- get_power(
 )
 
 climatology_ag
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> 
-#> ── NASA/POWER Source Native Resolution Climatology in LST ──────────────────────
-#> 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 -
-#> December 2020)
+#> ── NASA/POWER Source Native Resolution Climatology in LST ──────────────────────────────────────
+#> 20-year Meteorological and Solar Monthly & Annual Climatologies (January 2001 - December 2020)
 #> Location: Latitude -27.48 Longitude 151.81
-#> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77
-#> meters
-#> The value for missing source data that cannot be computed or is outside of the
-#> sources availability range: NA
+#> Elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters
+#> The value for missing source data that cannot be computed or is outside of the sources
+#> availability range: NA
 #> Parameter(s):
-#> ────────────────────────────────────────────────────────────────────────────────
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> Parameters:
-#> RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2
-#> Meters (C) ; Message(s): ; The requested parameters are retrieved from a
-#> pre-computed climatological period (January 2001 - December 2020)
-#> ────────────────────────────────────────────────────────────────────────────────
+#> RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ;
+#> Message(s): ; The requested parameters are retrieved from a pre-computed climatological period
+#> (January 2001 - December 2020)
+#> ────────────────────────────────────────────────────────────────────────────────────────────────
 #> # A tibble: 2 × 16
-#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP
-#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
-#> 1  152. -27.5 RH2M       64.7  69.6  71.1  70.5  69.2  75.1  70.4  63.1  59.9
-#> 2  152. -27.5 T2M        24.6  23.7  22.0  19    15.1  12.6  11.6  13.1  16.9
-#> # ℹ 4 more variables: OCT <dbl>, NOV <dbl>, DEC <dbl>, ANN <dbl>
+#>     LON   LAT PARAMETER   JAN   FEB   MAR   APR   MAY   JUN   JUL   AUG   SEP   OCT   NOV   DEC
+#>   <dbl> <dbl> <chr>     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+#> 1  152. -27.5 RH2M       64.7  69.6  71.1  70.5  69.2  75.1  70.4  63.1  59.9  59.4  60.3  63.3
+#> 2  152. -27.5 T2M        24.6  23.7  22.0  19    15.1  12.6  11.6  13.1  16.9  20.0  22.2  23.7
+#> # ℹ 1 more variable: ANN <dbl>
 ```
 
 _Note_ the associated metadata in the data frame header are not saved if the data are exported to a file format other than an R data format, _e.g._, .Rdata, .rda or .rds.
