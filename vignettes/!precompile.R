@@ -3,7 +3,7 @@
 library("devtools")
 library("knitr")
 
-install() # esure we're using the latest version of nasapower
+install() # ensure we're using the latest version of nasapower
 
 knit("vignettes/nasapower.Rmd.orig", "vignettes/nasapower.Rmd")
 
