@@ -1,7 +1,7 @@
 ---
 title: "Fetch NASA-POWER Parameters and Include Them as an Internal List"
 author: "Adam H. Sparks"
-date: "2026-03-02"
+date: "2026-05-17"
 output: github_document
 ---
 
@@ -129,56 +129,56 @@ sessioninfo::session_info()
 ```
 
 ```
-## ─ Session info ───────────────────────────────────────────────────────────────
+## ─ Session info ───────────────────────────────────────────────────────────────────────────────
 ##  setting  value
-##  version  R version 4.5.2 (2025-10-31)
-##  os       macOS Tahoe 26.3
-##  system   aarch64, darwin20
+##  version  R version 4.6.0 (2026-04-24)
+##  os       macOS Tahoe 26.5
+##  system   aarch64, darwin23
 ##  ui       X11
 ##  language (EN)
 ##  collate  en_AU.UTF-8
 ##  ctype    en_AU.UTF-8
 ##  tz       Australia/Perth
-##  date     2026-03-02
-##  pandoc   3.9 @ /opt/homebrew/bin/pandoc
-##  quarto   1.8.27 @ /usr/local/bin/quarto
+##  date     2026-05-17
+##  pandoc   3.9.0.2 @ /opt/homebrew/bin/pandoc
+##  quarto   1.9.37 @ /usr/local/bin/quarto
 ## 
-## ─ Packages ───────────────────────────────────────────────────────────────────
-##  package          * version date (UTC) lib source
-##  askpass            1.2.1   2024-10-04 [1] CRAN (R 4.5.2)
-##  base64enc          0.1-6   2026-02-02 [1] CRAN (R 4.5.2)
-##  cli                3.6.5   2025-04-23 [1] CRAN (R 4.5.2)
-##  credentials        2.0.3   2025-09-12 [1] CRAN (R 4.5.2)
-##  curl               7.0.0   2025-08-19 [1] CRAN (R 4.5.2)
-##  desc               1.4.3   2023-12-10 [1] CRAN (R 4.5.2)
-##  evaluate           1.0.5   2025-08-27 [1] CRAN (R 4.5.2)
-##  fs                 1.6.6   2025-04-12 [1] CRAN (R 4.5.2)
-##  glue               1.8.0   2024-09-30 [1] CRAN (R 4.5.2)
-##  jsonlite         * 2.0.0   2025-03-27 [1] CRAN (R 4.5.2)
-##  knitr            * 1.51    2025-12-20 [1] CRAN (R 4.5.2)
-##  lifecycle          1.0.5   2026-01-08 [1] CRAN (R 4.5.2)
-##  magrittr           2.0.4   2025-09-12 [1] CRAN (R 4.5.2)
-##  nvimcom          * 0.9.86  2026-02-15 [1] local
-##  openssl            2.3.5   2026-02-26 [1] CRAN (R 4.5.2)
-##  otel               0.2.0   2025-08-29 [1] CRAN (R 4.5.2)
-##  pillar             1.11.1  2025-09-17 [1] CRAN (R 4.5.2)
-##  pkgconfig          2.0.3   2019-09-22 [1] CRAN (R 4.5.2)
-##  purrr            * 1.2.1   2026-01-09 [1] CRAN (R 4.5.2)
-##  R6                 2.6.1   2025-02-15 [1] CRAN (R 4.5.2)
-##  Rcpp               1.1.1   2026-01-10 [1] CRAN (R 4.5.2)
-##  rlang              1.1.7   2026-01-09 [1] CRAN (R 4.5.2)
-##  rprojroot          2.1.1   2025-08-26 [1] CRAN (R 4.5.2)
-##  sessioninfo        1.2.3   2025-02-05 [1] CRAN (R 4.5.2)
-##  sys                3.4.3   2024-10-04 [1] CRAN (R 4.5.2)
-##  terminalgraphics   0.2.1   2025-11-26 [1] CRAN (R 4.5.2)
-##  tibble             3.3.1   2026-01-11 [1] CRAN (R 4.5.2)
-##  usethis            3.2.1   2025-09-06 [1] CRAN (R 4.5.2)
-##  vctrs              0.7.1   2026-01-23 [1] CRAN (R 4.5.2)
-##  xfun               0.56    2026-01-18 [1] CRAN (R 4.5.2)
+## ─ Packages ───────────────────────────────────────────────────────────────────────────────────
+##  package          * version   date (UTC) lib source
+##  askpass            1.2.1     2024-10-04 [1] CRAN (R 4.6.0)
+##  base64enc          0.1-6     2026-02-02 [1] CRAN (R 4.6.0)
+##  cli                3.6.6     2026-04-09 [1] CRAN (R 4.6.0)
+##  credentials        2.0.3     2025-09-12 [1] CRAN (R 4.6.0)
+##  curl               7.1.0     2026-04-22 [1] CRAN (R 4.6.0)
+##  desc               1.4.3     2023-12-10 [1] CRAN (R 4.6.0)
+##  evaluate           1.0.5     2025-08-27 [1] CRAN (R 4.6.0)
+##  fs                 2.1.0     2026-04-18 [1] CRAN (R 4.6.0)
+##  glue               1.8.1     2026-04-17 [1] CRAN (R 4.6.0)
+##  jsonlite         * 2.0.0     2025-03-27 [1] CRAN (R 4.6.0)
+##  knitr            * 1.51      2025-12-20 [1] CRAN (R 4.6.0)
+##  lifecycle          1.0.5     2026-01-08 [1] CRAN (R 4.6.0)
+##  magrittr           2.0.5     2026-04-04 [1] CRAN (R 4.6.0)
+##  nvimcom          * 0.9.94    2026-05-03 [1] local
+##  openssl            2.4.1     2026-05-14 [1] CRAN (R 4.6.0)
+##  otel               0.2.0     2025-08-29 [1] CRAN (R 4.6.0)
+##  pillar             1.11.1    2025-09-17 [1] CRAN (R 4.6.0)
+##  pkgconfig          2.0.3     2019-09-22 [1] CRAN (R 4.6.0)
+##  purrr            * 1.2.2     2026-04-10 [1] CRAN (R 4.6.0)
+##  R6                 2.6.1     2025-02-15 [1] CRAN (R 4.6.0)
+##  Rcpp               1.1.1-1.1 2026-04-24 [1] CRAN (R 4.6.0)
+##  rlang              1.2.0     2026-04-06 [1] CRAN (R 4.6.0)
+##  rprojroot          2.1.1     2025-08-26 [1] CRAN (R 4.6.0)
+##  sessioninfo        1.2.3     2025-02-05 [1] CRAN (R 4.6.0)
+##  sys                3.4.3     2024-10-04 [1] CRAN (R 4.6.0)
+##  terminalgraphics   0.3.0     2026-05-01 [1] CRAN (R 4.6.0)
+##  tibble             3.3.1     2026-01-11 [1] CRAN (R 4.6.0)
+##  usethis            3.2.1     2025-09-06 [1] CRAN (R 4.6.0)
+##  vctrs              0.7.3     2026-04-11 [1] CRAN (R 4.6.0)
+##  xfun               0.57      2026-03-20 [1] CRAN (R 4.6.0)
 ## 
-##  [1] /Users/adamsparks/Library/R/arm64/4.5/library
-##  [2] /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library
+##  [1] /Users/adamsparks/Library/R/arm64/4.6/library
+##  [2] /Library/Frameworks/R.framework/Versions/4.6/Resources/library
 ##  * ── Packages attached to the search path.
 ## 
-## ──────────────────────────────────────────────────────────────────────────────
+## ──────────────────────────────────────────────────────────────────────────────────────────────
 ```
