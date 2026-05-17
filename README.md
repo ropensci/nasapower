@@ -72,7 +72,7 @@ daily_ag
 ```
 
 ```
-## ────────────────────────────────────────────────────────────────────────────────
+## ────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -80,7 +80,7 @@ daily_ag
 ```
 
 ```
-## ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────
+## ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────────────────────
 ```
 
 ```
@@ -92,13 +92,12 @@ daily_ag
 ```
 
 ```
-## elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77
-## meters
+## elevation from MERRA-2: Average for 0.5 x 0.625 degree lat/lon region = 442.77 meters
 ```
 
 ```
-## The value for missing source data that cannot be computed or is outside of the
-## sources availability range: NA
+## The value for missing source data that cannot be computed or is outside of the sources
+## availability range: NA
 ```
 
 ```
@@ -106,7 +105,7 @@ daily_ag
 ```
 
 ```
-## ────────────────────────────────────────────────────────────────────────────────
+## ────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -114,12 +113,12 @@ daily_ag
 ```
 
 ```
-## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2
-## Meters (C) ; PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
+## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ;
+## PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
 ```
 
 ```
-## ────────────────────────────────────────────────────────────────────────────────
+## ────────────────────────────────────────────────────────────────────────────────────────────────
 ## # A tibble: 1 × 10
 ##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
 ##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
@@ -152,10 +151,9 @@ citation("nasapower")
 ```
 ## To cite package 'nasapower' in publications use:
 ## 
-##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface
-##   Solar Energy and Climatology Data Client for R." _The Journal of Open
-##   Source Software_, *3*(30), 1035. doi:10.21105/joss.01035
-##   <https://doi.org/10.21105/joss.01035>.
+##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy
+##   and Climatology Data Client for R." _The Journal of Open Source Software_, *3*(30),
+##   1035. doi:10.21105/joss.01035 <https://doi.org/10.21105/joss.01035>.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
