@@ -15,7 +15,7 @@ If you’ve found a bug, create an associated issue and illustrate the bug with 
 ### Pull request process
 
 - We recommend that you create a Git branch for each pull request (PR).
-- Look at the Travis and AppVeyor build status before and after making changes.
+- Look at the CI build status before and after making changes.
   The `README` should contain badges for any continuous integration services used by the package.
 - We recommend the tidyverse [style guide](http://style.tidyverse.org).
   You can use the [styler](https://CRAN.R-project.org/package=styler) package or the [Air formatter](https://posit-dev.github.io/air/formatter.html) to apply these styles, but please don't restyle code that has nothing to do with your PR.
