@@ -58,6 +58,7 @@ VignetteBuilder:
     knitr
 Config/Needs/build: moodymudskipper/devtag
 Config/Needs/documentation: roxylint
+Config/roxygen2/version: 8.0.0
 Config/roxylint: list(linters = roxylint::tidy)
 Config/testthat/edition: 3
 Config/testthat/parallel: true
@@ -67,7 +68,6 @@ NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE, roclets = c("collate", "namespace", "rd",
     "roxylint::roxylint", "devtag::dev_roclet"))
-RoxygenNote: 7.3.3
 X-schema.org-applicationCategory: Tools
 X-schema.org-isPartOf: https://ropensci.org
 X-schema.org-keywords: NASA, meteorological-data, weather, global,
