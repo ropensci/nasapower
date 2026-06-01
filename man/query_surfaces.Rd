@@ -8,23 +8,22 @@ query_surfaces(surface_alias = NULL)
 }
 \arguments{
 \item{surface_alias}{An optional character vector providing a wind surface
-alias available from the \acronym{POWER} \acronym{API}.  All values are
-returned if this value is not provided.}
+alias available from the POWER API. All values are returned if not
+provided.}
 }
 \value{
-A \link{list} object of information for the requested wind surface(s).
+A list object of information for the requested wind surface(s).
 }
 \description{
-Queries the \acronym{POWER} \acronym{API} returning detailed information on
-all (or just one) wind elevation surface alias and attribute information.
+Queries the POWER API returning detailed information on all (or just one)
+wind elevation surface alias and attribute information.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-
-# fetch all wind surface information
+# Fetch all wind surface information
 query_surfaces()
 
-# fetch surface information for `airportgrass`
+# Fetch surface information for "airportgrass"
 query_surfaces(surface_alias = "airportgrass")
 \dontshow{\}) # examplesIf}
 }

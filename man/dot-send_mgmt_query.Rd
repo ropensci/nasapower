@@ -2,19 +2,21 @@
 % Please edit documentation in R/internal_functions.R
 \name{.send_mgmt_query}
 \alias{.send_mgmt_query}
-\title{Sends the query to the POWER management API}
+\title{Send Query to POWER Management API}
 \usage{
 .send_mgmt_query(.url)
 }
 \arguments{
-\item{.url}{A character string of the URL to be used for the \acronym{API}
-query.}
+\item{.url}{A character string of the URL to be used for the API query.}
 }
 \value{
-A response from the POWER server containing either an error message
-or the data requested.
+The HTTP response object from the POWER server containing either
+an error message or the requested data.
 }
 \description{
-There are no parameters that these API end points accept.
+Sends the query to the POWER management API.
+}
+\details{
+Note: The management API endpoints do not accept parameters.
 }
 \keyword{internal}

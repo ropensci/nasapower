@@ -2,7 +2,7 @@
 % Please edit documentation in R/query_parameters.R
 \name{query_parameters}
 \alias{query_parameters}
-\title{Query the POWER API for detailed information on available parameters}
+\title{Query the POWER API for Detailed Information on Available Parameters}
 \usage{
 query_parameters(
   community = NULL,
@@ -13,56 +13,56 @@ query_parameters(
 }
 \arguments{
 \item{community}{An optional character vector providing community name:
-\dQuote{ag}, \dQuote{sb} or \dQuote{re}.}
+"ag", "sb", or "re".}
 
-\item{pars}{An optional character string of a single solar, meteorological or
-climatology parameter to query.  If none is provided, all are returned.}
+\item{pars}{An optional character string of a single solar, meteorological,
+or climatology parameter to query. If not provided, all parameters are
+returned.}
 
 \item{temporal_api}{An optional character vector indicating the temporal
-\acronym{API} end-point for data being queried, supported values are
-\dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or \dQuote{climatology}.}
+API endpoint for data being queried. Supported values are "hourly",
+"daily", "monthly", or "climatology".}
 
-\item{metadata}{\code{Boolean}; retrieve extra parameter metadata?  This is only
-applicable if you supply the \code{community} and \code{temporal_api}, if these
-values are not provided it will be ignored.  Defaults to \code{FALSE}.}
+\item{metadata}{Boolean; retrieve extra parameter metadata? This is only
+applicable if you supply both \code{community} and \code{temporal_api}; otherwise
+it will be ignored. Defaults to \code{FALSE}.}
 }
 \value{
-A \link{list} object of information for the requested parameter(s) (if
-requested), community(ies) and temporal \acronym{API}(s).
+A list object of information for the requested parameter(s),
+community(ies), and temporal API(s).
 }
 \description{
-Queries the \acronym{POWER} \acronym{API} returning detailed information on
-available parameters.  For a list of all available parameters, use
-\code{parameters}
+Queries the POWER API returning detailed information on available parameters.
+For a list of all available parameters, see \code{parameters}.
 }
 \section{Argument details for \code{temporal_api}}{
- There are four valid values.
+
+There are four valid values:
 \describe{
-\item{hourly}{The hourly average of \code{pars} by hour, day, month and year.}
-\item{daily}{The daily average of \code{pars} by day, month and year.}
-\item{monthly}{The monthly average of \code{pars} by month and year.}
-\item{climatology}{Provide parameters as 22-year climatologies (solar)
-and 30-year climatologies (meteorology); the period climatology and
+\item{hourly}{The hourly average of parameters by hour, day, month, and
+year.}
+\item{daily}{The daily average of parameters by day, month, and year.}
+\item{monthly}{The monthly average of parameters by month and year.}
+\item{climatology}{Parameters as 22-year climatologies (solar) and
+30-year climatologies (meteorology); includes period climatology and
 monthly average, maximum, and/or minimum values.}
 }
 }
 
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
-
-# fetch the complete set of attribute information for "T2M".
+# Fetch complete attribute information for "T2M"
 query_parameters(pars = "T2M")
 
-# fetch complete temporal and community specific attribute information
-# for "T2M" in the "ag" community for the "hourly" temporal API.
+# Fetch temporal and community-specific attribute information
+# for "T2M" in the "ag" community for the "hourly" temporal API
 query_parameters(
   pars = "T2M",
   community = "ag",
   temporal_api = "hourly"
 )
 
-# fetch complete temporal and community specific attribute information
-# for all parameters in the "ag" community for the "hourly" temporal API.
+# Fetch all parameters in the "ag" community for "hourly" temporal API
 query_parameters(
   community = "ag",
   temporal_api = "hourly"

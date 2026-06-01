@@ -2,21 +2,20 @@
 % Please edit documentation in R/internal_functions.R
 \name{.send_query}
 \alias{.send_query}
-\title{Sends the query to the POWER data API to retrieve data}
+\title{Send Query to POWER Data API}
 \usage{
 .send_query(.query_list, .url)
 }
 \arguments{
 \item{.query_list}{A query list created by \code{\link[=.build_query]{.build_query()}}}
 
-\item{.url}{A character string of the URL to be used for the \acronym{API}
-query}
+\item{.url}{A character string of the URL to be used for the API query}
 }
 \value{
-A response from the POWER server containing either an error message.
-or the data requested.
+The HTTP response object from the POWER server containing either
+an error message or the requested data.
 }
 \description{
-Sends the query to the POWER data API to retrieve data
+Sends the query to the POWER data API to retrieve data.
 }
 \keyword{internal}

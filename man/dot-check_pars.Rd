@@ -14,7 +14,7 @@
 \item{temporal_api}{User entered \code{temporal_api} value.}
 }
 \value{
-Validated a collapsed string of  \code{pars} for use in \link{.build_query}.
+Validated a collapsed string of \code{pars} for use in \link{.build_query}.
 }
 \description{
 Validates user entered \code{pars} values against \code{temporal_api} values.

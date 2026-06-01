@@ -2,18 +2,18 @@
 % Please edit documentation in R/internal_functions.R
 \name{.is_boolean}
 \alias{.is_boolean}
-\title{Boolean}
+\title{Check if Object is a Boolean}
 \usage{
 .is_boolean(x)
 }
 \arguments{
-\item{x}{an object to check.}
+\item{x}{An object to check.}
 }
 \value{
-a logical value indicating whether provided object is a \code{Boolean}.
+A logical value indicating whether the provided object is a Boolean.
 }
 \description{
-Checks if provided object is a Boolean i.e. a length-one logical vector.
+Checks if provided object is a Boolean (i.e., a length-one logical vector).
 }
 \note{
 Taken from
@@ -21,8 +21,8 @@ Taken from
 }
 \examples{
 is_boolean(TRUE) # [1] TRUE
-# the following will work on most systems, unless you have tweaked global Rprofile
-.is_boolean(T) # [1] TRUE
+.is_boolean(TRUE) # [1] TRUE
 .is_boolean(1) # [1] FALSE
+
 }
 \keyword{internal}

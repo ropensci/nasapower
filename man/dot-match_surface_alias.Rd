@@ -6,7 +6,13 @@
 \usage{
 .match_surface_alias(x)
 }
+\arguments{
+\item{x}{A character string representing a surface type alias.}
+}
+\value{
+The matched surface alias (lowercased), or NULL if input is NULL.
+}
 \description{
-Match Wind Surface Aliases for Validity
+Validates and matches surface type aliases against allowed values.
 }
 \keyword{internal}
