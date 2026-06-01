@@ -5,7 +5,6 @@
 \title{Check User Inputs for get_power for Validity}
 \usage{
 .check_inputs(
-  community,
   lonlat,
   pars,
   site_elevation,
@@ -15,10 +14,6 @@
 )
 }
 \arguments{
-\item{community}{A case-insensitive character vector providing community
-name: \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for
-more.}
-
 \item{lonlat}{A numeric vector of geographic coordinates for a cell or region
 entered as x, y (longitude, latitude) coordinates.  See argument details
 for more.}
@@ -56,7 +51,8 @@ with the request, see
 wind-speed is to be supplied.  See \code{wind-surface} section for more detail.}
 }
 \value{
-Nothing, called for its side-effects of checking user inputs.
+A list with validated (and possibly nulled) \code{site_elevation} and
+\code{wind_elevation} values, so that side-effects are not silently lost.
 }
 \description{
 Check User Inputs for get_power for Validity

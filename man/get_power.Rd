@@ -7,8 +7,8 @@
 get_power(
   community,
   pars,
-  temporal_api,
   lonlat,
+  temporal_api = "daily",
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
@@ -30,15 +30,15 @@ only 15 \code{pars} can be specified in a single query.  See \code{temporal_api}
 more.  These values are checked internally for validity before sending the
 query to the \acronym{POWER} \acronym{API}.}
 
+\item{lonlat}{A numeric vector of geographic coordinates for a cell or
+region entered as x, y (longitude, latitude) coordinates.  See argument
+details for more.}
+
 \item{temporal_api}{A case-insensitive character vector providing the
 temporal \acronym{API} end-point for data being queried, supported values
 are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 \dQuote{climatology}. Defaults to \dQuote{daily}.  See argument details
 for more.}
-
-\item{lonlat}{A numeric vector of geographic coordinates for a cell or
-region entered as x, y (longitude, latitude) coordinates.  See argument
-details for more.}
 
 \item{dates}{A character vector of start and end dates in that order,\cr
 \emph{e.g.}, \code{dates = c("1983-01-01", "2017-12-31")}.

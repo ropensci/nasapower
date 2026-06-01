@@ -22,7 +22,7 @@
 
 \item{pars}{A validated value from \link{.check_pars}.}
 
-\item{dates}{A list of values, a result of \link{.check_dates}..}
+\item{dates}{A list of values, a result of \link{.check_dates}.}
 
 \item{site_elevation}{A validated value passed by \code{check_inputs}.}
 
@@ -32,8 +32,7 @@
 }
 \value{
 A \code{list} object of values to be passed to a \CRANpkg{crul} object to
-query
-the 'POWER' 'API'.
+query the 'POWER' 'API'.
 }
 \description{
 Construct a list of options to pass to the POWER API
