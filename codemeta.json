@@ -81,12 +81,6 @@
       "name": "Curtin University"
     }
   ],
-  "funder": [
-    {
-      "@type": "Organization",
-      "name": "Curtin University"
-    }
-  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -281,7 +275,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data"],
-  "fileSize": "508.168KB",
+  "fileSize": "509.378KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
