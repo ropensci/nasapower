@@ -199,18 +199,6 @@
     },
     "4": {
       "@type": "SoftwareApplication",
-      "identifier": "data.table",
-      "name": "data.table",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=data.table"
-    },
-    "5": {
-      "@type": "SoftwareApplication",
       "identifier": "lubridate",
       "name": "lubridate",
       "provider": {
@@ -221,7 +209,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=lubridate"
     },
-    "6": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "readr",
       "name": "readr",
@@ -233,7 +221,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=readr"
     },
-    "7": {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "rlang",
       "name": "rlang",
@@ -245,7 +233,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     },
-    "8": {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "tibble",
       "name": "tibble",
@@ -258,7 +246,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=tibble"
     },
-    "9": {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "yyjsonr",
       "name": "yyjsonr",
@@ -275,7 +263,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data"],
-  "fileSize": "509.378KB",
+  "fileSize": "508.743KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
