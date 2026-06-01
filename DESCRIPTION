@@ -21,7 +21,7 @@ Authors@R: c(
            comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
     person("Gergely", "Daróczi", , "daroczig@rapporter.net", role = c("ctb", "cph"),
            comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
-    person("Curtin University", role = c("fnd", "cph"),
+    person("Curtin University", role = "cph",
            comment = c("http://www.curtin.edu.au/", ROR = "02n415q13"))
   )
 Description: An API client for NASA POWER global meteorology, surface
