@@ -32,6 +32,7 @@
 ^man/dot-build_query\.Rd$
 ^man/dot-format_dates_ag\.Rd$
 ^man/dot-format_dates_re_sb\.Rd$
+^man/dot-handle_http_response\.Rd$
 ^man/dot-check_pars\.Rd$
 ^man/dot-is_boolean\.Rd$
 ^man/dot-match_surface_alias\.Rd$
