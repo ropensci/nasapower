@@ -18,14 +18,14 @@
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
 #'   more.  These values are checked internally for validity before sending the
 #'   query to the \acronym{POWER} \acronym{API}.
+#' @param lonlat A numeric vector of geographic coordinates for a cell or
+#'   region entered as x, y (longitude, latitude) coordinates.  See argument
+#'   details for more.
 #' @param temporal_api A case-insensitive character vector providing the
 #'   temporal \acronym{API} end-point for data being queried, supported values
 #'   are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
 #'   \dQuote{climatology}. Defaults to \dQuote{daily}.  See argument details
 #'   for more.
-#' @param lonlat A numeric vector of geographic coordinates for a cell or
-#'   region entered as x, y (longitude, latitude) coordinates.  See argument
-#'   details for more.
 #' @param dates A character vector of start and end dates in that order,\cr
 #'   _e.g._, `dates = c("1983-01-01", "2017-12-31")`.
 #'   Not used when\cr `temporal_api` is set to \dQuote{climatology}.
@@ -206,8 +206,8 @@
 get_power <- function(
   community,
   pars,
-  temporal_api,
   lonlat,
+  temporal_api = "daily",
   dates = NULL,
   site_elevation = NULL,
   wind_elevation = NULL,
@@ -233,7 +233,7 @@ get_power <- function(
 
   # check user inputs for validity ---------------------------------------------
   # see internal_functions.R for these functions prefixed with "."
-  .check_inputs(
+  checked <- .check_inputs(
     lonlat = lonlat,
     pars = pars,
     site_elevation = site_elevation,
@@ -241,6 +241,8 @@ get_power <- function(
     wind_elevation = wind_elevation,
     wind_surface = wind_surface
   )
+  site_elevation <- checked$site_elevation
+  wind_elevation <- checked$wind_elevation
 
   pars <- .check_pars(
     pars = pars,
@@ -274,13 +276,17 @@ get_power <- function(
   response$raise_for_status()
 
   # extract query results and return to user -----------------------------------
-  # create meta object
-  power_data <- readr::read_lines(
-    file = I(response$parse("UTF-8"))
-  )
+  # metadata extraction and CSV parsing, avoiding a redundant second parse.
+  raw <- response$parse("UTF-8")
 
-  meta <- power_data[c(
-    grep("-BEGIN HEADER-", power_data):grep("-END HEADER-", power_data)
+  power_lines <- readr::read_lines(file = I(raw))
+
+  # Constants for header delimiters
+  header_begin <- "-BEGIN HEADER-"
+  header_end <- "-END HEADER-"
+
+  meta <- power_lines[c(
+    grep(header_begin, power_lines):grep(header_end, power_lines)
   )]
   # strip BEGIN/END HEADER lines
   meta <- meta[-c(1L, max(length(meta)))]
@@ -296,7 +302,7 @@ get_power <- function(
 
   # create tibble object
   power_data <- readr::read_csv(
-    file = I(response$parse("UTF-8")),
+    file = I(raw),
     col_types = readr::cols(),
     na = c("-999", "-999.00", "-999.0", "-99", "-99.00", "-99.0"),
     skip = length(meta) + 2L
@@ -313,8 +319,7 @@ get_power <- function(
   # if the temporal average is anything but climatology, add date fields
   if (
     temporal_api == "daily" &&
-      query_list$community == "re" ||
-      query_list$community == "sb"
+      (query_list$community == "re" || query_list$community == "sb")
   ) {
     power_data <- .format_dates_re_sb(power_data)
   }
@@ -469,7 +474,7 @@ get_power <- function(
         )
       )
     }
-    # check end date to be sure it's not _after_
+    # check end date to be sure it's not _after_ today
     if (dates[[2L]] > Sys.Date()) {
       cli::cli_abort(
         call = rlang::caller_env(),
@@ -483,12 +488,14 @@ get_power <- function(
     dates <- lapply(dates, as.character)
     dates <- gsub("-", "", dates, ignore.case = TRUE)
   }
+  return(dates)
 }
 
 #' Check User Inputs for get_power for Validity
-#' @param community A case-insensitive character vector providing community
-#'   name: \dQuote{AG}, \dQuote{RE} or \dQuote{SB}.  See argument details for
-#'   more.
+#'
+#' @param lonlat A numeric vector of geographic coordinates for a cell or region
+#'   entered as x, y (longitude, latitude) coordinates.  See argument details
+#'   for more.
 #' @param pars  case-insensitive character vector of solar, meteorological or
 #'   climatology parameters to download.  When requesting a single point of x,
 #'   y coordinates, a maximum of twenty (20) `pars` can be specified at one
@@ -497,19 +504,16 @@ get_power <- function(
 #'   only 15 `pars` can be specified in a single query.  See `temporal_api` for
 #'   more.  These values are checked internally for validity before sending the
 #'   query to the \acronym{POWER} \acronym{API}.
-#' @param temporal_api A case-insensitive character vector providing the
-#'   temporal \acronym{API} end-point for data being queried, supported values
-#'   are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
-#'   \dQuote{climatology}. Defaults to \dQuote{daily}.  See argument details
-#'   for more.
-#' @param lonlat A numeric vector of geographic coordinates for a cell or region
-#'   entered as x, y (longitude, latitude) coordinates.  See argument details
-#'   for more.
 #' @param site_elevation A user-supplied value for elevation at a single point
 #'   in metres.  If provided this will return a corrected atmospheric pressure
 #'   value adjusted to the elevation provided.  Only used with `lonlat` as a
 #'   single point of x, y coordinates, not for use with \dQuote{global} or with
 #'   a regional request.
+#' @param temporal_api A case-insensitive character vector providing the
+#'   temporal \acronym{API} end-point for data being queried, supported values
+#'   are \dQuote{hourly}, \dQuote{daily}, \dQuote{monthly} or
+#'   \dQuote{climatology}. Defaults to \dQuote{daily}.  See argument details
+#'   for more.
 #' @param wind_elevation A user-supplied value for elevation at a single point
 #'   in metres.  Wind Elevation values in Meters are required to be between
 #'   10 m and 300 m.  Only used with `lonlat` as a single point of x, y
@@ -519,11 +523,12 @@ get_power <- function(
 #'    <https://power.larc.nasa.gov/docs/methodology/meteorology/wind/>.
 #' @param wind_surface A user-supplied wind surface for which the corrected
 #'   wind-speed is to be supplied.  See `wind-surface` section for more detail.
-#' @returns Nothing, called for its side-effects of checking user inputs.
+#'
+#' @returns A list with validated (and possibly nulled) `site_elevation` and
+#'   `wind_elevation` values, so that side-effects are not silently lost.
 #' @dev
 
 .check_inputs <- function(
-  community,
   lonlat,
   pars,
   site_elevation,
@@ -598,7 +603,8 @@ get_power <- function(
   if (
     !is.null(wind_elevation) &&
       (!is.numeric(wind_elevation) ||
-        (wind_elevation %notin% 10L:300L))
+        wind_elevation < 10L ||
+        wind_elevation > 300L)
   ) {
     cli::cli_abort(
       c(
@@ -652,6 +658,8 @@ get_power <- function(
       )
     )
   }
+
+  return(list(site_elevation = site_elevation, wind_elevation = wind_elevation))
 }
 
 #' Check user-supplied `lonlat` for validity when querying API
@@ -795,13 +803,12 @@ get_power <- function(
 #' @param community A validated value for `community`.
 #' @param lonlat_identifier A list of values, a result of [.check_lonlat].
 #' @param pars A validated value from [.check_pars].
-#' @param dates A list of values, a result of [.check_dates]..
+#' @param dates A list of values, a result of [.check_dates].
 #' @param site_elevation A validated value passed by `check_inputs`.
 #' @param wind_elevation A validated value passed by `check_inputs`.
 #' @param wind_surface A validated value passed by `check_inputs`.
 #' @returns A `list` object of values to be passed to a \CRANpkg{crul} object to
-#'  query
-#'  the 'POWER' 'API'.
+#'  query the 'POWER' 'API'.
 #' @dev
 .build_query <- function(
   community,
