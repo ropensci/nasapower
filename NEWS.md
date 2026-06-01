@@ -5,6 +5,24 @@
 - Fixes outdated examples where fetching more than one parameter per region was illustrated.
   The API changed without warning to disallow this and a change was made to the package to stop it, but I forgot to update the examples.
 
+### get_power()
+
+- Added `temporal_api = "daily"` default to the function signature
+- Parse `response$parse("UTF-8")` once into raw, then pass raw to both `read_lines()` and `read_csv()` — no double network/parse cost
+- Extracted header delimiter strings into named constants (header_begin, header_end)
+- Fixed `||` precedence bug: `temporal_api == "daily" && (... == "re" || ... == "sb")` now correctly requires daily for both communities
+- Now captures the return value of `.check_inputs()` and updates site_elevation/wind_elevation from it
+
+### .check_inputs()
+
+- Removed the unused community parameter
+- Replaced `wind_elevation %notin% 10L:300L` with `wind_elevation < 10L || wind_elevation > 300L` (no 291-element vector allocation)
+- Now returns `list(site_elevation = ..., wind_elevation = ...)` so nulling those values actually propagates to the caller
+
+### .check_dates()
+
+- Added an explicit `return(dates)` at the end so the climatology path returns `NULL` visibly rather than falling off the function silently
+
 # nasapower 4.2.5
 
 ## Bug fixes
