@@ -1,7 +1,7 @@
 ---
 title: "Fetch NASA-POWER Parameters and Include Them as an Internal List"
 author: "Adam H. Sparks"
-date: "2026-05-17"
+date: "2026-06-01"
 output: github_document
 ---
 
@@ -129,7 +129,7 @@ sessioninfo::session_info()
 ```
 
 ```
-## ─ Session info ───────────────────────────────────────────────────────────────────────────────
+## ─ Session info ────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  setting  value
 ##  version  R version 4.6.0 (2026-04-24)
 ##  os       macOS Tahoe 26.5
@@ -139,11 +139,11 @@ sessioninfo::session_info()
 ##  collate  en_AU.UTF-8
 ##  ctype    en_AU.UTF-8
 ##  tz       Australia/Perth
-##  date     2026-05-17
+##  date     2026-06-01
 ##  pandoc   3.9.0.2 @ /opt/homebrew/bin/pandoc
-##  quarto   1.9.37 @ /usr/local/bin/quarto
+##  quarto   1.9.38 @ /usr/local/bin/quarto
 ## 
-## ─ Packages ───────────────────────────────────────────────────────────────────────────────────
+## ─ Packages ────────────────────────────────────────────────────────────────────────────────────────────────────────
 ##  package          * version   date (UTC) lib source
 ##  askpass            1.2.1     2024-10-04 [1] CRAN (R 4.6.0)
 ##  base64enc          0.1-6     2026-02-02 [1] CRAN (R 4.6.0)
@@ -180,5 +180,5 @@ sessioninfo::session_info()
 ##  [2] /Library/Frameworks/R.framework/Versions/4.6/Resources/library
 ##  * ── Packages attached to the search path.
 ## 
-## ──────────────────────────────────────────────────────────────────────────────────────────────
+## ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
