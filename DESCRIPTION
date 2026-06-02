@@ -52,7 +52,8 @@ Suggests:
     rmarkdown,
     spelling,
     testthat (>= 3.0.0),
-    vcr (>= 0.6.0)
+    vcr (>= 0.6.0),
+    withr
 VignetteBuilder: 
     knitr
 Config/Needs/build: moodymudskipper/devtag
