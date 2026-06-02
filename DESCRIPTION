@@ -18,9 +18,9 @@ Authors@R: c(
     person("Phillip D.", "Alderman", , "phillip.alderman@okstate.edu", role = "ctb",
            comment = c(ORCID = "0000-0003-1467-2337", "Phillip Alderman contributed a patch to fix an issue with, 'The\n               `file` argument of `vroom()` must use `I()` for literal data as\n               of vroom 1.5.0.', see\n               <https://github.com/ropensci/nasapower/pull/67>.")),
     person("Aleksandar", "Blagotić", , "alex@rapporter.net", role = c("ctb", "cph"),
-           comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
+           comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was derived."),
     person("Gergely", "Daróczi", , "daroczig@rapporter.net", role = c("ctb", "cph"),
-           comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was taken."),
+           comment = "Author of the CRAN package 'rapportools', from which\n             the '.is_boolean()' was derived."),
     person("Curtin University", role = "cph",
            comment = c("http://www.curtin.edu.au/", ROR = "02n415q13"))
   )
