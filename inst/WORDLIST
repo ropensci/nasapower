@@ -29,6 +29,7 @@ ag
 apsimx
 au
 badging
+behaviour
 broadleaf
 cli
 climatologies
@@ -48,6 +49,7 @@ ies
 interannual
 json
 lon
+lowercased
 metFile
 metres
 modelling
