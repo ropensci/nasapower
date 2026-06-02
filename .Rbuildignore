@@ -5,6 +5,7 @@
 ^codecov\.yml$
 ^README\.Rmd$
 ^docs$
+^tests/fixtures$
 \.json$
 ^cran-comments\.md$
 ^data-raw$
