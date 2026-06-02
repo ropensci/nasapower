@@ -20,6 +20,7 @@
 # Air files
 ^air\.toml$
 
+^codemeta\.json$
 ^man/dot-check_dates\.Rd$
 ^man/dot-check_inputs\.Rd$
 ^man/dot-check_lonlat\.Rd$
@@ -35,4 +36,3 @@
 ^man/dot-get_timeout\.Rd$
 ^man/dot-get_timeout_connect\.Rd$
 ^man/dot-get_max_tries\.Rd$
-^codemeta\.json$
