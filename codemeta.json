@@ -1,0 +1,326 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "nasapower",
+  "description": "An API client for NASA POWER global meteorology, surface solar energy and climatology data API. POWER (Prediction Of Worldwide Energy Resources) data are freely available for download with varying spatial resolutions dependent on the original data and with several temporal resolutions depending on the POWER parameter and community. This work is funded through the NASA Earth Science Directorate Applied Science Program. For more on the data themselves, the methodologies used in creating, a web-based data viewer and web access, please see <https://power.larc.nasa.gov/>.",
+  "name": "nasapower: NASA POWER API Client",
+  "relatedLink": ["https://docs.ropensci.org/nasapower/", "https://CRAN.R-project.org/package=nasapower"],
+  "codeRepository": "https://codeberg.org/ropensci/nasapower",
+  "issueTracker": "https://codeberg.org/ropensci/nasapower/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "4.3.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.6.0 (2026-04-24)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Adam H.",
+      "familyName": "Sparks",
+      "email": "adamhsparks@gmail.com",
+      "@id": "https://orcid.org/0000-0002-0061-8359"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Fernando",
+      "familyName": "Miguez",
+      "email": "femiguez@iastate.edu",
+      "@id": "https://orcid.org/0000-0002-4627-8329"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Maëlle",
+      "familyName": "Salmon",
+      "@id": "https://orcid.org/0000-0002-2815-0399"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Phillip D.",
+      "familyName": "Alderman",
+      "email": "phillip.alderman@okstate.edu",
+      "@id": "https://orcid.org/0000-0003-1467-2337"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Aleksandar",
+      "familyName": "Blagotić",
+      "email": "alex@rapporter.net"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Gergely",
+      "familyName": "Daróczi",
+      "email": "daroczig@rapporter.net"
+    }
+  ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Aleksandar",
+      "familyName": "Blagotić",
+      "email": "alex@rapporter.net"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Gergely",
+      "familyName": "Daróczi",
+      "email": "daroczig@rapporter.net"
+    },
+    {
+      "@type": "Organization",
+      "name": "Curtin University"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Adam H.",
+      "familyName": "Sparks",
+      "email": "adamhsparks@gmail.com",
+      "@id": "https://orcid.org/0000-0002-0061-8359"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "purrr",
+      "name": "purrr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=purrr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "spelling",
+      "name": "spelling",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=spelling"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "vcr",
+      "name": "vcr",
+      "version": ">= 0.6.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=vcr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "webmockr",
+      "name": "webmockr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=webmockr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "withr",
+      "name": "withr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=withr"
+    }
+  ],
+  "softwareRequirements": {
+    "1": {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.5.0"
+    },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "cli",
+      "name": "cli",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=cli"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "crul",
+      "name": "crul",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crul"
+    },
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "lubridate",
+      "name": "lubridate",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=lubridate"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "readr",
+      "name": "readr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readr"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "rlang",
+      "name": "rlang",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rlang"
+    },
+    "7": {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "version": ">= 3.0.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    "8": {
+      "@type": "SoftwareApplication",
+      "identifier": "yyjsonr",
+      "name": "yyjsonr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=yyjsonr"
+    },
+    "SystemRequirements": null
+  },
+  "applicationCategory": "Tools",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["NASA", "meteorological-data", "weather", "global", "weather", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data"],
+  "fileSize": "401.345KB",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2018",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Adam H.",
+          "familyName": "Sparks"
+        }
+      ],
+      "name": "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R",
+      "identifier": "10.21105/joss.01035",
+      "pagination": "1035",
+      "@id": "https://doi.org/10.21105/joss.01035",
+      "sameAs": "https://doi.org/10.21105/joss.01035",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "30",
+        "datePublished": "2018",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "3",
+          "name": "The Journal of Open Source Software"
+        }
+      }
+    }
+  ],
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/155",
+    "provider": "https://ropensci.org"
+  }
+}
