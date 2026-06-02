@@ -2,6 +2,8 @@
 output: github_document
 ---
 
+
+
 # {nasapower}: NASA POWER API Client <img src="man/figures/logo.png" style="float:right;" alt="logo" width="120" />
 
 <!-- badges: start -->
@@ -72,7 +74,7 @@ daily_ag
 ```
 
 ```
-## ────────────────────────────────────────────────────────────────────────────────────────────────
+## ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -80,7 +82,7 @@ daily_ag
 ```
 
 ```
-## ── NASA/POWER Source Native Resolution Daily Data  ─────────────────────────────────────────────
+## ── NASA/POWER Source Native Resolution Daily Data  ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -96,8 +98,7 @@ daily_ag
 ```
 
 ```
-## The value for missing source data that cannot be computed or is outside of the sources
-## availability range: NA
+## The value for missing source data that cannot be computed or is outside of the sources availability range: NA
 ```
 
 ```
@@ -105,7 +106,7 @@ daily_ag
 ```
 
 ```
-## ────────────────────────────────────────────────────────────────────────────────────────────────
+## ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ```
 
 ```
@@ -113,16 +114,15 @@ daily_ag
 ```
 
 ```
-## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ;
-## PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
+## RH2M MERRA-2 Relative Humidity at 2 Meters (%) ; T2M MERRA-2 Temperature at 2 Meters (C) ; PRECTOTCORR MERRA-2 Precipitation Corrected (mm/day)
 ```
 
 ```
-## ────────────────────────────────────────────────────────────────────────────────────────────────
-## # A tibble: 1 × 10
-##     LON   LAT  YEAR    MM    DD   DOY YYYYMMDD    RH2M   T2M PRECTOTCORR
-##   <dbl> <dbl> <dbl> <int> <int> <int> <date>     <dbl> <dbl>       <dbl>
-## 1  152. -27.5  1985     1     1     1 1985-01-01  54.7  24.9         0.9
+## ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## # Tibble (class tbl_df) 10 x 1:
+##  │LON  │LAT  │YEAR │MM   │DD   │DOY  │YYYYMMDD  │RH2M │T2M  │PRECTOTCORR
+##  │<dbl>│<dbl>│<dbl>│<int>│<int>│<int>│<oth>     │<dbl>│<dbl>│<dbl>      
+## 1│  152│  -27│ 1985│    1│    1│    1│1985-01-01│   55│   25│        0.9
 ```
 
 ## Documentation
@@ -151,9 +151,8 @@ citation("nasapower")
 ```
 ## To cite package 'nasapower' in publications use:
 ## 
-##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy
-##   and Climatology Data Client for R." _The Journal of Open Source Software_, *3*(30),
-##   1035. doi:10.21105/joss.01035 <https://doi.org/10.21105/joss.01035>.
+##   Sparks A (2018). "nasapower: A NASA POWER Global Meteorology, Surface Solar Energy and Climatology Data Client for R." _The Journal of
+##   Open Source Software_, *3*(30), 1035. doi:10.21105/joss.01035 <https://doi.org/10.21105/joss.01035>.
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 

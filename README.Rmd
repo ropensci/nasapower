@@ -2,6 +2,10 @@
 output: github_document
 ---
 
+```{r setup, include=FALSE}
+options(pillar.sigfig = 1)
+```
+
 # {nasapower}: NASA POWER API Client <img src="man/figures/logo.png" style="float:right;" alt="logo" width="120" />
 
 <!-- badges: start -->
