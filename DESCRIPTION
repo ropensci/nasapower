@@ -38,7 +38,7 @@ URL: https://codeberg.org/ropensci/nasapower,
     https://docs.ropensci.org/nasapower/
 BugReports: https://codeberg.org/ropensci/nasapower/issues
 Depends:
-    R (>= 3.5.0)
+    R (>= 4.1.0)
 Imports:
     cli,
     crul,
