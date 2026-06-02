@@ -144,7 +144,7 @@
   if (!x_lower %in% tolower(.VALID_SURFACE_ALIASES)) {
     cli::cli_abort(c(
       x = "{.val {x}} is not a valid surface alias.",
-      i = "Valid options are: {.val {.VALID_SURFACE_ALIASES}}"
+      i = "Valid options are: {.val {(.VALID_SURFACE_ALIASES)}}"
     ))
   }
   x_lower
