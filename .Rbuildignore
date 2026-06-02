@@ -1,11 +1,7 @@
-^renv$
-^renv\.lock$
 ^CRAN-RELEASE$
 ^\.github$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^appveyor\.yml$
-^\.travis\.yml$
 ^codecov\.yml$
 ^README\.Rmd$
 ^docs$
@@ -18,10 +14,8 @@
 ^\.ccache$
 ^.covrignore$
 ^CODE_OF_CONDUCT\.md$
+^CONTRIBUTING\.md$
 ^CRAN-SUBMISSION$
-
-# flir files
-^flir$
 
 # Air files
 ^air\.toml$
