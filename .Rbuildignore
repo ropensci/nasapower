@@ -35,3 +35,4 @@
 ^man/dot-get_timeout\.Rd$
 ^man/dot-get_timeout_connect\.Rd$
 ^man/dot-get_max_tries\.Rd$
+^codemeta\.json$
