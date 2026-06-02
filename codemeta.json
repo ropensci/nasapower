@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ropensci/nasapower",
   "issueTracker": "https://codeberg.org/ropensci/nasapower/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "4.2.5.9000",
+  "version": "4.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -276,7 +276,7 @@
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
   "keywords": ["NASA", "meteorological-data", "weather", "global", "weather-data", "meteorology", "NASA-POWER", "agroclimatology", "earth-science", "data-access", "climate-data", "r", "nasa-power", "nasa", "agroclimatology-data", "weather-variables", "rstats", "r-package"],
-  "fileSize": "521.456KB",
+  "fileSize": "521.684KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
