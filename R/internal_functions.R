@@ -20,7 +20,10 @@
   if (response$status_code >= 400L) {
     mssg <- tryCatch(
       yyjsonr::read_json_raw(response$content)$message,
-      error = function(e) rawToChar(response$content)
+      error = function(e) {
+        rawToChar(response$content, multiple = FALSE) |>
+          iconv(to = "UTF-8", sub = "byte")
+      }
     )
 
     x <- response$status_http()
@@ -60,28 +63,27 @@
   }
 
   # build valid keys (temporal x community) using vector recycling
-  community_temporal_api <- paste0(
-    rep(temporal_api, length(community)),
-    "_",
-    rep(community, each = length(temporal_api))
+  community_temporal_api <- as.vector(
+    outer(temporal_api, community, paste, sep = "_")
   )
 
-  # subset parameter map
-  pars_map <- parameters[community_temporal_api]
-
   # detect invalid key combinations explicitly
-  missing_keys <- community_temporal_api[
-    vapply(pars_map, is.null, logical(1))
-  ]
 
-  if (length(missing_keys)) {
+  unknown_keys <- community_temporal_api[
+    !community_temporal_api %in% names(parameters)
+  ]
+  if (length(unknown_keys)) {
     cli::cli_abort(
       c(
         "Invalid {.arg community}/{.arg temporal_api} combination.",
-        x = "The following are not available: {.val {missing_keys}}"
-      )
+        x = "Not available: {.val {unknown_keys}}"
+      ),
+      call = rlang::caller_env()
     )
   }
+
+  # subset parameter map
+  pars_map <- parameters[community_temporal_api]
 
   # flatten valid parameters
   p <- unique(unlist(pars_map, use.names = FALSE))
@@ -113,7 +115,6 @@
 #' @returns A logical value indicating whether the provided object is a Boolean.
 #'
 #' @examples
-#' is_boolean(TRUE) # [1] TRUE
 #' .is_boolean(TRUE) # [1] TRUE
 #' .is_boolean(1) # [1] FALSE
 #'
@@ -132,25 +133,20 @@
 #' @param x A character string representing a surface type alias.
 #'
 #' @returns The matched surface alias (lowercased), or NULL if input is NULL.
+#'  The POWER API accepts case-insensitive surface aliases
 #'
 #' @dev
 .match_surface_alias <- function(x) {
   if (is.null(x)) {
     return(NULL)
   }
-
   x_lower <- tolower(x)
-  valid_aliases_lower <- tolower(.VALID_SURFACE_ALIASES)
-
-  if (!x_lower %in% valid_aliases_lower) {
-    cli::cli_abort(
-      c(
-        x = "{.val {x}} is not a valid surface alias.",
-        i = "Valid options are: {.val {.VALID_SURFACE_ALIASES}}"
-      )
-    )
+  if (!x_lower %in% tolower(.VALID_SURFACE_ALIASES)) {
+    cli::cli_abort(c(
+      x = "{.val {x}} is not a valid surface alias.",
+      i = "Valid options are: {.val {.VALID_SURFACE_ALIASES}}"
+    ))
   }
-
   x_lower
 }
 
@@ -171,8 +167,9 @@
   # nocov begin
   response <- client$get(
     query = .query_list,
-    retry = 6L,
-    timeout = 30L
+    retry = .get_max_tries(),
+    timeout = .get_timeout(),
+    timeout_connect = .get_timeout_connect()
   )
   # nocov end
 
@@ -196,8 +193,9 @@
 
   # nocov begin
   response <- client$get(
-    retry = 6L,
-    timeout = 30L
+    retry = .get_max_tries(),
+    timeout = .get_timeout(),
+    timeout_connect = .get_timeout_connect()
   )
   # nocov end
 
