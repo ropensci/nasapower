@@ -13,6 +13,7 @@ An API client for NASA POWER global meteorology, surface solar energy and climat
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://codeberg.org/ropensci/nasapower}
   \item \url{https://docs.ropensci.org/nasapower/}
   \item Report bugs at \url{https://codeberg.org/ropensci/nasapower/issues}
 }
