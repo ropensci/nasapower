@@ -5,7 +5,7 @@
 ^codecov\.yml$
 ^README\.Rmd$
 ^docs$
-^codemeta\.json$
+\.json$
 ^cran-comments\.md$
 ^data-raw$
 ^revdep$
