@@ -11,6 +11,7 @@
 }
 \value{
 The matched surface alias (lowercased), or NULL if input is NULL.
+The POWER API accepts case-insensitive surface aliases
 }
 \description{
 Validates and matches surface type aliases against allowed values.

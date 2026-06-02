@@ -20,7 +20,6 @@ Taken from
 \url{https://github.com/Rapporter/rapportools/blob/master/R/utils.R}
 }
 \examples{
-is_boolean(TRUE) # [1] TRUE
 .is_boolean(TRUE) # [1] TRUE
 .is_boolean(1) # [1] FALSE
 
