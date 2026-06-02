@@ -1,4 +1,4 @@
-# nasapower 4.2.5.9000
+# nasapower 4.3.0
 
 ## Bug fixes
 
@@ -22,6 +22,10 @@
 ### .check_dates()
 
 - Added an explicit `return(dates)` at the end so the climatology path returns `NULL` visibly rather than falling off the function silently
+
+## Minor changes 
+
+- Add user-facing settings to change download options, for *e.g.*, change the timeout for the API connection to 60 seconds, `options(nasapower.timeout = 60L)`.
 
 # nasapower 4.2.5
 
