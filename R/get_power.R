@@ -362,13 +362,14 @@ get_power <- function(
 #' @returns Validated dates in a list for use in `.build_query`.
 #' @dev
 .check_dates <- function(dates, lonlat, temporal_api) {
-  if (is.null(dates) && temporal_api != "climatology") {
+  if (is.null(dates) & temporal_api != "climatology") {
     cli::cli_abort(
       c(i = "You have not entered dates for the query."),
       call = rlang::caller_env()
     )
   }
-  if (temporal_api == "monthly" && length(unique(dates)) < 2L) {
+  if (temporal_api == "monthly") {
+    if (length(unique(dates)) < 2L) {
       cli::cli_abort(
         c(
           i = "For {.par temporal_api} = {.arg monthly}, at least two (2)
@@ -382,7 +383,8 @@ get_power <- function(
     }
     if (dates[[2L]] < dates[[1L]]) {
       cli::cli_alert_info(c(
-        i = "Your start and end dates were reversed. They have been reordered."
+        i = "Your start and end dates were reversed.
+                                They have been reordered."
       ))
       dates <- c(dates[2L], dates[1L])
     }
